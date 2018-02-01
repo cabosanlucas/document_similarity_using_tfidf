@@ -1,0 +1,189 @@
+
+
+
+
+
+
+
+This article has multiple issues. Please help improve it or discuss these issues on the talk page. (Learn how and when to remove these template messages)
+
+
+
+
+
+
+
+This article's lead section does not adequately summarize key points of its contents. Please consider expanding the lead to provide an accessible overview of all important aspects of the article. Please discuss this issue on the article's talk page. (September 2016)
+
+
+
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (September 2016) (Learn how and when to remove this template message)
+
+
+
+
+
+(Learn how and when to remove this template message)
+
+
+
+A media type (also MIME type and content type)[1] is a two-part identifier for file formats and format contents transmitted on the Internet. The Internet Assigned Numbers Authority (IANA) is the official authority for the standardization and publication of these classifications. Media types were originally defined in Request for Comments 2045 in November 1996 as a part of MIME (Multipurpose Internet Mail Extensions) specification, for denoting type of email message content and attachments;[2] hence the name MIME type. Media types are also used by other internet protocols such as HTTP[3] and document file formats such as HTML,[4] for similar purpose.
+
+
+
+Contents
+
+
+1 Naming
+
+1.1 Common examples
+1.2 Registration trees
+
+1.2.1 Standards tree
+1.2.2 Vendor tree
+1.2.3 Personal or Vanity tree
+1.2.4 Unregistered x. tree
+
+
+1.3 Suffix
+
+
+2 Mailcap
+3 mime.types
+
+3.1 Netscape use
+
+
+4 See also
+5 References
+6 External links
+
+
+
+Naming[edit]
+A media type is composed of a type, a subtype, and optional parameters.
+As an example, an HTML file might be designated text/html; charset=UTF-8. In this example text is the type, html is the subtype, and charset=UTF-8 is an optional parameter indicating the character encoding.
+Media type consists of top-level type name and sub-type name, which is further structured into so-called "trees". Media types can optionally define companion data, known as parameters.
+top-level type name / subtype name [ ; parameters ]
+top-level type name / [ tree. ] subtype name [ +suffix ] [ ; parameters ]
+The currently registered top-level type names are: application, audio, example, font, image, message, model, multipart, text, video.
+An unofficial top-level name in common use is called chemical.[5]
+Sub-type name typically consists of a media type name, but it may or must also contain other content, such as tree prefix (facet), producer's name, product name or suffix - according to the different rules in registration trees.
+Common examples[edit]
+
+application/javascript
+application/json
+application/x-www-form-urlencoded
+application/xml
+application/zip
+application/pdf
+application/sql
+application/ld+json
+application/msword (.doc)
+application/vnd.openxmlformats-officedocument.wordprocessingml.document(.docx)
+application/vnd.ms-excel (.xls)
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet (.xlsx)
+application/vnd.ms-powerpoint (.ppt)
+application/vnd.openxmlformats-officedocument.presentationml.presentation (.pptx)
+application/vnd.oasis.opendocument.text (.odt)
+audio/mpeg
+audio/vorbis
+multipart/form-data
+text/css
+text/html
+text/csv
+text/plain
+image/png
+image/jpeg
+image/gif
+
+Registration trees[edit]
+All media types should be registered using the IANA registration procedures. For the efficiency and flexibility of the media type registration process, different structures of sub-type names can be registered in registration "trees" that are distinguished by the use of faceted names, e.g. sub-type names that begin with a "tree." prefix (facet). Currently the following trees are created: standard, vendor, personal or vanity, unregistered "x.". These registration trees were first defined in November 1996 (obsoleted RFC 2048 - currently RFC 6838). New registration trees may be created by IETF Standards Action - for external registration and management by well-known permanent organizations (e.g. scientific societies).
+Standards tree[edit]
+Media types in the standards tree do not use any tree facet (prefix).[6]
+Registrations in the standards tree must be either associated with IETF specifications approved directly by the IESG, or registered by an IANA recognized standards-related organization.
+type / media type name [+suffix]
+Examples: "application/xhtml+xml", "image/png"
+Vendor tree[edit]
+Vendor tree is used for media types associated with publicly available products. It uses "vnd." facet.[6]
+The terms "vendor" and "producer" are considered equivalent in the context. Industry consortia as well as non-commercial entities can register media types in the vendor tree. A registration in the vendor tree may be created by anyone who needs to interchange files associated with some software product or set of products. However, the registration belongs to the vendor or organization producing the software that employs the type being registered, and that vendor or organization can at any time elect to assert ownership of a registration done by a third party.
+type / vnd. media type name [+suffix] - used in the case of well-known producer
+type / vnd. producer's name followed by media type name [+suffix] - producer's name must be approved by IANA
+type / vnd. producer's name followed by product's name [+suffix] - producer's name must be approved by IANA
+Personal or Vanity tree[edit]
+Personal or Vanity tree includes media types created experimentally or as part of products that are not distributed commercially. It uses "prs." facet.
+type / prs. media type name [+suffix]
+Unregistered x. tree[edit]
+The "x." tree may be used for media types intended exclusively for use in private, local environments and only with the active agreement of the parties exchanging them. Types in this tree cannot be registered.
+According to RFC 6838 (published in January 2013), any use of types in the "x." tree is strongly discouraged. Media types with names beginning with "x-" are no longer considered to be members of this tree since January 2013.
+According to the previous version of RFC 6838 - obsoleted RFC 2048 (published in November 1996) it should rarely, if ever, be necessary to use unregistered experimental types, and as such use of both "x-" and "x." forms is discouraged. Previous versions of that RFC - RFC 1590 and RFC 1521 stated that the use of "x-" notation for the sub-type name may be used for unregistered and private sub-types, but this recommendation was obsoleted in November 1996 by RFC 2048.
+All media types should be registered using the simplified IANA registration procedures for vendor and personal trees or using the standards procedure for standards tree.
+Media types that have been widely deployed (with an unfaceted sub-type name beginning with the "x-" prefix) without being registered, should be, if possible, re-registered with a proper faceted sub-type name. If this is not possible, the media type can, after an approval by both the media types reviewer and the IESG, be registered in the proper tree with its unfaceted name.
+type / x. media type name [+suffix]
+Suffix[edit]
+Suffix is an augmentation to the media type definition to additionally specify the underlying structure of that media type. Media types that make use of a named structured syntax should use the appropriate IANA registered "+suffix" for that structured syntax when they are registered. Unregistered suffixes should not be used (since January 2013). Structured syntax suffix registration procedures are defined in RFC 6838.[citation needed]
+The currently registered suffixes are: (in RFC 6839) +xml, +json, +ber, +der, +fastinfoset, +wbxml, +zip, (in RFC 7049) +cbor[7]
+"+xml" suffix is defined since January 2001 (RFC 3023). Formal registration of "+xml" suffix and other suffixes is defined since January 2013 (RFC 6839).
+Mailcap[edit]
+Mailcap (derived from the phrase "mail capability") is a type of meta file used to configure how MIME-aware applications such as mail clients and web browsers render files of different MIME-types. The mailcap format is defined by RFC1524 "A User Agent Configuration Mechanism for Multimedia Mail Format Information) but is not defined as an Internet standard. It is supported by most Unix systems.
+Lines can be comments starting with the # character, or a mime-type followed by how to handle that mime type. The first part is called the content-type, and the second part is called the view-command. For example, video/mpeg; xmpeg %s says if a file encoded in mime has type video/mpeg, run the xmpeg program with the file name as a parameter.
+mime.types[edit]
+An associated file is the mime.types file, which associates filename extensions with a MIME type. If the MIME type is properly set, this is unnecessary, but MIME types may be incorrectly set, or set to a generic type such as application/octet-stream, and mime.types allows one to fall back on the extension in these cases. Similarly, since many file systems do not store MIME type information, but instead rely on the filename extension, a mime.types file is frequently used by web servers to determine MIME type.
+When viewing a file, these two work together as follows: mime.types associates an extension with a MIME type, while mailcap associates a MIME type with a program.
+In UNIX-type systems, the mime.types file is usually located at /etc/mime.types and/or $HOME/.mime.types and the format is simply that each line is a space-delimited list of a MIME type, followed by zero or more extensions. For example, the HTML type can be associated with the extensions .htm, .html by the following line:
+
+text/html      htm   html
+
+Netscape use[edit]
+The mime.types file dates to Netscape, where it used a different format;[8] it used key-value pairs and a comma-separated list of extensions, together with a standard header consisting of a specific comment that identifies the file as a mime.types file, as follows.
+
+#--Netscape Communications Corporation MIME Information
+# Do not delete the above line. It is used to identify the file type.
+
+type=text/html exts=htm,html
+
+
+
+
+
+
+
+This article is missing information about the Shared MIME-info standard.. Please expand the article to include this information. Further details may exist on the talk page. (August 2016)
+
+
+
+See also[edit]
+
+Content negotiation
+Content sniffing
+
+References[edit]
+
+
+^ "Content-Type: text". Exchange Server 2003 documentations. Microsoft. 8 June 2004. Retrieved 29 December 2015. 
+^ Freed, N.; Borenstein, N. (November 1996). "Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies". Internet Engineering Task Force. Retrieved 15 July 2015. 
+^ "Hypertext Transfer Protocol -- HTTP/1.0". May 1996. Retrieved 2 Feb 2017. 
+^ "HTML 4.01 Specification". 24 Dec 1999. Retrieved 2 Feb 2017. 
+^ Daniel Leidert, Egon Willighagen (2007). "The chemical-mime-data project". Retrieved 2016-04-28. 
+^ a b Freed, N. "Media Type Specifications and Registration Procedures". RFC6838. Internet Engineering Task Force (IETF). ISSN 2070-1721. Retrieved 15 July 2015. 
+^ "Structured Syntax Suffix Registry" (XML). IANA. 2012-07-20. Retrieved 15 July 2015. 
+^ WEBMASTERS: mime types, John McAnally, Thu, 22 Jan 1998 15:29:29 -0600 (CST)
+
+
+External links[edit]
+
+IANA list of official media types
+The Python Standard Library | mailcap Mailcap file handling
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Media_type&oldid=814857497"					Categories: Computer file formatsMetadataMIMELinuxHidden categories: Wikipedia introduction cleanup from September 2016All pages needing cleanupArticles covered by WikiProject Wikify from September 2016All articles covered by WikiProject WikifyArticles needing additional references from September 2016All articles needing additional referencesArticles with multiple maintenance issuesAll articles with unsourced statementsArticles with unsourced statements from July 2015Articles to be expanded from August 2016Pages using RFC magic links

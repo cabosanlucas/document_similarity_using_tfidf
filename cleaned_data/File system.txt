@@ -1,0 +1,1282 @@
+article computers organise data stored media disk library office filing systems library classification
+
+
+operating systems
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+common features
+
+
+
+
+process management
+interrupts
+memory management
+file system
+device drivers
+networking
+security
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+computing file system filesystem used control data stored retrieved without file system information placed storage medium would large body data tell piece information stops next begins separating data pieces giving piece name information easily isolated identified taking name paperbased information systems named group data called file structure logic rules used manage groups information names called file system
+many different kinds file systems different structure logic properties speed flexibility security size file systems designed used specific applications example 9660 file system designed specifically optical discs
+file systems used numerous different types storage devices different kinds media common storage device today hard disk drive kinds media used include flash memory magnetic tapes optical discs cases tmpfs computers main memory randomaccess memory used create temporary file system shortterm
+file systems used local data storage devices1 others provide file access network protocol example nfs2 clients file systems virtual meaning supplied files called virtual files computed request procfs merely mapping different file system used backing store file system manages access content files metadata files responsible arranging storage space reliability efficiency tuning regard physical storage medium important design considerations
+
+
+
+contents
+
+
+origin term
+architecture
+aspects file systems
+
+space management
+filenames
+directories
+metadata
+file system abstract user interface
+utilities
+restricting permitting access
+maintaining integrity
+user data
+using file system
+multiple file systems within single system
+design limitations
+
+
+types file systems
+
+disk file systems
+
+optical discs
+
+
+flash file systems
+tape file systems
+
+tape formatting
+
+
+database file systems
+transactional file systems
+network file systems
+shared disk file systems
+special file systems
+
+device file systems
+special file systems
+
+
+minimal file system audiocassette storage
+flat file systems
+
+
+file systems operating systems
+
+unix unixlike operating systems
+
+linux
+solaris
+macos
+
+
+
+pcbsd
+plan
+microsoft windows
+
+
+ntfs
+exfat
+
+
+openvms
+mainframe
+conversational monitor system
+as400 file system
+file systems
+
+
+limitations
+
+converting type file system
+
+inplace conversion
+migrating different file system
+
+
+long file paths long file names
+
+
+also
+notes
+references
+
+sources
+
+
+reading
+
+books
+online
+
+
+external links
+
+
+
+origin termedit
+advent computers term file system used describe method storing retrieving paper documents3 1961 term applied computerized filing alongside original meaning4 1964 general use5
+architectureedit
+file system consists three layers sometimes layers explicitly separated sometimes functions combined6
+logical file system responsible interaction user application provides application program interface file operations open close read passes requested operation layer processing logical file system manages open file table entries perprocess file descriptors7 layer provides file access directory operations security protection6
+second optional layer virtual file system interface allows support multiple concurrent instances physical file systems called file system implementation7
+third layer physical file system layer concerned physical operation storage device egdisk processes physical blocks read written handles buffering memory management responsible physical placement blocks specific locations storage medium physical file system interacts device drivers channel drive storage device6
+aspects file systemsedit
+space managementedit
+note applies file systems used storage devices
+
+
+example slack space demonstrated 4096byte ntfs clusters 100000 files five bytes file equal 500000 bytes actual data require 409600000 bytes disk space store
+
+
+file systems allocate space granular manner usually multiple physical units device file system responsible organizing files directories keeping track areas media belong file used example apple early 1980s 256byte sectors kilobyte floppy disk used tracksector mapcitation needed
+results unused space file exact multiple allocation unit sometimes referred slack space 512byte allocation average unused space bytes clusters average unused space size allocation unit chosen file system created choosing allocation size based average size files expected file system minimize amount unusable space frequently default allocation provide reasonable usage choosing allocation size small results excessive overhead file system contain mostly large files
+
+
+
+
+file systems become fragmented
+
+
+file system fragmentation occurs unused space single files contiguous file system used files created modified deleted file created file system allocates space data file systems permit require specifying initial space allocation subsequent incremental allocations file grows files deleted space allocated eventually considered available files creates alternating used unused areas various sizes free space fragmentation file created area contiguous space available initial allocation space must assigned fragments file modified becomes larger exceed space initially allocated another allocation must assigned elsewhere file becomes fragmented
+filenamesedit
+main article filename
+filename file name used identify storage location file system file systems restrictions length filenames file systems filenames case sensitive names myfile myfile refer file others filenames case sensitive names myfile myfile myfile refer three separate files
+modern file systems allow filenames contain wide range characters unicode character however restrictions certain special characters disallowing within filenames characters might used indicate device device type directory prefix file path separator file type
+directoriesedit
+main article directory file systems
+file systems typically directories also called folders allow user group files separate collections implemented associating file name index table contents inode unixlike file system directory structures flat linear allow hierarchies directories contain subdirectories first file system support arbitrary hierarchies directories used multics operating system8 native file systems unixlike systems also support arbitrary directory hierarchies example apples hierarchical file system successor classic file system msdos later versions msdos microsoft windows ntfs file system windows family operating systems ods2 ondisk structure2 higher levels files11 file system openvms
+metadataedit
+bookkeeping information typically associated file within file system length data contained file stored number blocks allocated file byte count time file last modified stored files timestamp file systems might store file creation time time last accessed time files metadata changed time file last backed information include files device type block character socket subdirectory owner user group access permissions file attributes whether file readonly executable
+file system stores metadata associated file—including file name length contents file location file folder hierarchy—separate contents file
+file systems store names files directory place—the directory table directory—which often stored like file many file systems metadata file directory table rest metadata file completely separate structure inode
+file systems also store metadata associated particular file metadata includes information unused regions—free space bitmap block availability map—and information sectors often information allocation group stored inside allocation group
+additional attributes associated file systems ntfs ext2 ext3 versions using extended file attributes file systems provide user defined attributes author document character encoding document size image
+file systems allow different data collections associated file name separate collections referred streams forks apple long used forked file system macintosh microsoft supports streams ntfs file systems maintain multiple past revisions file single file name filename retrieves recent version prior saved version accessed using special naming convention filename4 filename4 access version four saves
+comparison file systemsmetadata details file systems support kinds metadata
+file system abstract user interfaceedit
+cases file system make storage device used organize represent access data whether stored dynamically generated procfs
+utilitiesedit
+file systems include utilities initialize alter parameters remove instance file system include ability extend truncate space allocated file system
+directory utilities used create rename delete directory entries also known dentries singular dentry9 alter metadata associated directory directory utilities also include capabilities create additional links directory hard links unix rename parent links unixlike operating systemsclarification needed create bidirectional links files
+file utilities create list copy move delete files alter metadata able truncate data truncate extend space allocation append move modify files inplace depending underlying structure file system provide mechanism prepend truncate beginning file insert entries middle file delete entries file
+utilities free space deleted files file system provides undelete function also belong category
+file systems defer operations reorganization free space secure erasing free space rebuilding hierarchical structures providing utilities perform functions times minimal activity example file system defragmentation utilities
+important features file system utilities involve supervisory activities involve bypassing ownership direct access underlying device include highperformance backup recovery data replication reorganization various data structures allocation tables within file system
+restricting permitting accessedit
+also computer security password cracking filesystemlevel encryption encrypting file system
+several mechanisms used file systems control access data usually intent prevent reading modifying files user group users another reason ensure data modified controlled access restricted specific program examples include passwords stored metadata file elsewhere file permissions form permission bits access control lists capabilities need file system utilities able access data media level reorganize structures provide efficient backup usually means effective polite users effective intruders
+methods encrypting file data sometimes included file system effective since need file system utilities know encryption seed effectively manage data risks relying encryption include fact attacker copy data brute force decrypt data losing seed means losing data
+maintaining integrityedit
+significant responsibility file system ensure regardless actions programs accessing data structure remains consistent includes actions taken program modifying data terminates abnormally neglects inform file system completed activities include updating metadata directory entry handling data buffered updated physical storage media
+failures file system must deal include media failures loss connection remote systems
+event operating system failure soft power failure special routines file system must invoked similar individual program fails
+file system must also able correct damaged structures occur result operating system failure unable notify file system power failure reset
+file system must also record events allow analysis systemic issues well problems specific files directories
+user dataedit
+important purpose file system manage user data includes storing retrieving updating data
+file systems accept data storage stream bytes collected stored manner efficient media program retrieves data specifies size memory buffer file system transfers data media buffer runtime library routine sometimes allow user program define record based library call specifying length user program reads data library retrieves data file system returns record
+file systems allow specification fixed record length used writes reads facilitates locating record well updating records
+identification record also known makes sophisticated file system user program read write update records without regard location requires complicated management blocks media usually separating blocks data blocks efficient algorithms developed pyramid structure locating records10
+using file systemedit
+utilities language specific runtime libraries user programs file system apis make requests file system include data transfer positioning updating metadata managing directories managing access specifications removal
+multiple file systems within single systemedit
+frequently retail systems configured single file system occupying entire storage device
+another approach partition disk several file systems different attributes used file system browser cache might configured small allocation size additional advantage keeping frantic activity creating deleting files typical browser activity narrow area disk interfering allocations files similar partition might created email another partition file system might created storage audio video files relatively large allocation file systems normally readonly periodically writable
+third approach mostly used cloud systems disk images house additional file systems attributes within another host file system file common example virtualization user experimental linux distribution using ext4 file system virtual machine hisher production windows environment using ntfs ext4 file system resides disk image treated file multiple files depending hypervisor settings ntfs host file system
+multiple file systems single system additional benefit event corruption single partition remaining file systems frequently still intact includes virus destruction system partition even system boot file system utilities require dedicated access effectively completed piecemeal addition defragmentation effective several system maintenance utilities virus scans backups also processed segments example necessary backup file system containing videos along files none added since last backup image files easily spin differential images contain data written master original image differential images used safety concerns disposable system quickly restored destroyed contaminated virus image removed image created matter seconds even without automated procedures quick virtual machine deployment since differential images quickly spawned using script batches
+design limitationsedit
+file systems functional limit defines maximum storable data capacity within system functional limits bestguess effort designer based large storage systems right large storage systems likely become future disk storage continued increase near exponential rates moores years file systems kept reaching design limitations require computer users repeatedly move newer system evergreater capacity
+file system complexity typically varies proportionally available storage capacity file systems early 1980s home computers storage would reasonable choice modern storage systems hundreds gigabytes capacity likewise modern file systems would reasonable choice early systems since complexity modern file system structures would quickly consume even exceed limited capacity early storage systems
+types file systemsedit
+file system types classified disktape file systems network file systems specialpurpose file systems
+disk file systemsedit
+disk file system takes advantages ability disk storage media randomly address data short amount time additional considerations include speed accessing data following initially requested anticipation following data also requested permits multiple users processes access various data disk without regard sequential location data examples include fat12 fat16 fat32 exfat ntfs hpfs apfs ext2 ext3 ext4 btrfs 9660 files11 veritas file system vmfs reiserfs disk file systems journaling file systems versioning file systems
+optical discsedit
+9660 universal disk format common formats target compact discs dvds bluray discs mount rainier extension supported since series linux kernel since windows vista facilitates rewriting dvds
+flash file systemsedit
+main article flash file system
+flash file system considers special abilities performance restrictions flash memory devices frequently disk file system flash memory device underlying storage media much better file system specifically designed flash device
+tape file systemsedit
+tape file system file system tape format designed store files tape selfdescribing formclarification needed magnetic tapes sequential storage media significantly longer random data access times disks posing challenges creation efficient management generalpurpose file system
+disk file system typically master file directory used free data regions file additions changes removals require updating directory usedfree maps random access data regions measured milliseconds system works well disks
+tape requires linear motion wind unwind potentially long reels media tape motion take several seconds several minutes move readwrite head tape
+consequently master file directory usage extremely slow inefficient tape writing typically involves reading block usage find free blocks writing updating usage directory data advancing tape write data correct spot additional file write requires updating directory writing data take several seconds occur file
+tape file systems instead typically allow file directory spread across tape intermixed data referred streaming timeconsuming repeated tape motions required write data
+however side effect design reading file directory tape usually requires scanning entire tape read scattered directory entries data archiving software works tape storage store local copy tape catalog disk file system adding files tape done quickly without rescan tape media local tape catalog copy usually discarded used specified period time point tape must rescanned used future
+developed file system tape called linear tape file system implementation file system released opensource linear tape file system single drive edition ltfssde product linear tape file system uses separate partition tape record index metadata thereby avoiding problems associated scattering directory entries across entire tape
+tape formattingedit
+writing data tape erasing formatting tape often significantly timeconsuming process take several hours large tapesa many data tape technologies necessary format tape overwriting data tape inherently destructive nature overwriting data sequential media
+time take format tape typically tapes preformatted tape user need spend time preparing tape usually necessary write identifying media label tape even automatically written software tape used first time
+database file systemsedit
+another concept file management idea databasebased file system instead addition hierarchical structured management files identified characteristics like type file topic author similar rich metadata11
+formerly known db2400 i5os database file system part object based operating system formerly known os400 i5os incorporating single level store running power systems formerly known as400 iseries designed frank soltis ibms former chief scientist around 1978 1988 frank soltis team rochester successfully designed applied technologies like database file system others like microsoft later failed accomplish14 technologies informally known fortress rochestercitation needed basic aspects extended early mainframe technologies many ways advanced technological perspectivecitation needed
+projects arent pure database file systems aspects database file system
+
+many content management systems relational dbms store retrieve files example xhtml files stored text fields image files stored blob fields select optional xpath statements retrieve files allow sophisticated logic rich information associations usual file systems many cmss also option storing metadata within database standard filesystem used store content files
+large file systems embodied applications like apache hadoop google file system database file system concepts
+
+transactional file systemsedit
+programs need update multiple files example software installation write program binaries libraries configuration files software installation fails program unusable installation upgrading system utility command shell entire system left unusable state
+transaction processing introduces isolation guaranteeclarification needed states operations within transaction hidden threads system transaction commits interfering operations system properly serialized transaction transactions also provide atomicity guarantee ensuring operations inside transaction either committed transaction aborted system discards partial results means crash power failure recovery stored state consistent either software completely installed failed installation completely rolled back unusable partial install left system
+windows beginning vista added transaction support ntfs feature called transactional ntfs discouraged15 number research prototypes transactional file systems unix systems including valor file system16 amino17 lfs18 transactional ext3 file system txos kernel19 well transactional file systems targeting embedded systems tffs20
+ensuring consistency across multiple file system operations difficult impossible without file system transactions file locking used concurrency control mechanism individual files typically protect directory structure file metadata instance file locking cannot prevent tocttou race conditions symbolic links file locking also cannot automatically roll back failed operation software upgrade requires atomicity
+journaling file systems technique used introduce transactionlevel consistency file system structures journal transactions exposed programs part used internally ensure consistency granularity single system call
+data backup systems typically provide support direct backup data stored transactional manner makes recovery reliable consistent data sets difficult backup software simply notes files changed since certain time regardless transactional state shared across multiple files overall dataset workaround database systems simply produce archived state file containing data point backup software backs interact directly active transactional databases recovery requires separate recreation database state file file restored backup software
+network file systemsedit
+main article distributed file system
+network file system file system acts client remote file access protocol providing access files server programs using local interfaces transparently create manage access hierarchical directories files remote networkconnected computers examples network file systems include clients protocols filesystemlike clients webdav
+shared disk file systemsedit
+main article shared disk file system
+shared disk file system number machines usually servers access external disk subsystem usually file system arbitrates access subsystem preventing write collisions examples include gfs2 gpfs dataplow cxfs stornext quantum corporation
+special file systems edit
+special file system presents nonfile elements operating system files acted using file system apis commonly done unixlike operating systems devices given file names nonunixlike operating systems well
+device file systems edit
+device file system represents devices pseudodevices files called device files examples unixlike systems include devfs linux systems udev nonunixlike systems tops10 operating systems influenced full filename pathname file include device prefix devices containing file systems referred device prefix specifying device without anything following
+special file systemsedit
+
+linux kernel configfs sysfs provide files used query kernel information configure entities kernel
+procfs maps processes linux operating system structures filespace
+
+minimal file system audiocassette storageedit
+1970s disk digital tape devices expensive early microcomputer users inexpensive basic data storage system devised used common audio cassette tape
+system needed write data user notified press record cassette recorder press return keyboard notify system cassette recorder recording system wrote sound provide time synchronization modulated sounds encoded prefix data checksum suffix system needed read data user instructed press play cassette recorder system would listen sounds tape waiting burst sound could recognized synchronization system would interpret subsequent sounds data data read complete system would notify user press stop cassette recorder primitive worked time data stored sequentially usually unnamed format although systems commodore series computers allow files named multiple sets data could written located fastforwarding tape observing tape counter find approximate start next data region tape user might listen sounds find right spot begin playing next data region implementations even included audible sounds interspersed data
+flat file systemsedit
+confused flat file database
+flat file system subdirectories directory entries files stored single directory
+floppy disk media first available type file system adequate relatively small amount data space available machines featured flat file system files could assigned user areas generic file operations narrowed work instead defaulting work user areas special attributes associated files necessary define specific quota areas files could added groups long still free storage space disk early apple macintosh also featured flat file system macintosh file system unusual file management program macintosh finder created illusion partially hierarchical filing system emfs structure required every file unique name even appeared separate folder dos360 os360 store entries files disk pack volume directory pack called volume table contents vtoc
+simple flat file systems become awkward number files grows makes difficult organize data related groups files
+recent addition flat file system family amazons remote storage service intentionally simplistic allow users ability customize data stored constructs buckets imagine disk drive unlimited size objects similar identical standard concept file advanced file management allowed able nearly character including objects name ability select subsets buckets content based identical prefixes
+file systems operating systemsedit
+many operating systems include support file system sometimes file system tightly interwoven difficult separate file system functions
+needs interface provided operating system software user file system interface textual provided command line interface unix shell openvms graphical provided graphical user interface file browsers graphical metaphor folder containing documents files nested folders often used also directory folder
+unix unixlike operating systemsedit
+unixlike operating systems create virtual file system makes files devices appear exist single hierarchy means systems root directory every file existing system located somewhere unixlike systems disk network shared resource root directory
+unixlike systems assign device name device files device accessed instead gain access files another device operating system must first informed directory tree files appear process called mounting file system example access files cdrom must tell operating system take file system cdrom make appear suchandsuch directory directory given operating system called mount point might example media media directory exists many unix systems specified filesystem hierarchy standard intended specifically mount point removable media dvds drives floppy disks empty contain subdirectories mounting individual devices generally administrator root user authorize mounting file systems
+unixlike operating systems often include software tools assist mounting process provide functionality strategies coined automounting reflection purpose
+
+many situations file systems root need available soon operating system booted unixlike systems therefore provide facility mounting file systems boot time system administrators define file systems configuration file fstab vfstab solaris also indicates options mount points
+situations need mount certain file systems boot time although desired thereafter utilities unixlike systems allow mounting predefined file systems upon demand
+removable media become common microcomputer platforms allow programs data transferred machines without physical connection common examples include flash drives cdroms dvds utilities therefore developed detect presence availability medium mount medium without user intervention
+progressive unixlike systems also introduced concept called supermounting example linux supermountng project example floppy disk supermounted physically removed system normal circumstances disk synchronized unmounted removal provided synchronization occurred different disk inserted drive system automatically notices disk changed updates mount point contents reflect medium
+automounter automatically mount file system reference made directory atop mounted usually used file systems network servers rather relying events insertion media would appropriate removable media
+
+linuxedit
+linux supports numerous file systems common choices system disk block device include family ext2 ext3 ext4 reiserfs btrfs flash without flash translation layer memory technology device ubifs jffs2 yaffs among others squashfs common compressed readonly file system
+solarisedit
+solaris earlier releases defaulted nonjournaled nonlogging bootable supplementary file systems solaris defaulted supported extended
+support file systems significant enhancements added time including veritas software corp journaling vxfs microsystems clustering microsystems journaling microsystems open source poolable compressible errorcorrecting
+kernel extensions added solaris allow bootable veritas vxfs operation logging journaling added suns solaris releases solaris solaris express opensolaris open source variants solaris operating system later supported bootable
+logical volume management allows spanning file system across multiple devices purpose adding redundancy capacity andor throughput legacy environments solaris solaris volume manager formerly known solstice disksuite multiple operating systems including solaris veritas volume manager modern solaris based operating systems eclipse need volume management leveraging virtual storage pools
+macosedit
+macos formerly uses file system inherited classic called plus apple also uses term extended2122 plus metadatarich casepreserving usually caseinsensitive file system unix roots macos unix permissions added plus later versions plus added journaling prevent corruption file system structure introduced number optimizations allocation algorithms attempt defragment files automatically without requiring external defragmenter
+filenames characters plus uses unicode store filenames macos filetype come type code stored files metadata filename extension
+plus three kinds links unixstyle hard links unixstyle symbolic links aliases aliases designed maintain link original file even moved renamed interpreted file system file manager code userland
+macos 1013 high sierra announced june 2017 apples wwdc event uses apple file system solidstate drives
+macos also supported file system derived unix fast file system nextstep however leopard macos could longer installed volume preleopard system installed volume upgraded leopard23 lion support completely dropped
+newer versions macos capable reading writing legacy file systems common windows also capable reading newer ntfs file systems windows order write ntfs file systems macos versions prior snow leopard third party software necessary snow leopard later allow writing ntfs file systems nontrivial system setting change third party software exists automates this24
+finally macos supports reading writing exfat file system since snow leopard starting version 106525
+os2edit
+introduced high performance file system hpfs hpfs supports mixed case file names different code pages long file names characters efficient disk space architecture keeps related items close disk volume less fragmentation data extentbased space allocation tree structure directories root directory located midpoint disk faster average access journaled filesystem shipped 1999
+pcbsdedit
+pcbsd desktop version freebsd inherits freebsds support similarly freenas graphical installer pcbsd handle root raidz pool installs disk encryption using geli right start easy convenient current pcbsd isotope edition filesystem version storage pool version
+plan 9edit
+plan bell labs treats everything file accesses objects file would accessed ioctl mmap networking graphics debugging authentication capabilities encryption services accessed operations file descriptors protocol removes difference local remote files file systems plan organized help private perprocess namespaces allowing process different view many file systems provide resources distributed system
+inferno operating system shares concepts plan
+microsoft windowsedit
+
+
+
+
+directory listing windows command shell
+
+
+windows makes ntfs exfat live file system refs file systems last supported usable windows server 2012 windows server 2016 windows windows windows windows cannot boot
+windows uses drive letter abstraction user level distinguish disk partition another example path cwindows represents directory windows partition represented letter drive commonly used primary hard disk drive partition windows usually installed boots tradition become firmly ingrained bugs exist many applications make assumptions drive operating system installed drive letters tradition using drive letter primary hard disk drive partition traced msdos letters reserved floppy disk drives turn derived 1970s ultimately ibms cpcms 1967
+fatedit
+main article file allocation table
+family file systems supported almost operating systems personal computers including versions windows msdospc drdos version msdos msdos originally based scps 86dos drdos based digital researchs concurrent successor cpm86 file systems therefore wellsuited universal exchange format computers devices type
+file system traces roots back incompatible 8bit precursor standalone disk basic shortlived mdosmidas projectcitation needed
+years file system expanded fat12 fat16 fat32 various features added file system including subdirectories codepage support extended attributes long filenames third parties digital research incorporated optional support deletion tracking volumedirectoryfilebased multiuser security schemes support file directory passwords permissions readwriteexecutedelete access rights extensions supported windows
+fat12 fat16 file systems limit number entries root directory file system restrictions maximum size fatformatted disks partitions
+fat32 addresses limitations fat12 fat16 except file size limit close remains limited compared ntfs
+fat12 fat16 fat32 also limit eight characters file name three characters extension commonly referred filename limit vfat optional extension fat12 fat16 fat32 introduced windows windows allowed long file names stored file system backwards compatible fashion
+ntfsedit
+main article ntfs
+ntfs introduced windows operating system 1993 allowed aclbased permission control features also supported ntfs include hard links multiple file streams attribute indexing quota tracking sparse files encryption compression reparse points directories working mountpoints file systems symlinks junctions remote storage links
+exfatedit
+main article exfat
+exfat proprietary patentprotected file system certain advantages ntfs regard file system overhead
+exfat backward compatible file systems fat12 fat16 fat32 file system supported newer windows systems windows server 2003 windows vista windows 2008 windows windows recently support added windows xp26
+exfat supported starting version 1065 snow leopard25 support operating systems sparse since microsoft published specifications file system implementing support exfat requires license exfat file system fully supported windows hold files bigger gbcitation needed
+openvmsedit
+main article files11
+mainframeedit
+main article filesystem
+prior introduction vsam os360 systems implemented unusual hybrid file system system designed easily support removable disk packs information relating files disk volume terminology stored disk flat system file called volume table contents vtoc vtoc stores metadata file later hierarchical directory structure imposed introduction system catalog optionally catalog files datasets resident removable volumes catalog contains information relate dataset specific volume user requests access dataset offline volume suitable privileges system attempt mount required volume cataloged noncataloged datasets still accessed using information vtoc bypassing catalog required volume provided open request still later vtoc indexed speed access
+conversational monitor systemedit
+main article file system
+conversational monitor system component vm370 uses separate flat file system virtual disk minidisk file data control information scattered intermixed anchor record called master file directory always located fourth block disk originally used fixedlength 800byte blocks later versions used larger size blocks access data record requires levels indirection files directory entry called file status table entry points blocks containing list addresses individual records
+as400 file systemedit
+data as400 successors consists system objects mapped system virtual address space singlelevel store many types as400 objects defined including directories files found file systems file objects along types objects form basis as400s support integrated relational database
+file systemsedit
+
+prospero file system file system based virtual system model27 system created clifford neuman information sciences institute university southern california28
+rsre flex file system written algol
+file system michigan terminal system interesting provides line files record lengths line numbers associated metadata record file lines added replaced updated different length records deleted anywhere file without need read rewrite entire file using program keys files shared permitted commands programs addition users groups comprehensive file locking mechanism protects files data metadata2930
+
+limitationsedit
+converting type file systemedit
+advantageous necessary files different file system currently exist reasons include need increase space requirements beyond limits current file system depth path need increased beyond restrictions file system performance reliability considerations providing access another operating system support existing file system another reason
+inplace conversionedit
+cases conversion done inplace although migrating file system conservative involves creating copy data recommended31 windows fat32 file systems converted ntfs convertexe utility reverse31 linux ext2 converted ext3 converted back ext3 converted ext4 back32 ext3 ext4 converted btrfs converted back undo information deleted33 conversions possible using format file data relocating metadata empty space cases using sparse file support33
+migrating different file systemedit
+migration disadvantage requiring additional space although faster best case unused space media contain final file system
+example migrate fat32 file system ext2 file system first create ext2 file system copy data file system delete fat32 file system
+alternative sufficient space retain original file system created work area removable media takes longer backup data nice side effect
+long file paths long file namesedit
+hierarchical file systems files accessed means path branching list directories containing file different file systems different limits depth path file systems also limit length individual filename
+copying files long names located paths significant depth file system another cause undesirable results depends utility copying handles discrepancy
+alsoedit
+
+
+computing portal
+
+
+
+
+comparison file systems
+list file systems
+list unix programs
+directory structure
+disk sharing
+distributed file system
+distributed data management architecture
+file manager
+file system fragmentation
+filename extension
+global filesystem
+object storage
+physical logical storage
+storage efficiency
+virtual file system
+
+
+notesedit
+
+
+
+lto6 tape requires hours write mbsec
+
+
+
+referencesedit
+
+
+arpacidusseau remzi arpacidusseau andrea 2014 file system implementation arpacidusseau books
+arpacidusseau remzi arpacidusseau andrea 2014 suns network file system arpacidusseau books
+mcgill florence 1922 office practice business procedure gregg publishing company retrieved august 2016
+waring 1961 technical investigations addition hardcopy output elements mechanized library system final report sept 1961 cincinnati svco corporation retrieved august 2016
+disc file applications reports presented nations first disc file symposium american data processing 1964 retrieved august 2016
+amir yair operating systems 600418 file system department computer science johns hopkins university retrieved july 2016
+corporation component structure logical file system knowledge center retrieved july 2016
+daley neumann 1965 generalpurpose file system secondary storage fall joint computer conference afips 213–229 doi10114514638911463915 retrieved 20110730
+mohan chandra 2013 operating systems delhi learning isbn 9788120347267 retrieved 20140727 word dentry short directory entry dentry nothing specific component path root directory name file name provide accessing files directories
+ksam treebased keyed sequentialaccess method researchgate retrieved april 2016
+windows database sliced diced beos vets theregistercouk 20020329 retrieved 20140207
+overview 03ibmcom retrieved 20140207
+developerworks ibmcom 20110308 retrieved 20140207
+successor longhorn goes microsoft leaks theregistercouk 20020128 retrieved 20140207
+alternatives using transactional ntfs windows msdnmicrosoftcom 20131205 retrieved 20140207
+spillane richard gaikwad sachin chinni manjunath zadok erez wright charles 2009 enabling transactional file access lightweight kernel extensions seventh usenix conference file storage technologies fast 2009
+wright charles spillane richard sivathanu gopalan zadok erez 2007 extending acid semantics file system transactions storage
+selzter margo 1993 transaction support logstructured file system proceedings ninth international conference data engineering
+porter donald hofmann owen rossbach christopher benn alexander witchel emmett 2009 operating system transactions proceedings 22nd symposium operating systems principles sosp october 2009
+eran toledo sivan transactional flash file system microcontrollers
+mountain lion extended journaled volume apple august 2013 retrieved february 2014
+file system journaling apple retrieved february 2014
+official apple support applecom retrieved april 2016
+osxdaily enable ntfs write support retrieved february 2014
+steve bunting 20120814 encase computer forensics official ence encase certified examiner booksgooglecom retrieved 20140207
+microsoft winxp exfat patch
+prospero file system global file system based virtual system model
+csucsbedu
+file system generalpurpose timesharing environment pirkola proceedings ieee june 1975 volume 918–924 issn 00189219
+protection information general purpose timesharing environment gary pirkola john sanguinetti proceedings ieee symposium trends applications 1977 computer security integrity 106114
+convert disks ntfs microsoft october 2001
+ext4 howto kernelorg retrieved april 2016
+conversion ext3 btrfs wiki
+
+
+sourcesedit
+
+
+boyne pollard jonathan 1996 disc volume size limits frequently given answers retrieved february 2005
+corrective service jr09427 retrieved february 2005
+attribute eainformation 0xd0 ntfs information linuxntfs project retrieved february 2005
+attribute 0xe0 ntfs information linuxntfs project retrieved february 2005
+attribute standardinformation 0x10 ntfs information linuxntfs project retrieved february 2005
+apple computer technical note tn1150 plus volume format detailed plus hfsx description retrieved september 2015
+file system forensic analysis brian carrier addison wesley 2005
+
+
+readingedit
+booksedit
+
+
+arpacidusseau remzi arpacidusseau andrea 2014 operating systems three easy pieces arpacidusseau books
+carrier brian 2005 file system forensic analysis addisonwesley isbn 0321268172
+custer helen 1994 inside windows file system microsoft press isbn 155615660x
+giampaolo dominic 1999 practical file system design file system morgan kaufmann publishers isbn 1558604979 retrieved 20100122
+mccoy kirby 1990 file system internals series digital press isbn 1555580564
+mitchell stan 1997 inside windows file system oreilly isbn 156592200x
+nagar rajeev 1997 windows file system internals developers guide oreilly isbn 9781565922495
+pate steve 2003 unix filesystems evolution design implementation wiley isbn 0471164836
+rosenblum mendel 1994 design implementation logstructured file system springer international series engineering computer science springer isbn 0792395417
+russinovich mark solomon david ionescu alex 2009 file systems windows internals microsoft press isbn 0735625301
+prabhakaran vijayan 2006 iron file systems dissertation university wisconsinmadison
+silberschatz abraham galvin peter baer gagne greg 2004 storage management operating system concepts wiley isbn 0471694665
+tanenbaum andrew 2007 modern operating systems prentice hall isbn 0136006639
+tanenbaum andrew woodhull albert 2006 operating systems design implementation prentice hall isbn 0131429388
+
+
+onlineedit
+
+
+benchmarking filesystems outdated justin piszcz linux gazette 2004
+benchmarking filesystems part using kernel justin piszcz linux gazette january 2006
+filesystems ext3 reiserfs comparison debian etch 2006
+interview people behind reiserfs
+journal file system performance outdated reiserfs ext3fs show merits fast raid appliance
+journaled filesystem benchmarks outdated comparison reiserfs ext3 ext2
+large list file system summaries recent update 20061119
+linux file system benchmarks kernel stress usage
+linux filesystem benchmarks
+linux large file support outdated
+local filesystems windows
+overview filesystems outdated
+sparse files support outdated
+jeremy reimer march 2008 past present future file systems arstechnicacom retrieved 20080318
+
+
+external linksedit
+
+
+
+wikibook guide unix page topic filesystems swap
+
+
+
+
+
+wikimedia commons media related file systems
+
+
+
+filesystem specifications links whitepapers
+interesting file system projects
+
+
+
+
+
+
+
+
+
+
+
+
+
+computer files
+
+
+
+types
+
+
+
+binary file text file
+file format
+
+list file formats
+file signatures
+magic number
+
+
+metafile
+sidecar file
+sparse file
+swap file
+system file
+temporary file
+zerobyte file
+
+
+
+
+
+properties
+
+
+
+filename
+
+filename
+long filename
+filename mangling
+
+
+filename extension
+
+list filename extensions
+
+
+file attribute
+
+extended file attributes
+
+
+file size
+hidden file hidden directory
+
+
+
+
+
+organisation
+
+
+
+directoryfolder
+
+ntfs junction point
+temporary folder
+
+
+directory structure
+file sequence
+file system
+
+filesystem hierarchy standard
+
+
+path
+
+
+
+
+
+operations
+
+
+
+open
+close
+read
+write
+
+
+
+
+
+linking
+
+
+
+alias
+file descriptor
+hard link
+shadow
+shortcut
+symbolic link
+
+
+
+
+
+management
+
+
+
+file comparison
+file compression
+file manager
+
+comparison file managers
+
+
+file system permissions
+file transfer
+
+file sharing
+
+
+file verification
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+file systems
+
+
+
+
+
+
+comparison file systems
+
+distributed
+
+
+unix filesystem
+
+
+
+
+
+disk
+
+
+
+
+
+
+
+adfs
+advfs
+amiga
+amiga
+apfs
+athfs
+
+
+file system
+boot file system
+
+
+btrfs
+cvfs
+cxfs
+
+
+
+encrypting file system
+extent file system
+
+
+episode
+
+
+ext2
+ext3
+ext3cow
+ext4
+
+
+
+
+exfat
+
+
+files11
+fossil
+hammer
+
+
+hpfs
+htfs
+general parallel file system
+
+
+
+
+macintosh file system
+tivo media file system
+
+
+minix
+netware file system
+next3
+nilfs
+
+nilfs2
+
+
+
+ntfs
+onefs
+
+
+qnx4fs
+refs
+reiserfs
+
+reiser4
+
+
+reliance
+reliance nitro
+
+
+snfs
+soup apple
+tux3
+ubifs
+
+vxfs
+wafl
+xiafs
+
+xsan
+
+
+
+
+
+
+
+optical disc
+
+
+
+
+9660
+13490
+
+
+
+
+
+
+flash memory
+
+
+
+apfs
+
+exfat
+chfs
+tfat
+ffs2
+f2fs
+hpfs
+jffs
+jffs2
+
+logfs
+nilfs
+
+nilfs2
+
+
+nvfs
+yaffs
+ubifs
+
+
+
+
+
+distributed
+
+
+
+cxfs
+gfs2
+google file system
+ocfs2
+orangefs
+pvfs
+
+xsan
+
+
+
+
+
+
+
+
+
+
+
+
+
+openafs
+
+coda
+
+gpfs
+google file system
+lustre
+
+
+pohmelfs
+hadoop
+cifs
+sshfs
+
+
+
+
+
+
+specialized
+
+
+
+
+
+
+
+aufs
+axfs
+boot file system
+cdfs
+compact disc file system
+cramfs
+davfs2
+ftpfs
+fuse
+gmailfs
+lnfs
+ltfs
+nova
+mvfs
+squashfs
+umsdos
+overlayfs
+unionfs
+wbfs
+
+
+
+
+
+pseudo virtual
+
+
+
+configfs
+devfs
+debugfs
+kernfs
+procfs
+specfs
+sysfs
+tmpfs
+winfs
+
+
+
+
+
+encrypted
+
+
+
+ecryptfs
+encfs
+
+rubberhose
+sshfs
+
+
+
+
+
+
+
+
+
+types
+
+
+
+clustered
+
+global
+grid
+selfcertifying
+
+
+flash
+journaling
+logstructured
+object
+recordoriented
+semantic
+steganographic
+synthetic
+versioning
+
+
+
+
+
+features
+
+
+
+
+
+
+
+case preservation
+copyonwrite
+data deduplication
+data scrubbing
+execute place
+extent
+file attribute
+
+extended file attributes
+
+
+file change
+fork
+links
+
+hard
+symbolic
+
+
+
+
+
+
+
+access control
+
+
+
+access control list
+filesystemlevel encryption
+permissions
+
+modes
+sticky
+
+
+
+
+
+
+
+
+
+
+interfaces
+
+
+
+file manager
+file system
+
+installable file system
+
+
+virtual file system
+
+
+
+
+
+lists
+
+
+
+cryptographic
+default
+logstructured
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+operating systems
+
+
+
+general
+
+
+
+advocacy
+comparison
+forensic engineering
+history
+hobbyist development
+list
+timeline
+usage share
+
+
+
+
+
+kernel
+
+
+
+
+architectures
+
+
+
+exokernel
+hybrid
+microkernel
+monolithic
+rump kernel
+unikernel
+
+
+
+
+
+components
+
+
+
+device driver
+loadable kernel module
+microkernel
+user space
+
+
+
+
+
+
+
+
+process management
+
+
+
+
+concepts
+
+
+
+context switch
+interrupt
+
+process
+process control block
+realtime
+thread
+timesharing
+
+
+
+
+
+scheduling
+algorithms
+
+
+
+computer multitasking
+fixedpriority preemptive
+multilevel feedback queue
+preemptive
+roundrobin
+shortest next
+
+
+
+
+
+
+
+
+memory management
+resource protection
+
+
+
+error
+general protection fault
+memory protection
+paging
+protection ring
+segmentation fault
+virtual memory
+
+
+
+
+
+storage access
+file systems
+
+
+
+boot loader
+defragmentation
+device file
+file attribute
+inode
+journal
+partition
+virtual file system
+virtual tape library
+
+
+
+
+
+list
+
+
+
+amigaos
+android
+beos
+
+chrome
+
+
+
+haiku
+illumos
+includeos
+
+linux
+macintosh
+
+classic
+macos
+
+
+minix
+morphos
+musicsp
+nemesis
+
+openvms
+orvyl
+
+
+pick
+
+reactos
+risc
+rstse
+rsx11
+rt11
+solaris
+tops10tops20
+
+unix
+visi
+vmcms
+
+windows
+xinu
+
+
+
+
+
+
+miscellaneous concepts
+
+
+
+
+computer network
+
+live
+live
+shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlefilesystemoldid811466603 categories computer file systemshidden categories articles unsourced statementsarticles unsourced statements september 2012wikipedia articles needing clarification july 2014wikipedia articles needing clarification june 2017articles unsourced statements june 2014articles unsourced statements april 2015

@@ -1,0 +1,2084 @@
+
+linux kernel
+
+
+penguin mascot linux1
+
+
+
+
+linux kernel booting
+
+
+
+developer
+linus torvalds thousands collaborators
+
+
+written
+assembly2
+
+
+family
+unixlike
+
+
+initial release
+september 1991 years 19910917
+
+
+latest release
+41411 january 2018 20180103
+
+
+latest preview
+415rc6 december 2017 days 20171231
+
+
+available
+english
+
+
+kernel type
+monolithic
+
+
+license
+general public license version plus various optional freely redistributable proprietary binary blobs78
+
+
+official website
+kernelorg
+
+
+linux kernel open source monolithic unixlike computer operating system kernel linux family operating systems based kernel deployed traditional computer systems personal computers servers usually form linux distributions9 various embedded devices routers wireless access points pbxes settop boxes receivers smart pvrs appliances android operating system tablet computers smartphones smartwatches uses services provided linux kernel implement functionality adoption desktop computers linuxbased operating systems dominate nearly every segment computing mobile devices mainframes november 2017update worlds powerful supercomputers linux10
+linux kernel conceived created 1991 linus torvalds11 personal computer crossplatform intentions since expanded support huge array computer architectures many operating systems kernels linux rapidly attracted developers users adopted kernel free software projects notably operating system12 linux kernel received contributions nearly 12000 programmers 1200 companies including largest software hardware vendors1314
+linux kernel application programming interface user programs interact kernel meant stable break userspace programs programs guis rely apis well part kernels functionality device drivers control hardware mainlined device drivers also meant stable however interface kernel loadable kernel modules lkms unlike many kernels operating systems meant stable design15
+linux kernel developed contributors worldwide prominent example free open source software16 supported years depending version daytoday development discussions take place linux kernel mailing list lkml linux kernel released general public license version gplv2617 firmware images released various nonfree licenses8
+
+
+
+contents
+
+
+history
+
+tanenbaum–torvalds debate
+popularity
+
+
+legal aspects
+
+licensing terms
+
+version
+
+
+loadable kernel modules
+firmware binary blobs
+trademark
+litigation
+
+
+architecture
+
+programming language
+compiler compatibility
+interfaces
+
+kerneltouserspace
+kerneltouserspace
+inkernel
+inkernel
+
+
+technical features
+
+preemption
+portability
+kernel panic oopses
+live patching
+
+
+security
+feature history
+
+
+development
+
+developer community
+codebase
+estimated cost redevelop
+development model
+
+relation linux distributions
+
+
+maintenance
+
+releases
+26xy releases
+releases
+releases
+
+
+revision control
+version numbering
+timeline
+variants
+
+
+also
+notes
+references
+reading
+external links
+
+
+
+historyedit
+also history linux
+
+
+
+
+linus torvalds
+
+
+april 1991 linus torvalds time 21yearold computer science student university helsinki finland started working simple ideas operating system started task switcher intel 80386 assembly language terminal driver august 1991 torvalds posted following composminix newsgroup usenet18
+
+free operating system hobby wont professional like 386486 clones brewing since april starting ready like feedback things people likedislike minix resembles somewhat physical layout filesystem practical reasons among things
+currently ported bash108 gcc140 things seem work implies something practical within months free minix code multithreaded portable uses task switching probably never support anything atharddisks thats
+mostly people wouldnt call write uses every conceivable feature could find also project teach already mentioned uses paging disk segmentation segmentation makes really dependent every task 64mb segment code data tasks anybody needs 64mbtask tough cookies cfiles specifically almost much assembler unlike minix also happen like interrupts interrupts handled without trying hide reason behind
+
+many people contributed code project early minix community contributed code ideas linux kernel time project created many components required free operating system kernel hurd incomplete unavailable operating system freed legal encumbrances despite limited functionality early versions linux rapidly gained developers users
+september 1991 version linux kernel released server ftpfunetfi finnish university research network funet 10239 lines code october 1991 version linux kernel released19
+december 1991 linux kernel released version first selfhosted linux kernel could compiled computer running kernel version torvalds released version february 1992 adopted general public license previous selfdrafted license permitted commercial redistribution20
+january 1992 first post newsgroup altoslinux submitted21 march 1992 newsgroup renamed composlinux22
+window system ported linux march 1992 linux version first capable running large jump version numbers resulted expectation version without major missing pieces imminent however proved wrong 1993 early 1994 development versions version appeared
+march 1994 linux kernel released 176250 lines code march 1995 linux kernel released 310950 lines code
+version linux kernel released june 1996 followed additional major versions version header
+
+january 1999 release linux kernel 1800847 lines code
+december 1999 mainframe patches 2213 published allowing linux kernel used enterpriseclass machines
+january 2001 release linux kernel 3377902 lines code
+december 2003 release linux kernel 5929913 lines code
+
+starting 2004 release process changed kernels started coming regular schedule every months numbered 2639
+july 2011 torvalds announced release linux kernel gone 26bignum days23 version bump major technological changes compared linux 263924 marks kernels 20th anniversary25 timebased release process remained
+version linux kernel released june 2013 contains 15803499 lines code26 version released june 2015 grown million lines code contributed almost 14000 programmers27
+tanenbaum–torvalds debateedit
+main article tanenbaum–torvalds debate
+fact linux monolithic kernel rather microkernel topic debate andrew tanenbaum creator minix linus torvalds28 debate started 1992 usenet discussion group composminix linux kernel architecture general29 tanenbaum argued microkernels superior monolithic kernels therefore linux obsolete unlike traditional monolithic kernels device drivers linux easily configured loadable kernel modules loaded unloaded running system subject revisited 200630 2006 tanenbaum wrote position statement31
+popularityedit
+huge rise popularity android operating system includes linux kernel made kernel popular choice mobile devices rivaling installed base operating systems323334 including previous years three billion android smartphones estimated sold 2014
+many consumer routers also linux kernel35 well wide variety embedded devices smart settop boxes webcams many desktop linux distributions including linux kernel exist usage share linux distributions comparison operating systems
+legal aspectsedit
+licensing termsedit
+initially torvalds released linux license forbade commercial use36 changed version switch general public license gpl20 license allows distribution sale possibly modified unmodified versions linux requires copies released license accompanied complete corresponding source code
+torvalds described licensing linux best thing ever did36
+version 3edit
+linux kernel licensed explicitly version gpl6 without offering licensee option choose later version common extension considerable debate easily license could changed later versions including version whether change even desirable37 torvalds specifically indicated upon release version code released version however terms state version specified version used39 alan pointed linux contributors specified particular version gpl40
+september 2006 survey kernel programmers indicated preferred gplv2 thencurrent gplv3 draft torvalds commented think number outsiders believed personally publicly huge gplv341 group highprofile kernel developers including linus torvalds greg kroahhartman andrew morton commented mass media objections gplv342 referred clauses regarding drmtivoization patents additional restrictions warned balkanisation open source universe gplv34243 linus torvalds decided adopt gplv3 linux kernel reiterated criticism even years later44
+loadable kernel modulesedit
+debated whether loadable kernel modules lkms considered derivative works copyright thereby fall terms
+torvalds stated belief lkms using limited public subset kernel interfaces sometimes nonderived works thus allowing binaryonly drivers lkms licensed gplcitation needed good example usage dmabuf proprietary nvidia graphics drivers dmabuf recent kernel feature like rest kernel licensed allows multiple gpus quickly copy data others framebuffers45 possible case would nvidia optimus pairs fast intel integrated nvidia writes intel framebuffer active nvidia cannot infrastructure uses technical means enforce rule used lkms also alan replied lkml rejecting request engineers remove technical enforcement api46 linux kernel contributors agree interpretation however even torvalds agrees many lkms clearly derived works indeed writes kernel modules derivative default47
+hand torvalds also said gray area particular something like driver originally written another operating system clearly derived work linux origin gray area area personally believe modules considered derived works simply werent designed linux dont depend special linux behaviour48 proprietary graphics drivers particular heavily discussed ultimately likely questions resolved court
+firmware binary blobsedit
+point licensing controversy firmware binary blobs linux kernel support several hardware devices files variety licenses many restrictive exact underlying source code usually unknown8
+2002 richard stallman stated point view blobs make linux kernel partially nonfree software distributing linux kernel violates requires complete corresponding source code available7 2008 free software foundation latin america started linuxlibre project creates completely free variant linux kernel without proprietary objects used certain completely free linux distributions endorsed free software foundation also used distributions49
+december 2010 debian project announced next debian stable version squeeze would come kernel stripped nonfree firmware bits50 policy continued applied later stable debian releases
+trademarkedit
+also linux copyright trademark naming
+linux registered trademark linus torvalds united states countries result incident william della croce involved linux project trademarked name subsequently demanded royalties use51 several linux backers retained legal counsel filed suit della croce issue settled august 1997 trademark assigned linus torvalds5253
+litigationedit
+details topic scolinux controversies
+
+early 2007 filed specific details purported copyright infringement despite previous claims rightful owner million lines code specified lines code uncopyrightable54 august 2007 court novell case ruled actually unix copyrights begin with55 though tenth circuit court appeals ruled august 2009 question owned copyright properly remained jury answer56 jury case decided march 2010 novells favour57
+architectureedit
+also vmlinux
+
+
+
+
+linux kernel
+
+
+
+
+
+
+linux kernel supports various hardware architectures providing common platform software including possibly proprietary
+
+
+linux kernel monolithic kernel supporting true preemptive multitasking user mode since series kernel mode5859 virtual memory shared libraries demand loading shared copyonwrite executables memory management internet protocol suite threading
+device drivers kernel extensions kernel space ring many architectures full access hardware although exceptions user space example filesystems based fusecuse parts uio6061 graphics system people linux within kernel unlike standard monolithic kernels device drivers easily configured modules loaded unloaded system running also unlike standard monolithic kernels device drivers preempted certain conditions feature added handle hardware interrupts correctly better support symmetric multiprocessing59 choice linux kernel binary kernel interface62
+hardware also incorporated file hierarchy device drivers interface user applications entry directories63 process information well mapped file system proc directory63
+
+various layers within linux also showing separation userland kernel space
+
+user mode
+user applications
+example bash libreoffice gimp blender mozilla firefox
+
+
+lowlevel system components
+system daemons
+systemd runit logind networkd pulseaudio
+windowing system
+wayland surfaceflinger android
+libraries
+sfml fltk gnustep
+graphics
+mesa catalyst
+
+
+standard library
+open exec sbrk socket fopen calloc 2000 subroutines
+glibc aims posixsuscompatible uclibc targets embedded systems bionic written android
+
+
+kernel mode
+linux kernel
+stat splice read open ioctl write mmap close exit system calls
+linux kernel system call interface aims posixsuscompatible
+
+
+process scheduling
+subsystem
+
+subsystem
+memory management
+subsystem
+virtual files
+subsystem
+network
+subsystem
+
+
+components alsa evdev device mapper linux network scheduler netfilter
+linux security modules selinux tomoyo apparmor smack
+
+
+hardware main memory data storage devices
+
+
+programming languageedit
+linux kernel written version programming language supported introduced number extensions changes standard together number short sections code written assembly language gccs attstyle syntax target architecture extensions supports long time compiler capable correctly building linux kernel
+compiler compatibilityedit
+default compiler linux kernel source 2004 intel claimed modified kernel compiler also capable compiling it64 another reported success 2009 modified 2622 version kernel6566
+since 2010 effort underway build linux kernel clang alternative compiler language67 april 2014 official kernel could almost compiled clang6869 project dedicated effort named llvmlinux llvm compiler infrastructure upon clang built70 llvmlinux fork either linux kernel llvm therefore metaproject composed patches eventually submitted upstream projects enabling linux kernel compiled clang among advantages known faster compilation compared kernel developers benefit faster workflow shorter compilation times71
+interfacesedit
+main articles linux kernel interfaces interfaces linux kernel category
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed january 2015 learn remove template message
+
+
+
+
+
+
+
+four interfaces distinguished internal kernel kernel userspace
+
+
+
+
+
+
+xdc2014 alex deucher announced unified kernelmode driver72 proprietary linux graphic driver libglfglrxglx share infrastructure mesa stable inkernel constantly adapt former binary blob used catalyst
+
+
+conformance standards general policy linux kernels internals another rule kernel component accepted linux kernel mainline proprietary userspace software using componentcitation needed
+kerneltouserspace apiedit
+main articles posix single unix specification
+source code portability ensures program written conforming standard successfully compiled system also conforms standard relevant standards aiming achieve source code portability programs development linux kernel library associated utilities tries adhere posix single unix specification inspur distribution chinese inspur based enterprise linux certified unix open group73
+linux kernel linux kernel representing kernels system call interface composed available system calls
+kerneltouserspace abiedit
+
+
+
+
+
+
+sections factual accuracy disputed relevant discussion found talklinux kernel please help ensure disputed statements reliably sourced november 2017 learn remove template message
+
+
+
+main article linux standard base
+binary portability shall guarantee program compiled given hardware platform compiled form hardware platform conforms standard binary portability essential requirement commercial viability independent software vendor applications built operating systems based linux kernel binary compatibility much demanding source code portability february 2014 standard concerning binary compatibility linux standard base
+inkernel apiedit
+couple kernel internal apis utilized different subsystems subsystems subsystems kept stable several releases others guarantees regarding inkernel apis maintainers contributors free augment change time74
+examples inkernel apis include software frameworksapis following classes device drivers
+
+video4linux video capture hardware
+advanced linux sound architecture alsa sound cards
+network interface controllers
+direct rendering manager graphics accelerators
+driver display controllers
+mac80211 wireless network interface controllers75
+wext wireless network interface controllers obsolete
+
+inkernel abiedit
+organizations strongly supported defining maintaining stable inkernel several releasescitation needed example would benefit hardware manufacturers release proprietary kernel modules distribute binaryonly software device driverscitation needed however linux kernel developers choose maintain stable inkernel abi76 allows linux kernel development happen much quicklycitation needed
+technical featuresedit
+preemptionedit
+also kernel preemption
+
+
+
+
+position schedulers within various layers linux kernels storage stack77
+
+
+linux kernel provides preemptive scheduling certain conditions kernel version user processes preemptive addition time quantum expiration execution current process user mode would interrupted higher dynamic priority processes entered taskrunning state78 toward series linux kernel ability interrupt task executing kernel code added although sections kernel code preempted79
+linux kernel contains different scheduler classes80 default kernel uses scheduler mechanism called completely fair scheduler introduced 2623 version kernel81 internally defaultscheduler class also known schedother kernel also contains posixcompliant82 realtime scheduling classes named schedfifo realtime firstinfirstout schedrr realtime roundrobin take precedence default class80
+realtime linux kernel patch preemptrt support full preemption critical sections interrupt handlers interrupt disable code sequences supported83 partial mainline integration realtime linux kernel patch already brought functionality kernel mainline84 preemption improves latency increases responsiveness makes linux suitable desktop realtime applications older versions kernel socalled kernel lock synchronization across entire kernel finally removed arnd bergmann 201185
+additional scheduling policy known scheddeadline implementing earliest deadline first algorithm added kernel version released march 20148687
+portabilityedit
+also list linux supported architectures linuxpowered device
+
+
+
+
+ipod booting ipodlinux
+
+
+originally designed portable1888 linux widely ported operating system kernels running diverse range systems architecture zarchitecture mainframe computers first port beyond linuxs original architecture performed motorola 68000 platform amiga users accomplished replacing major parts kernel modifications kernel fundamental torvalds viewed motorola version fork linuxlike operating system88 rather actual port however impetus torvalds needed lead major restructure kernel code facilitate porting competing computing architectures first linux endorsed port alpha 64bit platform demonstrated decus 1995m89 supporting alpha single source tree88 responsible supplying hardware necessary torvalds enable port linux bits90 year
+linux runs main operating system ibms blue gene fastest supercomputers including chinese november 2017update worlds fastest supercomputers variant linux10 linux also ported various handheld devices apples ipod iphone91 operating systems developed mobile phones modified versions linux kernel including google android firefox webos nokia maemo jolla sailfish os929394
+kernel panic oopsesedit
+
+
+
+
+example linux kernel panic
+
+
+main articles kernel panic linux kernel oops
+linux panic unrecoverable system error detected kernel opposed similar errors detected user space code possible kernel code indicate condition calling panic function located header file syssystemh however panics result unhandled processor exceptions kernel code references invalid memory addresses typically indicative somewhere call chain leading panic also indicate failure hardware failed cell errors arithmetic functions processor caused processor overheatingdamaged processor soft error
+report nonfatal kernel called oops deviations correct behavior linux kernel allow continued operation compromised reliability95 crash reports automatically collected sent upstream various software kerneloops96 abrt fedora97 apport ubuntu kerneloopsorg collects reports publishes statistics website98
+kernel panic message might printed visibly conditions using graphical desktop debug conditions methods attaching serial port console used
+live patchingedit
+rebootless updates even applied kernel using live patching technologies ksplice kpatch kgraft minimalistic foundations live kernel patching merged linux kernel mainline kernel version released april 2015 foundations known livepatch based primarily kernels ftrace functionality form common core capable supporting patching kgraft kpatch providing application programming interface kernel modules contain patches application binary interface userspace management utilities however common core included linux kernel supports architecture provide mechanisms ensuring functionlevel consistency patches applied april 2015update ongoing work porting kpatch kgraft common live patching core provided linux kernel mainline99100101
+securityedit
+computer security muchpublicized topic relation linux kernel large portion kernel bugs present potential security flaws example allow privilege escalation create denialofservice attack vectors years numerous flaws found fixed linux kernel102 security features frequently implemented improve linux kernels security103104
+critics accused kernel developers covering security flaws least announcing 2008 linus torvalds responded following105106
+
+personally consider security bugs normal bugs dont cover also dont reason whatsoever think good idea track announce something specialone reason refuse bother whole security circus think glorifies—and thus encourages—the wrong behavior makes heroes security people people dont normal bugs arent important fact boring normal bugs important theres dont think spectacular security hole glorified cared special random spectacular crash locking
+
+linux distributions typically release security updates vulnerabilities linux kernel many offer longterm support releases receive security updates certain linux kernel version extended period time
+feature historyedit
+version linux kernel released march 1994107 release linux kernel supported singleprocessor i386based computer systems portability became concern version released march 1995108 gained support computer systems using processors based alpha sparc mips architectures
+version released june 1996109 series included releases major feature support symmetric multiprocessing support types processors
+version released january 1999110 removed global spinlock provided improved support added support m68k powerpc architectures added file systems including readonly support microsofts ntfs111
+version released january 2001112 contained support plug play cards113 also included support parisc processor hewlettpackard development changed features made available throughout duration series including support bluetooth logical volume manager version raid support intermezzo ext3 file systems
+version released december 2003114 development changed towards including features throughout duration series among changes made series integration µclinux mainline kernel sources support support several lines cpus integration advanced linux sound architecture alsa mainline kernel sources support users support process 64bit 32bit arches still limited 215115 substantially increased number device types number devices type improved 64bit support support file systems support file sizes terabytes inkernel preemption support native posix thread library nptl usermode linux integration mainline kernel sources selinux integration mainline kernel sources infiniband support considerably also notable addition several file systems throughout releases fuse ext4 details history kernel series found changelog files kernel series source code release area kernelorg116
+version released july 201123 2011 torvalds announced change nothing absolutely nothing asked lets make sure really make next release shiny number good kernel too117 expected weeks development process would released near 20th anniversary linux
+december 2012 torvalds decided reduce kernel complexity removing support i386 processors making kernel series last still supporting original processor118119 series unified support processor120
+version released september 2013121 adds many features otmpfile flag open2 reduce temporary file vulnerabilities experimental radeon dynamic power management lowlatency network polling zswap compressed swap cache122
+numbering change 2639 involved meaningful technical differentiation major version number increased avoid large minor numbers23123
+developmentedit
+
+developer communityedit
+2007 development kernel shifted active developers writing code writing code developers spending time reviewing changes124 developers also categorized affiliation 2007 category unknown corporation contributions known amateurs 39124 kernel changes made year 2007 submitted 1900 developers significant underestimate developers working teams usually count onecitation needed generally assumed community linux kernel developers comprises 5000 6000 members
+update 2016 linux kernel development report issued linux foundation covering period december 2014 july 2016 1500 developers contributing release 200250 companies average release developers contributed little code companies contributors intel third fourth places held none unknown categories
+codebaseedit
+2013update release linux kernel 15803499 lines code 2007 roughly code part core drivers124
+
+instead roadmap technical guidelines instead central resource allocation persons companies stake development linux kernel quite independently another people like linus torvalds don’t plan kernel evolution don’t think roadmap next years assign resources various features thats don’t resources resources owned various corporations contribute linux well various independent contributors people resources decide
+andrew morton 2005
+
+
+linux evolution intelligent design
+linus torvalds 2005125126127
+
+statement meant evolution often suboptimal things exactly incremental changes break point result released version linux kernel fully usable even example device drivers support features hardware written
+conceptual architecture linux kernel proved success essential factors success provision organization developers provision system extensibility linux kernels architecture required support many independent volunteer developers suggested system portions require development‍—‌hardware device drivers file systems network protocols‍—‌be implemented extensible fashion linux kernels architecture chose make systems extensible using data abstraction technique hardware device driver implemented separate module supports common interface single developer device driver minimal interaction required developers linux kernel
+another important extension linux kernel addition supported hardware platforms architecture system supports extensibility separating hardwarespecific code distinct modules within subsystem small group developers implement port linux kernel hardware architecture reimplementing machinespecific portions kernel
+estimated cost redevelopedit
+
+
+
+
+redevelopment costs linux kernel
+
+
+cost redevelop linux kernel version traditional proprietary development setting estimated us612 million €467m £394m 2004 prices using cocomo manmonth estimation model128 2006 study funded european union redevelopment cost kernel version higher €882m 114bn £744m129
+topic revisited october 2008 amanda mcpherson brian proffitt haleevans using david wheelers methodology estimated redevelopment 2625 kernel costs 13bn part total 108bn redevelop fedora 9130 garciagarcia alonso magdaleno university oviedo spain estimate value annually added kernel €100m 2005 2007 €225m 2008 would cost also €1bn 14bn february 2010 develop european union131
+march 2011update using thencurrent lines code linux kernel wage numbers david wheelers calculations would cost approximately €22bn redevelop linux kernel keeps getting bigger132
+development modeledit
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed march 2011 learn remove template message
+
+
+
+2015update current development scheme main branch development traditional stable branch instead incorporates kinds changes including latest features security fixes users want risk updating versions containing code well tested separate stable branches exist released version meant people want security fixes whole version branches maintained stable team greg kroahhartman chris wright others
+development model kernel series significantly different compared series series stable branch relatively minor safe changes merged unstable branch bigger changes cleanups allowed branches maintained people torvalds meant users would always welltested version latest security fixes though would wait features went branch downside stable kernel ended behind longer supported recent hardware lacked needed features late kernel series maintainers elected backporting changes stable kernel series resulted bugs introduced kernel series branch eventually declared stable renamed instead opening unstable branch kernel developers decided continue putting major changes branch would released pace faster slower desirable effect making features quickly available getting testing code added smaller batches easier test
+response lack stable kernel tree people could coordinate collection fixes december 2005 adrian bunk announced would keep releasing 2616y kernels stable team moved 2617133134 also included driver updates making maintenance 2616 series similar rules maintenance stable series 24135 since stable team formed would keep updating kernel versions fixes october 2008 adrian bunk announced maintain 2627 years replacement 2616136 stable team picked idea 2010update continue maintain version release fixes addition others137
+change development model developers continued want might call unstable kernel tree changes rapidly patches come andrew morton decided repurpose tree memory management serve destination experimental code september 2007 morton decided stop maintaining tree138 february 2008 stephen rothwell created linuxnext tree serve place patches aimed merged next development cycle gathered139140 several subsystem maintainers also adopted suffix next trees containing code meant submitted inclusion next release cycle
+january 2014update indevelopment version linux kernel held unstable branch named linuxnext141
+relation linux distributionsedit
+linux users kernel supplied linux distribution distributions ship vanilla stable kernels however several linux distribution vendors debian maintain another linux kernel branches integrated products usually updated slower pace compared vanilla branch usually include fixes relevant stable branch time also support drivers features released vanilla version distribution vendor started basing branch
+maintenanceedit
+linus torvalds supervises code changes releases latest kernel versions delegated maintenance older versions programmers142 major releases officially made obsolete kernel release january 1999 maintained needed although slow pace
+linux kernel released longterm support increased year143 intending provide longer support period android devices
+releases 260edit
+
+
+version
+original release date
+current version
+maintainer
+support model
+
+
+version longer supported
+0000000019910917000017 september 1991
+
+linus torvalds
+
+
+
+version longer supported
+00000000199111010000november 1991
+
+linus torvalds
+
+
+
+version longer supported
+000000001992030800008 march 1992
+09915
+linus torvalds
+
+
+
+version longer supported
+0000000019940314000014 march 1994
+
+linus torvalds
+
+
+
+version longer supported
+000000001994040600006 april 1994
+1195
+linus torvalds
+
+
+
+version longer supported
+000000001995030700007 march 1995
+1213
+linus torvalds
+
+
+
+version longer supported
+0000000019950612000012 june 1995
+13100144
+linus torvalds
+
+
+
+version longer supported pre20
+0000000019960512000012 1996
+pre2014
+linus torvalds
+
+
+
+version longer supported
+000000001996060900009 june 1996109
+2040145
+david weinehall
+officially made obsolete kernel release146
+
+
+version longer supported
+0000000019990126000026 january 1999110
+2226147
+marcchristian petersen formerly alan
+unofficially obsolete 2227rc2148149
+
+
+version longer supported
+000000002001010400004 january 2001112
+243711150
+willy tarreau formerly marcelo tosatti
+maintained december 2008 december 2011 last stable release kernel series150
+
+
+
+
+legend
+version
+older version still supported
+latest version
+latest preview version
+future release
+
+
+
+
+
+26xy releasesedit
+versions 2616 2627 linux kernel unofficially supported longterm support fashion151 2011 working group linux foundation started formal longterm support initiative152153
+
+
+version
+original release date
+current version
+maintainer
+support model
+
+
+version longer supported
+0000000020031217000017 december 2003114
+2610154
+linus torvalds
+maintained december 2003 december 2004154
+
+
+version longer supported 2611
+000000002005030200002 march 2005155
+261112156
+greg kroahhartman
+maintained march 2005 june 2005156
+
+
+version longer supported 2612
+0000000020050618000018 june 2005157
+26126158
+greg kroahhartman
+maintained june 2005 august 2005158
+
+
+version longer supported 2613
+0000000020050828000028 august 2005159
+26135160
+greg kroahhartman
+maintained august 2005 december 2005160
+
+
+version longer supported 2614
+0000000020051027000027 october 2005161
+26147162
+greg kroahhartman
+maintained october 2005 january 2006162
+
+
+version longer supported 2615
+000000002006010200002 january 2006163
+26157164
+greg kroahhartman
+maintained january 2006 2006164
+
+
+version longer supported 2616
+0000000020060320000020 march 2006165
+261662166
+adrian bunk167 formerly greg kroahhartman168
+first release maintained march 2006 july 2008134166
+
+
+version longer supported 2617
+0000000020060617000017 june 2006169
+261714170
+greg kroahhartman
+maintained september 2006 october 2006170
+
+
+version longer supported 2618
+0000000020060920000020 september 2006171
+26188172
+greg kroahhartman
+maintained september 2006 february 2007172
+
+
+version longer supported 2619
+0000000020061126000026 november 2006173
+26197174
+greg kroahhartman
+maintained november 2006 march 2007174
+
+
+version longer supported 2620
+000000002007020400004 february 2007175
+262021176
+greg kroahhartman
+maintained february 2007 october 2007176
+
+
+version longer supported 2621
+0000000020070425000025 april 2007177
+26217178
+greg kroahhartman
+maintained april 2007 august 2007178
+
+
+version longer supported 2622
+000000002007070800008 july 2007179
+262219180
+greg kroahhartman
+maintained july 2007 february 2008180
+
+
+version longer supported 2623
+000000002007100900009 october 2007181
+262317182
+greg kroahhartman
+maintained october 2007 february 2008182
+
+
+version longer supported 2624
+0000000020080124000024 january 2008183
+26247184
+greg kroahhartman
+maintained january 2008 2008184
+
+
+version longer supported 2625
+0000000020080416000016 april 2008185
+262520186
+greg kroahhartman
+maintained april 2008 november 2008186
+
+
+version longer supported 2626
+0000000020080713000013 july 2008187
+26268188
+greg kroahhartman
+maintained july 2008 november 2008188
+
+
+version longer supported 2627
+000000002008100900009 october 2008189
+262762190
+willy tarreau191 formerly adrian bunk192 formerly greg kroahhartman
+second release maintained october 2008 march 2012192
+
+
+version longer supported 2628
+0000000020081224000024 december 2008193
+262810194
+greg kroahhartman
+maintained december 2008 2009194
+
+
+version longer supported 2629
+0000000020090323000023 march 2009195
+26296196
+greg kroahhartman
+maintained march 2009 july 2009196
+
+
+version longer supported 2630
+000000002009060900009 june 2009197
+26309198
+greg kroahhartman
+maintained june 2009 october 2009198
+
+
+version longer supported 2631
+000000002009090900009 september 2009199
+263114200
+greg kroahhartman
+maintained september 2009 july 2010200
+
+
+version longer supported 2632
+000000002009120200002 december 2009201
+263271202
+willy tarreau203204 formerly greg kroahhartman168205
+third release maintained december 2009 march 2016203 used debian squeeze206 canonical also provided support april 2015207
+
+
+version longer supported 2633
+0000000020100224000024 february 2010208
+263320209
+greg kroahhartman210
+fourth release maintained march 2011 november 2011 base realtimetree replaced 30x209210
+
+
+version longer supported 2634
+0000000020100516000016 2010211
+263415212
+paul gortmaker213
+fifth release maintained january 2011 february 2014212213
+
+
+version longer supported 2635
+000000002010080100001 august 2010214
+263514215
+andi kleen216
+sixth release maintained december 2010 march 2012216
+
+
+version longer supported 2636
+0000000020101020000020 october 2010217
+26364218
+greg kroahhartman
+maintained october 2010 february 2011218
+
+
+version longer supported 2637
+000000002011010400004 january 2011219
+26376220
+greg kroahhartman
+maintained january 2011 march 2011220
+
+
+version longer supported 2638
+0000000020110314000014 march 2011221
+26388222
+greg kroahhartman
+maintained march 2011 june 2011222
+
+
+version longer supported 2639
+0000000020110518000018 2011223
+26394224
+greg kroahhartman
+maintained 2011 august 2011 last stable release kernel series224
+
+
+
+
+legend
+version
+older version still supported
+latest version
+latest preview version
+future release
+
+
+
+
+
+releasesedit
+
+
+versiona
+original release date
+current version
+maintainer
+support model
+
+
+version longer supported
+0000000020110721000021 july 201123
+30101225
+greg kroahhartman226
+seventh release maintained july 2011 october 2013 providing base realtime tree225226
+
+
+version longer supported
+0000000020111024000024 october 2011227
+3110228
+greg kroahhartman
+maintained october 2011 january 2012228
+
+
+older version still supported
+000000002012010400004 january 2012229
+3297230
+hutchings203231
+eighth release maintained march 2012 2018 used ubuntu 1204 lts232 optionally 1204 esm233 debian wheezy slackware 140203231 canonical promised least provide longterm support april 2017207 support continued months
+
+
+version longer supported
+0000000020120318000018 march 2012234
+338235
+greg kroahhartman
+maintained march 2012 june 2012235
+
+
+version longer supported
+0000000020120520000020 2012236237
+34113238
+zefan203239 formerly greg kroahhartman
+ninth release maintained 2012 october 2016240
+
+
+version longer supported
+0000000020120721000021 july 2012241
+357242
+greg kroahhartman
+maintained july 2012 october 2012242 canonical provided extended support april 2014207243
+
+
+version longer supported
+0000000020120930000030 september 2012244
+3611245
+greg kroahhartman
+maintained october 2012 december 2012245
+
+
+version longer supported
+0000000020121210000010 december 2012246
+3710247
+greg kroahhartman
+maintained december 2012 march 2013247248
+
+
+version longer supported
+0000000020130218000018 february 2013249
+3813250
+greg kroahhartman
+maintained february 2013 2013250 canonical provided extended support august 2014207251
+
+
+version longer supported
+0000000020130428000028 april 2013252
+3911253
+greg kroahhartman
+maintained april 2013 july 2013253
+
+
+version longer supported
+0000000020130630000030 june 2013254
+310108255
+willy tarreau203256 formerly greg kroahhartman
+tenth release maintained august 2013 november 2017255
+
+
+version longer supported
+000000002013090200002 september 2013121
+31110257
+greg kroahhartman
+maintained september 2013 november 2013257 canonical provided extended support august 2014207 codename chosen version linux workgroups
+
+
+version longer supported
+000000002013110300003 november 2013258
+31274259
+jiří slabý203260 formerly greg kroahhartman
+eleventh release maintained november 2013 2017260259
+
+
+version longer supported
+0000000020140119000019 january 2014261
+31311262
+greg kroahhartman
+maintained january 2014 april 2014262 canonical provided extended support april 2016207263
+
+
+version longer supported
+0000000020140330000030 march 2014264
+31479265
+greg kroahhartman203
+twelfth release maintained march 2014 august 2016265
+
+
+version longer supported
+000000002014060800008 june 2014266
+31510267
+greg kroahhartman
+maintained june 2014 august 2014267
+
+
+older version still supported
+000000002014080300003 august 2014268
+31652269
+hutchings203270 formerly greg kroahhartman
+sixteenth release maintained august 2014 october 2014 2016 april 2020203271 used debian jessie272 canonical provided extended support april 2016207273
+
+
+version longer supported
+000000002014100500005 october 2014274
+3178275
+greg kroahhartman
+maintained october 2014 january 2015275
+
+
+older version still supported
+000000002014120700007 december 2014276
+31891277
+greg kroahhartman278 formerly sasha levin279 formerly greg kroahhartman
+thirteenth release maintained december 2014 january 2017280 however greg stated release irregular updates tree281
+
+
+version longer supported
+000000002015020800008 february 2015282
+3198283
+greg kroahhartman
+maintained february 2015 2015283 last stable release kernel series284 canonical provided extended support july 2016207285
+
+
+
+
+legend
+version
+older version still supported
+latest version
+latest preview version
+future release
+
+
+
+
+
+releasesedit
+
+
+versionab
+original release date
+current version
+maintainer
+support model
+
+
+version longer supported
+0000000020150412000012 april 2015123
+409287
+greg kroahhartman
+maintained april 2015 july 2015288
+
+
+older version still supported
+0000000020150622000022 june 2015289
+4148290
+sasha levin203291 formerly greg kroahhartman292
+fourteenth release maintained july 2015 2018203289
+
+
+version longer supported
+0000000020150830000030 august 2015293
+428294
+greg kroahhartman
+maintained august 2015 december 2015294 canonical provided extended support july 2016207295
+
+
+version longer supported
+000000002015110100001 november 2015296
+436297
+greg kroahhartman
+maintained november 2015 february 2016298
+
+
+older version still supported
+0000000020160110000010 january 2016299
+44109300
+greg kroahhartman203
+fifteenth release maintained january 2016 february 2022203301 canonical provide extended support april 2021302
+
+
+version longer supported
+0000000020160313000013 march 2016303
+457304
+greg kroahhartman
+maintained march 2016 june 2016305
+
+
+version longer supported
+0000000020160515000015 2016306
+467307
+greg kroahhartman
+maintained 2016 august 2016307
+
+
+version longer supported
+0000000020160724000024 july 2016308
+4710309
+greg kroahhartman
+maintained july 2016 october 2016309
+
+
+version longer supported
+0000000020160925000025 september 2016310
+4817311
+greg kroahhartman
+maintained september 2016 january 2017311
+
+
+older version still supported
+0000000020161211000011 december 2016312
+4974313
+greg kroahhartman203
+seventeenth release maintained december 2016 january 2019203314 used debian stretch315
+
+
+version longer supported
+0000000020170219000019 february 2017316
+41017317
+greg kroahhartman
+maintained february 2017 2017317
+
+
+version longer supported
+0000000020170430000030 april 2017318
+41112319
+greg kroahhartman
+maintained april 2017 july 2017319
+
+
+version longer supported
+000000002017070200002 july 2017320
+41214321
+greg kroahhartman
+maintained july 2017 september 2017321
+
+
+version longer supported
+000000002017090300003 september 2017322
+41316323
+greg kroahhartman
+maintained september 2017 november 2017323
+
+
+current stable version
+0000000020171112000012 november 2017324
+414113
+greg kroahhartman
+latest mainline release slated eighteenth release325
+
+
+latest preview version future release
+0000000020171231000031 december 20174
+415rc64
+linus torvalds
+latest unstable release
+
+
+
+
+legend
+version
+older version still supported
+latest version
+latest preview version
+future release
+
+
+
+
+
+revision controledit
+linux kernel source code used maintained without help automated source code management system mostly linus torvalds dislike centralized systems
+2002 linux kernel development switched bitkeeper system satisfied torvalds technical requirements bitkeeper made available linus several others free charge free software source controversy system provide interoperability free systems subversion
+april 2005 efforts reverseengineer bitkeeper system andrew tridgell bitmover company maintained bitkeeper stop supporting linux development community response torvalds others wrote source code control system purpose called system written within weeks months first official kernel release made using git326 soon developed separate project right gained widespread adoption
+version numberingedit
+linux kernel three different numbering schemes
+first scheme used runup first version kernel followed first version 10327 many patch releases versions
+release prior version number composed number denoted kernel version number denoted major revision kernel number indicated minor revision kernel kernel version changed major changes code concept kernel occurred twice history kernel 1994 version 1996 version version released 2011 major change kernel concept major revision assigned according even–odd version numbering scheme minor revision changed whenever security patches fixes features drivers implemented kernel
+2004 version released kernel developers held several discussions regarding release version scheme328329 ultimately linus torvalds others decided much shorter timebased release cycle would beneficial seven years first numbers remained third number incremented release rolled three months fourth number sometimes added account security fixes kernel version evenodd system alternation stable unstable gone instead development prereleases titled release candidates indicated appending suffix kernel version followed ordinal number
+first fourth number occurred grave error required immediate fixing encountered 268s code however enough changes legitimize release minor revision would 2681 released change error 2611 adopted official versioning policy later became customary continuously backport major bugfixes security patches released kernels indicate updating fourth number
+2011 linus torvalds announced330 kernel version would bumped release following 2639 minor version number getting large commemorate 20th anniversary linux continued timebased release practice introduced using second number example would follow months additional number third number would added necessary designate security fixes example 3018 linux community refers versioning major version number also later raised release following version 319331b
+addition linuss development releases sometimes version suffix indicating another development branch usually always initials person made example stands kolivas stands alan sometimes letters related primary development area branch kernel built example indicates wireless networking test build also distributors suffixes different numbering systems backports enterprise stable older distribution versions
+timelineedit
+
+variantsedit
+certain variants linux kernel provide additional functionality belong linux kernel mainline variants linux kernel include linuxlibre compute node linux cooperative linux longene grsecurity l4linux mklinux rtlinux usermode linux variants partially merged mainline332
+alsoedit
+
+
+information technology portal
+linux portal
+opensource software portal
+free opensource software portal
+
+
+
+comparison operating system kernels
+
+notesedit
+
+
+
+numbering change 2639 involved meaningful technical differentiation major version number increased avoid large minor numbers23123
+decision renumbering rather conducted poll286
+
+
+
+referencesedit
+
+
+linux logos mascots linux online 2008 archived original august 2010 retrieved august 2009
+balsa andrew linuxkernel mailing list tuxorg archived original july 2016 maint originalurl status unknown link
+kroahhartman greg january 2018 linux 41411 lkml mailing list retrieved january 2018
+torvalds linus december 2017 linux 415rc6 lkml mailing list retrieved january 2018
+martens china july 2006 linux creator torvalds still gplv3 infoworld retrieved february 2015
+linux kernel copying retrieved september 2013 also note valid version kernel concerned particular version license whatever unless explicitly otherwise stated
+stallman richard 2002 linux freedom free software foundation retrieved february 2007
+kernelgitstablelinuxstablegit gitkernelorg october 2002 retrieved august 2012 path rootfirmwarewhence permanent dead link
+readme gitkernelorg retrieved november 2010 permanent dead link
+top500 supercomputer sites operating system family linux top500org retrieved november 2017
+richardson marjorie november 1999 interview linus torvalds linux journal retrieved august 2009
+williams march 2002 chapter general public license free freedom richard stallmans crusade free software oreilly isbn 0596002874 retrieved november 2010
+linux foundation releases linux development report linux foundation february 2015 archived original july 2016 retrieved february 2015
+kroahhartman greg april 2008 linux kernel development fast going sponsoring since 2005 3700 individual developers different companies contributed kernel
+kroahhartman greg linux kernel driver interface linux kernel documentation archived original december 2016 retrieved january 2016 written explain linux binary kernel interface stable kernel interface
+torvalds linus september 2006 gplv3 position statement lkml mailing list
+torvalds linus september 2000 linux240test8 lkml mailing list lkmliuedu retrieved november 2015 note like point directly clarification copying file making clear thatparticular version valid kernel come surprise thats license since thought make explicit
+torvalds linus benedict august 1991 would like minix newsgroup composminix usenet 1991aug252057089541klaavahelsinkifi
+torvalds linus benedict october 1991 free minixlike kernel sources 386at newsgroup composminix usenet 1991oct50541064647klaavahelsinkifi
+torvalds linus release notes linux v012 linux kernel archives retrieved february 2007
+summers david january 1992 troubles partitions newsgroup altoslinux usenet 1992jan1908562818752cseg01uarkedu retrieved january 2007
+clegg alan march 1992 newsgroup composlinux usenet 1992mar3113181119832rockconcertnet retrieved january 2007
+torvalds linus july 2011 linux release linux kernel mailing list retrieved 2013
+leemhuis thorsten 2011 linux kernel data heinz heise retrieved july 2011
+hachman mark july 2011 linux released linus torvalds explains shouldnt care magazine ziff davis retrieved november 2014
+leemhuis thorsten july 2013 whats linux heinz heise retrieved july 2013
+linux kernel million lines code continues rising phoronix june 2014 retrieved june 2015
+appendix tanenbaumtorvalds debate open sources voices open source revolution oreilly 1999 isbn 1565925823 retrieved november 2006
+tanenbaum andy january 1992 linux obsolete newsgroup composminix usenet 12595starcsvunl retrieved 2006
+torvalds linus 2006 hybrid kernel retrieved january 2007
+tanenbaum andy 2006 tanenbaumtorvalds debate part university amsterdam retrieved january 2007
+gartner says sales tablets represent less percent devices 2014 press release egham gartner october 2014 retrieved october 2014
+lunden ingrid october 2014 tablet sales growth plummets 2014 android smartphones continue soar gartner techcrunch retrieved october 2014
+global shipments exceed forecast mild improvement consumer demand apple moves spot according press release framingham october 2014 archived original october 2014 retrieved october 2014
+anthony sebastian september 2014 shellshock deadly vulnerability could waste internet updated extremetech ziff davis retrieved october 2014 consumer routers embedded version linux
+yamagata hiroo august 1997 pragmatist free software hotwired archived original february 2007 retrieved february 2007
+corbet jonathan january 2006 gplv3 kernel lwnnet retrieved february 2007
+torvalds linus september 2000 linux240test8 lkml mailing list retrieved february 2007
+gnuorg wwwgnuorg retrieved 20171018
+alan january 2006 linux lkml mailing list retrieved february 2007
+shankland stephen september 2006 linux programmers newscom cnet retrieved february 2007
+james bottomley mauro carvalho chehab thomas gleixner christoph hellwig dave jones greg kroahhartman tony luck andrew morton trond myklebust david woodhouse september 2006 kernel developers position gplv3 dangers problems gplv3 lwnnet retrieved march 2015 current version discussion draft gplv3 first reading fails necessity test section grounds theres substantial identified problem gplv2 trying solve however deeper reading reveals several problems current draft clauses additional restrictions clause patents provisions since proposing shift projects gplv3 apply pressure every licensed project move foresee release gplv3 portends balkanisation entire open source universe upon rely maint uses authors parameter link
+petreley nicholas september 2006 fight evil fight attention linuxjournalcom retrieved march 2015 second linus torvalds kernel developers free software foundation gplv3 continuing torvalds saying
+linus torvalds says violates everything gplv2 stood debconf 2014 portland oregon accessed march 2015
+clark semwal sumit november 2012 buffer sharing framework introduction embedded linux conference retrieved august 2014
+alan october 2012 patch dmabuf exportsymbol direct rendering infrastructure mailing list retrieved september 2013
+torvalds linus december 2003 linux binary module exception clause lkml mailing list retrieved december 2010
+torvalds linus december 2003 linux binary module exception clause lkml mailing list retrieved november 2010
+fsfla linuxlibre project fsflaorg
+debian squeeze released completely free linux kernel debian december 2010 retrieved january 2011
+hughes phil august 1997 linux trademark dispute linux journal belltown media retrieved december 2010
+hughes phil march 1997 action taken linux trademark linux journal belltown media retrieved december 2010
+gisselberg tonya 2010 trademark history linux operating system gisselberg firm retrieved december 2010
+jones pamela march 2007 report courthouse march part ibms motion 10th groklaw retrieved march 2007
+jones pamela august 2007 court rules novell owns unix unixware copyrights novell right waive groklaw retrieved august 2007
+ryan justin august 2009 linux journal belltown media retrieved august 2009
+harvey march 2010 jury says novell owns unix copyrights salt lake tribune medianews group retrieved march 2010
+preemption kernelnewbiesorg august 2009 retrieved 2015
+jonathan corbet february 2003 driver porting preemptible kernel lwnnet retrieved 2015
+jake edge november 2008 character devices user space lwnnet retrieved 2015
+jonathan corbet 2007 userspace drivers lwnnet retrieved 2015
+kroahhartman greg linux kernel driver interface archived original november 2013
+nguyen binh july 2004 linux filesystem hierarchy chapter linux filesystem hierarchy linux documentation project retrieved november 2012
+kubbilun ingo june 2004 linux kernel patch intel compiler german pyrillionorg archived original july 2011 retrieved november 2010
+timothy february 2009 high performance linux kernel project linuxdna slashdot linux dice holdings retrieved october 2010
+ryan justin february 2009 linuxdna supercharges linux intel compiler linux journal belltown media retrieved october 2010
+lelbach bryce october 2010 clang builds working linux kernel boots networking self hosts cfedev mailing list archived original september 2015
+larabel michael april 2014 linux almost compiled llvms clang phoronix retrieved june 2014
+larabel michael patch patch llvm clang gets better building linux kernel phoronix retrieved november 2014
+edge jake 2013 lfcs llvmlinux project lwnnet retrieved march 2015
+möller jansimon february 2014 llvmlinux linux kernel dragon wings llvm project retrieved march 2015
+deucher alex october 2014 amds unified open source driver xorg foundation retrieved january 2015
+unix open group 20160203 retrieved 20170830
+greg kroahhartman linux kernel driver interface archived original november 2013 retrieved april 2015
+mac80211 linux kernel organization retrieved june 2014
+report changes linux kernel andrey ponomarenkos laboratory march 2016
+werner fischer georg schönberger june 2015 linux storage stack diagram thomaskrenn retrieved june 2015
+bovet daniel cesati marco october 2000 chapter process scheduling understanding linux kernel oreilly isbn 0596000022 archived original september 2014 retrieved october 2011
+santhanam anand september 2003 towards linux look workings next kernel global services archived original september 2013 retrieved october 2011
+moshe april 2000 linux scheduler linux journal belltown media retrieved april 2012
+molnár ingo april 2007 patch modular scheduler core completely fair scheduler lkml mailing list retrieved april 2012
+ieee standard information technology portable operating system interface posix1b realtime extensions ieee 10031b1993
+mckenney paul august 2005 realtime preemption overview lwnnet retrieved february 2012
+osadl project realtime linux osadl retrieved february 2012
+bergmann arnd march 2011 thats folks linux kernel organization retrieved february 2012 permanent dead link
+larabel michael january 2014 linux kernel already many exciting features phoronix retrieved february 2014
+linux kernel section deadline scheduling class better realtime scheduling kernelnewbiesorg march 2014 retrieved april 2014
+torvalds linus january 1999 linux edge open sources voices open source revolution oreilly isbn 1565925823 retrieved october 2013
+porting linux alpha kernel shell
+linux alpha strategic choice
+wang david 2010 android running iphone techhive retrieved july 2010
+kroahhartman greg february 2010 android linux kernel community retrieved february 2010 means drivers written android hardware platforms merged main kernel tree dependencies code lives googles kernel tree causing fail build kernelorg tree google prevented large chunk hardware drivers platform code ever getting merged main kernel tree effectively creating kernel branch number different vendors relying
+meyer david february 2010 linux developer explains android kernel code removal zdnet interactive retrieved february 2010
+chapter maemo platform overview maemo technology overview nokia 2008 archived original june 2008 retrieved april 2010
+bradford john march 2003 whats oops lkml mailing list retrieved october 2010
+kerneloops8 linux page linuxdienet retrieved october 2010
+featuresabrtf12 fedoraproject august 2009 retrieved october 2010
+kerneloopsorg kerneloopsorg retrieved march 2014
+linux kernel section live patching kernelnewbiesorg april 2015 retrieved april 2015
+jonathan corbet february 2015 rough patch live patching lwnnet retrieved april 2015
+kernelgittorvaldslinuxgit pull live patching infrastructure jiri kosina linux kernel source tree kernelorg february 2015 retrieved april 2015
+mookhey burghate nilesh july 2005 linux security audit control features isaca isbn 1893209784 retrieved december 2010
+hatch brian july 2008 hacking exposed linux linux security secrets solutions mcgrawhill osborne media isbn 0072262575 retrieved december 2010
+jaeger trent october 2008 operating system security morgan claypool publishers isbn 1598292129 retrieved december 2010
+andrews jeremy july 2008 security bugs full disclosure kerneltrap archived original july 2008 retrieved december 2010
+spengler brad july 2008 linuxs unofficial securitythroughcoverup policy full disclosure mailing list retrieved december 2010
+kernel source code release retrieved october 2008
+kernel source code release retrieved october 2008
+torvalds linus june 1996 linux really released lkml mailing list retrieved march 2015
+torvalds linus january 1999 220final lkml mailing list retrieved march 2015
+wonderful world linux january 1999 retrieved october 2008
+torvalds linus january 2001 lkml mailing list retrieved march 2015
+wonderful world linux retrieved october 2008
+torvalds linus december 2003 linux lkml mailing list retrieved february 2015
+proc5 linux manual page procsyskernelpidmax
+index publinuxkernelv26 kernelorg retrieved march 2014
+torvalds linus 2011 linux 30rc1 lkml mailing list retrieved july 2013
+vaughannichols steven december 2012 goodbye linux drop support i386 chips next major release zdnet interactive retrieved february 2013
+fingas december 2012 linux drop i386 support kernel make upgrade doom engadget retrieved march 2015
+vaughannichols steven december 2012 linux arrives developers rejoice zdnet interactive retrieved february 2013
+torvalds linus september 2013 linux lkml mailing list retrieved september 2013
+linux kernelnewbiesorg september 2013 retrieved january 2014
+torvalds linus april 2015 linux released lkml mailing list retrieved april 2015
+marti linux developers losing code computerworlduk retrieved 20161024
+linux evolution march 2008
+perpetual development model linux kernel life cycle october 2011
+kroahhartman greg february 2008 announce linuxnext andrews dream linux kernel mailing list mailing list retrieved january 2017
+wheeler david linux kernel worth
+economic impact floss innovation competitiveness sector table page
+estimating total development cost linux distribution table page archived original july 2010
+billion dollar kernel linuxslashdotorg february 2010 retrieved november 2010
+wheeler david linux kernel worth retrieved september 2012
+jeremy august 2006 linux 2616y lives kerneltrap archived original september 2010 retrieved october 2010
+kroahhartman greg august 2006 adrian bunk taking 2616stable branch lkml mailing list retrieved february 2015
+jeremy march 2006 linux maintaining 2616y tree kerneltrap archived original june 2010 retrieved october 2010
+bunk adrian october 2008 linux 2627 longtime supported kernel lkml mailing list retrieved october 2010
+kroahhartman greg september 2009 2627 maintenance plans 2632 released lkml mailing list
+isnt working kerneltraporg september 2007 archived original january 2008
+rothwell stephen february 2008 announce linuxnext andrews dream lkml mailing list retrieved october 2010
+corbet jonathan october 2010 linuxnext patch management process lwnnet eklektix retrieved october 2010
+linux kernel archives kernelorg retrieved january 2014
+linux maintainers file permanent dead link
+linux arrives linus says fewer 0days retrieved 20171114
+torvalds linus 1996 century linux lkml mailing list retrieved april 2016
+latestis2040 archived original july 2012
+weinehall david february 2004 announce linuxkernel 2040 mosscovered tortoise archived original november 2006
+latestis2226 archived original july 2012
+petersen marcchristian january 2005 linux 2227rc2 archived original june 2007
+petersen marcchristian february 2004 linux 2226 dead released lkml mailing list
+tarreau willy december 2010 linux 243711 lkml mailing list retrieved september 2011
+bunk adrian october 2008 linux 2627 longtime supported kernel lkml mailing list retrieved january 2016
+larabel michael october 2011 linux foundation backs longterm support kernels phoronix phoronix media retrieved january 2016
+ltsi linuxfoundationorg linux foundation retrieved january 2016
+torvalds linus december 2004 linux v2610 lkml mailing list retrieved february 2015
+torvalds linus march 2005 linux 2611 lkml mailing list retrieved february 2015
+wright chris june 2005 linux 261112 lkml mailing list retrieved february 2015
+torvalds linus june 2005 linux 2612 lkml mailing list archived original february 2015 retrieved february 2015
+wright chris august 2005 linux 26126 lkml mailing list retrieved february 2015
+torvalds linus august 2005 linux 2613 lkml mailing list retrieved february 2015
+kroahhartman greg december 2005 linux 26135 lkml mailing list retrieved february 2015
+torvalds linus october 2005 linux 2614 lkml mailing list retrieved february 2015
+kroahhartman greg january 2006 linux 26147 lkml mailing list retrieved february 2015
+torvalds linus january 2006 linux 2615 lkml mailing list retrieved february 2015
+kroahhartman greg 2006 linux 26157 lkml mailing list retrieved february 2015
+torvalds linus march 2006 linux v2616 lkml mailing list retrieved february 2015
+bunk adrian july 2008 linux 261662 lkml mailing list retrieved february 2015
+kroahhartman greg august 2006 adrian bunk taking 2616stable branch lkml mailing list retrieved february 2014
+kroahhartman greg march 2012 2632 linux kernel retrieved june 2013
+torvalds linus june 2006 linux v2617 lkml mailing list retrieved february 2015
+kroahhartman greg october 2006 linux 261714 lkml mailing list retrieved february 2015
+torvalds linus september 2006 arrr linux 2618 lkml mailing list retrieved february 2015
+kroahhartman greg february 2007 linux 26188 lkml mailing list retrieved february 2015
+torvalds linus november 2006 linux 2619 lkml mailing list retrieved february 2015
+kroahhartman greg march 2007 linux 26197 lkml mailing list retrieved february 2015
+torvalds linus february 2007 super kernel sunday lkml mailing list retrieved february 2015
+tarreau willy october 2007 linux 262021 lkml mailing list retrieved february 2015
+torvalds linus april 2007 linux 2621 lkml mailing list retrieved february 2015
+kroahhartman greg august 2007 linux 26217 lkml mailing list retrieved february 2015
+torvalds linus july 2007 linux 2622 released lkml mailing list retrieved february 2015
+kroahhartman greg february 2008 linux 262219 lkml mailing list retrieved february 2015
+torvalds linus october 2007 linux 2623 lkml mailing list retrieved february 2015
+kroahhartman greg february 2008 linux 262317 lkml mailing list retrieved february 2015
+torvalds linus january 2008 linux 2624 lkml mailing list retrieved february 2015
+kroahhartman greg 2008 linux 262520 lkml mailing list retrieved february 2015
+torvalds linus april 2008 linux 2625 lkml mailing list retrieved february 2015
+kroahhartman greg november 2008 linux 262520 lkml mailing list retrieved february 2015
+torvalds linus july 2008 linux 2626 lkml mailing list retrieved february 2015
+kroahhartman greg november 2008 linux 26268 lkml mailing list retrieved february 2015
+torvalds linus october 2008 linux 2627 lkml mailing list retrieved february 2015
+tarreau willy march 2012 linux 262762 lkml mailing list retrieved february 2014
+kroahhartman greg december 2010 willy tarreau taking 2627longterm kernel release lkml mailing list retrieved february 2014
+bunk adrian october 2008 linux 2627 longtime supported kernel lkml mailing list retrieved february 2015
+torvalds linus december 2008 happy v2628 lkml mailing list retrieved february 2015
+kroahhartman greg 2009 linux 262810 lkml mailing list retrieved february 2015
+torvalds linus march 2009 linux 2629 lkml mailing list retrieved february 2015
+kroahhartman greg july 2009 linux 26296 lkml mailing list retrieved february 2015
+torvalds linus june 2009 linux 2630 lkml mailing list retrieved february 2015
+kroahhartman greg october 2009 linux 26309 lkml mailing list retrieved february 2015
+torvalds linus september 2009 linux 2631 lkml mailing list retrieved february 2015
+kroahhartman greg july 2010 linux 263114 lkml mailing list retrieved february 2015
+torvalds linus december 2009 linux 2632 lkml mailing list retrieved 2013
+tarreau willy 2017 linux 263271 lkml mailing list retrieved june 2017
+active kernel releases kernelorg august 2013 retrieved july 2014
+tarreau willy march 2012 linux 263258 lkml mailing list retrieved february 2014
+walkermorgan march 2012 maintenance linux kernel 2632 slowing open heinz heise retrieved 2013
+package linuximage26686 263229 debianorg retrieved july 2014
+ubuntu kernel team extended support ubuntu wiki canonical retrieved august 2013
+torvalds linus february 2010 linux 2633 released lkml mailing list retrieved 2013
+kroahhartman greg november 2011 linux 263320 lkml mailing list retrieved 2013
+leemhuis thorsten march 2011 kernel development 2639 series revived open heinz heise retrieved 2013
+torvalds linus 2010 linux 2634 lkml mailing list retrieved 2013
+gortmaker paul february 2014 linux 263415 lkml mailing list retrieved february 2014
+gortmaker paul december 2010 announcement plans v2634longterm lkml mailing list retrieved 2013
+torvalds linus august 2010 linux 2635 lkml mailing list retrieved 2013
+kleen andi august 2011 announce longterm linux 263514 kernel released lkml mailing list retrieved 2013
+kleen andi december 2010 plans 2635longterm linux stable kernel release procedure changes lkml mailing list retrieved 2013
+torvalds linus october 2010 linux 2636 lkml mailing list retrieved february 2015
+kroahhartman greg february 2011 linux 26364 lkml mailing list retrieved february 2015
+torvalds linus january 2011 linux 2637 lkml mailing list retrieved february 2015
+kroahhartman greg march 2011 linux 26376 lkml mailing list retrieved february 2015
+torvalds linus march 2011 linux 2638 lkml mailing list retrieved february 2015
+kroahhartman greg june 2011 linux 26388 lkml mailing list retrieved february 2015
+torvalds linus 2011 linux 2639 lkml mailing list retrieved 2013
+kroahhartman greg august 2011 linux 26394 lkml mailing list retrieved 2013
+kroahhartman greg october 2013 linux 30101 lkml mailing list retrieved november 2013
+leemhuis thorsten january 2012 kernel 15000000 lines promoted longterm kernel open heinz heise retrieved march 2012
+torvalds linus october 2011 linux lkml mailing list retrieved 2013
+kroahhartman greg january 2012 linux 3110 lkml mailing list retrieved 2013
+torvalds linus january 2012 linux lkml mailing list retrieved 2013
+hutchings january 2018 linux 3297 lkml mailing list retrieved january 2018
+eitzen chris april 2012 longterm maintenance linux open heinz heise retrieved 2013
+enablement stacks retrieved february 2014
+securityteamesm1204 ubuntu wiki wikiubuntucom retrieved 20171024
+torvalds linus march 2012 linux release lkml mailing list retrieved 2013
+kroahhartman greg june 2012 linux lkml mailing list retrieved 2013
+torvalds linus 2012 linux released lkml mailing list retrieved 2013
+larabel michael 2012 linux kernel released many features phoronix retrieved july 2013
+linux kernel 34113 released linux stable mailing list october 2016 retrieved december 2016
+kroahhartman greg august 2014 zefan stable maintainer lkml mailing list retrieved october 2014
+kernel 34113cafmonthly lambda kernel infinito variantsnml0129 34113 version linux kernel finished 2016 currently marked life version
+torvalds linus july 2012 linux released lkml mailing list retrieved 2013
+kroahhartman greg october 2013 linux lkml mailing list retrieved 2013
+krzesinski herton ronaldo november 2012 linux 3611 lkml mailing list retrieved 2013
+torvalds linus september 2012 linux lkml mailing list retrieved 2013
+kroahhartman greg december 2012 linux 3611 lkml mailing list retrieved december 2012
+torvalds linus december 2012 linux lkml mailing list retrieved 2013
+kroahhartman greg february 2013 linux 3710 lkml mailing list retrieved 2013
+stahie silviu march 2013 linux kernel 3710 officially reaches life kernelorg website updated softpedia retrieved march 2013
+torvalds linus february 2013 linux lkml mailing list retrieved 2013
+kroahhartman greg 2013 linux 3813 lkml mailing list retrieved 2013
+walkermorgan 2013 canonical maintain linux august 2014 open heinz heise retrieved 2013
+torvalds linus april 2013 linux released lkml mailing list retrieved 2013
+kroahhartman greg july 2013 linux 3911 lkml mailing list retrieved july 2013
+torvalds linus june 2013 linux lkml mailing list retrieved july 2013
+tarreau willy november 2017 linux 310108 lkml mailing list retrieved november 2017
+tarreau willy june 2016 patch kernelorg change maintainer lkml mailing list retrieved june 2016
+kroahhartman greg november 2013 linux 31110 lkml mailing list retrieved december 2013
+torvalds linus november 2013 linux released merge window plans lkml mailing list retrieved november 2013
+slabý jiří 2017 linux 31274 lkml mailing list retrieved 2017
+kroahhartman greg february 2014 312stable kernel tree taken jiří slabý lkml mailing list retrieved february 2015
+torvalds linus january 2014 linux lkml mailing list retrieved january 2014
+kroahhartman greg april 2014 linux 31311 lkml mailing list retrieved april 2014
+mostafa kamal april 2014 announce linux 313yz extended stable support lkml mailing list retrieved february 2015
+torvalds linus march 2014 linux lkml mailing list retrieved march 2014
+kroahhartman greg september 2016 linux 31479 lkml mailing list retrieved september 2016
+torvalds linus july 2014 linux lkml mailing list retrieved june 2014
+kroahhartman greg august 2014 linux 31510 lkml mailing list retrieved august 2014
+torvalds linus august 2014 linux linux kernel mailing list mailing list retrieved august 2014
+hutchings january 2018 linux 31652 lkml mailing list retrieved january 2018
+hutchings 2016 longterm release lkml mailing list retrieved 2016
+kroahhartman greg october 2014 linux 3167 lkml mailing list retrieved october 2014
+guerrero lopez jessie ship linux bits debian retrieved 2016
+henriques luis october 2014 linux 316yz extended stable support lkml mailing list retrieved november 2014
+torvalds linus october 2014 linux lkml mailing list retrieved october 2014
+kroahhartman greg january 2015 linux 3178 lkml mailing list retrieved january 2015
+torvalds linus december 2014 linux lkml mailing list retrieved december 2014
+kroahhartman greg january 2018 linux 31891 lkml mailing list retrieved january 2018
+kroahhartman greg february 2017 linux 31848 lkml mailing list retrieved april 2017
+kroahhartman greg march 2015 maintained sasha levin lkml mailing list retrieved march 2015
+kroahhartman greg february 2017 linux 31848 lkml mailing list retrieved april 2017
+kroahhartman greg april 2017 patch 000145 31849stable review lkml mailing list retrieved april 2017
+torvalds linus february 2015 linux merge window open lkml mailing list retrieved february 2015
+kroahhartman greg 2015 linux 3198 lkml mailing list retrieved 2015
+torvalds linus february 2015 linux 40rc1 lkml mailing list retrieved february 2015
+mostafa kamal 2015 linux 319yckt extended stable support lkml mailing list retrieved january 2016
+torvalds linus february 2015 made noises time google retrieved february 2015 lets people think
+
+continue v320 bigger numbers sexy move reset numbers something smaller
+like versions cannot
+cause confused easily
+kroahhartman greg july 2015 linux lkml mailing list retrieved july 2015
+nestor marius july 2015 linux kernel reach life soon users urged move linux kernel softpedia softnews retrieved september 2015
+torvalds linus june 2015 linux lkml mailing list retrieved june 2015
+linux kernel 4148 released lkml mailing list december 2017 retrieved december 2017
+kroahhartman greg january 2016 maintained sasha levin lkml mailing list retrieved february 2016
+kroahhartman greg september 2015 longterm kernel lkml mailing list retrieved september 2015
+torvalds linus august 2015 linux lkml mailing list retrieved november 2015
+kroahhartman greg december 2015 linux lkml mailing list retrieved december 2015
+mostafa kamal december 2015 linux 42yz extended stable support lkml mailing list retrieved december 2015
+torvalds linus november 2015 linux lkml mailing list retrieved november 2015
+kroahhartman greg february 2016 linux lkml mailing list retrieved february 2016
+nestor marius february 2016 linux kernel last series users urged move linux softpedia softnews retrieved february 2016
+torvalds linus january 2016 linux lkml mailing list retrieved june 2016
+kroahhartman greg january 2018 linux 44109 lkml mailing list retrieved january 2018
+corbet jonathan november 2015 stable kernel process lwnnet retrieved december 2015
+ubuntu kernel support ubuntu wiki
+torvalds linus march 2016 linux lkml mailing list retrieved march 2016
+kroahhartman greg june 2016 linux lkml mailing list retrieved june 2016
+nestor marius june 2016 linux kernel last series users urged move linux softpedia softnews retrieved june 2016
+torvalds linus 2016 linux lkml mailing list retrieved 2016
+kroahhartman greg august 2016 linux lkml mailing list retrieved august 2016
+linus torvalds july 2016 linux lkml mailing list retrieved july 2016
+kroahhartman greg october 2016 linux 4710 lkml mailing list retrieved october 2016
+linus torvalds october 2016 linux lkml mailing list retrieved october 2016
+kroahhartman greg january 2017 linux 4817 lkml mailing list retrieved january 2017
+linus torvalds december 2016 linux lkml mailing list retrieved december 2016
+kroahhartman greg january 2018 linux 4974 lkml mailing list retrieved january 2018
+kroahhartman greg january 2017 patch longterm kernel lkml mailing list retrieved january 2017
+stretch kernel linux debian wiki
+linus torvalds february 2017 linux lkml mailing list retrieved february 2017
+kroahhartman greg 2017 linux 41017 lkml mailing list retrieved 2017
+linus torvalds april 2017 linux lkml mailing list retrieved 2017
+kroahhartman greg july 2017 linux 41112 lkml mailing list retrieved july 2017
+torvalds linus july 2017 linux lkml mailing list retrieved july 2017
+kroahhartman greg september 2017 linux 41214 lkml mailing list retrieved september 2017
+torvalds linus september 2017 linux lkml mailing list retrieved september 2017
+kroahhartman greg november 2017 linux 41316 lkml mailing list retrieved november 2017
+torvalds linus november 2017 linux lkml mailing list retrieved november 2017
+linux next kernel branch confirmed fossbytes
+linux kernel mailing list june 2005 linux 2612 gitcommitshead mailing list
+williams riley linux kernel archives volume archived original 2005
+offline jeremy october 2001 kernel release numbering redux kerneltrap archived original november 2010 retrieved october 2010
+torvalds linus kernel release numbering lkml mailing list lkml retrieved october 2010
+torvalds linus 2011 linux 30rc1 retrieved august 2011
+torvalds linus linux released merge window plans lkml mailing list lkml retrieved january 2014
+state preemptrt linuxplumbersconforg retrieved june 2016
+
+
+readingedit
+
+
+torvalds linus diamond david 2001 story accidental revolutionary harperbusiness isbn 9780066620732
+bezroukov nikolai benevolent dictator portraits open source pioneers ebook softpanorama
+linksys binary modules lwnnet weekly edition october 2003
+freebsdlinux kernel source code crossreference browsable linux operating system kernel source crossreference
+linux crossreference project browsable linux kernel source
+kernelhq browsable kernel source tree versions present browsable diffs archived original 20160729
+2001 linux timeline
+everyones favorite linux mascot
+linux timeline
+history linux
+upgrade kernel
+pranevich joseph december 2003 wonderful world linux permanent dead link
+josh february 2005 understanding linux 2681 scheduler archived original september 2007
+linuxchanges
+seminar paper linux kernel
+linux device drivers
+understanding linux kernel book
+linux kernel networking rami rosen 2014 book
+linux binary modules archived original july 2005
+anatomy linux kernel
+
+
+external linksedit
+
+
+
+wikimedia commons media related linux kernel
+
+
+
+
+
+wikibooks topic linux kernel
+
+
+
+official website
+
+linux kernel documentation index
+linux kernel pages
+kernel bugzilla regressions recent kernel version
+
+
+kernel newbies source various kernelrelated information
+lingrok linux kernel source code crossreference
+greg kroah hartman linux kernel youtube
+
+
+
+
+
+
+
+
+
+
+
+
+linux kernel
+
+
+
+organization
+
+
+
+
+kernel
+
+
+
+linux foundation
+linux mark institute
+linuss
+tanenbaum–torvalds debate
+
+issues
+linaro
+
+menuconfig
+supported computer architectures
+kernel names
+criticism
+
+
+
+
+
+support
+
+
+
+developers
+
+linux programming interface
+kernelorg
+lkml
+linux conferences
+
+
+users
+
+linux user group
+
+
+
+
+
+
+
+
+
+
+technical
+
+
+
+
+debugging
+
+
+
+criu
+ftrace
+kdump
+linux kernel oops
+systemtap
+
+
+
+
+
+
+startup
+
+
+
+vmlinux
+systemmap
+dracut
+initrd
+initramfs
+
+
+
+
+
+abis
+
+
+
+linux standard base
+
+
+
+
+
+
+apis
+
+
+
+
+
+userspace
+
+
+
+
+
+daemons
+
+
+
+devfs
+devpts
+debugfs
+procfs
+sysfs
+systemd
+
+udev
+
+
+kmscon
+
+
+
+
+
+wrapper
+libraries
+
+
+
+standard library
+
+glibc
+uclibc
+bionic
+
+libhybris
+
+
+dietlibc
+eglibc
+klibc
+musl
+newlib
+
+
+libcgroup
+libdrm
+libalsa
+libevdev
+libusb
+
+
+
+
+
+
+
+
+
+kernel
+
+
+
+
+system call
+interface
+
+
+
+posix
+
+ioctl
+select
+open
+read
+close
+sync
+
+
+
+linuxonly
+
+futex
+epoll
+splice
+dnotify
+inotify
+readahead
+
+
+
+
+
+
+
+
+inkernel
+
+
+
+alsa
+crypto
+
+kernfs
+
+video4linux
+
+
+
+
+
+
+
+
+
+
+
+components
+
+
+
+kernel modules
+bluez
+cgroups
+console
+bcache
+device mapper
+dmcache
+dmcrypt
+
+edac
+evdev
+kernel samepage merging
+
+framebuffer
+
+driver
+netfilter
+netlink
+nftables
+network scheduler
+perf
+slub
+zram
+zswap
+
+
+process schedulers
+scheduler
+scheduler
+completely fair scheduler
+brain fuck scheduler
+noop scheduler
+scheddeadline
+
+
+security modules apparmor
+exec shield
+grsecurity
+
+
+
+
+seccomp
+selinux
+smack
+tomoyo linux
+linux
+
+
+device drivers
+
+80211
+graphics
+
+
+device
+
+
+initramfs
+kernelcare
+kexec
+kgraft
+kpatch
+ksplice
+
+
+
+
+
+variants
+
+
+
+mainline
+
+linux kernel
+linuxlibre
+
+
+highperformance computing
+
+
+compute node linux
+slurm
+
+
+realtime computing
+
+rtlinux
+rtai
+xenomai
+carrier grade linux
+
+
+mmuless
+
+μclinux
+psxlinux
+dslinux
+
+
+
+
+
+
+virtualization
+
+
+
+hypervisor
+
+
+
+
+
+oslevel virtualization
+
+linuxvserver
+lguest
+
+openvz
+
+
+
+
+l4linux
+elinos
+usermode linux
+mklinux
+colinux
+
+
+
+
+
+
+
+
+
+
+
+
+
+adoption
+
+
+
+
+range
+
+
+
+
+desktop
+embedded
+gaming
+thin client
+
+ltsp
+thinstation
+
+
+server
+
+lamp
+lymelyce
+
+
+devices
+
+
+
+
+
+adopters
+
+
+
+list linux adopters
+genivi alliance
+proprietary software linux
+
+
+
+
+
+
+
+
+
+
+
+category
+commons
+book
+wikiversity
+portal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+linux
+
+
+
+linux kernel
+
+
+
+history
+kernel
+linuss
+linuxlibre
+linux startup process
+linux kernel oops
+
+more…
+
+
+
+
+
+controversies
+
+
+
+criticism linux
+criticism desktop linux
+gnulinux naming controversy
+tanenbaum–torvalds debate
+linux
+
+
+
+
+
+distributions
+
+
+
+general comparison
+distributions list
+netbookspecific comparison
+distributions
+lightweight
+securityfocused operating system
+proprietary software linux
+package manager
+
+package format
+list software package managers
+
+
+
+
+
+
+
+organizations
+
+
+
+linux foundation
+linux mark institute
+linux user group
+linux documentation project
+linuxchix
+linux counter
+
+
+
+
+
+adoption
+
+
+
+desktop
+embedded
+gaming
+linux range
+list linux adopters
+
+
+
+
+
+media
+
+
+
+distrowatch
+free software magazine
+full circle
+linuxcom
+linux format
+linux gazette
+linux journal
+linux magazine
+linuxuser
+
+ubuntu user
+
+
+linux outlaws
+linux voice
+lugradio
+lwnnet
+ubuntu
+open source
+phoronix
+revolution
+code
+
+
+
+
+
+
+
+
+linux
+linux kernel features
+portallinux
+wikiproject linux
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlelinuxkerneloldid818566263 categories linux kernel1991 softwarefinnish inventionsfree software programmed cfree system softwarelinus torvaldsmonolithic kernelsunix variantshidden categories maint originalurl status unknownall articles dead external linksarticles dead external links december 2017articles permanently dead external linkscs1 maint uses authors parametercs1 germanlanguage sources deuse dates june 2016pages using deprecated image syntaxarticles containing potentially dated statements november 2017all articles containing potentially dated statementsall articles unsourced statementsarticles unsourced statements july 2013articles needing additional references january 2015all articles needing additional referencesarticles unsourced statements january 2015accuracy disputes november 2017all accuracy disputesarticles unsourced statements june 2016articles unsourced statements october 2016articles containing potentially dated statements april 2015articles containing potentially dated statements 2013articles containing potentially dated statements march 2011articles needing additional references march 2011articles containing potentially dated statements 2015articles containing potentially dated statements 2010articles containing potentially dated statements january 2014official website different wikidata wikipediapages graphs

@@ -1,0 +1,913 @@
+This article is about a computer file format. For a computer-assisted translation software tool, see Déjà Vu (software).
+
+DjVu
+
+
+
+
+Filename extensions
+.djvu, .djv
+
+
+Internet media type
+image/vnd.djvu, image/x-djvu
+
+
+Developed by
+AT&T Labs – Research
+
+
+Initial release
+1998; 19 years ago (1998)
+
+
+Latest release
+
+Version 26[1]
+(June 2006; 11 years ago (2006-06))
+
+
+
+Type of format
+Image file formats
+
+
+Open format?
+GNU GPLv2 for DjVu Reference Library and DjVuLibre-3.5;
+License grants under the GNU GPL for several patents that cover aspects of the library[2]
+
+
+Website
+djvu.org
+
+
+DjVu (/ˌdeɪʒɑːˈvuː/ DAY-zhah-VOO, like English "déjà vu"[3]) is a computer file format designed primarily to store scanned documents, especially those containing a combination of text, line drawings, indexed color images, and photographs. It uses technologies such as image layer separation of text and background/images, progressive loading, arithmetic coding, and lossy compression for bitonal (monochrome) images. This allows high-quality, readable images to be stored in a minimum of space, so that they can be made available on the web.
+DjVu has been promoted as an alternative to PDF, promising smaller files than PDF for most scanned documents.[4] The DjVu developers report that color magazine pages compress to 40–70 kB, black-and-white technical papers compress to 15–40 kB, and ancient manuscripts compress to around 100 kB; a satisfactory JPEG image typically requires 500 kB.[5] Like PDF, DjVu can contain an OCR text layer, making it easy to perform copy and paste and text search operations.
+Free browser plug-ins and desktop viewers from different developers are available from the djvu.org website. DjVu is supported by a number of multi-format document viewers and e-book reader software on Linux (Okular, Evince) and Windows (SumatraPDF).
+Despite its advantages, DjVu is not widely supported by scanning and viewing software.
+
+
+
+Contents
+
+
+1 History
+2 Technical overview
+
+2.1 File structure
+
+2.1.1 Chunk types
+
+
+2.2 Compression
+
+
+3 Format licensing
+4 Support
+5 See also
+6 References
+7 External links
+
+
+
+History[edit]
+The DjVu technology was originally developed[5] by Yann LeCun, Léon Bottou, Patrick Haffner, and Paul G. Howard at AT&T Labs from 1996 to 2001.
+Due to its declared higher compression ratio (and thus smaller file size) and the ease of converting large volumes of text into DjVu format, and because it is an open file format, it has been considered superior to PDF. Independent technologist Brewster Kahle in a 2004 talk on IT Conversations discussed the benefits of allowing easier access to DjVu files.[6][7]
+The DjVu library distributed as part of the open-source package DjVuLibre has become the reference implementation for the DjVu format. DjVuLibre has been maintained and updated by the original developers of DjVu since 2002.[8]
+The DjVu file format specification has gone through a number of revisions:
+
+Revision history
+
+Support status
+Version
+Release date
+Notes
+
+
+Unsupported
+1–19[1]
+1996–1999
+Developmental versions by AT&T labs preceding the sale of the format to LizardTech.
+
+
+Unsupported
+Version 20[1]
+April 1999
+DjVu version 3. DjVu changed from a single-page format to a multipage format.
+
+
+Older, still supported
+Version 21[1]
+September 1999
+Indirect storage format replaced. The searchable text layer was added.
+
+
+Older, still supported
+Version 22[1]
+April 2001
+Page orientation, color JB2
+
+
+Unsupported
+Version 23[1]
+July 2002
+CID chunk
+
+
+Unsupported
+Version 24[1]
+February 2003
+LTAnno chunk
+
+
+Older, still supported
+Version 25[1]
+May 2003
+NAVM chunk. Support for DjVu bookmarks (outlines) was added. Changes made by Versions 23 and 24 were made obsolete.
+
+
+Current
+Version 26[1]
+April 2005
+Text/line annotations
+
+
+Technical overview[edit]
+File structure[edit]
+The DjVu file format is based on the Interchange File Format and is composed of hierarchically organized chunks. The IFF structure is preceded by a 4-byte AT&T magic number. Following is a single FORM chunk with a secondary identifier of either DJVU or DJVM for a single-page or a multi-page document, respectively.
+Chunk types[edit]
+
+
+Chunk identifier
+Contained by
+Description
+
+
+FORM:DJVU
+FORM:DJVM
+Describes a single page. Can either be at the root of a document and be a single-page document or referred to from a DIRM chunk.
+
+
+FORM:DJVM
+N/A
+Describes a multi-page document. Is the document's root chunk.
+
+
+FORM:DJVI
+FORM:DJVM
+Contains data shared by multiple pages.
+
+
+FORM:THUM
+FORM:DJVM
+Contains thumbnails.
+
+
+INFO
+FORM:DJVU
+Must be the first chunk. Describes the page width, height, format version, resolution, gamma, and rotation.
+
+
+DIRM
+FORM:DJVM
+Must be the first chunk. References other FORM chunks. These chunks can either follow this chunk inside the FORM:DJVM chunk or be contained in external files. These types of documents are referred to as bundled or indirect, respectively.
+
+
+NAVM
+FORM:DJVM
+If present, must immediately follow the DIRM chunk. Contains a BZZ-compressed outline of the document.
+
+
+Compression[edit]
+DjVu divides a single image into many different images, then compresses them separately. To create a DjVu file, the initial image is first separated into three images: a background image, a foreground image, and a mask image. The background and foreground images are typically lower-resolution color images (e.g., 100 dpi); the mask image is a high-resolution bilevel image (e.g., 300 dpi) and is typically where the text is stored. The background and foreground images are then compressed using a wavelet-based compression algorithm named IW44.[5] The mask image is compressed using a method called JB2 (similar to JBIG2). The JB2 encoding method identifies nearly identical shapes on the page, such as multiple occurrences of a particular character in a given font, style, and size. It compresses the bitmap of each unique shape separately, and then encodes the locations where each shape appears on the page. Thus, instead of compressing a letter "e" in a given font multiple times, it compresses the letter "e" once (as a compressed bit image) and then records every place on the page it occurs.
+Optionally, these shapes may be mapped to UTF-8 codes (either by hand or potentially by a text recognition system) and stored in the DjVu file. If this mapping exists, it is possible to select and copy text.
+Since JBIG2 was based on JB2, both compression methods have the same problems when performing lossy compression. Numbers may be substituted with similarly looking numbers (such as replacing 6 with 8) if the text was scanned at a low resolution prior to lossy compression.
+Format licensing[edit]
+DjVu is an open file format with patents.[4] The file format specification is published, as well as source code for the reference library.[4] The original authors distribute an open-source implementation named "DjVuLibre" under the GNU General Public License. The rights to the commercial development of the encoding software have been transferred to different companies over the years, including AT&T Corporation, LizardTech, Celartem and Cuminas.
+Support[edit]
+Despite its advantages, DjVu is not widely supported by scanning and viewing software.[9] While viewers can be downloaded, opening DjVu files is not implemented in most operating systems by default.[10]
+SumatraPDF (Windows) among others can manipulate DjVu files.
+In 2002, the DjVu file format was chosen by the Internet Archive as a format in which its Million Book Project provides scanned public-domain books online (along with TIFF and PDF).[11]
+Wikimedia Commons, a media repository used by Wikipedia among others, conditionally permits PDF and DjVu media files.[12]
+See also[edit]
+
+JBIG2
+Comparison of e-book formats
+
+References[edit]
+
+
+
+^ a b c d e f g h i DjVu File Format Version, By Jim Rile, Posted: Fri Feb 23, 2007 1:08 am, PlanetDjVu
+^ "DjVu Licensing". DjVu Sourceforge page. Sourceforge.net. 2011-08-17. Retrieved 2011-09-21. 
+^ "DjVu.org - the premier menu for djvu resources". djvu.org. Retrieved 2017-07-02. 
+^ a b c "What is DjVu – DjVu.org". DjVu.org. Retrieved 2009-03-05. 
+^ a b c Léon Bottou; Patrick Haffner; Paul G. Howard; Patrice Simard; Yoshua Bengio; Yann Le Cun (1998). "High Quality Document Image Compression with DjVu, 7(3):410–425" (PDF). Journal of Electronic Imaging. 
+^ Brewster Kahle (December 16, 2004). "Universal Access to All Knowledge" (Audio; Speech at 1h:31m:20s). Conversations Network. 
+^ "LizardTech To Open Source A DjVu Java Viewer". ECM Connection. 7 December 2004. Retrieved 18 August 2017. 
+^ http://djvu.sourceforge.net/
+^ Manual for Xerox/Visioneer OneTouch, widely used scanning software for business and home use, showing support for several file formats, but not DjVu.
+^ A test DjVu file. Click on the image in the page to open the file on a computer with support for the .djvu format.
+^ "Image file formats – OLPC". Wiki.laptop.org. Retrieved 2008-09-09. 
+^ Wikimedia Commons. Project scope: PDF and DjVu.
+
+
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to DjVu file format.
+
+
+
+"The premier menu for DjVu resources" (status of the site, which is maintained by an anonymous webmaster, is unclear)
+DjVuLibre site
+Jakub Wilk's pdf2djvu and other DjVu tools
+Poliqarp for DjVu search engine and other DjVu tools
+Why won't Google index DjVu files after all this time? – topic on PlanetDjVu
+Any2Djvu Server - online document converter
+Cuminas Software Downloads
+Table of Djvu Programmes (Russian)
+Online converter which creates PDFs with OCR information out of DjVu files
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Multimedia compression and container formats
+
+
+
+Video
+compression
+
+
+
+
+ISO/IEC
+
+
+
+MJPEG
+Motion JPEG 2000
+MPEG-1
+MPEG-2
+
+Part 2
+
+
+MPEG-4
+
+Part 2/ASP
+Part 10/AVC
+
+
+MPEG-H
+
+Part 2/HEVC
+
+
+
+
+
+
+
+ITU-T
+
+
+
+H.120
+H.261
+H.262
+H.263
+H.264
+H.265
+
+
+
+
+
+SMPTE
+
+
+
+VC-1
+VC-2
+VC-3
+VC-5
+
+
+
+
+
+Alliance for Open Media
+
+
+
+AV1
+
+
+
+
+
+Others
+
+
+
+Apple Video
+AVS
+Bink
+Cinepak
+Daala
+Dirac
+DV
+DVI
+FFV1
+Huffyuv
+Indeo
+Lagarith
+Microsoft Video 1
+MSU Lossless
+OMS Video
+Pixlet
+ProRes 422
+ProRes 4444
+QuickTime
+
+Animation
+Graphics
+
+
+RealVideo
+RTVideo
+SheerVideo
+Smacker
+Sorenson Video, Spark
+Theora
+Thor
+VP3
+VP6
+VP7
+VP8
+VP9
+WMV
+XEB
+YULS
+
+
+
+
+
+
+
+
+Audio
+compression
+
+
+
+
+ISO/IEC
+
+
+
+MPEG-1 Layer III (MP3)
+MPEG-1 Layer II
+
+Multichannel
+
+
+MPEG-1 Layer I
+AAC
+
+HE-AAC
+AAC-LD
+
+
+MPEG Surround
+MPEG-4 ALS
+MPEG-4 SLS
+MPEG-4 DST
+MPEG-4 HVXC
+MPEG-4 CELP
+MPEG-D USAC
+MPEG-H 3D Audio
+
+
+
+
+
+ITU-T
+
+
+
+G.711 (A-law, µ-law)
+G.718
+G.719
+G.722
+G.722.1
+G.722.2
+G.723
+G.723.1
+G.726
+G.728
+G.729
+G.729.1
+
+
+
+
+
+IETF
+
+
+
+Opus
+iLBC
+
+
+
+
+
+3GPP
+
+
+
+AMR
+AMR-WB
+AMR-WB+
+EVRC
+EVRC-B
+EVS
+GSM-HR
+GSM-FR
+GSM-EFR
+
+
+
+
+
+Others
+
+
+
+ACELP
+AC-3
+AC-4
+ALAC
+Asao
+ATRAC
+CELT
+Codec2
+DRA
+DTS
+FLAC
+iSAC
+Monkey's Audio
+TTA
+
+True Audio
+
+
+MT9
+Musepack
+OptimFROG
+OSQ
+QCELP
+RCELP
+RealAudio
+RTAudio
+SD2
+SHN
+SILK
+Siren
+SMV
+Speex
+SVOPC
+TwinVQ
+VMR-WB
+Vorbis
+VSELP
+WavPack
+WMA
+MQA
+aptX
+
+
+
+
+
+
+
+
+Image
+compression
+
+
+
+
+IEC, ISO,
+ITU-T, W3C, IETF
+
+
+
+CCITT Group 4
+GIF
+HEIF
+HEVC
+JBIG
+JBIG2
+JPEG
+JPEG 2000
+JPEG XR
+Lossless JPEG
+PNG
+TIFF
+TIFF/EP
+TIFF/IT
+
+
+
+
+
+Others
+
+
+
+APNG
+BPG
+DjVu
+EXR
+FLIF
+ICER
+MNG
+PGF
+QTVR
+WBMP
+WebP
+
+
+
+
+
+
+
+
+Containers
+
+
+
+
+ISO/IEC
+
+
+
+MPEG-ES
+
+MPEG-PES
+
+
+MPEG-PS
+MPEG-TS
+ISO base media file format
+MPEG-4 Part 14 (MP4)
+Motion JPEG 2000
+MPEG-21 Part 9
+MPEG media transport
+
+
+
+
+
+ITU-T
+
+
+
+H.222.0
+T.802
+
+
+
+
+
+IETF
+
+
+
+RTP
+
+
+
+
+
+Others
+
+
+
+3GP and 3G2
+AMV
+ASF
+AIFF
+AVI
+AU
+BPG
+Bink
+
+Smacker
+
+
+BMP
+DivX Media Format
+EVO
+Flash Video
+GXF
+IFF
+M2TS
+Matroska
+
+WebM
+
+
+MXF
+Ogg
+QuickTime File Format
+RatDVD
+RealMedia
+RIFF
+
+WAV
+
+
+MOD and TOD
+VOB, IFO and BUP
+
+
+
+
+
+
+
+
+Collaborations
+
+
+
+NETVC
+MPEG-LA
+
+
+
+
+
+
+See Compression methods for methods and Compression software for codecs
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Multi-purpose office document file formats
+
+
+
+Editable document formats
+
+
+
+Compound Document Format
+Microsoft Office XML formats
+Office Open XML
+Open Document Architecture
+OpenDoc
+OpenDocument
+OpenOffice.org XML
+Revisable-Form Text
+Rich Text Format
+Uniform Office Format
+Word Document
+
+
+
+
+
+Fixed document formats
+
+
+
+DjVu
+Envoy
+Open XML Paper Specification
+Portable Document Format
+
+
+
+
+
+Related topics
+
+
+
+Character encoding
+
+ASCII
+Unicode
+
+
+TeX
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Graphics file formats
+
+
+
+Raster
+
+
+
+ANI
+ANIM
+APNG
+ART
+BMP
+BPG
+BSAVE
+CAL
+CIN
+CPC
+CPT
+DDS
+DPX
+ECW
+EXR
+FITS
+FLIC
+FLIF
+FPX
+GIF
+HDRi
+HEVC
+ICER
+ICNS
+ICO / CUR
+ICS
+ILBM
+JBIG
+JBIG2
+JNG
+JPEG
+JPEG 2000
+JPEG-LS
+JPEG XR
+KRA
+MNG
+MIFF
+NRRD
+ORA
+PAM
+PBM / PGM / PPM / PNM
+PCX
+PGF
+PICtor
+PNG
+PSD / PSB
+PSP
+QTVR
+RAS
+RBE
+
+JPEG-HDR
+Logluv TIFF
+
+
+SGI
+TGA
+TIFF
+
+TIFF/EP
+TIFF/IT
+
+
+UFO/ UFP
+WBMP
+WebP
+XBM
+XCF
+XPM
+XWD
+
+
+
+
+
+Raw
+
+
+
+CIFF
+DNG
+
+
+
+
+
+Vector
+
+
+
+AI
+CDR
+CGM
+DXF
+EVA
+EMF
+Gerber
+HVIF
+IGES
+PGML
+SVG
+VML
+WMF
+Xar
+
+
+
+
+
+Compound
+
+
+
+CDF
+DjVu
+EPS
+PDF
+PICT
+PS
+SWF
+XAML
+
+
+
+
+
+Related
+
+
+
+Exchangeable image file format (Exif)
+Extensible Metadata Platform (XMP)
+
+
+
+
+
+
+
+
+ Category
+ Comparison
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=DjVu&oldid=809665001"					Categories: Computer-related introductions in 1998Computer file formatsElectronic documentsElectronic publishingFilename extensionsGraphics file formatsOffice document file formatsOpen formatsHidden categories: Commons category with local link different than on Wikidata

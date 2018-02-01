@@ -1,0 +1,475 @@
+This article is about a family of operating systems. For the concept, see disk operating system. For the type of attack, see DoS. For other uses, see DOS (disambiguation).
+
+
+
+
+FreeDOS screenshot showing the command line interface, directory structure and version information
+
+
+DOS (/dɒs/, /dɔːs/[1]) is a family of disk operating systems[2] primarily consisting of MS-DOS and a rebranded version under the name IBM PC DOS which were introduced in 1981, as well as some later compatible systems from other manufacturers: DR-DOS (1988), ROM-DOS (1989), PTS-DOS (1993), and FreeDOS (1998). MS-DOS dominated the x86-based IBM PC compatible market between 1981 and 1995.
+Dozens of other operating systems also use the acronym "DOS", including the mainframe DOS/360 from 1966. Others are Apple DOS, Apple ProDOS, Atari DOS, Commodore DOS, TRSDOS, and AmigaDOS.
+
+
+
+Contents
+
+
+1 History
+
+1.1 Origins
+1.2 Decline
+1.3 Continued use
+
+1.3.1 Embedded systems
+1.3.2 Emulation
+
+
+
+
+2 Design
+
+2.1 Boot sequence
+2.2 File system
+
+2.2.1 Drive naming scheme
+2.2.2 Reserved device names
+
+
+2.3 Memory management
+2.4 DOS under OS/2 and Windows
+
+
+3 User interface
+
+3.1 Terminate and Stay Resident
+
+
+4 Software
+5 See also
+6 References
+7 Further reading
+8 External links
+
+
+
+History[edit]
+Further information: Comparison of DOS operating systems and Timeline of DOS operating systems
+Origins[edit]
+IBM PC DOS (and the separately sold MS-DOS) and its predecessor, 86-DOS, resembled Digital Research's CP/M—the dominant disk operating system for 8-bit Intel 8080 and Zilog Z80 microcomputers—but instead ran on Intel 8086 16-bit processors.
+When IBM introduced the IBM PC, built with the Intel 8088 microprocessor, they needed an operating system. Seeking an 8088-compatible build of CP/M, IBM initially approached Microsoft CEO Bill Gates (possibly believing that Microsoft owned CP/M due to the Microsoft Z-80 SoftCard, which allowed CP/M to run on an Apple II[3]). IBM was sent to Digital Research, and a meeting was set up. However, the initial negotiations for the use of CP/M broke down; Digital Research wished to sell CP/M on a royalty basis, while IBM sought a single license, and to change the name to "PC DOS". Digital Research founder Gary Kildall refused, and IBM withdrew.[3][4]
+IBM again approached Bill Gates. Gates in turn approached Seattle Computer Products. There, programmer Tim Paterson had developed a variant of CP/M-80, intended as an internal product for testing SCP's new 16-bit Intel 8086 CPU card for the S-100 bus. The system was initially named QDOS (Quick and Dirty Operating System), before being made commercially available as 86-DOS. Microsoft purchased 86-DOS, allegedly for $50,000. This became Microsoft Disk Operating System, MS-DOS, introduced in 1981.[5]
+Within a year Microsoft licensed MS-DOS to over 70 other companies,[6] which supplied the operating system for their own hardware, sometimes under their own names. Microsoft later required the use of the MS-DOS name, with the exception of the IBM variant. IBM continued to develop their version, PC DOS, for the IBM PC.[5] Digital Research became aware that an operating system similar to CP/M was being sold by IBM (under the same name that IBM insisted upon for CP/M), and threatened legal action. IBM responded by offering an agreement: they would give PC consumers a choice of PC DOS or CP/M-86, Kildall's 8086 version. Side-by-side, CP/M cost almost $200 more than PC DOS, and sales were low. CP/M faded, with MS-DOS and PC DOS becoming the marketed operating system for PCs and PC compatibles.[3]
+Microsoft originally sold MS-DOS only to original equipment manufacturers (OEMs). One major reason for this was that not all early PCs were 100% IBM PC compatible. DOS was structured such that there was a separation between the system specific device driver code (IO.SYS) and the DOS kernel (MSDOS.SYS). Microsoft provided an OEM Adaptation Kit (OAK) which allowed OEMs to customize the device driver code to their particular system. By the early 1990s, most PCs adhered to IBM PC standards so Microsoft began selling MS-DOS in retail with MS-DOS 5.0.
+In the mid-1980s Microsoft developed a multitasking version of DOS.[7][8] This version of DOS is generally referred to as "European MS-DOS 4" because it was developed for ICL and licensed to several European companies. This version of DOS supports preemptive multitasking, shared memory, device helper services and New Executable ("NE") format executables. None of these features were used in later versions of DOS, but they were used to form the basis of the OS/2 1.0 kernel. This version of DOS is distinct from the widely released PC DOS 4.0 which was developed by IBM and based upon DOS 3.3.
+Digital Research attempted to regain the market lost from CP/M-86, initially with Concurrent DOS, FlexOS and DOS Plus (both compatible with both MS-DOS and CP/M-86 software), later with Multiuser DOS (compatible with both MS-DOS and CP/M-86 software) and DR DOS (compatible with MS-DOS software). Digital Research was bought by Novell, and DR DOS became Novell DOS 7; later, it was part of Caldera (under the names OpenDOS and DR-DOS 7.02/7.03), Lineo, and DeviceLogics.
+Gordon Letwin wrote in 1995 that "DOS was, when we first wrote it, a one-time throw-away product intended to keep IBM happy so that they'd buy our languages".[9] Microsoft expected that it would be an interim solution before Xenix. The company planned to over time improve MS-DOS so it would be almost indistinguishable from single-user Xenix, or XEDOS, which would also run on the Motorola 68000, Zilog Z-8000, and LSI-11; they would be upwardly compatible with Xenix, which BYTE in 1983 described as "the multi-user MS-DOS of the future".[10][11]
+IBM, however, did not want to replace DOS.[12] After AT&T began selling Unix, Microsoft and IBM began developing OS/2 as an alternative.[9] The two companies later had a series of disagreements over two successor operating systems to DOS, OS/2 and Windows.[13] They split development of their DOS systems as a result.[14] The last retail version of MS-DOS was MS-DOS 6.22, after this MS-DOS became part of Windows 95, 98 and Me. The last retail version of PC DOS was PC DOS 2000 (a.k.a. PC DOS 7 revision 1) though IBM did later develop PC DOS 7.10 for OEMs and internal use.
+The FreeDOS project began 26 June 1994, when Microsoft announced it would no longer sell or support MS-DOS. Jim Hall then posted a manifesto proposing the development of an open-source replacement. Within a few weeks, other programmers including Pat Villani and Tim Norman joined the project. A kernel, the COMMAND.COM command line interpreter (shell) and core utilities were created by pooling code they had written or found available. There were several official pre-release distributions of FreeDOS before the FreeDOS 1.0 distribution was released on 3 September 2006. Made available under the GNU General Public License (GPL), FreeDOS does not require license fees or royalties.[15][16]
+Decline[edit]
+Main article: History of Microsoft Windows
+Early versions of Microsoft Windows ran on a separate version of DOS.[17] By the early 1990s, the Windows graphical shell saw heavy use on new DOS systems. In 1995, Windows 95 was bundled as a standalone operating system that did not require a separate DOS license. Windows 95 (and Windows 98 and ME, that followed it) took over as the default OS kernel, though the MS-DOS component remained for compatibility. With Windows 95 and 98, but not ME, the MS-DOS component could be run without starting Windows.[18][19][20] With DOS no longer required to use Windows, the majority of PC users stopped using it directly.
+Continued use[edit]
+
+
+
+
+DOSBox
+
+
+Available DOS systems in 2012 are FreeDOS, DR-DOS, ROM-DOS, PTS-DOS, RxDOS and REAL/32. Some computer manufacturers, including Dell and HP, sell computers with FreeDOS as the OEM operating system.[21][22]
+Embedded systems[edit]
+DOS's structure of accessing hardware directly makes it ideal for use in embedded devices. The final versions of DR-DOS are still aimed at this market.[23] ROM-DOS was used as the embedded system on the Canon PowerShot Pro 70.[24]
+Emulation[edit]
+On Linux, it is possible to run copies of DOS and many of its clones on DOSEMU, a Linux-native virtual machine for running DOS programs at near native speed. There are a number of other emulators for running DOS on various versions of Unix and Microsoft Windows such as DOSBox.[25][26] DOSBox is designed for legacy gaming (e.g. King's Quest, Doom) on modern operating systems.[17][25]
+Design[edit]
+All MS-DOS-type operating systems run on machines with the Intel x86 or compatible CPUs, mainly the IBM PC and compatibles. Machine-dependent versions of MS-DOS were produced for many non-IBM-compatible x86-based machines, with variations from relabelling of the Microsoft distribution under the manufacturer's name, to versions specifically designed to work with non-IBM-PC-compatible hardware. For as long as application programs used DOS APIs instead of direct hardware access, they could thereby also run on non-IBM-PC compatible machines. In 1985, Digital Research also had a version of Concurrent DOS 68K for use on Motorola 68000 CPUs, and the original FreeDOS kernel DOS-C derived from DOS/NT, also for Motorola CPUs, in the early 1990s. While these systems resembled the DOS architecture, applications were not binary compatible due to the incompatible instruction sets of these non-x86-CPUs. However, applications written in high-level languages could be ported easily.
+DOS is a single-user, single-tasking operating system with basic kernel functions that are non-reentrant: only one program at a time can use them and DOS itself has no functionality to allow more than one program to execute at a time. The DOS kernel provides various functions for programs (an application program interface), like character I/O, file management, memory management, program loading and termination.
+DOS by default provides a primitive ability for shell scripting, via batch files (with the filename extension .BAT). These are text files that can be created in any text editor. They are executed in the same fashion as compiled programs, and run each line of the batch file as a command. Batch files can also make use of several internal commands, such as GOTO and conditional statements.[27] GOSUB and simple arithmetic is supported with the DR DOS COMMAND.COM as well as some with third-party shells like 4DOS; however, no real form of programming is usually enabled.
+The operating system offers an application programming interface that allows development of character-based applications, but not for accessing most of the hardware, such as graphics cards, printers, or mice. This required programmers to access the hardware directly, usually resulting in each application having its own set of device drivers for each hardware peripheral. Hardware manufacturers would release specifications to ensure device drivers for popular applications were available.[28]
+Boot sequence[edit]
+
+The bootstrap loader on PC-compatible computers (MBR or boot sector) is located at track zero, the first sector on a disk. The ROM BIOS will load this sector into memory at address 0000h:7C00h, and typically check for a signature "55h AAh" at offset +1FEh. If the sector is not considered to be valid, the ROM BIOS will try the next physical disk in the row, otherwise it will jump to the load address with certain registers set up.
+If the loaded boot sector happens to be a Master Boot Record (MBR), as found on partitioned media, it will relocate itself to 0000h:0600h in memory,[29] otherwise this step is skipped. The MBR code will scan the partition table, which is located within this sector, for an active partition (modern MBRs check if bit 7 is set at offset +1BEh+10h*n, whereas old MBRs simply check for a value of 80h), and, if found, load the first sector of the corresponding partition, which holds the Volume Boot Record (VBR) of that volume, into memory at 0000h:7C00h in the similar fashion as it had been loaded by the ROM BIOS itself. The MBR will then pass execution to the loaded portion with certain registers set up.
+The sector content loaded at 0000h:7C00h constitutes a VBR now. VBRs are operating system specific and cannot be exchanged between different DOS versions in general, as the exact behaviour differs between different DOS versions. In very old versions of DOS such as DOS 1.x, the VBR would load the whole IO.SYS/IBMBIO.COM file into memory at 0000h:0600h.[30] For this to work, these sectors had to be stored in consecutive order on disk by SYS. In later issues, it would locate and store the contents of the first two entries in the root directory at 0000h:0500h and if they happen to reflect the correct boot files as recorded in the VBR, the VBR would load the first 3 consecutive sectors of the IO.SYS/IBMBIO.COM file into memory at 0070h:0000h. The VBR also has to take care to preserve the contents of the Disk Parameter Table (DPT). Finally, it passes control to the loaded portion by jumping to its entry point with certain registers set up (with considerable differences between different DOS versions).
+In modern DOS versions, where the VBR has loaded only the first 3 sectors of the IO.SYS/IBMBIO.COM file into memory, the loaded portion contains another boot loader, which will then load the remainder of itself into memory, using the root directory information stored at 0000h:0500h. For most versions, the file contents still need to be stored in consecutive order on disk. In older versions of DOS, which were still loaded as a whole, this step is skipped.
+The DOS system initialization code will initial its builtin device drivers and then load the DOS kernel, located in MSDOS.SYS on MS-DOS systems, into memory as well. In Windows 9x, the DOS system initialization code and builtin device drivers and the DOS kernel are combined into a single IO.SYS file while MSDOS.SYS is used as a text configuration file.
+The CONFIG.SYS file is then read to parse configuration parameters. The SHELL variable specifies the location of the shell which defaults to COMMAND.COM.
+The shell is loaded and executed.
+The startup batch file AUTOEXEC.BAT is then run by the shell.[31][32]
+
+The DOS system files loaded by the boot sector must be contiguous and be the first two directory entries.[33] As such, removing and adding this file is likely to render the media unbootable. It is, however, possible to replace the shell at will, a method that can be used to start the execution of dedicated applications faster. This limitation does not apply to any version of DR DOS, where the system files can be located anywhere in the root directory and do not need to be contiguous. Therefore, system files can be simply copied to a disk provided that the boot sector is DR DOS compatible already.
+In PC DOS and DR DOS 5.0 and above, the DOS system files are named IBMBIO.COM instead of IO.SYS and IBMDOS.COM instead of MSDOS.SYS. Older versions of DR DOS used DRBIOS.SYS and DRBDOS.SYS instead.
+Starting with MS-DOS 7.0 the binary system files IO.SYS and MSDOS.SYS were combined into a single file IO.SYS whilst MSDOS.SYS became a configuration file similar to CONFIG.SYS and AUTOEXEC.BAT. If the MSDOS.SYS BootGUI directive is set to 0, the boot process will stop with the command processor (typically COMMAND.COM) loaded, instead of executing WIN.COM automatically.
+File system[edit]
+DOS uses a filesystem which supports 8.3 filenames: 8 characters for the filename and 3 characters for the extension. Starting with DOS 2 hierarchical directories are supported. Each directory name is also 8.3 format but the maximum directory path length is 64 characters due to the internal current directory structure (CDS) tables that DOS maintains. Including the drive name, the maximum length of a fully qualified filename that DOS supports is 80 characters using the format drive:\path\filename.ext followed by a null byte.
+DOS uses the File Allocation Table (FAT) filesystem. This was originally FAT12 which supported up to 4078 clusters per drive. DOS 3.0 added support for FAT16 which used 16-bit allocation entries and supported up to 65518 clusters per drive. DOS 3.31 added support for FAT16B which removed the 32 MB drive limit and could support up to 2 GB. Finally MS-DOS 7.1 (the DOS component of Windows 9x) added support for FAT32 which used 32-bit allocation entries and could support hard drives up to 137 GB and beyond.
+Starting with DOS 3.1, file redirector support was added to DOS. This was initially used to support networking but was later used to support CD-ROM drives with MSCDEX. IBM PC DOS 4.0 also had preliminary installable file system (IFS) support but this was unused and removed in DOS 5.0.
+Drive naming scheme[edit]
+Main article: Drive letter assignment
+In DOS, drives are referred to by identifying letters. Standard practice is to reserve "A" and "B" for floppy drives. On systems with only one floppy drive DOS assigns both letters to the drive, prompting the user to swap disks as programs alternate access between them. This facilitates copying from floppy to floppy or having a program run from one floppy while accessing its data on another. Hard drives were originally assigned the letters "C" and "D". DOS could only support one active partition per drive. As support for more hard drives became available, this developed into first assigning a drive letter to each drive's active primary partition, then making a second pass over the drives to allocate letters to logical drives in the extended partition, then a third pass to give any other non-active primary partitions their names (where such additional partitions existed and contained a DOS-supported file system). Lastly, DOS allocates letters for optical disc drives, RAM disks, and other hardware. Letter assignments usually occur in the order the drivers are loaded, but the drivers can instruct DOS to assign a different letter; drivers for network drives, for example, typically assign letters nearer the end of the alphabet.[34]
+Because DOS applications use these drive letters directly (unlike the /dev directory in Unix-like systems), they can be disrupted by adding new hardware that needs a drive letter. An example is the addition of a new hard drive having a primary partition where a pre-existing hard drive contains logical drives in extended partitions; the new drive will be assigned a letter that was previously assigned to one of the extended partition logical drives. Moreover, even adding a new hard drive having only logical drives in an extended partition would still disrupt the letters of RAM disks and optical drives. This problem persisted through Microsoft's DOS-based 9x versions of Windows until they were replaced by versions based on the NT line, which preserves the letters of existing drives until the user changes them.[34] Under DOS, this problem can be worked around by defining a SUBST drive and installing the DOS program into this logical drive. The assignment of this drive would then be changed in a batch job whenever the application starts. Under some versions of Concurrent DOS, as well as under Multiuser DOS, System Manager and REAL/32, the reserved drive letter L: will automatically be assigned to the corresponding load drive whenever an application starts.
+Reserved device names[edit]
+Main article: Device file
+There are reserved device names in DOS that cannot be used as filenames regardless of extension as they are occupied by built-in character devices. These restrictions also affect several Windows versions, in some cases causing crashes and security vulnerabilities.[35]
+The reserved names are: CON (for console), AUX (for auxiliary), PRN[36] (for printer) and LST (for lister), which were introduced with 86-DOS 0.74. 86-DOS 1.10 and PC DOS 1.0 added NUL. Except for LST they continued to be supported in all versions of MS-DOS, PC DOS and DR-DOS ever since. LST was also available in some OEM versions of MS-DOS 1.25, whereas other OEM versions of MS-DOS 1.25 already used LPT1 (first line printer) and COM1 (first serial communication device) instead, as introduced with PC DOS. In addition to LPT1 and LPT2 as well as COM1 to COM3, Hewlett-Packard's MS-DOS 2.11 for the HP Portable Plus also supported LST as alias for LPT2 and 82164A as alias for COM2;[37][38] it also supported PLT for plotters.[37][38] Otherwise, COM2, LPT2, LPT3 and the CLOCK$ (still named CLOCK in some issues of MS-DOS 2.11[39][37][38]) clock device were introduced with DOS 2.0, and COM3 and COM4 were added with DOS 3.3. Only the multitasking MS-DOS 4 supported KEYBD$ and SCREEN$. DR DOS 5.0 and higher and Multiuser DOS support an $IDLE$ device for dynamic idle detection to saving power and improve multitasking. LPT4 is an optional built-in driver for a fourth line printer supported in some versions of DR-DOS since 7.02. CONFIG$ constitutes the real mode PnP manager in MS-DOS 7.0-8.0.
+AUX typically defaults to COM1, and PRN to LPT1 (LST), but these defaults can be changed in some versions of DOS to point to other serial or parallel devices.[37][38][40] PLT was reconfigurable as well.[37][38]
+Filenames ended with a colon (:) such as NUL: conventionally indicate device names, but the colon is not actually a part of the name of the built-in device drivers. Colons are not necessary to be typed in some cases, for example:
+
+
+ECHO This achieves nothing > NUL
+
+It is still possible to create files or directories using these reserved device names, such as through direct editing of directory data structures in disk sectors. Such naming, such as starting a file name with a space, has sometimes been used by viruses or hacking programs to obscure files from users who do not know how to access these locations.
+Further information: Parallel port and Serial port
+Memory management[edit]
+Main article: DOS memory management
+DOS was originally designed for the Intel 8086/8088 processor and therefore could only directly access a maximum of 1 MB of RAM. Due to PC architecture only a maximum of 640 KB (known as conventional memory) is available as the upper 384 KB is reserved.
+Specifications were developed to allow access to additional memory. The first was the Expanded Memory Specification (EMS) which originally allowed memory on an add-on card to be accessed via a 64 KB page frame in the reserved upper memory area. 80386 and later systems could use a virtual 8086 mode (V86) mode memory manager like EMM386 to create expanded memory from extended memory without the need of an add-on card. The second specification was the Extended Memory Specification (XMS) for 80286 and later systems. This provided a way to copy data to and from extended memory, access to the 65520-byte High Memory Area (HMA) directly above the first megabyte of memory and the Upper Memory Block (UMB) area. Generally XMS support was provided by HIMEM.SYS or a V86 mode memory manager like QEMM or 386MAX which also supported EMS.
+Starting with DOS 5, DOS could directly take advantage of the HMA by loading its kernel code and disk buffers there via the DOS=HIGH statement in CONFIG.SYS. DOS 5+ also allowed the use of available UMBs via the DOS=UMB statement in CONFIG.SYS.
+DOS under OS/2 and Windows[edit]
+See also: Virtual DOS Machine
+The DOS emulation in OS/2 and Windows runs in much the same way as native applications do. They can access all of the drives and services, and can even use the host's clipboard services. Because the drivers for file systems and such forth reside in the host system, the DOS emulation needs only provide a DOS API translation layer which converts DOS calls to OS/2 or Windows system calls. The translation layer generally also converts BIOS calls and virtualizes common I/O port accesses which many DOS programs commonly use.
+In Windows 3.1 and 9x, the DOS virtual machine is provided by WINOLDAP. WinOldAp creates a virtual machine based on the program's PIF file, and the system state when Windows was loaded. The DOS graphics mode, both character and graphic, can be captured and run in the window. DOS applications can use the Windows clipboard by accessing extra published calls in WinOldAp, and one can paste text through the WinOldAp graphics.
+The emulated DOS in OS/2 and Windows NT is based upon DOS 5. Although there is a default configuration (config.sys and autoexec.bat), one can use alternate files on a session-by-session basis. It is possible to load drivers in these files to access the host system, although these are typically third-party.
+Under OS/2 2.x and later, the DOS emulation is provided by DOSKRNL. This is a file that represents the combined IBMBIO.COM and IBMDOS.COM, the system calls are passed through to the OS/2 windowing services. DOS programs run in their own environment, the bulk of the DOS utilities are provided by bound DOS / OS2 applications in the \OS2 directory. OS/2 can run Windows 3.1 applications by using a modified copy of Windows (Win-OS/2). The modifications allow Windows 3.1 programs to run seamlessly on the OS/2 desktop, or one can start a WinOS/2 desktop, similar to starting Windows from DOS.
+OS/2 allows for 'DOS from Drive A:', (VMDISK). This is a real DOS, like MS-DOS 6.22 or PC DOS 5.00. One makes a bootable floppy disk of the DOS, add a number of drivers from OS/2, and then creates a special image. The DOS booted this way has full access to the system, but provides its own drivers for hardware. One can use such a disk to access cdrom drives for which there is no OS/2 driver.
+In Windows NT (2000, XP, Vista, 7), the DOS emulation is provided by way of a virtual DOS machine (NTVDM). The DOS files reside in NTIO.SYS and NTBIO.SYS as usual, but run in the virtual machine provided by NTVDM. The character input is passed to the console session that launched the DOS program. This allows one to use CLI features such as pipes and redirection between DOS and Windows NT. The OS/2 emulation in NT and 2000 is similar, but no virtual machine is loaded: it is handled by OS2SS.EXE and OS2.EXE.
+64-bit versions of Windows do not support NTVDM and cannot run 16-bit DOS applications directly; Third-party emulators such as DOSbox can be used to run these programs.
+User interface[edit]
+DOS systems utilize a command line interface. Programs are started by entering their filename at the command prompt. DOS systems include several programs as system utilities, and provides additional commands that don't correspond to programs (internal commands).[41]
+In an attempt to provide a more user-friendly environment, numerous software manufacturers wrote file management programs that provided users with menu- and/or icon-based interfaces. Microsoft Windows is a notable example, eventually resulting in Microsoft Windows 9x becoming a self-contained program loader, and replacing DOS as the most-used PC-compatible program loader. Text user interface programs included Norton Commander, DOS Navigator, Volkov Commander, Quarterdesk DESQview, and Sidekick. Graphical user interface programs included Digital Research's Graphics Environment Manager (originally written for CP/M) and GEOS.
+Eventually, the manufacturers of major DOS systems began to include their own environment managers. MS-DOS/IBM DOS 4 included DOS Shell;[42] DR DOS 5.0, released the next year, included ViewMAX, based upon GEM.[43]
+Terminate and Stay Resident[edit]
+Main article: Terminate and Stay Resident
+DOS is not a multitasking operating system. DOS did however provide a Terminate and Stay Resident (TSR) function which allowed programs to remain resident in memory. These programs could hook the system timer and/or keyboard interrupts to allow themselves to run tasks in the background or to be invoked at any time preempting the current running program effectively implementing a simple form of multitasking on a program-specific basis. The PRINT command did this to implement background print spooling. Borland Sidekick, a popup personal information manager (PIM), also used this technique.
+Terminate and Stay Resident programs were also used to provide additional features not available by default. Programs like CED and DOSKEY provided command line editing facilities beyond what was available in COMMAND.COM. Programs like the Microsoft CD-ROM Extensions (MSCDEX) provided access to files on CD-ROM disks.
+Some TSRs could even perform a rudimentary form of task switching. For example, the shareware program Back and Forth (1990)[44] had a hotkey to save the state of the currently-running program to disk, load another program, and switch to it, hence it was possible to switch "back and forth" between programs, albeit slowly due to the disk access required. Back and Forth could not enable background processing however; that needed DESQview (on at least a 386).
+Software[edit]
+Further information: Category:DOS software
+
+
+
+
+Arachne web browser
+
+
+DOS was the dominant PC-compatible platform and many notable programs were written for it. These included:
+
+4DOS, a much improved replacement shell.
+Arachne, a 16-bit graphical DOS web browser.
+BASIC-language interpreters. BASICA and GW-BASIC replicate the BASIC interpreter environment commonly found on 8-bit computers.
+dBase, one of the earliest database programs.
+DJGPP, the 32-bit DPMI DOS port of gcc.
+Harvard Graphics, one of the earliest presentation graphics design programs.
+Lotus 1-2-3, a protected mode spreadsheet program that saw heavy use in corporate markets and has been credited with the success of the IBM PC.[45]
+Microsoft Macro Assembler, Microsoft C and CodeView all part of Microsoft development software.
+Norton Commander and XTree, file management utilities.
+Norton Utilities, a collection of disk and system utilities.
+PC Tools, a collection of disk and system utilities.
+PKZIP, the compression utility that quickly became the standard in file compression.
+ProComm, Qmodem and Telix, modem communication programs.
+QEMM and 386MAX, DOS memory management utilities.
+Sidekick, a popup personal information manager.
+Turbo Pascal, Turbo BASIC, Turbo C and Turbo Assembler all part of Borland's integrated development environment.
+Vern Buerg's popular LIST utility, which displays the content of files in ASCII or HEX.
+WordPerfect, a word processor that is currently produced for the Windows platform.
+WordStar, an early word processor which used unique control-key sequences that were replicated by many other editors.
+
+See also[edit]
+
+List of DOS operating systems
+COMMAND.COM, the command line interpreter for DOS and Windows 9x
+MS-DOS API
+VGA-compatible text mode, the base of DOS’s TUI on IBM PC compatibles
+
+References[edit]
+
+
+^ Dictionary.com
+^ Murdock, Everett (1988). DOS the Easy Way. EasyWay Downloadable Books. ISBN 0-923178-00-7. 
+^ a b c Rolander, Tom. "The rest of the story: How Bill Gates beat Gary Kildall in OS war, Part 1". The Scoble Show (Interview). Interview with Scoble, Robert. Archived from the original on 2007-11-04. 
+^ Bove, Tony (2005). Just Say No to Microsoft. No Starch Press. pp. 9–11. ISBN 1-59327-064-X. 
+^ a b Bellis, Mary. "The Unusual History of MS-DOS The Microsoft Operating System". Retrieved 2008-09-02. 
+^ Freiberger, Paul (1982-08-23). "Bill Gates, Microsoft and the IBM Personal Computer". InfoWorld: 22. Retrieved 2015-01-29. 
+^ "Did you know that OS/2 wasn't Microsoft's first non Unix multi-tasking operating system?". 
+^ "Larry Osterman's Biography". 
+^ a b Letwin, Gordon (1995-08-17). "What's happening to OS/2". Newsgroup: comp.os.os2.advocacy. Usenet: DDFvKo.G4M@lab.lwpi.com. Retrieved 2013-11-06. 
+^ Morgan, Chris (January 1982). "Of IBM, Operating Systems, and Rosetta Stones". BYTE: 6. Retrieved 2013-10-19. 
+^ Fiedler, Ryan (October 1983). "The Unix Tutorial / Part 3: Unix in the Microcomputer Marketplace". BYTE: 132. Retrieved 2015-01-30. 
+^ Howitt, Doran (1984-12-10). "Unix and the Single User". InfoWorld: 28. Retrieved 2015-02-07. 
+^ Pollack, Andrew (1991-07-27). "Microsoft Widens Its Split With I.B.M. Over Software". New York Times. Retrieved 2008-09-02. 
+^ Brinkley, Joel (1999-05-28). "I.B.M. Executive Describes Price Pressure by Microsoft". New York Times. Retrieved 2008-09-02. 
+^ Hall, Jim (2002-03-25). "The past, present, and future of the FreeDOS Project". Archived from the original on 2012-05-29. Retrieved 2008-06-14. 
+^ Hall, Jim (2006-09-23). "History of FreeDOS". freedos.org. Archived from the original on 2007-05-27. Retrieved 2007-05-28. 
+^ a b Bannan, James (2006-10-13). "HOW TO: Coax retro DOS games to play on Vista". Retrieved 2008-07-03. 
+^ "Finding The DOS In Windows 95". Smart Computing. March 1996. Archived from the original on 2004-07-07. Retrieved 2008-07-12. 
+^ Chen, Raymond (2007-12-24). "What was the role of MS-DOS in Windows 95?". The Old New Thing - Site Home - MSDN Blogs. Archived from the original on 2014-02-05. Retrieved 2014-02-05. 
+^ "Description of Restarting Computer in MS-DOS Mode". support.microsoft.com. 2007-01-19. Archived from the original on 2014-02-05. Retrieved 2014-02-05. 
+^ Hall, Jim (2007-07-13). "Jim Hall's blog - 2007". Archived from the original on 2012-10-25. Retrieved 2008-06-12. 
+^ "Dell PCs Featuring FreeDOS". Archived from the original on 2008-03-19. Retrieved 2008-06-14. 
+^ "DR-DOS Embedded DOS". Retrieved 2008-09-26. 
+^ "Datalight DOS Selected for Canon's New Line of Digital Still Cameras". Business Wire. 1999-08-24. Retrieved 2008-09-26. 
+^ a b "DOSBox Information". Retrieved 2008-05-18. 
+^ "DOSEMU Home". 2007-05-05. Retrieved 2008-07-03. 
+^ "Batch File Help". computerhope.com. Retrieved 2008-09-10. 
+^ Matczynski, Michael. "ZINGTECH - Guide to the New Game Programmer". Retrieved 2008-09-02. 
+^ "The Master Boot Record (MBR) and What it Does".  090912 dewassoc.com
+^ "Reverse-Engineering DOS 1.0 – Part 1: The Boot Sector « pagetable.com".  090912 pagetable.com
+^ "CONFIG.SYS Commands".  090913 academic.evergreen.edu
+^ Kozierok, Charles (2001). "The DOS Boot Process". The PC Guide. Retrieved 2008-09-02. 
+^ "misc.txt". Archived from the original on 2010-06-29.  090912 arl.wustl.edu
+^ a b "Drive Letter Assignment and Choosing Primary vs. Logical Partitions". The PC Guide. 2001-04-17. Retrieved 2012-04-04. 
+^ "Microsoft Windows MS-DOS Device Name DoS Vulnerability". Archived from the original on 2011-07-25. Retrieved 2008-09-02. 
+^ "DOS device names definition". PC Magazine. Retrieved 2008-09-02. 
+^ a b c d e Hewlett-Packard - Technical Reference Manual - Portable PLUS (1 ed.). Corvallis, OR, USA: Hewlett-Packard Company, Portable Computer Division. August 1985. 45559-90001. Retrieved 2016-11-27. 
+^ a b c d e Hewlett-Packard - Technical Reference Manual - Portable PLUS (PDF) (2 ed.). Portable Computer Division, Corvallis, OR, USA: Hewlett-Packard Company. December 1986 [August 1985]. 45559-90006. Archived (PDF) from the original on 2016-11-28. Retrieved 2016-11-27. 
+^ Paterson, Tim; Microsoft (2013-12-19) [1983]. "Microsoft DOS V1.1 and V2.0: /msdos/v20source/SKELIO.TXT, /msdos/v20source/HRDDRV.ASM". Computer History Museum, Microsoft. Retrieved 2014-03-25.  (NB. While the publishers claim this would be MS-DOS 1.1 and 2.0, it actually is SCP MS-DOS 1.25 and a mixture of Altos MS-DOS 2.11 and TeleVideo PC DOS 2.11.)
+^ Paul, Matthias (1997-10-02). "Caldera OpenDOS 7.01/7.02 Update Alpha 3 IBMBIO.COM README.TXT". Archived from the original on 2003-10-04. Retrieved 2009-03-29. 
+^ Murdock, Everett. DOS the Easy Way. EasyWay Downloadable Books. pp. 7–12. ISBN 0-923178-02-3. 
+^ Murdock, Everett. DOS the Easy Way. EasyWay Downloadable Books. p. 71. ISBN 0-923178-02-3. 
+^ Dvorak, John; Anis, Nick (1991). Dvorak's Guide to DOS and PC Performance. Osborne McGraw-Hill. pp. 442–444. 
+^ Version 1.47 is archived at [1] and says "(C) 1990 by Progressive Solutions, Inc."
+^ Darrow, Barbara (2002-02-01). "Whatever Happened To Lotus 1-2-3?". Archived from the original on 2009-01-09. Retrieved 2008-07-12. 
+
+
+Further reading[edit]
+
+IBM Corp., IBM, (January 1984). “IBM DOS Release 2.10 Cloth bound retail hard board box”. 1st edition. IBM Corp. Item Number. 6183946
+IBM Corp., IBM, (January 1984). “Disk Operating System User's guide (DOS Release 2.10)”. 1st edition. Microsoft Corp. (100 pages including colour illustrations) Item Number. 6183947
+IBM Corp., IBM, (January 1984). “Disk Operating System Manual (DOS Release 2.10)”. 1st edition. Microsoft Corp. (574 looseleaf pages in 3 ring folder) Item No. 6183940
+
+External links[edit]
+
+Origins of DOS, articles and manuals by Tim Paterson.
+Timeline of DOS and Windows versions at the Wayback Machine (archived 2007-10-28)
+"DOS - where hardware is the only limit". Archived from the original on 2010-08-15. Retrieved 2010-08-29. CS1 maint: Unfit url (link)
+Batfiles: The DOS batch file programming handbook
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Operating systems
+
+
+
+General
+
+
+
+Advocacy
+Comparison
+Forensic engineering
+History
+Hobbyist development
+List
+Timeline
+Usage share
+
+
+
+
+
+Kernel
+
+
+
+
+Architectures
+
+
+
+Exokernel
+Hybrid
+Microkernel
+Monolithic
+Rump kernel
+Unikernel
+
+
+
+
+
+Components
+
+
+
+Device driver
+Loadable kernel module
+Microkernel
+User space
+
+
+
+
+
+
+
+
+Process management
+
+
+
+
+Concepts
+
+
+
+Context switch
+Interrupt
+IPC
+Process
+Process control block
+Real-time
+Thread
+Time-sharing
+
+
+
+
+
+Scheduling
+algorithms
+
+
+
+Computer multitasking
+Fixed-priority preemptive
+Multilevel feedback queue
+Preemptive
+Round-robin
+Shortest job next
+
+
+
+
+
+
+
+
+Memory management and
+resource protection
+
+
+
+Bus error
+General protection fault
+Memory protection
+Paging
+Protection ring
+Segmentation fault
+Virtual memory
+
+
+
+
+
+Storage access and
+file systems
+
+
+
+Boot loader
+Defragmentation
+Device file
+File attribute
+Inode
+Journal
+Partition
+Virtual file system
+Virtual tape library
+
+
+
+
+
+List
+
+
+
+AmigaOS
+Android
+BeOS
+BSD
+Chrome OS
+CP/M
+DOS
+GNU
+Haiku
+illumos
+IncludeOS
+iOS
+Linux
+Macintosh
+
+Classic Mac OS
+macOS
+
+
+MINIX
+MorphOS
+MUSIC/SP
+Nemesis
+NOS
+OpenVMS
+ORVYL
+OS/2
+OSv
+Pick
+QNX
+ReactOS
+RISC OS
+RSTS/E
+RSX-11
+RT-11
+Solaris
+TOPS-10/TOPS-20
+TPF
+Unix
+Visi On
+VM/CMS
+VS/9
+Windows
+Xinu
+z/OS
+
+
+
+
+
+Miscellaneous concepts
+
+
+
+API
+Computer network
+HAL
+Live CD
+Live USB
+OS shell
+
+CLI
+GUI
+TUI
+VUI
+
+
+PXE
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=DOS&oldid=818310596"					Categories: DOS on IBM PC compatiblesAmerican inventionsDisk operating systemsHidden categories: Webarchive template wayback linksCS1 maint: Unfit url

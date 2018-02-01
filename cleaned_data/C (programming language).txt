@@ -1,0 +1,1151 @@
+programming language redirects book programming language
+
+
+
+
+programming language1 often referred seminal book
+
+
+
+paradigm
+imperative procedural structured
+
+
+designed
+dennis ritchie
+
+
+developer
+dennis ritchie bell labs creators ansi x3j11 ansi isoiec jtc1sc22wg14
+
+
+first appeared
+1972 years 19722
+
+
+
+
+
+stable release
+
+december 2011 years 201112
+
+
+
+
+
+
+typing discipline
+static weak manifest nominal
+
+
+
+crossplatform
+
+
+filename extensions
+
+
+
+major implementations
+
+
+clang intel microsoft visual pelles watcom
+
+
+dialects
+
+
+cyclone unified parallel splitc cilk
+
+
+influenced
+
+
+bcpl algol assembly fortran
+
+
+influenced
+
+
+numerous ampl objectivec bitc java javascript julia limbo perl pike processing python ring4 rust seed7 vala verilog hdl5
+
+
+
+
+programming wikibooks
+
+
+
+
+letter generalpurpose imperative computer programming language supporting structured programming lexical variable scope recursion static type system prevents many unintended operations design provides constructs efficiently typical machine instructions therefore found lasting applications formerly coded assembly language including operating systems well various application software computers ranging supercomputers embedded systems
+originally developed dennis ritchie 1969 1973 bell labs6 used reimplement unix operating system7 since become widely used programming languages time89 compilers various vendors available majority existing computer architectures operating systems standardized american national standards institute ansi since 1989 ansi subsequently international organization standardization
+imperative procedural language designed compiled using relatively straightforward compiler provide lowlevel access memory provide language constructs efficiently machine instructions require minimal runtime support despite lowlevel capabilities language designed encourage crossplatform programming standardscompliant portably written program compiled wide variety computer platforms operating systems changes source code language become available wide range platforms embedded microcontrollers supercomputers
+
+
+
+contents
+
+
+overview
+
+relations languages
+
+
+history
+
+early developments
+
+ansi
+
+
+embedded
+
+
+syntax
+
+character
+reserved words
+operators
+
+
+hello world example
+data types
+
+pointers
+arrays
+array–pointer interchangeability
+
+
+memory management
+libraries
+language tools
+uses
+related languages
+also
+notes
+references
+sources
+reading
+external links
+
+
+
+overview
+like imperative languages algol tradition facilities structured programming allows lexical variable scope recursion static type system prevents many unintended operations executable code contained within subroutines called functions although strict sense functional programming function parameters always passed value passbyreference simulated explicitly passing pointer values program source text freeformat using semicolon statement terminator curly braces grouping blocks statements
+language also exhibits following characteristics
+
+small fixed number keywords including full flow control primitives ifelse switch dowhile userdefined names distinguished keywords kind sigil
+large number arithmetical logical operators
+assignment performed single statement
+function return values ignored needed
+typing static weakly enforced data type implicit conversions performed
+declaration syntax mimics usage context define keyword instead statement beginning name type taken declaration function keyword instead function indicated parentheses argument list
+userdefined typedef compound types possible
+
+heterogeneous aggregate data types struct allow related data elements accessed assigned unit
+array indexing secondary notation defined terms pointer arithmetic unlike structs arrays firstclass objects cannot assigned compared using single builtin operators array keyword definition instead square brackets indicate arrays syntactically example month11
+enumerated types possible enum keyword tagged freely interconvertible integers
+strings separate data type conventionally implemented nullterminated arrays characters
+
+
+lowlevel access computer memory possible converting machine addresses typed pointers
+procedures subroutines returning values special case function untyped return type void
+functions defined within lexical scope functions
+function data pointers permit runtime polymorphism
+preprocessor performs macro definition source code file inclusion conditional compilation
+basic form modularity files compiled separately linked together control functions data objects visible files static extern attributes
+complex functionality string manipulation mathematical functions consistently delegated library routines
+
+include features found languages object orientation garbage collection features implemented emulated often external libraries boehm garbage collector glib object system
+relations languages
+many later languages borrowed directly indirectly including rust java javascript limbo objectivec perl python swift verilog hardware description language5 unixs shell languages drawn many control structures basic features python dramatic exception also syntactically similar general tend combine recognizable expression statement syntax underlying type systems data models semantics radically different
+history
+early developments
+
+
+
+
+thompson left dennis ritchie right inventor programming language
+
+
+origin closely tied development unix operating system originally implemented assembly language pdp7 dennis ritchie thompson incorporating several ideas colleagues eventually decided port operating system pdp11 original pdp11 version unix developed assembly language developers considering rewriting system using language thompsons simplified version bcpl10 however inability take advantage pdp11s features notably byte addressability name chosen simply next
+development started 1972 pdp11 unix system12 first appeared version unix13 language initially designed portability mind soon different platforms well compiler honeywell 6000 written within first year history system370 port followed soon112
+also 1972 large part unix rewritten 1973 addition struct types language become powerful enough unix kernel
+unix first operating system kernels implemented language assembly earlier instances include multics system written master control program burroughs b5000 written algol 1961 around 1977 ritchie stephen johnson made changes language facilitate portability unix operating system johnsons portable compiler served basis several implementations platforms12
+
+
+
+
+
+cover book programming language first edition brian kernighan dennis ritchie
+
+
+1978 brian kernighan dennis ritchie published first edition programming language1 book known programmers served many years informal specification language version describes commonly referred second edition book15 covers later ansi standard described
+introduced several language features
+
+standard library
+long data type
+unsigned data type
+compound assignment operators form changed form remove semantic ambiguity created constructs interpreted decrement instead possibly intended
+
+even publication 1989 ansi standard many years still considered lowest common denominator programmers restricted maximum portability desired since many older compilers still carefully written code legal standard well
+early versions functions return types must declared used function definition functions used without prior declaration presumed return type
+example
+
+
+long somefunction
+otherfunction
+
+callingfunction
+
+long test1
+register test2
+
+test1 somefunction
+test1
+test2
+else
+test2 otherfunction
+return test2
+
+
+type specifiers commented could omitted required later standards
+since function declarations include information function arguments function parameter type checks performed although compilers would issue warning message local function called wrong number arguments multiple calls external function used different numbers types arguments separate tools unixs lint utility developed among things could check consistency function across multiple source files
+years following publication several features added language supported compilers particular pcc16 vendors included
+
+void functions functions return value
+functions returning struct union types rather pointers
+assignment struct data types
+enumerated types
+
+large number extensions lack agreement standard library together language popularity fact even unix compilers precisely implemented specification necessity standardization
+ansi
+main article ansi
+late 1970s 1980s versions implemented wide variety mainframe computers minicomputers microcomputers including popularity began increase significantly
+1983 american national standards institute ansi formed committee x3j11 establish standard specification x3j11 based standard unix implementation however nonportable portion unix library handed ieee working group 1003 become basis 1988 posix standard 1989 standard ratified ansi x31591989 programming language version language often referred ansi standard sometimes
+1990 ansi standard formatting changes adopted international organization standardization isoiec 98991990 sometimes called therefore terms refer programming language
+ansi like national standards bodies longer develops standard independently defers international standard maintained working group isoiec jtc1sc22wg14 national adoption update international standard typically occurs within year publication
+aims standardization process produce superset incorporating many subsequently introduced unofficial features standards committee also included several additional features function prototypes borrowed void pointers support international character sets locales preprocessor enhancements although syntax parameter declarations augmented include style used interface continued permitted compatibility existing source code
+supported current compilers code written today based program written standard without hardwaredependent assumptions correctly platform conforming implementation within resource limits without precautions programs compile certain platform particular compiler example nonstandard libraries libraries reliance compiler platformspecific attributes exact size data types byte endianness
+cases code must compilable either standardconforming cbased compilers stdc macro used split code standard sections prevent cbased compiler features available standard
+ansiiso standardization process language specification remained relatively static several years 1995 normative amendment 1990 standard isoiec 9899amd11995 known informally published correct details extensive support international character setscitation needed
+
+main article
+standard revised late 1990s leading publication isoiec 98991999 1999 commonly referred since amended three times technical corrigenda17
+introduced several features including inline functions several data types including long long complex type represent complex numbers variablelength arrays flexible array members improved support ieee floating point support variadic macros macros variable arity support oneline comments beginning bcpl many already implemented extensions several compilers
+part backward compatible stricter ways particular declaration lacks type specifier longer implicitly assumed standard macro stdcversion defined value 199901l indicate support available solaris studio compilers support many features compiler microsoft visual however implements standard parts required compatibility c1118
+
+main article standard revision
+2007 work began another revision standard informally called official publication 20111208 standards committee adopted guidelines limit adoption features tested existing implementations
+standard adds numerous features library including type generic macros anonymous structures improved unicode support atomic operations multithreading boundschecked functions also makes portions existing library optional improves compatibility standard macro stdcversion defined 201112l indicate support available
+embedded
+main article embedded
+historically embedded programming requires nonstandard extensions language order support exotic features fixedpoint arithmetic multiple distinct memory banks basic operations
+2008 standards committee published technical report extending language19 address issues providing common standard implementations adhere includes number features available normal fixedpoint arithmetic named address spaces basic hardware addressing
+syntax
+main article syntax
+formal grammar specified standard20 line endings generally significant however line boundaries significance preprocessing phase comments appear either delimiters since following line comments delimited nest sequences characters interpreted comment delimiters appear inside string character literals21
+source files contain declarations function definitions function definitions turn contain declarations statements declarations either define types using keywords struct union enum assign types perhaps reserve storage variables usually writing type followed variable name keywords char specify builtin types sections code enclosed braces sometimes called curly brackets limit scope declarations single statement control structures
+imperative language uses statements specify actions common statement expression statement consisting expression evaluated followed semicolon side effect evaluation functions called variables assigned values modify normal sequential execution statements provides several controlflow statements identified reserved keywords structured programming supported ifelse conditional execution dowhile iterative execution looping statement separate initialization testing reinitialization expressions omitted break continue used leave innermost enclosing loop statement skip reinitialization also nonstructured goto statement branches directly designated label within function switch selects case executed based value integer expression
+expressions variety builtin operators contain function calls order arguments functions operands operators evaluated unspecified evaluations even interleaved however side effects including storage variables occur next sequence point sequence points include expression statement entry return function call sequence points also occur evaluation expressions containing certain operators comma operator permits high degree object code optimization compiler requires programmers take care obtain reliable results needed programming languages
+kernighan ritchie introduction programming language like language blemishes operators wrong precedence parts syntax could better22 standard attempt correct many blemishes impact changes already existing software
+character
+basic source character includes following characters
+
+lowercase uppercase letters basic latin alphabet
+decimal digits
+graphic characters
+whitespace characters space horizontal vertical form feed newline
+
+newline indicates text line need correspond actual single character although convenience treats
+additional multibyte encoded characters used string literals entirely portable latest standard allows multinational unicode characters embedded portably within source text using uxxxx uxxxxxxxx encoding denotes hexadecimal character although feature widely implemented
+basic execution character contains characters along representations alert backspace carriage return runtime support extended character sets increased revision standard
+reserved words
+reserved words also known keywords words cannot used purposes predefined
+
+
+
+
+
+auto
+break
+case
+char
+const
+continue
+default
+
+
+
+
+
+double
+else
+enum
+extern
+float
+
+goto
+
+
+
+
+
+
+long
+register
+return
+short
+signed
+sizeof
+static
+
+
+
+
+struct
+switch
+typedef
+union
+unsigned
+void
+volatile
+
+
+
+
+
+
+reserved five words
+
+
+
+
+
+bool
+complex
+
+
+
+
+imaginary
+inline
+
+
+
+
+restrict
+
+
+
+
+
+reserved seven words23
+
+
+
+
+
+alignas
+alignof
+
+
+
+
+atomic
+generic
+
+
+
+
+noreturn
+staticassert
+
+
+
+
+threadlocal
+
+
+
+
+
+recently reserved words begin underscore followed capital letter identifiers form previously reserved standard implementations since existing program source code using identifiers would affected implementations started supporting extensions programming language standard headers define convenient synonyms underscored identifiers language previously included reserved word called entry seldom implemented removed reserved word24
+operators
+main article operators
+supports rich operators symbols used within expression specify manipulations performed evaluating expression operators
+
+arithmetic
+assignment
+augmented assignment
+bitwise logic
+bitwise shifts
+boolean logic
+conditional evaluation
+equality testing
+calling functions
+increment decrement
+member selection
+object size sizeof
+order relations
+reference dereference
+sequencing
+subexpression grouping
+type conversion typename
+
+uses operator used mathematics express equality indicate assignment following precedent fortran unlike algol derivatives uses operator test equality similarity operators assignment equality result accidental place many cases mistake produce error message although compilers produce warnings example conditional expression ifab1 might mistakenly written ifab1 evaluated true zero assignment25
+operator precedence always intuitive example operator binds tightly executed prior operators bitwise bitwise expressions must written coders intent26
+hello world example
+hello world example appeared first edition become model introductory program programming textbooks regardless programming language program prints hello world standard output usually terminal screen display
+original version was27
+
+
+main
+
+printfhello worldn
+
+
+standardconforming hello world program
+
+
+include stdioh
+
+mainvoid
+
+printfhello worldn
+
+
+first line program contains preprocessing directive indicated include causes compiler replace line entire text stdioh standard header contains declarations standard input output functions printf angle brackets surrounding stdioh indicate stdioh located using search strategy prefers headers provided compiler headers name opposed double quotes typically include local projectspecific header files
+next line indicates function named main defined main function serves special purpose programs runtime environment calls main function begin program execution type specifier indicates value returned invoker case runtime environment result evaluating main function integer keyword void parameter list indicates function takes argumentsb
+opening curly brace indicates beginning definition main function
+next line calls diverts execution function named printf case supplied system library call printf function passed provided single argument address first character string literal hello worldn string literal unnamed array elements type char automatically compiler final 0valued character mark array printf needs know escape sequence translates newline character output signifies current line return value printf function type silently discarded since used careful program might test return value determine whether printf function succeeded semicolon terminates statement
+closing curly brace indicates code main function according specification newer main function unlike function implicitly return value upon reaching terminates function formerly explicit return statement required interpreted runtime system exit code indicating successful execution28
+data types
+main article variable types declarations
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed october 2012 learn remove template message
+
+
+
+type system static weakly typed makes similar type system algol descendants pascal29 builtin types integers various sizes signed unsigned floatingpoint numbers enumerated types enum integer type char often used singlebyte characters added boolean datatype also derived types including arrays pointers records struct untagged unions union
+often used lowlevel systems programming escapes type system necessary compiler attempts ensure type correctness expressions programmer override checks various ways either using type cast explicitly convert value type another using pointers unions reinterpret underlying bits data object
+find declaration syntax unintuitive particularly function pointers ritchies idea declare identifiers contexts resembling declaration reflects use30
+usual arithmetic conversions allow efficient code generated sometimes produce unexpected results example comparison signed unsigned integers equal width requires conversion signed value unsigned generate unexpected results signed value negative
+pointers
+supports pointers type reference records address location object function memory pointers dereferenced access data stored address pointed invoke pointedto function pointers manipulated using assignment pointer arithmetic runtime representation pointer value typically memory address perhaps augmented offsetwithinword field since pointers type includes type thing pointed expressions including pointers typechecked compile time pointer arithmetic automatically scaled size pointedto data type pointers used many purposes text strings commonly manipulated using pointers arrays characters dynamic memory allocation performed using pointers many data types trees commonly implemented dynamically allocated struct objects linked together using pointers pointers functions useful passing functions arguments higherorder functions qsort bsearch callbacks invoked event handlers28
+null pointer value explicitly points valid location dereferencing null pointer value undefined often resulting segmentation fault null pointer values useful indicating special cases next pointer final node linked list error indication functions returning pointers appropriate contexts source code assigning pointer variable null pointer constant written without explicit casting pointer type null macro defined several standard headers conditional contexts null pointer values evaluate false pointer values evaluate true
+void pointers void point objects unspecified type therefore used generic data pointers since size type pointedto object known void pointers cannot dereferenced pointer arithmetic allowed although easily many contexts implicitly converted object pointer type28
+careless pointers potentially dangerous typically unchecked pointer variable made point arbitrary location cause undesirable effects although properly used pointers point safe places made point unsafe places using invalid pointer arithmetic objects point continue used deallocation dangling pointers used without initialized wild pointers directly assigned unsafe value using cast union another corrupt pointer general permissive allowing manipulation conversion pointer types although compilers typically provide options various levels checking programming languages address problems using restrictive reference types
+arrays
+also string
+array types traditionally fixed static size specified compile time recent standard also allows form variablelength arrays however also possible allocate block memory arbitrary size runtime using standard librarys malloc function treat array unification arrays pointers means declared arrays dynamically allocated simulated arrays virtually interchangeable
+since arrays always accessed effect pointers array accesses typically checked underlying array size although compilers provide bounds checking option31 array bounds violations therefore possible rather common carelessly written code lead various repercussions including illegal memory accesses corruption data buffer overruns runtime exceptions bounds checking desired must done manually
+special provision declaring multidimensional arrays rather relies recursion within type system declare arrays arrays effectively accomplishes thing index values resulting multidimensional array thought increasing rowmajor order
+multidimensional arrays commonly used numerical algorithms mainly applied linear algebra store matrices structure array well suited particular task however since arrays passed merely pointers bounds array must known fixed values else explicitly passed subroutine requires dynamically sized arrays arrays cannot accessed using double indexing workaround allocate array additional vector pointers columns
+introduced variablelength arrays address issues ordinary arrays
+array–pointer interchangeability
+subscript notation designates pointer syntactic sugar xi32 taking advantage compilers knowledge pointer type address points base address pointed incremented bytes rather defined base address incremented multiplied size element points thus designates i1th element array
+furthermore expression contexts notable exception operand sizeof name array automatically converted pointer arrays first element implies array never copied whole named argument function rather address first element passed therefore although function calls passbyvalue semantics arrays effect passed reference
+size element determined applying operator sizeof dereferenced element sizeof sizeof number elements declared array determined sizeof sizeof latter applies array names variables declared subscripts semantics possible determine entire size arrays pointers arrays created dynamic allocation malloc code sizeof sizeof arr0 designates pointer work since compiler assumes size pointer requested3334 since array name arguments sizeof converted pointers exhibit ambiguity however arrays created dynamic allocation accessed pointers rather true array variables suffer sizeof issues array pointers
+thus despite apparent equivalence array pointer variables still distinction made even though name array expression contexts converted pointer first element pointer occupy storage array name lvalue address constant unlike pointer variable consequently array points cannot changed impossible assign address array name array contents copied however using memcpy function accessing individual elements
+memory management
+important functions programming language provide facilities managing memory objects stored memory provides three distinct ways allocate memory objects28
+
+static memory allocation space object provided binary compiletime objects extent lifetime long binary contains loaded memory
+automatic memory allocation temporary objects stored stack space automatically freed reusable block declared exited
+dynamic memory allocation blocks memory arbitrary size requested runtime using library functions malloc region memory called heap blocks persist subsequently freed reuse calling library function realloc free
+
+three approaches appropriate different situations various tradeoffs example static memory allocation little allocation overhead automatic allocation involve slightly overhead dynamic memory allocation potentially great deal overhead allocation deallocation persistent nature static objects useful maintaining state information across function calls automatic allocation easy stack space typically much limited transient either static memory heap space dynamic memory allocation allows convenient allocation objects whose size known runtime programs make extensive three
+possible automatic static allocation usually simplest storage managed compiler freeing programmer potentially errorprone chore manually allocating releasing storage however many data structures change size runtime since static allocations automatic allocations must fixed size compiletime many situations dynamic allocation necessary28 prior standard variablesized arrays common example article malloc example dynamically allocated arrays unlike automatic allocation fail time uncontrolled consequences dynamic allocation functions return indication form null pointer value required storage cannot allocated static allocation large usually detected linker loader program even begin execution
+unless otherwise specified static objects contain zero null pointer values upon program startup automatically dynamically allocated objects initialized initial value explicitly specified otherwise initially indeterminate values typically whatever pattern happens present storage might even represent valid value type program attempts access uninitialized value results undefined many modern compilers detect warn problem false positives false negatives occur
+another issue heap memory allocation synchronized actual usage program order reused much possible example pointer heap memory allocation goes scope value overwritten free called memory cannot recovered later reuse essentially lost program phenomenon known memory leak conversely possible memory freed continue referenced leading unpredictable results typically symptoms appear portion program removed actual error making difficult track problem issues ameliorated languages automatic garbage collection
+libraries
+programming language uses libraries primary method extension library functions contained within single archive file library typically header file contains prototypes functions contained within library used program declarations special data types macro symbols used functions order program library must include librarys header file library must linked program many cases requires compiler flags shorthand link math library28
+common library standard library specified ansi standards comes every implementation implementations target limited environments embedded systems provide subset standard library library supports stream input output memory allocation mathematics character strings time values several separate standard headers example stdioh specify interfaces standard library facilities
+another common library functions used applications specifically targeted unix unixlike systems especially functions provide interface kernel functions detailed various standards posix single unix specification
+since many programs written wide variety libraries available libraries often written compilers generate efficient object code programmers create interfaces library routines used higherlevel languages like java perl python28
+language tools
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed july 2014 learn remove template message
+
+
+
+number tools developed help programmers find statements undefined behavior possibly erroneous expressions greater rigor provided compiler tool lint first leading many others
+automated source code checking auditing beneficial language many tools exist lint common practice lint detect questionable code program first written program passes lint compiled using compiler also many compilers optionally warn syntactically valid constructs likely actually errors misra proprietary guidelines avoid questionable code developed embedded systems35
+also compilers libraries operating system level mechanisms performing actions standard part bounds checking arrays detection buffer overflow serialization dynamic memory tracking automatic garbage collection
+tools purify valgrind linking libraries containing special versions memory allocation functions help uncover runtime errors memory usage
+uses
+
+
+
+
+tiobe index graph 2002 2015 showing comparison popularity various programming languages36
+
+
+widely used system programming implementing operating systems embedded system applications37 code written portability used purposes needed systemspecific code used access specific hardware addresses perform type punning match externally imposed interface requirements runtime demand system resources
+also used website programming using gateway information application server browser38 often chosen interpreted languages speed stability nearuniversal availability39
+consequence wide availability efficiency compilers libraries interpreters programming languages often implemented reference implementations python perl example written
+layer abstraction thin overhead enables programmers create efficient implementations algorithms data structures useful computationally intense programs example multiple precision arithmetic library scientific library mathematica matlab completely partially written
+sometimes used intermediate language implementations languages approach used portability convenience using intermediate language additional machinespecific code generators necessary features linenumber preprocessor directives optional superfluous commas initializer lists support compilation generated code however shortcomings prompted development cbased languages specifically designed intermediate languages
+also widely used implement enduser applications however applications also written newer higherlevel languages
+related languages
+directly indirectly influenced many later languages java javascript limbo perl python unixs shell40 pervasive influence syntactical languages mentioned combine statement less recognizably expression syntax type systems data models andor largescale program structures differ sometimes radically
+several nearc interpreters exist including cint also used scripting
+objectoriented languages became popular objectivec different extensions provided objectoriented capabilities languages originally implemented sourcetosource compilers source code translated compiled compiler41
+programming language devised bjarne stroustrup approach providing objectoriented functionality clike syntax42 adds greater typing strength scoping tools useful objectoriented programming permits generic programming templates nearly superset supports exceptions
+objectivec originally thin layer remains strict superset permits objectoriented programming using hybrid dynamicstatic typing paradigm objectivec derives syntax smalltalk syntax involves preprocessing expressions function declarations function calls inherited syntax objectoriented features originally taken smalltalk
+addition objectivec cilk unified parallel nearly supersets
+also
+
+
+computer programming portal
+information technology portal
+
+
+
+comparison pascal
+comparison programming languages
+international obfuscated code contest
+list cbased programming languages
+list compilers
+
+notes
+
+
+
+original example code compile modern compilers strict standard compliance mode fully conform requirements either fact requires diagnostic message produced
+main function actually arguments argc char argv respectively used handle command line arguments standard section 51221 requires forms main supported special treatment afforded function
+
+
+
+references
+
+
+kernighan brian ritchie dennis february 1978 programming language englewood cliffs prentice hall isbn 0131101633 regarded many authoritative reference
+ritchie 1993 thompson made brief attempt produce system coded early version c—before structures—in 1972 gave effort
+ritchie 1993 scheme type composition adopted owes considerable debt algol although perhaps emerge form algols adherents would approve
+ring team december 2017 ring language languages ringlangnet ringlang
+verilog research school computer science australian national university 20100603 retrieved 20130819 1980s verilog first introduced verilog inspired programming language
+ritchie 1993
+lawlis patricia august 1997 guidelines choosing computer language support visionary organization information clearinghouse retrieved july 2006
+programming language popularity 2009 archived original december 2007 retrieved january 2009
+tiobe programming community index 2009 retrieved 2009
+ritchie dennis march 1993 development language sigplan notices 201–208 doi101145155360155580
+bilting skansholm vägen till swedish meaning road third edition studentlitteratur year 2000 page isbn 9144014686
+johnson ritchie 1978 portability programs unix system bell system tech 2021–2048 doi101002j153873051978tb02141x retrieved december 2012 note reference scan original contains glitch rendering
+mcilroy 1987 research unix reader annotated excerpts programmers manual 1971–1986 technical report cstr bell labs
+stallings william operating systems internals design principles page pearson education 2005
+kernighan brian ritchie dennis march 1988 programming language englewood cliffs prentice hall isbn 0131103628
+stroustrup bjarne 2002 sibling rivalry report labs
+jtc1sc22wg14 home page isoiec retrieved june 2011
+andrew binstock october 2011 interview herb sutter dobbs retrieved september 2013
+18037 embedded retrieved july 2011
+harbison samuel steele 2002 reference manual englewood cliffs prentice hall isbn 013089592x contains grammar
+kernighan brian ritchie dennis 1996 programming language prentice hall isbn 02412
+page original
+isoiec 9899201x committee draft
+kernighan brian ritchie dennis 1996 programming language prentice hall isbn 02412
+common programming mistakes csucredu retrieved june 2009
+schultz thomas 2004 8051 otsego pagefree publishing isbn 158961237x retrieved february 2012
+page original
+klemens 2013 21st century oreilly media isbn 1449327141
+feuer alan gehani narain march 1982 comparison programming languages pascal computing surveys 73–92 doi101145356869356872 subscription required help
+page kr215
+example provides fortifysource security features compile time buffer checks fortifysource fedoraprojectorg retrieved 20120805
+raymond eric october 1996 hackers dictionary press isbn 9780262680929 retrieved august 2012
+summit steve complangc frequently asked questions retrieved march 2013
+summit steve complangc frequently asked questions retrieved march 2013
+page lint freebsd section unixcom 20010524 retrieved 20140715
+mcmillan robert 20130801 java losing mojo wired
+chip weems 2014 programming problem solving brief sixth edition jones bartlett learning isbn 1449694284 oclc 894992484
+dobbs sourcebook miller freeman november–december 1995
+using programming linuxjournalcom march 2005 retrieved january 2010
+gerard oregan gerard cornelius pillars computing compendium select pivotal technology firms isbn 3319214640 oclc 922324121
+lawrence rauchwerger 2004 languages compilers parallel computing 16th international workshop lcpc 2003 college station october 2003 revised papers springer isbn 3540246444 oclc 57965544
+stroustrup bjarne 1993 history 1979−1991 retrieved june 2011
+
+
+sources
+
+ritchie dennis 1993 development language second sigplan history programming languages conference hoplii cambridge april 20–23 1993 201–208 doi101145154766155580 isbn 0897915704 retrieved 20141104
+
+reading
+
+banahan brady doran 1991 book addisonwesley
+king april 2008 programming modern approach norton isbn 9780393979503
+thompson compiler murray hill jersey bell laboratories
+feuer alan 1998 puzzle book revised printing addisonwesley isbn 9780201604610
+
+external links
+
+find aboutc programming languageat wikipedias sister projects
+
+media wikimedia commons
+news wikinews
+quotations wikiquote
+textbooks wikibooks
+learning resources wikiversity
+
+
+
+working group official website
+complangc frequently asked questions
+isoiec 9899 publicly available official documents including rationale
+technical corrigenda included
+history dennis richie
+
+
+
+
+
+
+
+
+
+
+
+
+programming language
+
+
+
+
+
+
+ansi
+
+
+
+
+
+
+embedded
+misra
+
+
+
+
+
+features
+
+
+
+functions
+header files
+libraries
+operators
+string
+syntax
+preprocessor
+data types
+
+
+
+
+
+standard library
+functions
+
+
+
+char ctypeh
+file stdioh
+math mathh
+dynamic memory stdlibh
+string stringh
+time timeh
+variadic stdargh
+posix
+
+
+
+
+
+standard
+libraries
+
+
+
+bionic
+
+libhybris
+
+
+dietlibc
+eglibc
+glibc
+klibc
+microsoft runtime library
+musl
+newlib
+uclibc
+libc
+
+
+
+
+
+compilers
+
+
+
+comparison compilers
+
+borland turbo
+clang
+
+
+
+pelles
+
+sdcc
+
+microsoft visual studio express
+watcom
+
+
+
+
+
+ides
+
+
+
+comparison ides
+anjuta
+codeblocks
+codelite
+eclipse
+geany
+microsoft visual studio
+netbeans
+
+
+
+
+
+comparison
+languages
+
+
+
+compatibility
+comparison embedded
+comparison pascal
+comparison programming languages
+
+
+
+
+
+descendant
+languages
+
+
+
+
+
+
+objectivec
+alef
+limbo
+
+vala
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+integrated development environments
+
+
+
+
+
+
+
+
+open
+source
+
+
+
+android studio
+anjuta
+codeblocks
+codelite
+devc
+eclipse
+geany
+gnat programming studio
+gnome builder
+kdevelop
+kuzya
+monodevelop
+netbeans
+qdevelop
+creator
+sharpdevelop
+ultimate
+openwatcom
+
+
+
+
+
+freeware
+
+
+
+pelles
+philasmicos entwickler studio
+oracle developer studio
+visual studio community
+xcode
+
+
+
+
+
+retail
+
+
+
+cbuilder
+eclipsebased
+
+codewarrior
+myeclipse
+
+
+visual studio
+jetbrains
+
+intellij idea
+appcode
+clion
+
+
+labwindowscvi
+lccwin32
+rational software architect
+understand
+
+
+
+
+
+discontinued
+
+
+
+visualage
+
+
+
+
+
+
+
+
+java
+
+
+
+
+open source
+
+
+
+bluej
+drjava
+eclipse
+geany
+greenfoot
+intellij idea community edition
+
+android studio
+
+
+netbeans
+servoy community edition
+
+
+
+
+
+freeware
+
+
+
+jgrasp
+jdeveloper
+xcode
+
+
+
+
+
+retail
+
+
+
+jbuilder
+jcreator
+myeclipse
+
+
+rational application developer
+websphere integration developer
+
+
+jetbrains intellij idea
+servoy business application platform edition
+understand
+
+
+
+
+
+discontinued
+
+
+
+metrowerks codewarrior java
+java studio creator superseded netbeans
+visual superseded eclipse
+visual café espresso superseded jbuilder
+visual
+xelfi became netbeans
+
+
+
+
+
+
+
+
+
+
+
+
+monodevelop
+sharpdevelop
+visual studio
+visual studio code
+pascalabcnet
+
+
+
+
+
+flash
+
+
+
+adobe flash builder
+flashdevelop
+powerflasher
+
+
+
+
+
+
+
+
+
+aptana
+netbeans
+phpstorm
+kdevelop
+
+
+
+
+
+python
+
+
+
+eric
+intellij idea
+light table
+ninjaide
+pycharm
+pydev
+spyder
+wing
+kdevelop
+
+
+
+
+
+pascal
+
+
+
+delphi
+lazarus
+
+
+
+
+
+
+
+
+
+rstudio
+
+
+
+
+
+
+
+
+category
+comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+programming languages
+
+
+
+
+
+
+comparison
+timeline
+history
+
+
+
+
+
+
+
+
+assembly
+basic
+
+
+
+cobol
+fortran
+
+groovy
+haskell
+java
+javascript
+kotlin
+lisp
+
+objectivec
+pascal
+perl
+
+python
+rexx
+ruby
+shell
+smalltalk
+swift
+visual basic vbnet
+vbscript
+
+
+
+
+
+
+
+
+
+category
+lists
+
+alphabetical
+categorical
+generational
+nonenglishbased
+
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh85018532
+41131952
+sudoc 027672441
+cb119665180 data
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlecprogramminglanguageoldid816966018 categories american inventionsc programming languagec programming language familycrossplatform softwarelowlevel programming languagesprocedural programming languagesprogramming languages created 1972programming languages standardstatically typed programming languagessystems programming languageshidden categories pages containing links subscriptiononly contentwikipedia semiprotected pagesall articles unsourced statementsarticles unsourced statements april 2015articles needing additional references october 2012all articles needing additional referencesarticles needing additional references july 2014wikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiersarticles example code

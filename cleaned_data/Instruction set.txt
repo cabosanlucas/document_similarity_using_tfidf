@@ -1,0 +1,753 @@
+uses disambiguation
+instruction architecture abstract model computer also referred architecture computer architecture realization called implementation permits multiple implementations vary performance physical size monetary cost among things serves interface software hardware software written different implementations enabled binary compatibility different generations computers easily achieved development computer families developments helped lower cost computers increase applicability reasons important abstractions computing today
+defines everything machine language programmer needs know order program computer defines differs isas general isas define supported data types state main memory registers semantics memory consistency addressing modes instruction machine instructions comprises computers machine language inputoutput model
+
+
+
+contents
+
+
+overview
+classification isas
+machine language
+
+instruction types
+
+data handling memory operations
+arithmetic logic operations
+control flow operations
+coprocessor instructions
+
+
+complex instructions
+parts instruction
+instruction length
+representation
+design
+
+
+instruction implementation
+
+code density
+number operands
+register pressure
+
+
+also
+references
+reading
+external links
+
+
+
+overviewedit
+instruction architecture distinguished microarchitecture processor design techniques used particular processor implement instruction processors different microarchitectures share common instruction example intel pentium advanced micro devices athlon implement nearly identical versions instruction radically different internal designs
+concept architecture distinct design specific machine developed fred brooks design phase system360
+
+prior system360 companys computer designers free honor cost objectives selecting technologies also fashioning functional architectural refinements spread compatibility objective contrast postulated single architecture series five processors spanning wide range cost performance none five engineering design teams could count able bring adjustments architectural specifications easing difficulties achieving cost performance objectives1p137
+
+virtual machines support bytecode smalltalk java virtual machine microsofts common language runtime implement translating bytecode commonly used code paths native machine code addition virtual machines execute less frequently used code paths interpretation justintime compilation transmeta implemented instruction atop vliw processors fashion
+classification isasedit
+classified number different ways common classification architectural complexity complex instruction computer cisc many specialized instructions rarely used practical programs reduced instruction computer risc simplifies processor efficiently implementing instructions frequently used programs less common operations implemented subroutines resulting additional processor execution time offset infrequent use2
+types include long instruction word vliw architectures closely related long instruction word explicitly parallel instruction computing epic architectures architectures seek exploit instructionlevel parallelism less hardware risc cisc making compiler responsible instruction issue scheduling
+architectures even less complexity studied minimal instruction computer misc instruction computer oisc theoretically important types commercialized
+machine languageedit
+machine language built discrete statements instructions processing architecture given instruction specify
+
+particular registers arithmetic addressing control functions
+particular memory locations offsets
+particular addressing modes used interpret operands
+
+complex operations built combining simple instructions executed sequentially otherwise directed control flow instructions
+instruction typesedit
+examples operations common many instruction sets include
+data handling memory operationsedit
+
+register fixed constant value
+copy data memory location register vice versa machine instruction often called move however term misleading used store contents register result computation retrieve stored data perform computation later often called load store operations
+read write data hardware devices
+
+arithmetic logic operationsedit
+
+subtract multiply divide values registers placing result register possibly setting condition codes status register
+
+increment decrement isas saving operand fetch trivial cases
+
+
+perform bitwise operations taking conjunction disjunction corresponding bits pair registers taking negation register
+compare values registers example less equal
+floatingpoint instructions arithmetic floatingpoint numbers
+
+control flow operationsedit
+
+branch another location program execute instructions
+conditionally branch another location certain condition holds
+indirectly branch another location
+call another block code saving location next instruction point return
+
+coprocessor instructionsedit
+
+loadstore data coprocessor exchanging registers
+perform coprocessor operations
+
+complex instructionsedit
+processors include complex instructions instruction single complex instruction something take many instructions computerscitation needed instructions typified instructions take multiple steps control multiple functional units otherwise appear larger scale bulk simple instructions implemented given processor examples complex instructions include
+
+transferring multiple registers memory especially stack
+moving large blocks memory string copy transfer
+complicated integer floatingpoint arithmetic square root transcendental functions logarithm sine cosine
+simd instructions single instruction performing operation many homogeneous values parallel possibly dedicated simd registers
+performing atomic testandset instruction readmodifywrite atomic instruction
+instructions perform operations operand memory rather register
+
+complex instructions common cisc instruction sets risc instruction sets risc instruction sets include well risc instruction sets generally include operations memory operands instructions move large blocks memory risc instruction sets include simd vector instructions perform arithmetic operation multiple pieces data time simd instructions ability manipulating large vectors matrices minimal time simd instructions allow easy parallelization algorithms commonly involved sound image video processing various simd implementations brought market trade names 3dnow altivec
+parts instructionedit
+
+
+
+
+instruction several fields identify logical operation also include source destination addresses constant values mips immediate instruction allows selection source destination registers inclusion small constant
+
+
+traditional architectures instruction includes opcode specifies operation perform contents memory register—and zero operand specifiers specify registers memory locations literal data operand specifiers addressing modes determining meaning fixed fields long instruction word vliw architectures include many microcode architectures multiple simultaneous opcodes operands specified single instruction
+exotic instruction sets opcode field transport triggered architectures operands
+forth virtual machine 0operand instruction sets lack operand specifier fields stack machines including nosc3better source needed
+conditional instructions often predicate field—a bits encode specific condition cause operation performed rather performed example conditional branch instruction executed branch taken condition true execution proceeds different part program executed branch taken condition false execution continues sequentially instruction sets also conditional moves move executed data stored target location condition true executed target location modified condition false similarly zarchitecture conditional store instruction instruction sets include predicate field every instruction called branch predication
+instruction lengthedit
+size length instruction varies widely little four bits microcontrollers many hundreds bits vliw systems processors used personal computers mainframes supercomputers instruction sizes bits longest possible instruction bytes bits4 within instruction different instructions different lengths architectures notably reduced instruction computers risc instructions fixed length typically corresponding architectures word size architectures instructions variable length typically integral multiples byte halfword thumbextension mixed variable encoding fixed usually 32bit 16bit encodings instructions mixed freely must switched branch exception boundary armv8
+risc instruction normally fixed instruction length often bytes bits whereas typical cisc instruction instructions widely varying length bytes fixedlength instructions less complicated handle variablelength instructions several reasons check whether instruction straddles cache line virtual memory page boundary5 instance therefore somewhat easier optimize speed
+representationedit
+instructions constituting program rarely specified using internal numeric form machine code specified programmers using assembly language commonly generated programming languages compilers
+designedit
+design instruction sets complex issue stages history microprocessor first cisc complex instruction computer many different instructions 1970s however places like research found many instructions could eliminated result risc reduced instruction computer architecture uses smaller instructions simpler instruction offer potential higher speeds reduced processor size reduced power consumption however complex optimize common operations improve memory cache efficiency simplify programming
+instruction designers reserve opcodes kind system call software interrupt example technology 6502 uses zilog uses eight codes c7cfd7dfe7eff7ffh6 motorola 68000 codes range a000afffh
+fast virtual machines much easier implement instruction meets popek goldberg virtualization requirementsclarification needed
+slide used immunityaware programming much easier implement unprogrammed state memory interpreted nopdubious discuss
+systems multiple processors nonblocking synchronization algorithms much easier implementcitation needed instruction includes support something fetchandadd loadlinkstoreconditional llsc atomic compareandswap
+instruction implementationedit
+given instruction implemented variety ways ways implementing particular instruction provide programming model implementations instruction able executables various ways implementing instruction give different tradeoffs cost performance power consumption size
+designing microarchitecture processor engineers blocks hardwired electronic circuitry often designed separately adders multiplexers counters registers alus kind register transfer language often used describe decoding sequencing instruction using physical microarchitecture basic ways build control unit implement description although many designs middle ways compromises
+
+computer designs hardwire complete instruction decoding sequencing like rest microarchitecture
+designs employ microcode routines tables this—typically onchip roms plas although separate rams roms used historically western digital mcp1600 older example using dedicated separate microcode
+
+designs combination hardwired design microcode control unit
+designs writable control store—they compile instruction writable flash inside rekursiv processor imsys cjip7 fpga reconfigurable computing
+also emulated software interpreter naturally interpretation overhead slower directly running programs emulated hardware unless hardware running emulator order magnitude faster today common practice vendors isas microarchitectures make software emulators available software developers hardware implementation ready
+often details implementation strong influence particular instructions selected instruction example many implementations instruction pipeline allow single memory load memory store instruction leading loadstore architecture risc another example early ways implementing instruction pipeline delay slot
+demands highspeed digital signal processing pushed opposite direction—forcing instructions implemented particular example perform digital filters fast enough instruction typical digital signal processor must kind harvard architecture fetch instruction data words simultaneously requires singlecycle multiply–accumulate multiplier
+code densityedit
+early computers memory expensive minimizing size program make sure would limited memory often central thus combined size instructions needed perform particular task code density important characteristic instruction computers high code density often complex instructions procedure entry parameterized returns loops therefore retroactively named complex instruction computers cisc however typical frequent cisc instructions merely combine basic operation access operands memory using addressing modes direct indirect indexed certain architectures allow three operands including result directly memory able perform functions automatic pointer increment softwareimplemented instruction sets even complex powerful instructions
+reduced instructionset computers risc first widely implemented period rapidly growing memory subsystems sacrifice code density simplify implementation circuitry increase performance higher clock frequencies registers single risc instruction typically performs single operation registers load memory location register risc instruction normally fixed instruction length whereas typical cisc instruction instructions widely varying length however risc computers normally require often longer instructions implement given task inherently make less optimal bandwidth cache memories
+certain embedded risc isas like thumb avr32 typically exhibit high density owing technique called code compression technique packs 16bit instructions 32bit instruction unpacked decode stage executed instructions8
+minimal instruction computers misc form stack machine separate instructions 1664 multiple instructions single machine word type cores often take little silicon implement easily realized fpga multicore form code density misc similar code density risc increased instruction density offset requiring primitive instructions taskcitation needed
+research executable compression mechanism improving code density mathematics kolmogorov complexity describes challenges limits
+number operandsedit
+instruction sets categorized maximum number operands explicitly specified instructions
+examples follow direct calculated addresses referring memory cells reg1 refer machine registers
+
+
+
+
+0operand zeroaddress machines called stack machines arithmetic operations take place using positions stack push push
+
+needs four instructions stack machines terms 0operand zeroaddress apply arithmetic instructions instructions 1operand push instructions used access memory
+
+
+1operand oneaddress machines called accumulator machines include early computers many small microcontrollers instructions specify single right operand constant register memory location implicit accumulator left operand destination load store
+
+needs three instructions
+
+
+2operand many cisc risc machines fall category
+
+cisc move
+
+needs instructions effectively stores result without explicit store instruction
+
+
+cisc often machines limited memory operand instruction load areg1 breg1 store reg1c requires loadstore pair memory movement regardless whether result augmentation stored different place memory location
+
+needs three instructions
+
+
+risc requiring explicit memory loads instructions would load areg1 load breg2 reg1reg2 store reg2c
+
+needs four instructions
+
+
+
+
+3operand allowing better reuse data5
+
+cisc becomes either single instruction
+
+needs instruction
+
+
+cisc machines limited memory operands instruction move areg1 reg1bc
+
+needs instructions
+
+
+risc arithmetic instructions registers explicit 2operand loadstore instructions needed load areg1 load breg2 reg1reg2reg3 store reg3c
+
+needs four instructions
+unlike 2operand 1operand leaves three values registers available reuse5
+
+
+
+
+operands—some cisc machines permit variety addressing modes allow operands registers memory accesses poly polynomial evaluation instruction
+
+large number bits needed encode three registers 3operand instruction risc architectures 16bit instructions invariably 2operand designs atmel msp430 versions thumb risc architectures 32bit instructions usually 3operand designs avr32 mips power sparc architectures
+instruction specifies number operands registers memory locations immediate values explicitly instructions give operands implicitly stored stack implicit register operands given implicitly fewer operands need specified instruction destination operand explicitly specifies destination additional operand must supplied consequently number operands encoded instruction differ mathematically necessary number arguments logical arithmetic operation arity operands either encoded opcode representation instruction else given values addresses following instruction
+register pressureedit
+register pressure measures availability free registers point time program execution register pressure high large number available registers thus higher register pressure often register contents must spilled memory increasing number registers architecture decreases register pressure increases cost9
+embedded instruction sets thumb suffer extremely high register pressure small register sets generalpurpose risc isas like mips alpha enjoy register pressure cisc isas like x8664 offer register pressure despite smaller register sets many addressing modes optimizations subregister addressing memory operands instructions absolute addressing pcrelative addressing registertoregister spills cisc isas offer10
+alsoedit
+
+
+computer science portal
+
+
+
+comparison instruction architectures
+computer architecture
+design
+emulator
+simulator
+list instruction sets
+instruction simulator
+ovpsim full systems simulator providing ability createmodelemulate instruction using standard apis
+register transfer language
+microoperation
+
+referencesedit
+
+
+pugh emerson johnson lyle palmer john 1991 ibms early systems press isbn 0262161230
+crystal chen greg novick kirk shimano december 2006 risc architecture risc cisc csstanfordedu retrieved february 2015
+forth resources nosc mail list archive strangegizmocom retrieved 20140725
+intel® ia32 architectures software developers manual intel corporation retrieved july 2012
+evolution risc technology john cocke journal volume numbers 2000
+ganssle jack proactive debuggingpermanent dead link published february 2001
+great microprocessors past present 1340 cpushacknet retrieved 20140725
+weaver vincent mckee sally 2009 code density concerns architectures ieee international conference computer design
+page daniel 2009 compilers practical introduction computer architecture springer isbn 9781848822559
+venkat ashish tullsen dean 2014 harnessing diversity design heterogeneousisa chip multiprocessor 41st annual international symposium computer architecture
+
+
+readingedit
+
+bowen jonathan july–august 1985 standard microprocessor programming cards 274–290 doi1010160141933185901164
+
+external linksedit
+
+
+
+wikibook microprocessor design page topic instruction architectures
+
+
+
+programming textfiles bowens instruction summary cards
+mark smothermans historical computer designs page
+
+
+
+
+
+
+
+
+
+
+
+
+technologies
+
+
+
+architecture
+
+
+
+turing machine
+post–turing machine
+universal turing machine
+quantum turing machine
+belt machine
+stack machine
+register machine
+counter machine
+pointer machine
+random access machine
+random access stored program machine
+finitestate machine
+queue automaton
+neumann
+harvard modified
+hive hierarchical identify verify exploit
+dataflow
+
+cellular
+artificial neural network
+
+machine learning
+deep learning
+neural processing unit
+
+
+convolutional neural network
+loadstore architecture
+register memory architecture
+register register architecture
+endianness
+fifo
+zerocopy
+numa
+huma
+
+mobile computing
+surface computing
+wearable computing
+heterogeneous computing
+parallel computing
+concurrent computing
+distributed computing
+cloud computing
+amorphous computing
+ubiquitous computing
+fabric computing
+reconfigurable computing
+cognitive computing
+analogous computing
+mechanical computing
+electric computing
+hybrid computing
+digital computing
+computing
+peptide computing
+chemical computing
+organic computing
+wetware computing
+quantum computing
+neuromorphic computing
+optical computing
+reversible computing
+unconventional computing
+hypercomputation
+ternary computer
+symmetric multiprocessing
+asymmetric multiprocessing
+cache hierarchy
+memory hierarchy
+
+
+
+
+
+types
+
+
+
+asip
+cisc
+risc
+edge trips
+vliw epic
+misc
+oisc
+nisc
+zisc
+comparison
+
+
+
+
+
+isas
+
+
+
+
+zarchitecture
+
+mips
+power architecture powerpc
+sparc
+visc
+mill
+itanium ia64
+alpha
+prism
+superh
+clipper
+
+unicore
+parisc
+microblaze
+
+
+
+
+
+word size
+
+
+
+1bit
+2bit
+4bit
+8bit
+9bit
+10bit
+12bit
+15bit
+16bit
+18bit
+22bit
+24bit
+25bit
+26bit
+27bit
+31bit
+32bit
+33bit
+34bit
+36bit
+39bit
+40bit
+48bit
+50bit
+60bit
+64bit
+128bit
+256bit
+512bit
+variable
+
+
+
+
+
+execution
+
+
+
+instruction pipelining
+
+bubble
+operand forwarding
+
+
+outoforder execution
+
+register renaming
+
+
+speculative execution
+
+branch predictor
+memory dependence prediction
+
+
+hazards
+
+
+
+
+
+parallel level
+
+
+
+
+
+bitserial
+word
+
+
+instruction
+pipelining
+
+scalar
+superscalar
+
+
+task
+
+thread
+process
+
+
+data
+
+vector
+
+
+memory
+
+
+
+
+
+multithreading
+
+
+
+temporal
+simultaneous hyperthreading
+speculative spmt
+preemptive
+cooperative
+clustered multithread
+hardware scout
+
+
+
+
+
+flynns taxonomy
+
+
+
+sisd
+simd swar
+simt
+misd
+mimd
+
+spmd
+
+
+addressing mode
+
+
+
+
+
+performance
+
+
+
+instructions second
+instructions clock
+cycles instruction
+floatingpoint operations second flops
+transactions second
+synaptic updates second sups
+performance watt
+orders magnitude computing
+cache performance measurement metric
+
+
+
+
+
+core count
+
+
+
+singlecore processor
+multicore processor
+manycore processor
+
+
+
+
+
+types
+
+
+
+central processing unit
+gpgpu
+accelerator
+vision processing unit
+vector processor
+barrel processor
+stream processor
+digital signal processor
+processordma controller
+network processor
+baseband processor
+physics processing unit
+coprocessor
+secure cryptoprocessor
+asic
+fpga
+fpoa
+cpld
+microcontroller
+microprocessor
+mobile processor
+notebook processor
+ultralowvoltage processor
+multicore processor
+manycore processor
+tile processor
+multichip module
+chip stack multichip modules
+system chip
+multiprocessor systemonchip mpsoc
+programmable systemonchip psoc
+network chip
+
+
+
+
+
+components
+
+
+
+execution unit
+arithmetic logic unit
+address generation unit
+floatingpoint unit
+loadstore unit
+fixedpoint unit
+vector unit
+branch predictor
+branch execution unit
+instruction decoder
+instruction scheduler
+instruction fetch unit
+instruction dispatch unit
+instruction sequencing unit
+unified reservation station
+barrel shifter
+uncore
+addressed decoder
+frontside
+backside
+northbridge computing
+southbridge computing
+adder electronics
+binary multiplier
+binary decoder
+address decoder
+multiplexer
+demultiplexer
+registers
+cache
+memory management unit
+input–output memory management unit iommu
+integrated memory controller
+power management unit
+translation lookaside buffer
+stack engine
+register file
+processor register
+hardware register
+memory buffer register
+program counter
+microcode
+datapath
+control unit
+instruction unit
+reorder buffer
+data buffer
+write buffer
+coprocessor
+electronic switch
+electronic circuit
+integrated circuit
+threedimensional integrated circuit
+boolean circuit
+digital circuit
+analog circuit
+mixedsignal integrated circuit
+power management integrated circuit
+quantum circuit
+logic gate
+
+combinational logic
+sequential logic
+emittercoupled logic
+transistor–transistor logic
+glue logic
+
+
+quantum gate
+gate array
+counter digital
+computing
+semiconductor device
+clock rate
+multiplier
+vision chip
+memristor
+
+
+
+
+
+power
+management
+
+
+
+
+acpi
+dynamic frequency scaling
+dynamic voltage scaling
+clock gating
+
+
+
+
+
+hardware
+security
+
+
+
+nonexecutable memory
+memory protection extensions intel
+intel secure
+hardware restriction firmware
+software guard extensions intel
+trusted execution technology
+omnishield
+trusted platform module
+secure cryptoprocessor
+hardware security module
+hengzhi chip
+
+
+
+
+
+related
+
+
+
+history generalpurpose cpus
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+41299310
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleinstructionsetarchitectureoldid811740043 categories central processing unitinstruction processinginstruction architecturesmicroprocessorshidden categories articles dead external linksarticles dead external links november 2017articles permanently dead external linksall articles unsourced statementsarticles unsourced statements october 2012all articles lacking reliable referencesarticles lacking reliable references july 2014wikipedia articles needing clarification october 2012all accuracy disputesarticles disputed statements october 2012articles unsourced statements january 2010wikipedia articles identifiers

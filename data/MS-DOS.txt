@@ -1,0 +1,736 @@
+
+
+
+
+
+
+
+This article has multiple issues. Please help improve it or discuss these issues on the talk page. (Learn how and when to remove these template messages)
+
+
+
+
+
+
+
+This article possibly contains original research. Please improve it by verifying the claims made and adding inline citations. Statements consisting only of original research should be removed. (November 2017) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (July 2012) (Learn how and when to remove this template message)
+
+
+
+
+
+(Learn how and when to remove this template message)
+
+
+
+This article is about Microsoft DOS specifically. For other compatible operating systems of the DOS family, see DOS.
+
+MS-DOS
+
+
+An example of MS-DOS's command-line interface, this one showing that the current directory is the root of drive C.
+
+
+
+Developer
+Microsoft
+
+
+Written in
+8086 assembly[1]
+
+
+OS family
+DOS
+
+
+Working state
+Discontinued
+
+
+Source model
+Closed source; source-available for select versions since 2014[2][3][4]
+
+
+Initial release
+12 August 1981; 36 years ago (1981-08-12)[5]
+
+
+Final release
+8.0 / 16 September 2000; 17 years ago (2000-09-16)
+
+
+Update method
+None
+
+
+Package manager
+None
+
+
+Platforms
+x86
+
+
+Kernel type
+Monolithic
+
+
+Default user interface
+Command-line, text
+
+
+License
+Proprietary
+
+
+Succeeded by
+Microsoft Windows
+
+
+Official website
+MS-DOS overview
+
+
+Support status
+
+
+Unsupported as of 31 December 2001[6]
+
+
+MS-DOS (/ˌɛmɛsˈdɒs/ EM-es-DOSS; acronym for Microsoft Disk Operating System) is a discontinued operating system for x86-based personal computers mostly developed by Microsoft. Collectively, MS-DOS, its rebranding as IBM PC DOS, and some operating systems attempting to be compatible with MS-DOS, are sometimes referred to as "DOS" (which is also the generic acronym for disk operating system). MS-DOS was the main operating system for IBM PC compatible personal computers during the 1980s and the early 1990s, when it was gradually superseded by operating systems offering a graphical user interface (GUI), in various generations of the graphical Microsoft Windows operating system.
+MS-DOS resulted from a request in 1981 by IBM for an operating system to use in its IBM PC range of personal computers.[7][8] Microsoft quickly bought the rights to 86-DOS from Seattle Computer Products,[9] and began work on modifying it to meet IBM's specification. IBM licensed and released it on August 12, 1981 as PC DOS 1.0 for use in their PCs. Although MS-DOS and PC DOS were initially developed in parallel by Microsoft and IBM, the two products diverged after twelve years, in 1993, with recognizable differences in compatibility, syntax, and capabilities.
+During its lifetime, several competing products were released for the x86 platform,[10] and MS-DOS went through eight versions, until development ceased in 2000.[11] Initially MS-DOS was targeted at Intel 8086 processors running on computer hardware using floppy disks to store and access not only the operating system, but application software and user data as well. Progressive version releases delivered support for other mass storage media in ever greater sizes and formats, along with added feature support for newer processors and rapidly evolving computer architectures. Ultimately it was the key product in Microsoft's growth from a programming languages company to a diverse software development firm, providing the company with essential revenue and marketing resources. It was also the underlying basic operating system on which early versions of Windows ran as a GUI. It is a flexible operating system, and consumes negligible installation space.
+
+
+
+Contents
+
+
+1 History
+2 Versions
+3 Competition
+4 Legal issues
+5 Use of undocumented APIs
+6 End of MS-DOS
+7 Windows command-line interface
+8 Legacy compatibility
+9 Related systems
+10 See also
+11 Notes
+12 References
+13 External links
+
+
+
+History[edit]
+Further information: DOS and Timeline of DOS operating systems
+MS-DOS was a renamed form of 86-DOS[12] –  owned by Seattle Computer Products, written by Tim Paterson. Development of 86-DOS took only six weeks, as it was basically a clone of Digital Research's CP/M (for 8080/Z80 processors), ported to run on 8086 processors and with two notable differences compared to CP/M; an improved disk sector buffering logic and the introduction of FAT12 instead of the CP/M filesystem. This first version was shipped in August 1980.[5] Microsoft, which needed an operating system for the IBM Personal Computer[7][8] hired Tim Paterson in May 1981 and bought 86-DOS 1.10 for $75,000 in July of the same year. Microsoft kept the version number, but renamed it MS-DOS. They also licensed MS-DOS 1.10/1.14 to IBM, who, in August 1981, offered it as PC DOS 1.0 as one of three operating systems[13] for the IBM 5150, or the IBM PC.[5]
+Within a year Microsoft licensed MS-DOS to over 70 other companies.[14] It was designed to be an OS that could run on any 8086-family computer. Each computer would have its own distinct hardware and its own version of MS-DOS, similar to the situation that existed for CP/M, and with MS-DOS emulating the same solution as CP/M to adapt for different hardware platforms. To this end, MS-DOS was designed with a modular structure with internal device drivers, minimally for primary disk drives and the console, integrated with the kernel and loaded by the boot loader, and installable device drivers for other devices loaded and integrated at boot time. The OEM would use a development kit provided by Microsoft to build a version of MS-DOS with their basic I/O drivers and a standard Microsoft kernel, which they would typically supply on disk to end users along with the hardware. Thus, there were many different versions of "MS-DOS" for different hardware, and there is a major distinction between an IBM-compatible (or ISA) machine and an MS-DOS [compatible] machine. Some machines, like the Tandy 2000, were MS-DOS compatible but not IBM-compatible, so they could run software written exclusively for MS-DOS without dependence on the peripheral hardware of the IBM PC architecture.
+This design would have worked well for compatibility, if application programs had only used MS-DOS services to perform device I/O, and indeed the same design philosophy is embodied in Windows NT (see Hardware Abstraction Layer). However, in MS-DOS's early days, the greater speed attainable by programs through direct control of hardware was of particular importance, especially for games, which often pushed the limits of their contemporary hardware. Very soon an IBM-compatible architecture became the goal, and before long all 8086-family computers closely emulated IBM's hardware, and only a single version of MS-DOS for a fixed hardware platform was needed for the market. This version is the version of MS-DOS that is discussed here, as the dozens of other OEM versions of "MS-DOS" were only relevant to the systems they were designed for, and in any case were very similar in function and capability to some standard version for the IBM PC—often the same-numbered version, but not always, since some OEMs used their own proprietary version numbering schemes (e.g. labeling later releases of MS-DOS 1.x as 2.0 or vice versa)—with a few notable exceptions.
+Microsoft omitted multi-user support from MS-DOS because Microsoft's Unix-based operating system, Xenix, was fully multi-user.[15] The company planned to over time improve MS-DOS so it would be almost indistinguishable from single-user Xenix, or XEDOS, which would also run on the Motorola 68000, Zilog Z8000, and the LSI-11; they would be upwardly compatible with Xenix, which Byte in 1983 described as "the multi-user MS-DOS of the future".[16][17] Microsoft advertised MS-DOS and Xenix together, listing the shared features of its "single-user OS" and "the multi-user, multi-tasking, UNIX-derived operating system", and promising easy porting between them.[18] After the breakup of the Bell System, however, AT&T Computer Systems started selling UNIX System V. Believing that it could not compete with AT&T in the Unix market, Microsoft abandoned Xenix, and in 1987 transferred ownership of Xenix to the Santa Cruz Operation (SCO).
+On 25 March 2014, Microsoft made the code to SCP MS-DOS 1.25 and a mixture of Altos MS-DOS 2.11 and TeleVideo PC DOS 2.11 available to the public under the Microsoft Research License Agreement, which makes the code source-available, but not open source as defined by Open Source Initiative or Free Software Foundation standards.[2][3][4][19]
+As an April Fools joke in 2015, Microsoft Mobile launched a Windows Phone application called MS-DOS Mobile which was presented as a new mobile operating system and worked similar to MS-DOS.[20]
+   
+Versions[edit]
+Main articles: Comparison of DOS operating systems and Timeline of DOS operating systems
+Microsoft licensed or released versions of MS-DOS under different names like Lifeboat Associates "Software Bus 86"[21] aka SB-DOS,[10] COMPAQ-DOS,[21] NCR-DOS or Z-DOS[10] before it eventually enforced the MS-DOS name for all versions but the IBM one, which was originally called "IBM Personal Computer DOS", later shortened to IBM PC DOS. (Competitors released compatible DOS systems such as DR DOS and PTS-DOS that could also run DOS applications.)
+The following versions of MS-DOS were released to the public:[22][23]
+
+MS-DOS 1.x
+
+Version 1.10 (OEM) – possible basis for IBM's Personal Computer DOS 1.0
+Version 1.11 (OEM) – possible basis for IBM's Personal Computer DOS 1.0
+Version 1.14 (OEM) – possible basis for IBM's Personal Computer DOS 1.0
+Version 1.24 (OEM) – basis for IBM's Personal Computer DOS 1.1
+Version 1.25 (OEM) – basis for non-IBM OEM versions of MS-DOS, including SCP MS-DOS 1.25
+
+
+
+
+
+
+
+
+Compaq-DOS 1.12, a Compaq OEM version of MS-DOS (1.25 or higher)
+Zenith Z-DOS 1.19, a Zenith OEM version of MS-DOS (1.25 or higher)[24]
+
+
+
+
+
+
+MS-DOS 2.x – Support for 10 MB hard disk drives, FAT16, user installable device drivers and tree-structure filing system
+
+Version 2.0 (OEM), First version to support 5.25-inch, 360 kB floppy drives and diskettes.[25]
+Version 2.1 (OEM)
+Version 2.11 (OEM)
+
+Altos MS-DOS 2.11, an Altos OEM version of MS-DOS 2.11 for the ACT-86C
+TeleVideo PC DOS 2.11, an TeleVideo OEM version of MS-DOS 2.11
+
+
+
+
+MS-DOS 3.x
+
+Version 3.0 (OEM) – First version to support 5.25-inch, 1.2 MB floppy drives and diskettes.
+Version 3.1 (OEM) – Support for Microsoft Networks
+Version 3.2 (OEM) – First version to support 3.5-inch, 720 kB floppy drives and diskettes.[25]
+Version 3.21 (OEM)
+Version 3.22 (OEM) – (HP 95LX)
+Version 3.25 (OEM)
+Version 3.3 (OEM) – First version to support 3.5-inch, 1.44 MB floppy drives and diskettes.
+Version 3.3a (OEM)
+Version 3.31 (OEM)[nb 1] – supports FAT16B and larger drives.[nb 2]
+
+
+MS-DOS 4.0 (multitasking) and MS-DOS 4.1 –  A separate branch of development with additional multitasking features, released between 3.2 and 3.3, and later abandoned. It is unrelated to any later versions, including versions 4.00 and 4.01 listed below
+MS-DOS 4.x (IBM-developed) – includes a graphical/mouse interface. It had many bugs and compatibility issues.[26]
+
+Version 4.00 (OEM) – First version to support a single hard disk partition that is greater than 32 MiB and up to a maximum size of 2 GiB.[27]
+Version 4.01 (OEM) – Microsoft rewritten Version 4.00 released under MS-DOS label but not IBM PC DOS. First version to introduce volume serial number when formatting hard disks and floppy disks (Disk duplication also[nb 3] and when using SYS to make a floppy disk or a partition of a hard drive bootable).[28]
+Version 4.01a (OEM)
+
+
+MS-DOS 5.x
+
+Version 5.0 (Retail) – includes a full-screen editor. A number of bugs required re issue. First version to support 3.5-inch, 2.88 MB floppy drives and diskettes. Hard disk partitions greater than 32 MiB and up to a maximum size of 2 GiB was now provided by the MS-DOS kernel.[27] First version to load portions of the operating system into the high memory area.
+
+AST Premium Exec DOS 5.0 (OEM) –  a version for the AST Premium Exec series of notebooks with various extensions, including improved load-high and extended codepage support[29][30]
+
+
+Version 5.0a (Retail) – With this release, IBM and Microsoft versions diverge.
+Version 5.50 (Windows NTVDM) – All Windows NT 32-bit versions ship with files from DOS 5.0
+
+
+MS-DOS 6.x
+
+Version 6.0 (Retail) – Online help through QBASIC. Disk compression, upper memory optimization and antivirus included.
+Version 6.2 – Scandisk as replacement for CHKDSK. Fix serious bugs in DBLSPACE.
+Version 6.21 (Retail) – Stacker-infringing DBLSPACE removed.
+Version 6.22 (Retail) – New DRVSPACE compression.
+
+
+MS-DOS 7.x
+
+Version 7.0 (Windows 95, Windows 95A) – Support for VFAT long file names and 32-bits signed integer errorlevel. New editor. JO.SYS is an alternative filename of the IO.SYS kernel file and used as such for "special purposes". JO.SYS allows booting from either CD-ROM drive or hard disk. Last version to recognize only the first 8.4 GB of a hard disk. The "VER" internal command prompt reports the Windows version 4.00.950.
+Version 7.1 (Windows 95B – Windows 98 – Windows 98SE) – Support for FAT32 file system. Last general purpose DOS to load Windows. The "VER" internal command prompt reports the Windows version 4.00.1111, 4.10.1998 or 4.10.2222.
+
+
+MS-DOS 8.0
+
+Version 8.0 (Windows ME) – Integrated drivers for faster Windows loading. Four different kernels (IO.SYS) observed.[nb 4] The "VER" internal command prompt reports the Windows version 4.90.3000.
+Version 8.0 (Windows XP) – DOS boot disks created by XP and later contain files from Windows ME. The "VER" internal command prompt reports the Windows version 5.1.
+
+
+
+
+MS-DOS Mobile 1.0 (Windows Phone) – This version was an April Fools' Day joke in 2015 by Microsoft. It is available on the Microsoft Store.
+
+Microsoft DOS was released through the OEM channel, until Digital Research released DR DOS 5.0 as a retail upgrade. With PC DOS 5.00.1, the IBM-Microsoft agreement started to end, and IBM entered the retail DOS market with IBM DOS 5.00.1, 5.02, 6.00 and PC DOS 6.1, 6.3, 7, 2000 and 7.1.
+Localized versions of MS-DOS existed for different markets.[31] While Western issues of MS-DOS evolved around the same set of tools and drivers just with localized message languages and differing sets of supported codepages and keyboard layouts, some language versions were considerably different from Western issues and were adapted to run on localized PC hardware with additional BIOS services not available in Western PCs, support multiple hardware codepages for displays and printers, support DBCS, alternative input methods and graphics output. Affected issues include Japanese (DOS/V), Korean, Arabic (ADOS 3.3/5.0), Hebrew (HDOS 3.3/5.0), Russian (RDOS 4.01/5.0) as well as some other Eastern European versions of DOS.
+Competition[edit]
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (April 2010) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+The original MS-DOS advertisement in 1981.
+
+
+On microcomputers based on the Intel 8086 and 8088 processors, including the IBM PC and clones, the initial competition to the PC DOS/MS-DOS line came from Digital Research, whose CP/M operating system had inspired MS-DOS. In fact, there remains controversy as to whether QDOS was more or less plagiarised from early versions of CP/M code. Digital Research released CP/M-86 a few months after MS-DOS, and it was offered as an alternative to MS-DOS and Microsoft's licensing requirements, but at a higher price. Executable programs for CP/M-86 and MS-DOS were not interchangeable with each other; many applications were sold in both MS-DOS and CP/M-86 versions until MS-DOS became preponderant (later Digital Research operating systems could run both MS-DOS and CP/M-86 software). MS-DOS originally supported the simple .COM, which was modelled after a similar but binary incompatible format known from CP/M-80. CP/M-86 instead supported a relocatable format using the file extension .CMD to avoid name conflicts with CP/M-80 and MS-DOS .COM files. MS-DOS version 1.0 added a more advanced relocatable .EXE executable file format.
+Most of the machines in the early days of MS-DOS had differing system architectures and there was a certain degree of incompatibility, and subsequently vendor lock-in. Users who began using MS-DOS with their machines were compelled to continue using the version customized for their hardware, or face trying to get all of their proprietary hardware and software to work with the new system.
+In the business world the 808x-based machines that MS-DOS was tied to faced competition from the Unix operating system which ran on many different hardware architectures. Microsoft itself sold a version of Unix for the PC called Xenix.
+In the emerging world of home users, a variety of other computers based on various other processors were in serious competition with the IBM PC: the Apple II, early Apple Macintosh, the Commodore 64 and others did not use the 808x processor; many 808x machines of different architectures used custom versions of MS-DOS. At first all these machines were in competition. In time the IBM PC hardware configuration became dominant in the 808x market as software written to communicate directly with the PC hardware without using standard operating system calls ran much faster, but on true PC-compatibles only. Non-PC-compatible 808x machines were too small a market to have fast software written for them alone, and the market remained open only for IBM PCs and machines that closely imitated their architecture, all running either a single version of MS-DOS compatible only with PCs, or the equivalent IBM PC DOS. Most clones cost much less than IBM-branded machines of similar performance, and became widely used by home users, while IBM PCs had a large share of the business computer market.
+Microsoft and IBM together began what was intended as the follow-on to MS-DOS/PC DOS, called OS/2. When OS/2 was released in 1987, Microsoft began an advertising campaign announcing that "DOS is Dead" and stating that version 4 was the last full release. OS/2 was designed for efficient multi-tasking (as was standard in operating systems since 1963) and offered a number of advanced features that had been designed together with similar look and feel; it was seen as the legitimate heir to the "kludgy" DOS platform.
+MS-DOS had grown in spurts, with many significant features being taken or duplicated from Microsoft's other products and operating systems. MS-DOS also grew by incorporating, by direct licensing or feature duplicating, the functionality of tools and utilities developed by independent companies, such as Norton Utilities, PC Tools (Microsoft Anti-Virus), QEMM expanded memory manager, Stacker disk compression, and others.
+During the period when Digital Research was competing in the operating system market some computers, like Amstrad PC1512, were sold with floppy disks for two operating systems (only one of which could be used at a time), MS-DOS and CP/M-86 or a derivative of it. Digital Research produced DOS Plus, which was compatible with MS-DOS 2.11, supported CP/M-86 programs, had additional features including multi-tasking, and could read and write disks in CP/M and MS-DOS format.
+While OS/2 was under protracted development, Digital Research released the MS-DOS compatible DR DOS 5.0, which included features only available as third-party add-ons for MS-DOS. Unwilling to lose any portion of the market, Microsoft responded by announcing the "pending" release of MS-DOS 5.0 in May 1990. This effectively killed most DR DOS sales until the actual release of MS-DOS 5.0 in June 1991. Digital Research brought out DR DOS 6.0, which sold well until the "pre-announcement" of MS-DOS 6.0 again stifled the sales of DR DOS.
+Microsoft had been accused of carefully orchestrating leaks about future versions of MS-DOS in an attempt to create what in the industry is called FUD (fear, uncertainty, and doubt) regarding DR DOS. For example, in October 1990, shortly after the release of DR DOS 5.0, and long before the eventual June 1991 release of MS-DOS 5.0, stories on feature enhancements in MS-DOS started to appear in InfoWorld and PC Week. Brad Silverberg, then Vice President of Systems Software at Microsoft and general manager of its Windows and MS-DOS Business Unit, wrote a forceful letter to PC Week (5 November 1990), denying that Microsoft was engaged in FUD tactics ("to serve our customers better, we decided to be more forthcoming about version 5.0") and denying that Microsoft copied features from DR DOS:
+
+"The feature enhancements of MS-DOS version 5.0 were decided and development was begun long before we heard about DR DOS 5.0. There will be some similar features. With 50 million MS-DOS users, it shouldn't be surprising that DRI has heard some of the same requests from customers that we have." – (Schulman et al. 1994).[32]
+
+The pact between Microsoft and IBM to promote OS/2 began to fall apart in 1990 when Windows 3.0 became a marketplace success. Much of Microsoft's further contributions to OS/2 also went into creating a third GUI replacement for DOS, Windows NT.
+IBM, which had already been developing the next version of OS/2, carried on development of the platform without Microsoft and sold it as the alternative to DOS and Windows.
+Legal issues[edit]
+As a response to Digital Research's DR DOS 6.0, which bundled SuperStor disk compression, Microsoft opened negotiations with Stac Electronics, vendor of the most popular DOS disk compression tool, Stacker. In the due diligence process, Stac engineers had shown Microsoft part of the Stacker source code. Stac was unwilling to meet Microsoft's terms for licensing Stacker and withdrew from the negotiations. Microsoft chose to license Vertisoft's DoubleDisk, using it as the core for its DoubleSpace disk compression.[33]
+MS-DOS 6.0 and 6.20 were released in 1993, both including the Microsoft DoubleSpace disk compression utility program. Stac successfully sued Microsoft for patent infringement regarding the compression algorithm used in DoubleSpace. This resulted in the 1994 release of MS-DOS 6.21, which had disk-compression removed. Shortly afterwards came version 6.22, with a new version of the disk compression system, DriveSpace, which had a different compression algorithm to avoid the infringing code.
+Prior to 1995, Microsoft licensed MS-DOS (and Windows) to computer manufacturers under three types of agreement: per-processor (a fee for each system the company sold), per-system (a fee for each system of a particular model), or per-copy (a fee for each copy of MS-DOS installed). The largest manufacturers used the per-processor arrangement, which had the lowest fee. This arrangement made it expensive for the large manufacturers to migrate to any other operating system, such as DR DOS. In 1991, the U.S. government Federal Trade Commission began investigating Microsoft's licensing procedures, resulting in a 1994 settlement agreement limiting Microsoft to per-copy licensing. Digital Research did not gain by this settlement, and years later its successor in interest, Caldera, sued Microsoft for damages in the Caldera v. Microsoft lawsuit. It was believed that the settlement ran in the order of $150 million, but was revealed in November 2009 with the release of the Settlement Agreement to be $280 million.[34]
+Use of undocumented APIs[edit]
+Microsoft also used a variety of tactics in MS-DOS and several of their applications and development tools that, while operating perfectly when running on genuine MS-DOS (and PC DOS), would break when run on another vendor's implementation of DOS. Notable examples of this practice included:
+
+Microsoft's QuickPascal released in early 1989 was the first MS product that checked for MS-DOS by modifying the program's Program Segment Prefix using undocumented DOS functions, and then checked whether or not the associated value changed in a fixed position within the DOS data segment (also undocumented). This check also made it into later MS products, including Microsoft QuickC v2.5, Programmer's Workbench and Microsoft C v6.0.[32]
+The AARD code, a block of code in the windows launcher (WIN.COM) and a few other system files of Windows 3.1. It was XOR encrypted, self-modifying, and deliberately obfuscated, using various undocumented DOS structures and functions to determine whether or not Windows really was running on MS-DOS.[32] In the beta versions, it displayed an "error" message if the test for genuine MS-DOS failed, prompting the user to abort or continue, with abort the default. In the final release version, the code still ran, but the message and prompt were disabled by an added flag byte, rendering it (probably) ineffectual.
+
+Note that the Windows 3.0 beta code only gave a warning that Windows would not operate properly on a "foreign" OS. It did in fact run just fine on DR DOS 6.0.
+
+
+Interrupt routines called by Windows to inform MS-DOS that Windows is starting/exiting, information that MS-DOS retained in an IN_WINDOWS flag, in spite of the fact that MS-DOS and Windows were supposed to be two separate products.[32]
+
+End of MS-DOS[edit]
+
+
+
+
+As of 2011[update], MS-DOS is still used in some enterprises to run legacy applications, such as this US Navy food service management system.
+
+
+With the release of Windows 95 (and continuing in the Windows 9x product line through to Windows ME), an integrated version of MS-DOS was used for bootstrapping, troubleshooting, and backwards-compatibility with old DOS software, particularly games, and no longer released as a standalone product. In Windows 95, the DOS, called MS-DOS 7, can be booted separately, without the Windows GUI; this capability was retained through Windows 98 Second Edition. Windows ME removed the capability to boot its underlying MS-DOS 8.0 alone from a hard disk, but retained the ability to make a DOS boot floppy disk (called an "Emergency Boot Disk") and can be hacked to restore full access to the underlying DOS.
+In contrast to the Windows 9x series, the Windows NT-derived 32-bit operating systems developed alongside the 9x series (Windows NT, 2000, XP and newer) do not contain MS-DOS as part of the operating system, but provide a subset of DOS emulation to run DOS applications and provide DOS-like command prompt windows. 64-bit versions of Windows NT line do not provide DOS emulation and cannot run DOS applications natively.[35] Windows XP contains a copy of the Windows ME boot disk, stripped down to bootstrap only. This is accessible only by formatting a floppy as an "MS-DOS startup disk". Files like the driver for the CD-ROM support were deleted from the Windows ME bootdisk and the startup files (AUTOEXEC.BAT and CONFIG.SYS) no longer had content. This modified disk was the base for creating the MS-DOS image for Windows XP. Some of the deleted files can be recovered with an undelete tool.[36] With Windows Vista the files on the startup disk are dated 18 April 2005 but are otherwise unchanged, including the string "MS-DOS Version 8 Copyright 1981–1999 Microsoft Corp" inside COMMAND.COM. Starting with Windows 10, the ability to create a DOS startup disk has been removed.
+The only versions of MS-DOS currently recognized as stand-alone OSs and supported as such by Microsoft are MS-DOS 6.0 and 6.22, both of which remain available for download via their MSDN, volume license, and OEM license partner websites, for customers with valid login credentials. MS-DOS is still used in embedded x86 systems due to its simple architecture and minimal memory and processor requirements, though some current products have switched to the still-maintained open-source alternative FreeDOS.
+Windows command-line interface[edit]
+All versions of Microsoft Windows have had an MS-DOS-like command-line interface (CLI) called Command Prompt.This could run many DOS and variously Win32, OS/2 1.x and POSIX command line utilities in the same command-line session, allowing piping between commands. The user interface, and the icon up to Windows 2000, followed the native MS-DOS interface.
+The 16-bit versions of Windows (up to 3.11) ran as a Graphical User Interface (GUI) on top of MS-DOS. With Windows 95, 98, 98 SE and ME, the MS-DOS part was (superficially) integrated, treating both operating systems as a complete package, though the DOS component could actually stand alone. The command line accessed the DOS command line (usually COMMAND.COM) through a Windows module (WINOLDAP.MOD).[clarification needed]
+A new line of Windows, (Windows NT), boot through a kernel whose sole purpose is to load Windows. One can not run Win32 applications in the loader system in the manner that OS/2, UNIX or Consumer Windows can launch character mode sessions.
+The command session permits running of various supported command line utilities from Win32, MS-DOS, OS/2 1.x and POSIX. The emulators for MS-DOS, OS/2 and POSIX use the host's window in the same way that Win16 applications use the Win32 explorer. Using the host's window allows one to pipe output between emulations.
+The MS-DOS emulation is done through the NTVDM (NT Virtual DOS Machine). This is a modified SoftPC (a former product similar to VirtualPC), running a modified MS-DOS 5 (NTIO.SYS and NTDOS.SYS). The output is handled by the console DLLs, so that the program at the prompt (CMD.EXE, 4NT.EXE, TCC.EXE), can see the output. 64-bit Windows does not have either the DOS emulation, or the DOS commands (EDIT, DEBUG, EDLIN), that come with 32-bit Windows.
+The DOS version returns 5.00 or 5.50, depending on which API function is used to determine it. Utilities from MS-DOS 5.00 run in this emulation without modification. The very early beta programs of NT show MS-DOS 30.00, but programs running in MS-DOS 30.00 would assume that OS/2 was in control.
+The OS/2 emulation is handled through OS2SS.EXE and OS2.EXE, and DOSCALLS.DLL. OS2.EXE is a version of the OS/2 shell (CMD.EXE), which passes commands down to the OS2SS.EXE, and input-output to the Windows NT shell. Windows 2000 was the last version of NT to support OS/2. The emulation is OS/2 1.30.
+POSIX is emulated through the POSIX shell, but no emulated shell; the commands are handled directly in CMD.EXE.
+The Command Prompt is often called the MS-DOS prompt. In part, this was the official name for it in Windows 9x and early versions of Windows NT (NT 3.5 and earlier), and in part because the SoftPC emulation of DOS redirects output into it. Actually only COMMAND.COM and other 16bit commands run in a NTVDM with AUTOEXEC.NT and CONFIG.NT initialisation determined by _default.pif, optionally permitting the use of Win32 console applications and internal commands with a NTCMDPROMPT directive.
+Win32 console applications use CMD.EXE as their command prompt shell. This confusion does not exist under OS/2 because there are separate DOS and OS/2 prompts, and running a DOS program under OS/2 will launch a separate DOS window to run the application.
+All versions of Windows for Itanium (no longer sold by Microsoft) and x86-64 architectures no longer include the NTVDM and can therefore no longer natively run MS-DOS or 16-bit Windows applications. There are alternatives in the form of virtual machine emulators such as Microsoft's own Virtual PC, as well as VMware, DOSBox, and others.
+Legacy compatibility[edit]
+From 1983 onwards, various companies worked on graphical user interfaces (GUIs) capable of running on PC hardware. However, this required duplicated effort and did not provide much consistency in interface design (even between products from the same company).
+Later, in 1985, Microsoft Windows was released as Microsoft's first attempt at providing a consistent user interface (for applications). The early versions of Windows ran on top of MS-DOS. At first Windows met with little success, but this was also true for most other companies' efforts as well, for example GEM. After version 3.0, Windows gained market acceptance.
+Windows 9x used the DOS boot process to launch into protected mode. Basic features related to the file system, such as long file names, were only available to DOS when running as a subsystem of Windows. Windows NT runs independently of DOS but includes NTVDM, a component for simulating a DOS environment for legacy applications.
+Related systems[edit]
+Main article: DOS
+MS-DOS compatible systems include:
+
+IBM PC DOS
+DR DOS, Novell DOS, OpenDOS
+FreeDOS
+PTS-DOS
+ROM-DOS
+
+Microsoft manufactured IBM PC DOS for IBM. It and MS-DOS were identical products that eventually diverged starting with PC DOS version 6.1.
+Digital Research's DR-DOS is sometimes regarded as a clone of MS-DOS, but it did not follow Microsoft's version numbering scheme. For example, MS-DOS 4, released in July 1988, was followed by DR DOS 5.0 in May 1990. MS-DOS 5.0 came in April 1991, with DR DOS 6.0 being released the following June.[37]
+These products are collectively referred to as "DOS," even though "Disk Operating System" is a generic term used on other systems unrelated to the x86 and IBM PC. "MS-DOS" can also be a generic reference to DOS on IBM PC compatible computers.
+What made the difference in the end was Microsoft's control of the Windows platform and their programming practices which intentionally made Windows appear as if it ran poorly on competing versions of DOS.[32] Digital Research had to release interim releases to circumvent Windows limitations inserted artificially,[32] designed specifically to provide Microsoft with an unfair competitive advantage.[32]
+See also[edit]
+
+4DOS – designed to replace the default command interpreter COMMAND.COM
+Bad command or file name
+DOSBox
+History of Microsoft Windows
+List of DOS commands
+MS-DOS API
+Towns OS – an MS-DOS adaptation by Fujitsu for FM Towns
+Tao ExDOS – commercial solution for DOS software on new Windows systems.
+Timeline of DOS operating systems
+Win32 console – an environment provided by Windows operating systems to support character-mode applications
+
+Notes[edit]
+
+
+
+^ Confirmed that there was Compaq Personal Computer DOS 3.31 aside from MS-DOS 3.31.
+^ Up to 512 MiB only.
+^ Only if boot record of source floppy disk contains volume serial number also.
+^ One for the floppy disk, one for a bootable partition of a hard disk, the other two are not known.
+
+
+
+References[edit]
+
+
+
+^ Paterson, Tim (June 1983). "An Inside Look at MS-DOS". Seattle Computer Products. Seattle. Archived from the original on 2017-05-06. 
+^ a b Paterson, Tim (2013-12-19) [1983]. "Microsoft DOS V1.1 and V2.0: /msdos/v11source/MSDOS.ASM". Computer History Museum, Microsoft. Retrieved 2014-03-25.  (NB. While the publishers claim this would be MS-DOS 1.1 and 2.0, it actually is SCP MS-DOS 1.25 and a mixture of Altos MS-DOS 2.11 and TeleVideo PC DOS 2.11.)
+^ a b Shustek, Len (24 March 2014). "Microsoft MS-DOS early source code". Software Gems: The Computer History Museum Historical Source Code Series. Retrieved 2014-03-29.  (NB. While the author claims this would be MS-DOS 1.1 and 2.0, it actually is SCP MS-DOS 1.25 and a mixture of Altos MS-DOS 2.11 and TeleVideo PC DOS 2.11.)
+^ a b Levin, Roy (25 March 2014). "Microsoft makes source code for MS-DOS and Word for Windows available to public". Official Microsoft Blog. Retrieved 2014-03-29.  (NB. While the author claims this would be MS-DOS 1.1 and 2.0, it actually is SCP MS-DOS 1.25 and a mixture of Altos MS-DOS 2.11 and TeleVideo PC DOS 2.11.)
+^ a b c "MS-DOS: A Brief Introduction". The Linux Information Project. Archived from the original on 2017-12-14. Retrieved 2017-12-14. 
+^ "Obsolete Products Life-Cycle Policy". Support. Microsoft. 30 July 2009. Archived from the original on 6 July 2006. Retrieved 6 April 2010. 
+^ a b "A history of Windows". microsoft.com. Microsoft. November 2013. Archived from the original on 2015-05-10. Retrieved 2015-05-10. 
+^ a b Leven Antov (1996). "History of MS-DOS". Digital Research. Archived from the original on 2017-10-02. Retrieved 6 May 2015. 
+^ "A Short History of MS-DOS". patersontech.com. Archived from the original on 1 August 2013. 
+^ a b c Allan, Roy A. (2001). "Microsoft in the 1980s, part III 1980s – The IBM/Macintosh era". A history of the personal computer: the people and the technology. London, Ontario: Allan Pub. p. 14. ISBN 0-9689108-0-7. Retrieved 5 December 2009. 
+^ "A Compilation of 8 Historical Essays". Google Books. Archived from the original on 14 October 2016. Retrieved 30 January 2016. 
+^ Conner, Doug. "Father of DOS Still Having Fun at Microsoft". patersontech.com. Micronews. Archived from the original on 9 February 2010. Retrieved 5 December 2009. 
+^ "Personal Computer Announced by IBM" (PDF). ibm.com. IBM. Retrieved 27 September 2014. 
+^ Freiberger, Paul (23 August 1982). "Bill Gates, Microsoft and the IBM Personal Computer". InfoWorld. p. 22. Retrieved 29 January 2015. 
+^ Swaine, Michael (23 August 1982). "MS-DOS: examining IBM PC's disk-operating system". InfoWorld. p. 24. Retrieved 29 January 2015. 
+^ Morgan, Chris (January 1982). "Of IBM, Operating Systems, and Rosetta Stones". BYTE. p. 6. Retrieved 19 October 2013. 
+^ Fiedler, Ryan (October 1983). "The Unix Tutorial / Part 3: Unix in the Microcomputer Marketplace". BYTE. p. 132. Retrieved 30 January 2015. 
+^ "Before you bet your business software on an OS, look who's betting on MS-DOS and XENIX". InfoWorld (advertisement). 27 June 1983. p. 44. Retrieved 31 January 2015. 
+^ Phipps, Simon (26 March 2014). "Psych! Microsoft didn't really open-source MS-DOS". InfoWorld. Retrieved 2014-03-27. 
+^ Luke Peters (1 April 2015). "Microsoft launches MS-DOS Mobile". Microsoft Lumia. Microsoft. Archived from the original on 2 April 2015. Retrieved 2015-04-02. The MS-DOS Mobile preview is an essential download 
+^ a b Duncan, Ray (1988). The MS-DOS Encyclopedia – version 1.0 through 3.2. Redmond, Wash.: Microsoft Press. ISBN 1556150490. OCLC 16581341. 
+^ "Microsoft® DOS Version Features". EMS Professional Software and Specialty Services. Archived from the original on 2017-08-29. Retrieved 2017-08-29. 
+^ "DOS history". Pcmuseum.tripod.com. Self-published. Archived from the original on 2017-08-29. Retrieved 2017-08-29. 
+^ "Microsoft MS-DOS Informatie". ultrawindows.nl. Archived from the original on 9 Aug 2011. Retrieved 2012-09-27. 
+^ a b "Standard Floppy Disk Formats Supported by MS-DOS". Microsoft Support. Microsoft. Archived from the original on 2016-03-04. Retrieved 2016-03-04. 
+^ Shultz, Greg (6 November 2006). "Dinosaur Sightings: Installing MS-DOS 4". TechRepublic. CBS Interactive. Archived from the original on 2017-08-29. Retrieved 2017-08-29. 
+^ a b "MS-DOS Partitioning Summary". Support. Microsoft. Retrieved 17 June 2015. 
+^ "DOS 4.0: About volume serial number". Faqs.org. Retrieved 2012-09-27. 
+^ Brown, Ralf D. (29 December 2002). "The x86 Interrupt List". Retrieved 2011-10-14 – via Carnegie Mellon University. 
+^ Paul, Matthias (30 July 1997). "II.16.iv. Landessprachliche Unterstützung – Codeseiten" [II.16.iv. National language support – Codepages]. NWDOS-TIPs – Tips & Tricks rund um Novell DOS 7, mit Blick auf undokumentierte Details, Bugs und Workarounds [NWDOSTIPs – Tips & tricks for Novell DOS 7, with special focus on undocumented details, bugs and workarounds]. MPDOSTIP (e-book) (in German) (edition 3, release 157 ed.). Archived from the original on 2016-06-06. Retrieved 2016-06-06. 
+^ "Country". MS-DOS 6 Technical Reference. Microsoft. ANSI.SYS. Retrieved 2014-04-01 – via TechNet. 
+^ a b c d e f g Schulman, Andrew (1994). Undocumented DOS: A Programmer's Guide to Reserved MS-DOS Functions and Data Structures (2nd ed.). Addison-Wesley. ISBN 0-201-63287-X. 
+^ "How Safe is Disk Compression?". BYTE Magazine. February 1994. Archived from the original on 19 June 2008. 
+^ "Exhibits to Microsoft's Cross Motion for Summary Judgment in Novell WordPerfect Case". Groklaw. 23 November 2009. Retrieved 2011-10-22. 
+^ "List of limitations in 64-Bit Windows". Support. Microsoft. 11 October 2007. Retrieved 2016-05-26. 
+^ Sedory, Daniel B. (8 December 2004). "Windows XP MS-DOS Startup Disk". The Starman's Realm. Archived from the original on 24 October 2010. 
+^ Comerford, M. "DOS Timeline ~ Part One ~ 1980 to 1993". PowerLoad. Self-published. Archived from the original on 24 February 2006. Retrieved 18 June 2015. 
+
+
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to MS-DOS.
+
+
+
+MS-DOS Source –  MS-DOS 1.1 and MS-DOS 2.0 Source Code at Computer History Museum
+MS-DOS overview –  on Microsoft website
+Current License Agreement Policies for MS-DOS and Windows
+Tim Paterson on DOS – Paterson wrote the QDOS OS
+DOSBox, a multiplatform DOS emulator
+Archive.Org: MS Dos Emulator
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Operating systems by Microsoft
+
+
+
+Desktop
+
+
+
+Microsoft Windows
+
+9x
+NT
+CE
+
+
+MS-DOS
+MSX-DOS
+OS/2
+Xenix
+
+
+
+
+
+Mobile
+
+
+
+Nokia Asha platform
+KIN OS
+Windows Mobile
+Windows Phone
+Zune
+
+
+
+
+
+Console
+
+
+
+Xbox
+Xbox 360
+Xbox One
+
+
+
+
+
+Projects
+
+
+
+Barrelfish
+Bigtop
+Cairo
+HomeOS
+Linux distros
+MIDAS
+Midori
+Singularity
+Verve
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Operating systems
+
+
+
+General
+
+
+
+Advocacy
+Comparison
+Forensic engineering
+History
+Hobbyist development
+List
+Timeline
+Usage share
+
+
+
+
+
+Kernel
+
+
+
+
+Architectures
+
+
+
+Exokernel
+Hybrid
+Microkernel
+Monolithic
+Rump kernel
+Unikernel
+
+
+
+
+
+Components
+
+
+
+Device driver
+Loadable kernel module
+Microkernel
+User space
+
+
+
+
+
+
+
+
+Process management
+
+
+
+
+Concepts
+
+
+
+Context switch
+Interrupt
+IPC
+Process
+Process control block
+Real-time
+Thread
+Time-sharing
+
+
+
+
+
+Scheduling
+algorithms
+
+
+
+Computer multitasking
+Fixed-priority preemptive
+Multilevel feedback queue
+Preemptive
+Round-robin
+Shortest job next
+
+
+
+
+
+
+
+
+Memory management and
+resource protection
+
+
+
+Bus error
+General protection fault
+Memory protection
+Paging
+Protection ring
+Segmentation fault
+Virtual memory
+
+
+
+
+
+Storage access and
+file systems
+
+
+
+Boot loader
+Defragmentation
+Device file
+File attribute
+Inode
+Journal
+Partition
+Virtual file system
+Virtual tape library
+
+
+
+
+
+List
+
+
+
+AmigaOS
+Android
+BeOS
+BSD
+Chrome OS
+CP/M
+DOS
+GNU
+Haiku
+illumos
+IncludeOS
+iOS
+Linux
+Macintosh
+
+Classic Mac OS
+macOS
+
+
+MINIX
+MorphOS
+MUSIC/SP
+Nemesis
+NOS
+OpenVMS
+ORVYL
+OS/2
+OSv
+Pick
+QNX
+ReactOS
+RISC OS
+RSTS/E
+RSX-11
+RT-11
+Solaris
+TOPS-10/TOPS-20
+TPF
+Unix
+Visi On
+VM/CMS
+VS/9
+Windows
+Xinu
+z/OS
+
+
+
+
+
+Miscellaneous concepts
+
+
+
+API
+Computer network
+HAL
+Live CD
+Live USB
+OS shell
+
+CLI
+GUI
+TUI
+VUI
+
+
+PXE
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+BNF: cb11968867h (data)
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=MS-DOS&oldid=818310509"					Categories: 1981 softwareDiscontinued Microsoft operating systemsDiscontinued productsDisk operating systemsDOS issuesFloppy disk-based operating systemsMicrocomputer softwareProprietary operating systemsSoftware written primarily in assembly languageHidden categories: CS1 German-language sources (de)Articles that may contain original research from November 2017All articles that may contain original researchArticles needing additional references from July 2012All articles needing additional referencesArticles with multiple maintenance issuesUse dmy dates from July 2017Pages using deprecated image syntaxArticles needing additional references from April 2010Articles containing potentially dated statements from 2011All articles containing potentially dated statementsWikipedia articles needing clarification from August 2015Wikipedia articles with BNF identifiers

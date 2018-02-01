@@ -1,0 +1,886 @@
+transmission control protocol main protocols internet protocol suite originated initial network implementation complemented internet protocol therefore entire suite commonly referred tcpip provides reliable ordered errorchecked delivery stream octets applications running hosts communicating network major internet applications world wide email remote administration file transfer rely applications require reliable data stream service user datagram protocol provides connectionless datagram service emphasizes reduced latency reliability
+
+
+internet protocol suite
+
+
+application layer
+
+
+
+
+
+dhcp
+
+
+http
+imap
+ldap
+mgcp
+mqtt
+nntp
+
+
+oncrpc
+
+rtsp
+
+
+smtp
+snmp
+
+telnet
+tlsssl
+xmpp
+
+
+
+
+
+transport layer
+
+
+
+
+
+
+dccp
+sctp
+rsvp
+
+
+
+
+
+internet layer
+
+
+
+
+
+
+ipv4
+ipv6
+
+
+icmp
+icmpv6
+
+igmp
+ipsec
+
+
+
+
+
+link layer
+
+
+
+
+
+
+ospf
+tunnels
+
+l2tp
+
+
+
+
+
+ethernet
+
+isdn
+fddi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+contents
+
+
+historical origin
+network function
+segment structure
+protocol operation
+
+connection establishment
+connection termination
+resource usage
+data transfer
+
+reliable transmission
+
+4411 dupack based retransmission
+4412 timeout based retransmission
+
+
+error detection
+flow control
+congestion control
+
+
+maximum segment size
+selective acknowledgments
+window scaling
+timestamps
+outofband data
+forcing data delivery
+
+
+vulnerabilities
+
+denial service
+connection hijacking
+veto
+
+
+ports
+development
+wireless networks
+hardware implementations
+debugging
+alternatives
+checksum computation
+
+checksum ipv4
+checksum ipv6
+checksum offload
+
+
+also
+references
+reading
+external links
+
+
+others
+
+
+
+
+
+historical originedit
+1974 institute electrical electronic engineers ieee published paper titled protocol packet network intercommunication1 papers authors vint cerf kahn described internetworking protocol sharing resources using packet switching among nodes incorporating concepts french cyclades project directed louis pouzin2 central control component model transmission control program incorporated connectionoriented links datagram services hosts monolithic transmission control program later divided modular architecture consisting transmission control protocol connectionoriented layer internet protocol internetworking datagram layer model became known informally tcpip although formally henceforth termed internet protocol suite
+network functionedit
+transmission control protocol provides communication service intermediate level application program internet protocol provides hosttohost connectivity transport layer internet model application need know particular mechanisms sending data link another host required packet fragmentation transmission medium transport layer protocol handles handshaking transmission details presents abstraction network connection application
+lower levels protocol stack network congestion traffic load balancing unpredictable network behaviour packets lost duplicated delivered order detects problems requests retransmission lost data rearranges outoforder data even helps minimize network congestion reduce occurrence problems data still remains undelivered source notified failure receiver reassembled sequence octets originally transmitted passes receiving application thus abstracts applications communication underlying networking details
+used extensively many applications available internet including world wide email file transfer protocol secure shell peertopeer file sharing streaming media applications
+optimized accurate delivery rather timely delivery incur relatively long delays order seconds waiting outoforder messages retransmissions lost messages therefore particularly suitable realtime applications voice applications protocols like realtime transport protocol operating user datagram protocol usually recommended instead3
+reliable stream delivery service guarantees bytes received identical bytes sent correct order since packet transfer many networks reliable technique known positive acknowledgement retransmission used guarantee reliability fundamental technique requires receiver respond acknowledgement message receives data sender keeps record packet sends maintains timer packet sent sender retransmits packet timer expires receiving message acknowledgement timer needed case packet gets lost corrupted3
+handles actual delivery data keeps track segments individual units data transmission message divided efficient routing network example html file sent server software layer server divides sequence file octets segments forwards individually software layer internet layer internet layer encapsulates segment packet adding header includes among data destination address client program destination computer receives layer transport layer reassembles individual segments ensures correctly ordered errorfree streams application
+segment structureedit
+transmission control protocol accepts data data stream divides chunks adds header creating segment segment encapsulated internet protocol datagram exchanged peers4
+term packet appears informal formal usage whereas precise terminology segment refers protocol data unit datagram5 frame data link layer
+
+processes transmit data calling passing buffers data arguments packages data buffers segments calls internet module transmit segment destination tcp6
+
+segment consists segment header data section header contains mandatory fields optional extension field options pink background table
+data section follows header contents payload data carried application length data section specified segment header calculated subtracting combined length header encapsulating header total datagram length specified header
+
+header
+
+offsets
+octet
+
+
+
+
+
+
+octet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+source port
+destination port
+
+
+
+
+sequence number
+
+
+
+
+acknowledgment number
+
+
+
+
+data offset
+reserved
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window size
+
+
+
+
+checksum
+urgent pointer
+
+
+
+
+
+
+options data offset padded bytes necessary
+
+
+
+
+source port bits
+identifies sending port
+destination port bits
+identifies receiving port
+sequence number bits
+dual role
+
+flag initial sequence number sequence number actual first data byte acknowledged number corresponding sequence number plus
+flag clear accumulated sequence number first data byte segment current session
+
+
+
+
+acknowledgment number bits
+flag value field next sequence number sender expecting acknowledges receipt prior bytes first sent acknowledges ends initial sequence number data
+data offset bits
+specifies size header 32bit words minimum size header words maximum words thus giving minimum size bytes maximum bytes allowing bytes options header field gets name fact also offset start segment actual data
+reserved bits
+future zero
+flags bits control bits
+contains 1bit flags
+
+ecnnonce concealment protection experimental 3540
+congestion window reduced flag sending host indicate received segment flag responded congestion control mechanism added header 3168
+ecnecho dual role depending value flag indicates
+
+
+
+
+flag peer capable
+flag clear packet congestion experienced flag ecn11 header received normal transmission added header 3168 serves indication network congestion impending congestion sender
+
+
+
+
+indicates urgent pointer field significant
+indicates acknowledgment field significant packets initial packet sent client flag
+push function asks push buffered data receiving application
+reset connection
+synchronize sequence numbers first packet sent flag flags fields change meaning based flag valid others clear
+last packet sender
+
+
+
+
+window size bits
+size receive window specifies number window size units default bytes beyond segment identified sequence number acknowledgment field sender segment currently willing receive flow control window scaling
+checksum bits
+16bit checksum field used errorchecking header payload pseudoheader pseudoheader consist source address destination address protocol number tcpprotocol 0x0006 length tcpheaders including payload bytes
+urgent pointer bits
+flag 16bit field offset sequence number indicating last urgent data byte
+options variable 0–320 bits divisible
+length field determined data offset field options three fields optionkind byte optionlength byte optiondata variable optionkind field indicates type option field optional depending kind option dealing next fields optionlength field indicates total length option optiondata field contains value option applicable example optionkind byte 0x01 indicates noop option used padding optionlength optiondata byte following optionkind byte options option also byte optionkind byte 0x02 indicates maximum segment size option followed byte specifying length field 0x04 length total length given options field including optionkind optionlength bytes value typically expressed bytes length field bytes bytes kind length short option field value 0x05b4 show 0x02 0x04 0x05b4 options section
+options sent indicated optionkind standard lengths given optionkindoptionlength
+
+bits options list
+bits operation padding used align option fields 32bit boundaries better performance
+24ss bits maximum segment size maximum segment size
+bits window scale window scaling details syn7
+bits selective acknowledgement permitted selective acknowledgments details8
+5nbbbbeeee variable bits either selective acknowledgement sack9 first bytes followed list blocks selectively acknowledged specified 32bit beginend pointers
+810tttteeee bits timestamp echo previous timestamp timestamps details10
+
+
+remaining options historical obsolete experimental standardized unassigned option number assignments maintained iana11
+padding
+header padding used ensure header ends data begins boundary padding composed zeros12
+
+protocol operationedit
+
+
+
+
+simplified state diagram efsm diagram detailed state diagram including states inside established state
+
+
+protocol operations divided three phases connections must properly established multistep handshake process connection establishment entering data transfer phase data transmission completed connection termination closes established virtual circuits releases allocated resources
+connection managed operating system programming interface represents local endpoint communications internet socket lifetime connection local endpoint undergoes series state changes13
+
+listen
+server represents waiting connection request remote port
+synsent
+client represents waiting matching connection request sent connection request
+synreceived
+server represents waiting confirming connection request acknowledgment received sent connection request
+established
+server client represents open connection data received delivered user normal state data transfer phase connection
+finwait1
+server client represents waiting connection termination request remote acknowledgment connection termination request previously sent
+finwait2
+server client represents waiting connection termination request remote
+closewait
+server client represents waiting connection termination request local user
+closing
+server client represents waiting connection termination request acknowledgment remote
+lastack
+server client represents waiting acknowledgment connection termination request previously sent remote includes acknowledgment connection termination request
+timewait
+either server client represents waiting enough time pass sure remote received acknowledgment connection termination request according connection stay timewait maximum four minutes known maximum segment lifetime
+closed
+server client represents connection state
+
+connection establishmentedit
+establish connection uses threeway handshake client attempts connect server server must first bind listen port open connections called passive open passive open established client initiate active open establish connection threeway 3step handshake occurs
+
+active open performed client sending server client sets segments sequence number random value
+synack response server replies synack acknowledgment number received sequence number sequence number server chooses packet another random number
+finally client sends back server sequence number received acknowledgement value acknowledgement number received sequence number
+
+point client server received acknowledgment connection steps establish connection parameter sequence number direction acknowledged steps establish connection parameter sequence number direction acknowledged fullduplex communication established
+connection terminationedit
+
+
+
+
+connection termination
+
+
+connection termination phase uses fourway handshake side connection terminating independently endpoint wishes stop half connection transmits packet acknowledges therefore typical teardown requires pair segments endpoint side sent first responded final waits timeout finally closing connection time local port unavailable connections prevents confusion delayed packets delivered subsequent connections
+connection halfopen case side terminated side terminated longer send data connection side terminating side continue reading data side terminates well
+also possible terminate connection 3way handshake host sends host replies merely combines steps host replies ack14
+host stacks implement halfduplex close sequence linux hpux host actively closes connection still read incoming data stack already received link host sends instead section 42213 1122 allows application sure remote application read data former sent—waiting remote side actively closes connection remote stack cannot distinguish connection aborting data loss cause remote stack lose data received
+application protocols using openclose handshaking application protocol openclose handshaking find problem active close example
+
+connectremote
+sends data
+closes
+
+program flow like tcpip stack like described guarantee data arrives application unread data arrived
+resource usageedit
+implementations allocate entry table maps session running operating system process packets include session identifier endpoints identify session using clients address port whenever packet received implementation must perform lookup table find destination process entry table known transmission control block contains information endpoints port status connection running data packets exchanged buffers sending receiving data
+number sessions server side limited memory grow connections arrive client must allocate random port sending first server port remains allocated whole conversation effectively limits number outgoing connections clients addresses application fails properly close unrequired connections client resources become unable establish connections even applications
+endpoints must also allocate space unacknowledged packets received unread data
+data transferedit
+features apart user datagram protocol
+
+ordered data transfer destination host rearranges according sequence number3
+retransmission lost packets cumulative stream acknowledged retransmitted3
+errorfree data transfer15
+flow control limits rate sender transfers data guarantee reliable delivery receiver continually hints sender much data received controlled sliding window receiving hosts buffer fills next acknowledgment contains window size stop transfer allow data buffer processed3
+congestion control3
+
+reliable transmissionedit
+uses sequence number identify byte data sequence number identifies order bytes sent computer data reconstructed order regardless packet reordering packet loss occur transmission sequence number first byte chosen transmitter first packet flagged number arbitrary fact unpredictable defend sequence prediction attacks
+acknowledgements acks sent sequence number receiver data tell sender data received specified byte acks imply data delivered application merely signify receivers responsibility deliver data
+reliability achieved sender detecting lost data retransmitting uses primary techniques identify loss retransmission timeout abbreviated duplicate cumulative acknowledgements dupacks
+dupack based retransmissionedit
+single packet packet stream lost receiver cannot acknowledge packets uses cumulative acks hence receiver acknowledges packet receipt another data packet duplicate acknowledgement used signal packet loss sender receives three duplicate acknowledgements retransmits last unacknowledged packet threshold three used network reorder packets causing duplicate acknowledgements threshold demonstrated avoid spurious retransmissions reordering16 sometimes selective acknowledgements sacks used give explicit feedback packets received greatly improves tcps ability retransmit right packets
+timeout based retransmissionedit
+whenever packet sent sender sets timer conservative estimate packet acked sender receive transmits packet timer reset every time sender receives acknowledgement means retransmit timer fires sender received acknowledgement long time typically timer value
+
+
+
+
+smoothed
+
+
+
+
+
+
+
+
+
+variation
+
+
+
+
+displaystyle textsmoothed rttmaxg4times textrtt variation
+
+
+
+
+
+
+
+
+displaystyle
+
+clock granularity17 case retransmit timer fired still acknowledgement received next timer twice previous value certain threshold among things helps defend maninthemiddle denial service attack tries fool sender making many retransmissions receiver overwhelmed
+sender infers data lost network using techniques described retransmits data
+error detectionedit
+sequence numbers allow receivers discard duplicate packets properly sequence reordered packets acknowledgments allow senders determine retransmit lost packets
+assure correctness checksum field included checksum computation section details checksumming checksum weak check modern standards data link layers high error rates require additional link error correctiondetection capabilities weak checksum partially compensated common better integrity check layer used ethernet frame however mean 16bit checksum redundant remarkably introduction errors packets crcprotected hops common endtoend 16bit checksum catches simple errors18 endtoend principle work
+flow controledit
+uses endtoend flow control protocol avoid sender send data fast receiver receive process reliably mechanism flow control essential environment machines diverse network speeds communicate example sends data smartphone slowly processing received data smartphone must regulate data flow overwhelmed3
+uses sliding window flow control protocol segment receiver specifies receive window field amount additionally received data bytes willing buffer connection sending host send amount data must wait acknowledgment window update receiving host
+
+
+
+
+sequence numbers receive windows behave much like clock receive window shifts time receiver receives acknowledges segment data runs sequence numbers sequence number loops back
+
+
+receiver advertises window size sender stops sending data starts persist timer persist timer used protect deadlock situation could arise subsequent window size update receiver lost sender cannot send data receiving window size update receiver persist timer expires sender attempts recovery sending small packet receiver responds sending another acknowledgement containing window size
+receiver processing incoming data small increments repeatedly advertise small receive window referred silly window syndrome since inefficient send bytes data segment given relatively large overhead header
+congestion controledit
+final main aspect congestion control uses number mechanisms achieve high performance avoid congestion collapse network performance fall several orders magnitude mechanisms control rate data entering network keeping data flow rate would trigger collapse also yield approximately maxmin fair allocation flows
+acknowledgments data sent lack acknowledgments used senders infer network conditions sender receiver coupled timers senders receivers alter behavior flow data generally referred congestion control andor network congestion avoidance
+modern implementations contain four intertwined algorithms slowstart congestion avoidance fast retransmit fast recovery 5681
+addition senders employ retransmission timeout based estimated roundtrip time sender receiver well variance round trip time behavior timer specified 6298 subtleties estimation example senders must careful calculating samples retransmitted packets typically karns algorithm timestamps 1323 individual samples averaged time create smoothed round trip time srtt using jacobsons algorithm srtt value finally used roundtrip time estimate
+enhancing reliably handle loss minimize errors manage congestion fast highspeed environments ongoing areas research standards development result number congestion avoidance algorithm variations
+maximum segment sizeedit
+maximum segment size largest amount data specified bytes willing receive single segment best performance small enough avoid fragmentation lead packet loss excessive retransmissions accomplish typically announced side using option connection established case derived maximum transmission unit size data link layer networks sender receiver directly attached furthermore senders path discovery infer minimum along network path sender receiver dynamically adjust avoid fragmentation within network
+announcement also often called negotiation strictly speaking negotiated originator receiver would imply originator receiver negotiate agree upon single unified applies communication directions connection fact completely independent values permitted directions data flow connection19 situation arise example devices participating connection extremely limited amount memory reserved perhaps even smaller overall discovered path processing incoming segments
+selective acknowledgmentsedit
+relying purely cumulative acknowledgment scheme employed original protocol lead inefficiencies packets lost example suppose 10000 bytes sent different packets first packet lost transmission pure cumulative acknowledgment protocol receiver cannot received bytes 1000 9999 successfully failed receive first packet containing bytes thus sender resend 10000 bytes
+alleviate issue employs selective acknowledgment sack option defined 2018 allows receiver acknowledge discontinuous blocks packets received correctly addition sequence number last contiguous byte received successively basic acknowledgment acknowledgement specify number sack blocks sack block conveyed starting ending sequence numbers contiguous range receiver correctly received example receiver would send sack sequence numbers 1000 9999 sender would accordingly retransmit first packet bytes
+sender interpret outoforder packet delivery lost packet sender retransmit packet previous outoforder packet slow data delivery rate connection duplicatesack option extension sack option defined 2883 solves problem receiver sends dack indicate packets lost sender reinstate higher transmissionrate
+sack option mandatory comes operation parties support negotiated connection established sack uses optional part header segment structure details sack become widespread—all popular stacks support selective acknowledgment also used stream control transmission protocol sctp
+window scalingedit
+main article window scale option
+efficient highbandwidth networks larger window size used window size field controls flow data value limited 65535 bytes
+since size field cannot expanded scaling factor used window scale option defined 1323 option used increase maximum window size 65535 bytes gigabyte scaling larger window sizes part necessary tuning
+window scale option used 3way handshake window scale value represents number bits leftshift 16bit window size field window scale value shift direction independently sides must send option segments enable window scaling either direction
+routers packet firewalls rewrite window scaling factor transmission causes sending receiving sides assume different window sizes result nonstable traffic slow problem visible sites behind defective router20
+timestampsedit
+timestamps defined 1323 help determine order packets sent timestamps normally aligned system clock start random value many operating systems increment timestamp every elapsed millisecond however states ticks proportional
+timestamp fields
+
+4byte sender timestamp value timestamp
+4byte echo reply timestamp value recent timestamp received
+
+timestamps used algorithm known protection wrapped sequence numbers paws 1323 details paws used receive window crosses sequence number wraparound boundary case packet potentially retransmitted answers question sequence number first second timestamp used break
+also eifel detection algorithm 3522 uses timestamps determine retransmissions occurring packets lost simply order
+recent statistics show level timestamp adoption stagnated owing windows server dropping support since windows server 2008
+outofband dataedit
+possible interrupt abort queued stream instead waiting stream finish done specifying data urgent tells receiving program process immediately along rest urgent data finished informs application resumes back stream queue example used remote login session user send keyboard sequence interrupts aborts program signals often needed program remote machine fails operate correctly signals must sent without waiting program finish current transfer3
+data designed modern internet urgent pointer alters processing remote host doesnt expedite processing network gets remote host slightly different interpretations protocol means single bytes data reliable assuming reliable least commonly used protocol elements tends poorly implemented 2223
+forcing data deliveryedit
+normally waits full packet data send nagles algorithm tries group small messages single packet wait creates small potentially serious delays repeated constantly file transfer example typical send block would typical 1460 packets mbits ethernet taking followed third carrying remaining 1176 pause waiting full buffer
+case telnet user keystroke echoed back server user screen delay would become annoying
+setting socket option tcpnodelay overrides default send delay application programs socket option force output sent writing character line characters
+defines push message receiving stack send data immediately receiving application3 indicate control user space using berkeley sockets controlled protocol stack only24
+vulnerabilitiesedit
+attacked variety ways results thorough security assessment along possible mitigations identified issues published 200925 currently pursued within ietf26
+denial serviceedit
+using spoofed address repeatedly sending purposely assembled packets followed many packets attackers cause server consume large amounts resources keeping track bogus connections known flood attack proposed solutions problem include cookies cryptographic puzzles though cookies come vulnerabilities27 sockstress similar attack might mitigated system resource management28 advanced attack involving exploitation persist timer analyzed phrack 6629 push floods variants30
+connection hijackingedit
+main article sequence prediction attack
+attacker able eavesdrop session redirect packets hijack connection attacker learns sequence number ongoing communication forges false segment looks like next segment stream simple hijack result packet erroneously accepted receiving host acknowledges extra segment side connection synchronization lost hijacking might combined address resolution protocol routing attacks allow taking control packet flow permanent control hijacked connection31
+impersonating different address difficult prior 1948 initial sequence number easily guessable allowed attacker blindly send sequence packets receiver would believe come different address without need deploy routing attacks enough ensure legitimate host impersonated address bring condition using denialofservice attacks initial sequence number chosen random
+vetoedit
+attacker eavesdrop predict size next packet sent cause receiver accept malicious payload without disrupting existing connection attacker injects malicious packet sequence number payload size next expected packet legitimate packet ultimately received found sequence number length packet already received silently dropped normal duplicate packet—the legitimate packet vetoed malicious packet unlike connection hijacking connection never desynchronized communication continues normal malicious payload accepted veto gives attacker less control communication makes attack particularly resistant detection large increase network traffic storm avoided evidence receiver something amiss single duplicate packet normal occurrence network sender vetoed packet never sees evidence attack32
+another vulnerability reset attack
+portsedit
+port numbers identify sending receiving application endpoints host often called internet sockets side connection associated 16bit unsigned port number 065535 reserved sending receiving application arriving packets identified belonging specific connection sockets combination source host address source port destination host address destination port means server computer provide several clients several services simultaneously long client takes care initiating simultaneous connections destination port different source ports
+port numbers categorized three basic categories wellknown registered dynamicprivate wellknown ports assigned internet assigned numbers authority iana typically used systemlevel root processes wellknown applications running servers passively listening connections typically ports examples include telnet smtp http ssltls http registered ports typically used user applications ephemeral source ports contacting servers also identify named services registered third party dynamicprivate ports also used user applications less commonly dynamicprivate ports contain meaning outside particular connection
+network address translation typically uses dynamic port numbers internetfacing public side disambiguate flow traffic passing public network private subnetwork thereby allowing many addresses ports subnet serviced single publicfacing address
+developmentedit
+complex protocol however significant enhancements made proposed years basic operation changed significantly since first specification 1974 specification published september 1981 1122 host requirements internet hosts clarified number protocol implementation requirements list required specifications strongly encouraged enhancements available 7414 among list 2581 congestion control important tcprelated rfcs recent years describes updated algorithms avoid undue congestion 2001 3168 written describe explicit congestion notification congestion avoidance signaling mechanism
+original congestion avoidance algorithm known tahoe many alternative algorithms since proposed including reno vegas fast reno hybla
+interactive itcp research effort extensions allows applications subscribe events register handler components launch applications various purposes including applicationassisted congestion control
+multipath mptcp 3435 ongoing effort within ietf aims allowing connection multiple paths maximize resource usage increase redundancy redundancy offered multipath context wireless networks enables simultaneous utilization different networks brings higher throughput better handover capabilities multipath also brings performance benefits datacenter environments36 reference implementation37 multipath developed linux kernel38 multipath used support siri voice recognition application iphones ipads macs
+cookie transactions tcpct extension proposed december 2009 secure servers denialofservice attacks unlike cookies tcpct conflict extensions window scaling tcpct designed necessities dnssec servers handle large numbers shortlived connections
+tcpcrypt extension proposed july 2010 provide transportlevel encryption directly designed work transparently require configuration unlike tcpcrypt provide authentication provides simple primitives application 2010update first tcpcrypt ietf draft published implementations exist several major platforms
+fast open extension speed opening successive connections endpoints works skipping threeway handshake using cryptographic cookie similar earlier proposal called ttcp widely adopted security issues40 july 2012update ietf internet draft41
+proposed 2013 proportional rate reduction extension developed google engineers ensures window size recovery close slowstart threshold possible42 algorithm designed improve speed recovery default congestion control algorithm linux kernels43
+wireless networksedit
+originally designed wired networks packet loss considered result network congestion congestion window size reduced dramatically precaution however wireless links known experience sporadic usually temporary losses fading shadowing hand interference radio effects strictly congestion erroneous backoff congestion window size wireless packet loss congestion avoidance phase conservative decrease window size causes radio link underutilized extensive research combating harmful effects conducted suggested solutions categorized endtoend solutions require modifications client server44 link layer solutions radio link protocol cellular networks proxybased solutions require changes network without modifying nodes4445
+number alternative congestion control algorithms vegas westwood veno santa cruz proposed help solve wireless problemcitation needed
+hardware implementationsedit
+overcome processing power requirements build hardware implementations widely known offload engines main problem toes hard integrate computing systems requiring extensive changes operating system computer device company develop device alacritech
+debuggingedit
+packet sniffer intercepts traffic network link useful debugging networks network stacks applications showing user packets passing link networking stacks support sodebug socket option enabled socket using setsockopt option dumps packets states events socket helpful debugging netstat another utility used debugging
+alternativesedit
+many applications appropriate problem least normal implementations application cannot access packets coming lost packet retransmitted copy lost packet received causes problems realtime applications streaming media realtime multiplayer games voice voip generally useful data timely fashion data order
+historical performance reasons storage area networks sans fibre channel protocol fibre channel connections
+also embedded systems network booting servers serve simple requests huge numbers clients servers complexity problem finally tricks transmitting data hosts behind using stun similar systems simpler without relatively complex protocol like
+generally unsuitable user datagram protocol used provides application multiplexing checksums handle streams retransmission giving application developer ability code suitable situation replace methods like forward error correction interpolation
+stream control transmission protocol sctp another protocol provides reliable stream oriented services similar newer considerably complex seen widespread deployment however especially designed used situations reliability nearrealtime considerations important
+venturi transport protocol patented proprietary protocol designed replace transparently overcome perceived inefficiencies related wireless data transport
+also issues highbandwidth environments congestion avoidance algorithm works well adhoc environments data sender known advance environment predictable timing based protocol asynchronous transfer mode avoid tcps retransmits overhead
+udpbased data transfer protocol better efficiency fairness networks high bandwidthdelay product46
+multipurpose transaction protocol mtpip patented proprietary software designed adaptively achieve high throughput transaction performance wide variety network conditions particularly perceived inefficient
+checksum computationedit
+checksum ipv4edit
+runs ipv4 method used compute checksum defined
+
+checksum field ones complement ones complement 16bit words header text segment contains number header text octets checksummed last octet padded right zeros form 16bit word checksum purposes transmitted part segment computing checksum checksum field replaced zeros
+
+words appropriate padding 16bit words added using ones complement arithmetic bitwise complemented inserted checksum field pseudoheader mimics ipv4 packet header used checksum computation shown table
+
+pseudoheader checksum computation ipv4
+
+offset
+
+
+8–15
+16–31
+
+
+
+source address
+
+
+
+destination address
+
+
+
+zeros
+protocol
+length
+
+
+
+source port
+destination port
+
+
+
+sequence number
+
+
+
+acknowledgement number
+
+
+
+data offset
+reserved
+flags
+window
+
+
+
+checksum
+urgent pointer
+
+
+
+options optional
+
+
+256288
+
+data
+
+
+
+source destination addresses ipv4 header protocol value list protocol numbers length field length header data measured octets
+checksum ipv6edit
+runs ipv6 method used compute checksum changed 2460
+
+transport upperlayer protocol includes addresses header checksum computation must modified ipv6 include 128bit ipv6 addresses instead 32bit ipv4 addresses
+
+pseudoheader mimics ipv6 header computation checksum shown
+
+pseudoheader checksum computation ipv6
+
+offset
+
+8–15
+16–23
+24–31
+
+
+
+source address
+
+
+
+
+
+
+
+
+
+
+
+
+destination address
+
+
+
+
+
+
+
+
+
+
+
+
+length
+
+
+
+zeros
+next header
+
+
+
+source port
+destination port
+
+
+
+sequence number
+
+
+
+acknowledgement number
+
+
+
+data offset
+reserved
+flags
+window
+
+
+
+checksum
+urgent pointer
+
+
+
+options optional
+
+
+480512
+
+data
+
+
+
+
+source address ipv6 header
+destination address final destination ipv6 packet doesnt contain routing header uses destination address ipv6 header otherwise originating node uses address last element routing header receiving node uses destination address ipv6 header
+length length header data
+next header protocol value
+
+checksum offload edit
+many tcpip software stack implementations provide options hardware assistance automatically compute checksum network adapter prior transmission onto network upon reception network validation relieve using precious cycles calculating checksum hence overall network performance increased
+feature cause packet analyzers unaware uncertain checksum offload report invalid checksums outbound packets reached network adapter47 occur packets intercepted transmitted network adapter packets transmitted network adaptor wire valid checksums48 issue also occur monitoring packets transmitted virtual machines host virtual device driver omit checksum calculation optimization knowing checksum calculated later host kernel physical hardware
+alsoedit
+
+
+computer networking portal
+computer science portal
+computing portal
+
+
+
+
+connectionoriented communication
+karns algorithm
+list port numbers long list ports services
+maximum segment lifetime
+maximum transmission unit
+microbursting networking
+nagles algorithm
+port computer networking
+ttcp variant
+congestion avoidance algorithms
+global synchronization
+pacing
+segment
+sequence prediction attack
+tuning high performance networks
+wtcp proxybased modification wireless networks
+transport layer comparison transport layer protocols
+
+
+referencesedit
+
+
+vinton cerf robert kahn 1974 protocol packet network intercommunication ieee transactions communications 637–648 doi101109tcom19741092259 archived original march 2016
+bennett richard september 2009 designed change endtoend arguments internet innovation neutrality debate information technology innovation foundation retrieved september 2017
+comer douglas 2006 internetworking tcpipprinciples protocols architecture prentice hall isbn 0131876716
+linktionary term
+section
+
+1323 extensions high performance section
+2018 selective acknowledgement options section
+2018 selective acknowledgement options section
+1323 extensions high performance section
+transmission control protocol parameters option kind numbers iana
+section
+section
+tanenbaum andrew 20030317 computer networks fourth prentice hall isbn 0130661023
+definition retrieved 20110312
+mathis mathew semke mahdavi 1997 macroscopic behavior congestion avoidance algorithm sigcomm computer communication review 67–82
+paxson allman sargent june 2011 basic algorithm computing tcps retransmission timer ietf 6298 httpstoolsietforghtmlrfc6298section2 retrieved october 2015
+stone partridge 2000 checksum disagree sigcomm
+
+window scaling broken routers lwnnet
+david murray terry koziniec sebastian zander michael dixon polychronis koutsakis 2017 analysis changing enterprise network traffic characteristics 23rd asiapacific conference communications apcc 2017 retrieved october 2017
+gont fernando november 2008 implementation urgent data 73rd ietf meeting retrieved 20090104
+peterson larry 2003 computer networks morgan kaufmann isbn 155860832x
+richard stevens 2006 november 2011 tcpip illustrated protocols check value help addisonwesley chapter isbn 9780201633467
+security assessment transmission control protocol archived original march 2009 retrieved 20101223 maint originalurl status unknown link
+security assessment transmission control protocol
+jakob lell quick blind connection spoofing cookies retrieved 20140205
+insights recent denial service vulnerabilities
+exploiting persist timer infiniteness
+httpsf5comglossarypushandackflood
+laurent joncheray simple active attack 1995
+john hagen barry mullins 2013 veto novel network attack application scada protocols innovative smart grid technologies isgt 2013 ieee
+interactive itcp
+6182
+6824
+raiciu barre pluntke greenhalgh wischik handley 2011 improving datacenter performance robustness multipath sigcomm
+multipath linux kernel implementation
+raiciu paasch barre ford honda duchene bonaventure handley 2012 hard designing implementing deployable multipath usenix nsdi
+bonaventure 2016 multipath deployments ietf journal
+michael kerrisk 20120801 fast open expediting services lwnnet
+cheng radhakrishnan jain 20120716 fast open ietf draftietftcpmfastopen01 httpstoolsietforghtmldraftietftcpmfastopen01
+6937 proportional rate reduction retrieved june 2014
+grigorik ilya 2013 highperformance browser networking beijing oreilly isbn 1449344763
+performance cdma2000 archived original 20110503 retrieved 20100830
+muhammad adeel ahmad iqbal 2004 congestion window optimization cdma2000 packet data networks international conference information technology itng07 31–35 doi101109itng2007190 isbn 9780769527765
+yunhong xinwei hong robert grossman analysis aimd algorithm decreasing increases 2004
+wireshark offloading wireshark captures packets sent network adapter wont correct checksum calculated even worse oses dont bother initialize data youre probably seeing little chunks memory shouldnt installations wireshark disable checksum validation default disable checksum validation dissectors hand needed
+wireshark checksums checksum offloading often causes confusion network packets transmitted handed wireshark checksums actually calculated wireshark gets “empty” checksums displays invalid even though packets contain valid checksums leave network hardware later
+
+
+readingedit
+
+stevens richard tcpip illustrated volume protocols isbn 0201633469
+stevens richard wright gary tcpip illustrated volume implementation isbn 020163354x
+stevens richard tcpip illustrated volume transactions http nntp unix domain protocols isbn 0201634953
+
+external linksedit
+
+
+
+wikiversity learning resources transmission control protocol
+
+
+
+
+
+wikimedia commons media related transmission control protocol
+
+
+rfcedit
+
+specification internet transmission control program december 1974 version
+
+transmission control protocol protocol specification
+1122 includes error corrections
+1323 extensions high performance obsoleted 7323
+1379 extending transactions—concepts obsoleted 6247
+1948 defending sequence number attacks
+2018 selective acknowledgment options
+5681 congestion control
+6247 moving undeployed extensions 1072 1106 1110 1145 1146 1379 1644 1693 historic status
+6298 computing tcps retransmission timer
+6824 extensions multipath operation multiple addresses
+7323 extensions high performance
+7414 roadmap specification documents
+
+othersedit
+
+oral history interview robert kahn charles babbage institute university minnesota minneapolis focuses kahns role development computer networking 1967 early 1980s beginning work bolt beranek newman kahn discusses involvement arpanet proposal written decision become active implementation role public demonstration arpanet interview continues kahns involvement networking moves ipto 1972 responsible administrative technical evolution arpanet including programs packet radio development network protocol tcpip switch tcpip connect multiple networks
+iana port assignments
+iana parameters
+john kristoffs overview fundamental concepts behind used transport data endpoints
+fast retransmit simulation animated slow start sliding window duplicated congestion windowpermanent dead link
+transmission control protocol
+checksum example
+engineer francesco buffas page transmission control protocol
+tutorial
+linktionary segments
+sliding window simulation animated
+multipath
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitletransmissioncontrolprotocololdid817232265 categories transmission control protocoltransport layer protocolshidden categories pages errorscs1 maint originalurl status unknownarticles inconsistent citation formatspages using magic linksarticles containing potentially dated statements 2010all articles containing potentially dated statementsarticles containing potentially dated statements july 2012all articles unsourced statementsarticles unsourced statements february 2015all articles dead external linksarticles dead external links november 2017articles permanently dead external links

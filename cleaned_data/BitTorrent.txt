@@ -1,0 +1,1028 @@
+article file sharing protocol uses bittorrent disambiguation
+
+
+part series
+
+
+file sharing
+
+
+
+
+
+
+
+
+
+technologies
+
+
+
+
+peer peer
+file hosting services
+hosting
+
+
+
+
+networks protocols
+
+
+
+
+bittorrent
+direct connect
+edonkey
+freenet
+gnunet
+gnutella
+ipfs
+retroshare
+zeronet
+
+
+
+
+development societal aspects
+
+
+
+
+timeline
+legality
+bittorrent issues
+
+
+
+
+nonpublic file sharing
+
+
+
+
+anonymous
+friendtofriend
+darknet
+private
+
+
+
+
+websites services
+
+
+
+
+1337x
+extratorrent
+isohunt
+kickasstorrents
+nyaa torrents
+openbittorrent
+rarbg
+pirate
+torrent project
+
+
+
+
+clients
+
+
+
+
+utorrent
+transmission
+qbittorrent
+
+streaming
+
+popcorn time
+torrentstime
+butter project
+
+
+
+
+academicscholarly
+
+
+
+
+scihub
+library genesis
+icanhazpdf
+
+
+
+
+country region
+
+
+
+
+canada
+japan
+singapore
+
+
+
+
+
+related
+
+
+
+
+peerblock
+comparison bittorrent sites
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bittorrent communication protocol peertopeer file sharing used distribute data electronic files internet
+bittorrent common protocols transferring large files digital video files containing shows video clips digital audio files containing songs peertopeer networks estimated collectively account approximately internet traffic depending location february 2009update1 november 2004 bittorrent responsible internet traffic2 february 2013 bittorrent responsible worldwide bandwidth half total bandwidth dedicated file sharing3
+send receive files person uses bittorrent client internetconnected computer bittorrent client computer program implements bittorrent protocol popular clients include μtorrent xunlei transmission qbittorrent vuze deluge bitcomet tixati bittorrent trackers provide list files available transfer allow client find peer users known seeds transfer files
+programmer bram cohen former university buffalo student4 designed protocol april 2001 released first available version july 20015 recent version 20136 bittorrent clients available variety computing platforms operating systems including official client released bittorrent
+2013update bittorrent 15–27 million concurrent users time7 january 2012update bittorrent utilized million active users based figure total number monthly bittorrent users estimated quarter billion8
+
+
+
+
+animation protocol colored dots beneath computer animation represent different parts file shared time copy destination computer parts completes copy another destination computer part parts already taking place users tracker server provides single copy file users clone parts another
+
+
+
+
+
+contents
+
+
+description
+operation
+
+creating publishing torrents
+downloading torrents sharing files
+concerns
+bridging clearnet
+
+
+adoption
+
+film video music
+broadcasters
+personal works
+software
+government
+education
+others
+
+
+indexing
+technologies built bittorrent
+
+distributed trackers
+seeding
+
+hash seeding
+http seeding
+
+
+
+feeds
+throttling encryption
+multitracker
+decentralized keyword search
+
+
+implementations
+development
+legal issues
+security problems
+challenges
+malware
+
+biterrant attack
+
+1111 criticism biterrant attack
+
+
+
+
+also
+references
+reading
+external links
+
+
+
+descriptionedit
+
+
+
+
+middle computer acting seed provide file computers peers
+
+
+bittorrent protocol used reduce server network impact distributing large files rather downloading file single source server bittorrent protocol allows users join swarm hosts upload todownload simultaneously protocol alternative older single source multiple mirror sources technique distributing data work effectively networks lower bandwidth using bittorrent protocol several basic computers home computers replace large servers efficiently distributing files many recipients lower bandwidth usage also helps prevent large spikes internet traffic given area keeping internet speeds higher users general regardless whether bittorrent protocol user wants upload file first creates small torrent descriptor file distribute conventional means email make file available bittorrent node acting seed torrent descriptor file give bittorrent nodes which—acting peers leechers—download connecting seed andor peers diagram right
+file distributed divided segments called pieces peer receives piece file becomes source piece peers relieving original seed send piece every computer user wishing copy bittorrent task distributing file shared want entirely possible seed send single copy file eventually distribute unlimited number peers piece protected cryptographic hash contained torrent descriptor6 ensures modification piece reliably detected thus prevents accidental malicious modifications pieces received nodes node starts authentic copy torrent descriptor verify authenticity entire file receives
+pieces typically downloaded nonsequentially rearranged correct order bittorrent client monitors pieces needs pieces upload peers pieces size throughout single download example file transmitted pieces forty pieces nature approach download file halted time resumed later date without loss previously downloaded information turn makes bittorrent particularly useful transfer larger files also enables client seek readily available pieces download immediately rather halting download waiting next possibly unavailable piece line typically reduces overall time download peer downloaded file completely becomes additional seed eventual transition peers seeders determines overall health file determined number times file available complete form
+distributed nature bittorrent lead floodlike spreading file throughout many peer computer nodes peers join swarm likelihood completely successful download particular node increases relative traditional internet distribution schemes permits significant reduction original distributors hardware bandwidth resource costs distributed downloading protocols general provide redundancy system problems reduce dependence original distributor9 provide sources file generally transient therefore harder trace would block distribution compared situation provided limiting availability file fixed host machine even several
+example bittorrent used reduce distribution cost file transmission boinc clientserver system boinc distributed computing application needs updated merely sent user little impact boinc server10
+operationedit
+bittorrent client program implements bittorrent protocol client capable preparing requesting transmitting type computer file network using protocol peer computer running instance client share file group files peer first creates small file called torrent myfiletorrent file contains metadata files shared tracker computer coordinates file distribution peers want download file must first obtain torrent file connect specified tracker tells peers download pieces file
+though ultimately transfer files network bittorrent download differs classic download typical http request example several fundamental ways
+
+bittorrent makes many small data requests different connections different machines classic downloading typically made single connection single machine
+bittorrent downloads random rarestfirst11 approach ensures high availability classic downloads sequential
+
+taken together differences allow bittorrent achieve much lower cost content provider much higher redundancy much greater resistance abuse flash crowds regular server software however protection theoretically comes cost downloads take time rise full speed take time enough peer connections established take time node receive sufficient data become effective uploader contrasts regular downloads http server example vulnerable overload abuse rise full speed quickly maintain speed throughout general bittorrents noncontiguous download methods prevented supporting progressive download streaming playback however comments made bram cohen january 200712 suggest streaming torrent downloads soon commonplace supported streaming13 appears result comments january 2011 cohen demonstrated early version bittorrent streaming saying feature projected available summer 201114 2013update bittorrent streaming protocol available beta testing15
+creating publishing torrentsedit
+peer distributing data file treats file number identically sized pieces usually byte sizes power typically peer creates hash piece using sha1 hash function records torrent file pieces sizes greater reduce size torrent file large payload claimed reduce efficiency protocol16 another peer later receives particular piece hash piece compared recorded hash test piece errorfree6 peers provide complete file called seeders peer providing initial copy called initial seeder exact information contained torrent file depends version bittorrent protocol convention name torrent file suffix torrent torrent files announce section specifies tracker info section containing suggested names files lengths piece length used sha1 hash code piece used clients verify integrity data receive though sha1 shown signs cryptographic weakness bram cohen consider risk enough backward incompatible change example sha317
+torrent files typically published websites elsewhere registered least tracker tracker maintains lists clients currently participating torrent6 alternatively trackerless system decentralized tracking every peer acts tracker azureus first18 bittorrent client implement system distributed hash table method alternative incompatible system known mainline released mainline bittorrent client three weeks later though development since 200218 subsequently adopted µtorrent transmission rtorrent ktorrent bitcomet deluge clients
+adopted private flag analogous broadcast flag unofficially introduced telling clients restrict decentralized tracking regardless users desires19 flag intentionally placed info section torrent cannot disabled removed without changing identity torrent purpose flag prevent torrents shared clients access tracker flag requested inclusion official specification august 2008 accepted yet20 clients ignored private flag banned many trackers discouraging practice21
+downloading torrents sharing filesedit
+users find torrent interest browsing means download open bittorrent client client connects trackers specified torrent file receives list peers currently transferring pieces files specified torrent client connects peers obtain various pieces swarm contains initial seeder client connects directly begins request pieces clients incorporate mechanisms optimize download upload rates example download pieces random order increase opportunity exchange data possible peers different pieces file
+effectiveness data exchange depends largely policies clients determine send data clients prefer send data peers send data back exchange scheme encourages fair trading strict policies often result suboptimal situations newly joined peers unable receive data dont pieces trade peers good connection exchange data simply neither takes initiative counter effects official bittorrent client program uses mechanism called optimistic unchoking whereby client reserves portion available bandwidth sending pieces random peers necessarily known good partners called preferred peers hopes discovering even better partners ensure newcomers chance join swarm22
+although swarming scales well tolerate flash crowds popular content less useful unpopular niche market content peers arriving initial rush might find content unavailable need wait arrival seed order complete downloads seed arrival turn take long happen termed seeder promotion problem since maintaining seeds unpopular content entails high bandwidth administrative costs runs counter goals publishers value bittorrent cheap alternative clientserver approach occurs huge scale measurements shown torrents become unavailable within first month23 strategy adopted many publishers significantly increases availability unpopular content consists bundling multiple files single swarm24 sophisticated solutions also proposed generally crosstorrent mechanisms multiple torrents cooperate better share content25
+concernsedit
+bittorrent offer users anonymity security possible obtain addresses current possibly previous participants swarm tracker expose users insecure systems attacks22 also rare cases expose users risk sued distributing files without permission copyright holders however ways promote anonymity example oneswarm project layers privacypreserving sharing mechanisms original bittorrent protocol moderate degree anonymity enough keep isps giving user trouble least achieved seedboxes bitport26 putio27 seedr28 download torrent files first companies servers followed direct download user2930 torrents downloaded high degree anonymity using services provide anonymity bittorrent31 also discouraged blocking type connections performance reasons32 unlike designed work bittorrent33 however torrents downloaded within network useful users trying avoid copyright complaints isps maintaining privacy avoiding censorship
+private trackers offer users greater degree privacy compared public trackers downside single centralized point failure
+bridging clearnetedit
+vuze client makes clearnet torrents available vice versa plugin connects network user adds torrent seeded clearnet user adds torrent clearnet seeded clearnet reason torrents previously published made available entire internet users download torrent internet maintaining anonymity i2p3435
+adoptionedit
+growing number individuals organizations using bittorrent distribute licensed works indie bands distributing digital files songs independent adopters report without using bittorrent technology dramatically reduced demands private networking hardware bandwidth could afford distribute files36
+uses bittorrent file sharing violate laws jurisdictions legal issues section
+film video musicedit
+
+bittorrent obtained number licenses hollywood studios distributing popular content websites
+records releases tracks videos bittorrent inc37 distribute 1000 albums babyshambles libertines bands associated pete doherty extensively used torrents distribute hundreds demos live videos industrial rock band nine inch nails frequently distributes albums bittorrent
+podcasting software starting integrate bittorrent help podcasters deal download demands radio programs specifically juice miro formerly known democracy player support automatic processing torrent files feeds similarly bittorrent clients µtorrent able process feeds automatically download content found within
+live purchases provided bittorrent38
+vodo service distributes freetoshare movies shows bittorrent394041
+
+broadcastersedit
+
+2008 became first public broadcaster north america make full show canadas next great prime minister available download using bittorrent42
+norwegian broadcasting corporation since march 2008 experimented bittorrent distribution available online43 selected works owns royalties published responses positive planning offer content
+dutch vpro broadcasting organization released four documentaries 2009 2010 creative commons license using content distribution feature mininova tracker444546
+
+personal worksedit
+
+amazon simple storage service scalable internetbased storage service simple service interface equipped builtin bittorrent support47
+blog torrent offers simplified bittorrent tracker enable bloggers nontechnical users host tracker site blog torrent also allows visitors download stub loader acts bittorrent client download desired file allowing users without bittorrent software protocol48 similar concept selfextracting archive
+
+softwareedit
+
+blizzard entertainment uses bittorrent proprietary client called blizzard downloader associated blizzard battlenet network distribute content patches diablo starcraft world warcraft including games themselves49
+wargaming uses bittorrent popular titles world tanks world warships world warplanes distribute game updates50
+games maker space simulation mmorpg online announced launcher released based bittorrent5152
+many software games especially whose large size makes difficult host bandwidth limits extremely frequent downloads unpredictable changes network traffic distribute instead specialized stripped bittorrent client enough functionality download game running clients primary server maintained case enough peers available
+many major open source free software projects encourage bittorrent well conventional downloads products http increase availability reduce load servers especially dealing larger files53
+
+governmentedit
+
+government used bittorrent distribute details money citizens spent5455
+
+educationedit
+
+florida state university uses bittorrent distribute large scientific data sets researchers56
+many universities boinc distributed computing projects used bittorrent functionality clientserver system reduce bandwidth costs distributing clientside applications used process scientific data
+developing human connectome project uses bittorrent share open dataset
+
+othersedit
+
+facebook uses bittorrent distribute updates facebook servers57
+twitter uses bittorrent distribute updates twitter servers5859
+internet archive added bittorrent file download options million existing files newly uploaded files august 20126061 method fastest means downloading media archive6062
+
+2011update bittorrent million users greater share network bandwidth netflix hulu combined6364 early 2015 estimates bittorrent represents broadband traffic65
+routers network address translation must maintain tables source destination addresses ports typical home routers limited 2000 table entriescitation needed expensive routers larger table capacities bittorrent frequently contacts 20–30 servers second rapidly filling tables known cause home routers ceasing work correctly6667
+indexingedit
+bittorrent protocol provides index torrent files result comparatively small number websites hosted large majority torrents many linking copyrighted works without authorization copyright holders rendering sites especially vulnerable lawsuits68 bittorrent index list torrent files typically includes descriptions information torrents content69 several types websites support discovery distribution data bittorrent network public torrenthosting sites pirate allow users search download collection torrent files users typically also upload torrent files content wish distribute often sites also bittorrent trackers hosted torrent files functions mutually dependent torrent file could hosted site tracked another unrelated site private hosttracker sites operate like public ones except restrict access registered users also keep track amount data user uploads downloads attempt reduce leeching
+search engines allow discovery torrent files hosted tracked sites examples include mininova btdigg btjunkie torrentz torrentus pirate isohunt sites allow user content meeting specific criteria containing given word phrase retrieve list links torrent files matching criteria list often sorted respect several criteria relevance seedersleechers ratio popular useful protocol behaves download bandwidth achievable sensitive value bram cohen launched bittorrent search engine wwwbittorrentcomsearch comingles licensed content search results70 metasearch engines allow search several bittorrent indices search engines search engines monitors network indexes torrents metadata exchange peers 2010s decentralized alternatives torrent search engines emerged decentralized keyword search
+technologies built bittorrentedit
+bittorrent protocol still development therefore still acquire features enhancements improved efficiency
+distributed trackersedit
+2005 azureus 2300 known vuze released71 introducing support trackerless torrents system called distributed database system distributed hash table implementation allows client torrents working bittorrent tracker following month bittorrent released version mainline bittorrent client supported alternative implementation popularly known mainline outlined draft website incompatible azureus recent measurement shows users mainline million million daily churn least million72 mainline arguably largest realistic world
+current versions official bittorrent client µtorrent bitcomet transmission bitspirit share compatibility mainline implementations based kademlia73 version 3050 azureus also supports mainline addition distributed database optional application plugin74 potentially allows azureusvuze client reach bigger swarm
+another idea surfaced vuze virtual torrents idea based distributed tracker approach used describe resource currently used instant messaging implemented using special messaging protocol requires appropriate plugin anatomic another approach uses decentralized network nodes route traffic dynamic trackers bittorrent clients also peer exchange gather peers addition trackers peer exchange checks known peers know peers 3050 release vuze major bittorrent clients compatible peer exchange
+seedingedit
+seeding implemented 2006 ability bittorrent clients download torrent pieces http source addition swarm advantage feature website distribute torrent particular file batch files make files available download server simplify longterm seeding load balancing existing cheap hosting setups theory would make using bittorrent almost easy publisher creating direct http download addition would allow seed disabled swarm becomes popular still allowing file readily available feature distinct specifications supported libtorrent clients
+hash seedingedit
+first created john theshad0w hoffman created bittornado7576 first specification requires running service serves content infohash piece number rather filename
+http seedingedit
+specification created getright authors rely basic http download space using byte serving7778
+otheredit
+september 2010 service named burnbit launched generates torrent using webseeding79 serverside solutions provide initial seeding file webserver standard bittorrent protocol number external seeders reach limit stop serving file original source80
+feedsedit
+main article broadcatching
+technique called broadcatching combines feeds bittorrent protocol create content delivery system simplifying automating content distribution steve gillmor explained concept column ziffdavis december 200381 discussion spread quickly among bloggers ernest miller82 chris pirillo article entitled broadcatching bittorrent scott raymond explained
+
+want feeds bittorrent files script would periodically check feed items start download could find trusted publisher alias feed subscribe episodes show would start downloading automatically like season pass feature tivo
+scott raymond scottraymondnet83
+
+feed track content bittorrent ensures content integrity cryptographic hashing data feed subscribers receive uncorrupted content first popular software clients free open source broadcatching miro free software clients penguintv katchtv also supporting broadcatching bittorrent webservice movedigital added ability make torrents available application capable parsing standard restbased interface 200684 though since discontinued additionally torrenthut developing similar torrent provide features help bring torrent community standards alongside release first application built using called parse really simple syndication feed automatically create seed torrent enclosure found feed85
+throttling encryptionedit
+main article bittorrent protocol encryption
+since bittorrent makes large proportion total traffic isps chosen throttle slow bittorrent transfers reason methods developed disguise bittorrent traffic attempt thwart efforts86 protocol header encrypt message stream encryptionprotocol encryption msepe features bittorrent clients attempt make bittorrent hard detect throttle november 2015 vuze bitcomet ktorrent transmission deluge µtorrent moopolice halite qbittorrent rtorrent latest official bittorrent client support msepe encryption september 2006 reported software could detect throttle bittorrent traffic masquerading http traffic87
+reports august 2007 indicated comcast preventing bittorrent seeding monitoring interfering communication peers protection efforts provided proxying clienttracker traffic encrypted tunnel point outside comcast network88 comcast recently called truce bittorrent intention shaping traffic protocolagnostic manner89 questions ethics legality comcasts behavior renewed debate neutrality united states90 general although encryption make difficult determine shared bittorrent vulnerable traffic analysis thus even msepe possible recognize bittorrent also determine system longer downloading uploading data terminate connection injecting reset flag packets
+multitrackeredit
+another unofficial feature extension bittorrent metadata format proposed john hoffman91 implemented several indexing websites allows multiple trackers file tracker fails others continue support file transfer implemented several clients bitcomet bittornado bittorrent ktorrent transmission deluge µtorrent rtorrent vuze frostwire trackers placed groups tiers tracker randomly chosen tier tried moving next tier trackers tier fail
+torrents multiple trackers decrease time takes download file also consequences
+
+poorly implemented92 clients contact multiple trackers leading overheadtraffic
+torrents closed trackers suddenly become downloadable nonmembers connect seed open tracker
+
+decentralized keyword searchedit
+even distributed trackers third party still required find specific torrent usually done form hyperlink website content owner indexing websites like isohunt torrentz btdigg torrentus pirate tribler bittorrent client first incorporate decentralized search capabilities
+tribler users find torrent files hosted among peers instead centralized index sites adds ability bittorrent protocol using gossip protocol somewhat similar exeem network shut 2005 software includes ability recommend content well dozen downloads tribler software roughly estimate download taste user recommend additional content93
+2007 cornell university published paper proposing approach searching peertopeer network inexact strings94 could replace functionality central indexing site year later team implemented system plugin vuze called cubit95 published followup paper reporting success96
+somewhat similar facility slightly different approach provided bitcomet client torrent exchange97 feature whenever peers using bitcomet torrent exchange enabled connect exchange lists torrents name infohash torrent share storage torrent files previously downloaded user chose enable sharing torrent exchange thus client builds list torrents shared peers connected current session even maintain list sessions instructed time user search torrent collection list certain torrent sort list categories user chooses download torrent list torrent file automatically searched infohash value network found downloaded querying client create initiate downloading task
+implementationsedit
+main article comparison bittorrent clients
+bittorrent specification free many clients open source bittorrent clients created common operating systems using variety programming languages official bittorrent client µtorrent qbittorrent transmission vuze bitcomet popular clients9899100101
+bittorrent implementations mldonkey torrentflux designed servers example used centralize file sharing single dedicated server users share access network102 serveroriented bittorrent implementations also hosted hosting providers colocated facilities high bandwidth internet connectivity datacenter provide dramatic speed benefits using bittorrent regular home broadband connection services imageshack download files bittorrent user allowing download entire file http finished opera browser supports bittorrent103 wyzo bitlet allows users download torrents directly browser using java applet increasing number hardware devices made support bittorrent include routers devices containing bittorrentcapable firmware like openwrt proprietary versions protocol implement encryption authentication found within managed clients pando
+developmentedit
+unimplemented february 2008update unofficial feature similarity enhanced transfer technique improving speed peertopeer file sharing content distribution systems share data proposed researchers pucha andersen kaminsky works spotting chunks identical data files exact near match needed transferring data client exact data present experiments suggested help greatly less popular files much popular data many peers already downloading it104 andersen believes technique could immediately used developers bittorrent file sharing system105
+december 2008update bittorrent working oversi policy discover protocols query capabilities network architecture information oversis hosted netenhancer designed improve peer selection helping peers find local nodes improving download speeds reducing loads isps network106
+legal issuesedit
+main article legal issues bittorrent
+although protocol perfectly legal problems stem using protocol traffic copyright infringing works much controversy bittorrent trackers bittorrent metafiles store file contents whether publishers bittorrent metafiles violate copyrights linking copyrighted works without authorization copyright holders controversial various jurisdictions pursued legal action websites host bittorrent trackers highprofile examples include closing suprnovaorg torrentspy lokitorrent btjunkie mininova demonoid oinks pink palace pirate torrent website formed swedish group noted legal section website letters replies subject alleged copyright infringements publicly displayed 2006 pirate bays servers sweden raided swedish police allegations mpaa copyright infringement107 however tracker running three days later study used value universal merger comcast envisional examined 10000 torrent swarms managed publicbt active downloaders excluding pornographic unidentifiable content found swarm offered legitimate content108
+united states 200000 people sued filesharing bittorrent since 2010109 april 2012 high court ordered five isps block bittorrent search engine pirate bay110
+security problemsedit
+bittorrent implementations often communication achieve high bandwidths underlying protocol used allows spoofing source addresses internet traffic used denialofservice attacks users running bittorrent clients amplifiers attack another service111
+challengesedit
+many challenges however people believe free riders serious issue free riders often referred leeches users download plenty share much less bittorrent collaborative distributed platform content sharing believe important develop solution detect free riders punish trend discouraged112 however otherswho believe important avoid free rider detection punitive actions order protect open access information resources shared bittorrent protocol words ensure individuals lack resources knowledge security measures necessary share their—often limited—bandwidth still retain equal access information
+malwareedit
+several studies bittorrent indicated exist files containing malware available download bittorrent particular small sample113 indicated executable programs available download contained malware another study114 claims much bittorrent downloads contain zeroday malware bittorrent used distribution mechanism zeroday malware found
+biterrant attackedit
+sha1 collisions attacker alter execution path executable serving altered chunks victim downloading executable using bittorrent protocol115
+criticism biterrant attackedit
+despite fact proof concept exists attack succeed limited cases small chunk size 32kb selecting larger chunks 256kb amount resources required find sha1 collision tremendous makes attack virtually impossible
+alsoedit
+
+
+free software portal
+
+
+
+
+anonymous
+napster
+gnutella
+anticounterfeiting trade agreement
+bencode
+cache discovery protocol
+comparison bittorrent clients
+comparison bittorrent sites
+comparison bittorrent tracker software
+fasttrack
+glossary bittorrent terms
+magnet scheme
+micro transport protocol
+peertopeer file sharing
+segmented file transfer
+simple file verification
+superseeding
+torrent file
+torrent poisoning
+
+
+
+referencesedit
+
+
+schulze hendrik klaus mochalski 2009 internet study 20082009 leipzig germany ipoque archived original april 2014 retrieved october 2011 peertopeer file sharing still generates traffic monitored regions ranging northern africa eastern europe
+bittorrent third internet traffic myth torrentfreak january 2007 archived original march 2014 retrieved april 2013
+application usage threat report palo alto networks 2013 archived original october 2013 retrieved april 2013
+engineering tweeter university buffalos school engineering applied sciences archived original november 2013
+cohen bram july 2001 bittorrent yahoo egroups archived original july 2011 retrieved april 2007
+cohen bram october 2002 bittorrent protocol bittorrentorg archived original february 2014 retrieved april 2013
+wang liang kangasharju september 2013 measuring largescale distributed systems case torrent mainline ieee 2013 proceedings 1–10 doi101109p2p20136688697 isbn 9781479905157 retrieved january 2016
+bittorrent µtorrent software surpass million user milestone bittorrentcom january 2012 archived original march 2014 retrieved july 2012
+menasche daniel rocha antonio souza silva edmundo leao rosa towsley venkataramani arun 2010 estimating selfsustainability peertopeer swarming systems arxiv10040395 csni menasche rocha souza silva leao towsley venkataramani
+costa fernando silva luis fedak gilles kelley 2008 optimizing data distribution layer boinc torrent 2008 ieee international symposium parallel distributed processing ieee international symposium parallel distributed processing 2008 ipdps 2008 ieee doi101109ipdps20084536446 isbn 9781424416936 retrieved april 2013 maint uses authors parameter link registration required
+urvoykeller december 2006 rarest first choke algorithms enough sigcomm retrieved march 2012
+ernesto january 2007 interview bram cohen inventor bittorrent torrentfreak archived original july 2013 retrieved april 2013
+ernesto december 2007 bittorrent launches supported streaming torrentfreak archived original june 2013 retrieved april 2013
+cohen bram january 2011 bittorrent inventor demos live streaming protocol torrentfreakcom archived original october 2013 retrieved january 2011
+bittorrent live bittorrentcom archived original october 2013 retrieved march 2013
+bittorrent specification wikitheoryorg archived original june 2013 retrieved july 2012 dubious discuss
+bittorrent support sha2 256512 future sha3 quora
+jones june 2015 bittorrents turns years torrentfreak retrieved july 2015
+unofficial bittorrent protocol specification archived original december 2006 retrieved october 2009 dubious discuss
+harrison david august 2008 private torrents bittorrentorg archived original march 2013 retrieved october 2009
+bitcomet banned growing number private trackers archived original march 2014 retrieved october 2009
+tamilmani karthik october 2003 studying enhancing bittorrent protocol stony brook university archived original november 2004 retrieved 2006
+kaune sebastian unraveling bittorrents file unavailability measurements analysis arxiv archived original april 2011 retrieved july 2017
+menasche december 2009 content availability bundling swarming systems conext09 rome italy sigcommorg isbn 9781605586366
+kaune sebastian seeder promotion problem measurements analysis solution space queen marys university london retrieved july 2017
+bitportio
+putio
+seedrcc
+website could ultimate allinone torrent machine april 2016 archived original april 2016
+torrent cloud seedr torrentfreak january 2016
+bittorrent isnt good idea blog
+project project
+compared
+vuze speeds torrent downloads swarm merging torrentfreak march 2015
+i2phelper howto vuzewiki
+example torrent archived original january 2013 tasvideosorg
+page bittorrentcom archived original january 2007 retrieved december 2006
+dgmlivecom dgmlivecom archived original november 2013 retrieved july 2012
+vodo retrieved april 2012 webcite
+cory doctorow october 2009 vodo filesharing service filmmakers boing boing happy mutants retrieved april 2012 webcite
+ernesto pioneer bittorrent exclusive tvseries continues torrentfreak retrieved april 2012 webcite
+bittorrent canadas next great prime minister news march 2008 archived original june 2010 retrieved march 2008
+bittorrent norwegian nrkbetano 2008 archived original october 2013 retrieved april 2013
+torrents uploaded eeuwvandestad mininova 2009 archived original november 2013 retrieved april 2013
+denters august 2010 tegenlicht download california dreaming vpronl archived original march 2014 retrieved april 2013
+october 2009 tegenlicht vpro gemeengoed dutch vpronl archived original march 2014 retrieved april 2013
+using bittorrent amazon archived original march 2014
+rustad roger august 2004 blog torrent participatory culture grep archived original june 2006 retrieved 2006
+blizzard downloader curse november 2010 archived original march 2014 retrieved november 2010
+world tanks wargaming public december 2014
+guthrie march 2013 online reconfiguring launcher bittorrent massivelyjoystiqcom archived original february 2014 retrieved april 2013
+games july 2010 quiet launcher front community communityeveonlinecom archived original march 2013 retrieved april 2013
+complete download options list bittorrent ubuntucom archived original april 2010 retrieved 2009
+government september 2012 combined online information system datagovuk beta controller majestys stationery office archived original march 2014 retrieved september 2012
+ernesto june 2010 government uses bittorrent share public spending data torrentfreak archived original october 2013 retrieved september 2012
+data repository florida state university retrieved april 2013
+ernesto june 2010 facebook uses bittorrent love torrent freak torrent freak archived original april 2014 retrieved september 2012
+ernesto february 2010 twitter uses bittorrent server deployment torrent freak torrent freak archived original march 2014 retrieved september 2012
+ernesto july 2010 bittorrent makes twitters server deployment faster torrent freak torrent freak archived original march 2014 retrieved september 2012
+ernesto august 2012 internet archive starts seeding 1398875 torrents torrentfreak archived original august 2012 retrieved august 2012
+list bt1usarchiveorg updated august 2012 archiveorg
+welcome archive torrents archiveorg 2012
+carr austin january 2011 bittorrent users netflix hulu combined—and doubled fastcompanycom archived original january 2011 retrieved july 2012
+hartley matt july 2011 bittorrent turns financialpostcom archived original november 2013 retrieved july 2012
+patents system fastlane bittorrent traffic thestackcom 2006 retrieved march 2015
+faqmodemsrouters known problems apps utorrentcom archived original september 2008 retrieved april 2013
+halkes gertjan pouwelse johan 2011 jordi domingopascual firewall puncturing wild networking 201110th international ifip networking conference valencia spain 9–13 2011 proceedings springer retrieved april 2013 maint uses authors parameter link maint uses editors parameter link
+ernesto july 2009 publicbt tracker patch bittorrent achilles heel torrentfreak archived original march 2014 retrieved july 2009
+chwanhwa john david irwin introduction computer networks cybersecurity chapter partially centralized architectures press february 2013 isbn 9781466572133
+worthington david nate mook 2005 bittorrent creator opens online search betanews archived original february 2009 retrieved 2006
+vuze changelog azureussourceforgenet archived original december 2006
+wang liang kangasharju jussi 2013 measuring largescale distributed systems case bittorrent mainline ieee peertopeer retrieved 2014
+khashmirsourceforgenet khashmirsourceforgenet archived original july 2012 retrieved july 2012
+azureussourceforgenet azureussourceforgenet archived original august 2012 retrieved july 2012
+httpbased seeding specification bittornadocom archived original august 2011 retrieved 2006
+john hoffman dehacked february 2008 http seeding bittorrent enhancement proposal archived original december 2013 retrieved february 2012
+httpftp seeding bittorrent getrightcom archived original december 2009 retrieved march 2010
+michael burford february 2008 webseed httpftp seeding getright style bittorrent enhancement proposal bittorrentorg archived original december 2013 retrieved february 2012
+burn webhosted file torrent burnbit torrentfreak september 2010 archived original august 2011 retrieved july 2012
+based torrent file creator tracker seed server phptracker archived original december 2013 retrieved july 2012
+gillmor steve december 2003 bittorrent create disruptive revolution eweekcom retrieved april 2007
+miller ernest march 2004 bittorrent broadcast archived original october 2013 importance corantecom
+raymond scott december 2003 broadcatching bittorrent scottraymondnet archived original february 2004
+movedigital rest functions move digital 2006 archived original august 2006 retrieved 2006 documentation
+prodigem enclosure pullerpeptxt prodigemcom archived original 2006 retrieved 2006 internet wayback machine
+encrypting bittorrent take traffic shapers torrentfreakcom february 2006 archived original march 2014 retrieved 2006
+sales september 2006 restech solves network issues studlifecom archived original march 2014
+comcast throttles bittorrent traffic seeding impossible archived original october 2013 torrentfreak august 2007
+broache anne march 2008 comcast bittorrent agree collaborate newscom archived original 2008 retrieved july 2012
+soghoian chris september 2007 comcasts bittorrent filtering violating cnetcom archived original july 2010 retrieved july 2012
+bep12 multitracker metadata extension bittorrent archived original december 2012 retrieved march 2013
+p2pprotocolspecificationsmultitracker wikidepthstrikecom archived original march 2014 retrieved november 2009 dubious discuss
+decentralizedrecommendation triblerorg archived original december 2008 retrieved july 2012
+wong bernard vigfusson ymir sirer emin 2007 hyperspaces object clustering approximate matching peertopeer overlays cornell university retrieved april 2013 maint uses authors parameter link
+wong bernard 2008 cubit approximate matching peertopeer overlays cornell university archived original december 2012 retrieved 2008
+wong bernard approximate matching peertopeer overlays cubit cornell university retrieved 2008
+torrent exchange archived original october 2013 retrieved january 2010 torrent sharing feature bitcomet bitcometcom
+ernesto december 2009 thunder blasts utorrents market share away torrentfreak archived original september 2011 retrieved september 2011
+utorrent dominates bittorrent client market share torrentfreak june 2009 archived original april 2014 retrieved june 2013
+windows public file sharing market share 2015 opswat retrieved april 2016
+henry alan popular bittorrent client 2015 lifehacker retrieved april 2016
+torrent server combines file server file sharing turnkeylinuxorg retrieved july 2012
+anderson nate february 2007 network neutrality mean bittorrent throttling technica archived original december 2008 retrieved february 2007
+himabindu pucha david andersen michael kaminsky april 2007 exploiting similarity multisource downloads using file handprints purdue university carnegie mellon university intel research pittsburgh archived original june 2013 retrieved april 2007
+speed boost plan filesharing news april 2007 archived original december 2008 retrieved april 2007
+johnston casey december 2008 arstechnicacom arstechnicacom archived original december 2008 retrieved july 2012
+piratebay raided swedish police torrentfreak 2006 archived original april 2014 retrieved 2007
+technical report estimate infringing internet envisional january 2011 retrieved 2012
+bittorrent copyright lawyers favourite target reaches 200000 lawsuits guardian august 2011 archived original december 2013 retrieved january 2014
+albanesius chloe april 2012 high court orders isps block pirate magazine archived original 2013 retrieved 2012
+adamsky florian 2015 filesharing hell exploiting bittorrent vulnerabilities launch distributed reflective attacks
+bhakuni sharma kaushal 2014 freerider detection punishment torrent based networks 2014 ieee international advance computing conference iacc international advanced computing conference doi101109iadcc20146779311 isbn 9781479925728
+berns andrew jung eunjin april 2008 searching malware torrent university iowa techrepublic archived original 2013 retrieved april 2013 registration required
+vegge håvard halvorsen finn michael nergård rune walsø 2009 fools dare tread empirical study prevalence zeroday malware 2009 fourth international conference internet monitoring protection ieee computer society doi101109icimp200919 isbn 9781424438396 archived original orig work paper 20130617
+biterrant biterrantio retrieved april 2017
+
+
+readingedit
+
+pouwelse johan 2005 bittorrent filesharing system measurements analysis peertopeer systems berlin springer 205–216 doi1010071155898919 isbn 9783540290681 retrieved september 2011
+
+external linksedit
+
+
+
+wikimedia commons media related bittorrent
+
+
+
+official website
+specification
+bittorrent curlie based dmoz
+interview chief executive ashwin navin
+unofficial bittorrent protocol specification wikitheoryorg
+unofficial bittorrent locationaware protocol specification wikitheoryorg
+czerniawski michal december 2009 responsibility bittorrent search engines copyright infringements ssrn doi102139ssrn1540913 ssrn 1540913 missing empty help
+cohen bram february 2005 hood bittorrent computer systems colloquium ee380 stanford university
+
+
+
+
+
+
+
+
+
+
+
+
+cloud computing
+
+
+
+applications
+
+
+
+
+google
+
+suite
+docs sheets slides
+
+
+cloud closed
+microsoft online
+rackspace
+salesforce
+zoho
+
+
+
+
+
+platforms
+
+
+
+alpha7
+amazon
+appscale
+
+bluemix
+cloud foundry
+cocaine paas
+engine yard
+platform
+helion
+predix
+google engine
+greenqloud
+heroku
+inktank
+jelastic
+mendix
+microsoft azure
+outsystems
+openqrm
+openshift
+pythonanywhere
+rightscale
+forcecom
+cloud platform
+vmware vcloud
+wavemaker
+
+
+
+
+
+infrastructure
+
+
+
+amazon
+abiquo enterprise edition
+cloudstack
+ctrls
+digitalocean
+atmos
+eucalyptus
+fujitsu
+gogrid
+google cloud platform
+greenbutton
+greenqloud
+cloud computing
+iland
+joyent
+lunacloud
+nimbula
+nimbus
+opennebula
+openstack
+orionvm
+rackspace cloud
+softlayer
+zadara storage
+libvirt
+libguestfs
+ovirt
+virtual machine manager
+wakamevdc
+virtual private cloud ondemand
+
+
+
+
+
+technologies
+
+
+
+cloud database
+data centers
+distributed file system cloud
+hardware virtualization
+internet
+networking
+security
+structured storage
+virtual appliance
+apis
+virtual private cloud
+
+
+
+
+
+
+
+
+category
+commons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bittorrent
+
+
+
+companies
+
+
+
+bittorrent
+vuze
+
+
+
+
+
+people
+
+
+
+bram cohen
+ross cohen
+eric klinker
+ashwin navin
+
+
+
+
+
+technology
+
+
+
+broadcatching
+distributed hash tables
+
+index
+peer exchange
+local peer discovery
+protocol encryption
+superseeding
+tracker
+torrent file
+
+
+glossary
+
+
+
+
+
+clients
+comparison
+usage share
+
+
+
+bittorrent original client
+bitcomet
+bitlord
+bittornado
+deluge
+frostwire
+ktorrent
+libtorrent library
+limewire
+miro
+mldonkey
+qbittorrent
+rtorrent
+shareaza
+tixati
+transmission
+tribler
+µtorrent
+vuze formerly azureus
+xunlei
+
+
+
+
+
+tracker software
+comparison
+
+
+
+opentracker
+peertracker
+torrentpier
+tracker
+
+
+
+
+
+search engines
+comparison
+
+
+
+1337x
+btdigg
+burnbit
+demonoid
+isohunt
+rarbg
+pirate
+yourbittorrent
+
+
+
+
+
+defunct websites
+
+
+
+btjunkie
+
+eztv
+kickasstorrents
+lokitorrent
+mininova
+oinks pink palace
+openbittorrent
+suprnovaorg
+t411
+torrentspy
+torrentz
+whatcd
+youtorrent
+extratorrent
+
+
+
+
+
+related topics
+
+
+
+axxo
+bittorrent open source license
+glossary bittorrent terms
+popcorn time
+slyckcom
+torrentfreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+peertopeer file sharing
+
+
+
+networks
+protocols
+
+
+
+
+centralized
+
+
+
+advanced direct connect
+audiogalaxy
+cutemx
+opennap
+soribada
+soulseek
+
+
+
+
+
+decentralized
+
+
+
+advanced direct connect
+ares
+bittorrent
+
+edonkey
+fasttrack
+freenet
+gnunet
+gnutella
+gnutella2
+
+
+openft
+retroshare
+share
+tribler
+winny
+zeronet
+
+
+
+
+
+historic
+
+
+
+direct connect
+entropy
+kazaa
+morpheus
+overnet
+napster
+waste
+winmx
+
+
+
+
+
+
+
+
+comparisons
+clients
+
+
+
+advanced direct connect
+bittorrent
+direct connect
+edonkey
+gnutella
+gnutella2
+
+
+
+
+
+hyperlinks
+
+
+
+ed2k
+magnet
+metalink
+
+
+
+
+
+uses
+
+
+
+broadcatching
+segmented file transfer
+music download
+image sharing
+disk sharing
+peercasting
+hosting freesite
+legal aspects
+
+
+
+
+
+concepts
+
+
+
+
+privacy
+
+
+
+friendtofriend
+darknet
+open music model
+anonymous
+private
+
+
+
+
+
+
+
+
+internal
+technologies
+
+
+
+
+traversal
+
+protocol encryption
+sha1
+superseeding
+merkle tree
+tracker
+
+hole punching
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlebittorrentoldid815790877 categories computerrelated introductions 2001application layer protocolsbittorrentweb 20file sharinghidden categories maint uses authors parameterpages login required references sourcesall accuracy disputesarticles disputed statements april 2013cs1 norwegianlanguage sources nocs1 dutchlanguage sources nlcs1 maint uses editors parameteruse dates july 2016articles containing potentially dated statements february 2009all articles containing potentially dated statementsarticles containing potentially dated statements 2013articles containing potentially dated statements january 2012articles containing potentially dated statements 2011all articles unsourced statementsarticles unsourced statements november 2011articles containing potentially dated statements february 2008articles containing potentially dated statements december 2008all articles specifically marked weaselworded phrasesarticles specifically marked weaselworded phrases july 2016official website different wikidata wikipediaarticles dmoz linkspages using citations

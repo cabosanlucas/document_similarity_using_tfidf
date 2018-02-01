@@ -1,0 +1,851 @@
+For use of ISSNs on Wikipedia, see Wikipedia:ISSN.
+
+International Standard Serial Number
+
+
+an ISSN, 2049-3630, as represented by an EAN-13 bar code. NOTE: MOD10 in the image should be MOD11.
+
+
+
+Acronym
+ISSN
+
+
+No. issued
+> 2,000,000
+
+
+Introduced
+1976; 41 years ago (1976)
+
+
+Managing organisation
+ISSN International Centre
+
+
+No. of digits
+8
+
+
+Check digit
+Weighted sum
+
+
+Example
+2049-3630
+
+
+Website
+www.issn.org
+
+
+
+
+
+
+ISSN encoded in an EAN-13 barcode with sequence variant 0 and issue number 5
+
+
+
+
+
+
+Example of an ISSN encoded in an EAN-13 barcode, with explanation. NOTE: MOD10 in the image should be MOD11.
+
+
+
+
+
+
+ISSN expanded with sequence variant 0 to a GTIN-13 and encoded in an EAN-13 barcode with an EAN-2 add-on designating issue number 13
+
+
+An International Standard Serial Number (ISSN) is an eight-digit serial number used to uniquely identify a serial publication.[1] The ISSN is especially helpful in distinguishing between serials with the same title. ISSN are used in ordering, cataloging, interlibrary loans, and other practices in connection with serial literature.[2]
+The ISSN system was first drafted as an International Organization for Standardization (ISO) international standard in 1971 and published as ISO 3297 in 1975.[3] ISO subcommittee TC 46/SC 9 is responsible for maintaining the standard.
+When a serial with the same content is published in more than one media type, a different ISSN is assigned to each media type. For example, many serials are published both in print and electronic media. The ISSN system refers to these types as print ISSN (p-ISSN) and electronic ISSN (e-ISSN), respectively.[4] Conversely, as defined in ISO 3297:2007, every serial in the ISSN system is also assigned a linking ISSN (ISSN-L), typically the same as the ISSN assigned to the serial in its first published medium, which links together all ISSNs assigned to the serial in every medium.[5]
+
+
+
+Contents
+
+
+1 Code format
+2 Code assignment
+3 Comparison with other identifiers
+
+3.1 Media vs content
+
+
+4 Availability
+5 Use in URNs
+
+5.1 Problems
+
+
+6 ISSN variants and labels
+
+6.1 Print ISSN
+6.2 Electronic ISSN
+6.3 Linking ISSN
+
+
+7 ROAD
+8 See also
+9 References
+10 External links
+
+
+
+Code format[edit]
+The format of the ISSN is an eight digit code, divided by a hyphen into two four-digit numbers.[1] As an integer number, it can be represented by the first seven digits.[6] The last code digit, which may be 0-9 or an X, is a check digit. Formally, the general form of the ISSN code (also named "ISSN structure" or "ISSN syntax") can be expressed as follows:[7]
+
+NNNN-NNNC
+where N is in the set {0,1,2,...,9}, a digit character, and C is in {0,1,2,...,9,X};
+
+or by a Perl Compatible Regular Expressions (PCRE) regular expression:[8]
+
+^\d{4}-\d{3}[\dxX]$.
+
+The ISSN of the journal Hearing Research, for example, is 0378-5955, where the final 5 is the check digit, that is C=5. To calculate the check digit, the following algorithm may be used:
+
+Calculate the sum of the first seven digits of the ISSN multiplied by its position in the number, counting from the right—that is, 8, 7, 6, 5, 4, 3, and 2, respectively:
+
+
+
+
+
+0
+⋅
+8
++
+3
+⋅
+7
++
+7
+⋅
+6
++
+8
+⋅
+5
++
+5
+⋅
+4
++
+9
+⋅
+3
++
+5
+⋅
+2
+
+
+{\displaystyle 0\cdot 8+3\cdot 7+7\cdot 6+8\cdot 5+5\cdot 4+9\cdot 3+5\cdot 2}
+
+
+
+
+
+
+=
+0
++
+21
++
+42
++
+40
++
+20
++
+27
++
+10
+
+
+{\displaystyle =0+21+42+40+20+27+10}
+
+
+
+
+
+
+=
+160
+
+
+{\displaystyle =160}
+
+
+
+
+The modulus 11 of this sum is then calculated; divide the sum by 11 and determine the remainder:
+
+
+
+
+
+
+
+160
+11
+
+
+=
+14
+
+ remainder 
+
+6
+=
+14
++
+
+
+6
+11
+
+
+
+
+{\displaystyle {\frac {160}{11}}=14{\mbox{ remainder }}6=14+{\frac {6}{11}}}
+
+
+
+
+
+
+If there is no remainder the check digit is 0, otherwise the remainder value is subtracted from 11 to give the check digit:
+
+
+
+
+
+11
+−
+6
+=
+5
+
+
+{\displaystyle 11-6=5}
+
+
+
+
+5 is the check digit, C.
+
+
+For calculations, an upper case X in the check digit position indicates a check digit of 10 (like a Roman ten).
+
+To confirm the check digit, calculate the sum of all eight digits of the ISSN multiplied by its position in the number, counting from the right (if the check digit is X, then add 10 to the sum). The modulus 11 of the sum must be 0.
+There is an online ISSN checker that can validate an ISSN, based on the above algorithm.[9][10]
+Code assignment[edit]
+ISSN codes are assigned by a network of ISSN National Centres, usually located at national libraries and coordinated by the ISSN International Centre based in Paris. The International Centre is an intergovernmental organization created in 1974 through an agreement between UNESCO and the French government. The International Centre maintains a database of all ISSNs assigned worldwide, the ISDS Register (International Serials Data System) otherwise known as the ISSN Register. At the end of 2016[update], the ISSN Register contained records for 1,943,572 items.[11]
+Comparison with other identifiers[edit]
+ISSN and ISBN codes are similar in concept, where ISBNs are assigned to individual books. An ISBN might be assigned for particular issues of a serial, in addition to the ISSN code for the serial as a whole. An ISSN, unlike the ISBN code, is an anonymous identifier associated with a serial title, containing no information as to the publisher or its location. For this reason a new ISSN is assigned to a serial each time it undergoes a major title change.
+Since the ISSN applies to an entire serial a new identifier, the Serial Item and Contribution Identifier (SICI), was built on top of it to allow references to specific volumes, articles, or other identifiable components (like the table of contents).
+Media vs content[edit]
+Separate ISSNs are needed for serials in different media (except reproduction microforms). Thus, the print and electronic media versions of a serial need separate ISSNs.[12] Also, a CD-ROM version and a web version of a serial require different ISSNs since two different media are involved. However, the same ISSN can be used for different file formats (e.g. PDF and HTML) of the same online serial.
+This "media-oriented identification" of serials made sense in the 1970s. In the 1990s and onward, with personal computers, better screens, and the Web, it makes sense to consider only content, independent of media. This "content-oriented identification" of serials was a repressed demand during a decade, but no ISSN update or initiative occurred. A natural extension for ISSN, the unique-identification of the articles in the serials, was the main demand application. An alternative serials' contents model arrived with the indecs Content Model and its application, the digital object identifier (DOI), as ISSN-independent initiative, consolidated in the 2000s.
+Only later, in 2007, ISSN-L was defined in the new ISSN standard (ISO 3297:2007) as an "ISSN designated by the ISSN Network to enable collocation or versions of a continuing resource linking among the different media".[13]
+Availability[edit]
+The ISSN Register is not freely available for interrogation on the web, but is available by subscription. There are several routes to the identification and verification of ISSN codes for the public:
+
+The print version of a serial typically will include the ISSN code as part of the publication information.
+Most serial websites contain ISSN code information.
+Derivative lists of publications will often contain ISSN codes; these can be found through on-line searches with the ISSN code itself or serial title.
+WorldCat permits searching its catalog by ISSN, by entering "issn:"+ISSN code in the query field. One can also go directly to an ISSN's record by appending it to "https://www.worldcat.org/ISSN/", e.g. https://www.worldcat.org/ISSN/1021-9749. This does not query the ISSN Register itself, but rather shows whether any Worldcat library holds an item with the given ISSN.
+
+Use in URNs[edit]
+An ISSN can be encoded as a uniform resource name (URN) by prefixing it with "urn:ISSN:".[14] For example, Rail could be referred to as "urn:ISSN:0953-4563". URN namespaces are case-sensitive, and the ISSN namespace is all caps.[15] If the checksum digit is "X" then it is always encoded in uppercase in a URN.
+Problems[edit]
+The util URNs are content-oriented, but ISSN is media-oriented:
+
+ISSN is not unique when the concept is "a journal is a set of contents, generally copyrighted content": the same journal (same contents and same copyrights) have two or more ISSN codes. A URN needs to point to "unique content" (a "unique journal" as a "set of contents" reference).
+Examples: Nature has an ISSN for print, 0028-0836, and another for the same content on the Web, 1476-4687; only the oldest (0028-0836) is used as a unique identifier. As the ISSN is not unique, the U.S. National Library of Medicine needed to create, prior to 2007, the NLM Unique ID (JID).[16]
+ISSN does not offer resolution mechanisms like a digital object identifier (DOI) or an URN does, so the DOI is used as a URN for articles, with (for historical reasons) no need for an ISSN's existence.
+Example: the DOI name "10.1038/nature13777" can be represented as an HTTP string by https://dx.doi.org/10.1038/nature13777, and is redirected (resolved) to the current article's page; but there is no ISSN online service, like http://dx.issn.org/, to resolve the ISSN of the journal (in this sample 1476-4687), that is, a kind of https://dx.issn.org/1476-4687 redirecting to the journal's home.
+
+A unique URN for serials simplifies the search, recovery and delivery of data for various services including, in particular, search systems and knowledge databases.[13] ISSN-L (see Linking ISSN below) was created to fill this gap.
+ISSN variants and labels[edit]
+There are two most popular media types that adopted special labels (indicating below in italics), and one in fact ISSN-variant, with also an optional label. All are used in standard metadata context like JATS, and the labels also, frequently, as abbreviations.
+Print ISSN[edit]
+p-ISSN is a standard label for "Print ISSN", the ISSN for the print media (paper) version of a serial. Usually it is the "default media", so the "default ISSN".
+Electronic ISSN[edit]
+e-ISSN (or eISSN) is a standard label for "Electronic ISSN", the ISSN for the electronic media (online) version of a serial.
+Linking ISSN[edit]
+ISSN-L is a unique identifier for all versions of the serial containing the same content across different media. As defined by ISO 3297:2007, the "linking ISSN (ISSN-L)" provides a mechanism for collocation or linking among the different media versions of the same continuing resource.
+The ISSN-L is one ISSN number among the existing ISSNs, so, does not change the use or assignment of "ordinary" ISSNs;[17] it is based on the ISSN of the first published medium version of the publication. If the print and online versions of the publication are published at the same time, the ISSN of the print version is chosen as the basis of the ISSN-L.
+With ISSN-L is possible to designate one single ISSN for all those media versions of the title. The use of ISSN-L facilitates search, retrieval and delivery across all media versions for services like OpenURL, library catalogues, search engines or knowledge bases.[18]
+ROAD[edit]
+
+ROAD: Directory of Open Access Scholarly Resources (it) (est. 2013), produced by the ISSN International Centre and Unesco[19]
+
+See also[edit]
+
+CODEN
+WorldCat – an ISSN-resolve service
+
+References[edit]
+
+
+^ a b "What is an ISSN?". Paris: ISSN International Centre. Retrieved 13 July 2014. 
+^ "Collection Metadata Standards". British Library. Retrieved 14 July 2014. 
+^ "ISSN, a Standardised Code". Paris: ISSN International Centre. Retrieved 13 July 2014. 
+^ "The ISSN for electronic media | ISSN". www.issn.org. Retrieved 2017-09-28. 
+^ "3". ISSN Manual (PDF). Paris: ISSN International Centre. January 2015. pp. 14, 16, 55–58.  HTML version available at http://www.issn.org/understanding-the-issn/assignment-rules/issn-manual.
+^ Example of database implementation where seven-digit integers are used to store ISSNs.
+^ https://tools.ietf.org/html/rfc3044
+^ See p. ex. $pattern at source code (issn-resolver.php) of github.com/amsl-project/issn-resolver.
+^ "Online ISSN Checker". Advanced Science Index. Retrieved 14 July 2014. 
+^ "Online ISSN Validator". Journal Seeker. Retrieved 9 August 2014. 
+^ "Total number of records in the ISSN Register" (PDF). ISSN International Centre. February 2017. Retrieved 23 February 2017. 
+^ "ISSN for Electronic Serials". U.S. ISSN Center, Library of Congress. 19 February 2010. Retrieved 12 July 2014. 
+^ a b "The ISSN-L for publications on multiple media". ISSN International Centre. Retrieved 12 July 2014. 
+^ Rozenfeld, Slawek (January 2001). "Using The ISSN (International Serial Standard Number) as URN (Uniform Resource Names) within an ISSN-URN Namespace". IETF Tools. RFC 3044 . Retrieved 15 July 2014. 
+^ Powell, Andy; Johnston, Pete; Campbell, Lorna; Barker, Phil (21 June 2006). "Guidelines for using resource identifiers in Dublin Core metadata § 4.5 ISSN". Dublin Core Architecture Wiki. Archived from the original on 13 May 2012. 
+^ "MEDLINE®/PubMed® Data Element (Field) Descriptions". U.S. National Library of Medicine. 7 May 2014. Retrieved 19 July 2014. 
+^ Kansalliskirjasto, Nationalbiblioteket, The National Library of Finland. "Kansalliskirjasto, Nationalbiblioteket, The National Library of Finland". nationallibrary.fi. CS1 maint: Multiple names: authors list (link)
+^ "La nueva Norma ISSN facilita la vida de la comunidad de las publicaciones en serie", A. Roucolle. "Archived copy". Archived from the original on 10 December 2014. Retrieved 29 October 2014. 
+^ "Road in a nutshell". Road.issn.org. Retrieved 12 September 2017. 
+
+
+External links[edit]
+
+
+
+Wikidata has the property: ISSN (P236) (see uses)
+
+
+
+List of 63800 ISSN numbers and titles
+ISSN International Centre 
+"Cataloging Part", ISSN Manual (PDF), ISSN International Centre, archived from the original (PDF) on 7 August 2011 .
+How U.S. publishers can obtain an ISSN, United States: Library of Congress .
+ISSN in Canada, Library and Archives Canada .
+Getting an ISSN in the UK, British Library .
+Getting an ISSN in France (in French), Bibliothèque nationale de France 
+Getting an ISSN in Germany (in German), Deutsche Nationalbibliothek 
+Getting an ISSN in South Africa, National Library of South Africa 
+
+
+
+
+
+
+
+v
+t
+e
+
+
+International numbering standards
+
+
+
+
+Standards
+
+
+
+
+
+
+
+ISO 2108: International Standard Book Number (ISBN)
+ISO 3297: International Standard Serial Number (ISSN)
+ISO 3901: International Standard Recording Code (ISRC)
+ISO 6166: International Securities Identification Number (ISIN)
+ISO/IEC 7812: Issuer identification number (IIN)
+ISO 10957: International Standard Music Number (ISMN)
+ISO 13616: International Bank Account Number (IBAN)
+ISO 15511: International Standard Identifier for Libraries... (ISIL)
+ISO 15706: International Standard Audiovisual Number (ISAN)
+ISO 15707: International Standard Musical Work Code (ISWC)
+ISO 17316: International Standard Link Identifier (ISLI)
+ISO 17442: Legal Entity Identifier (LEI)
+ISO 21047: International Standard Text Code (ISTC)
+ISO 26324: Digital Object Identifier System (DOI)
+ISO 27729: International Standard Name Identifier (ISNI)
+CAE/IPI
+Virtual International Authority File (VIAF)
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+LCCN: sh85067450
+GND: 4162599-7
+BNF: cb11942988w (data)
+NDL: 00575286
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=International_Standard_Serial_Number&oldid=817573763"					Categories: Checksum algorithmsISO standardsSerial numbersUnique identifiersLibrary scienceHidden categories: CS1 maint: Multiple names: authors listArticles containing potentially dated statements from December 2016All articles containing potentially dated statementsInterlanguage link template link numberCS1 French-language sources (fr)CS1 German-language sources (de)Wikipedia articles with LCCN identifiersWikipedia articles with GND identifiersWikipedia articles with BNF identifiersUse dmy dates from August 2017

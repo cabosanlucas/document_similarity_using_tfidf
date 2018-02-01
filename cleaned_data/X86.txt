@@ -1,0 +1,2509 @@
+article intel microprocessor architecture general 32bit generation architecture also referred ia32
+
+
+
+designer
+intel
+
+
+bits
+16bit 32bit 64bit
+
+
+introduced
+1978 16bit 1985 32bit 2003 64bit
+
+
+design
+cisc
+
+
+type
+register–memory
+
+
+encoding
+variable bytes
+
+
+branching
+condition code
+
+
+endianness
+little
+
+
+page size
+8086–i286 none
+i386 i486 pages
+pentium added pages
+legacy kb→2
+x8664 added pages
+
+
+extensions
+ia32 x8664 3dnow sse2 sse3 ssse3 sse4 sse42 sse5 aesni clmul rdrand f16c avx2 avx512 amdv
+
+
+open
+partly advanced features require license intel x8664 require additional license 80486 processor market years1 cannot subject patent claims pre586 subset architecture therefore fully open
+
+
+registers
+
+
+general purpose
+
+
+
+16bit semidedicated registers generalpurpose
+32bit gprs including
+64bit gprs including
+
+
+
+
+
+floating point
+
+
+
+16bit optional separate
+32bit optional separate integrated integrated sse2 units later processors
+64bit integrated sse2 units
+
+
+
+
+
+
+
+
+
+intel 8086
+
+
+
+
+
+
+intel core example x86compatible 64bit multicore processor
+
+
+
+
+
+
+athlon early version technically different fully compatible implementation
+
+
+family backwardcompatible instruction architecturesa based intel 8086 intel 8088 variant 8086 introduced 1978 fully 16bit extension intels 8bitbased 8080 microprocessor memory segmentation solution addressing memory covered plain 16bit address term came names several successors intels 8086 processor including 80186 80286 80386 80486 processors
+many additions extensions added instruction years almost consistently full backward compatibilityb architecture implemented processors intel cyrix many companies also open implementations platform2
+term synonymous compatibility implies multitude computer hardware embedded systems well generalpurpose computers used chips pccompatible market startedc 1981
+2017 majority personal computers laptops sold based architecture despite inroads chromebookstyle designs segmentleadingcitation needed apple macbook family remains exclusively categories—especially highvolume mobile categories smartphones tablets—are dominated high continues dominate computeintensive workstation cloud computing segments3
+
+
+
+contents
+
+
+overview
+chronology
+history
+
+manufacturers
+extensions word size
+
+
+overview
+
+basic properties architecture
+
+floating point simd
+
+
+current implementations
+
+
+segmentation
+addressing modes
+registers
+
+16bit
+32bit
+64bit
+128bit
+256bit
+512bit
+miscellaneousspecial purpose
+purpose
+structure
+
+
+operating modes
+
+real mode
+protected mode
+
+virtual 8086 mode
+
+
+long mode
+
+
+extensions
+
+floating point unit
+
+3dnow
+
+physical address extension
+x8664
+virtualization
+
+
+also
+notes
+references
+reading
+external links
+
+
+
+overviewedit
+1980s early 1990s 8088 80286 still common term usually represented 8086 compatible today however usually implies binary compatibility also 32bit instruction 80386 fact instruction become something lowest common denominator many modern operating systems probably also term became common introduction 80386 1985
+years introduction 8086 8088 intel added complexity naming scheme terminology iapx ambitious illfated intel iapx processor tried successful 8086 family chipsd applied kind systemlevel prefix 8086 system including coprocessors 8087 8089 well simpler intelspecific system chipse thereby described iapx system4f also terms irmx operating systems isbc singleboard computers isbx multimodule boards based 8086architecture together heading microsystem 8056 however naming scheme quite temporary lasting years early 1980sg
+although 8086 primarily developed embedded systems small multiuser singleuser computers largely response successful 8080compatible zilog z807 line soon grew features processing power today ubiquitous stationary portable personal computers also used midrange computers workstations servers supercomputer clusters top500 list large amount software including operating systems windows linux freebsd netbsd openbsd solaris macos functions x86based hardware
+modern relatively uncommon embedded systems however small power applications using tiny batteries well lowcost microprocessor markets home appliances toys lack significant presenceh simple 8bit 16bit based architectures common although x86compatible nano amds geode athlon intel atom examples 64bit designs used relatively power cost segments
+several attempts including intel market dominance inelegant architecture designed directly first simple 8bit microprocessors examples iapx project originally named intel 88008 intel intel intelhewlettpackard itanium architecture however continuous refinement microarchitectures circuitry semiconductor manufacturing would make hard replace many segments amds 64bit extension intel eventually responded compatible design9 scalability chips eightcore intel xeon 12core opteron underlining example continuous refinement established industry standards resist competition completely architectures10
+chronologyedit
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed october 2016 learn remove template message
+
+
+
+table lists processor models model series implementing variations instruction chronological order line item characterized significantly improved commercially successful processor microarchitecture designs
+
+
+first introduced
+prominent brands
+linear address size bits
+segment offset size bits
+physical address size bits
+notable features
+
+
+1978
+intel 8086 intel 8088 clones
+
+
+
+first microprocessors
+
+
+1982
+intel 80186 intel 80188 clones v20v30
+
+
+
+hardware fast address calculations fast multiplication division
+
+
+1982
+intel 80286 clones
+
+
+
+protected mode larger address space
+
+
+1985
+intel 80386 clones am386
+
+
+
+32bit instruction paging pga132 socket
+
+
+1989
+intel 80486 clones am486
+
+
+
+risclike pipelining integrated 80bit onchip cache pga168 socket
+
+
+1992
+cyrix cx486slc cyrix cx486dlc
+
+
+
+cache pipelining introduced platform pga132 socket
+
+
+1993
+pentium pentium rise
+
+
+
+superscalar 64bit databus faster 32bit socket
+
+
+1995
+pentium
+
+
+
+translation conditional move instructions outoforder register renaming speculative execution pentium inpackage cache pentium socket
+
+
+1996
+cyrix 6x86 cyrix nx586 1994 idtcentaurc6 cyrix iiisamuel 2000 c3samuel2 c3ezra 2001
+
+
+
+discrete microarchitecture translation
+
+
+1997
+am5x86 cyrix 5x86 pentium overdrive
+
+
+
+partial pentiums specification brought platform
+
+
+1997
+pentium iiiii celeron xeon
+
+
+
+64bit ondie cache mendocino coppermine slot socket
+
+
+1997
+k62iii cyrix iiijoshua 2000
+
+
+
+ondie l2cache k6iii cyrix joshua 3dnow support super socket
+
+
+1999
+athlon athlon
+
+
+pae11
+superscalar wide design three instrclock slot socket
+
+
+2000
+pentium
+
+
+
+deeply pipelined pipeline stages intel rapid execution engine execution trace cache replay system quadpumped frontside high frequency sse2 hyperthreading socket
+
+
+2000
+transmeta crusoe transmeta efficeon
+
+
+
+vliw design emulator ondie memory controller
+
+
+2001
+intel itanium ia32 compatibility mode
+
+
+
+epic architecture onpackage engine pre2006 chips later using ia32 execution layer provides backward support ia32 applications
+
+
+2003
+pentium 2005 intel core 2006
+
+
+
+optimized thermal design power four pumped fusion
+
+
+2003
+athlon athlon 2005 sempron 2004 opteron
+
+
+athlon sampron40 opteron
+amd64 processor excluding 32bit sempron ondie memory controller hypertransport virtualization amdv models socket 754939940 socket
+
+
+2005
+pentium prescott f5065165x16xx celeron 3x13x6355 pentium
+
+
+
+em64t technology introduced deeply pipelined pipeline stages high frequency sse3 socket x8664
+
+
+2006
+intel core
+
+
+intel core xeon 5100 1340 xeon 72007300 lga77114
+intel processor power multicore lower clock frequency sse4 penryn wide dynamic execution fusion macroµop fusion virtualization intel models
+
+
+2007
+vortex86
+
+
+
+inorder core high pipeline deep integrated soundgraphic unitsoc onchip memory controller clock power embedded
+
+
+2007
+phenom phenom 2008
+
+
+phenom athlon sampron48 phenom opteron
+monolithic quadcore sse4a hypertransport socket
+
+
+2008
+nano
+
+
+
+outoforder superscalar 64bit integer hardwarebased encryption power adaptive power management
+
+
+2008
+intel core nehalem westmere
+
+
+
+hyperthreading intel turbo boost aesni outoforder quickpath native memory controller ondie cache modular intel graphics introduced onto chip clarkdale 1366 nehalem 1156 socket
+
+
+2008
+intel atom
+
+
+bonnell trailer later
+inorder highly pipelined verylowpower models diamondville 32bit integer ondie penwell cedarview
+
+
+2010
+
+
+
+52opteron
+highly pipelined stages long pipeline verypower hungry high clock share instruction cache flexfpu cores module first consumer octacore processor clustered multithread opencl support socket chipset
+
+
+2011
+series bobcat
+
+
+
+outoforder 64bit integer ondie power bobcat socket desktop
+
+
+2011
+series llano
+
+
+
+ondie first generation fusion
+
+
+2011
+series bulldozer trinity later
+
+
+
+sse5avx 64bit highly modular design integrated ondie socket socket gpgpu
+
+
+2011
+intel core sandy bridge bridge
+
+
+
+internal ring connection intel turbo boost f16c15 gpgpu microoperation cacheuop cache relatively long pipeline stages16lga 1155 socket
+
+
+2012
+intel xeon larrabee
+
+
+
+many integrated core architecture inorder p54c x8664 wide vector unit lrbni instructions 64bit four threads core
+
+
+2013
+intel core core core haswell broadwell
+
+
+
+avx2 fma3 bmi1 bmi2 instructions intel fully integrated voltage regulator fivr intel turbo boost maxbroadwelle high clock rate 1150 socket
+
+
+2015
+intel core skylake kaby lake coffee lake
+
+
+
+outoforder 64bit integer avx512 intel intel high clock rate integrated ondie southbridge integrated ondie array
+
+
+historyedit
+manufacturersedit
+
+
+
+
+am386 released 1991
+
+
+information list former ia32 compatible processor manufacturers
+various times companies neci fujitsu siemens cyrix intersil nexgen started design manufacturej processors cpus intended personal computers well embedded systems implementations seldom simple copies often employ different internal microarchitectures well different solutions electronic physical levels quite naturally early compatible microprocessors 16bit 32bit designs developed much later personal computer market real quantities started appear around 1990 i386 i486 compatible processors often named similarly intels original chips companies designed manufactured processors include corporation national semiconductor ulsi system technology weitek
+following fully pipelined i486 intel introduced pentium brand name unlike numbers could trademarked superscalar designs naming scheme legally cleared vendors choose different names x86compatible products initially chose continue variations numbering scheme partnered cyrix produce 5x86 efficient 6x86 6x86mx lines cyrix designs first microprocessors implementing register renaming enable speculative execution meanwhile designed manufactured advanced delayed 5k86 internally closely based amds earlier risc design similar nexgens nx586 used strategy dedicated pipeline stages decode instructions uniform easily handled microoperations method remained basis designs
+early versions microprocessors heat dissipation problems 6x86 also affected minor compatibility problems nx586 lacked floating point unit crucial pincompatibility somewhat disappointing performance eventually introduced customer ignorance alternatives pentium series contributed designs comparatively unsuccessful despite fact good pentium compatibility 6x86 significantly faster pentium integer codek later managed establish serious contender processors gave successful athlon opteron also contenders centaur technology formerly rise technology transmeta technologies energy efficient processors designed centaur company sold many years centaurs newest design nano first processor superscalar speculative execution perhaps interestingly introduced time intels first inorder processor since pentium intel atom
+extensions word sizeedit
+instruction architecture twice extended larger word size 1985 intel released 32bit 80386 later known i386 gradually replaced earlier 16bit chips computers although typically embedded systems following years extended programming model originally referred i386 architecture like first implementation intel later dubbed ia32 introducing unrelated ia64 architecture
+19992003 extended 32bit architecture bits referred x8664 early documents later amd64 intel soon adopted amds architectural extensions name ia32e later using name em64t finally using intel microsoft microsystemsoracle also term many linux distributions also amd64 term microsoft windows example designates 32bit versions 64bit versions installation files 64bit windows versions required placed directory called amd6417
+overviewedit
+basic properties architectureedit
+architecture variable instruction length primarily cisc design emphasis backward compatibility instruction typical cisc however basically extended version simple eightbit 8008 8080 architectures byteaddressing enabled words stored memory littleendian byte order memory access unaligned addresses allowed valid word sizes largest native size integer arithmetic memory addresses offsets bits depending architecture generation newer processors include direct support smaller integers well multiple scalar values handled simultaneously simd unit present later generations described belowl immediate addressing offsets immediate data expressed 8bit quantities frequently occurring cases contexts 128127 range enough typical instructions therefore bytes length although much longer singlebyte
+conserve encoding space registers expressed opcodes using three four bits latter opcode prefix 64bit mode operand instruction memory locationm however memory operand also destination combined source destination operand source either register immediate among factors contributes code size rivals eightbit machines enables efficient instruction cache memory relatively small number general registers also inherited 8bit ancestors made registerrelative addressing using small immediate offsets important method accessing operands especially stack much work therefore invested making accesses fast register accesses cycle instruction throughput circumstances accessed data available toplevel cache
+floating point simdedit
+dedicated floating point processor 80bit internal registers 8087 developed original 8086 microprocessor subsequently developed extended 80387 later processors incorporated backward compatible version functionality microprocessor main processor addition modern designs also contain simdunit instructions work parallel 128bit words containing four floating point numbers bits wide respectively alternatively integers bits wide respectively
+presence wide simd registers means existing processors load store bits memory data single instruction also perform bitwise operations although integer arithmeticn full 128bits quantities parallel intels sandy bridge processors added advanced vector extensions instructions widening simd registers bits knights corner architecture used intel xeon coprocessors uses 512bit wide simd registers
+current implementationsedit
+execution current processors employ extra decoding steps split instructions smaller pieces called microoperations handed control unit buffers schedules compliance x86semantics executed partly parallel several less specialized execution units modern designs thus pipelined superscalar also capable order speculative execution branch prediction register renaming memory dependence prediction means execute multiple partial complete instructions simultaneously necessarily order given instruction stream18 intels amds starting cpus also capable simultaneous multithreading threads core xeon four threads core case intel transactional memory
+introduced mid1990s method sometimes referred risc core risc translation partly marketing reasons also microoperations share properties certain types risc instructions however traditional microcode used since 1950s also inherently shares many properties method differs mainly translation microoperations occurs asynchronously synchronize execution units decode steps opens possibilities analysis buffered code stream therefore permits detection operations performed parallel simultaneously feeding execution unit
+latest processors also opposite appropriate combine certain sequences compare followed conditional jump complex microop fits execution model better thus executed faster less machine resources involved
+another improve performance cache decoded microoperations processor directly access decoded microoperations special cache instead decoding intel followed approach execution trace cache feature netburst microarchitecture pentium processors later decoded stream buffer corebranded processors since sandy bridge19
+transmeta used completely different method compatible cpus used justintime translation convert instructions cpus native vliw instruction transmeta argued approach allows power efficient designs since forgo complicated decode step traditional implementations
+segmentationedit
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed february 2013 learn remove template message
+
+
+
+information memory segmentation
+minicomputers late 1970s running 16bit 64kb address limit memory become cheaper minicomputers like pdp11 used complex bankswitching schemes case digitals redesigned much expensive processors could directly handle 32bit addressing data original 8086 developed simple 8080 microprocessor primarily aiming small inexpensive computers specialized devices instead adopted simple segment registers increased memory address width bits multiplying 64kb address 20bit address could address total megabyte 1048576 bytes quite large amount small computer time concept segment registers many mainframes used segment registers swap quickly different tasks practice muchcriticized implementation greatly complicated many common programming tasks compilers however architecture soon allowed linear 32bit addressing starting 80386 late 1985 major actors microsoft took several years convert 16bit based systems 80386 80486 therefore largely used fast still 16bit based 8086 many years
+data code could managed within near 16bit segments within portions total address space compiler could operate mode using 32bit segmentoffset pairs reaching would also prove quite limiting mid1980s working emerging market made simple translate software older 8008 8080 8085 newer processor 1985 16bit segment addressing model effectively factored introduction 32bit offset registers design
+real mode segmentation achieved shifting segment address left bits adding offset order receive final 20bit address example a000h 5677h dssi point absolute address a5677h thus total address space real mode bytes quite impressive figure 1978 memory addresses consist segment offset every type access code data stack default segment register associated data register usually code stack data accesses segment register explicitly specified using segment override prefix four segment registers
+scheme different segmentoffset pairs point single absolute location thus a111h 4567h dssi point a5677h scheme makes impossible four segments vital correct functioning program used point data segments outside program precisely outside currently executing segment program stack
+protected mode introduced 80286 segment register longer contains physical address beginning segment contain selector points systemlevel structure called segment descriptor segment descriptor contains physical address beginning segment length segment access permissions segment offset checked length segment offsets referring locations outside segment causing exception offsets referring locations inside segment combined physical address beginning segment physical address corresponding offset
+segmented nature make programming compiler design difficult near pointers affects performance
+addressing modesedit
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed march 2014 learn remove template message
+
+
+
+addressing modes 16bit processors summarized formula
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beginbmatrixmathtt csmathtt dsmathtt ssmathtt esendbmatrixbeginbmatrixbeginbmatrixmathtt bxmathtt bpendbmatrixendbmatrixbeginbmatrixbeginbmatrixmathtt simathtt diendbmatrixendbmatrixrm displacement
+
+
+
+addressing modes 32bit address size 32bit 64bit processors summarized formula20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beginbmatrixmathtt csmathtt dsmathtt ssmathtt esmathtt fsmathtt gsendbmatrixbeginbmatrixbeginbmatrixmathtt eaxmathtt ebxmathtt ecxmathtt edxmathtt espmathtt ebpmathtt esimathtt ediendbmatrixendbmatrixbeginbmatrixbeginbmatrixmathtt eaxmathtt ebxmathtt ecxmathtt edxmathtt ebpmathtt esimathtt ediendbmatrixbeginbmatrix1248endbmatrixendbmatrixrm displacement
+
+
+
+addressing modes 64bit code 64bit processors summarized formula
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beginbmatrixbeginbmatrixmathtt fsmathtt gsendbmatrixbeginbmatrixrm generalregisterendbmatrixbeginbmatrixrm generalregisterbeginbmatrix1248endbmatrixendbmatrixmathtt ripendbmatrixrm displacement
+
+
+
+instruction relative addressing 64bit code displacement instruction pointer register simplifies implementation positionindependent code used shared libraries operating systems
+8086 7001640000000000000♠64 eightbit alternatively 7001320000000000000♠32 kword 16bit space 7001640000000000000♠64 segment stack memory supported computer hardware words bytes pushed stack stack grows toward numerically lower addresses sssp pointing recently pushed item interrupts invoked hardware software interrupts cascade using stack store return address
+registersedit
+description general notion register processor register
+16bitedit
+original intel 8086 8088 fourteen 16bit registers four generalpurpose registers gprs although additional purpose example used counter loop instruction accessed separate bytes thus high byte accessed byte pointer registers special roles stack pointer points stack base pointer often used point place stack typically local variables frame pointer registers address registers also used array indexing
+four segment registers used form memory address flags register contains flags carry flag overflow flag zero flag finally instruction pointer points next instruction fetched memory executed register cannot directly accessed read written program21
+intel 80186 80188 essentially upgraded 8086 8088 respectively onchip peripherals added registers 8086 8088 addition interface registers peripherals
+8086 8088 80186 80188 optional floatingpoint coprocessor 8087 8087 appears programmer part adds eight 80bit wide registers hold numeric data seven formats 80bit floating point 64bit binary integer 80bit packed decimal integer6s6 s13s15
+intel 80286 support protected mode three special registers hold descriptor table addresses gdtr ldtr idtr fourth task register used task switching 80287 floatingpoint coprocessor 80286 registers 8087 data formats
+32bitedit
+
+
+
+
+registers available x8664 instruction
+
+
+advent 32bit 80386 processor 16bit generalpurpose registers base registers index registers instruction pointer flags register segment registers expanded bits nomenclature represented prefixing extended register names assembly language thus register corresponds lowest bits 32bit register corresponds lowest bits generalpurpose registers base registers index registers used base addressing modes registers except stack pointer used index addressing modes
+segment registers added greater number registers instructions operands machine code format expanded provide backward compatibility segments executable code marked containing either 16bit 32bit instructions special prefixes allow inclusion 32bit instructions 16bit segment vice versa
+80386 optional floatingpoint coprocessor 80387 eight 80bit wide registers st722 like 8087 80287 80386 could also 80287 coprocessor23 80486 subsequent models floatingpoint processing unit integrated onchip
+pentium added eight 64bit integer registers mmx0 mmx7 share lower bits 80bitwide stack24 pentium intel added 32bit streaming simd extensions controlstatus register mxcsr eight 128bit floating point registers xmm0 xmm725
+64bitedit
+starting opteron processor architecture extended 32bit registers 64bit registers similar 32bit extension took place rprefix identifies 64bit registers rflags eight additional 64bit general registers r8r15 also introduced creation x8664 however extensions usable 64bit mode modes available long mode addressing modes dramatically changed 32bit mode except addressing extended bits virtual addresses sign extended bits order disallow mode bits virtual addresses selector details dramatically reduced addition addressing mode added allow memory references relative instruction pointer ease implementation positionindependent code used shared libraries operating systems
+128bitedit
+also streaming simd extensions registers
+simd registers xmm0–xmm15
+256bitedit
+also advanced vector extensions features
+simd registers ymm0–ymm15
+512bitedit
+also advanced vector extensions avx512
+simd registers zmm0–zmm31
+miscellaneousspecial purposeedit
+processors protected mode 80286 later processors also three descriptor registers gdtr ldtr idtr task register
+32bit processors starting 80386 also include various specialmiscellaneous registers control registers 64bit debug registers plus test registers 80486 modelspecific registers msrs appearing pentiumo
+purposeedit
+although main registers exception instruction pointer generalpurpose 32bit 64bit versions instruction used anything originally envisioned used following purposes
+
+alahaxeaxrax accumulator
+blbhbxebxrbx base index arrays
+clchcxecxrcx counter loops strings
+dldhdxedxrdx extend precision accumulator combine 32bit 64bit integer operations 32bit code
+siesirsi source index string operations
+diedirdi destination index string operations
+spesprsp stack pointer address stack
+bpebprbp stack base pointer holding address current stack frame
+ipeiprip instruction pointer holds program counter current instruction address
+
+segment registers
+
+code
+data
+stack
+extra data
+extra data
+extra data
+
+particular purposes envisioned registers available 64bit mode
+instructions compile execute efficiently using registers designed purpose example using accumulator adding immediate byte value produces efficient opcode whilst using register produces generic longer register opcode 80c3h another example double precision division multiplication works specifically registers
+modern compilers benefited introduction byte scaleindexbase byte allows registers treated uniformly minicomputerlike however using byte universally nonoptimal produces longer encodings using selectively necessary main benefit byte orthogonality powerful addressing modes provides make possible save instructions registers address calculations scaling index special instructions lost priority hardware design became slower equivalent small code sequences notable example lodsw instruction
+structureedit
+
+general purpose registers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+64bit modeonly general purpose registers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+segment registers
+
+
+
+
+
+
+
+
+
+pointer registers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+note registers available 64bit mode
+
+index registers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+note registers available 64bit mode
+
+instruction pointer register
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+operating modesedit
+real modeedit
+main article real mode
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed january 2014 learn remove template message
+
+
+
+real address mode26 commonly called real mode operating mode 8086 later x86compatible cpus real mode characterized 20bit segmented memory address space meaning memory addressed—actually slightly morep direct software access peripheral hardware concept memory protection multitasking hardware level cpus 80286 series later start real mode poweron 80186 cpus earlier operational mode equivalent real mode later chips platform direct software access bios routines available real mode since bios written real mode however characteristic bios design
+order memory segment registers must used created great complications compiler implementors introduced pointer modes near huge leverage implicit nature segmented architecture different degrees pointers containing 16bit offsets within implied segments pointers containing segment addresses offsets within segments technically possible memory code data code setting four segment registers using 16bit offsets optionally defaultsegment override prefixes address memory puts substantial restrictions data addressed memory operands combined violates architectural intent intel designers separate data items arrays structures code units contained separate segments addressed segment addresses programs ported earlier 8bit processors 16bit address spaces
+protected modeedit
+main article protected mode
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed january 2014 learn remove template message
+
+
+
+addition real mode intel 80286 supports protected mode expanding addressable physical memory addressable virtual memory providing protected memory prevents programs corrupting another done using segment registers storing index descriptor table stored memory tables global descriptor table local descriptor table holding 8192 segment descriptors segment giving access memory 80286 segment descriptor provides 24bit base address base address added 16bit offset create absolute address base address table fulfills role literal value segment register fulfills real mode segment registers converted direct registers indirect registers segment assigned four ring levels used hardwarebased computer security segment descriptor also contains segment limit field specifies maximum offset used segment offsets bits segments still limited 80286 protected mode27
+time segment register loaded protected mode 80286 must read 6byte segment descriptor memory hidden internal registers therefore loading segment registers much slower protected mode real mode changing segments frequently avoided actual memory operations using protected mode segments slowed much 80286 later hardware check offset segment limit parallel instruction execution
+intel 80386 extended offsets also segment limit field segment descriptor bits enabling segment span entire memory space also introduced support protected mode paging mechanism making possible paged virtual memory page size paging allows page virtual memory space page physical memory space uses additional mapping tables memory called page tables protected mode 80386 operate paging either enabled disabled segmentation mechanism always active generates virtual addresses mapped paging mechanism enabled segmentation mechanism also effectively disabled setting segments base address size limit equal whole address space also requires minimallysized segment descriptor table four descriptors since segments need usedq
+paging used extensively modern multitasking operating systems linux 386bsd windows developed first intel architecture support paging 32bit segment offsets architecture became basis development series
+processors support protected mode boot real mode backward compatibility older 8086 class processors upon poweron booting processor initializes real mode begins executing instructions operating system boot code might stored place processor protected mode enable paging features instruction protected mode similar used real mode however certain constraints apply real mode able axcxdx addressingcitation needed apply protected mode conversely segment arithmetic common practice real mode code allowed protected mode
+virtual 8086 modeedit
+main article virtual 8086 mode
+also submode operation 32bit protected mode 80386 protected mode called virtual 8086 mode also known mode basically special hybrid operating mode allows real mode programs operating systems control protected mode supervisor operating system allows great deal flexibility running protected mode programs real mode programs simultaneously mode exclusively available 32bit version protected mode exist 16bit version protected mode long mode
+long modeedit
+main article long mode
+1990s obvious 32bit address space architecture limiting performance applications requiring large data sets 32bit address space would allow processor directly address data size surpassed applications video processing database engines using 64bit addresses possible directly address data although 64bit architectures support access full 64bit address space example amd64 supports bits 64bit address split four paging levels
+1999 published nearly complete specification 64bit extension architecture called x8664 claimed intentions produce design currently used almost processors exceptions intended embedded systems
+massproduced x8664 chips general market available four years later 2003 time spent working prototypes tested refined time initial name x8664 changed amd64 success amd64 line processors coupled lukewarm reception ia64 architecture forced intel release implementation amd64 instruction intel previously implemented support amd6428 opted enable hopes would bring amd64 market itaniums ia64 instruction widely adopted branded implementation amd64 em64t later rebranded intel
+literature product version names microsoft refer amd64intel collectively windows solaris operating systems linux distributions refer either x8664 variant x8664 amd64 systems amd64 macos uses x8664
+long mode mostly extension 32bit instruction unlike 16–to–32bit transition many instructions dropped 64bit mode affect actual binary backward compatibility would execute legacy code modes retain support instructions changes assembler compilers code work
+first time major extension architecture initiated originated manufacturer intel also first time intel accepted technology nature outside source
+extensionsedit
+floating point unitedit
+main article
+information floating point unit
+early processors could extended floatingpoint hardware form series floating point numerical coprocessors names like 8087 80287 80387 abbreviated also known numeric processor extension name since coprocessors used mainly floatingpoint calculations also performed integer operations binary decimal formats exceptions 80486 subsequent processors integrated functionality chip made instructions facto integral part instruction
+register known bits wide stores numbers ieee floatingpoint standard double extended precision format registers organized stack done order conserve opcode space registers therefore randomly accessible either operand registertoregister instruction must always operands either source destination regardless whether operand memory operand however random access stack registers obtained instruction exchanges specified
+operations include arithmetic transcendental functions including trigonometric exponential functions well instructions load common constants base natural logarithm log210 log102 stack registers integer capability often overlooked operate larger integers single instruction 8086 80286 80386 without 64bit extensions repeated integer calculations even small values 16bit accelerated executing integer instructions parallel keeps running coprocessor calculates sets signal finished interrupts needs attention error
+mmxedit
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed february 2013 learn remove template message
+
+
+
+main article instruction
+simd instruction designed intel introduced 1997 pentium microprocessor instruction developed similar concept first used intel i860 supported subsequent ia32 processors intel vendors typically used video processing multimedia applications instance
+added registers architecture known henceforth referred reality registers aliases existing stack registers hence anything done floating point stack would also affect registers unlike stack registers fixed relative therefore randomly accessible instruction adopt stacklike semantics existing operating systems could still correctly save restore register state multitasking without modifications
+registers 64bit integers however main concepts instruction concept packed data types means instead using whole register single 64bit integer quadword contain 32bit integers doubleword four 16bit integers word eight 8bit integers byte given mmxs 64bit registers aliased stack floating point registers bits wide upper bits floating point registers unused bits ones instruction correspond floating point representation nans infinities
+3dnowedit
+main article 3dnow
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed february 2013 learn remove template message
+
+
+
+1997 introduced 3dnow introduction technology coincided rise entertainment applications designed improve cpus vector processing performance graphicintensive applications video game developers graphics hardware vendors 3dnow enhance performance amds athlon series processors
+3dnow designed natural evolution integers floating point uses exactly register naming convention difference instead packing integers registers single precision floating point numbers packed register advantage aliasing registers instruction data structures used save state registers also used save 3dnow register states thus special modifications required made operating systems would otherwise know
+sseedit
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed february 2013 learn remove template message
+
+
+
+main articles streaming simd extensions sse2 sse3 ssse3 sse4 sse5
+1999 intel introduced streaming simd extensions instruction following 2000 sse2 first addition allowed offloading basic floatingpoint operations stack second made almost obsolete allowed instructions realistically targeted conventional compilers introduced 2004 along prescott revision pentium processor sse3 added specific memory threadhandling instructions boost performance intels hyperthreading technology licensed sse3 instruction implemented sse3 instructions revision later athlon processors athlon support hyperthreading lacks sse3 instructions used hyperthreading
+discarded legacy connections stack also meant instruction discarded legacy connections previous generations simd instruction sets like freed designers allowing larger registers limited size registers designers created eight 128bit registers named xmm0 xmm7 note amd64 number registers increased however downside operating systems awareness instructions order able save register states intel created slightly modified version protected mode called enhanced mode enables usage instructions whereas stay disabled regular protected mode aware activate enhanced mode whereas unaware enter traditional protected mode
+simd instruction works floating point values like 3dnow however unlike 3dnow severs legacy connection stack larger registers 3dnow pack twice number single precision floats registers original limited singleprecision numbers like 3dnow sse2 introduced capability pack double precision numbers 3dnow possibility since double precision number 64bit size would full size single 3dnow register bits xmmn registers could pack double precision floats register thus sse2 much suitable scientific calculations either sse1 3dnow limited single precision sse3 introduce additional registers
+physical address extension paeedit
+main article physical address extension
+physical address extension first added intel pentium later athlon processors11 allow addressed without physical 32bit protected mode usually limited defines different page table structure wider page table entries third level page table allowing additional bits physical address although initial implementations 32bit processors theoretically supported chipset platform limitations often restricted could actually used processors define page table structures theoretically allow bits physical address although chipset platform concerns like number dimm slots available maximum possible dimm prevent large physical address space realized processors mode must active switch long mode must remain active long mode active long mode nonpae mode mode affect width linear virtual addresses
+x8664edit
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed march 2016 learn remove template message
+
+
+
+main article x8664
+
+
+
+
+supercomputer clusters tracked data visualized diagram last updated 2013 appearance 64bit extensions architecture enabled 64bit processors intel olivedrab small open circles small open circles diagram respectively replace risc processor architectures previously used systems including parisc sparc alpha others well 32bit green diagram even though intel initially tried unsuccessfully replace incompatible 64bit architecture itanium processor main nonx86 architecture still used 2014 supercomputing clusters power architecture used power microprocessors blue diamond tiling diagram sparc distant second
+
+
+2000s become obviousto 32bit processors limitations memory addressing obstacle utilization highperformance computing clusters powerful desktop workstations aged 32bit competing much advanced 64bit risc architectures could address much memory intel whole ecosystem needed 64bit memory addressing survive 64bit computing workstation desktop software applications soon start hitting limitations present 32bit memory addressing however intel felt right time make bold step transition 64bit desktop computers transition away architecture general experiment ultimately failed
+2001 intel attempted introduce nonx86 64bit architecture named ia64 itanium processor initially aiming highperformance computing market hoping would eventually replace 32bit x8629 ia64 incompatible itanium processor provide emulation capabilities translating instructions ia64 affected performance programs badly rarely ever actually useful users programmers rewrite programs ia64 architecture performance itanium would orders magnitude worse true processor market rejected itanium processor since broke backward compatibility preferred continue using chips programs rewritten ia64
+decided take another path toward 64bit memory addressing making sure backward compatibility would suffer april 2003 released first processor 64bit generalpurpose registers opteron capable addressing much virtual memory using x8664 extension also known amd64 64bit extensions architecture enabled newly introduced long mode therefore 32bit 16bit applications operating systems could simply continue using amd64 processor protected modes without even slightest sacrifice performance30 full compatibility back original instructions 16bit intel 808631p13–14 market responded positively adopting 64bit processors highperformance applications business home computers
+seeing market rejecting incompatible itanium processor microsoft supporting amd64 intel respond introduced x8664 processor prescott pentium july 200432 result itanium processor ia64 instruction rarely used x8664 incarnation still dominant architecture nonembedded computers
+x8664 also introduced offers protection security bugs caused buffer overruns
+result amds 64bit contribution lineage subsequent acceptance intel 64bit risc architectures ceased threat ecosystem almost disappeared workstation market x8664 began utilized powerful supercomputers opteron intel xeon incarnations market previously natural habitat 64bit risc designs power microprocessors sparc processors great leap toward 64bit computing maintenance backward compatibility 32bit 16bit software enabled architecture become extremely flexible platform today chips utilized small lowpower systems example intel quark intel atom fast gaming desktop computers example intel core fxryzen even dominate large supercomputing clusters effectively leaving 32bit 64bit risc architecture competitor smartphone tablet market
+virtualizationedit
+main article virtualization
+prior 2005 architecture processors unable meet popek goldberg requirements specification virtualization created 1974 gerald popek robert goldberg however commercial open source virtualization hypervisor products developed using softwarebased virtualization commercial systems included vmware vmware workstation parallels microsoft hyperv server microsoft virtual open source systems included qemukqemu virtualbox
+introduction amdv intel instruction sets 2005 allowed processors meet popek goldberg virtualization requirements33
+alsoedit
+
+
+assembly language
+instruction listings
+cpuid
+itanium
+680x0 competing architecture early 32bit eras
+powerpc competing architecture later 32bit 64bit eras
+microarchitecture
+list microprocessors
+list intel microprocessors
+list microprocessors
+list manufacturers
+inputoutput base address
+interrupt request
+iapx
+
+
+notesedit
+
+
+unlike microarchitecture specific electronic physical implementation used specific microprocessor design
+intel abandoned naming scheme pentium 1993 numbers could trademarked however term already established among technicians compiler writers
+grid compass laptop instance
+including 8088 80186 80188 80286 processors
+system also contained usual standard 7400 series support components including multiplexers buffers glue logic
+actual meaning iapx intel advanced performance architecture sometimes intel advanced processor architecture
+late 1981 early 1984 approximately
+embedded processor market populated different architectures price sensitivity power hardware simplicity requirements outnumber
+also provided older 8080 instruction allowing equipped microprocessors operate applications full speed without need simulate 8080 software
+fabless companies designed chip contracted another company manufacture fabbed companies would design manufacturing companies started fabbed manufacturers later became fabless designers example
+slower however slightly ironic cyrix started designer fast floating point units processors
+16bit 32bit microprocessors introduced 1978 1985 respectively plans 64bit announced 1999 gradually introduced 2003 onwards
+cisc designs pdp11
+integer arithmetic generates carry subsequent bits unlike simple bitwise operations
+msrs particular interest sysentereipmsr sysenterespmsr introduced pentium® processor store address kernel mode system service handler corresponding kernel stack pointer initialized system startup sysentereipmsr sysenterespmsr used sysenter intel syscall instructions achieve fast system calls three times faster software interrupt method used previously
+segmented address 16bit segment multiplied 16bit offset maximum address 1114095 10ffef addressability 1114096 bytes 65520 bytes 80286 cpus physical address lines address signals 21st address dropped addresses past mirrors address space starting address zero since 80286 cpus least physical address lines computed address brought onto address real mode allowing address full 1114096 bytes reachable segmented address popular platform switchable hardware disable 21st address added machines 80286 later programs designed 80888086based models could newer software could take advantage high memory real mode full larger address space protected mode—see gate
+extra descriptor record table also required table starts zero minimum descriptor index loaded segment register value reserved represent segment register points segment
+
+
+referencesedit
+
+
+pryce dave 1989 80486 32bit breaks ground chip density operating performance intel corp product announcement press release
+ia32 open implementation overview opencoresorg november 2013 retrieved january 2014
+brandon jonathan april 2015 cloud beyond architectures making comeback businesscloudnewscom business cloud news retrieved november 2016 despite dominance datacentre difficult ignore noise vendors making past couple years around nonx86 architectures like
+john dvorak whatever happened intel iapx432 dvorakorg retrieved april 2014
+iapx programmers reference intel 1983
+iapx users manual intel august 1981
+benj edwards june 2008 birth standard intel 8086 microprocessor pcworld retrieved september 2014
+stanley mazor january–march 2010 intels 8086 ieee annals history computing 75–79 doi101109mahc201022
+discloses technologies microprocessor forum press release october 1999 archived original march 2000 time processor architects looked inelegant architecture declared cannot stretched accommodate latest innovations said nathan brookwood principal analyst insight
+microsoft intel itanium support retrieved september 2014
+february 2002 appendix athlon™ processor code optimization guide revision retrieved 20170413 2bit index consisting bits page table entry used select four register fields page address extensions enabled doesn’t describe large page
+intel core processor e8000 e7000 series datasheet intel june 2009
+dualcore intel xeon processor 5100 series datasheet intel august 2007
+intel xeon processor 7200 series 7300 series datasheet intel september 2008
+chuck walbourn september 2012 directxmath f16c games windows directx blog microsoft
+anand shimpi october 2012 intels haswell architecture analyzed building intel anandtech haswell front
+setup installation considerations windows editionbased computers retrieved september 2014
+processors mode addressing intel processors retrieved september 2014
+switches intel vtune amplifier 2013 intel retrieved august 2013
+intel® ia32 architectures software developer’s manual volume basic architecture intel corporation february 2014 chapter
+guide assembly csvirginiaedu september 2013 retrieved february 2014
+intel ia32 architectures software developer’s manual volume basic architecture intel march 2013 chapter
+intel 80287 family cpuworld
+intel ia32 architectures software developer’s manual volume basic architecture intel march 2013 chapter
+intel ia32 architectures software developer’s manual volume basic architecture intel march 2013 chapter
+iapx programmers reference intel 1983 section modes operation retrieved january 2014
+iapx programmers reference intel 1983 chapter memory management virtual addressing retrieved january 2014
+intels yamhill technology x8664 compatible geekcom
+manek dubash july 2006 intel abandon itanium techworld retrieved december 2010 touted intel replacement product line expectations itanium throttled well back
+corporation september 2007 websphere application server 64bit performance demystified retrieved april 2010 figures also show 32bit version runs applications full native hardware performance power x8664 platforms unlike 64bit processor architectures power x8664 hardware emulate 32bit mode therefore applications benefit 64bit features full performance 32bit version websphere running mentioned 64bit platforms
+corporation september 2012 volume system programming amd64 architecture programmers manual corporation retrieved february 2014
+charlie demerjian september 2003 intels prescott amd64 extensions inquirer retrieved october 2009
+adams keith agesen october 21–25 2006 comparison software hardware techniques virtualization proceedings international conference architectural support programming languages operating systems jose 2006 1595934510060010 retrieved december 2006
+
+
+readingedit
+
+rosenblum mendel garfinkel 2005 virtual machine monitors current technology future trends
+
+external linksedit
+
+
+
+wikimedia commons media related microprocessors
+
+
+
+
+
+wikibooks book topic assemblyx86 architecture
+
+
+
+years intel architecture
+cpus guide
+intel cant seem retire
+3264bit instruction reference
+intel intrinsics guide interactive reference tool intel intrinsic instructions
+
+
+
+
+
+
+
+
+
+
+
+
+assembly topics
+
+
+
+topics
+
+
+
+assembly language
+comparison assemblers
+disassembler
+instruction
+lowlevel programming language
+machine code
+microassembler
+assembly language
+
+
+
+
+
+assemblers
+
+
+
+a86a386
+flat assembler fasm
+assembler
+high level assembly
+microsoft macro assembler masm
+netwide assembler nasm
+turbo assembler tasm
+open watcom assembler wasm
+yasm
+
+
+
+
+
+programming
+issues
+
+
+
+call stack
+flags
+
+carry flag
+direction flag
+interrupt flag
+overflow flag
+zero flag
+
+
+opcode
+program counter
+processor register
+calling conventions
+instruction listings
+registers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+instruction extensions
+
+
+
+simd risc
+
+
+
+alpha
+
+
+
+
+
+
+neon
+
+
+mips
+
+mdmx
+mips3d
+
+mips simd
+
+
+parisc
+
+
+
+
+power
+
+altivec
+
+
+sparc
+
+
+
+
+
+
+
+
+
+simd
+
+
+
+1996
+3dnow 1998
+1999
+sse2 2001
+sse3 2004
+ssse3 2006
+sse4 2006
+sse5 2007
+2008
+f16c 2009
+2009
+fma4 2011 fma3 2012
+avx2 2013
+avx512 2015
+
+
+
+
+
+manipulation
+
+
+
+2007 bmi1 2012 bmi2 2013 2012
+2014
+
+
+
+
+
+compressed instructions
+
+
+
+thumb
+mips16e
+
+
+
+
+
+security cryptography
+
+
+
+aesni 2008 64bit armv8 also instructions
+clmul 2010
+rdrand 2012
+2013
+2015
+2015
+
+
+
+
+
+transactional memory
+
+
+
+2013
+
+
+
+
+
+
+virtualization
+
+
+
+2005
+amdv 2006
+
+
+
+
+
+
+suspended extensions dates struck
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+intel
+
+
+
+subsidiaries
+
+
+
+3dlabs
+altera
+comneon
+intel security
+mobileye
+recon instruments
+virtutech
+wind river systems
+4group holdings owned technicolor
+
+
+
+
+
+products
+
+
+
+intel az210
+xpoint
+accounts
+amplify tablet
+advanced programmable interrupt controller
+cache acceleration software
+client initiated remote access
+direct media interface
+flexible display interface
+hella zippy
+intel 1103
+intel display power saving technology
+intel modular server system
+intel reader
+intel spsh4
+intel system development
+intel upgrade service
+intel740
+intru3d
+ixp1200
+ofono
+omnipath
+performance acceleration technology
+shooting star
+smart cache
+ssds x25m
+stable image platform
+virtual 8086 mode
+widi
+
+intel clear video
+intel quick sync video
+
+
+
+
+
+litigation
+
+
+
+advanced micro devices intel corp
+hightech employee antitrust litigation
+intel corp advanced micro devices
+intel corp hamidi
+intel corporation united kingdom
+silvaco data systems intel corp
+
+
+
+
+
+people
+
+
+
+gordon moore
+robert noyce
+
+
+
+
+
+related
+
+
+
+intel foundation achievement award
+apples transition intel processors
+intel architecture labs
+asci
+biin
+classmate
+convera corporation
+copy exactly
+cornell
+intel developer forum
+dynamic video memory technology
+intel extreme masters
+list intel microprocessors
+list intel graphics processing units 2013 earlier
+acceleration technology
+ia32 execution layer
+flash technologies
+innovators
+inside
+inside films
+intel
+intel capital
+intel cluster ready
+intel compute stick
+intel ireland
+intel mobile communications
+intel outstanding researcher award
+intel extensions
+intel teach
+list semiconductor fabrication plants
+list intel manufacturing sites
+intel museum
+oncue
+intel prowireless
+intel international science engineering fair
+regeneron science talent search
+simple firmware interface
+singlechip cloud computer
+software guard extensions
+supervisor mode access prevention
+tarari
+intel technology journal
+intel terascale
+timeline intel
+xircom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+technologies
+
+
+
+architecture
+
+
+
+turing machine
+post–turing machine
+universal turing machine
+quantum turing machine
+belt machine
+stack machine
+register machine
+counter machine
+pointer machine
+random access machine
+random access stored program machine
+finitestate machine
+queue automaton
+neumann
+harvard modified
+hive hierarchical identify verify exploit
+dataflow
+
+cellular
+artificial neural network
+
+machine learning
+deep learning
+neural processing unit
+
+
+convolutional neural network
+loadstore architecture
+register memory architecture
+register register architecture
+endianness
+fifo
+zerocopy
+numa
+huma
+
+mobile computing
+surface computing
+wearable computing
+heterogeneous computing
+parallel computing
+concurrent computing
+distributed computing
+cloud computing
+amorphous computing
+ubiquitous computing
+fabric computing
+reconfigurable computing
+cognitive computing
+analogous computing
+mechanical computing
+electric computing
+hybrid computing
+digital computing
+computing
+peptide computing
+chemical computing
+organic computing
+wetware computing
+quantum computing
+neuromorphic computing
+optical computing
+reversible computing
+unconventional computing
+hypercomputation
+ternary computer
+symmetric multiprocessing
+asymmetric multiprocessing
+cache hierarchy
+memory hierarchy
+
+
+
+
+
+types
+
+
+
+asip
+cisc
+risc
+edge trips
+vliw epic
+misc
+oisc
+nisc
+zisc
+comparison
+
+
+
+
+
+isas
+
+
+
+
+zarchitecture
+
+mips
+power architecture powerpc
+sparc
+visc
+mill
+itanium ia64
+alpha
+prism
+superh
+clipper
+
+unicore
+parisc
+microblaze
+
+
+
+
+
+word size
+
+
+
+1bit
+2bit
+4bit
+8bit
+9bit
+10bit
+12bit
+15bit
+16bit
+18bit
+22bit
+24bit
+25bit
+26bit
+27bit
+31bit
+32bit
+33bit
+34bit
+36bit
+39bit
+40bit
+48bit
+50bit
+60bit
+64bit
+128bit
+256bit
+512bit
+variable
+
+
+
+
+
+execution
+
+
+
+instruction pipelining
+
+bubble
+operand forwarding
+
+
+outoforder execution
+
+register renaming
+
+
+speculative execution
+
+branch predictor
+memory dependence prediction
+
+
+hazards
+
+
+
+
+
+parallel level
+
+
+
+
+
+bitserial
+word
+
+
+instruction
+pipelining
+
+scalar
+superscalar
+
+
+task
+
+thread
+process
+
+
+data
+
+vector
+
+
+memory
+
+
+
+
+
+multithreading
+
+
+
+temporal
+simultaneous hyperthreading
+speculative spmt
+preemptive
+cooperative
+clustered multithread
+hardware scout
+
+
+
+
+
+flynns taxonomy
+
+
+
+sisd
+simd swar
+simt
+misd
+mimd
+
+spmd
+
+
+addressing mode
+
+
+
+
+
+performance
+
+
+
+instructions second
+instructions clock
+cycles instruction
+floatingpoint operations second flops
+transactions second
+synaptic updates second sups
+performance watt
+orders magnitude computing
+cache performance measurement metric
+
+
+
+
+
+core count
+
+
+
+singlecore processor
+multicore processor
+manycore processor
+
+
+
+
+
+types
+
+
+
+central processing unit
+gpgpu
+accelerator
+vision processing unit
+vector processor
+barrel processor
+stream processor
+digital signal processor
+processordma controller
+network processor
+baseband processor
+physics processing unit
+coprocessor
+secure cryptoprocessor
+asic
+fpga
+fpoa
+cpld
+microcontroller
+microprocessor
+mobile processor
+notebook processor
+ultralowvoltage processor
+multicore processor
+manycore processor
+tile processor
+multichip module
+chip stack multichip modules
+system chip
+multiprocessor systemonchip mpsoc
+programmable systemonchip psoc
+network chip
+
+
+
+
+
+components
+
+
+
+execution unit
+arithmetic logic unit
+address generation unit
+floatingpoint unit
+loadstore unit
+fixedpoint unit
+vector unit
+branch predictor
+branch execution unit
+instruction decoder
+instruction scheduler
+instruction fetch unit
+instruction dispatch unit
+instruction sequencing unit
+unified reservation station
+barrel shifter
+uncore
+addressed decoder
+frontside
+backside
+northbridge computing
+southbridge computing
+adder electronics
+binary multiplier
+binary decoder
+address decoder
+multiplexer
+demultiplexer
+registers
+cache
+memory management unit
+input–output memory management unit iommu
+integrated memory controller
+power management unit
+translation lookaside buffer
+stack engine
+register file
+processor register
+hardware register
+memory buffer register
+program counter
+microcode
+datapath
+control unit
+instruction unit
+reorder buffer
+data buffer
+write buffer
+coprocessor
+electronic switch
+electronic circuit
+integrated circuit
+threedimensional integrated circuit
+boolean circuit
+digital circuit
+analog circuit
+mixedsignal integrated circuit
+power management integrated circuit
+quantum circuit
+logic gate
+
+combinational logic
+sequential logic
+emittercoupled logic
+transistor–transistor logic
+glue logic
+
+
+quantum gate
+gate array
+counter digital
+computing
+semiconductor device
+clock rate
+multiplier
+vision chip
+memristor
+
+
+
+
+
+power
+management
+
+
+
+
+acpi
+dynamic frequency scaling
+dynamic voltage scaling
+clock gating
+
+
+
+
+
+hardware
+security
+
+
+
+nonexecutable memory
+memory protection extensions intel
+intel secure
+hardware restriction firmware
+software guard extensions intel
+trusted execution technology
+omnishield
+trusted platform module
+secure cryptoprocessor
+hardware security module
+hengzhi chip
+
+
+
+
+
+related
+
+
+
+history generalpurpose cpus
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlex86oldid817511193 categories computerrelated introductions 1978intel productsinstruction architecturesibm compatiblesx86 architecturehidden categories dates june 2016all articles unsourced statementsarticles unsourced statements november 2017articles needing additional references october 2016all articles needing additional referencesarticles needing additional references february 2013articles needing additional references march 2014articles needing additional references january 2014articles unsourced statements april 2017articles needing additional references march 2016all articles specifically marked weaselworded phrasesarticles specifically marked weaselworded phrases december 2016

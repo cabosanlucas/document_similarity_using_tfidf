@@ -1,0 +1,351 @@
+smiles redirects uses smiles disambiguation
+
+smiles
+
+filename extension
+
+
+
+internet media type
+chemicalxdaylightsmiles
+
+
+type format
+chemical file format
+
+
+
+
+
+
+generation smiles break cycles write branches main backbone ciprofloxacin
+
+
+simplified molecularinput lineentry system smiles specification form line notation describing structure chemical species using short ascii strings smiles strings imported molecule editors conversion back twodimensional drawings threedimensional models molecules
+original smiles specification initiated 1980s since modified extended 2007 open standard called opensmiles developed opensource chemistry community linear notations include wiswesser line notation rosdal
+
+
+
+contents
+
+
+history
+terminology
+graphbased definition
+description
+
+atoms
+bonds
+rings
+aromaticity
+branching
+stereochemistry
+isotopes
+examples
+examples smiles
+
+
+extensions
+conversion
+also
+references
+reading
+external links
+
+smiles related software utilities
+
+
+
+
+
+historyedit
+original smiles specification initiated david weininger usepa midcontinent ecology division laboratory duluth 1980s1234 acknowledged parts early development gilman veith rose russo usepa albert corwin hansch pomona college supporting work arthur weininger pomona daylight jeremy scofield cedar river software renton assistance programming system5 environmental protection agency funded initial project develop smiles67
+since modified extended others notably daylight chemical information systems 2007 open standard called opensmiles developed blue obelisk opensource chemistry community linear notations include wiswesser line notation rosdal tripos
+july 2006 iupac introduced inchi standard formula representation smiles generally considered advantage slightly humanreadable inchi also wide base software support extensive theoretical graph theory backing
+terminologyedit
+term smiles refers line notation encoding molecular structures specific instances strictly called smiles strings however term smiles also commonly used refer single smiles string number smiles strings exact meaning usually apparent context terms canonical isomeric lead confusion applied smiles terms describe different attributes smiles strings mutually exclusive
+typically number equally valid smiles strings written molecule example specify structure ethanol algorithms developed generate smiles string given molecule many possible strings algorithms choose smiles unique structure although dependent canonicalization algorithm used generate termed canonical smiles algorithms first convert smiles internal representation molecular structure algorithm examines structure produces unique smiles string various algorithms generating canonical smiles developed include daylight chemical information systems openeye scientific software medit chemical computing group molsoft chemistry development common application canonical smiles indexing ensuring uniqueness molecules database
+original paper described cangen2 algorithm claimed generate unique smiles strings graphs representing molecules algorithm fails number simple cases cuneane 12dicyclopropylethane cannot considered correct method representing graph canonically8 currently systematic comparison across commercial software test flaws exist packages
+smiles notation allows specification configuration tetrahedral centers double bond geometry structural features cannot specified connectivity alone smiles encode information termed isomeric smiles notable feature rules allow rigorous partial specification chirality term isomeric smiles also applied smiles isotopes specified
+graphbased definitionedit
+terms graphbased computational procedure smiles string obtained printing symbol nodes encountered depthfirst tree traversal chemical graph chemical graph first trimmed remove hydrogen atoms cycles broken turn spanning tree cycles broken numeric suffix labels included indicate connected nodes parentheses used indicate points branching tree
+resultant smiles form depends choices
+
+bonds chosen break cycles
+starting atom used depthfirst traversal
+order branches listed encountered
+
+descriptionedit
+atomsedit
+atoms represented standard abbreviation chemical elements square brackets gold brackets omitted common case atoms
+
+organic subset
+formal charge
+number hydrogens attached implied smiles valence model typically normal valence
+normal isotopes
+chiral centers
+
+elements must enclosed brackets charges hydrogens shown explicitly instance smiles water written either hydrogen also written separate atom water also written
+brackets used symbol added atom brackets bonded hydrogen followed number hydrogen atoms greater sign positive charge negative charge example ammonium charge normally written digit however also possible repeat sign many times charges write either titanium thus hydroxide anion represented hydronium cation cobalt cation either
+bondsedit
+bond represented using symbols
+bonds aliphatic atoms assumed single unless specified otherwise implied adjacency smiles string although single bonds written usually omitted example smiles ethanol written usually written
+double triple quadruple bonds represented symbols respectively illustrated smiles carbon dioxide hydrogen cyanide gaas gallium arsenide
+additional type bond nonbond indicated indicate parts bonded together example aqueous sodium chloride written nacl show dissociation
+aromatic half bond indicated aromaticity
+single bonds adjacent double bonds represented using indicate stereochemical configuration stereochemistry
+ringsedit
+ring structures written breaking ring arbitrary point although choices lead legible smiles others make acyclic structure adding numerical ring closure labels show connectivity nonadjacent atoms
+example cyclohexane dioxane written c1ccccc1 o1ccocc1 respectively second ring label example decalin decahydronaphthalene written c1cccc2c1cccc2
+smiles require ring numbers used particular order permits ring number zero although rarely used also permitted reuse ring numbers first ring closed although usually makes formulae harder read example bicyclohexyl usually written c1ccccc1c2ccccc2 also written c0ccccc0c0ccccc0
+multiple digits single atom indicate multiple ringclosing bonds example alternative smiles notation decalin c1cccc2ccccc12 final carbon participates ringclosing bonds twodigit ring numbers required label preceded single ringclosing bond ring
+ringclosing digits preceded bond type example cyclopropene usually written c1cc1 double bond chosen ringclosing bond written c1cc1 c1cc1 c1cc1 first form preferred c1cc1 illegal explicitly specifies conflicting types ringclosing bond
+ringclosing bonds used denote multiple bonds example c1c1 valid alternative ethylene however used nonbonds c1c2c12 peculiar legal alternative write propane commonly written
+choosing ringbreak point adjacent attached groups lead simpler smiles form avoiding branches example cyclohexane12diol simply written oc1ccccc1o choosing different ringbreak location produces branched structure requires parentheses write
+aromaticityedit
+aromatic rings benzene written three forms
+
+kekulé form alternating single double bonds c1ccccc1
+using aromatic bond symbol c1ccccc1
+commonly writing constituent atoms lowercase forms respectively
+
+latter case bonds aromatic atoms assumed explicitly shown aromatic bonds thus benzene pyridine furan represented respectively smiles c1ccccc1 n1ccccc1 o1cccc1
+aromatic nitrogen bonded hydrogen found pyrrole must represented imidazole written smiles notation n1cnhcc1
+aromatic atoms singly bonded biphenyl single bond must shown explicitly c1ccccc1c2ccccc2 cases single bond symbol required fact smiles software correctly infer bond rings cannot aromatic accept form c1ccccc1c2ccccc2
+daylight openeye algorithms generating canonical smiles differ treatment aromaticity
+
+
+
+
+visualization 3cyanoanisole cocc1cccc1cn
+
+
+branchingedit
+branches described parentheses cccoo propionic acid fcff fluoroform first atom within parentheses first atom parenthesized group bonded branch point atom
+substituted rings written branching point ring illustrated smiles cocc1cccc1cn depiction coccc1ccc1cn depiction encode 4cyanoanisole isomers writing smiles substituted rings make humanreadable
+branches written order example bromochlorodifluoromethane written fcbrclf brcffcl cfclfbr like generally smiles form easiest read simpler branch comes first final unparenthesized portion complex caveats rearrangements
+
+ring numbers reused paired according order appearance smiles string adjustments required preserve correct pairing
+stereochemistry specified adjustments must made stereochemistry notes
+
+form branch require parentheses ringclosing bonds choosing ringclosing bonds appropriately reduce number parentheses required example toluene normally written cc1ccccc1 c1ccccc1c avoiding parentheses required written c1ccccccc1 c1cccccc1c
+stereochemistryedit
+
+
+
+
+trans12difluoroethylene
+
+
+smiles permits require specification stereoisomers
+configuration around double bonds specified using characters show directional single bonds adjacent double bond example fccf depiction representation trans12difluoroethylene fluorine atoms opposite sides double bond shown figure whereas fccf depiction possible representation cis12difluoroethylene side double bond
+bond direction symbols always come groups least first arbitrary fccf fccf alternating singledouble bonds present groups larger middle directional symbols adjacent double bonds example common form 24hexadiene written cccccc
+
+
+
+
+betacarotene eleven double bonds highlighted
+
+
+complex example betacarotene long backbone alternating single double bonds written cc1cccccc1ccccccccccccccccccccccc2cccccc2cc
+configuration tetrahedral carbon specified consider four bonds order appear left right smiles form looking toward central carbon perspective first bond three either clockwise counterclockwise cases indicated respectively symbol counterclockwise spiral
+
+
+
+
+lalanine
+
+
+example consider amino acid alanine smiles forms ncccoo fully written nchccoo lalanine common enantiomer written nchccoo depiction looking bond hydrogen methyl carboxylate groups appear clockwise dalanine written nchccoo depiction
+order branches specified smiles normally unimportant case matters swapping groups requires reversing chirality indicator branches reversed alanine written nccooc configuration also reverses lalanine written nchcooc depiction ways writing include cchncoo ocochnc ocochcn
+normally first four bonds appears left carbon atom smiles written beginning chiral carbon ccncoo four right first appear bond case used reference order following three lalanine also written chcncoo
+smiles specification includes elaborations symbol indicate stereochemistry around complex chiral centers trigonal bipyramidal molecular geometry
+isotopesedit
+isotopes specified number equal integer isotopic mass preceding atomic symbol benzene atom carbon14 written 14c1ccccc1 deuterochloroform 2hcclclcl
+examplesedit
+
+
+molecule
+structure
+smiles formula
+
+
+dinitrogen
+
+
+
+
+methyl isocyanate
+ch3–nco
+cnco
+
+
+copperii sulfate
+so42−
+cu2osooo
+
+
+vanillin
+
+occ1cccococc1
+occ1cccoccc1o
+
+
+melatonin c13h16n2o2
+
+cconccc1cnc2c1ccoccc2
+cconccc1cnhc2cccoccc12
+
+
+flavopereirin c17h15n2
+
+cccc1ccc2n1ccc3c2nhc4c3cccc4
+ccc1cn2ccc3c4ccccc4nhc3c2cc1
+
+
+nicotine c10h14n2
+
+cn1cccch1c2cccnc2
+
+
+oenanthotoxin c17h22o2
+
+cccchoccccccccccccco
+cccchoccccccccccccco
+
+
+pyrethrin c22h28o5
+
+cc1ccocch1ococh2chc2ccccccoocccccc
+
+
+aflatoxin c17h12o6
+
+o1ccchch1o2c3c2ccocc4c3ococ5c4ccco5
+
+
+glucose glucopyranose c6h12o6
+
+occho1chochochocho1
+
+
+bergenin cuscutin resin c14h16o9
+
+occho1chochoch2ch1c3cococcocc3coo2
+
+
+pheromone californian scale insect
+
+ccooccccccchccccccc
+
+
+2s5rchalcogran pheromone bark beetle pityogenes chalcographus9
+
+cccho1ccc12ccco2
+
+
+alphathujone c10h16o
+
+cccc12cch1chccoc2
+
+
+thiamine c12h17n4os
+vitamin
+
+occc1ccncs1cc2cnccnc2n
+
+
+
+illustrate molecule rings consider cephalostatin110 steroidic trisdecacyclic pyrazine empirical formula c54h74n2o10 isolated indian ocean hemichordate cephalodiscus gilchristi
+
+
+starting leftmost methyl group figure
+ccco1cchoc1o2chcch3ccc4c3c2cocch5ch4ccchc6c5cccn7c6nccc89cc7cch8ccch10ch9cchoc11cc10ccho12c11ochcc12o13chocc13cco
+note appears front index ring closure labels rings
+examples smilesedit
+smiles notation described extensively smiles theory manual provided daylight chemical information systems number illustrative examples presented daylights depict utility provides users means check examples smiles valuable educational tool
+extensionsedit
+smarts line notation specification substructural patterns molecules uses many symbols smiles also allows specification wildcard atoms bonds used define substructural queries chemical database searching common misconception smartsbased substructural searching involves matching smiles smarts strings fact smiles smarts strings first converted internal graph representations searched subgraph isomorphism smirks line notation specifying reaction transforms
+conversionedit
+smiles converted back 2dimensional representations using structure diagram generation algorithms helson 1999 conversion always unambiguous conversion 3dimensional representation achieved energy minimization approaches many downloadable webbased conversion utilities
+alsoedit
+
+smiles arbitrary target specification smarts language specification substructural queries
+sybyl line notation another line notation
+molecular query language query language allowing also numerical properties physicochemical values distances
+chemistry development layout conversion
+international chemical identifier inchi iupacs alternative smiles
+openbabel joelib oelib conversion
+
+referencesedit
+
+
+weininger 1988
+weininger weininger weininger 1989
+weininger 1990
+swanson richard pommier 2004 entrance informatics combinatorial chemistry rayward warden boyd bowden mary ellen history heritage scientific technological information systems proceedings 2002 conference american society information science technology chemical heritage foundation medford information today isbn 1573872296 httpswaybackarchiveitorg211820100925010036http6425120297pubsasist200217swansonpdf
+weininger dave acknowledgements daylight tutorial smilesetc page retrieved june 2013
+anderson veith weininger 1987
+smiles tutorial smiles environmental protection agency retrieved 20120923
+hutchison kanade kittler klienberg mattern mitchell naor nierstrasz rangan steffen sudan terzopoulos tygar vardi weikum raschid neglur grossman 2005 assigning unique keys chemical compounds data integration interesting counter examples ludäscher data integration life sciences lecture notes computer science 3615 berlin springer 145–157 doi1010071153008413 isbn 9783540279679 retrieved 20130212
+byers birgersson löfqvist appelgren bergström 1990 isolation pheromone synergists bark beetlepityogenes chalcographus complex insectplant odors fractionation subtractivecombination bioassay journal chemical ecology 861–76 doi101007bf01016496 pmid 24263601
+national center biotechnology information ncbi pubchem compound accessed 2012 pubchem compound cid183413 cephalostatin1
+
+
+readingedit
+
+
+anderson veith weininger 1987 smiles line notation computerized interpreter chemical structures duluth environmental research laboratoryduluth report epa600m87021
+helson 1999 structure diagram generation lipkowitz boyd comput chem york wileyvch 313–398 doi1010029780470125908ch6
+weininger february 1988 smiles chemical language information system introduction methodology encoding rules journal chemical information modeling 31–6 doi101021ci00057a005
+weininger weininger weininger 1989 smiles algorithm generation unique smiles notation journal chemical information modeling 97–101 doi101021ci00062a008
+weininger august 1990 smiles depict graphical depiction chemical structures journal chemical information modeling 237–43 doi101021ci00067a005
+
+
+external linksedit
+
+
+
+
+
+
+articles external links follow wikipedias policies guidelines please improve article removing excessive inappropriate external links converting useful links appropriate footnote references september 2012 learn remove template message
+
+
+
+
+smiles simplified chemical language
+opensmiles home page
+smarts smiles extension
+daylight smiles tutorial
+parsing smiles
+
+smiles related software utilitiesedit
+
+ncicadd chemical identifier resolver resolves generates smiles chemical names registry numbers inchiinchikey many chemical structure file formats
+ncicadd online smiles translator structure file generator java online molecule editor
+pubchem server side structure editor online molecule editor
+smi23d coordinate generation
+daylight depict translate smiles formula graphics
+gifpngcreator plots chemical structures
+molecule editor chemical editorviewer smilessmarts generator java
+jsme molecule editor free chemical editorviewer smilessmarts generator javascript
+acdchemsketch
+marvin chemaxon online chemical editorviewer smiles generatorconverter
+instant jchem chemaxon desktop application storinggeneratingconvertingvisualizingsearching smiles structures particularly batch processing personal edition free
+jchem excel chemaxon excel addin storinggeneratingconvertingvisualizingsearching smiles structures
+smormoed molecule editor linux read write smiles
+inchiinfo unofficial inchi website featuring online converter inchi smiles molecular drawings
+balloon free program coordinate generation conformational analysis
+indigo opensource crossplatform cheminformatics library plugin iupaccompliant molecule reaction structural formula rendering
+open babel opensource chemical toolbox allowing anyone search convert analyze store biochemical data
+bioclipse free open source workbench life sciences
+molengine cheminformatics toolkit readwrite smiles generate coordinate smiles convert smiles frominto chemical file formats
+jsdraw crossplatform javascript chemical structure editor generate smiles smarts
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlesimplifiedmolecularinputlineentrysystemoldid816126975 categories chemical nomenclatureencodingschemical file formatshidden categories wikipedia external links cleanup september 2012wikipedia spam cleanup september 2012

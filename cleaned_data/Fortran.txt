@@ -1,0 +1,1218 @@
+
+fortran
+
+
+fortran automatic coding system october 1956 first programmers reference manual fortran
+
+
+
+paradigm
+multiparadigm structured imperative procedural objectoriented generic
+
+
+designed
+john backus
+
+
+developer
+john backus
+
+
+first appeared
+1957 years 1957
+
+
+
+
+
+stable release
+
+fortran 2008 isoiec 153912010 2010 years 2010
+
+
+
+
+
+
+typing discipline
+strong static manifest
+
+
+filename extensions
+
+
+
+major implementations
+
+
+absoft cray gfortran fortran intel hitachi laheyfujitsu numerical algorithms group open watcom pathscale silverfrost oracle solaris studio visual fortran others
+
+
+influenced
+
+
+speedcoding
+
+
+influenced
+
+
+algol basic chapel1 cms2 pact mumps ratfor
+
+
+fortran ˈfɔːrtræn formerly fortran derived formula translation2 generalpurpose imperative programming language especially suited numeric computation scientific computing originally developed ibm3 1950s scientific engineering applications fortran came dominate area programming early continuous half century computationally intensive areas numerical weather prediction finite element analysis computational fluid dynamics computational physics crystallography computational chemistry popular language highperformance computing4 used programs benchmark rank worlds fastest supercomputers5
+fortran encompasses lineage versions evolved extensions language usually retaining compatibility prior versions successive versions added support structured programming processing characterbased data fortran array programming modular programming generic programming fortran high performance fortran fortran objectoriented programming fortran 2003 concurrent programming fortran 2008
+
+
+
+contents
+
+
+naming
+history
+
+fortran
+
+fixed layout punched cards
+
+
+fortran
+
+simple fortran program
+
+
+fortran
+1401 fortran
+fortran
+fortran
+fortran
+
+variants minnesota fortran
+
+
+transition ansi standard fortran
+fortran
+
+obsolescence deletions
+hello world example
+
+
+fortran
+
+2101 conditional compilation varying length strings
+
+
+fortran 2003
+fortran 2008
+fortran 2018
+
+
+science engineering
+language features
+portability
+variants
+
+fortran
+fortran
+fortran
+specific variants
+
+transit
+
+
+fortranbased languages
+
+
+code examples
+humor
+also
+references
+reading
+external links
+
+
+
+namingedit
+names earlier versions language fortran conventionally spelled allcapitals fortran last version lowercase letters keywords strictly nonstandard capitalization dropped referring newer versions beginning fortran official language standards refer language fortran rather allcaps fortran
+historyedit
+
+
+
+
+mainframe computer
+
+
+late 1953 john backus submitted proposal superiors develop practical alternative assembly language programming mainframe computer backus historic fortran team consisted programmers richard goldberg sheldon best harlan herrick peter sheridan nutt robert nelson irving ziller lois haibt david sayre6 concepts included easier entry equations computer idea developed halcombe laning demonstrated laning zierler system 19527
+draft specification mathematical formula translating system completed mid1954 first manual fortran appeared october 1956 first fortran compiler delivered april 1957 first optimizing compiler customers reluctant highlevel programming language unless compiler could generate code performance comparable handcoded assembly language8
+community skeptical method could possibly outperform handcoding reduced number programming statements necessary operate machine factor quickly gained acceptance john backus said 1979 interview think employee magazine much work come lazy didnt like writing programs working writing programs computing missile trajectories started work programming system make easier write programs9
+language widely adopted scientists writing numerically intensive programs encouraged compiler writers produce compilers could generate faster efficient code inclusion complex number data type language made fortran especially suited technical applications electrical engineering
+1960 versions fortran available 1620 7090 computers significantly increasing popularity fortran spurred competing computer manufacturers provide fortran compilers machines 1963 fortran compilers existed reasons fortran considered first widely used programming language supported across variety computer architectures
+development fortran paralleled early evolution compiler technology many advances theory design compilers specifically motivated need generate efficient code fortran programs
+fortranedit
+initial release fortran contained statements including
+
+dimension equivalence statements
+assignment statements
+threeway arithmetic statement passed control three locations program depending whether result arithmetic statement negative zero positive
+statements checking exceptions accumulator overflow quotient overflow divide check statements manipulating sense switches sense lights
+computed assign assigned
+loops
+formatted format read read input tape write write output tape print punch
+unformatted read tape read drum write tape write drum
+file rewind backspace
+pause stop continue
+frequency statement providing optimization hints compiler
+
+arithmetic statement reminiscent readily implementable threeway comparison instruction compare accumulator storage available statement provided compare numbers testing difference attendant risk overflow deficiency later overcome logical facilities introduced fortran
+frequency statement used originally optionally give branch probabilities three branch cases arithmetic statement first fortran compiler used weighting perform compile time monte carlo simulation generated code results used optimize placement basic blocks memory sophisticated optimization time monte carlo technique documented backus paper original implementation fortran automatic coding system
+
+fundamental unit program basic block basic block stretch program entry point exit point purpose section prepare section table predecessors pred table enumerates basic blocks lists every basic block basic blocks immediate predecessor flow together absolute frequency basic block link table obtained running program montecarlo fashion outcome conditional transfers arising iftype statements computed determined random number generator suitably weighted according whatever frequency statements provided10
+
+many years later frequency statement effect code treated comment statement since compilers longer kind compiletime simulation similar fate befallen compiler hints several programming languages example register keywordcitation needed
+first fortran compiler reported diagnostic information halting program error found outputting error code console code could looked programmer error messages table operators manual providing brief description problem1112
+fixed layout punched cardsedit
+
+
+
+
+fortran code punched card showing specialized uses columns 73–80
+
+
+information computer programming punched card
+development disk files text editors terminals programs often entered keypunch keyboard onto 80column punched cards line card resulting deck cards would card reader compiled punchedcard codes included lowercase letters many special characters special versions keypunch offered would correctly print repurposed special characters used fortran
+reflecting punchedcard input practice fortran programs originally written fixedcolumn format first columns read twelve 36bit words
+letter column caused entire card treated comment ignored compiler otherwise columns card divided four fields
+
+label field sequence digits taken label control statements identify format statement referred write read statement leading zeros ignored valid label number
+continuation field character blank zero caused card taken continuation statement prior card continuation cards usually numbered starting card might therefore zero continuation column continuation preceding card
+served statement field
+ignored 704s card reader used columns13
+
+columns could therefore used identification information punching sequence number text could used reorder cards stack cards dropped though practice reserved stable production programs could used copy program deck sequence numbers early compilers 650s additional restrictions limitations card readers14 keypunches could programmed column skip column later compilers relaxed fixedformat restrictions requirement eliminated fortran standard
+within statement field whitespace characters blanks ignored outside text literal allowed omitting spaces tokens brevity including spaces within identifiers clarity example valid identifier equivalent avgofx 101010do101i1101 valid statement equivalent 10101 zero column treated space 101010do101i1101 instead 10101 do101i 1101 assignment 1101 variable called do101i note slight visual difference comma period
+hollerith strings originally allowed format data statements prefixed character count letter 26hthis alphanumeric data allowing blanks retained within character string miscounts problem
+fortran iiedit
+ibms fortran appeared 1958 main enhancement support procedural programming allowing userwritten subroutines functions returned values parameters passed reference common statement provided subroutines access common global variables statements introduced
+
+subroutine function
+call return
+common
+
+next years fortran would also support double precision complex data types
+early fortran compilers supported recursion subroutines early computer architectures supported concept stack directly support subroutine calls return location often stored fixed location adjacent subroutine code 1130 specific machine register allows recursion stack maintained software return address stored stack call made restored call returns although specified fortran many compilers supported recursion option burroughs mainframes designed recursion builtin default became standard fortran keyword recursive15
+simple fortran programedit
+program herons formula reads data tape reel containing three 5digit integers input type declarations available variables whose name starts fixedpoint integers otherwise floatingpoint since integers processed example names variables start letter name variable must start letter continue letters digits limit characters fortran cannot represent sides triangle plane geometry programs execution error code stop otherwise output line printed showing input values followed computed area triangle floatingpoint number occupying spaces along line output showing digits decimal point f102 format statement label
+
+
+area triangle standard square root function
+input tape reader unit integer input
+output line printer unit real output
+input error display error output code control listing
+read input tape
+format
+negative zero
+furthermore sides triangle
+must greater third side check
+
+
+
+iaibic
+iaicib
+ibicia
+stop
+using herons formula calculate
+area triangle
+floatf
+area sqrtf floatfia floatfib
+floatfic
+write output tape area
+format i55h i55h i58h area f102
+square units
+stop
+
+
+fortran iiiedit
+
+
+
+
+fortran coding form printed paper intended used programmers prepare programs punching onto cards keypunch operators obsolete
+
+
+also developed fortran 1958 allowed inline assembly code among features however version never released product like fortran fortran fortran included machinedependent features made code written unportable machine machine early versions fortran provided vendors suffered disadvantage
+1401 fortranedit
+fortran provided 1401 computer innovative 63phase compiler entirely core memory 8000 6bit characters compiler could tape 2200card deck used tape disk storage kept program memory loaded overlays gradually transformed place executable form described haines16 document c241455 executable form entirely machine language rather floatingpoint arithmetic subscripting inputoutput function references interpreted anticipating ucsd pascal pcode decades
+later provided fortran compiler 1400 series computers described document c243322
+fortran ivedit
+starting 1961 result customer demands began development fortran removed machinedependent features fortran read input tape adding features logical data type logical boolean expressions logical statement alternative arithmetic statement fortran eventually released 1962 first 7030 stretch computer followed versions 7090 7094 later 1401 1966
+1965 fortran supposed compliant standard developed american standards association x343 fortran working group17
+time fortran started become important educational tool implementations university waterloos watfor watfiv created simplify complex compile link processes earlier compilers
+fortran 66edit
+perhaps significant development early history fortran decision american standards association american national standards institute ansi form committee sponsored bema business equipment manufacturers association develop american standard fortran resulting standards approved march 1966 defined languages fortran based fortran served facto standard basic fortran based fortran stripped machinedependent features fortran defined first standard officially denoted x391966 became known fortran although many continued term fortran language standard largely based fortran effectively became first industrystandard version fortran fortran included
+
+main program subroutine function block data program units
+integer real double precision complex logical data types
+common dimension equivalence statements
+data statement specifying initial values
+intrinsic external library functions
+assignment statement
+computed assigned assign statements
+logical arithmetic threeway statements
+loop statement
+read write backspace rewind endfile statements sequential
+format statement assigned format
+call return pause stop statements
+hollerith constants data format statements arguments procedures
+identifiers characters length
+comment lines
+line
+
+fortran 77edit
+
+
+
+
+fortran77 program compiler output written rwth aachen university germany 1987
+
+
+
+
+
+
+digital equipment corporation displaying manual fortran compiler
+
+
+release fortran standard compiler vendors introduced several extensions standard fortran prompting ansi committee x3j3 1969 begin work revising 1966 standard sponsorship cbema computer business equipment manufacturers association formerly bema final drafts revised standard circulated 1977 leading formal approval fortran standard april 1978 standard called fortran officially denoted x391978 added number significant features address many shortcomings fortran
+
+block statements optional else else clauses provide improved language support structured programming
+loop extensions including parameter expressions negative increments zero trip counts
+open close inquire statements improved capability
+directaccess file
+implicit statement override implicit conventions undeclared variables integer name begins real otherwise
+character data type replacing hollerith strings vastly expanded facilities character input output processing characterbased data
+parameter statement specifying constants
+save statement persistent local variables
+generic names intrinsic functions sqrt also accepts arguments types complex real16
+intrinsics lexical comparison strings based upon ascii collating sequence ascii functions demanded department defense conditional approval votecitation needed
+
+revision standard number features removed altered manner might invalidate formerly standardconforming programs removal allowable alternative x3j3 time since concept deprecation available ansi standards items conflict list appendix x391978 addressed loopholes pathological cases permitted prior standard rarely used small number specific capabilities deliberately removed
+
+hollerith constants hollerith data greet 12hhello
+reading edit hollerith field descriptor format specification
+overindexing array bounds subscripts
+
+
+dimension a105
+a111
+
+
+transfer control back range loop also known extended range
+
+variants minnesota fortranedit
+control data corporation computers another version fortran called minnesota fortran designed especially student variations output constructs special uses commons data statements optimizations code levels compiling detailed error listings extensive warning messages debugs18
+transition ansi standard fortranedit
+development revised standard succeed fortran would repeatedly delayed standardization process struggled keep rapid changes computing programming practice meantime standard fortran nearly fifteen years fortran would become historically important dialect
+important practical extension fortran release milstd1753 197819 specification developed department defense standardized number features implemented fortran compilers included ansi fortran standard features would eventually incorporated fortran standard
+
+statements
+include statement
+implicit none variant implicit statement
+manipulation intrinsic functions based similar functions included industrial realtime fortran ansiisa s611 1976
+
+ieee 10039 posix standard released 1991 provided simple means fortran programmers issue posix system calls20 calls defined document allowing access posixcompatible process control signal handling file system control device control procedure pointing stream portable manner
+fortran 90edit
+much delayed successor fortran informally known fortran prior fortran finally released isoiec standard 15391991 1991 ansi standard 1992 addition changing official spelling fortran fortran major revision added many features reflect significant changes programming practice evolved since 1978 standard
+
+freeform source input also lowercase fortran keywords
+identifiers characters length previous standard characters
+inline comments
+ability operate arrays array sections whole thus greatly simplifying math engineering computations
+
+whole partial masked array assignment statements array expressions x1nr1ncosa1n
+statement selective array assignment
+arrayvalued constants expressions
+userdefined arrayvalued functions array constructors
+
+
+recursive procedures
+modules group related procedures data together make available program units including capability limit accessibility specific parts module
+vastly improved argumentpassing mechanism allowing interfaces checked compile time
+userwritten interfaces generic procedures
+operator overloading
+derived structured data types
+data type declaration syntax specify data type attributes variables
+dynamic memory allocation means allocatable attribute allocate deallocate statements
+pointer attribute pointer assignment nullify statement facilitate creation manipulation dynamic data structures
+structured looping constructs statement loop termination exit cycle statements terminating normal loop iterations orderly
+select case construct multiway selection
+portable specification numerical precision users control
+enhanced intrinsic procedures
+
+obsolescence deletionsedit
+unlike prior revision fortran removed features appendix says list deleted features standard empty standardconforming fortran program also standardconforming fortran either standard usable define behavior
+small features identified obsolescent expected removed future standard
+
+
+obsolescent feature
+example
+statusfate fortran
+
+
+arithmetic ifstatement
+
+
+
+
+
+
+
+
+
+noninteger parameters control variables
+
+
+
+
+
+
+deleted
+
+
+shared doloop termination
+termination statement
+continue
+
+
+
+
+
+
+
+
+
+
+
+branching
+outside block
+
+
+
+
+
+
+
+
+
+deleted
+
+
+alternate return
+
+
+
+call subr
+
+
+
+
+
+pause statement
+
+
+
+pause
+
+
+deleted
+
+
+assign statement
+assigned statement
+
+
+
+
+assign
+
+
+
+
+deleted
+
+
+assigned format specifiers
+
+
+
+assign write
+
+
+deleted
+
+
+edit descriptors
+
+
+
+format 9h1goodbye
+
+
+deleted
+
+
+computed statement
+
+
+
+index
+
+
+obsolete
+
+
+statement functions
+
+
+
+foil
+
+
+obsolete
+
+
+data statements
+among executable statements
+
+
+
+
+data
+
+
+
+obsolete
+
+
+character form character declaration
+
+
+
+character8 string character8
+
+
+obsolete
+
+
+assumed character length functions
+
+
+
+character string
+
+
+obsolete21
+
+
+fixed form source code
+column contains comments
+column continuation
+obsolete
+
+
+hello world exampleedit
+
+
+program helloworld
+print hello world
+program helloworld
+
+fortran 95edit
+redirects düsseldorfbased football club fortuna düsseldorf
+main article fortran language features
+fortran published officially isoiec 153911997 minor revision mostly resolve outstanding issues fortran standard nevertheless fortran also added number extensions notably high performance fortran specification
+
+forall nested constructs vectorization
+userdefined pure elemental procedures
+default initialization derived type components including pointer initialization
+expanded ability initialization expressions data objects
+initialization pointers null
+clearly defined allocatable arrays automatically deallocated scope
+
+number intrinsic functions extended example argument added maxloc intrinsic
+several features noted fortran obsolescent removed fortran
+
+statements using real double precision index variables
+branching statement outside block
+pause statement
+assign assigned statement assigned format specifiers
+edit descriptor
+
+important supplement fortran technical report tr15581 enhanced data type facilities informally known allocatable specification defined enhanced allocatable arrays prior availability fully fortran 2003compliant fortran compilers uses include allocatable arrays derived type components procedure dummy argument lists function return values allocatable arrays preferable pointerbased arrays allocatable arrays guaranteed fortran deallocated automatically scope eliminating possibility memory leakage addition elements allocatable arrays contiguous aliasing issue optimization array references allowing compilers generate faster code case pointers22
+another important supplement fortran technical report tr15580 floatingpoint exception handling informally known ieee specification defined support ieee floatingpoint arithmetic floating point exception handling
+conditional compilation varying length stringsedit
+addition mandatory base language defined isoiec 15391 1997 fortran language also includes optional modules
+
+varying length character strings isoiec 15392 2000
+conditional compilation isoiec 15393 1998
+
+together compose multipart international standard isoiec 1539
+according standards developers optional parts describe selfcontained features requested substantial body users andor implementors deemed sufficient generality required standardconforming fortran compilers nevertheless standardconforming fortran provide options must provided accordance description facilities appropriate part standard
+fortran 2003edit
+fortran 2003 officially published isoiec 153912004 major revision introducing many features23 comprehensive summary features fortran 2003 available fortran working group isoiec jtc1sc22wg5 official site24
+article major enhancements revision include
+
+derived type enhancements parameterized derived types improved control accessibility improved structure constructors finalizers
+objectoriented programming support type extension inheritance polymorphism dynamic type allocation typebound procedures providing complete support abstract data types
+data manipulation enhancements allocatable components incorporating 15581 deferred type parameters volatile attribute explicit type specification array constructors allocate statements pointer enhancements extended initialization expressions enhanced intrinsic procedures
+inputoutput enhancements asynchronous transfer stream access user specified transfer operations derived types user specified control rounding format conversions named constants preconnected units flush statement regularization keywords access error messages
+procedure pointers
+support ieee floatingpoint arithmetic floating point exception handling incorporating 15580
+interoperability programming language
+support international usage access 10646 4byte characters choice decimal comma numeric formatted inputoutput
+enhanced integration host operating system access command line arguments environment variables processor error messages
+
+important supplement fortran 2003 technical report tr19767 enhanced module facilities fortran report provided submodules make fortran modules similar modula2 modules similar private child subunits allows specification implementation module expressed separate program units improves packaging large libraries allows preservation trade secrets publishing definitive interfaces prevents compilation cascades
+fortran 2008edit
+recent standard isoiec 153912010 informally known fortran 2008 approved september 20102526 fortran minor upgrade incorporating clarifications corrections fortran 2003 well introducing select capabilities capabilities include
+
+submodules additional structuring facilities modules supersedes isoiec 197672005
+coarray fortran parallel execution model
+concurrent construct loop iterations interdependencies
+contiguous attribute specify storage layout restrictions
+block construct contain declarations objects construct scope
+recursive allocatable components alternative recursive pointers derived types
+
+final draft international standard fdis available document n183027
+important supplement fortran 2008 technical specification 29113 interoperability fortran c2829 submitted 2012 approval specification adds support accessing array descriptor allows ignoring type rank arguments
+fortran 2018edit
+next revision language fortran 2018 earlier referred fortran 201530 significant revision planned release mid201831
+fortran 2018 incorporates previously published technical specifications
+
+isoiec 291132012 interoperability
+isoiec 185082015 additional parallel features fortran33
+
+additional changes features include support isoiecieee 605592011 hexadecimal inputoutput implicit none enhancements changes34353637
+science engineeringedit
+although 1968 journal article authors basic already described fortran oldfashioned38 since fortran several decades vast body fortran software daily throughout scientific engineering communities39 pasachoff wrote 1984 physics astronomy students simply learn fortran much exists fortran seems unlikely scientists change pascal modula2 whatever40 1993 cecil leith called fortran mother tongue scientific computing adding replacement possible language remain forlorn hope41
+primary language intensive supercomputing tasks astronomy weather climate modeling numerical linear algebra lapack numerical libraries imsl structural engineering hydrological modeling optimization satellite simulation data analysis computational fluid dynamics computational chemistry computational economics computational physics many floatingpoint benchmarks gauge performance computer processors cfp2006 floatingpoint component spec cpu2006 benchmarks written fortran
+hand modern code generally uses large program libraries petsc trilinos linear algebra capabilities metis graph partitioning dealii fenics mesh finite element support generic libraries since late 1990s almost widely used support libraries written often consequently growing fraction scientific code also written languages reason facilities interoperation added fortran 2003 enhanced isoiec technical specification 29113 incorporated fortran 2018 shift also evident selection applications spec 2000 spec 2006 floating point benchmarkscitation needed
+nasa voyager voyager originally written fortran later ported fortran september 2013update software still fortran ported
+language featuresedit
+precise characteristics syntax fortran discussed fortran language features
+portabilityedit
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed september 2011 learn remove template message
+
+
+
+portability problem early days agreed standard even ibms reference manual computer companies vied differentiate offerings others providing incompatible features standards improved portability 1966 standard provided reference syntax semantics vendors continued provide incompatible extensions although careful programmers coming realize incompatible extensions caused expensive portability problems therefore using programs pfort verifier 1977 standard national bureau standards nist published fips processors purchased government required diagnose extensions standard rather offer processors essentially every compiler eventually least option diagnose extensions
+incompatible extensions portability problem numerical calculations important take account characteristics arithmetic addressed context 1966 standard port library ideas therein became widely used eventually incorporated 1990 standard intrinsic inquiry functions widespread almost universal adoption ieee standard binary floatingpoint arithmetic essentially removed problem
+access computing environment programs command line environment variables textual explanation error conditions remained problem addressed 2003 standard
+large collections library software could described loosely related engineering scientific calculations graphics libraries written therefore access presented portability problem addressed incorporation interoperability 2003 standard
+possible relatively easy write entirely portable program fortran even without recourse preprocessor
+variantsedit
+fortran 5edit
+fortran marketed data general corp late 1970s early 1980s nova eclipse line computers optimizing compiler quite good minicomputers time language closely resembles fortran name earlier fortran
+fortran vedit
+fortran distributed control data corporation 1968 6600 series language based upon fortran iv43
+univac also offered compiler 1100 series known fortran spinoff univac fortran athena fortran
+fortran 6edit
+fortran visual fortran 2001 licensed compaq microsoft licensed compaq visual fortran provided visual studio environment interface compaq v6144
+specific variantsedit
+vendors highperformance scientific computers burroughs control data corporation cray honeywell texas instruments univac added extensions fortran take advantage special hardware features instruction cache pipelines vector arrays example ibms fortran compilers extended level optimization reordered machine code instructions keep multiple internal arithmetic units busy simultaneously another example special variant fortran designed specifically illiac supercomputer running nasas ames research center research labs also developed extended fortranbased language called vectran processing vectors matrices
+objectoriented fortran objectoriented extension fortran data items grouped objects instantiated executed parallel available iris ipsc ncube longer supported
+machinespecific extensions either disappeared time elements incorporated main standards major remaining extension openmp crossplatform extension shared memory programming extension coarray fortran intended support parallel programming
+transit 650edit
+transit name reduced version fortran language implemented using translator program developed carnegie late 1950s45 following comment appears reference manual transit automatic coding system c284038 copyright 1957 1959
+
+fortran system designed complex machine consequently statements found fortran programmers reference manual acceptable transit system addition certain restrictions fortran language added however none restrictions make source program written transit incompatible fortran system
+
+permissible statements
+
+arithmetic assignment statements
+
+
+
+pause
+stop
+
+continue
+
+read list
+punch list
+dimension
+equivalence
+
+subroutines could used program
+transit statements limited columns punched cards used input output three passes required translate source code language compile statements soap assembly language finally produce object program could loaded machine program using punched cards data input outputting results onto punched cards
+versions existed 650s 2000 word memory drum transit transit latter machines equipped indexing registers automatic floating point decimal biquinary arithmetic appendix manual included wiring diagrams card readerpunch control panel
+fortranbased languagesedit
+prior fortran number preprocessors commonly used provide friendlier language advantage preprocessed code could compiled machine standard fortran compiler preprocessors would typically support structured programming variable names longer characters additional data types conditional compilation even macro capabilities popular preprocessors included flecs iftran mortran sftran sfortran ratfor ratfiv ratfor ratfiv example implemented clike language outputting preprocessed code standard fortran despite advances fortran language preprocessors continue used conditional compilation macro substitution
+earliest versions fortran introduced popularly used colleges universities developed supported distributed university waterloo watfor based largely fortran watfor student could submit batch fortran syntax errors program would move straight execution simplification allowed students concentrate programs syntax semantics execution logic flow rather dealing submission control language compilelinkeditexecution successive processes complexities mainframeminicomputer environment side simplified environment watfor good choice programmers needing expanded abilities host processors watfor typically limited access devices watfor succeeded watfiv later versions
+
+
+program stop stop
+
+line programing
+lrltran developed lawrence radiation laboratory provide support vector arithmetic dynamic storage among extensions support systems programming distribution included ltss operating system
+fortran95 standard includes optional part defines optional conditional compilation capability capability often referred coco
+many fortran compilers integrated subsets preprocessor systems
+simscript application specific fortran preprocessor modeling simulating large discrete systems
+programming language designed clean subset fortran attempted remove redundant unstructured deprecated features fortran equivalence statement retains array features added fortran removes control statements made obsolete structured programming constructs added fortran fortran described creators compiled structured array programming language especially well suited education scientific computing46
+lahey fujitsu teamed create fortran microsoft framework47 silverfrost ftn95 also capable creating code48
+code examplesedit
+details topic wikibooksfortranfortran examples
+following program illustrates dynamic memory allocation arraybased operations features introduced fortran particularly noteworthy absence loops ifthen statements manipulating array mathematical operations applied array whole also apparent descriptive variable names general code formatting conform contemporary programming style example computes average data entered interactively
+
+
+program average
+
+read numbers take average
+written data points average zero returned
+desired behavior keeps example simple
+
+implicit none
+
+real dimension allocatable points
+integer numberofpoints
+real averagepoints0 positiveaverage0 negativeaverage0
+
+write input number points average
+read numberofpoints
+
+allocate pointsnumberofpoints
+
+write enter points average
+read points
+
+take average summing points dividing numberofpoints
+numberofpoints averagepoints sumpoints numberofpoints
+
+form average positive negative points
+countpoints
+positiveaverage sumpoints points countpoints
+
+
+countpoints
+negativeaverage sumpoints points countpoints
+
+
+deallocate points
+
+print result terminal
+write ag124 average averagepoints
+write ag124 average positive points positiveaverage
+write ag124 average negative points negativeaverage
+
+program average
+
+humoredit
+fortran standards committee meeting name fortran chosen satirical technical proposal incorporated official distribution bearing title letter considered harmful proposal purported address confusion sometimes arises letter numeral zero eliminating letter allowable variable names however method proposed eliminate letter character entirely thereby retaining number lexical characters colon increased considered beneficial would promote structured programming making impossible notorious statement troublesome format statements would also eliminated noted might invalidate existing programs probably nonconforming anyway4950
+standards committee battle whether minimum trip count fortran statement zero allowing execution block plungeahead another facetious alternative proposed loren meissner minimum since need loop executed oncecitation needed
+assumedlength arrays added dispute appropriate character separate upper lower bounds comment examining arguments walt brainerd penned article entitled astronomy gastroenterology proponents suggested using star asterisk others favored colon citation needed
+fortran variable names beginning letters default type integer variables starting letters defaulted real although programmers could override defaults explicit declaration51 joke fortran real unless declared integer
+alsoedit
+
+
+computer programming portal
+
+
+
+
+formac
+list fortran compilers
+list fortran numerical libraries
+list programming languages
+matrix representation
+rowmajor order
+
+referencesedit
+
+
+chapel spec acknowledgements cray 20151001 retrieved 20160114
+fortran american heritage dictionary english language free dictionary 2011 retrieved 20160208
+john backus history fortran softwarepreservationorg retrieved november 2014
+eugene june 2010 ideal programming language queue association computing machines
+portable implementation highperformance linpack benchmark distributedmemory computers retrieved 20150221
+softwarepreservationorg retrieved september 2014
+mindell david digital apollo press cambridge 2008
+fortran compiler fortran compiler first major project code optimization tackled problems crucial importance whose general solution important research focus compiler technology several decades many classical techniques compiler analysis optimization trace origins inspiration fortran compiler
+fortran creator john backus dies msnbccom retrieved november 2014
+backus stern ziller hughes nutt beeber best goldberg haibt herrick nelson sayre sheridan 1957 fortran automatic coding system western joint computer conference techniques reliability angeles california institute radio engineers american institute electrical engineers 188–198 doi10114514555671455599 maint multiple names authors list link online
+applied science division programming research department international business machines corporation october 1956 fortran automatic coding system edpm programmers reference manual 19–20
+programming research department international business machines corporation april 1957 fortran automatic coding system edpm preliminary operators manual 6–37
+reference manual 7090 data processing system 1961 a2265283
+fortran user manual bitsaversorg retrieved november 2014
+ibibilioorg ibiblioorg retrieved september 2014
+haines 1965 serial compilation 1401 fortran compiler systems journal 73–80 doi101147sj410073 article reprinted edited editions john 1967 anatomy compiler nostrand reinhold
+mccracken daniel 1965 preface guide fortran programming york wiley isbn 0471582816
+fortran compilers loaders chiltonprogrammingorguk retrieved november 2014
+milstd1753 supplement x391978 united states government printing office
+posix 100391992 posix fortran language interface part binding system application program interface ieee retrieved november 2014
+fortran variable declarations compaq fortran texas huston compaq computer corporation 1999 retrieved november 2014 form character obsolescent feature fortran
+fortran reference gnuorg retrieved 2014
+fortran 2003 last working draft gnuorg retrieved 2014
+fortran working group also downloaded file ftpnagcouk
+n1836 summary votingtable replies isoiec fdis 15391 information technology programming languages fortran part base language
+fortran 2008 last working draft gnuorg retrieved 2014
+n1830 information technology programming languages fortran part base language 4dead link
+page isoiec 29113 interoperability fortran
+draft technical specification 29113
+doctor fortran eighteen fifteen softwareintelcom retrieved november 2017
+fortran 2018 retrieved november 2017
+interoperability retrieved november 2017
+additional parallel features fortran retrieved november 2017
+features fortran 2015 retrieved june 2017
+doctor fortran door closes softwareintelcom retrieved september 2015
+doctor fortran goes dutch fortran 2015 softwareintelcom retrieved november 2014
+fortran 2015 working document july 2017
+kemeny john kurtz thomas october 1968 dartmouth timesharing science 223–228
+phillips scientific computings future coding language 1950s behemoth technica retrieved 2014
+pasachoff april 1984 scientists fortran modula2 byte letter retrieved february 2015
+galperin boris 1993 large eddy simulation complex engineering geophysical flows london cambridgey isbn 0521430097
+interstellar 8track voyagers vintage tech keeps running wired retrieved 20171223
+healy 1968 towards fortran advanced scientific fortran 169–172 retrieved april 2009
+third party release notes fortran cssoftwarecom march 2011 retrieved november 2014
+internal translator compiler perlis smith zoeren computation center carnegie institute technology
+programming language homepage fortrancom retrieved november 2014
+fortran language system archived original october 2014
+ftn95 fortran windows silverfrostcom retrieved november 2014
+x3j3 postmeeting distribution meeting held brookhaven national laboratory november 1976unreliable source
+obliteration computer weekly march 1977
+rules data typing fortran language reference docsoraclecom retrieved 20160929
+
+
+readingedit
+
+articles
+
+
+allen september 1981 history language processor technology journal research development doi101147rd2550535
+backus stern ziller hughes nutt beeber best goldberg haibt herrick nelson sayre sheridan ziller hughes nutt beeber best goldberg haibt herrick nelson sayre sheridan 1957 fortran automatic coding system western joint computer conference techniques reliability angeles california institute radio engineers american institute electrical engineers 188–198 doi10114514555671455599 maint multiple names authors list link
+chivers sleightholme jane 2013 compiler support fortran 2003 2008 standards sigplan fortran forum 26–28 doi10114515207521520755 issn 10617264 archived original 20080516
+pigott diarmuid 2006 fortran backus highlevel compiler computer language encyclopedia computer languages murdoch university archived original october 2009 retrieved 2010
+roberts mark griffiths peter 1985 design considerations personal computer professional fortran optimizing compiler systems journal 49–60 doi101147sj2410049
+
+
+core language standards
+
+
+ansi x391966 standard fortran american national standards institute informally known fortran
+ansi x391978 american national standard programming language fortran american national standards institute also known 15391980 informally known fortran
+ansi x31981992 r1997 isoiec 15391991 american national standard programming language fortran extended american national standards institute isoiec archived original 2002 informally known fortran
+isoiec 153911997 information technology programming languages fortran part base language informally known fortran parts standard part formally adopted ansi
+isoiec 153912004 information technology programming languages fortran part base language informally known fortran 2003
+isoiec 153912010 final draft international standard information technology programming languages fortran part base language permanent dead link informally known fortran 2008
+
+
+related standards
+
+
+kneis wilfried october 1981 industrial realtime fortran sigplan notices press 45–60 doi101145947864947868 issn 03621340
+865111988 information processing systems computer graphics graphical kernel system language bindings part fortran geneva switzerland 1988
+
+
+reference material
+
+
+ecma standard fortran european computer manufacturers association april 1965 retrieved 20141117
+fortran reference manual microsystems 1995 retrieved 20141117
+fortran coding form archived original june 2015 retrieved november 2014
+system360 system370 fortran language international business machines 1974 retrieved 20141117
+goerz michael 2014 modern fortran reference card retrieved 20141214
+
+
+textbooks
+
+
+adams jeanne brainerd walter hendrickson richard maine richard martin jeanne smith brian 2009 fortran 2003 handbook springer isbn 9781846283789
+akin 2003 object oriented programming fortran 9095 cambridge university press isbn 0521524083
+chapman stephen 2007 fortran 952003 scientists engineers mcgrawhill isbn 9780073191577
+chivers sleightholme jane 2015 introduction programming fortran springer isbn 9783319177007
+etter 1990 structured fortran engineers scientists benjamincummings publishing company isbn 0805300511
+ellis phillips ivor lahey thomas 1994 fortran programming addison wesley isbn 0201544466
+kupferschmid michael 2002 classical fortran programming engineering scientific applications marcel dekker press isbn 0824708024
+mccracken daniel 1961 guide fortran programming york wiley lccn 61016618
+metcalf michael john reid malcolm cohen 2011 modern fortran explained oxford university press isbn 0199601429
+nyhoff larry sanford leestma 1995 fortran engineers scientists introduction fortran prentice hall isbn 013363003x
+page clive 1988 professional programmers guide fortran77 june 2005 london pitman isbn 0273028561 retrieved 2010
+press william 1996 numerical recipes fortran parallel scientific computing cambridge cambridge university press isbn 0521574390
+sleighthome jane chivers david 1990 interactive fortran handson approach computers applications chichester horwood isbn 0134667646
+
+external linksedit
+
+
+
+wikibooks book topic fortran
+
+
+
+
+
+wikiquote quotations related fortran
+
+
+
+isoiec jtc1sc22wg5 official home fortran standards
+fortran standards documents gfortran standards
+history fortran fortran computer history museum
+fortran compilerator online fortran compiler small experiments tinkering
+valmer norrod selfstudy course fortran programing volume textbook computer science corporation segundo california april1970 nasan7025287
+valmer norrod sheldom blecher martha horton selfstudy course fortran programing volume workbook nasa cr1478 volii april1970 nasan7025288
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+history
+
+
+
+history
+mergers acquisitions
+think motto
+operating systems
+
+
+
+
+
+products
+
+
+
+cell microprocessor
+mainframe
+personal computer
+power systems
+information management software
+lotus software
+rational software
+spss
+ilog
+tivoli software service automation manager
+websphere
+alphaworks
+criminal reduction utilising statistical history
+mashup center
+purequery
+redbooks
+flashsystem
+fortran
+connections
+
+
+
+
+
+business entities
+
+
+
+center business government
+cloud computing
+global services
+international subsidiaries
+jstart
+kenexa
+research
+weather company weather underground
+
+
+
+
+
+facilities
+
+
+
+towers
+
+1250 renélévesque montreal
+atlantic center atlanta
+
+
+software labs
+
+rome software
+toronto software
+
+
+buildings
+
+north wabash chicago
+johannesburg
+seattle
+
+
+research labs
+
+africa
+almaden
+austin laboratory
+australia
+brazil
+china laboratory
+haifa laboratory
+india laboratory
+ireland
+thomas watson center york
+tokyo
+zurich laboratory
+
+
+facilities
+
+hakozaki facility
+yamato facility
+
+
+cambridge scientific center
+hursley
+canada head office building
+rochester
+somers office complex
+
+
+
+
+
+initiatives
+
+
+
+academy technology
+centers advanced studies cascon
+deep thunder
+fellow
+pulse conference
+great mind challenge
+developerworks develothon
+linux technology center
+virtual universe community
+smarter planet
+world community grid
+
+
+
+
+
+inventions
+
+
+
+automated teller machine
+electronic keypunch
+hard disk drive
+floppy disk
+dram
+relational model
+selectric typewriter
+financial swaps
+universal product code
+magnetic stripe card
+sabre airline reservation system
+scanning tunneling microscope
+
+
+
+
+
+terminology
+
+
+
+globally integrated enterprise
+commercial processing workload
+consumability
+ebusiness
+
+
+
+
+
+ceos
+
+
+
+thomas watson 1914–1956
+thomas watson 1956–1971
+vincent learson 1971–1973
+frank cary 1973–1981
+john opel 1981–1985
+john fellows akers 1985–1993
+louis gerstner 1993–2002
+samuel palmisano 2002–2011
+ginni rometty 2012–present
+
+
+
+
+
+board directors
+
+
+
+alain belda
+william brody
+kenneth chenault
+michael eskew
+david farr
+shirley jackson
+andrew liveris
+james mcnerney
+james owens
+samuel palmisano
+virginia rometty
+joan spero
+sidney taurel
+lorenzo zambrano
+
+
+
+
+
+
+
+
+
+atom
+common public licenseibm public license
+customer engineer
+deep blue
+deep thought
+dynamic infrastructure
+guide international
+holocaust
+international chess tournament
+lucifer cipher
+mathematica
+share computing
+scicomp
+watson
+quantum experience
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+programming languages
+
+
+
+
+
+
+comparison
+timeline
+history
+
+
+
+
+
+
+
+
+assembly
+basic
+
+
+
+cobol
+fortran
+
+groovy
+haskell
+java
+javascript
+kotlin
+lisp
+
+objectivec
+pascal
+perl
+
+python
+rexx
+ruby
+shell
+smalltalk
+swift
+visual basic vbnet
+vbscript
+
+
+
+
+
+
+
+
+
+category
+lists
+
+alphabetical
+categorical
+generational
+nonenglishbased
+
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh85050987
+40179849
+cb11931442r data
+xx531008
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlefortranoldid816703075 categories fortranfortran programming language familyamerican inventionsarray programming languagescomputer standardscomputerrelated introductions 1957numerical programming languagesobjectoriented programming languagesprocedural programming languagesprogramming languagesprogramming languages created 1957programming languages standardstatically typed programming languagesunix programming toolshidden categories maint multiple names authors listall articles dead external linksarticles dead external links january 2016all articles lacking reliable referencesarticles lacking reliable references august 2014use dates january 2012pages using deprecated image syntaxall articles unsourced statementsarticles unsourced statements september 2013articles unsourced statements october 2011articles unsourced statements december 2017articles containing potentially dated statements september 2013all articles containing potentially dated statementsarticles needing additional references september 2011all articles needing additional referencesarticles unsourced statements january 2015articles unsourced statements july 2016articles dead external links july 2017articles permanently dead external linkswikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiers

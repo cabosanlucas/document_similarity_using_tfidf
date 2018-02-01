@@ -1,0 +1,472 @@
+disambiguation redirects uses disambiguation disambiguation
+disambiguation wikipedia wikipediadisambiguation
+computational linguistics wordsense disambiguation open problem natural language processing ontology identifying sense word meaning used sentence word multiple meanings solution problem impacts computerrelated writing discourse improving relevance search engines anaphora resolution coherence inference cetera
+human brain quite proficient wordsense disambiguation natural language formed requires much reflection neurologic reality words human language developed reflects also helped shape innate ability provided brains neural networks computer science information technology enables longterm challenge develop ability computers natural language processing machine learning
+rich variety techniques researched dictionarybased methods knowledge encoded lexical resources supervised machine learning methods classifier trained distinct word corpus manually senseannotated examples completely unsupervised methods cluster occurrences words thereby inducing word senses among supervised learning approaches successful algorithms date
+accuracy current algorithms difficult state without host caveats english accuracy coarsegrained homograph level routinely methods particular homographs achieving finergrained sense distinctions accuracies reported evaluation exercises semeval2007 senseval2 baseline accuracy simplest possible algorithm always choosing frequent sense respectively
+
+
+
+contents
+
+
+
+history
+difficulties
+
+differences dictionaries
+partofspeech tagging
+interjudge variance
+pragmatics
+sense inventory algorithms taskdependency
+discreteness senses
+
+
+approaches methods
+
+dictionary knowledgebased methods
+supervised methods
+semisupervised methods
+unsupervised methods
+approaches
+languages
+local impediments summary
+
+
+external knowledge sources
+evaluation
+
+task design choices
+
+
+software
+also
+notes
+works cited
+external links suggested reading
+
+
+
+aboutedit
+disambiguation requires strict inputs dictionary specify senses disambiguated corpus language data disambiguated methods training corpus language examples also required task variants lexical sample words task former comprises disambiguating occurrences small sample target words previously selected latter words piece running text need disambiguated latter deemed realistic form evaluation corpus expensive produce human annotators read definitions word sequence every time need make tagging judgement rather block instances target word
+give hint works consider three examples distinct senses exist written word bass
+
+type fish
+tones frequency
+type instrument
+
+sentences
+
+went fishing bass
+bass line song weak
+
+human obvious first sentence using word bass fish former sense second sentence word bass instrument used latter sense developing algorithms replicate human ability often difficult task exemplified implicit equivocation bass sound bass instrument
+historyedit
+first formulated distinct computational task early days machine translation 1940s making oldest problems computational linguistics warren weaver famous 1949 memorandum translation1 first introduced problem computational context early researchers understood significance difficulty well fact barhillel 1960 used example argue2 could solved electronic computer need general model world knowledge
+1970s subtask semantic interpretation systems developed within field artificial intelligence starting wilks preference semantics however since systems time largely rulebased handcoded prone knowledge acquisition bottleneck
+1980s largescale lexical resources oxford advanced learners dictionary current english oald became available handcoding replaced knowledge automatically extracted resources disambiguation still knowledgebased dictionarybased
+1990s statistical revolution swept computational linguistics became paradigm problem apply supervised machine learning techniques
+2000s supervised techniques reach plateau accuracy attention shifted coarsergrained senses domain adaptation semisupervised unsupervised corpusbased systems combinations different methods return knowledgebased systems graphbased methods still supervised systems continue perform best
+difficultiesedit
+differences dictionariesedit
+problem word sense disambiguation deciding senses cases like word bass least senses obviously different cases however different senses closely related meaning metaphorical metonymic extension another cases division words senses becomes much difficult different dictionaries thesauruses provide different divisions words senses solution researchers used choose particular dictionary senses generally however research results using broad distinctions senses much better using narrow ones34 however given lack fullfledged coarsegrained sense inventory researchers continue work finegrained
+research field performed using wordnet reference sense inventory english wordnet computational lexicon encodes concepts synonym sets concept encoded auto automobile machine motorcar resources used disambiguation purposes include rogets thesaurus5 wikipedia6 recently babelnet multilingual encyclopedic dictionary used multilingual wsd7
+partofspeech taggingedit
+real test partofspeech tagging sense tagging closely related potentially making constraints question whether tasks kept together decoupled still unanimously resolved recently scientists incline test things separately sensevalsemeval competitions parts speech provided input text disambiguate
+instructive compare word sense disambiguation problem problem partofspeech tagging involve disambiguating tagging words senses parts speech however algorithms used tend work well mainly part speech word primarily determined immediately adjacent three words whereas sense word determined words away success rate partofspeech tagging algorithms present much higher stateofthe around 95citation needed accuracy better compared less 75citation needed accuracy word sense disambiguation supervised learning figures typical english different languages
+interjudge varianceedit
+another problem interjudge variance systems normally tested results task compared human however relatively easy assign parts speech text training people senses difficult8 users memorize possible parts speech word take often impossible individuals memorize senses word take moreover humans agree task hand give list senses sentences humans always agree word belongs sense9
+human performance serves standard upper bound computer performance human performance however much better coarsegrained finegrained distinctions research coarsegrained distinctions1011 test recent evaluation exercises34
+pragmaticsedit
+researchers like douglas lenat argue cannot parse meanings words without form common sense ontology linguistic issue called pragmatics example comparing sentences
+
+jill mary mothers independently mother
+jill mary sisters sisters
+
+properly identify senses words must know common sense facts12 moreover sometimes common sense needed disambiguate words like pronouns case anaphoras cataphoras text
+sense inventory algorithms taskdependencyedit
+taskindependent sense inventory coherent concept13 task requires division word meaning senses relevant task example ambiguity mouse animal device relevant englishfrench machine translation relevant information retrieval opposite true river requires choice french fleuve flows rivière flows river
+also completely different algorithms might required different applications machine translation problem takes form target word selection senses words target language often correspond significant meaning distinctions source language bank could translate french banque—that financial bank rive—that edge river information retrieval sense inventory necessarily required enough know word used sense query retrieved document sense unimportant
+discreteness sensesedit
+finally notion word sense slippery controversial people agree distinctions coarsegrained homograph level writing instrument enclosure level finegrained polysemy disagreements arise example senseval2 used finegrained sense distinctions human annotators agreed word occurrences14 word meaning principle infinitely variable context sensitive divide easily distinct discrete submeanings15 lexicographers frequently discover corpora loose overlapping word meanings standard conventional meanings extended modulated exploited bewildering variety ways lexicography generalize corpus definitions evoke explain full range meaning word making seem like words wellbehaved semantically however clear meaning distinctions applicable computational applications decisions lexicographers usually driven considerations recently task named lexical substitution proposed possible solution sense discreteness problem16 task consists providing substitute word context preserves meaning original word potentially substitutes chosen full lexicon target language thus overcoming discreteness
+approaches methodsedit
+natural language processing main approaches deep approaches shallow approaches
+deep approaches presume access comprehensive body world knowledge knowledge fishing type fish frequency sounds songs frequency sounds parts types fish used determine sense word bass used approaches successful practice mainly body knowledge exist computerreadable format outside limited domains17 however knowledge exist deep approaches would much accurate shallow approachescitation needed also long tradition computational linguistics trying approaches terms coded knowledge cases hard clearly whether knowledge involved linguistic world knowledge first attempt margaret masterman colleagues cambridge language research unit england 1950s attempt used data punchedcard version rogets thesaurus numbered heads indicator topics looked repetitions text using intersection algorithm successful18 strong relationships later work especially yarowskys machine learning optimisation thesaurus method 1990s
+shallow approaches dont understand text consider surrounding words using information bass words fishing nearby probably fish sense bass words music song nearby probably music sense rules automatically derived computer using training corpus words tagged word senses approach theoretically powerful deep approaches gives superior results practice computers limited world knowledge however confused sentences like dogs bark tree contains word bark near tree dogs
+four conventional approaches
+
+dictionary knowledgebased methods rely primarily dictionaries thesauri lexical knowledge bases without using corpus evidence
+semisupervised minimally supervised methods make secondary source knowledge small annotated corpus seed data bootstrapping process wordaligned bilingual corpus
+supervised methods make senseannotated corpora train
+unsupervised methods eschew almost completely external information work directly unannotated corpora methods also known name word sense discrimination
+
+almost approaches normally work defining window content words around word disambiguated corpus statistically analyzing surrounding words shallow approaches used train disambiguate naïve bayes classifiers decision trees recent research kernelbased methods support vector machines shown superior performance supervised learning graphbased approaches also gained much attention research community currently achieve performance close state
+dictionary knowledgebased methodsedit
+lesk algorithm19 seminal dictionarybased method based hypothesis words used together text related relation observed definitions words senses words disambiguated finding pair dictionary senses greatest word overlap dictionary definitions example disambiguating words pine cone definitions appropriate senses include words evergreen tree least dictionary similar approach20 searches shortest path words second word iteratively searched among definitions every semantic variant first word among definitions every semantic variant word previous definitions finally first word disambiguated selecting semantic variant minimizes distance first second word
+alternative definitions consider general wordsense relatedness compute semantic similarity pair word senses based given lexical knowledge base wordnet graphbased methods reminiscent spreading activation research early days research applied success complex graphbased approaches shown perform almost well supervised methods21 even outperforming specific domains322 recently reported simple graph connectivity measures degree perform stateoftheart presence sufficiently rich lexical knowledge base23 also automatically transferring knowledge form semantic relations wikipedia wordnet shown boost simple knowledgebased methods enabling rival best supervised systems even outperform domainspecific setting24
+selectional preferences selectional restrictions also useful example knowing typically cooks food disambiguate word bass cooking basses musical instrument
+supervised methodsedit
+supervised methods based assumption context provide enough evidence disambiguate words hence common sense reasoning deemed unnecessary probably every machine learning algorithm going applied including associated techniques feature selection parameter optimization ensemble learning support vector machines memorybased learning shown successful approaches date probably cope highdimensionality feature space however supervised methods subject knowledge acquisition bottleneck since rely substantial amounts manually sensetagged corpora training laborious expensive create
+semisupervised methodsedit
+lack training data many word sense disambiguation algorithms semisupervised learning allows labeled unlabeled data yarowsky algorithm early example algorithm25 uses ‘one sense collocation’ ‘one sense discourse’ properties human languages word sense disambiguation observation words tend exhibit sense given discourse given collocation
+bootstrapping approach starts small amount seed data word either manually tagged training examples small number surefire decision rules play context bass almost always indicates musical instrument seeds used train initial classifier using supervised method classifier used untagged portion corpus extract larger training confident classifications included process repeats classifier trained successively larger training corpus whole corpus consumed given maximum number iterations reached
+semisupervised techniques large quantities untagged corpora provide cooccurrence information supplements tagged corpora techniques potential help adaptation supervised models different domains
+also ambiguous word language often translated different words second language depending sense word wordaligned bilingual corpora used infer crosslingual sense distinctions kind semisupervised system
+unsupervised methodsedit
+main article word sense induction
+unsupervised learning greatest challenge researchers underlying assumption similar senses occur similar contexts thus senses induced text clustering word occurrences using measure similarity context26 task referred word sense induction discrimination occurrences word classified closest induced clusterssenses performance lower methods described comparisons difficult since senses induced must mapped known dictionary word senses mapping dictionary senses desired clusterbased evaluations including measures entropy purity performed alternatively word sense induction methods tested compared within application instance shown word sense induction improves search result clustering increasing quality result clusters degree diversification result lists2728 hoped unsupervised learning overcome knowledge acquisition bottleneck dependent manual effort
+approachesedit
+approaches vary differently methods
+
+disambiguation based operational semantics default logic29
+domaindriven disambiguation3031
+identification dominant word senses323334
+using crosslingual evidence3536
+solution multilingual patom theory role reference grammar combined
+
+languagesedit
+
+hindi lack lexical resources hindi hindered performance supervised models unsupervised models suffer extensive morphology possible solution problem design model means parallel corpora3738 creation hindi wordnet paved several supervised methods proven produce higher accuracy disambiguating nouns39
+
+local impediments summaryedit
+knowledge acquisition bottleneck perhaps major impediment solving problem unsupervised methods rely knowledge word senses barely formulated dictionaries lexical databases supervised methods depend crucially existence manually annotated examples every word sense requisite handful words testing purposes done senseval exercises
+therefore promising trends research using largest corpus ever accessible world wide acquire lexical information automatically40 traditionally understood intermediate language engineering technology could improve applications information retrieval case however reverse also true search engines implement simple robust techniques successfully used mining information employed therefore lack training data provoked appearing algorithms techniques described
+main article automatic acquisition sensetagged corpora
+external knowledge sourcesedit
+knowledge fundamental component knowledge sources provide data essential associate senses words vary corpora texts either unlabeled annotated word senses machinereadable dictionaries thesauri glossaries ontologies be4142 classified follows
+structured
+
+machinereadable dictionaries mrds
+ontologies
+thesauri
+
+unstructured
+
+collocation resources
+resources word frequency lists stoplists domain labels43
+corpora corpora senseannotated corpora
+
+evaluationedit
+comparing evaluating different systems extremely difficult different test sets sense inventories knowledge resources adopted organization specific evaluation campaigns systems assessed inhouse often smallscale data sets order test ones algorithm developers spend time annotate word occurrences comparing methods even corpus eligible different sense inventories
+order define common evaluation datasets procedures public evaluation campaigns organized senseval renamed semeval international word sense disambiguation competition held every three years since 1998 senseval1 1998 senseval2 2001 senseval3 2004 successor semeval 2007 objective competition organize different lectures preparing handannotating corpus testing systems perform comparative evaluation systems several kinds tasks including allwords lexical sample different languages recently tasks semantic role labeling gloss lexical substitution systems submitted evaluation competitions usually integrate different techniques often combine supervised knowledgebased methods especially avoiding performance lack training examples
+recent years 20072012 evaluation task choices grown criterion evaluating changed drastically depending variant evaluation task enumerates variety tasks
+task design choicesedit
+technology evolves word sense disambiguation tasks grows different flavors towards various research directions languages
+
+classic monolingual evaluation tasks wordnet sense inventory largely based supervisedsemisupervised classification manually sense annotated corpora44
+
+classic english uses princeton wordnet sense inventory primary classification input normally based semcor corpus
+classical languages uses respective wordnet sense inventories sense annotated corpora tagged respective languages often researchers also tapped semcor corpus aligned bitexts english source language
+
+
+crosslingual evaluation task also focused across languages simultaneously unlike multilingual tasks instead providing manually senseannotated examples sense polysemous noun sense inventory built basis parallel corpora europarl corpus45
+multilingual evaluation tasks focused across languages simultaneously using respective wordnets sense inventories babelnet multilingual sense inventory46 evolved translation evaluation tasks took place senseval2 popular approach carry monolingual source language senses corresponding target word translations47
+word sense induction disambiguation task combined task evaluation sense inventory first induced fixed training data consisting polysemous words sentence occurred performed different testing data set48
+
+softwareedit
+
+babelfy49 unified stateoftheart system multilingual word sense disambiguation entity linking
+babelnet api50 java knowledgebased multilingual word sense disambiguation different languages using babelnet semantic network
+wordnetsenserelate51 project includes free open source systems word sense disambiguation lexical sample sense disambiguation
+graph base wsd52 collection programs performing graphbased word sense disambiguation lexical similarityrelatedness using preexisting lexical knowledge base53
+pywsd54 python implementations word sense disambiguation technologies
+
+alsoedit
+
+ambiguity
+controlled natural language
+entity linking
+lesk algorithm
+lexical substitution
+partofspeech tagging
+polysemy
+semeval
+semantic unification
+judicial interpretation
+sentence boundary disambiguation
+syntactic ambiguity
+word sense
+word sense induction
+
+notesedit
+
+
+weaver 1949
+barhillel 1964 174–179
+navigli litkowski hargraves 2007 30–35
+pradhan 2007 87–92
+yarowsky 1992 454–460
+mihalcea 2007
+moro raganato navigli entity linking meets word sense disambiguation unified approach transactions association computational linguistics tacl 231244 2014
+fellbaum 1997
+snyder palmer 2004 41–43
+navigli 2006 105–112
+snow 2007 1005–1014
+lenat
+palmer babkomalaya dang 2004 49–56
+edmonds 2000
+kilgarrif 1997 91–113
+mccarthy navigli 2009 139–159
+lenat guha 1989
+wilks slator guthrie 1996
+lesk 1986 24–26
+diamantini mircoli potena storti 20150601 semantic disambiguation social information discovery system 2015 international conference collaboration technologies systems 326–333 doi101109cts20157210442
+navigli velardi 2005 1063–1074
+agirre lopez lacalle soroa 2009 1501–1506
+navigli lapata 2010 678–692
+ponzetto navigli 2010 1522–1531
+yarowsky 1995 189–196
+schütze 1998 97–123
+navigli crisafulli 2010
+dimarco navigli 2013
+galitsky boris disambiguation default rules answering complex questions intl tools 157175 2003
+gliozzo magnini strapparava 2004 380–387
+buitelaar 2006 275–298
+mccarthy 2007 553–590
+mohammad hirst 2006 121–128
+lapata keller 2007 348–355
+erjavec tufis 2002 54–60
+chan 2005 1037–1042
+bhattacharya indrajit lise getoor yoshua bengio unsupervised sense disambiguation using bilingual probabilistic models proceedings 42nd annual meeting association computational linguistics association computational linguistics 2004
+diab mona philip resnik unsupervised method word sense tagging using parallel corpora proceedings 40th annual meeting association computational linguistics association computational linguistics 2002
+manish sinha mahesh kumar prabhakar pande laxmi kashyap pushpak bhattacharyya hindi word sense disambiguation international symposium machine translation natural language processing translation support systems delhi india 2004
+kilgarrif grefenstette 2003 333–347
+litkowski 2005 753–761
+agirre stevenson 2006 217–251
+magnini cavaglià 2000 1413–1418
+lucia specia maria gracas volpe nunes gabriela castelo branco ribeiro mark stevenson multilingual versus monolingual eacl2006 workshop making sense sense bringing psycholinguistics computational linguistics together pages 33–40 trento italy april 2006
+lefever veronique hoste semeval2010 task crosslingual word sense disambiguation proceedings workshop semantic evaluations recent achievements future directions june 0404 2009 boulder colorado
+navigli jurgens vannella semeval2013 task multilingual word sense disambiguation proc international workshop semantic evaluation semeval second joint conference lexical computational semantics 2013 atlanta june 1415th 2013 222231
+lucia specia maria gracas volpe nunes gabriela castelo branco ribeiro mark stevenson multilingual versus monolingual eacl2006 workshop making sense sense bringing psycholinguistics computational linguistics together pages 33–40 trento italy april 2006
+eneko agirre aitor soroa semeval2007 task evaluating word sense induction discrimination systems proceedings international workshop semantic evaluations p712 june 23–24 2007 prague czech republic
+babelfy
+babelnet
+wordnetsenserelate
+graph base
+lexical knowledge base
+pywsd
+
+
+works citededit
+
+agirre lopez lacalle soroa 2009 knowledgebased specific domains performing better generic supervised proc ijcai
+agirre stevenson 2006 knowledge sources word sense disambiguation algorithms applications agirre edmonds springer york
+barhillel 1964 language information reading addisonwesley
+buitelaar magnini strapparava vossen 2006 domainspecific word sense disambiguation algorithms applications agirre edmonds springer york
+chan 2005 scaling word sense disambiguation parallel texts proceedings 20th national conference artificial intelligence aaai pittsburgh
+edmonds 2000 designing task senseval2 tech note university brighton brighton
+fellbaum christiane 1997 analysis handwriting task proc anlp97 workshop tagging text lexical semantics washington
+gliozzo magnini strapparava 2004 unsupervised domain relevance estimation word sense disambiguation proceedings 2004 conference empirical methods natural language processing emnlp barcelona spain
+erjavec tufis 2002 sense discrimination parallel corpora proceedings workshop word sense disambiguation recent successes future directions philadelphia
+kilgarriff 1997 dont believe word senses comput human 91–113
+kilgarriff grefenstette 2003 introduction special issue corpus computational linguistics 333–347
+kilgarriff adam joseph rosenzweig english senseval report results may–june 2000 university brighton
+lapata keller 2007 information retrieval approach sense ranking proceedings human language technology conference north american chapter association computational linguistics hltnaacl rochester
+lenat computers versus common sense retrieved 20081210 googletachtalks youtube
+lenat guha 1989 building large knowledgebased systems addisonwesley
+lesk 1986 automatic sense disambiguation using machine readable dictionaries tell pine cone cream cone proc sigdoc86 international conference systems documentation toronto canada
+litkowski 2005 computational lexicons dictionaries encyclopaedia language linguistics brown elsevier publishers oxford
+magnini cavaglià 2000 integrating subject field codes wordnet proceedings conference language resources evaluation lrec athens greece
+mccarthy koeling weeds carroll 2007 unsupervised acquisition predominant word senses computational linguistics 553–590
+mccarthy navigli 2009 english lexical substitution task language resources evaluation springer
+mihalcea 2007 using wikipedia automatic word sense disambiguation proc north american chapter association computational linguistics naacl 2007 rochester april 2007
+mohammad hirst 2006 determining word sense dominance using thesaurus proceedings 11th conference european chapter association computational linguistics eacl trento italy
+navigli 2006 meaningful clustering senses helps boost word sense disambiguation performance proc 44th annual meeting association computational linguistics joint 21st international conference computational linguistics colingacl 2006 sydney australia
+navigli marco clustering diversifying search results graphbased word sense induction computational linguistics press 2013 709–754
+navigli crisafulli inducing word senses improve search result clustering proc 2010 conference empirical methods natural language processing emnlp 2010 stata center massachusetts
+navigli lapata experimental study graph connectivity unsupervised word sense disambiguation ieee transactions pattern analysis machine intelligence tpami ieee press 2010
+navigli litkowski hargraves 2007 semeval2007 task coarsegrained english allwords task proc semeval2007 workshop semeval 45th annual meeting association computational linguistics 2007 prague czech republic
+navigli velardi 2005 structural semantic interconnections knowledgebased approach word sense disambiguation ieee transactions pattern analysis machine intelligence tpami
+palmer babkomalaya dang 2004 different sense granularities different applications proceedings workshop scalable natural language understanding systems hltnaacl boston
+ponzetto navigli knowledgerich word sense disambiguation rivaling supervised systems proc 48th annual meeting association computational linguistics 2010
+pradhan loper dligach palmer 2007 semeval2007 task english lexical sample words proc semeval2007 workshop semeval 45th annual meeting association computational linguistics 2007 prague czech republic
+schütze 1998 automatic word sense discrimination computational linguistics 97–123
+snow prakash jurafsky 2007 learning merge word senses proceedings 2007 joint conference empirical methods natural language processing computational natural language learning emnlpconll
+snyder palmer 2004 english allwords task proc international workshop evaluation systems semantic analysis text senseval3 barcelona spain
+weaver warren 1949 translation locke booth machine translation languages fourteen essays cambridge press
+wilks slator guthrie 1996 electric words dictionaries computers meanings cambridge press
+yarowsky wordsense disambiguation using statistical models rogets categories trained large corpora proc 14th conference computational linguistics coling 1992
+yarowsky 1995 unsupervised word sense disambiguation rivaling supervised methods proc 33rd annual meeting association computational linguistics
+
+external links suggested readingedit
+
+
+
+look disambiguation wiktionary free dictionary
+
+
+
+computational linguistics special issue word sense disambiguation 1998
+evaluation exercises word sense disambiguation facto standard benchmarks systems
+roberto navigli word sense disambiguation survey computing surveys 2009 1–69 uptodate state field
+word sense disambiguation defined scholarpedia
+word sense disambiguation state comprehensive overview prof nancy jean véronis 1998
+word sense disambiguation tutorial rada mihalcea pedersen 2005
+well well well word sense disambiguation google ngrams craig trim 2013
+word sense disambiguation algorithms applications edited eneko agirre philip edmonds 2006 springer covers entire field chapters contributed leading researchers wwwwsdbookorg site book
+barhillel yehoshua 1964 language information york addisonwesley
+edmonds philip adam kilgarriff 2002 introduction special issue evaluating word sense disambiguation systems journal natural language engineering 84279291
+edmonds philip 2005 lexical disambiguation elsevier encyclopedia language linguistics keith brown 60723 oxford elsevier
+nancy jean véronis 1998 word sense disambiguation state computational linguistics 241140
+jurafsky daniel james martin 2000 speech language processing jersey prentice hall
+litkowski 2005 computational lexicons dictionaries encyclopaedia language linguistics brown elsevier publishers oxford 753–761
+manning christopher hinrich schütze 1999 foundations statistical natural language processing cambridge press httpnlpstanfordedufsnlp
+mihalcea rada 2007 word sense disambiguation encyclopedia machine learning springerverlag
+resnik philip david yarowsky 2000 distinguishing systems distinguishing senses evaluation methods word sense disambiguation natural language engineering 52113133 httpwwwcsjhueduyarowskypubsnle00ps
+yarowsky david 2001 word sense disambiguation handbook natural language processing dale 629654 york marcel dekker
+
+
+
+
+
+
+
+
+
+
+
+
+natural language processing
+
+
+
+general terms
+
+
+
+text corpus
+speech corpus
+stopwords
+bagofwords
+aicomplete
+ngram bigram trigram
+
+
+
+
+
+text analysis
+
+
+
+text segmentation
+partofspeech tagging
+text chunking
+compound term processing
+collocation extraction
+stemming
+lemmatisation
+namedentity recognition
+coreference resolution
+sentiment analysis
+concept mining
+parsing
+wordsense disambiguation
+terminology extraction
+truecasing
+
+
+
+
+
+automatic summarization
+
+
+
+multidocument summarization
+sentence extraction
+text simplification
+
+
+
+
+
+machine translation
+
+
+
+computerassisted
+examplebased
+rulebased
+
+
+
+
+
+automatic identification
+data capture
+
+
+
+speech recognition
+speech synthesis
+optical character recognition
+natural language generation
+
+
+
+
+
+topic model
+
+
+
+pachinko allocation
+latent dirichlet allocation
+latent semantic analysis
+
+
+
+
+
+computerassisted
+reviewing
+
+
+
+automated essay scoring
+concordancer
+grammar checker
+predictive text
+spell checker
+syntax guessing
+
+
+
+
+
+natural language
+user interface
+
+
+
+automated online assistant
+chatbot
+interactive fiction
+question answering
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+42335486
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlewordsensedisambiguationoldid815744989 categories natural language processingcomputational linguisticssemanticslexical semanticswordsense disambiguationhidden categories articles unsourced statementsarticles unsourced statements march 2014articles unsourced statements march 2012wikipedia articles identifiers

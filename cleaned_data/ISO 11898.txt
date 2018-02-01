@@ -1,0 +1,1085 @@
+controller area network robust vehicle standard designed allow microcontrollers devices communicate applications without host computer messagebased protocol designed originally multiplex electrical wiring within automobiles save copper also used many contexts
+
+
+
+contents
+
+
+history
+applications
+
+automotive
+
+
+
+architecture
+data transmission
+allocation
+timing
+layers
+frames
+
+data frame
+
+base frame format
+extended frame format
+
+
+remote frame
+error frame
+overload frame
+
+
+slot
+interframe spacing
+stuffing
+lowerlayer standards
+canbased higherlayer protocols
+
+standardized approaches
+approaches
+
+
+canopen lift
+security
+development tools
+licensing
+also
+references
+external links
+
+
+
+historyedit
+development started 1983 robert bosch gmbh1 protocol officially released 1986 society automotive engineers conference detroit michigan first controller chips produced intel philips came market 1987 released 1991 mercedesbenz w140 first production vehicle feature canbased multiplex wiring system23
+bosch published several versions specification latest published 1991 specification parts part standard format 11bit identifier part extended format 29bit identifier device uses 11bit identifiers commonly called device uses 29bit identifiers commonly called standards freely available bosch along specifications white papers4
+1993 international organization standardization released standard 11898 later restructured parts 118981 covers data link layer 118982 covers physical layer highspeed 118983 released later covers physical layer lowspeed faulttolerant physical layer standards 118982 118983 part bosch specification standards purchased
+bosch still active extending standards 2012 bosch released flexible datarate specification uses different frame format allows different data length well optionally switching faster rate arbitration decided compatible existing networks devices coexist network existing devices
+five protocols used onboard diagnostics obdii vehicle diagnostics standard obdii standard mandatory cars light trucks sold united states since 1996 eobd standard mandatory petrol vehicles sold european union since 2001 diesel vehicles since 20045
+applicationsedit
+automotiveedit
+modern automobile many electronic control units various subsystems6 typically biggest processor engine control unit others used transmission airbags antilock brakingabs cruise control electric power steering audio systems power windows doors mirror adjustment battery recharging systems hybridelectric cars form independent subsystems communications among others essential subsystem need control actuators receive feedback sensors standard devised fill need advantage interconnection different vehicle systems allow wide range safety economy convenience features implemented using software alone functionality would cost complexity features hard wired using traditional automotive electrics examples include
+
+auto startstop various sensor inputs around vehicle speed sensors steering angle conditioning onoff engine temperature collated determine whether engine shut stationary improved fuel economy emissions
+electric park brakes hill hold functionality takes input cars tilt sensor also used burglar alarm road speed sensors also used engine control traction control determine stopped incline similarly inputs seat belt sensors part airbag controls determine seat belts fastened parking brake automatically release upon moving
+parking assist systems driver engages reverse gear transmission control unit send signal activate parking sensor system door control module passenger side door mirror tilt downwards show position curb also takes inputs rain sensor trigger rear windscreen wiper reversing
+auto lane assistcollision avoidance systems inputs parking sensors also used feed outside proximity data driver assist systems lane departure warning recently signals travel actuate brake wire active collision avoidance systems
+auto brake wiping input taken rain sensor used primarily automatic windscreen wipers module initiate imperceptible application brakes whilst driving clear moisture brake rotors high performance audi models incorporate feature
+
+recent years standard introduced complement noncritical subsystems airconditioning infotainment data transmission speed reliability less critical
+otheredit
+
+protocol used shimano electronic gear shift system road bicycles since 2009 also used ansmann bionx systems direct drive motor
+also used fieldbus general automation environments primarily cost controllers processors
+manufacturers including nismo data recreate reallife racing laps videogame gran turismo using games data logger function would allow players race real laps7
+johns hopkins universitys applied physics laboratorys modular prosthetic limb uses local facilitate communication servos microcontrollers prosthetic
+
+architectureedit
+multimaster serial standard connecting electronic control units ecus also known nodes nodes required network communicate complexity node range simple device embedded computer interface sophisticated software node also gateway allowing standard computer communicate ethernet port devices network
+nodes connected wire wires nominal twisted pair
+118982 also called high speed uses linear terminated resistors
+
+
+
+
+high speed network 118982
+
+
+high speed signaling drives high wire towards wire towards transmitting dominant drive either wire transmitting recessive dominant differential voltage nominal termination resistor passively returns wires nominal differential voltage dominant common mode voltage must within common recessive common mode voltage must within common
+
+
+
+
+high speed signaling 118982
+
+
+118983 also called speed fault tolerant uses linear star multiple star buses connected linear terminated node fraction overall termination resistance overall termination resistance less
+
+
+
+
+speed fault tolerant network 118983
+
+
+speedfault tolerant signaling drives high wire towards wire towards transmitting dominant drive either wire transmitting recessive dominant differential voltage must greater recessive differential voltage must less termination resistors passively return wire minimum nominal high wire maximum wires must able handle without damage
+
+
+
+
+speed signaling 118983
+
+
+high speed speed speed transition faster recessive dominant transition occurs since wires actively driven speed dominant recessive transition depends primarily length network capacitance wire used
+high speed usually used automotive industrial applications runs environment fault tolerant often used groups nodes need connected together
+specifications require kept within minimum maximum common mode voltage define keep within range
+must terminated termination resistors needed suppress reflections well return recessive idle state
+high speed uses resistor linear speed uses resistors node types terminations used terminating bias circuit defined iso11783
+terminating bias circuit provides power ground addition signaling fourwire cable provides automatic electrical bias termination segment iso11783 network designed plugin removal segments ecus
+
+
+
+
+canbus node
+
+
+node requires
+
+central processing unit microprocessor host processor
+
+host processor decides received messages mean messages wants transmit
+sensors actuators control devices connected host processor
+
+
+controller often integral part microcontroller
+
+receiving controller stores received serial bits entire message available fetched host processor usually controller triggering interrupt
+sending host processor sends transmit messages controller transmits bits serially onto free
+
+
+transceiver defined 1189823 medium access unit standards
+
+receiving converts data stream canbus levels levels controller uses usually protective circuitry protect controller
+transmitting converts data stream controller canbus levels
+
+
+
+node able send receive messages simultaneously message frame consists primarily identifier represents priority message eight data bytes acknowledge slot overhead also part message improved extends length data section bytes frame message transmitted serially onto using nonreturntozero format received nodes
+devices connected network typically sensors actuators control devices devices connected host processor controller transceiver
+data transmissionedit
+data transmission uses lossless bitwise arbitration method contention resolution arbitration method requires nodes network synchronized sample every network time call synchronous unfortunately term synchronous imprecise since data transmitted without clock signal asynchronous format
+specifications terms dominant bits recessive bits dominant logical actively driven voltage transmitter recessive logical passively returned voltage resistor idle state represented recessive level logical node transmits dominant another node transmits recessive collision dominant wins means delay higherpriority message node transmitting lower priority message automatically attempts retransmit clocks dominant message makes suitable real time prioritized communications system
+exact voltages logical depend physical layer used basic principle requires node listens data network including transmitting nodes logical transmitted transmitting nodes time logical seen nodes including transmitting nodes receiving nodes logical transmitted transmitting nodes time logical seen nodes logical transmitted nodes logical transmitted nodes logical seen nodes including nodes transmitting logical node transmits logical sees logical realizes contention quits transmitting using process node transmits logical another node transmits logical drops loses arbitration node loses arbitration requeues message later transmission frame bitstream continues without error node left transmitting means node transmits first loses arbitration since identifier transmitted nodes start frame node lowest identifier transmits zeros start frame node wins arbitration highest priority
+example consider 11bit network nodes binary representation 00000001111 binary representation 00000010000 nodes transmit time first transmit start transmit first zeros arbitration decision made
+
+
+
+start
+
+bits
+rest frame
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+node
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+node
+
+
+
+
+
+
+
+
+stopped transmitting
+
+
+data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+transmitted node transmits recessive node transmits dominant happens node knows transmitted sees realizes collision lost arbitration node stops transmitting allows node continue transmission without loss data node lowest always arbitration therefore highest priority
+rates mbits possible network lengths decreasing rate allows longer network distances kbits improved standard allows increasing rate arbitration increase speed data section factor eight arbitration rate
+allocationedit
+message must unique single otherwise nodes would continue transmission beyond arbitration field causing error
+early 1990s choice messages done simply basis identifying type data sending node however also used message priority poor realtime performance scenarios utilization circa commonly required ensure messages would meet deadlines however instead determined based deadline message lower numerical hence higher message priority utilizations typically achieved message deadlines missed
+timingedit
+nodes network must operate nominal rate noise phase shifts oscillator tolerance oscillator drift mean actual rate nominal rate9 since separate clock signal used means synchronizing nodes necessary synchronization important arbitration since nodes arbitration must able transmitted data nodes transmitted data time synchronization also important ensure variations oscillator timing nodes cause errors
+synchronization starts hard synchronization first recessive dominant transition period idle start resynchronization occurs every recessive dominant transition frame controller expects transition occur multiple nominal time transition occur exact time controller expects controller adjusts nominal time accordingly
+adjustment accomplished dividing number time slices called quanta assigning number quanta four segments within synchronization propagation phase segment phase segment
+
+
+
+example timing time quanta
+
+
+
+number quanta divided vary controller number quanta assigned segment varied depending rate network conditions
+transition occurs expected causes controller calculate time difference lengthen phase segment shorten phase segment time effectively adjusts timing receiver transmitter synchronize resynchronization process done continuously every recessive dominant transition ensure transmitter receiver stay sync continuously resynchronizing reduces errors induced noise allows receiving node synchronized node lost arbitration resynchronize node arbitration
+layersedit
+protocol like many networking protocols decomposed following abstraction layers
+
+application layer
+object layer
+
+
+message filtering
+message status handling
+
+
+transfer layer
+
+standard applies transfer layer transfer layer receives messages physical layer transmits messages object layer transfer layer responsible timing synchronization message framing arbitration acknowledgement error detection signaling fault confinement performs
+
+fault confinement
+error detection
+message validation
+acknowledgement
+arbitration
+message framing
+transfer rate timing
+information routing
+
+
+physical layer
+
+
+
+
+
+electrical sample topology terminator resistors
+
+
+1189812003 originally specified link layer protocol abstract requirements physical layer asserting medium multipleaccess level dominant recessive states electrical aspects physical layer voltage current number conductors specified 1189822003 widely accepted however mechanical aspects physical layer connector type number colors labels pinouts formally specified result automotive typically particular—often custom—connector various sorts cables lines nonetheless several facto standards mechanical implementation emerged common 9pin dsub type male connector following pinout
+
+canlow can−
+ground
+canhigh
+power
+
+
+
+
+
+male connector plug
+
+
+facto mechanical standard could implemented node male female 9pin dsub connectors electrically wired parallel within node power nodes male connector draws power nodes female connector follows electrical engineering convention power sources terminated female connectors adoption standard avoids need fabricate custom splitters connect sets wires single connector node nonstandard custom wire harnesses splitters join conductors outside node reduce reliability eliminate cable interchangeability reduce compatibility wiring harnesses increase cost
+absence complete physical layer specification mechanical addition electrical freed specification constraints complexity physical implementation however left implementations open interoperability issues mechanical incompatibility order improve interoperability many carmakers generated specifications describing allowed transceivers combination requirements parasitic capacitance line allowed parasitic capacitance includes capacitors well protection esd10 76373 addition parasitic capacitance systems requirements terms line maximum voltage indeed jump start events light vehicles lines truck systems high solutions coming market allowing component well
+noise immunity 1189822003 achieved maintaining differential impedance level lowvalue resistors ohms however dormant lowimpedance draws current power voltagebased signaling busses systems balanced line operation current signal line exactly balanced current opposite direction signal provides independent stable reference receivers best practice determines balanced pair signals carried twisted pair wires shielded cable minimize emission reduce interference susceptibility already noisy environment automobile
+118982 provides immunity common mode voltage transmitter receiver rail running along maintain high degree voltage association nodes also facto mechanical configuration mentioned supply rail included distribute power transceiver nodes design provides common supply transceivers actual voltage applied nodes apply applicationspecific formally specified common practice node design provides node transceivers optically isolated node host derive linearly regulated supply voltage transceivers universal supply rail provided usually allows operating margin supply rail sufficient allow interoperability across many node types typical values supply voltage networks however lack formal standard means system designers responsible supply rail compatibility
+118982 describes electrical implementation formed multidropped singleended balanced line configuration resistor termination configuration dominant state asserted transmitters switching can− supply simultaneously switching voltage thereby forming current path resistors terminate terminating resistors form essential component signalling system included limit wave reflection high frequency
+recessive state signal lines resistors remain high impedances state respect rails voltages can− tend weakly towards voltage midway rails recessive state present none transmitters asserting dominant state
+dominant state signal lines resistors move impedance state respect rails current flows resistor voltage tends can− tends
+irrespective signal state signal lines always impedance state respect another virtue terminating resistors
+signalling strategy differs significantly balanced line transmission technologies rs4223 rs485 employ differential line drivers receivers signalling system based differential mode voltage balanced line crossing notional multiple access systems normally relies media supporting three states active high active inactive tristate dealt time domain multiple access achieved electrical logic system supporting states conceptually analogous ‘wired and’ network
+framesedit
+network configured work different message frame formats standard base frame format described extended frame format described difference formats base frame supports length bits identifier extended frame supports length bits identifier made 11bit identifier base identifier 18bit extension identifier extension distinction base frame format extended frame format made using transmitted dominant case 11bit frame transmitted recessive case 29bit frame controllers support extended frame format messages also able send receive messages base frame format frames begin startofframe denotes start frame transmission
+four frame types
+
+data frame frame containing node data transmission
+remote frame frame requesting transmission specific identifier
+error frame frame transmitted node detecting error
+overload frame frame inject delay data remote frame
+
+data frameedit
+data frame frame actual data transmission message formats
+
+base frame format identifier bits
+extended frame format identifier bits
+
+standard requires implementation must accept base frame format accept extended frame format must tolerate extended frame format
+base frame formatedit
+
+
+
+canframe base format electrical levels without stuffbits
+
+
+
+frame format follows values described canlo signal
+
+
+field name
+length bits
+purpose
+
+
+startofframe
+
+denotes start frame transmission
+
+
+identifier green
+
+unique identifier also represents message priority
+
+
+remote transmission request blue
+
+must dominant data frames recessive remote request frames remote frame
+
+
+identifier extension
+
+must dominant base frame format 11bit identifiers
+
+
+reserved
+
+reserved must dominant accepted either dominant recessive
+
+
+data length code yellow
+
+number bytes data bytesa
+
+
+data field
+0–64 bytes
+data transmitted length bytes dictated field
+
+
+
+
+cyclic redundancy check
+
+
+delimiter
+
+must recessive
+
+
+slot
+
+transmitter sends recessive receiver assert dominant
+
+
+delimiter
+
+must recessive
+
+
+endofframe
+
+must recessive
+
+
+
+
+
+physically possible value 9–15 transmitted 4bit although data still limited eight bytes certain controllers allow transmission reception greater eight actual data length always limited eight bytes
+
+
+
+extended frame formatedit
+frame format follows
+
+
+field name
+length bits
+purpose
+
+
+startofframe
+
+denotes start frame transmission
+
+
+identifier green
+
+first part unique identifier also represents message priority
+
+
+substitute remote request
+
+must recessive
+
+
+identifier extension
+
+must recessive extended frame format 29bit identifiers
+
+
+identifier green
+
+second part unique identifier also represents message priority
+
+
+remote transmission request blue
+
+must dominant data frames recessive remote request frames remote frame
+
+
+reserved bits
+
+reserved bits must dominant accepted either dominant recessive
+
+
+data length code yellow
+
+number bytes data bytesa
+
+
+data field
+0–64 bytes
+data transmitted length dictated field
+
+
+
+
+cyclic redundancy check
+
+
+delimiter
+
+must recessive
+
+
+slot
+
+transmitter sends recessive receiver assert dominant
+
+
+delimiter
+
+must recessive
+
+
+endofframe
+
+must recessive
+
+
+
+
+
+physically possible value 9–15 transmitted 4bit although data still limited eight bytes certain controllers allow transmission reception greater eight actual data length always limited eight bytes
+
+
+
+identifier fields combine form 29bit identifier
+remote frameedit
+
+generally data transmission performed autonomous basis data source node sensor sending data frame also possible however destination node request data source sending remote frame
+differences data frame remote frame firstly rtrbit transmitted dominant data frame secondly remote frame data field field indicates data length requested message transmitted
+
+
+
+dominant data frame
+recessive remote frame
+
+event data frame remote frame identifier transmitted time data frame wins arbitration dominant following identifier
+error frameedit
+error frame consists different fields
+
+first field given superposition error flags 6–12 dominantrecessive bits contributed different stations
+following second field error delimiter recessive bits
+
+types error flags
+
+active error flag
+dominant bits transmitted node detecting error network error state error active
+passive error flag
+recessive bits transmitted node detecting active error frame network error state error passive
+
+error counters
+
+transmit error counter
+receive error counter
+
+
+lesser active error frame transmitted
+greater lesser passive error frame transmitted
+greater node enters state frames transmitted
+
+overload frameedit
+overload frame contains fields overload flag overload delimiter kinds overload conditions lead transmission overload flag
+
+internal conditions receiver requires delay next data frame remote frame
+detection dominant intermission
+
+start overload frame case allowed started first time expected intermission whereas overload frames case start detecting dominant overload flag consists dominant bits overall form corresponds active error flag overload flag’s form destroys fixed form intermission field consequence stations also detect overload condition part start transmission overload flag overload delimiter consists eight recessive bits overload delimiter form error delimiter
+slotedit
+acknowledge slot used acknowledge receipt valid frame node receives frame without finding error transmits dominant level slot thus overrides recessive level transmitter transmitter detects recessive level slot knows receiver found valid frame receiving node transmit recessive indicate receive valid frame another node receive valid frame override dominant transmitting node cannot know message received nodes network
+interframe spacingedit
+data frames remote frames separated preceding frames field called interframe space interframe space consists least three consecutive recessive bits following dominant detected regarded start frame next frame overload frames error frames preceded interframe space multiple overload frames separated interframe space interframe space contains fields intermission idle suspend transmission error passive stations transmitter previous message12
+stuffingedit
+
+
+
+canframe addition stuffbits purple
+
+
+
+ensure enough transitions maintain synchronization opposite polarity inserted five consecutive bits polarity practice called stuffing necessary nonreturn zero coding used stuffed data frames destuffed receiver
+fields frame stuffed exception delimiter field frame fixed size stuffed fields stuffing used consecutive bits type 111111 000000 considered error active error flag transmitted node error detected active error flag consists consecutive dominant bits violates rule stuffing
+stuffing means data frames larger would expect simply enumerating bits shown tables maximum increase size frame base format stuffing case
+
+11111000011110000
+
+stuffed stuffing bits bold
+
+111110000011111000001
+
+size bounded
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle 8n47leftlfloor frac 348n14rightrfloor
+
+
+
+since
+
+
+
+
+
+
+
+
+
+displaystyle 8n47
+
+size frame stuffing worst case added every four original bits first hence numerator layout bits header subject stuffing13
+lowerlayer standardsedit
+11898 series specifies physical data link layer levels isoosi model serial communication technology called controller area network supports distributed realtime control multiplexing within road vehicles14
+several physical layer standards
+1189812015 specifies data link layer physical signalling controller area network can15 document describes general architecture terms hierarchical layers according reference model open systems interconnection established isoiec 74981 provides characteristics setting interchange digital information modules implementing detailed specification logical link control sublayer medium access control sublayer
+1189822003 specifies highspeed transmission rates mbits medium access unit medium dependent interface features according 88023 comprise physical layer controller area network 118982 uses twowire balanced signalling scheme used physical layer powertrain applications industrial control networks
+1189832006 specifies lowspeed faulttolerant mediumdependent interface setting interchange digital information electronic control units road vehicles equipped transmission rates kbits kbits
+1189842004 specifies timetriggered communication ttcan applicable setting timetriggered interchange digital information electronic control units road vehicles equipped specifies frame synchronisation entity coordinates operation logical link media access controls accordance 118981 provide timetriggered communication schedule
+1189852007 specifies physical layer transmission rates mbits within road vehicles describes medium access unit functions well medium dependent interface features according 88022 represents extension 118982 dealing functionality systems requiring lowpower consumption features active communication
+1189862013 specifies physical layer transmission rates mbits within road vehicles describes medium access unit functions well medium dependent interface features according 88022 represents extension 118982 118985 specifying selective wakeup mechanism using configurable frames
+1684512004 provides methodology abstract test suite necessary checking conformance implementation specified 118981
+1684522014 establishes test cases test requirements realize test plan verifying transceiver implemented selective wakeup functions conform specified functionalities kind testing defined 1684522014 named conformance testing
+canbased higherlayer protocolsedit
+standard include tasks application layer protocols flow control device addressing transportation data blocks larger message application data many implementations higher layer protocols created several standardized business area although extended manufacturer passenger cars manufacturer standard among implementations
+standardized approachesedit
+
+arinc arinc aviation industry
+canopen 503254 used industrial automation
+devicenet used industrial automation
+energybus used light electrical vehicles
+isobus 11783 agriculture
+isotp 157652 transport protocol automotive diagnostic
+j1939 invehicle network buses trucks
+milcan
+nmea 2000 611623 marine industry
+unified diagnostic services 14229 automotive diagnostics
+
+approachesedit
+
+canaerospace stock aviation industry
+kingdom kvaser embedded control system
+ccpxcp automotive calibration
+gmlan general motors general motors
+rvia used recreational vehicles
+safetybus pilz used industrial automation
+uavcan aerospace robotics
+
+canopen liftedit
+canopen special interest group lift control founded 2001 develops canopen application profile lift control systems first version published summer 2003 version available cias website since february 2010 works extending features canopen lift systems improves technical content ensures current legal standards lift control systems version published july 2012 version available members published december 2015 draft standard proposal moment 2016 working version available members
+jörg hellmich elfin gmbh chairman manages wiki canopen lift community content canopen lift
+securityedit
+lowlevel protocol support security features intrinsically also encryption standard implementations leaves networks open maninthemiddle packet interception implementations applications expected deploy security mechanisms authenticate incoming commands presence certain devices network failure implement adequate security measures result various sorts attacks opponent manages insert messages bus16 passwords exist safetycritical functions modifying firmware programming keys controlling antilock brake actuators systems implemented universally limited number seedkey pairs
+development toolsedit
+developing troubleshooting examination hardware signals important logic analyzers analyzers tools collect analyse decode store signals people view highspeed waveforms leisure also specialist tools well monitors
+monitor analysis tool often combination hardware software used development hardware making
+typically monitor listen traffic order display user interface often monitor offers possibility simulate activity sending frames monitor therefore used validate expected traffic given device simulate traffic order validate reaction given device connected
+licensingedit
+bosch holds patents technology manufacturers cancompatible microprocessors license fees bosch normally passed customer price chip manufacturers products custom asics fpgas containing cancompatible modules need protocol license17
+alsoedit
+
+byteflight
+audio
+monitor
+canopen communication protocol embedded systems
+canpie open source device driver
+implementation faster transmission
+can4linux open source linux device driver
+flexcan alternative implementation
+flexray possible future direction
+list network buses
+local interconnect network cost alternative
+
+obdii pids list parameter
+osek
+j1939 communication protocol trucks busses
+socketcan open source drivers networking stack contributed volkswagen research linux kernel
+protectionpermanent dead link
+
+referencesedit
+
+
+history automation
+mercedesbenz sclass mercedesbenzcom february 2016 retrieved october 2017
+automation mercedes w140 first cannewsletterorg retrieved october 2017
+bosch semiconductor literature
+building adapter vehicle onboard diagnostic obddiagnet accessed 20090909
+comparison eventtriggered timetriggered concepts regard distributed control systems albert robert bosch gmbh embedded world 2004 nürnberg
+nismo increases data logger functionality track count wwwgtplanetnet
+iso11783 standardized tractor implement interface
+understanding microchip’s module timing
+iso76373 diodes protection
+protection
+message frames overload frame interframe space
+nolte thomas hansson hans norström christer punnekkat sasikumar 2001 using bitstuffing distributions analysis ieee realtime embedded systems workshop realtime systems symposium
+controller area network vector group retrieved 2013
+1189812003 road vehicles controller area network part data link layer physical signalling
+drove hacked motherboardvicecom
+license conditions protocol protocol
+
+
+external linksedit
+
+wiki technology products
+bosch specification document slightly ambiguousunclear points superseded standard
+bosch specification version
+controller area network schedulability analysis refuted revisited revised
+pinouts common connectors
+independent discussion platform canlist
+webpage automotive
+controller area network schedulability analysis fifo queues
+controller area network implementation guide
+free tutorial controller area network introduction fundamentals
+freeware bittiming calculator windows supports microcontrollers atmel stm32 microchip renesas zipfile
+canfd protection automotive
+free elearning module introduction
+arinc825 tutorial video excalibur systems
+international organization standardization
+understanding using controller area network berkeley
+
+
+
+
+
+
+
+
+
+
+
+
+technical facto standards wired computer buses
+
+
+
+general
+
+
+
+system
+frontside
+backside
+daisy chain
+control
+address
+contention
+network chip
+plug play
+list bandwidths
+
+
+
+
+
+standards
+
+
+
+ss50
+s100
+multibus
+unibus
+vaxbi
+mbus
+
+smbus
+qbus
+europe card
+
+stebus
+zorro
+zorro
+camac
+fastbus
+
+precision
+eisa
+
+
+
+nubus
+turbochannel
+
+sbus
+
+
+
+
+infiniband
+
+extended pcix
+
+express pcie
+direct media interface
+rapidio
+intel quickpath interconnect
+nvlink
+hypertransport
+
+infinity fabric
+
+
+intel ultrapath interconnect
+
+
+
+
+
+storage
+
+
+
+st506
+esdi
+
+
+parallel pata
+
+dssi
+hippi
+serial sata
+scsi
+
+parallel
+
+
+
+fibre channel
+satae
+express ahci nvme logical device interface
+
+
+
+
+
+peripheral
+
+
+
+apple desktop
+
+hpil
+
+midi
+rs232
+rs422
+rs423
+rs485
+dmx512a
+ieee488 gpib
+ieee1284 parallel port
+unio
+accessbus
+1wire
+
+
+
+parallel scsi
+profibus
+ieee 1394 firewire
+
+camera link
+external pcie
+thunderbolt
+
+
+
+
+
+audio
+
+
+
+adat lightpipe
+aes3
+intel audio
+
+madi
+mcasp
+spdif
+toslink
+
+
+
+
+
+portable
+
+
+
+card
+expresscard
+
+
+
+
+
+embedded
+
+
+
+multidrop
+coreconnect
+amba
+wishbone
+slimbus
+
+
+
+
+
+
+interfaces listed speed roughly ascending order interface section fastest
+category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+automation protocols
+
+
+
+process automation
+
+
+
+
+bsap
+cclink industrial networks
+
+
+
+canopen
+devicenet
+
+
+controlnet
+
+directnet
+ethercat
+ethernet global data
+ethernet powerlink
+ethernetip
+factory instrumentation protocol
+fins
+foundation fieldbus
+
+
+
+
+
+srtp
+hart protocol
+honeywell
+hostlink
+interbus
+mechatrolink
+melsecnet
+modbus
+optomux
+piep
+profibus
+profinet
+rapienet
+sercos interface
+sercos
+sinec
+synqnet
+ttethernet
+
+
+
+
+
+industrial control system
+
+
+
+mtconnect
+
+
+
+
+
+
+
+
+building automation
+
+
+
+1wire
+bacnet
+cbus
+cebus
+dali
+
+dynet
+factory instrumentation protocol
+
+lontalk
+modbus
+obix
+vscp
+
+
+
+zigbee
+
+
+
+
+
+powersystem automation
+
+
+
+60870
+
+608705
+608706
+
+
+dnp3
+factory instrumentation protocol
+61850
+62351
+modbus
+profibus
+
+
+
+
+
+automatic meter reading
+
+
+
+ansi c1218
+61107
+dlmsiec 62056
+mbus
+modbus
+zigbee
+
+
+
+
+
+automobile vehicle
+
+
+
+afdx
+arinc
+
+
+arinc
+j1939
+nmea 2000
+
+
+
+factory instrumentation protocol
+flexray
+iebus
+j1587
+j1708
+keyword protocol 2000
+unified diagnostic services
+
+
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+43385722
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlecanbusoldid816297918standards categories buscomputer networksserial busesindustrial computingindustrial automationrobert bosch gmbhhidden categories articles dead external linksarticles dead external links july 2017articles permanently dead external linkswikipedia articles identifiers

@@ -1,0 +1,574 @@
+ISO 9362 defines a standard format of Business Identifier Codes (also known as SWIFT-BIC, BIC, SWIFT ID or SWIFT code) approved by the International Organization for Standardization (ISO). It is a unique identification code for both financial and non-financial institutions.[1] The acronym SWIFT stands for the Society for Worldwide Interbank Financial Telecommunication. The ISO has designated SWIFT as the BIC registration authority.[2] When assigned to a non-financial institution, the code may also be known as a Business Entity Identifier or BEI. These codes are used when transferring money between banks, particularly for international wire transfers, and also for the exchange of other messages between banks. The codes can sometimes be found on account statements.
+The overlapping issue between ISO 9362 and ISO 13616 is discussed in the article International Bank Account Number (also called IBAN). The SWIFT network does not require a specific format for the transaction so the identification of accounts and transaction types is left to agreements of the transaction partners. In the process of the Single Euro Payments Area the European central banks have agreed on a common format based on IBAN and BIC including an XML-based transmission format for standardized transactions; the TARGET2 is a joint gross clearing system in the European Union that does not require the SWIFT network for transmission (see EBICS). The TARGET-directory lists all the BICs of the banks that are attached to the TARGET2-network being a subset of the SWIFT-directory of BICs.[3]
+
+
+
+Contents
+
+
+1 Structure
+2 Examples
+3 12-character SWIFTNet FIN address based on BIC
+4 Usage
+5 See also
+6 References
+7 External links
+
+
+
+Structure[edit]
+The previous edition is ISO 9362:2009 (dated 2009-10-01). The SWIFT code is 8 or 11 characters, made up of:
+
+4 letters: Institution Code or bank code.
+2 letters: ISO 3166-1 alpha-2 country code
+2 letters or digits: location code
+
+if the second character is "0", then it is typically a test BIC as opposed to a BIC used on the live network.
+if the second character is "1", then it denotes a passive participant in the SWIFT network
+if the second character is "2", then it typically indicates a reverse billing BIC, where the recipient pays for the message as opposed to the more usual mode whereby the sender pays for the message.
+
+
+3 letters or digits: branch code, optional ('XXX' for primary office)
+
+Where an 8-digit code is given, it may be assumed that it refers to the primary office.
+SWIFT Standards, a division of The Society for Worldwide Interbank Financial Telecommunication (SWIFT), handles the registration of these codes. Because SWIFT originally introduced what was later standardized as Business Identifier Codes (BICs), they are still often called SWIFT addresses or codes.
+The 2009 update of ISO 9362 broadened the scope to include non-financial institutions; before then BIC was commonly understood to be an acronym for Bank Identifier Code.
+There are over 7,500 "live" codes (for partners actively connected to the BIC network) and an estimated 10,000 additional BIC codes which can be used for manual transactions.
+2009 version is now replaced by the latest edition (ISO 9362:2014 dated 2014-12-01).[4]
+Examples[edit]
+Deutsche Bank is an international bank, with its head office in Frankfurt, Germany. The SWIFT code for its primary office is DEUTDEFF:
+
+DEUT identifies Deutsche Bank
+DE is the country code for Germany
+FF is the code for Frankfurt
+
+Deutsche Bank uses an extended code of 11 characters and has assigned branches or processing areas individual extended codes. This allows the payment to be directed to a specific office. For example, DEUTDEFF500 would direct the payment to an office of Deutsche Bank in Bad Homburg.
+Nedbank is a primarily South African bank, with its head office in Johannesburg. The SWIFT code for its primary office is NEDSZAJJ:
+
+NEDS identifies Nedbank
+ZA is the country code for South Africa
+JJ is the code for Johannesburg
+
+Nedbank has not implemented the extended code of 11 characters and all SWIFT transfers to its accounts are directed to the primary office for processing. Those transfer interfaces that require an 11 digit code would enter NEDSZAJJXXX.
+Danske Bank is a primarily Danish bank, with its head office in Copenhagen. The SWIFT code for its primary office is DABADKKK:
+
+DABA identifies Danske Bank
+DK is the country code for Denmark
+KK is the code for Copenhagen.
+
+UniCredit Banca is a primarily Italian bank with its head office in Milan. The SWIFT code for its primary office is UNCRITMM:
+
+UNCR identifies Unicredit Banca
+IT is the country code for Italy
+MM is the code for Milan.
+
+Dah Sing Bank is a bank based in Hong Kong that has five branches in mainland China (primary mainland China branch in Shenzhen). The SWIFT code for the branch in Shanghai is DSBACNBXSHA.
+
+DSBA identifies Dah Sing Bank
+CN is the country code for China
+BXSHA is the code for Shanghai.
+
+It uses the 11-digit extended code, and SHA identifies the Shanghai branch.
+BDO Unibank is the biggest bank in the Philippines, with its head office in Makati. The SWIFT Code for BDO is BNORPHMM. All BDO branches have the same SWIFT Code.
+
+BNOR identifies BDO Unibank
+PH is the country code for the Philippines
+MM is the code for Metro Manila of which Makati is a part.
+
+Note that one bank can seem to have more than one bank identifier in a given country for separation purposes. Bank of East Asia separates its representative branch in the US and its US-based operations for local customers into BEASUS33xxx (following the code used in its home country) and BEAKUS33xxx respectively. This differs from its local mainland China operations which are also BEASCNxxxxx following Hong Kong rather than having a separate identifier code.
+
+An example of this is Bank of America in the United States. For US Dollar denominated wires, its SWIFT code is BOFAUS3N. The SWIFT code for wires sent in foreign currency (non-U.S. dollars) to Bank of America in the United States is BOFAUS6S.
+
+In the past, SEPA payments required both BIC and IBAN. Since 2016-02-01 only the IBAN is needed inside the SEPA (European Union and some more countries).
+In Sri Lanka Swift codes consist of 8-11 digits. This example is a swift code for Sampath Bank: BSAMLKLXXXX
+
+'BSAM'- Is the bank code for Sampath Bank
+'LK' Is Sri Lanka's country code
+'LX' is the banks location code.
+'XXX' is the bank's branch code. Because the bank clears its transactions from a central location in Colombo, the letters XXX mean centralised clearing.
+
+12-character SWIFTNet FIN address based on BIC[edit]
+To identify endpoints on its network, SWIFT also uses 12-character codes that are derived from the BIC of the institution. Such a code consists of the BIC8, followed by 1-character code that identifies the Logical Terminal (LTC), or "local destination", and the 3-character branch code. These 'BIC12's are not part of the ISO standard, and are only relevant in the context of the messaging platform.
+Usage[edit]
+Business Identifier Codes are primarily used for identifying financial and non-financial institutions involving day-to-day business transactions among one or more institutions in transaction life cycle.
+Example: In SWIFT messages these BICs are embedded within the messages. Let's consider message type for cash transfer MT103, here we can find BIC under different tags like 50a(Ordering Customer), 56a(intermediary), 57a(account with institution), etc.
+See also[edit]
+
+Bank account
+Bank Identification Number (BIN)
+International Bank Account Number (IBAN)
+Society for Worldwide Interbank Financial Telecommunication (SWIFT)
+Cross-Border Inter-Bank Payments System (China International Payments System) (CIPS)
+Value transfer system
+Financial Stability Board
+Legal Entity Identifier
+
+References[edit]
+
+
+
+^ "SWIFT - SwiftRef Factsheet BICPlus, June 2017" (PDF). swift.com. 
+^ http://www.swift.com/products_services/bic_and_iban_format_registration_bic_overview?rdct=t
+^ "Deutsche Bundesbank - Unbarer Zahlungsverkehr" (in German). Bundesbank.de. 2013-01-15. Archived from the original on 2012-05-08. Retrieved 2013-02-01. 
+^ https://www.iso.org/obp/ui/#iso:std:iso:9362:ed-4:v1:en
+
+
+
+External links[edit]
+
+ISO 9362:2009
+ISO 9362:2014 Banking -- Banking telecommunication messages -- Business identifier code (BIC)
+Official SWIFT search tool for bank names and Bank Identifier Codes
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_9362&oldid=814491257"					Categories: ISO standardsBanking termsFinancial regulationBank codesHidden categories: CS1 German-language sources (de)

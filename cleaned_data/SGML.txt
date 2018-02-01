@@ -1,0 +1,846 @@
+
+standard generalized markup language
+
+
+
+
+filename extension
+sgml
+
+
+internet media type
+applicationsgml textsgml
+
+
+uniform type identifier
+publicxmlclarification needed
+
+
+developed
+
+
+
+type format
+markup language
+
+
+extended
+
+
+
+extended
+html
+
+
+standard
+8879
+
+
+standard generalized markup language sgml 88791986 standard defining generalized markup languages documents 8879 annex defines generalized markup
+
+generalized markup based postulates
+
+markup declarative describe documents structure attributes rather specify processing performed declarative markup less likely conflict unforeseen future processing needs techniques
+markup rigorous techniques available processing rigorouslydefined objects like programs databases used processing documents well
+
+
+html theoretically example sgmlbased language html admits browsers cannot parse sgml compatibility reasons codifies exactly must instead
+docbook sgml linuxdoc better examples used almost exclusively actual sgml tools
+
+
+
+contents
+
+
+standard versions
+history
+document validity
+
+terminology
+
+
+syntax
+
+optional features
+concrete abstract syntaxes
+markup minimization
+
+omittag
+shortref
+shorttag
+
+features
+
+
+
+
+formal characterization
+derivatives
+
+
+html
+
+others
+
+
+applications
+opensource implementations
+also
+references
+external links
+
+
+
+standard versionsedit
+sgml standard 88791986 information processing text office systems standard generalized markup language sgml three versions
+
+original sgml accepted october 1986 followed minor technical corrigendum
+sgml 1996 resulted technical corrigendum extended naming rules allowing arbitrarylanguage script markup
+sgml enrwww websgml 1998 resulted technical corrigendum better support requirements
+
+sgml part trio enabling standards electronic documents developed isoiec jtc1sc3412 isoiec joint technical committee subcommittee document description processing languages
+
+sgml 8879—generalized markup language
+
+sgml reworked 1998 successful profile sgml full sgml rarely found used projects
+
+
+dsssl isoiec 10179—document processing styling language based scheme
+
+dsssl reworked intoclarification needed xslt xslfo syntax nowadays dsssl rarely used projects apart linux documentation
+
+
+hytime—generalized hypertext scheduling3
+
+hytime partially reworked xlink hytime rarely used projects
+
+
+
+sgml supported various technical reports particular
+
+isoiec 9573 information processing sgml support facilities techniques using sgml4
+
+part public entity sets mathematics science
+
+2007 mathml working group agreed assume maintenance entity sets
+
+
+
+
+
+historyedit
+sgml descended ibms generalized markup language charles goldfarb edward mosher raymond lorie developed 1960s goldfarb editor international standard coined “gml” term using surname initials5 goldfarb also wrote definitive work sgml syntax sgml handbook6 syntax sgml closer cocoa formatclarification needed document markup language sgml originally designed enable sharing machinereadable largeproject documents government industry many documents must remain readable several decades—a long time information technology field sgml also extensively applied military aerospace technical reference industrial publishing industries advent profile made sgml suitable widespread application smallscale generalpurpose
+
+
+fragment oxford english dictionary 1985 showing sgml markup
+
+
+document validityedit
+sgml enrwww defines kinds validity according revised terms definitions 8879 public draft7
+
+conforming sgml document must either typevalid sgml document tagvalid sgml document note user wish enforce additional constraints document whether document instance integrallystored free entity references
+
+typevalid sgml document defined standard
+
+sgml document document instance associated document type declaration whose instance conforms
+
+tagvalid sgml document defined standard
+
+sgml document whose document instances fully tagged need document type declaration associated instances note document type declaration instance parsed without reference
+
+terminologyedit
+tagvalidity introduced sgml enrwww support allows documents doctype declaration parsed without grammar documents doctype declaration makes infoset contributions document standard calls fully tagged integrally stored reflects requirement elements entity started referencefree reflects html requirement entity references special characters contain markup sgml validity commentary especially commentary made 1997 unaware sgml enrwww covers typevalidity
+sgml emphasis validity supports requirement generalized markup markup rigorous 8879
+syntaxedit
+sgml document three parts
+
+sgml declaration
+prologue containing doctype declaration various markup declarations together make document type definition
+instance containing topmost element contents
+
+sgml document composed many entities discrete pieces text sgml entities element types used document specified different character sets features delimiter sets keywords specified sgml declaration create concrete syntax document
+although full sgml allows implicit markup kinds tags specification s431 states
+
+document logical physical structure physically document composed units called entities entity refer entities cause inclusion document document begins root document entity logically document composed declarations elements comments character references processing instructions indicated document explicit markup
+
+introductory information basic modern sgml syntax following material concentrates features comprehensive summary sgml syntax
+optional featuresedit
+sgml generalizes supports wide range markup languages found 1980s ranged terse wikilike syntaxes rtflike bracketed languages htmllike matchingtag languages sgml relatively simple default reference concrete syntax augmented large number optional features could enabled sgml declaration every sgml parser necessarily process every sgml document processors system declaration compared documents sgml declaration always possible know whether document supported particular processor
+many sgml features relate markup minimization features relate concurrent parallel markup concur linking processing attributes link embedding sgml documents within sgml documents subdoc
+notion customizable features appropriate goal minimize optional features however xmls wellformedness rules cannot support wikilike languages leaving unstandardized difficult integrate nontext information systems
+concrete abstract syntaxesedit
+usual default sgml concrete syntax resembles example default html concrete syntax
+
+
+quote typeexample
+typically something like italicsthisitalics
+quote
+
+sgml provides abstract syntax implemented many different types concrete syntax although markup norm using angle brackets start delimiters sgml document standarddefined reference concrete syntax possible characters—provided suitable concrete syntax defined documents sgml declaration8 example sgml interpreter might programmed parse wherein tags delimited left colon right full stop thus prefix denotes xmphello worldexmp according reference syntax lettercase upper lower distinguished names thus three tags quote quote quote equivalent note concrete syntax might change rule namecase naming declarations
+markup minimizationedit
+sgml features reducing number characters required mark document must enabled sgml declaration sgml processors need support every available feature thus allowing applications tolerate many types inadvertent markup omissions however sgml systems usually intolerant invalid structures intolerant syntax omissions require validation
+omittagedit
+start tags tags omitted document instance provided
+
+omittag feature enabled sgml declaration
+indicates tags permitted omitted
+start tags element associated required required attributes
+unambiguously inferred context
+
+example omittag specified sgml declaration enabling omittag feature includes following declarations
+
+
+element chapter title section
+element title pcdata
+element section title subsection
+
+excerpt
+
+
+chapterintroduction sgml
+sectionthe sgml declaration
+subsection
+
+
+omits title tags title tags would represent valid markup
+note also omitting tags optional excerpt could tagged like
+
+
+chaptertitleintroduction sgmltitle
+sectiontitlethe sgml declarationtitle
+subsection
+
+
+would still represent valid markup
+note omittag feature unrelated tagging elements whose declared content empty defined
+
+
+element image empty
+
+elements defined like specifying document instance would result invalid markup syntactically different empty elements regard
+shortrefedit
+tags replaced delimiter strings terser markup shortref feature markup style associated wiki markup wherein equalssigns start line “heading starttag” equals signs “heading endtag”
+shorttagedit
+sgml markup languages whose concrete syntax enables shorttag value feature require attribute values containing alphanumeric characters enclosed within quotation marks—either double single lita—so previous markup example could written
+
+
+quote typeexample
+typically something like italicsthis
+quote
+
+feature sgml markup languages presumptuous empty tagging empty italicsthis inherits value nearest previous full start example italics words closes recently opened item expression thus equivalent italicsthisitalics
+netedit
+another feature null construction italicsthis structurally equivalent italicsthisitalics
+featuresedit
+additionally shorttag netenabl immednet feature allows shortening tags surrounding empty text value forbids shortening full tags
+
+
+quotequote
+
+written
+
+
+quote typo
+
+wherein first slash stands netenabling “starttag close” nestc second slash stands note defines nestc angled bracket—hence corresponding construct appears quote
+third feature text line allowing markup item ended lineend especially useful headings requiring using either shortref datatag minimization example includes following declarations
+
+
+element lines line
+element line pcdata
+entity linetagc line
+shortref oneline rers linetagc
+usemap oneline line
+
+rers shortreference delimiter concrete syntax
+
+
+lines
+first line
+second line
+lines
+
+equivalent
+
+
+lines
+linefirst lineline
+linesecond lineline
+lines
+
+formal characterizationedit
+sgml many features defied convenient description popular formal automata theory contemporary parser technology 1980s 1990s standard warns annex
+
+sgml model group notation deliberately designed resemble regular expression notation automata theory automata theory provides theoretical foundation aspects notion conformance content model assumption made general applicability automata content models
+
+report early implementation parser basic sgml amsterdam sgml parser9 notes
+
+dtdgrammar sgml must conform notion unambiguity closely resembles conditions
+
+specifies various differences
+appears definitive classification full sgml known class formal grammar plausible classes include treeadjoining grammars adaptive grammars
+described generally parsable like twolevel grammar nonvalidated conwaystyle pipeline coroutines lexer parser validator valid xml10 sgml productions standard reported ll411 xmlclass subsets reported expressible using wgrammar12 according paper13 probably considered information parse tree level rather character delimiter level
+
+class documents conform given sgml document grammar forms language sgml document grammars however grammars
+
+sgml standard define sgml formal data structures parse trees however sgml document constructed rooted directed acyclic graph rdag physical storage units known “entities” parsed rdag structural units known “elements” physical graph loosely characterized entity tree entities might appear multiple times moreover structure graph also loosely characterized element tree ididref markup allows arbitrary arcs
+results parsing also understood data tree different notations document root node entities notations text graphics child nodes sgml provides apparatus linking annotating external nonsgml entities
+sgml standard describes terms maps recognition modes s961 entity element associated notation declared content type determines kinds references tags recognized entity element also element associated delimiter short reference determines characters treated delimiters context sgml standard characterizes parsing state machine switching recognition modes parsing stack maps configure scanner tokenizer relates recognition modes
+parsing involves traversing dynamicallyretrieved entity graph findingimplying tags element structure validating tags grammar unusual aspect sgml grammar used passively recognize lexical structures actively generate missing structures tags declared optional start tags omitted inferred loosely series tags omitted single possible path grammar imply active grammars made concrete sgml parsing difficult formally characterize
+sgml uses term validation recognition generation grammar change delimiter maps inform parse modes allow omission consequently validation elements active sense sgml validation active sgml without simple grammar language sgml metalanguage sgml sgml declaration perhaps metametalanguage since metalanguage whose declaration mechanism metalanguage
+sgml abstract syntax implemented many possible concrete syntaxes however usage abstract syntax tree concrete syntax tree sgml usage concrete syntax specific delimiters abstract syntax names delimiters infoset corresponds programming language notion abstract syntax introduced john mccarthy
+derivativesedit
+xmledit
+main article
+extensible markup language profile subset sgml designed ease implementation parser compared full sgml parser primarily world wide addition disabling many sgml options present reference syntax omitting tags nested subdocuments adds number additional restrictions kinds sgml syntax example despite enabling sgml shortened forms allow unclosed start tags also relied many additions made websgml annex currently widely used full sgml lightweight internationalization based unicode applications include xhtml xquery xslt xforms xpointer atom xmlrpc rdfxml soap
+htmledit
+main article html
+html developed partially independently parallel sgml creator bernerslee intended application sgmlcitation needed design html hyper text markup language therefore inspired sgml tagging since clear expansion parsing guidelines established actual html documents valid sgml documents later html reformulated version sgml application however html markup language many legacy exception handling features differ sgmls requirements html sgml application fully conforms 8879 sgml14
+charter 2006 revival world wide consortium html working group says group assume sgml parser used classic html15 although html syntax closely resembles sgml syntax default reference concrete syntax html5 abandons attempt define html sgml application explicitly defining parsing rules16 closely match existing implementations documents however define alternative xhtml serialization conforms therefore sgml well17
+oededit
+second edition oxford english dictionary entirely marked sgmlbased markup language18
+third edition marked
+othersedit
+document markup languages partly related sgml cannot parsed validated otherwise processed using standard sgml tools considered either sgml languages format markup language typesetting documentation example
+several modern programming languages support tags primitive token types support unicode regular expression patternmatching example scala programming language
+applicationsedit
+document markup languages defined using sgml called applications standard many prexml sgml applications proprietary property organizations developed thus unavailable world wide following list prexml sgml applications
+
+text encoding initiative academic consortium designs maintains develops technical standards digitalformat textual representation applications
+docbook markup language originally created sgml application designed authoring technical documentation docbook currently application
+cals continuous acquisition lifecycle support department defense initiative electronically capturing military documents linking related data information
+hytime defines hypertextoriented element types allow sgml document authors build hypertext multimedia presentations
+edgar electronic datagathering analysis retrieval system effects automated collection validation indexing acceptance forwarding submissions companies others legally required file data information forms securities exchange commission
+linuxdoc documentation linux packages used linuxdoc sgml docbook
+document type definition scientific documents defined association american publishers
+sgmlguid early sgml document type definition created developed used cern
+
+opensource implementationsedit
+significant opensource implementations sgml included
+
+aspsgml
+arcsgml standard generalized markup language users 1991 language
+sgmls james clark 1993 language
+project yuanze institute technology taiwan charles goldfarb 1994 object
+james clark language
+
+jade associated dsssl processors maintained openjade project common parts linux distributions general archive sgml software materials resides sunet original html parser class systems implementation java limitedfeatures sgml parser using sgml terminology concepts
+alsoedit
+
+sgml open
+sexpression
+dsssl schemebased processing language similar
+latex
+list general purpose markup languages
+markup language
+sgml entity
+hytime
+omission
+
+
+referencesedit
+
+
+
+document description processing languages retrieved 20091225
+jtc1sc34 document description processing languages retrieved 20091225
+isoiec 10744 hytime
+isoiec 9573 1991 retrieved december 2017
+goldfarb charles 1996 roots sgml personal recollection retrieved july 2007
+goldfarb charles 1990 sgml handbook
+terms definitions 8879 draft
+wohler wayne july 1998 sgml declarations retrieved august 2009
+egmond december 1989 implementation amsterdam sgml parser
+carroll jeremy november 2001 coparsing hewlettpackard retrieved october 2009
+sgml grammar productions
+whitespace problems whitespace rules
+bruggemannklein compilerconstruction tools techniques sgml parsers difficulties solutions
+html conformance requirements recommendations retrieved 20091230
+lilley chris bernerslee february 2009 html working group charter retrieved april 2007
+html5 parsing html documents world wide consortium october 2014 retrieved june 2015
+dubost karl january 2008 html vocabulary serializations questions answers blog retrieved february 2009
+cowlishaw 1987 lexx—a programmable structured editor journal research development doi101147rd3110073
+
+
+
+external linksedit
+
+overview sgml resources w3cs website
+introduction examples software documentation sgml
+sc34 committee records charles babbage institute collection development sgml standards influential development current tools documents include early drafts sgml administrative materials documentation working group papers standards computer languages
+sgml syntax summary charles goldfarb
+sgml document introducing sgml reasons sgml important
+sgml declaration sgml html explained martin bryan 1997 original broken httpwwwisthoughtcoukbooksgml4htmfig42
+sgml declarations wayne wohler corporation 1994
+90691988 information processing sgml support facilities sgml document interchange format sdif
+isoiec 90701991 information technology sgml support facilities registration procedures public text owner identifiers
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh86006277
+42344864
+cb124683709 data
+xx550731
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlestandardgeneralizedmarkuplanguageoldid813958058 categories data modeling languagesiso standardsmarkup languagestechnical communicationhidden categories pages using deprecated image syntaxwikipedia articles needing clarification february 2014wikipedia articles needing clarification november 2013all articles unsourced statementsarticles unsourced statements july 2015wikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiers

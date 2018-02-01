@@ -1,0 +1,674 @@
+ISO 6709 Standard representation of geographic point location by coordinates is the international standard for representation of latitude, longitude and altitude for geographic point locations.
+The first edition (ISO 6709:1983) was developed by ISO/IEC JTC 1/SC 32. Later the standard was transferred to ISO/TC211, Geographic information/Geomatics in 2001. The committee completely revised the second edition (ISO 6709:2008). There was a short technical corrigendum (ISO 6709:2008/Cor 1:2009) released in 2009.[1]
+The second edition consists of a main part and eight annexes (Annexes A through H). The main part and Annexes A and C give encoding-independent general rules to define items to specify geographic point(s). Annex D suggests a display style for human interface. Annexes F and G suggest styles of XML expression. Annex H suggests string expression, which supersedes the first edition of the standard.
+
+
+
+Contents
+
+
+1 General rules
+
+1.1 Items
+1.2 Order, sign, and units
+
+
+2 Representation at the human interface (Annex D)
+3 XML representation (Annex F)
+4 String expression (Annex H)
+
+4.1 Latitude
+4.2 Longitude
+4.3 Altitude, height, and depth
+4.4 CRS identifier
+4.5 Examples
+
+
+5 Notes
+6 External links
+
+6.1 Standards
+6.2 Implementations
+
+
+
+
+
+General rules[edit]
+Items[edit]
+A geographical point is specified by the following four items:
+
+First vertical coordinate (y), such as latitude (negative number south of equator and positive north of equator)
+Second horizontal coordinate (x), such as longitude (negative values west of Prime Meridian and positive values east of Prime Meridian)
+Vertical coordinate, i.e. height or depth (optional)
+Identification of coordinate reference system (CRS) (optional)
+
+The first three items are numerical values called coordinates. The CRS gives the relationship between the coordinates and a point on the earth. The identification of CRS could be a full description of properties defined in ISO 19111; only an identifier given by some registry (such as EPSG) is used in most cases, since only such identification is enough for most information exchange purposes.
+Order, sign, and units[edit]
+Order, positive direction, and units of coordinates are supposed to be defined by the CRS. When CRS identification is missing, the data must be interpreted by the following conventions:
+
+Latitude comes before longitude
+North latitude is positive
+East longitude is positive
+Fraction of degrees is preferred in digital data exchange, while sexagesimal notation is tolerated for compatibility
+
+There is no such interpretation rule for vertical coordinates.
+Representation at the human interface (Annex D)[edit]
+When there is no guideline given from the user community, the following styles are suggested:
+
+Coordinate values (latitude, longitude, and altitude) should be delimited by spaces.
+The decimal point is a part of the value, thus must usually be configured by the operating system.[2]
+Multiple points should be represented by multiple lines.
+Latitude and longitude should be displayed by sexagesimal fractions (i.e. minutes and seconds).
+When minutes and seconds are less than ten, leading zeroes should be shown.
+Degree, minutes and seconds should be followed by the symbols ° (U+00B0), ′ (U+2032), and ″ (U+2033), without spaces between the number and symbol.
+North and south latitudes should be indicated by N and S following immediately after the digits.
+East and west longitudes should be indicated by E and W following immediately after the digits.
+Units of elevation or depth should be given by symbols, immediately after the digits.[3]
+Elevation below reference level or depth above reference level should be indicated by a minus sign − (U+2212).
+
+Examples:
+
+50°40′46,461″N 95°48′26,533″W 123,45m
+50°03′46.461″S 125°48′26.533″E 978.90m
+
+XML representation (Annex F)[edit]
+The XML representation based on the conceptual model of Annex C uses XML namespace http://www.isotc211.org/2006/gpl[permanent dead link]. However, there is no published XML schema at the time of writing (August 2011).
+
+<gpl:GPL_CoordinateTuple xmlns:gpl="http://www.isotc211.org/gpl">
+  <gpl:tuple srsName="urn:ogc:def:crs:EPSG:6.6:4326">
+    35.89421911 139.94637467
+  </gpl:tuple>
+</gpl:GPL_CoordinateTuple>
+
+String expression (Annex H)[edit]
+A string expression of a point consists of latitude, longitude, height or depth, CRS identifier, and trailing solidus (/) without any delimiting character. When height or depth is used, there must be CRS identifier.[4]
+Latitude[edit]
+Latitude is a number preceded by a sign character. A plus sign (+) denotes northern hemisphere or the equator, and a minus sign (-) denotes southern hemisphere.[5]
+The integer part of the number is a fixed length. The number of digits in that part indicates the units, thus leading zero(es) must be filled when necessary. The fractional part must have the appropriate number of digits to represent the required precision of the coordinate.
+
+
+num. digits
+units
+format
+example
+
+
+2
+deg
+±DD.D
++40.20361
+
+
+4
+deg, min
+±DDMM.M
++4012.22
+
+
+6
+deg, min, sec
+±DDMMSS.S
++401213.1
+
+
+Longitude[edit]
+Longitude is a number preceded by a sign character. A plus sign (+) denotes east longitude or the prime meridian, and a minus sign (-) denotes west longitude or 180° meridian (opposite of the prime meridian).[6]
+Rules about the number of digits are same to latitude.
+
+
+num. digits
+units
+format
+example
+
+
+3
+deg
+±DDD.D
+-075.00417
+
+
+5
+deg, min
+±DDDMM.M
+-07500.25
+
+
+7
+deg, min, sec
+±DDDMMSS.S
+-0750015.1
+
+
+Altitude, height, and depth[edit]
+The 2008 version of ISO 6709 states that:
+
+The first edition [1983] used the term altitude to describe vertical position. This International Standard uses the more general term height and also allows for vertical location to be described as depth.[7]
+
+It then defines altitude as "height where the chosen reference surface is mean sea level",[7] and sources the following two definitions to ISO 19111: height, as "distance of a point from a chosen reference surface measured upward along a line perpendicular to that surface";[7] and depth, as "distance of a point from a chosen reference surface measured downward along a line perpendicular to that surface."[7]
+The ICAO[8] offers similar definitions: altitude, as "the vertical distance of a level, a point or an object considered as a point, measured from the mean sea level (MSL);"[8] and height, as "the vertical distance of a level, a point or an object considered as a point, measured from an specific datum."[8] It further defines elevation, as "the vertical distance of a point or a level, on or affixed to the surface of the earth, measured from mean sea level."[8] (i.e., elevation as the altitude of the ground or a building).
+Notes:
+
+When height or depth is present, CRS identifier must follow.
+Positive direction and units are defined by CRS.[9]
+Negative number does not necessarily mean position below reference level.
+Positive is up for height, down for depth.
+
+CRS identifier[edit]
+Further information: SRID
+The CRS identifier begins with "CRS". There are three styles:
+
+When a registry provides online resolver, CRS<url>
+When a registry is offline, CRSregistry:crsid
+When the data creator provides full definition of CRS using ISO 19111, CRS<CRSID>
+
+The example of original Annex H always use "CRSWGS_84".
+Examples[edit]
+
+Atlantic Ocean +00-025/
+France +46+002/
+
+Paris +48.52+002.20/
+
+Eiffel Tower +48.8577+002.295/
+
+
+
+
+Mount Everest +27.5916+086.5640+8850CRSWGS_84/
+North Pole +90+000/
+Pacific Ocean +00-160/
+South Pole -90+000+2800CRSWGS_84/
+United States +38-097/
+
+New York City +40.75-074.00/
+
+Statue of Liberty +40.6894-074.0447/
+
+
+
+
+
+Notes[edit]
+
+
+
+^ "ISO 6709:2008/Cor 1:2009 -". ISO. Retrieved 8 June 2016. 
+^ Probably the intention is that the locale environment should not be overridden.
+^ This is different from SI style guides
+^ Height without CRS identifier was allowed in the first edition, but not today. Ending with longitude is still allowed.
+^ Annex H allows letters N and S as sign characters, but gives no examples.
+^ Annex H allows letters E and W as sign characters, but gives no examples.
+^ a b c d "ISO 6709:2008(en) preview". www.iso.org. ISO. Retrieved 8 June 2016. 
+^ a b c d United Nations - International Civil Aviation Organization. "Annex 4: Aeronautical Charts - Chapter 1 (Definitions, Applicability and Availbility)" (PDF).  Note: Annex 4 is one of the (currently) 19 annexes to the Chicago Convention on International Civil Aviation (ICAO Doc. 7300).
+^ This is different from the 1983 edition.
+
+
+
+External links[edit]
+Standards[edit]
+
+Catalogue entry for ISO 6709:2008
+final draft of ISO 6709:2008
+Profile by W3C GeoXG
+
+Implementations[edit]
+
+Point Location 6709 - an open-source Java parser and formatter
+Point Location 6709 - an open-source JavaScript implementation
+C# Implementation at Codeplex
+Objective-C Implementation
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_6709&oldid=809629139"					Categories: ISO standardsGeographic coordinate systemsISO/TC 211Hidden categories: All articles with dead external linksArticles with dead external links from November 2017Articles with permanently dead external links

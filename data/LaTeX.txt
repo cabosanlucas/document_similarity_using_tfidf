@@ -1,0 +1,629 @@
+"LATEX" redirects here. For other uses, see Latex (disambiguation).
+
+LaTeX
+
+
+
+
+Original author(s)
+Leslie Lamport
+
+
+Initial release
+1985; 33 years ago (1985)
+
+
+Repository
+latex-project.org/svnroot/experimental/trunk/
+
+
+Type
+Typesetting
+
+
+License
+LaTeX Project Public License (LPPL)
+
+
+Website
+latex-project.org
+
+
+LaTeX IPA: /ˈlɑːtɛx/,LAH-tekh[1]( a shortening of Lamport TeX) is a document preparation system.[2] When writing, the writer uses plain text as opposed to the formatted text found in WYSIWYG ("what you see is what you get") word processors like Microsoft Word, LibreOffice Writer and Apple Pages. The writer uses markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as bold and italics), and to add citations and cross-references. A TeX distribution such as TeX Live or MikTeX is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. Within the typesetting system, its name is stylised as LaTeX.
+LaTeX is widely used in academia[3][4] for the communication and publication of scientific documents in many fields, including mathematics, statistics, computer science, engineering, chemistry, physics, economics, linguistics, quantitative psychology, philosophy, and political science. It also has a prominent role in the preparation and publication of books and articles that contain complex multilingual materials, such as Tamil, Sanskrit and Greek.[5] LaTeX uses the TeX typesetting program for formatting its output, and is itself written in the TeX macro language.
+LaTeX can be used as a standalone document preparation system or as an intermediate format. In the latter role, for example, it is sometimes used as part of a pipeline for translating DocBook and other XML-based formats to PDF. The typesetting system offers programmable desktop publishing features and extensive facilities for automating most aspects of typesetting and desktop publishing, including numbering and cross-referencing of tables and figures, chapter and section headings, the inclusion of graphics, page layout, indexing and bibliographies.
+Like TeX, LaTeX started as a writing tool for mathematicians and computer scientists, but from early in its development it has also been taken up by scholars who needed to write documents that include complex math expressions or non-Latin scripts, such as Arabic, Sanskrit and Chinese.[citation needed]
+LaTeX is intended to provide a high-level language that accesses the power of TeX in an easier way for writers. In short, TeX handles the layout side, while LaTeX handles the content side for document processing. LaTeX comprises a collection of TeX macros and a program to process LaTeX documents. Because the plain TeX formatting commands are elementary, it provides authors with ready-made commands for formatting and layout requirements such as chapter headings, footnotes, cross-references and bibliographies.
+LaTeX was originally written in the early 1980s by Leslie Lamport at SRI International.[6] The current version is LaTeX2e (stylised as LaTeX2ε). LaTeX is free software and is distributed under the LaTeX Project Public License (LPPL).
+
+
+
+Contents
+
+
+1 Typesetting system
+2 Example
+3 Pronouncing and writing "LaTeX"
+4 Licensing
+5 Related software
+6 Versions
+7 Compatibility and converters
+
+7.1 LaTeX2HTML
+7.2 HeVeA
+
+
+8 See also
+9 References
+10 Further reading
+11 External links
+
+
+
+Typesetting system[edit]
+LaTeX follows the design philosophy of separating presentation from content, so that authors can focus on the content of what they are writing without attending simultaneously to its visual appearance. In preparing a LaTeX document, the author specifies the logical structure using simple, familiar concepts such as chapter, section, table, figure, etc., and lets the LaTeX system worry about the formatting and layout of these structures. It therefore encourages the separation of layout from content while still allowing manual typesetting adjustments where needed. This concept is similar to the mechanism by which many word processors allow styles to be defined globally for an entire document or the use of Cascading Style Sheets to style HTML. The LaTeX system is a markup language that also handles typesetting and rendering.[7]
+LaTeX can be arbitrarily extended by using the underlying macro language to develop custom formats. Such macros are often collected into packages, which are available to address special formatting issues such as complicated mathematical content or graphics. Indeed, in the example below, the align environment is provided by the amsmath package.
+In order to create a document in LaTeX, you first write a file, say document.tex, using your preferred text editor. Then you give your document.tex file as input to the TeX program (with the LaTeX macros loaded), and TeX writes out a file suitable for viewing onscreen or printing.[8] This write-format-preview cycle is one of the chief ways in which working with LaTeX differs from what-you-see-is-what-you-get word-processing. It is similar to the code-compile-execute cycle familiar to computer programmers. Today, many LaTeX-aware editing programs make this cycle a simple matter of pressing a single key, while showing the output preview on the screen beside the input window. Some online LaTeX editors automatically refresh the preview.[9][10][11][12] Other online tools provide incremental editing in-place, mixed in with the preview in a streamlined single window.[13]
+Example[edit]
+The example below shows the LaTeX input and corresponding output:
+
+
+
+Input
+Output
+
+
+
+
+
+\documentclass{article}
+\usepackage{amsmath}
+\title{\LaTeX}
+
+\begin{document}
+  \maketitle
+  \LaTeX{} is a document preparation system for
+  the \TeX{} typesetting program. It offers
+  programmable desktop publishing features and
+  extensive facilities for automating most
+  aspects of typesetting and desktop publishing,
+  including numbering and  cross-referencing,
+  tables and figures, page layout,
+  bibliographies, and much more. \LaTeX{} was
+  originally written in 1984 by Leslie Lamport
+  and has become the  dominant method for using
+  \TeX; few people write in plain \TeX{} anymore.
+  The current version is \LaTeXe.
+
+  % This is a comment, not shown in final output.
+  % The following shows typesetting  power of LaTeX:
+  \begin{align}
+    E_0 &= mc^2 \\
+    E &= \frac{mc^2}{\sqrt{1-\frac{v^2}{c^2}}}
+  \end{align}  
+\end{document}
+
+
+
+
+
+
+Note how the equation for 
+
+
+
+E
+
+
+{\displaystyle E}
+
+ (highlighted in the example code) was typeset by the markup:
+
+
+
+
+E &= \frac{mc^2}{\sqrt{1-\frac{v^2}{c^2}}}
+
+
+
+The square root is denoted by "\sqrt{argument}" and fractions by "\frac{numerator}{denominator}".
+Pronouncing and writing "LaTeX"[edit]
+The final consonant of TeX (on which LaTeX is based) is intended by its developer to be pronounced similar to 'loch' or 'Bach'. However, English speakers often pronounce it /ˈtɛk/, like the first syllable of technical.
+The characters T, E, X in the name come from the Greek capital letters tau, epsilon, and chi, as the name of TeX derives from the Greek: τέχνη (skill, art, technique); for this reason, TeX's creator Donald Knuth promotes a pronunciation of /tɛx/ (tekh)[14] (that is, with a voiceless velar fricative as in Modern Greek, similar to the ch in loch). Lamport writes "TeX is usually pronounced tech, making lah-teck, lah-teck, and lay-teck the logical choices; but language is not always logical, so lay-tecks is also possible."[15][verification needed] in the first chapter of the original LaTeX User Guide.
+The name is traditionally printed in running text with a special typographical logo: LaTeX. In media where the logo cannot be precisely reproduced in running text, the word is typically given the unique capitalization LaTeX. The TeX, LaTeX[16] and XeTeX[17] logos can be rendered via pure CSS and XHTML for use in graphical web browsers following the specifications of the internal \LaTeX macro.[18]
+Licensing[edit]
+LaTeX is typically distributed along with plain TeX. It is distributed under a free software license, the LaTeX Project Public License (LPPL). The LPPL is not compatible with the GNU General Public License, as it requires that modified files must be clearly differentiable from their originals (usually by changing the filename); this was done to ensure that files that depend on other files will produce the expected behavior and avoid dependency hell. The LPPL is DFSG compliant as of version 1.3. As free software, LaTeX is available on most operating systems including UNIX (Solaris, HP-UX, AIX), BSD (FreeBSD, macOS, NetBSD, OpenBSD), Linux (Red Hat, Debian, Arch, Gentoo), Windows, DOS, RISC OS, AmigaOS and Plan9.
+Related software[edit]
+As a macro package, LaTeX provides a set of macros for TeX to interpret. There are many other macro packages for TeX, including Plain TeX, GNU Texinfo, AMSTeX, and ConTeXt.
+When TeX "compiles" a document, it follows (from the user's point of view) the following processing sequence: Macros → TeX → Driver → Output. Different implementations of each of these steps are typically available in TeX distributions. Traditional TeX will output a DVI file, which is usually converted to a PostScript file. More recently, Hàn Thế Thành and others have written a new implementation of TeX called pdfTeX, which also outputs to PDF and takes advantage of features available in that format. The XeTeX engine developed by Jonathan Kew merges modern font technologies and Unicode with TeX.
+The default font for LaTeX is Knuth's Computer Modern, which gives default documents created with LaTeX the same distinctive look as those created with plain TeX. XeTeX allows the use of OpenType and TrueType (that is, outlined) fonts for output files.
+There are also many editors for LaTeX.
+Versions[edit]
+
+
+Filename extension
+.tex
+
+
+Internet media type
+application/x-latex
+
+
+Latest release
+
+LaTeX2e
+(1994)
+
+
+
+Type of format
+Document file format
+
+
+LaTeX2e is the current version of LaTeX, since it replaced LaTeX 2.09 in 1994. As of 2014[update], LaTeX3, started in the early 1990s, is under a long-term development project.[19] Planned features include improved syntax, hyperlink support, a new user interface, access to arbitrary fonts, and new documentation.[20]
+There are numerous commercial implementations of the entire TeX system. System vendors may add extra features like additional typefaces and telephone support. LyX is a free, WYSIWYM visual document processor that uses LaTeX for a back-end. TeXmacs is a free, WYSIWYG editor with similar functionalities as LaTeX but a different typesetting engine. Other WYSIWYG editors that produce LaTeX include Scientific Word on MS Windows.
+A number of community-supported TeX distributions are available, including TeX Live (multiplatform), teTeX (deprecated in favor of TeX Live, UNIX), fpTeX (deprecated), MiKTeX (Windows), proTeXt (Windows), MacTeX (TeX Live with the addition of Mac specific programs), gwTeX (Mac OS X), OzTeX (Mac OS Classic), AmigaTeX (no longer available), PasTeX (AmigaOS, available on the Aminet repository), and Auto-Latex Equations (Google Docs add-on that supports MathJax LaTeX commands).
+Compatibility and converters[edit]
+LaTeX documents (*.tex) can be opened with any text editor. They consist of plain text and do not contain hidden formatting codes or binary instructions. Additionally, TeX documents can be shared by rendering the LaTeX file to Rich Text Format (.rtf) or XML. This can be done using the free software programs LaTeX2RTF or TeX4ht. LaTeX can also be rendered to PDF files using the LaTeX extension pdfLaTeX. LaTeX files containing Unicode text can be processed into PDFs by the LaTeX extension XeLaTeX.
+LaTeX2HTML[edit]
+LaTeX2HTML is a converter written in Perl that converts LaTeX documents to HTML. This way, e.g., scientific papers—primarily typeset for printing—can be placed on the Web for online viewing. It is licensed under GNU GPL v2.[21] The latest updates are available from CTAN.[22]
+HeVeA[edit]
+HeVeA [23] is a converter written in Ocaml that converts LaTeX documents to HTML5. It is licensed under the Q Public License.
+See also[edit]
+
+
+Free software portal
+
+
+
+Auto-Latex Equations – A Google Docs add-on that provides mathematical LaTeX typesetting (MathJax supported).
+AMS-LaTeX – American Mathematical Society extension for LaTeX
+xdvi – software for viewing DVI files while using Unix
+BibTeX – reference management software typically used with LaTeX
+Comparison of TeX editors
+List of document markup languages
+REVTeX – Publication Styles of the American Physical Society
+Formula editor
+
+References[edit]
+
+
+^ "An introduction to LaTeX". LaTeX project. Retrieved 18 April 2016. 
+^ Leslie., Lamport, (1986-01-01). LATEX : a document preparation system. Addison-Wesley Pub. Co. ISBN 020115790X. OCLC 12550262. 
+^ "What are TeX, LaTeX and friends?". 
+^ Alexia Gaudeul (March 27, 2006). "Do Open Source Developers Respond to Competition?: The (La)TeX Case Study". SSRN 908946 . 
+^ Markin, Pablo (1 November 2017). "LaTeX, Open Source Software, Facilitates the Adoption of Open Access by Authors, Repositories and Journals". OpenScience. Retrieved 5 November 2017. 
+^ Leslie Lamport (April 23, 2007). "The Writings of Leslie Lamport: LaTeX: A Document Preparation System". Leslie Lamport's Home Page. Retrieved 2007-04-27. 
+^ The design of LaTeX owes something to earlier markup systems such as Scribe.
+^ PDF output is common, but TeX can output other formats such as DVI ("Device independent" format). See below for more detail about outputs.
+^ "Sharelatex". 
+^ "Overleaf". 
+^ "Seeveeze". 
+^ "LaTeX Base". 
+^ "Authorea". 
+^ Donald E. Knuth, The TeXbook, Addison–Wesley, Boston, 1986, p. 1.
+^ Leslie Lamport, LaTeX: A Document Preparation System, Addison-Wesley, 1994
+^ O'Connor, Edward. "TeX and LaTeX logo POSHlets". Retrieved 2008-04-21. 
+^ Taraborelli, Dario. "CSS-driven TeX logos". Retrieved 2008-04-21. 
+^ Walden, David (2005-07-15). "Travels in TeX Land: A Macro, Three Software Packages, and the Trouble with TeX". The PracTeX Journal (3). Retrieved 2008-04-21. 
+^ See e.g. bubl.ac.uk Archived 2009-08-13 at the Wayback Machine.
+^ Frank Mittelbach, Chris Rowley (January 12, 1999). "The LaTeX3 Project" (PDF). Retrieved 2007-07-30. 
+^ According to LICENSE file in the source repository.
+^ https://www.ctan.org/pkg/latex2html
+^ Website http://hevea.inria.fr/
+
+
+Further reading[edit]
+
+
+Flynn, Peter (2017) [2002]. Formatting Information: A Beginner's Guide to LaTeX (7th online ed.). Cork: Silmaril. p. 193. 
+Griffiths, David F.; Highman, David S. (1997). Learning LaTeX. Philadelphia: Society for Industrial and Applied Mathematics. ISBN 0-89871-383-8. 
+Kopka, Helmut; Daly, Patrick W. (2003). Guide to LaTeX (4th ed.). Addison-Wesley Professional. ISBN 0-321-17385-6. 
+Lamport, Leslie (1994). LaTeX: A document preparation system: User's guide and reference. illustrations by Duane Bibby (2nd ed.). Reading, Mass: Addison-Wesley Professional. ISBN 0-201-52983-1. 
+Mittelbach, Frank; Goosens, Michel (2004). The LaTeX Companion (2nd ed.). Addison-Wesley. ISBN 0-201-36299-6. 
+
+
+External links[edit]
+
+Find more aboutLaTeXat Wikipedia's sister projects
+
+Media from Wikimedia Commons
+Textbooks from Wikibooks
+Learning resources from Wikiversity
+Data from Wikidata
+
+
+
+Official website
+LaTeX at Curlie (based on DMOZ)
+LaTeX Vs. Word Comparsion
+
+
+
+
+
+
+
+v
+t
+e
+
+
+TeX
+
+
+
+Macro packages
+
+
+
+AMSTeX
+ArabTeX
+CircuiTikZ
+ConTeXt
+FarsiTeX
+Texinfo
+LaTeX
+MusiXTeX
+Plain TeX
+PSTricks
+TIPA
+XyMTeX
+
+
+
+
+
+Alternative TeX engines
+
+
+
+eTeX
+LuaTeX
+pdfTeX
+XeTeX
+New Typesetting System
+Omega
+
+
+
+
+
+Distributions
+
+
+
+TeX Live
+teTeX
+fpTeX
+MiKTeX
+proTeXt
+MacTeX
+gwTeX
+OzTeX
+Latexian
+AmigaTeX
+PasTeX
+TeXPortal
+W32TeX
+
+
+
+
+
+Community
+
+
+
+CTAN
+TUGboat
+The PracTeX Journal
+Deutschsprachige Anwendervereinigung TeX
+
+
+
+
+
+Related
+
+
+
+DVI
+Computer Modern
+Metafont
+MetaPost
+WEB
+CWEB
+TeX Directory Structure
+TeX font metric
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+LaTeX
+
+
+
+Classes
+
+
+
+AMS-LaTeX
+Beamer
+Powerdot
+Biber
+AMSRefs
+PSfrag
+REVTeX
+
+
+
+
+
+LaTeX integration
+
+
+
+Sweave
+knitr
+
+
+
+
+
+Conversion tools
+
+
+
+LaTeX2HTML
+LaTeX2RTF
+LaTeXML
+
+
+
+
+
+Related
+
+
+
+LaTeX Project Public License
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+E-books
+
+
+
+Formats
+
+
+
+ePub
+FictionBook
+CBR/CBZ
+Kindle File Format
+Mobipocket
+PDF
+Plain text
+
+
+
+
+
+
+
+
+Reading
+
+
+
+
+Devices
+
+
+
+Amazon Kindle
+Barnes & Noble Nook
+Bookeen
+Elonex ebook
+enTourage eDGe
+Hanlin eReader
+iriver Story
+Kobo eReader
+Onyx Boox
+Plastic Logic Reader
+PocketBook eReader
+Rocket eBook
+SoftBook
+Smartphones
+Tablets
+Tolino
+
+
+
+
+
+Software
+
+
+
+Adobe Acrobat
+Adobe Digital Editions
+Aldiko
+Blio
+Bluefire Reader
+Calibre
+FBReader
+Google Play Books
+iBooks
+Kindle app
+Kitabu
+Kobo
+Lektz
+Lucifox
+Mantano Reader
+Okular
+OverDrive Media Console
+Snapplify
+STDU Viewer
+Sumatra PDF
+
+
+
+
+
+
+
+
+Editing
+
+
+
+ABBYY FineReader
+AbiWord
+Adobe InDesign
+Adobe RoboHelp
+Atlantis Word Processor
+Booktype
+Calibre
+Calligra Author
+eXeLearning
+Help & Manual
+HelpNDoc
+iBooks Author
+iStudio Publisher
+LaTeX
+LibreOffice
+MadCap Flare
+Oxygen XML Editor
+PagePlus
+Pages
+QuarkXPress
+Scrivener
+Sigil
+Writer2epub
+
+
+
+
+
+Vendors
+
+
+
+
+Commercial
+
+
+
+Amazon Kindle Store
+Baen Free Library
+Barnes & Noble
+Booktrack
+Feedbooks
+Google Play
+iBooks Store
+Kobo Bookstore
+Sony Reader Store
+Smashwords
+
+
+
+
+
+Noncommercial
+
+
+
+HathiTrust
+Internet Archive
+Project Gutenberg
+
+Australia
+Canada
+
+
+Wikisource
+
+
+
+
+
+
+
+
+Related
+topics
+
+
+
+Academic journal publishing reform
+Braille e-book
+Comparison of e-book readers
+Comparison of iOS e-book reader software
+Comparison of Android e-book reader software
+E-book lending
+Electronic publishing
+iBooks Author Conference
+International Digital Publishing Forum
+Kindle single
+OPDS
+Reflowable document
+Semantic publishing
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+WorldCat Identities
+VIAF: 181932361
+LCCN: n92088870
+GND: 4192618-3
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=LaTeX&oldid=816937718"					Categories: 1984 softwareDeclarative markup languagesFree TeX softwareFree text editorsFree typesetting softwareOpen formatsSoftware using the LPPL licenseSRI International softwareHidden categories: Webarchive template wayback linksPages using deprecated image syntaxAll articles with unsourced statementsArticles with unsourced statements from June 2015Articles containing Greek-language textAll pages needing factual verificationWikipedia articles needing factual verification from August 2017Articles containing potentially dated statements from 2014All articles containing potentially dated statementsArticles with DMOZ linksWikipedia articles with VIAF identifiersWikipedia articles with LCCN identifiersWikipedia articles with GND identifiers

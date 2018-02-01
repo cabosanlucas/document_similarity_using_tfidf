@@ -1,0 +1,160 @@
+
+GPS Exchange Format
+
+Filename extension
+.gpx
+
+
+Internet media type
+application/gpx+xml
+
+
+Initial release
+2002
+
+
+Latest release
+
+1.1[1]
+(August 9, 2004; 13 years ago (2004-08-09))
+
+
+
+Extended from
+XML
+
+
+Open format?
+yes
+
+
+Website
+www.topografix.com/gpx.asp
+
+
+GPX, or GPS Exchange Format, is an XML schema designed as a common GPS data format for software applications. It can be used to describe waypoints, tracks, and routes. The format is open and can be used without the need to pay license fees. Location data (and optionally elevation, time, and other information) is stored in tags and can be interchanged between GPS devices and software. Common software applications for the data include viewing tracks projected onto various map sources, annotating maps, and geotagging photographs based on the time they were taken.
+
+
+
+Contents
+
+
+1 Data types
+2 Units
+3 Sample GPX document
+4 See also
+5 References
+6 External links
+
+
+
+Data types[edit]
+
+
+
+
+Waypoints, routes and tracks recorded by GPS receivers.
+
+
+These are the essential data contained in GPX files.[2] Ellipsis (...) means that the previous element can be repeated. Additional data may exist within every markup but is not shown here:
+
+wptType is an individual waypoint among a collection of points with no sequential relationship. It consists of the WGS 84 (GPS) coordinates of a point and possibly other descriptive information.
+rteType is a route, an ordered list of routepoint (waypoints representing a series of significant turn or stage points) leading to a destination.[3]
+trkType is a track, made of at least one segment containing waypoints, that is, an ordered list of points describing a path.[3] A Track Segment holds a list of Track Points which are logically connected in order. To represent a single GPS track where GPS reception was lost, or the GPS receiver was turned off, start a new Track Segment for each continuous span of track data.
+
+Conceptually, tracks are a record of where a person has been and routes are suggestions about where they might go in the future. For example, each point in a track may have a timestamp (because someone recorded where and when they were there), but the points in a route are unlikely to have timestamps (other than estimated trip duration) because route is a suggestion which might never have been traveled.
+Technically:
+
+a track is made of a sufficient number of trackpoints to precisely draw every bend of a path on a bitmap. It is either
+
+the raw output of, for example, a GPS recording the course of one's trip
+or the rearrangement of such points to remove excess ones
+or data from any source such as extracted from a vector map
+
+
+a route is made of routepoints between which a program must get the corresponding track from a vector map to draw it. The routepoints may be crossings or junctions or as distant as stopover towns, such as those making a trip project. Hence, such a project can be saved and reloaded in a GPX file.
+a process called routing computes a route and may produce a GPX route made of the routepoints where some driver action takes place (turn left, enter a roundabout, limit speed, name of the next direction road, etc...). The GPX points may contain the text of those instructions.
+the GPX file may contain both route and track so that a program can get precise points from the track even if it has no access to a vector map.
+
+The minimum properties for a GPX file are latitude and longitude for every single point. All other elements are optional. Some vendors, such as Humminbird and Garmin, use extensions to the GPX format for recording street address, phone number, business category, air temperature, depth of water, and other parameters.[4][5]
+Units[edit]
+Latitude and longitude are expressed in decimal degrees, and elevation in meters, both using the WGS 84 datum. Dates and times are not local time, but instead are Coordinated Universal Time (UTC) using ISO 8601 format.[1]
+Sample GPX document[edit]
+The following is a truncated (for brevity) GPX file produced by a Garmin Oregon 400t hand-held GPS unit. This document does not show all functionality which can be stored in the GPX format — for example, there are no waypoints or extensions, and this is part of a track, not a route — but its purpose is to serve as a brief illustration.
+
+
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="Oregon 400t" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <link href="http://www.garmin.com">
+      <text>Garmin International</text>
+    </link>
+    <time>2009-10-17T22:58:43Z</time>
+  </metadata>
+  <trk>
+    <name>Example GPX Document</name>
+    <trkseg>
+      <trkpt lat="47.644548" lon="-122.326897">
+        <ele>4.46</ele>
+        <time>2009-10-17T18:37:26Z</time>
+      </trkpt>
+      <trkpt lat="47.644548" lon="-122.326897">
+        <ele>4.94</ele>
+        <time>2009-10-17T18:37:31Z</time>
+      </trkpt>
+      <trkpt lat="47.644548" lon="-122.326897">
+        <ele>6.87</ele>
+        <time>2009-10-17T18:37:34Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
+
+See also[edit]
+
+Concepts
+
+
+Point of Interest
+OpenStreetMap, a collaborative project to create free editable maps using, among others, GPX traces.
+
+
+File formats
+
+
+Exchangeable image file format
+Geography Markup Language
+KML, the equivalent format compatible with Google Earth.
+NMEA 0183
+NMEA 2000
+TCX, Garmin Training Center XML
+
+
+Software
+
+
+GPSBabel, used to upload/download/convert GPX files
+
+References[edit]
+
+
+
+^ a b GPX: the GPS Exchange Format
+^ topografix.com
+^ a b topografix.com
+^ "Garmin Mass Storage Mode Devices - Garmin Developer". Garmin. Retrieved 2013-03-26. 
+^ "Garmin Gpx Extensions Schema" (xsd (XML schema)). Garmin. Retrieved 2013-03-26. 
+
+
+
+External links[edit]
+
+GPX: the GPS Exchange Format
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=GPS_Exchange_Format&oldid=816473185"					Categories: Computer file formatsGlobal Positioning SystemMarkup languagesXML-based standards

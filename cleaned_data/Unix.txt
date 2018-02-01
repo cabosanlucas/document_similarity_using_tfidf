@@ -1,0 +1,928 @@
+
+unix
+
+
+evolution unix unixlike systems
+
+
+
+developer
+thompson dennis ritchie brian kernighan douglas mcilroy ossanna bell labs
+
+
+written
+assembly language
+
+
+family
+unix
+
+
+working state
+current
+
+
+source model
+historically closedsource unix projects including family illumos opensource
+
+
+initial release
+development started 1969 years 1969
+first manual published internally november 1971 1971111
+announced outside bell labs october 1973 1973102
+
+
+available
+english
+
+
+kernel type
+varies monolithic microkernel hybrid
+
+
+default user interface
+commandline interface graphical window system
+
+
+license
+varies versions proprietary others freeopensource software
+
+
+official website
+opengrouporgunix
+
+
+unix ˈjuːnɪks trademarked unix family multitasking multiuser computer operating systems derive original unix development starting 1970s bell labs research center thompson dennis ritchie others3
+initially intended inside bell system licensed unix outside parties late 1970s leading variety academic commercial variants unix vendors university california berkeley microsoft xenix microsystems solaris finally sold rights unix novell early 1990s sold unix business santa cruz operation 19954 unix trademark passed industry standards consortium open group allows mark certified operating systems compliant single unix specification among apples macos5 unix version largest installed base 2014
+power users programmers perspective unix systems characterized modular design sometimes called unix philosophy meaning operating system provides simple tools perform limited welldefined function6 unified filesystem main means communication3 shell scripting command language combine tools perform complex workflows aside modular design unix also distinguishes predecessors first portable operating system almost entire operating system written programming language7 allowed unix reach numerous platforms
+many unixlike operating systems arisen years linux popular displaced suscertified unix many server platforms since inception early 1990s android widely used mobile operating system world turn based linux
+
+
+
+contents
+
+
+overview
+history
+standards
+components
+impact
+
+free unix unixlike variants
+arpanet
+
+
+branding
+also
+references
+reading
+external links
+
+
+
+overviewedit
+
+
+
+
+version unix research unix ancestor modern unix systems
+
+
+unix originally meant convenient platform programmers developing software systems rather nonprogrammer users89 system grew larger operating system started spreading academic circles users added tools system shared colleagues10
+unix designed portable multitasking multiuser timesharing configuration unix systems characterized various concepts plain text storing data hierarchical file system treating devices certain types interprocess communication files large number software tools small programs strung together commandline interpreter using pipes opposed using single monolithic program includes functionality concepts collectively known unix philosophy brian kernighan pike summarize unix programming environment idea power system comes relationships among programs programs themselves11
+early 1980s users began seeing unix potential universal operating system suitable computers sizes1213 unix environment client–server program model essential elements development internet reshaping computing centered networks rather individual computers
+unix programming language developed distributed government academic institutions ported wider variety machine families operating system
+unix operating system consists many utilities along master control program kernel kernel provides services start stop programs handles file system common lowlevel tasks programs share schedules access avoid conflicts programs access resource device simultaneously mediate access kernel special rights reflected division user space kernel space
+microkernel concept introduced effort reverse trend towards larger kernels return system tasks completed smaller utilities standard computer consisted hard disk storage data terminal input output unix file model worked quite well linear however modern systems include networking devices graphical user interfaces developed file model proved inadequate task handling asynchronous events generated mouse 1980s nonblocking interprocess communication mechanisms augmented unix domain sockets shared memory message queues semaphores microkernel implementations functions network protocols could moved kernel conventional monolithic unix implementations network protocol stacks part kernel
+historyedit
+main article history unix
+
+
+
+
+thompson sitting dennis ritchie working together pdp11
+
+
+prehistory unix dates back mid1960s massachusetts institute technology bell labs general electric developing innovative timesharing operating system called multics ge645 mainframe14 multics introduced many innovations many problems frustrated size complexity multics aims bell labs slowly pulled project last researchers leave multics thompson dennis ritchie mcilroy ossanna15 decided redo work much smaller scale
+operating system initially without organizational backing also without name stage operating system singletasking operating system15 multitasking multics name unics uniplexed information computing service pronounced eunuchs multics multiplexed information computer services initially suggested project 1970 brian kernighan claims coining adds remember came final spelling unix16 dennis ritchie15 doug mcilroy1 peter neumann17 also credit kernighan
+1972 unix rewritten programming language18 migration assembly higherlevel language resulted much portable software19 requiring relatively small amount machinedependent code replaced porting unix computing platforms bell labs produced several versions unix collectively referred research unix 1975 first source license unix sold donald gillies university illinois department computer science20 uiuc graduate student greg chesson worked unix kernel bell labs instrumental negotiating terms license21
+late 1970s early 1980s influence unix academic circles largescale adoption unix system commercial startups including sequent hpux solaris xenix late 1980s unix system laboratories microsystems developed system release svr4 subsequently adopted many commercial unix vendors
+1990s unixlike systems grew popularity linux distributions developed collaboration worldwide network programmers 2000 apple released darwin also unixlike system became core operating system later renamed macos22
+unix operating systems widely used modern servers workstations mobile devices23
+standardsedit
+
+
+
+
+common desktop environment part cose initiative
+
+
+beginning late 1980s open operating system standardization effort known posix provided common baseline operating systems ieee based posix around common structure major competing variants unix system publishing first posix standard 1988 early 1990s separate similar effort started industry consortium common open software environment cose initiative eventually became single unix specification administered open group starting 1998 open group ieee started austin group provide common definition posix single unix specification 2008 become open group base specification
+1999 effort towards compatibility several unix system vendors agreed svr4s executable linkable format standard binary object code files common format allows substantial binary compatibility among unix systems operating architecture
+filesystem hierarchy standard created provide reference directory layout unixlike operating systems mainly used linux
+componentsedit
+also list unix commands
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed january 2017 learn remove template message
+
+
+
+unix system composed several components originally packaged together including development environment libraries documents portable modifiable source code components addition kernel operating system unix selfcontained software system reasons emerged important teaching learning tool broad influenceaccording
+inclusion components make system large original unix distribution consisting copies compiled binaries plus source code documentation occupied less arrived single ninetrack magnetic tape printed documentation typeset online sources contained volumes
+names filesystem locations unix components changed substantially across history system nonetheless implementation considered manywho canonical early structure
+
+kernel source code usrsys composed several subcomponents
+
+conf configuration machinedependent parts including boot code
+device drivers control hardware pseudohardware
+operating system kernel handling memory management process scheduling system calls
+header files defining structures within system important systemspecific invariables
+
+
+development environment early versions unix contained development environment sufficient recreate entire system source code
+
+language compiler first appeared unix
+machinelanguage assembler machine
+linker combining object files
+objectcode libraries installed usrlib libc system library runtime support primary library always additional libraries things mathematical functions libm database access unix introduced first version modern standard library stdio part system library later implementations increased number libraries significantly
+make build manager introduced pwbunix effectively automating build process
+include header files software development defining standard interfaces system invariants
+languages unix contained fortran77 compiler programmable arbitraryprecision calculator scripting language later versions implementations contain many language compilers toolsets early releases included pascal tools many modern unix systems also include compiler collection well instead proprietary compiler system
+tools including objectcode archive manager symboltable lister compilerdevelopment tools yacc debugging tools
+
+
+commands unix makes little distinction commands userlevel programs system operation maintenance cron commands general utility grep generalpurpose applications text formatting typesetting package nonetheless major categories
+
+shell programmable commandline interpreter primary user interface unix window systems appeared even afterward within command window
+utilities core toolkit unix command including grep find many others subcategories include
+
+system utilities administrative tools mkfs fsck many others
+user utilities environment management tools passwd kill others
+
+
+document formatting unix systems used outset document preparation typesetting systems included many related programs nroff troff refer modern unix systems also include packages ghostscript
+graphics plot subsystem provided facilities producing simple vector plots deviceindependent format devicespecific interpreters display files modern unix systems also generally include standard windowing system many support opengl
+communications early unix systems contained intersystem communication include interuser communication programs mail write introduced early intersystem communication system uucp systems beginning release included tcpip utilities
+
+
+documentation unix firstcitation needed operating system include documentation online machinereadable form documentation included
+
+manual pages command library component system call header file
+longer documents detailing major subsystems language troff
+
+
+
+impactedit
+also unixlike
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed january 2017 learn remove template message
+
+
+
+
+
+
+
+thompson dennis ritchie principal developers research unix
+
+
+
+
+
+
+photo usenix 1984 including dennis ritchie center
+
+
+
+
+
+
+plan bell labs extends unix design principles developed successor unix
+
+
+unix system significant impact operating systems achieved reputation interactivity providing software nominal educational running inexpensive hardware easy adapt move different machines unix originally written assembly language thought necessary system implementations early computers soon rewritten highlevel programming language24 although followed lead multics burroughs unix popularized idea
+unix drastically simplified file model compared many contemporary operating systems treating kinds files simple byte arrays file system hierarchy contained machine services devices printers terminals disk drives providing uniform interface expense occasionally requiring additional mechanisms ioctl mode flags access features hardware simple stream bytes model plan operating system pushed model even eliminated need additional mechanisms
+unix also popularized hierarchical file system arbitrarily nested subdirectories originally introduced multics common operating systems ways divide storage device multiple directories sections fixed number levels often level several major proprietary operating systems eventually added recursive subdirectory capabilities also patterned multics decs rsx11ms group user hierarchy evolved directories cpms volumes evolved msdos subdirectories groupaccount hierarchy ibms os400 library systems folded broader posix file systems
+making command interpreter ordinary userlevel program additional commands provided separate programs another multics innovation popularized unix unix shell used language interactive commands scripting shell scripts separate control language like ibms since shell commands another program user could choose even write shell commands could added without changing shell unixs innovative commandline syntax creating modular chains producerconsumer processes pipelines made powerful programming paradigm coroutines widely available many later commandline interpreters inspired unix shell
+fundamental simplifying assumption unix focus newlinedelimited text nearly file formats binary editors original version unix entire system configured using textual shell command scripts common denominator system byte unlike recordbased file systems focus text representing nearly everything made unix pipes especially useful encouraged development simple general tools could easily combined perform complicated tasks focus text bytes made system scalable portable systems time textbased applications also proven popular application areas printing languages postscript application layer internet protocols smtp http soap
+unix popularized syntax regular expressions found widespread unix programming interface became basis widely implemented operating system interface standard posix programming language soon spread beyond unix ubiquitous systems applications programming
+early unix developers important bringing concepts modularity reusability software engineering practice spawning software tools movement time leading developers unix programs established cultural norms developing software norms became important influential technology unix termed unix philosophy
+tcpip networking protocols quickly implemented unix versions widely used relatively inexpensive computers contributed internet explosion worldwide realtime connectivity formed basis implementations many platforms
+unix policy extensive online documentation many years ready access system source code raised programmer expectations contributed 1983 launch free software movement
+free unix unixlike variantsedit
+also operating system unix unixlike operating systems
+
+
+
+
+
+
+
+
+console screenshots debian popular linux distribution freebsd bottom popular unixlike operating system
+
+
+1983 richard stallman announced short gnus unix project ambitious effort create free software unixlike system free sense everyone received copy would free study modify redistribute projects kernel development project hurd produced working kernel 1991 linus torvalds released linux kernel free software general public license addition linux operating system many packages compiler collection rest toolchain library core utilities gone play central roles free unix systems well
+linux distributions consisting linux kernel large collections compatible software become popular individual users business popular distributions include enterprise linux fedora suse linux enterprise opensuse debian gnulinux ubuntu linux mint mandriva linux slackware linux gentoo
+free derivative unix 386bsd released 1992 netbsd freebsd projects 1994 settlement lawsuit brought university california berkeley software design bsdi unix systems laboratories clarified berkeley right distribute unix free desired since unix developed several different product branches including openbsd dragonfly
+linux increasingly filling market needs traditionally served proprietary unix operating systems well expanding markets consumer desktop mobile embedded devices modular design unix model sharing components relatively common consequently unix unixlike systems include least code systems also include utilities distributions
+1999 interview dennis ritchie voiced opinion linux operating systems continuation basis unix design derivatives unix25
+
+think linux phenomenon quite delightful draws strongly basis unix provided linux seems among healthiest direct unix derivatives though also various systems well official offerings workstation mainframe manufacturers
+
+interview states views unix linux continuation ideas started many others many years ago25
+opensolaris opensource counterpart solaris developed microsystems included cddllicensed kernel primarily userland however oracle discontinued project upon acquisition prompted group former employees members opensolaris community fork opensolaris illumos kernel 2014 illumos remains active opensource system derivative
+arpanetedit
+1975 described development network unix center advanced computation university illinois system said present several interesting capabilities arpanet minihost time unix required license bell laboratories 20000us expensive nonuniversity users educational license cost noted bell open suggestions arpanetwide license
+specific features found beneficial local processing facilities compilers editors document preparation system efficient file system access control mountable unmountable volumes unified treatment peripherals special files integration network control program within unix file system treatment network connections special files accessed standard unix calls closing files program exit decision desirable minimize amount code added basic unix kernel
+brandingedit
+also list unix systems
+
+
+
+
+promotional license plate digital equipment corporation
+
+
+
+
+
+
+hp9000 workstation running hpux certified unix operating system
+
+
+october 1993 novell company owned rights unix system source time transferred trademarks unix xopen company open group26 1995 sold related business operations santa cruz operation sco27 whether novell also sold copyrights actual software subject 2006 federal lawsuit novell novell case appealed august 2011 united states court appeals tenth circuit affirmed trial decisions closing case28 unix vendor group accused novell slander title
+present owner trademark unix open group industry standards consortium systems fully compliant certified single unix specification qualify unix others called unixlike
+decree open group term unix refers class operating systems specific implementation operating system operating systems meet open groups single unix specification able bear unix unix trademarks today operating systems vendor pays substantial certification annual trademark royalties open group29 systems licensed unix trademark include aix30 hpux31 inspur kux32 irix33 solaris34 tru64 unix formerly digital unix osf135 macos36 part zos37 notably inspur linux distribution certified unix compliant3839
+sometimes representation like used indicate operating systems similar unix comes asterisk question mark characters wildcard indicators many utilities notation also used describe unixlike systems requirements unix branding open group
+open group requests unix always used adjective followed generic term system help avoid creation genericized trademark
+unix original formatting usage unix remains widespread typeset small caps unix according dennis ritchie presenting original unix paper third operating systems symposium american association computing machinery typesetter troff invented intoxicated able produce small caps40 many operating systems predecessors contemporaries used alluppercase lettering many people wrote name upper case force habit acronym41
+trademark names registered different entities different countries trademark laws countries allow trademark name controlled different entities entity uses trademark easily distinguishable categories result unix used brand name various products including book shelves pens bottled glue diapers hair driers food containers42
+several plural forms unix used casually refer multiple brands unix unixlike systems common conventional unixes unices treating unix latin noun third declension also popular pseudoanglosaxon plural form unixen common although occasionally seen microsystems developer solaris variant asserted term unix plural referencing many implementations43
+alsoedit
+
+
+
+
+
+book unix
+
+
+
+
+
+comparison operating systems opensource closedsource software
+list operating systems unix systems unix utilities
+market share operating systems
+operating systems timeline
+plan bell labs
+unix time
+year 2038 problem
+
+referencesedit
+
+
+mcilroy 1987 research unix reader annotated excerpts programmers manual 1971–1986 technical report cstr bell labs
+ritchie thompson 1974 unix timesharing system cacm 365–375
+ritchie thompson july 1978 unix timesharing system bell system tech american 1905–1929 doi101002j153873051978tb02136x retrieved december 2012
+novell completes sale unixware business santa cruz operation micro focus wwwnovellcom retrieved 20151220
+apple unix register certified products open group
+raymond eric 20030919 unix programming addisonwesley isbn 0131429019 retrieved 20090209
+ritchie dennis january 1993 development language retrieved december 2015
+elements operatingsystem style
+tandyradio shack book whole earth software catalog 1984 unix created software developers software developers give environment could completely manipulate
+powers shelley peek jerry oreilly loukides mike 2002 unix power tools isbn 0596003307
+kernighan brian pike unix programming environment 1984 viii
+fiedler ryan october 1983 unix tutorial part unix microcomputer marketplace byte retrieved january 2015
+tandyradio shack book whole earth software catalog 1984 best thing unix portability unix ports across full range hardware—from singleuser 5000 million cray first time point stability becomes software environment hardware architecture unix transcends changes hardware technology programs written unix environment move next generation hardware
+stuart brian 2009 principles operating systems design applications boston massachusetts thompson learning isbn 1418837695
+ritchie dennis evolution unix timesharing system retrieved 20170109
+dolya aleksey july 2003 interview brian kernighan linux journal
+farrow interview peter neumann login unics castrated oneuser multics called brian kernighan later becoming unix probably result lawyers
+stallings william operating systems internals design principles page pearson education 2005
+history unix byte august 1983 retrieved january 2015
+thompson 2014 personal communication thompson donald gillies website
+chesson greg 2014 personal communication greg chesson donald gillies website
+loading developerapplecom retrieved 20120822
+unixs revenge asymco september 2010 retrieved 20101109
+ritchie dennis 1979 evolution unix timesharing system bell labs retrieved 20160430 perhaps important watershed occurred 1973 operating system kernel rewritten
+benet manuel 1999 interview dennis ritchie linuxfocusorg
+chuck karish view profile options name unix property xopen compstdunix google groups groupsgooglecom retrieved 20101109 maint multiple names authors list link
+novell deliver highvolume unix advanced network enterprise services novellcom september 1995 retrieved 20101109
+jones pamela files docketing statement find appeal groklaw groklawnet retrieved april 2011
+open group open brand schedule retrieved december 2011 right unix trademark requires licensee open group additional annual calculated accordance table
+open group operating system v612 later certification
+open group hpux release b1131 later certification
+open group inspur certification
+open group irix 6528 patches 4605 7029 certification
+open group oracle solaris later certification
+bonnie talerico hewlettpackard company conformance statement open group retrieved 20151208
+macos version 1012 sierra intelbased computers open group
+vivian morabito corporation conformance statement open group retrieved 20151208
+ruohong inspur conformance statement open group retrieved 20151208
+ruohong inspur conformance statement commands utilities open group retrieved 20151208
+unix catborg retrieved 20101109
+troy douglas 1990 unix systems computing fundamentals benjamincumming publishing company isbn 0201198274
+autres unix autres moeurs otherunix cmbelllabscom april 2000 retrieved 20101109
+history solaris unix plural operating system many implementations idea originated 1965
+
+
+readingedit
+
+general
+
+
+ritchie thompson july–august 1978 unix timesharing system bell system technical journal archived original november 2010
+unix history wwwlevenezcom retrieved march 2005
+freebsd hpux linux solaris tru64 unixguidenet retrieved march 2005
+linux weekly news february 2002 lwnnet retrieved april 2006
+lions john lions commentary sixth edition unix operating system source code peertopeer communications 1996 isbn 1573980137
+
+
+books
+
+
+salus peter quarter century unix addison wesley june 1994 isbn 0201547775
+
+
+television
+
+
+computer chronicles 1985 unix
+computer chronicles 1989 unix
+
+external linksedit
+
+
+
+look unix wiktionary free dictionary
+
+
+
+
+
+wikimedia commons media related unix
+
+
+
+
+
+wikibook guide unix page topic commands
+
+
+
+unix system open group
+evolution unix timesharing system wayback machine archived april 2015
+creation unix operating system wayback machine archived april 2014
+unix tree files historic releases
+unix curlie based dmoz
+unix edition manuals
+1982 film unix featuring dennis ritchie thompson brian kernighan alfred
+history unix berkeley unix evolution 19751984
+byte magazine september 1986 unix mc68000 software perspective mc68000 architecture unix compatibility
+
+
+
+
+
+
+
+
+
+
+
+
+unix commandline interface programs shell builtins
+
+
+
+file system
+
+
+
+
+chmod
+chown
+chgrp
+cksum
+
+
+
+
+
+file
+fuser
+
+
+mkdir
+
+
+
+
+rmdir
+split
+
+touch
+type
+umask
+
+
+
+
+
+processes
+
+
+
+
+
+crontab
+
+kill
+nice
+
+time
+
+
+
+
+
+user environment
+
+
+
+
+exit
+logname
+mesg
+talk
+tput
+uname
+
+write
+
+
+
+
+
+text processing
+
+
+
+
+basename
+comm
+csplit
+
+diff
+dirname
+
+
+fold
+head
+iconv
+join
+
+
+
+paste
+printf
+
+sort
+strings
+tail
+
+uniq
+
+
+xargs
+
+
+
+
+
+shell builtins
+
+
+
+alias
+
+echo
+test
+unset
+wait
+
+
+
+
+
+searching
+
+
+
+find
+grep
+
+
+
+
+
+documentation
+
+
+
+
+
+
+
+
+
+software development
+
+
+
+
+ctags
+
+make
+
+strip
+yacc
+
+
+
+
+
+miscellaneous
+
+
+
+
+
+expr
+
+
+sleep
+true false
+
+
+
+
+
+
+
+
+categories
+
+standard unix programs
+unix sus2008 utilities
+
+
+list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+unix unixlike operating systems
+
+
+
+
+
+
+
+
+386bsd
+
+freebsd
+netbsd
+openbsd
+dragonfly
+
+
+nextstep
+darwin
+
+macos
+
+
+
+sunos
+ultrix
+
+
+coherent
+
+linux
+
+android
+chrome
+
+
+lynxos
+minix
+
+
+blackberry
+
+
+research unix
+system
+
+
+
+hpux
+illumos
+irix
+openserver
+solaris
+tru64 unix
+unixware
+
+
+xenix
+
+
+
+
+
+
+
+
+
+category
+commons
+book
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+operating systems
+
+
+
+general
+
+
+
+advocacy
+comparison
+forensic engineering
+history
+hobbyist development
+list
+timeline
+usage share
+
+
+
+
+
+kernel
+
+
+
+
+architectures
+
+
+
+exokernel
+hybrid
+microkernel
+monolithic
+rump kernel
+unikernel
+
+
+
+
+
+components
+
+
+
+device driver
+loadable kernel module
+microkernel
+user space
+
+
+
+
+
+
+
+
+process management
+
+
+
+
+concepts
+
+
+
+context switch
+interrupt
+
+process
+process control block
+realtime
+thread
+timesharing
+
+
+
+
+
+scheduling
+algorithms
+
+
+
+computer multitasking
+fixedpriority preemptive
+multilevel feedback queue
+preemptive
+roundrobin
+shortest next
+
+
+
+
+
+
+
+
+memory management
+resource protection
+
+
+
+error
+general protection fault
+memory protection
+paging
+protection ring
+segmentation fault
+virtual memory
+
+
+
+
+
+storage access
+file systems
+
+
+
+boot loader
+defragmentation
+device file
+file attribute
+inode
+journal
+partition
+virtual file system
+virtual tape library
+
+
+
+
+
+list
+
+
+
+amigaos
+android
+beos
+
+chrome
+
+
+
+haiku
+illumos
+includeos
+
+linux
+macintosh
+
+classic
+macos
+
+
+minix
+morphos
+musicsp
+nemesis
+
+openvms
+orvyl
+
+
+pick
+
+reactos
+risc
+rstse
+rsx11
+rt11
+solaris
+tops10tops20
+
+unix
+visi
+vmcms
+
+windows
+xinu
+
+
+
+
+
+
+miscellaneous concepts
+
+
+
+
+computer network
+
+live
+live
+shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+40618353
+cb11968227m data
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleunixoldid818041233 categories 1969 softwareoperating system familiestimesharing operating systemsunixhidden categories maint multiple names authors listwikipedia indefinitely moveprotected pagesuse dates august 2012articles needing additional references january 2017all articles needing additional referencesall articles specifically marked weaselworded phrasesarticles specifically marked weaselworded phrases april 2015articles specifically marked weaselworded phrases february 2014all articles unsourced statementsarticles unsourced statements november 2015webarchive template wayback linksarticles dmoz linkswikipedia articles identifierswikipedia articles identifierspages using magic links

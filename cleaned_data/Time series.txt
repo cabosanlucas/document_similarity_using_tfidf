@@ -1,0 +1,1335 @@
+
+
+
+
+time series random data plus trend bestfit line different applied filters
+
+
+time series series data points indexed listed graphed time order commonly time series sequence taken successive equally spaced points time thus sequence discretetime data examples time series heights ocean tides counts sunspots daily closing value jones industrial average
+time series frequently plotted line charts time series used statistics signal processing pattern recognition econometrics mathematical finance weather forecasting earthquake prediction electroencephalography control engineering astronomy communications engineering largely domain applied science engineering involves temporal measurements
+time series analysis comprises methods analyzing time series data order extract meaningful statistics characteristics data time series forecasting model predict future values based previously observed values regression analysis often employed test theories current values independent time series affect current value another time series type analysis time series called time series analysis focuses comparing values single time series multiple dependent time series different points time1 interrupted time series analysis analysis interventions single time series
+time series data natural temporal ordering makes time series analysis distinct crosssectional studies natural ordering observations explaining peoples wages reference respective education levels individuals data could entered order time series analysis also distinct spatial data analysis observations typically relate geographical locations accounting house prices location well intrinsic characteristics houses stochastic model time series generally reflect fact observations close together time closely related observations apart addition time series models often make natural oneway ordering time values given period expressed deriving past values rather future values time reversibility
+time series analysis applied realvalued continuous data discrete numeric data discrete symbolic data sequences characters letters words english language2
+
+
+
+contents
+
+
+methods analysis
+panel data
+analysis
+
+motivation
+exploratory analysis
+curve fitting
+function approximation
+prediction forecasting
+classification
+signal estimation
+segmentation
+
+
+models
+
+notation
+conditions
+tools
+measures
+
+
+visualization
+
+overlapping charts
+separated charts
+
+
+software
+also
+references
+reading
+external links
+
+
+
+methods analysisedit
+methods time series analysis divided classes frequencydomain methods timedomain methods former include spectral analysis wavelet analysis latter include autocorrelation crosscorrelation analysis time domain correlation analysis made filterlike manner using scaled correlation thereby mitigating need operate frequency domain
+additionally time series analysis techniques divided parametric nonparametric methods parametric approaches assume underlying stationary stochastic process certain structure described using small number parameters example using autoregressive moving average model approaches task estimate parameters model describes stochastic process contrast nonparametric approaches explicitly estimate covariance spectrum process without assuming process particular structure
+methods time series analysis also divided linear nonlinear univariate multivariate
+panel dataedit
+time series type panel data panel data general class multidimensional data whereas time series data onedimensional panel crosssectional dataset data exhibit characteristics panel data time series data tell makes data record unique records answer time data field time series data candidate determining unique record requires time data field additional identifier unrelated time student stock symbol country code panel data candidate differentiation lies nontime identifier data crosssectional data candidate
+analysisedit
+several types motivation data analysis available time series appropriate different purposes
+motivationedit
+context statistics econometrics quantitative finance seismology meteorology geophysics primary goal time series analysis forecasting context signal processing control engineering communication engineering used signal detection estimation context data mining pattern recognition machine learning time series analysis used clustering classification query content anomaly detection well forecastingcitation needed
+exploratory analysisedit
+
+
+
+
+tuberculosis incidence 19532009
+
+
+information exploratory analysis
+clearest examine regular time series manually line chart shown tuberculosis united states made spreadsheet program number cases standardized rate 100000 percent change year rate calculated nearly steadily dropping line shows incidence decreasing years percent change rate varied much surges 1975 around early 1990s vertical axes allows comparison time series graphic
+techniques include
+
+autocorrelation analysis examine serial dependence
+spectral analysis examine cyclic behavior need related seasonality example spot activity varies year cycles34 common examples include celestial phenomena weather patterns neural activity commodity prices economic activity
+separation components representing trend seasonality slow fast variation cyclical irregularity trend estimation decomposition time series
+
+curve fittingedit
+main article curve fitting
+curve fitting56 process constructing curve mathematical function best series data points7 possibly subject constraints89 curve fitting involve either interpolation1011 exact data required smoothing1213 smooth function constructed approximately fits data related topic regression analysis1415 focuses questions statistical inference much uncertainty present curve data observed random errors fitted curves used data visualization1617 infer values function data available18 summarize relationships among variables19 extrapolation refers fitted curve beyond range observed data20 subject degree uncertainty21 since reflect method used construct curve much reflects observed data
+construction economic time series involves estimation components dates interpolation values benchmarks earlier later dates interpolation estimation unknown quantity known quantities historical data drawing conclusions missing information available information reading lines22 interpolation useful data surrounding missing data available trend seasonality longerterm cycles known often done using related series known relevant dates23 alternatively polynomial interpolation spline interpolation used piecewise polynomial functions time intervals smoothly together different problem closely related interpolation approximation complicated function simple function also called regressionthe main difference regression interpolation polynomial regression gives single polynomial models entire data spline interpolation however yield piecewise continuous function composed many polynomials model data
+extrapolation process estimating beyond original observation range value variable basis relationship another variable similar interpolation produces estimates known observations extrapolation subject greater uncertainty higher risk producing meaningless results
+function approximationedit
+main article function approximation
+general function approximation problem asks select function among welldefined class closely matches approximates target function taskspecific distinguish major classes function approximation problems first known target functions approximation theory branch numerical analysis investigates certain known functions example special functions approximated specific class functions example polynomials rational functions often desirable properties inexpensive computation continuity integral limit values
+second target function call unknown instead explicit formula points time series form provided depending structure domain codomain several techniques approximating applicable example operation real numbers techniques interpolation extrapolation regression analysis curve fitting used codomain range target finite dealing classification problem instead related problem online time series approximation24 summarize data onepass construct approximate representation support variety time series queries bounds worstcase error
+extent different problems regression classification fitness approximation received unified treatment statistical learning theory viewed supervised learning problems
+prediction forecastingedit
+statistics prediction part statistical inference particular approach inference known predictive inference prediction undertaken within several approaches statistical inference indeed description statistics provides means transferring knowledge sample population whole population related populations necessarily prediction time information transferred across time often specific points time process known forecasting
+
+fully formed statistical models stochastic simulation purposes generate alternative versions time series representing might happen nonspecific timeperiods future
+simple fully formed statistical models describe likely outcome time series immediate future given knowledge recent outcomes forecasting
+forecasting time series usually done using automated statistical software packages programming languages spss minitab pandas python many others
+
+classificationedit
+main article statistical classification
+assigning time series pattern specific category example identify word based series hand movements sign language
+signal estimationedit
+also signal processing estimation theory
+approach based harmonic analysis filtering signals frequency domain using fourier transform spectral density estimation development significantly accelerated world mathematician norbert wiener electrical engineers rudolf kálmán dennis gabor others filtering signals noise predicting signal values certain point time kalman filter estimation theory digital signal processing
+segmentationedit
+main article timeseries segmentation
+splitting timeseries sequence segments often case timeseries represented sequence individual segments characteristic properties example audio signal conference call partitioned pieces corresponding times person speaking timeseries segmentation goal identify segment boundary points timeseries characterize dynamical properties associated segment approach problem using changepoint detection modeling timeseries sophisticated system markov jump linear system
+modelsedit
+models time series data many forms represent different stochastic processes modeling variations level process three broad classes practical importance autoregressive models integrated models moving average models three classes depend linearly previous data points25 combinations ideas produce autoregressive moving average arma autoregressive integrated moving average arima models autoregressive fractionally integrated moving average arfima model generalizes former three extensions classes deal vectorvalued data available heading multivariate timeseries models sometimes preceding acronyms extended including initial vector vector autoregression additional extensions models available observed timeseries driven forcing timeseries causal effect observed series distinction multivariate case forcing series deterministic experimenters control models acronyms extended final exogenous
+nonlinear dependence level series previous data points interest partly possibility producing chaotic time series however importantly empirical investigations indicate advantage using predictions derived nonlinear models linear models example nonlinear autoregressive exogenous models references nonlinear time series analysis kantz schreiber26 abarbanel27
+among types nonlinear time series models models represent changes variance time heteroskedasticity models represent autoregressive conditional heteroskedasticity arch collection comprises wide variety representation garch tarch egarch figarch cgarch changes variability related predicted recent past values observed series contrast possible representations locally varying variability variability might modelled driven separate timevarying process doubly stochastic model
+recent work modelfree analyses wavelet transform based methods example locally stationary wavelets wavelet decomposed neural networks gained favor multiscale often referred multiresolution techniques decompose given time series attempting illustrate time dependence multiple scales also markov switching multifractal msmf techniques modeling volatility evolution
+hidden markov model statistical markov model system modeled assumed markov process unobserved hidden states considered simplest dynamic bayesian network models widely used speech recognition translating time series spoken words text
+notationedit
+number different notations timeseries analysis common notation specifying time series indexed natural numbers written
+
+
+
+another common notation
+
+
+
+index
+conditionsedit
+sets conditions much theory built
+
+stationary process
+ergodic process
+
+however ideas stationarity must expanded consider important ideas strict stationarity secondorder stationarity models applications developed conditions although models latter case might considered partly specified
+addition timeseries analysis applied series seasonally stationary nonstationary situations amplitudes frequency components change time dealt timefrequency analysis makes time–frequency representation timeseries signal28
+toolsedit
+
+
+
+
+
+
+section list format better presented using prose help converting section prose appropriate editing help available february 2012
+
+
+
+tools investigating timeseries data include
+
+consideration autocorrelation function spectral density function also crosscorrelation functions crossspectral density functions
+scaled cross autocorrelation functions remove contributions slow components29
+performing fourier transform investigate series frequency domain
+filter remove unwanted noise
+principal component analysis empirical orthogonal function analysis
+singular spectrum analysis
+structural models
+
+general state space models
+unobserved components models
+
+
+machine learning
+
+artificial neural networks
+support vector machine
+fuzzy logic
+gaussian processes
+hidden markov model
+
+
+queueing theory analysis
+control chart
+
+shewhart individuals control chart
+cusum chart
+ewma chart
+
+
+detrended fluctuation analysis
+dynamic time warping30
+crosscorrelation31
+dynamic bayesian network
+timefrequency analysis techniques
+
+fast fourier transform
+continuous wavelet transform
+shorttime fourier transform
+chirplet transform
+fractional fourier transform
+
+
+chaotic analysis
+
+correlation dimension
+recurrence plots
+recurrence quantification analysis
+lyapunov exponents
+entropy encoding
+
+
+
+measuresedit
+time series metrics features used time series classification regression analysis32
+
+univariate linear measures
+
+moment mathematics
+spectral band power
+spectral edge frequency
+accumulated energy signal processing
+characteristics autocorrelation function
+hjorth parameters
+parameters
+autoregressive model parameters
+mann–kendall test
+
+
+univariate nonlinear measures
+
+measures based correlation
+correlation dimension
+correlation integral
+correlation density
+correlation entropy
+approximate entropy33
+sample entropy
+fourier entropyuk
+wavelet entropy
+rényi entropy
+higherorder methods
+marginal predictability
+dynamical similarity index
+state space dissimilarity measures
+lyapunov exponent
+permutation methods
+local flow
+
+
+univariate measures
+
+algorithmic complexity
+kolmogorov complexity estimates
+hidden markov model states
+rough path signature34
+surrogate time series surrogate correction
+loss recurrence degree nonstationarity
+
+
+bivariate linear measures
+
+maximum linear crosscorrelation
+linear coherence signal processing
+
+
+bivariate nonlinear measures
+
+nonlinear interdependence
+dynamical entrainment physics
+measures phase synchronization
+measures phase locking
+
+
+similarity measures35
+
+crosscorrelation
+dynamic time warping30
+hidden markov models
+edit distance
+total correlation
+newey–west estimator
+prais–winsten transformation
+data vectors metrizable space
+
+minkowski distance
+mahalanobis distance
+
+
+data time series envelopes
+
+global standard deviation
+local standard deviation
+windowed standard deviation
+
+
+data interpreted stochastic series
+
+pearson productmoment correlation coefficient
+spearmans rank correlation coefficient
+
+
+data interpreted probability distribution function
+
+kolmogorov–smirnov test
+cramér–von mises criterion
+
+
+
+
+
+visualizationedit
+time series visualized categories chart overlapping charts separated charts overlapping charts display alltime series layout separated charts presents different layouts aligned comparison purpose36
+overlapping chartsedit
+
+braided graphs
+line charts
+slope graphs
+gapchart
+
+separated chartsedit
+
+horizon graphs
+reduced line charts small multiples
+silhouette graph
+circular silhouette graph
+
+softwareedit
+working time series data relatively common statistical analysis software result many offerings commercial open source examples include
+
+cran supplementary statistics package
+analysis forecasting weka38
+predictive modeling gmdh shell39
+functions modeling wolfram language40
+time series objects matlab41
+sasets software42
+expert modeler spss statistics spss modeler
+automatic time series forecasting ldt43
+eviews statistical package windows used mainly timeseries oriented econometric analysis
+bayesloop probabilistic programming framework facilitates objective model selection timevarying parameter models44
+slycat webbased ensemble analysis visualization platform created sandia national laboratoriesl45
+
+alsoedit
+
+
+anomaly time series
+chirp
+decomposition time series
+detrended fluctuation analysis
+digital signal processing
+distributed
+estimation theory
+forecasting
+hurst exponent
+monte carlo method
+panel analysis
+random walk
+scaled correlation
+seasonal adjustment
+sequence analysis
+signal processing
+trend estimation
+unevenly spaced time series
+time series database
+
+
+referencesedit
+
+
+imdadullah time series analysis basic statistics data analysis itfeaturecom retrieved january 2014
+jessica keogh eamonn lonardi stefano chiu bill 2003 symbolic representation time series implications streaming algorithms proceedings sigmod workshop research issues data mining knowledge discovery york press doi101145882082882086
+bloomfield 1976 fourier analysis time series introduction york wiley isbn 0471082562
+shumway 1988 applied statistical time series analysis englewood cliffs prentice hall isbn 0130415006
+sandra lach arlinghaus practical handbook curve fitting press 1994
+william kolb curve fitting programmable calculators syntec incorporated 1984
+halli 1992 advanced techniques population analysis isbn 0306439972 page functions fulfilled good moderate observed data
+signal noise many predictions failbut dont nate silver
+data preparation data mining text dorian pyle
+numerical methods engineering matlab® jaan kiusalaas page
+numerical methods engineering python jaan kiusalaas page
+numerical methods curve fitting guest philip george guest page
+also mollifier
+fitting models biological data using linear nonlinear regression harvey motulsky arthur christopoulos
+regression analysis rudolf freund william wilson ping page
+visual informatics edited halimah badioze zaman peter robinson maria petrou patrick olivier heiko schröder page
+numerical methods nonlinear engineering models john hauser page
+methods experimental physics spectroscopy volume part claire marton page
+encyclopedia research design volume edited neil salkind page
+community analysis planning techniques richard klosterman page
+introduction risk uncertainty evaluation environmental investments diane publishing
+hamming richard numerical methods scientists engineers courier corporation 2012
+friedman milton interpolation time series related series journal american statistical association 57300 1962 729757
+gandhi sorabh luca foschini subhash suri spaceefficient online approximation time series data streams amnesia outoforder data engineering icde 2010 ieee 26th international conference ieee 2010
+gershenfeld 1999 nature mathematical modeling york cambridge university press 205–208 isbn 0521570956
+kantz holger thomas schreiber 2004 nonlinear time series analysis london cambridge university press isbn 9780521529020
+abarbanel henry 1997 analysis observed chaotic data york springer isbn 9780387983721
+boashash 2003 timefrequency signal analysis processing comprehensive reference elsevier science oxford 2003 isbn 0080443354
+nikolić muresan feng singer 2012 scaled correlation analysis better compute crosscorrelogram european journal neuroscience 742–762 doi101111j14609568201107987x
+sakoe hiroaki chiba seibi 1978 dynamic programming algorithm optimization spoken word recognition ieee transactions acoustics speech signal processing doi101109tassp19781163055
+goutte cyril toft peter rostrup egill nielsen finn hansen lars 1999 clustering fmri time series neuroimage doi101006nimg19980391
+mormann florian andrzejak ralph elger christian lehnertz klaus 2007 seizure prediction long winding road brain 314–333 doi101093brainawl241 pmid 17008335
+land bruce elias damian measuring complexity time series
+chevyrev kormilitzin 2016 primer signature method machine learning arxiv160303788v1
+ropella hunt 2003 similarity measures automated comparison silico vitro experimental results engineering medicine biology society 2933–2936 doi101109iembs20031280532
+tominski christian aigner wolfgang timeviz browsera visual survey visualization techniques timeoriented data retrieved june 2014
+hyndman 20160122 cran task view time series analysis
+time series analysis forecasting weka pentaho data mining pentaho wiki wikipentahocom retrieved 20160707
+time series analysis forecasting software 2016 free download retrieved 20160707
+time series—wolfram language documentation referencewolframcom retrieved 20160707
+time series objects matlab simulink wwwmathworkscom retrieved 20160707
+econometrics time series analysis sasets software retrieved 20160707
+sourceforge retrieved 20160904
+bayesloop probabilistic programming framework facilitates objective model selection timevarying parameter models retrieved 20161206
+time slycat webbased ensemble analysis visualization platform retrieved 20171003
+
+
+readingedit
+
+george jenkins gwilym 1976 time series analysis forecasting control oakland california holdenday
+cowpertwait metcalfe 2009 introductory time series springer
+durbin koopman 2001 time series analysis state space methods oxford university press
+gershenfeld neil 2000 nature mathematical modeling cambridge university press isbn 9780521570954 oclc 174825352
+hamilton james 1994 time series analysis princeton university press isbn 0691042896
+priestley 1981 spectral analysis time series academic press isbn 9780125649018
+shasha 2004 high performance discovery time series springer isbn 0387008578
+shumway stoffer 2011 time series analysis applications springer
+weigend gershenfeld 1994 time series prediction forecasting future understanding past proceedings nato advanced research workshop comparative time series analysis santa 1992 addisonwesley
+wiener 1949 extrapolation interpolation smoothing stationary time series press
+woodward gray elliott 2012 applied time series analysis press
+
+external linksedit
+
+time series encyclopaedia mathematics
+first course time series analysis open source book time series analysis
+introduction time series analysis engineering statistics handbook practical guide time series analysis
+matlab toolkit computation multiple measures time series data bases
+matlab tutorial power spectra wavelet analysis coherence website many tutorials
+timeviz survey
+gaussian processes machine learning book webpage
+cran time series task view time series
+timeseries analysis pandas
+
+
+
+
+
+
+
+
+
+
+
+
+statistics
+
+
+
+
+
+
+outline
+index
+
+
+
+
+
+
+
+
+
+
+descriptive statistics
+
+
+
+
+
+
+
+continuous data
+
+
+
+
+center
+
+
+
+mean
+
+arithmetic
+geometric
+harmonic
+
+
+median
+mode
+
+
+
+
+
+dispersion
+
+
+
+variance
+standard deviation
+coefficient variation
+percentile
+range
+interquartile range
+
+
+
+
+
+shape
+
+
+
+central limit theorem
+moments
+
+skewness
+kurtosis
+lmoments
+
+
+
+
+
+
+
+
+
+
+count data
+
+
+
+index dispersion
+
+
+
+
+
+summary tables
+
+
+
+grouped data
+frequency distribution
+contingency table
+
+
+
+
+
+dependence
+
+
+
+pearson productmoment correlation
+rank correlation
+
+spearmans
+kendalls
+
+
+partial correlation
+scatter plot
+
+
+
+
+
+graphics
+
+
+
+chart
+biplot
+plot
+control chart
+correlogram
+chart
+forest plot
+histogram
+chart
+plot
+chart
+scatter plot
+stemandleaf display
+radar chart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data collection
+
+
+
+
+
+
+
+study design
+
+
+
+population
+statistic
+effect size
+statistical power
+sample size determination
+missing data
+
+
+
+
+
+survey methodology
+
+
+
+sampling
+
+stratified
+cluster
+
+
+standard error
+opinion poll
+questionnaire
+
+
+
+
+
+controlled experiments
+
+
+
+design
+
+control
+optimal
+
+
+controlled trial
+randomized
+random assignment
+replication
+blocking
+interaction
+factorial experiment
+
+
+
+
+
+uncontrolled studies
+
+
+
+observational study
+natural experiment
+quasiexperiment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+statistical inference
+
+
+
+
+
+
+
+statistical theory
+
+
+
+population
+statistic
+probability distribution
+sampling distribution
+
+order statistic
+
+
+empirical distribution
+
+density estimation
+
+
+statistical model
+
+space
+
+
+parameter
+
+location
+scale
+shape
+
+
+parametric family
+
+likelihood monotone
+location–scale family
+exponential family
+
+
+completeness
+sufficiency
+statistical functional
+
+bootstrap
+
+
+
+
+optimal decision
+
+loss function
+
+
+efficiency
+statistical distance
+
+divergence
+
+
+asymptotics
+robustness
+
+
+
+
+
+frequentist inference
+
+
+
+
+point estimation
+
+
+
+estimating equations
+
+maximum likelihood
+method moments
+mestimator
+minimum distance
+
+
+unbiased estimators
+
+meanunbiased minimumvariance
+
+rao–blackwellization
+lehmann–scheffé theorem
+
+
+median unbiased
+
+
+plugin
+
+
+
+
+
+interval estimation
+
+
+
+confidence interval
+pivot
+likelihood interval
+prediction interval
+tolerance interval
+resampling
+
+bootstrap
+jackknife
+
+
+
+
+
+
+
+testing hypotheses
+
+
+
+2tails
+power
+
+uniformly powerful test
+
+
+permutation test
+
+randomization test
+
+
+multiple comparisons
+
+
+
+
+
+parametric tests
+
+
+
+likelihoodratio
+wald
+score
+
+
+
+
+
+
+
+
+specific tests
+
+
+
+
+
+
+
+normal
+students ttest
+
+
+
+
+
+
+goodness
+
+
+
+chisquared
+kolmogorov–smirnov
+anderson–darling
+lilliefors
+jarque–bera
+normality shapiro–wilk
+likelihoodratio test
+model selection
+
+cross validation
+
+
+
+
+
+
+
+
+
+rank statistics
+
+
+
+sign
+
+sample median
+
+
+signed rank wilcoxon
+
+hodges–lehmann estimator
+
+
+rank mann–whitney
+nonparametric anova
+
+1way kruskal–wallis
+2way friedman
+ordered alternative jonckheere–terpstra
+
+
+
+
+
+
+
+
+
+
+bayesian inference
+
+
+
+bayesian probability
+
+prior
+posterior
+
+
+credible interval
+bayes factor
+bayesian estimator
+
+maximum posterior estimator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+correlation
+regression analysis
+
+
+
+
+
+
+
+
+
+
+correlation
+
+
+
+pearson productmoment
+partial correlation
+confounding variable
+coefficient determination
+
+
+
+
+
+regression analysis
+
+
+
+errors residuals
+regression model validation
+mixed effects models
+simultaneous equations models
+multivariate adaptive regression splines mars
+
+
+
+
+
+linear regression
+
+
+
+simple linear regression
+ordinary least squares
+general linear model
+bayesian regression
+
+
+
+
+
+nonstandard predictors
+
+
+
+nonlinear regression
+nonparametric
+semiparametric
+isotonic
+robust
+heteroscedasticity
+homoscedasticity
+
+
+
+
+
+generalized linear model
+
+
+
+exponential families
+logistic bernoulli binomial poisson regressions
+
+
+
+
+
+partition variance
+
+
+
+analysis variance anova anova
+analysis covariance
+multivariate anova
+degrees freedom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+categorical multivariate timeseries survival analysis
+
+
+
+
+
+
+
+categorical
+
+
+
+cohens kappa
+contingency table
+graphical model
+loglinear model
+mcnemars test
+
+
+
+
+
+multivariate
+
+
+
+regression
+manova
+principal components
+canonical correlation
+discriminant analysis
+cluster analysis
+classification
+structural equation model
+
+factor analysis
+
+
+multivariate distributions
+
+elliptical distributions
+
+normal
+
+
+
+
+
+
+
+
+
+timeseries
+
+
+
+
+general
+
+
+
+decomposition
+trend
+stationarity
+seasonal adjustment
+exponential smoothing
+cointegration
+structural break
+granger causality
+
+
+
+
+
+specific tests
+
+
+
+dickey–fuller
+johansen
+qstatistic ljung–box
+durbin–watson
+breusch–godfrey
+
+
+
+
+
+time domain
+
+
+
+autocorrelation
+
+partial pacf
+
+
+crosscorrelation
+arma model
+arima model box–jenkins
+autoregressive conditional heteroskedasticity arch
+vector autoregression
+
+
+
+
+
+frequency domain
+
+
+
+spectral density estimation
+fourier analysis
+wavelet
+
+
+
+
+
+
+
+
+survival
+
+
+
+
+survival function
+
+
+
+kaplan–meier estimator product limit
+proportional hazards models
+accelerated failure time model
+first hitting time
+
+
+
+
+
+hazard function
+
+
+
+nelson–aalen estimator
+
+
+
+
+
+test
+
+
+
+logrank test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+applications
+
+
+
+
+
+
+
+biostatistics
+
+
+
+bioinformatics
+clinical trials studies
+epidemiology
+medical statistics
+
+
+
+
+
+engineering statistics
+
+
+
+chemometrics
+methods engineering
+probabilistic design
+process quality control
+reliability
+system identification
+
+
+
+
+
+social statistics
+
+
+
+actuarial science
+census
+crime statistics
+demography
+econometrics
+national accounts
+official statistics
+population statistics
+psychometrics
+
+
+
+
+
+spatial statistics
+
+
+
+cartography
+environmental statistics
+geographic information system
+geostatistics
+kriging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+portal
+commons
+wikiproject
+
+
+
+
+
+
+
+
+statistics portal
+
+
+
+
+
+authority control
+
+
+
+00574724
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitletimeseriesoldid815594176 categories time seriesstatistical data typesmathematical quantitative methods economicsmachine learninghidden categories articles unsourced statementsarticles unsourced statements october 2017articles needing cleanup february 2012all pages needing cleanuparticles sections need turned prose february 2012

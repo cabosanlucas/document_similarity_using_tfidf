@@ -1,0 +1,2358 @@
+This article is about probability distributions. For generalized functions in mathematical analysis, see Distribution (mathematics). For other uses, see Distribution.
+
+
+
+
+
+
+
+This article has multiple issues. Please help improve it or discuss these issues on the talk page. (Learn how and when to remove these template messages)
+
+
+
+
+
+
+
+This article includes a list of references, related reading or external links, but its sources remain unclear because it lacks inline citations. Please help to improve this article by introducing more precise citations. (July 2011) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (July 2011) (Learn how and when to remove this template message)
+
+
+
+
+
+(Learn how and when to remove this template message)
+
+
+
+In probability theory and statistics, a probability distribution is a mathematical function that, stated in simple terms, can be thought of as providing the probabilities of occurrence of different possible outcomes in an experiment. For instance, if the random variable X is used to denote the outcome of a coin toss ("the experiment"), then the probability distribution of X would take the value 0.5 for X = heads, and 0.5 for X = tails (assuming the coin is fair).
+In more technical terms, the probability distribution is a description of a random phenomenon in terms of the probabilities of events. Examples of random phenomena can include the results of an experiment or survey. A probability distribution is defined in terms of an underlying sample space, which is the set of all possible outcomes of the random phenomenon being observed. The sample space may be the set of real numbers or a higher-dimensional vector space, or it may be a list of non-numerical values; for example, the sample space of a coin flip would be {heads, tails} .
+Probability distributions are generally divided into two classes. A discrete probability distribution (applicable to the scenarios where the set of possible outcomes is discrete, such as a coin toss or a roll of dice) can be encoded by a discrete list of the probabilities of the outcomes, known as a probability mass function. On the other hand, a continuous probability distribution (applicable to the scenarios where the set of possible outcomes can take on values in a continuous range (e.g. real numbers), such as the temperature on a given day) is typically described by probability density functions (with the probability of any individual outcome actually being 0). The normal distribution is a commonly encountered continuous probability distribution. More complex experiments, such as those involving stochastic processes defined in continuous time, may demand the use of more general probability measures.
+A probability distribution whose sample space is the set of real numbers is called univariate, while a distribution whose sample space is a vector space is called multivariate. A univariate distribution gives the probabilities of a single random variable taking on various alternative values; a multivariate distribution (a joint probability distribution) gives the probabilities of a random vector—a list of two or more random variables—taking on various combinations of values. Important and commonly encountered univariate probability distributions include the binomial distribution, the hypergeometric distribution, and the normal distribution. The multivariate normal distribution is a commonly encountered multivariate distribution.
+
+
+
+Contents
+
+
+1 Introduction
+2 Terminology
+
+2.1 Basic terms
+
+
+3 Cumulative distribution function
+4 Discrete probability distribution
+
+4.1 Measure theoretic formulation
+4.2 Cumulative distribution function
+4.3 Delta-function representation
+4.4 Indicator-function representation
+
+
+5 Continuous probability distribution
+6 Some properties
+7 Kolmogorov definition
+8 Random number generation
+9 Applications
+10 Common probability distributions
+
+10.1 Related to real-valued quantities that grow linearly (e.g. errors, offsets)
+10.2 Related to positive real-valued quantities that grow exponentially (e.g. prices, incomes, populations)
+10.3 Related to real-valued quantities that are assumed to be uniformly distributed over a (possibly unknown) region
+10.4 Related to Bernoulli trials (yes/no events, with a given probability)
+10.5 Related to categorical outcomes (events with K possible outcomes, with a given probability for each outcome)
+10.6 Related to events in a Poisson process (events that occur independently with a given rate)
+10.7 Related to the absolute values of vectors with normally distributed components
+10.8 Related to normally distributed quantities operated with sum of squares (for hypothesis testing)
+10.9 Useful as conjugate prior distributions in Bayesian inference
+
+
+11 See also
+12 References
+13 External links
+
+
+
+Introduction[edit]
+
+
+
+
+The probability mass function (pmf) p(S) specifies the probability distribution for the sum S of counts from two dice. For example, the figure shows that p(11) = 1/18. The pmf allows the computation of probabilities of events such as P(S > 9) = 1/12 + 1/18 + 1/36 = 1/6, and all other probabilities in the distribution.
+
+
+To define probability distributions for the simplest cases, one needs to distinguish between discrete and continuous random variables. In the discrete case, it is sufficient to specify a probability mass function 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ assigning a probability to each possible outcome: for example, when throwing a fair dice, each of the six values 1 to 6 has the probability 1/6. The probability of an event is then defined to be the sum of the probabilities of the outcomes that satisfy the event; for example, the probability of the event "the dice rolls an even value" is
+
+
+
+
+
+p
+(
+2
+)
++
+p
+(
+4
+)
++
+p
+(
+6
+)
+=
+1
+
+/
+
+6
++
+1
+
+/
+
+6
++
+1
+
+/
+
+6
+=
+1
+
+/
+
+2.
+
+
+{\displaystyle p(2)+p(4)+p(6)=1/6+1/6+1/6=1/2.}
+
+
+
+In contrast, when a random variable takes values from a continuum then typically, any individual outcome has probability zero and only events that include infinitely many outcomes, such as intervals, can have positive probability. For example, the probability that a given object weighs exactly 500 g is zero, because the probability of measuring exactly 500 g tends to zero as the accuracy of our measuring instruments increases. Nevertheless, in quality control one might demand that the probability of a "500 g" package containing between 490 g and 510 g should be no less than 98%, and this demand is less sensitive to the accuracy of measurement instruments.
+Continuous probability distributions can be described in several ways. The probability density function describes the infinitesimal probability of any given value, and the probability that the outcome lies in a given interval can be computed by integrating the probability density function over that interval. On the other hand, the cumulative distribution function describes the probability that the random variable is no larger than a given value; the probability that the outcome lies in a given interval can be computed by taking the difference between the values of the cumulative distribution function at the endpoints of the interval. The cumulative distribution function is the antiderivative of the probability density function provided that the latter function exists.
+
+
+
+
+The probability density function (pdf) of the normal distribution, also called Gaussian or "bell curve", the most important continuous random distribution. As notated on the figure, the probabilities of intervals of values correspond to the area under the curve.
+
+
+Terminology[edit]
+As probability theory is used in quite diverse applications, terminology is not uniform and sometimes confusing. The following terms are used for non-cumulative probability distribution functions:
+
+Frequency distribution: A frequency distribution is a table that displays the frequency of various outcomes in a sample.
+Relative frequency distribution: A frequency distribution where each value has been divided (normalized) by a number of outcomes in a sample i.e. sample size.
+Probability distribution: Sometimes used as an alias for Relative frequency distribution but most books use it as a limit to whichRelative frequency distribution tends when sample size tends to population size. It's a general term to indicate the way the total probability of 1 is distributed over all various possible outcomes (i.e. over entire population). It may for instance refer to a table that displays the probabilities of various outcomes in a finite population or to the probability density of an uncountably infinite population.
+Cumulative distribution function: is a general functional form to describe a probability distribution.
+Probability distribution function: somewhat ambiguous term sometimes referring to a functional form of probability distribution table. Could be called a "normalized frequency distribution function", where area under the graph equals to 1.
+Probability mass, Probability mass function, p.m.f., Discrete probability distribution function: for discrete random variables.
+Categorical distribution: for discrete random variables with a finite set of values.
+Probability density, Probability density function, p.d.f., Continuous probability distribution function: most often reserved for continuous random variables.
+
+The following terms are somewhat ambiguous as they can refer to non-cumulative or cumulative distributions, depending on authors' preferences:
+
+Probability distribution function: continuous or discrete, non-cumulative or cumulative.
+Probability function: even more ambiguous, can mean any of the above or other things.
+
+Basic terms[edit]
+
+Mode: for a discrete random variable, the value with highest probability (the location at which the probability mass function has its peak); for a continuous random variable, a location at which the probability density function has a local peak.
+Support: the smallest closed set whose complement has probability zero.
+Head: the range of values where the pmf or pdf is relatively high.
+Tail: the complement of the head within the support; the large set of values where the pmf or pdf is relatively low.
+Expected value or mean: the weighted average of the possible values, using their probabilities as their weights; or the continuous analog thereof.
+Median: the value such that the set of values less than the median, and the set greater than the median, each have probabilities no greater than one-half.
+Variance: the second moment of the pmf or pdf about the mean; an important measure of the dispersion of the distribution.
+Standard deviation: the square root of the variance, and hence another measure of dispersion.
+Symmetry: a property of some distributions in which the portion of the distribution to the left of a specific value is a mirror image of the portion to its right.
+Skewness: a measure of the extent to which a pmf or pdf "leans" to one side of its mean. The third standardized moment of the distribution.
+Kurtosis: a measure of the "fatness" of the tails of a pmf or pdf. The fourth standardized moment of the distribution.
+
+Cumulative distribution function[edit]
+Because a probability distribution P on the real line is determined by the probability of a scalar random variable X being in a half-open interval (−∞, x], the probability distribution is completely characterized by its cumulative distribution function:
+
+
+
+
+
+F
+(
+x
+)
+=
+P
+⁡
+[
+X
+≤
+x
+]
+
+
+ for all 
+
+x
+∈
+
+R
+
+.
+
+
+{\displaystyle F(x)=\operatorname {P} [X\leq x]\qquad {\text{ for all }}x\in \mathbb {R} .}
+
+
+
+Discrete probability distribution[edit]
+See also: Probability mass function and Categorical distribution
+
+
+
+
+The probability mass function of a discrete probability distribution. The probabilities of the singletons {1}, {3}, and {7} are respectively 0.2, 0.5, 0.3. A set not containing any of these points has probability zero.
+
+
+
+
+
+
+The cdf of a discrete probability distribution, ...
+
+
+
+
+
+
+... of a continuous probability distribution, ...
+
+
+
+
+
+
+... of a distribution which has both a continuous part and a discrete part.
+
+
+A discrete probability distribution is a probability distribution characterized by a probability mass function. Thus, the distribution of a random variable X is discrete, and X is called a discrete random variable, if
+
+
+
+
+
+
+∑
+
+u
+
+
+P
+⁡
+(
+X
+=
+u
+)
+=
+1
+
+
+{\displaystyle \sum _{u}\operatorname {P} (X=u)=1}
+
+
+
+as u runs through the set of all possible values of X. A discrete random variable can assume only a finite or countably infinite number of values. For the number of potential values to be countably infinite, even though their probabilities sum to 1, the probabilities have to decline to zero fast enough. For example, if 
+
+
+
+P
+⁡
+(
+X
+=
+n
+)
+=
+
+
+
+1
+
+2
+
+n
+
+
+
+
+
+
+
+{\displaystyle \operatorname {P} (X=n)={\tfrac {1}{2^{n}}}}
+
+ for n = 1, 2, ..., we have the sum of probabilities 1/2 + 1/4 + 1/8 + ... = 1.
+Well-known discrete probability distributions used in statistical modeling include the Poisson distribution, the Bernoulli distribution, the binomial distribution, the geometric distribution, and the negative binomial distribution. Additionally, the discrete uniform distribution is commonly used in computer programs that make equal-probability random selections between a number of choices.
+Measure theoretic formulation[edit]
+A measurable function 
+
+
+
+X
+:
+A
+→
+B
+
+
+{\displaystyle X\colon A\to B}
+
+ between a probability space 
+
+
+
+(
+A
+,
+
+
+A
+
+
+,
+P
+)
+
+
+{\displaystyle (A,{\mathcal {A}},P)}
+
+ and a measurable space 
+
+
+
+(
+B
+,
+
+
+B
+
+
+)
+
+
+{\displaystyle (B,{\mathcal {B}})}
+
+ is called a discrete random variable provided its image is a countable set and the pre-image of singleton sets are measurable, i.e., 
+
+
+
+
+X
+
+−
+1
+
+
+(
+b
+)
+∈
+
+
+A
+
+
+
+
+{\displaystyle X^{-1}(b)\in {\mathcal {A}}}
+
+ for all 
+
+
+
+b
+∈
+B
+
+
+{\displaystyle b\in B}
+
+. The latter requirement induces a probability mass function 
+
+
+
+
+f
+
+X
+
+
+:
+X
+(
+A
+)
+→
+
+R
+
+
+
+{\displaystyle f_{X}\colon X(A)\to \mathbb {R} }
+
+ via 
+
+
+
+
+f
+
+X
+
+
+(
+b
+)
+:=
+P
+(
+
+X
+
+−
+1
+
+
+(
+b
+)
+)
+
+
+{\displaystyle f_{X}(b):=P(X^{-1}(b))}
+
+. Since the pre-images of disjoint sets are disjoint
+
+
+
+
+
+
+∑
+
+b
+∈
+X
+(
+A
+)
+
+
+
+f
+
+X
+
+
+(
+b
+)
+=
+
+∑
+
+b
+∈
+X
+(
+A
+)
+
+
+P
+(
+
+X
+
+−
+1
+
+
+(
+b
+)
+)
+=
+P
+
+(
+
+⋃
+
+b
+∈
+X
+(
+A
+)
+
+
+
+X
+
+−
+1
+
+
+(
+b
+)
+)
+
+=
+P
+(
+A
+)
+=
+1.
+
+
+{\displaystyle \sum _{b\in X(A)}f_{X}(b)=\sum _{b\in X(A)}P(X^{-1}(b))=P\left(\bigcup _{b\in X(A)}X^{-1}(b)\right)=P(A)=1.}
+
+
+
+This recovers the definition given above.
+Cumulative distribution function[edit]
+Equivalently to the above, a discrete random variable can be defined as a random variable whose cumulative distribution function (cdf) increases only by jump discontinuities—that is, its cdf increases only where it "jumps" to a higher value, and is constant between those jumps. The points where jumps occur are precisely the values which the random variable may take.
+Delta-function representation[edit]
+Consequently, a discrete probability distribution is often represented as a generalized probability density function involving Dirac delta functions, which substantially unifies the treatment of continuous and discrete distributions. This is especially useful when dealing with probability distributions involving both a continuous and a discrete part.
+Indicator-function representation[edit]
+For a discrete random variable X, let u0, u1, ... be the values it can take with non-zero probability. Denote
+
+
+
+
+
+
+Ω
+
+i
+
+
+=
+
+X
+
+−
+1
+
+
+(
+
+u
+
+i
+
+
+)
+=
+{
+ω
+:
+X
+(
+ω
+)
+=
+
+u
+
+i
+
+
+}
+,
+
+i
+=
+0
+,
+1
+,
+2
+,
+…
+
+
+{\displaystyle \Omega _{i}=X^{-1}(u_{i})=\{\omega :X(\omega )=u_{i}\},\,i=0,1,2,\dots }
+
+
+
+These are disjoint sets, and for such sets
+
+
+
+
+
+P
+
+(
+
+⋃
+
+i
+
+
+
+Ω
+
+i
+
+
+)
+
+=
+
+∑
+
+i
+
+
+P
+(
+
+Ω
+
+i
+
+
+)
+=
+
+∑
+
+i
+
+
+P
+(
+X
+=
+
+u
+
+i
+
+
+)
+=
+1.
+
+
+{\displaystyle P\left(\bigcup _{i}\Omega _{i}\right)=\sum _{i}P(\Omega _{i})=\sum _{i}P(X=u_{i})=1.}
+
+
+
+It follows that the probability that X takes any value except for u0, u1, ... is zero, and thus one can write X as
+
+
+
+
+
+X
+(
+ω
+)
+=
+
+∑
+
+i
+
+
+
+u
+
+i
+
+
+
+1
+
+
+Ω
+
+i
+
+
+
+
+(
+ω
+)
+
+
+{\displaystyle X(\omega )=\sum _{i}u_{i}1_{\Omega _{i}}(\omega )}
+
+
+
+except on a set of probability zero, where 
+
+
+
+
+1
+
+A
+
+
+
+
+{\displaystyle 1_{A}}
+
+ is the indicator function of A. This may serve as an alternative definition of discrete random variables.
+Continuous probability distribution[edit]
+See also: Probability density function
+A continuous probability distribution is a probability distribution that has a cumulative distribution function that is continuous. Most often they are generated by having a probability density function. Mathematicians call distributions with probability density functions absolutely continuous, since their cumulative distribution function is absolutely continuous with respect to the Lebesgue measure λ. If the distribution of X is continuous, then X is called a continuous random variable. There are many examples of continuous probability distributions: normal, uniform, chi-squared, and others.
+Intuitively, a continuous random variable is the one which can take a continuous range of values—as opposed to a discrete distribution, where the set of possible values for the random variable is at most countable. While for a discrete distribution an event with probability zero is impossible (e.g., rolling 31/2 on a standard dice is impossible, and has probability zero), this is not so in the case of a continuous random variable. For example, if one measures the width of an oak leaf, the result of 3½ cm is possible; however, it has probability zero because uncountably many other potential values exist even between 3 cm and 4 cm. Each of these individual outcomes has probability zero, yet the probability that the outcome will fall into the interval (3 cm, 4 cm) is nonzero. This apparent paradox is resolved by the fact that the probability that X attains some value within an infinite set, such as an interval, cannot be found by naively adding the probabilities for individual values. Formally, each value has an infinitesimally small probability, which statistically is equivalent to zero.
+Formally, if X is a continuous random variable, then it has a probability density function ƒ(x), and therefore its probability of falling into a given interval, say [a, b] is given by the integral
+
+
+
+
+
+P
+⁡
+[
+a
+≤
+X
+≤
+b
+]
+=
+
+∫
+
+a
+
+
+b
+
+
+f
+(
+x
+)
+
+d
+x
+
+
+{\displaystyle \operatorname {P} [a\leq X\leq b]=\int _{a}^{b}f(x)\,dx}
+
+
+
+In particular, the probability for X to take any single value a (that is a ≤ X ≤ a) is zero, because an integral with coinciding upper and lower limits is always equal to zero.
+The definition states that a continuous probability distribution must possess a density, or equivalently, its cumulative distribution function be absolutely continuous. This requirement is stronger than simple continuity of the cumulative distribution function, and there is a special class of distributions, singular distributions, which are neither continuous nor discrete nor a mixture of those. An example is given by the Cantor distribution. Such singular distributions however are never encountered in practice.
+Note on terminology: some authors use the term "continuous distribution" to denote the distribution with continuous cumulative distribution function. Thus, their definition includes both the (absolutely) continuous and singular distributions.
+By one convention, a probability distribution 
+
+
+
+
+μ
+
+
+{\displaystyle \,\mu }
+
+ is called continuous if its cumulative distribution function 
+
+
+
+F
+(
+x
+)
+=
+μ
+(
+−
+∞
+,
+x
+]
+
+
+{\displaystyle F(x)=\mu (-\infty ,x]}
+
+ is continuous and, therefore, the probability measure of singletons 
+
+
+
+μ
+{
+x
+}
+
+=
+
+0
+
+
+{\displaystyle \mu \{x\}\,=\,0}
+
+ for all 
+
+
+
+
+x
+
+
+{\displaystyle \,x}
+
+.
+Another convention reserves the term continuous probability distribution for absolutely continuous distributions. These distributions can be characterized by a probability density function: a non-negative Lebesgue integrable function 
+
+
+
+
+f
+
+
+{\displaystyle \,f}
+
+ defined on the real numbers such that
+
+
+
+
+
+F
+(
+x
+)
+=
+μ
+(
+−
+∞
+,
+x
+]
+=
+
+∫
+
+−
+∞
+
+
+x
+
+
+f
+(
+t
+)
+
+d
+t
+.
+
+
+{\displaystyle F(x)=\mu (-\infty ,x]=\int _{-\infty }^{x}f(t)\,dt.}
+
+
+
+Discrete distributions and some continuous distributions (like the Cantor distribution) do not admit such a density.
+Some properties[edit]
+
+The probability distribution of the sum of two independent random variables is the convolution of each of their distributions.
+Probability distributions are not a vector space—they are not closed under linear combinations, as these do not preserve non-negativity or total integral 1—but they are closed under convex combination, thus forming a convex subset of the space of functions (or measures).
+
+Kolmogorov definition[edit]
+Main articles: Probability space and Probability measure
+In the measure-theoretic formalization of probability theory, a random variable is defined as a measurable function X from a probability space 
+
+
+
+
+(
+Ω
+,
+
+
+F
+
+
+,
+P
+)
+
+
+
+{\displaystyle \scriptstyle (\Omega ,{\mathcal {F}},\operatorname {P} )}
+
+ to measurable space 
+
+
+
+
+(
+
+
+X
+
+
+,
+
+
+A
+
+
+)
+
+
+
+{\displaystyle \scriptstyle ({\mathcal {X}},{\mathcal {A}})}
+
+. A probability distribution of X is the pushforward measure X*P  of X , which is a probability measure on 
+
+
+
+
+(
+
+
+X
+
+
+,
+
+
+A
+
+
+)
+
+
+
+{\displaystyle \scriptstyle ({\mathcal {X}},{\mathcal {A}})}
+
+ satisfying X*P = PX −1.
+Random number generation[edit]
+Main article: Pseudo-random number sampling
+A frequent problem in statistical simulations (the Monte Carlo method) is the generation of pseudo-random numbers that are distributed in a given way. Most algorithms are based on a pseudorandom number generator that produces numbers X that are uniformly distributed in the interval [0,1]. These random variates X are then transformed via some algorithm to create a new random variate having the required probability distribution.
+Applications[edit]
+The concept of the probability distribution and the random variables which they describe underlies the mathematical discipline of probability theory, and the science of statistics. There is spread or variability in almost any value that can be measured in a population (e.g. height of people, durability of a metal, sales growth, traffic flow, etc.); almost all measurements are made with some intrinsic error; in physics many processes are described probabilistically, from the kinetic properties of gases to the quantum mechanical description of fundamental particles. For these and many other reasons, simple numbers are often inadequate for describing a quantity, while probability distributions are often more appropriate.
+As a more specific example of an application, the cache language models and other statistical language models used in natural language processing to assign probabilities to the occurrence of particular words and word sequences do so by means of probability distributions.
+Common probability distributions[edit]
+Main article: List of probability distributions
+The following is a list of some of the most common probability distributions, grouped by the type of process that they are related to. For a more complete list, see list of probability distributions, which groups by the nature of the outcome being considered (discrete, continuous, multivariate, etc.)
+Note also that all of the univariate distributions below are singly peaked; that is, it is assumed that the values cluster around a single point. In practice, actually observed quantities may cluster around multiple values. Such quantities can be modeled using a mixture distribution.
+Related to real-valued quantities that grow linearly (e.g. errors, offsets)[edit]
+
+Normal distribution (Gaussian distribution), for a single such quantity; the most common continuous distribution
+
+Related to positive real-valued quantities that grow exponentially (e.g. prices, incomes, populations)[edit]
+
+Log-normal distribution, for a single such quantity whose log is normally distributed
+Pareto distribution, for a single such quantity whose log is exponentially distributed; the prototypical power law distribution
+
+Related to real-valued quantities that are assumed to be uniformly distributed over a (possibly unknown) region[edit]
+
+Discrete uniform distribution, for a finite set of values (e.g. the outcome of a fair die)
+Continuous uniform distribution, for continuously distributed values
+
+Related to Bernoulli trials (yes/no events, with a given probability)[edit]
+
+Basic distributions:
+
+Bernoulli distribution, for the outcome of a single Bernoulli trial (e.g. success/failure, yes/no)
+Binomial distribution, for the number of "positive occurrences" (e.g. successes, yes votes, etc.) given a fixed total number of independent occurrences
+Negative binomial distribution, for binomial-type observations but where the quantity of interest is the number of failures before a given number of successes occurs
+Geometric distribution, for binomial-type observations but where the quantity of interest is the number of failures before the first success; a special case of the negative binomial distribution
+
+
+Related to sampling schemes over a finite population:
+
+Hypergeometric distribution, for the number of "positive occurrences" (e.g. successes, yes votes, etc.) given a fixed number of total occurrences, using sampling without replacement
+Beta-binomial distribution, for the number of "positive occurrences" (e.g. successes, yes votes, etc.) given a fixed number of total occurrences, sampling using a Polya urn scheme (in some sense, the "opposite" of sampling without replacement)
+
+
+
+Related to categorical outcomes (events with K possible outcomes, with a given probability for each outcome)[edit]
+
+Categorical distribution, for a single categorical outcome (e.g. yes/no/maybe in a survey); a generalization of the Bernoulli distribution
+Multinomial distribution, for the number of each type of categorical outcome, given a fixed number of total outcomes; a generalization of the binomial distribution
+Multivariate hypergeometric distribution, similar to the multinomial distribution, but using sampling without replacement; a generalization of the hypergeometric distribution
+
+Related to events in a Poisson process (events that occur independently with a given rate)[edit]
+
+Poisson distribution, for the number of occurrences of a Poisson-type event in a given period of time
+Exponential distribution, for the time before the next Poisson-type event occurs
+Gamma distribution, for the time before the next k Poisson-type events occur
+
+Related to the absolute values of vectors with normally distributed components[edit]
+
+Rayleigh distribution, for the distribution of vector magnitudes with Gaussian distributed orthogonal components. Rayleigh distributions are found in RF signals with Gaussian real and imaginary components.
+Rice distribution, a generalization of the Rayleigh distributions for where there is a stationary background signal component. Found in Rician fading of radio signals due to multipath propagation and in MR images with noise corruption on non-zero NMR signals.
+
+Related to normally distributed quantities operated with sum of squares (for hypothesis testing)[edit]
+
+Chi-squared distribution, the distribution of a sum of squared standard normal variables; useful e.g. for inference regarding the sample variance of normally distributed samples (see chi-squared test)
+Student's t distribution, the distribution of the ratio of a standard normal variable and the square root of a scaled chi squared variable; useful for inference regarding the mean of normally distributed samples with unknown variance (see Student's t-test)
+F-distribution, the distribution of the ratio of two scaled chi squared variables; useful e.g. for inferences that involve comparing variances or involving R-squared (the squared correlation coefficient)
+
+Useful as conjugate prior distributions in Bayesian inference[edit]
+Main article: Conjugate prior
+
+Beta distribution, for a single probability (real number between 0 and 1); conjugate to the Bernoulli distribution and binomial distribution
+Gamma distribution, for a non-negative scaling parameter; conjugate to the rate parameter of a Poisson distribution or exponential distribution, the precision (inverse variance) of a normal distribution, etc.
+Dirichlet distribution, for a vector of probabilities that must sum to 1; conjugate to the categorical distribution and multinomial distribution; generalization of the beta distribution
+Wishart distribution, for a symmetric non-negative definite matrix; conjugate to the inverse of the covariance matrix of a multivariate normal distribution; generalization of the gamma distribution
+
+See also[edit]
+
+
+Statistics portal
+
+
+
+Copula (statistics)
+Empirical probability
+Histogram
+Joint probability distribution
+Likelihood function
+List of statistical topics
+Kirkwood approximation
+Moment-generating function
+Quasiprobability distribution
+Riemann–Stieltjes integral application to probability theory
+
+References[edit]
+
+
+B. S. Everitt: The Cambridge Dictionary of Statistics, Cambridge University Press, Cambridge (3rd edition, 2006). ISBN 0-521-69027-7
+Bishop: Pattern Recognition and Machine Learning, Springer, ISBN 0-387-31073-8
+den Dekker A. J., Sijbers J., (2014) "Data distributions in magnetic resonance images: a review", Physica Medica, [1]
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to Probability distribution.
+
+
+
+Hazewinkel, Michiel, ed. (2001) [1994], "Probability distribution", Encyclopedia of Mathematics, Springer Science+Business Media B.V. / Kluwer Academic Publishers, ISBN 978-1-55608-010-4 
+Field Guide to Continuous Probability Distributions, Gavin E. Crooks.
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Probability distributions
+
+
+
+
+List
+
+
+
+Discrete univariate
+with finite support
+
+
+
+Benford
+Bernoulli
+beta-binomial
+binomial
+categorical
+hypergeometric
+Poisson binomial
+Rademacher
+discrete uniform
+Zipf
+Zipf–Mandelbrot
+
+
+
+
+
+Discrete univariate
+with infinite support
+
+
+
+beta negative binomial
+Borel
+Conway–Maxwell–Poisson
+discrete phase-type
+Delaporte
+extended negative binomial
+Gauss–Kuzmin
+geometric
+logarithmic
+negative binomial
+parabolic fractal
+Poisson
+Skellam
+Yule–Simon
+zeta
+
+
+
+
+
+Continuous univariate
+supported on a bounded interval
+
+
+
+arcsine
+ARGUS
+Balding–Nichols
+Bates
+beta
+beta rectangular
+Irwin–Hall
+Kumaraswamy
+logit-normal
+noncentral beta
+raised cosine
+reciprocal
+triangular
+U-quadratic
+uniform
+Wigner semicircle
+
+
+
+
+
+Continuous univariate
+supported on a semi-infinite interval
+
+
+
+Benini
+Benktander 1st kind
+Benktander 2nd kind
+beta prime
+Burr
+chi-squared
+chi
+Dagum
+Davis
+exponential-logarithmic
+Erlang
+exponential
+F
+folded normal
+Flory–Schulz
+Fréchet
+gamma
+gamma/Gompertz
+generalized inverse Gaussian
+Gompertz
+half-logistic
+half-normal
+Hotelling's T-squared
+hyper-Erlang
+hyperexponential
+hypoexponential
+inverse chi-squared
+
+scaled inverse chi-squared
+
+
+inverse Gaussian
+inverse gamma
+Kolmogorov
+Lévy
+log-Cauchy
+log-Laplace
+log-logistic
+log-normal
+Lomax
+matrix-exponential
+Maxwell–Boltzmann
+Maxwell–Jüttner
+Mittag-Leffler
+Nakagami
+noncentral chi-squared
+Pareto
+phase-type
+poly-Weibull
+Rayleigh
+relativistic Breit–Wigner
+Rice
+shifted Gompertz
+truncated normal
+type-2 Gumbel
+Weibull
+
+Discrete Weibull
+
+
+Wilks's lambda
+
+
+
+
+
+Continuous univariate
+supported on the whole real line
+
+
+
+Cauchy
+exponential power
+Fisher's z
+Gaussian q
+generalized normal
+generalized hyperbolic
+geometric stable
+Gumbel
+Holtsmark
+hyperbolic secant
+Johnson's SU
+Landau
+Laplace
+asymmetric Laplace
+logistic
+noncentral t
+normal (Gaussian)
+normal-inverse Gaussian
+skew normal
+slash
+stable
+Student's t
+type-1 Gumbel
+Tracy–Widom
+variance-gamma
+Voigt
+
+
+
+
+
+Continuous univariate
+with support whose type varies
+
+
+
+generalized extreme value
+generalized Pareto
+Marchenko–Pastur
+q-exponential
+q-Gaussian
+q-Weibull
+shifted log-logistic
+Tukey lambda
+
+
+
+
+
+Mixed continuous-discrete univariate
+
+
+
+rectified Gaussian
+
+
+
+
+
+Multivariate (joint)
+
+
+
+Discrete
+Ewens
+multinomial
+Dirichlet-multinomial
+negative multinomial
+Continuous
+Dirichlet
+generalized Dirichlet
+multivariate Laplace
+multivariate normal
+multivariate stable
+multivariate t
+normal-inverse-gamma
+normal-gamma
+Matrix-valued
+inverse matrix gamma
+inverse-Wishart
+matrix normal
+matrix t
+matrix gamma
+normal-inverse-Wishart
+normal-Wishart
+Wishart
+
+
+
+
+
+Directional
+
+
+
+Univariate (circular) directional
+Circular uniform
+univariate von Mises
+wrapped normal
+wrapped Cauchy
+wrapped exponential
+wrapped asymmetric Laplace
+wrapped Lévy
+Bivariate (spherical)
+Kent
+Bivariate (toroidal)
+bivariate von Mises
+Multivariate
+von Mises–Fisher
+Bingham
+
+
+
+
+
+Degenerate and singular
+
+
+
+Degenerate
+Dirac delta function
+Singular
+Cantor
+
+
+
+
+
+Families
+
+
+
+Circular
+compound Poisson
+elliptical
+exponential
+natural exponential
+location–scale
+maximum entropy
+mixture
+Pearson
+Tweedie
+wrapped
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Theory of probability distributions
+
+
+
+
+
+
+probability mass function (pmf)
+probability density function (pdf)
+cumulative distribution function (cdf)
+quantile function
+
+
+
+
+
+
+
+
+
+
+
+raw moment
+central moment
+mean
+variance
+standard deviation
+skewness
+kurtosis
+L-moment
+
+
+
+
+
+
+
+
+moment-generating function (mgf)
+characteristic function
+probability-generating function (pgf)
+cumulant
+combinant
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Statistics
+
+
+
+
+
+
+Outline
+Index
+
+
+
+
+
+
+
+
+
+
+Descriptive statistics
+
+
+
+
+
+
+
+Continuous data
+
+
+
+
+Center
+
+
+
+Mean
+
+arithmetic
+geometric
+harmonic
+
+
+Median
+Mode
+
+
+
+
+
+Dispersion
+
+
+
+Variance
+Standard deviation
+Coefficient of variation
+Percentile
+Range
+Interquartile range
+
+
+
+
+
+Shape
+
+
+
+Central limit theorem
+Moments
+
+Skewness
+Kurtosis
+L-moments
+
+
+
+
+
+
+
+
+
+
+Count data
+
+
+
+Index of dispersion
+
+
+
+
+
+Summary tables
+
+
+
+Grouped data
+Frequency distribution
+Contingency table
+
+
+
+
+
+Dependence
+
+
+
+Pearson product-moment correlation
+Rank correlation
+
+Spearman's rho
+Kendall's tau
+
+
+Partial correlation
+Scatter plot
+
+
+
+
+
+Graphics
+
+
+
+Bar chart
+Biplot
+Box plot
+Control chart
+Correlogram
+Fan chart
+Forest plot
+Histogram
+Pie chart
+Q–Q plot
+Run chart
+Scatter plot
+Stem-and-leaf display
+Radar chart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Data collection
+
+
+
+
+
+
+
+Study design
+
+
+
+Population
+Statistic
+Effect size
+Statistical power
+Sample size determination
+Missing data
+
+
+
+
+
+Survey methodology
+
+
+
+Sampling
+
+stratified
+cluster
+
+
+Standard error
+Opinion poll
+Questionnaire
+
+
+
+
+
+Controlled experiments
+
+
+
+Design
+
+control
+optimal
+
+
+Controlled trial
+Randomized
+Random assignment
+Replication
+Blocking
+Interaction
+Factorial experiment
+
+
+
+
+
+Uncontrolled studies
+
+
+
+Observational study
+Natural experiment
+Quasi-experiment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Statistical inference
+
+
+
+
+
+
+
+Statistical theory
+
+
+
+Population
+Statistic
+Probability distribution
+Sampling distribution
+
+Order statistic
+
+
+Empirical distribution
+
+Density estimation
+
+
+Statistical model
+
+Lp space
+
+
+Parameter
+
+location
+scale
+shape
+
+
+Parametric family
+
+Likelihood (monotone)
+Location–scale family
+Exponential family
+
+
+Completeness
+Sufficiency
+Statistical functional
+
+Bootstrap
+U
+V
+
+
+Optimal decision
+
+loss function
+
+
+Efficiency
+Statistical distance
+
+divergence
+
+
+Asymptotics
+Robustness
+
+
+
+
+
+Frequentist inference
+
+
+
+
+Point estimation
+
+
+
+Estimating equations
+
+Maximum likelihood
+Method of moments
+M-estimator
+Minimum distance
+
+
+Unbiased estimators
+
+Mean-unbiased minimum-variance
+
+Rao–Blackwellization
+Lehmann–Scheffé theorem
+
+
+Median unbiased
+
+
+Plug-in
+
+
+
+
+
+Interval estimation
+
+
+
+Confidence interval
+Pivot
+Likelihood interval
+Prediction interval
+Tolerance interval
+Resampling
+
+Bootstrap
+Jackknife
+
+
+
+
+
+
+
+Testing hypotheses
+
+
+
+1- & 2-tails
+Power
+
+Uniformly most powerful test
+
+
+Permutation test
+
+Randomization test
+
+
+Multiple comparisons
+
+
+
+
+
+Parametric tests
+
+
+
+Likelihood-ratio
+Wald
+Score
+
+
+
+
+
+
+
+
+Specific tests
+
+
+
+
+
+
+
+Z (normal)
+Student's t-test
+F
+
+
+
+
+
+Goodness of fit
+
+
+
+Chi-squared
+Kolmogorov–Smirnov
+Anderson–Darling
+Lilliefors
+Jarque–Bera
+Normality (Shapiro–Wilk)
+Likelihood-ratio test
+Model selection
+
+Cross validation
+AIC
+BIC
+
+
+
+
+
+
+
+Rank statistics
+
+
+
+Sign
+
+Sample median
+
+
+Signed rank (Wilcoxon)
+
+Hodges–Lehmann estimator
+
+
+Rank sum (Mann–Whitney)
+Nonparametric anova
+
+1-way (Kruskal–Wallis)
+2-way (Friedman)
+Ordered alternative (Jonckheere–Terpstra)
+
+
+
+
+
+
+
+
+
+
+Bayesian inference
+
+
+
+Bayesian probability
+
+prior
+posterior
+
+
+Credible interval
+Bayes factor
+Bayesian estimator
+
+Maximum posterior estimator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Correlation
+Regression analysis
+
+
+
+
+
+
+
+
+
+
+Correlation
+
+
+
+Pearson product-moment
+Partial correlation
+Confounding variable
+Coefficient of determination
+
+
+
+
+
+Regression analysis
+
+
+
+Errors and residuals
+Regression model validation
+Mixed effects models
+Simultaneous equations models
+Multivariate adaptive regression splines (MARS)
+
+
+
+
+
+Linear regression
+
+
+
+Simple linear regression
+Ordinary least squares
+General linear model
+Bayesian regression
+
+
+
+
+
+Non-standard predictors
+
+
+
+Nonlinear regression
+Nonparametric
+Semiparametric
+Isotonic
+Robust
+Heteroscedasticity
+Homoscedasticity
+
+
+
+
+
+Generalized linear model
+
+
+
+Exponential families
+Logistic (Bernoulli) / Binomial / Poisson regressions
+
+
+
+
+
+Partition of variance
+
+
+
+Analysis of variance (ANOVA, anova)
+Analysis of covariance
+Multivariate ANOVA
+Degrees of freedom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Categorical / Multivariate / Time-series / Survival analysis
+
+
+
+
+
+
+
+Categorical
+
+
+
+Cohen's kappa
+Contingency table
+Graphical model
+Log-linear model
+McNemar's test
+
+
+
+
+
+Multivariate
+
+
+
+Regression
+Manova
+Principal components
+Canonical correlation
+Discriminant analysis
+Cluster analysis
+Classification
+Structural equation model
+
+Factor analysis
+
+
+Multivariate distributions
+
+Elliptical distributions
+
+Normal
+
+
+
+
+
+
+
+
+
+Time-series
+
+
+
+
+General
+
+
+
+Decomposition
+Trend
+Stationarity
+Seasonal adjustment
+Exponential smoothing
+Cointegration
+Structural break
+Granger causality
+
+
+
+
+
+Specific tests
+
+
+
+Dickey–Fuller
+Johansen
+Q-statistic (Ljung–Box)
+Durbin–Watson
+Breusch–Godfrey
+
+
+
+
+
+Time domain
+
+
+
+Autocorrelation (ACF)
+
+partial (PACF)
+
+
+Cross-correlation (XCF)
+ARMA model
+ARIMA model (Box–Jenkins)
+Autoregressive conditional heteroskedasticity (ARCH)
+Vector autoregression (VAR)
+
+
+
+
+
+Frequency domain
+
+
+
+Spectral density estimation
+Fourier analysis
+Wavelet
+
+
+
+
+
+
+
+
+Survival
+
+
+
+
+Survival function
+
+
+
+Kaplan–Meier estimator (product limit)
+Proportional hazards models
+Accelerated failure time (AFT) model
+First hitting time
+
+
+
+
+
+Hazard function
+
+
+
+Nelson–Aalen estimator
+
+
+
+
+
+Test
+
+
+
+Log-rank test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Applications
+
+
+
+
+
+
+
+Biostatistics
+
+
+
+Bioinformatics
+Clinical trials / studies
+Epidemiology
+Medical statistics
+
+
+
+
+
+Engineering statistics
+
+
+
+Chemometrics
+Methods engineering
+Probabilistic design
+Process / quality control
+Reliability
+System identification
+
+
+
+
+
+Social statistics
+
+
+
+Actuarial science
+Census
+Crime statistics
+Demography
+Econometrics
+National accounts
+Official statistics
+Population statistics
+Psychometrics
+
+
+
+
+
+Spatial statistics
+
+
+
+Cartography
+Environmental statistics
+Geographic information system
+Geostatistics
+Kriging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Category
+Portal
+Commons
+ WikiProject
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+LCCN: sh85038545
+NDL: 00564751
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Probability_distribution&oldid=814266004"					Categories: Probability distributionsMathematical and quantitative methods (economics)Hidden categories: Articles lacking in-text citations from July 2011All articles lacking in-text citationsArticles needing additional references from July 2011All articles needing additional referencesArticles with multiple maintenance issuesWikipedia articles with LCCN identifiers

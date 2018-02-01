@@ -1,0 +1,800 @@
+
+
+
+
+STEP-NC interface on a CNC, showing product shape and color-coded tolerance state
+
+
+STEP-NC is a machine tool control language that extends the ISO 10303 STEP standards with the machining model in ISO 14649,[1] adding geometric dimension and tolerance data for inspection, and the STEP PDM model for integration into the wider enterprise. The combined result has been standardized as ISO 10303-238[2] (also known as AP238).
+STEP-NC was designed to replace ISO 6983/RS274D G-codes with a modern, associative communications protocol that connects computer numerical controlled (CNC) process data to a product description of the part being machined.
+A STEP-NC program can use the full range of geometric constructs[3] from the STEP standard to communicate device-independent toolpaths to the CNC. It can provide CAM operational descriptions and STEP CAD geometry to the CNC so workpieces, stock, fixtures and cutting tool shapes can be visualized and analyzed in the context of the toolpaths. STEP GD&T information can also be added to enable quality measurement on the control, and CAM-independent volume removal features[4] may be added to facilitate regeneration and modification of the toolpaths before or during machining for closed loop manufacturing.
+
+
+
+Contents
+
+
+1 Motivation
+2 Capabilities
+3 History
+4 Future work
+5 References
+6 External links
+
+
+
+Motivation[edit]
+
+
+
+
+Impeller machined using STEP-NC
+
+
+Input to a CNC in the ISO 6983/RS274D G-code control language is often machine-specific and limited to axis motion commands. The machine tool is given little or no information about the desired result of the machining.
+STEP-NC allows more information about the machining process to be sent to the machine control and adds new information about the product being machined.[5] This "Smart Data for Smart Machining"[6] enables applications such as the following:
+
+Toolpath descriptions that are portable and independent of machine geometry.[7]
+Visual process, to show toolpaths in context of the machine and workpiece, and eliminate drawings.[8]
+On-Machine Simulation, to check for gouges, machine interference and other undesired behavior.
+Simplified Inspection, with linked tolerances, on-machine probes and inspection workplans tied to part tolerances.
+Feed and Speed Optimization, using tolerances,[9] cross section information, sensor data.
+
+
+Associativity so feedback can be sent from manufacturing back to design.
+
+Capabilities[edit]
+
+
+
+
+Overview of STEP-NC process model
+
+
+STEP-NC can communicate a complete machining process description to a machine tool control or between manufacturing software applications. The information handled by STEP-NC can be divided into the following general categories. The standard handles technology-specific parameters for milling and turning, and extensions for other technologies under development (see Future Work).
+
+Product Description
+
+Workpiece, PDM and Product Geometry
+Manufacturing Features
+Dimensions and Tolerances
+Measures and Part Properties
+
+
+General Process Description[10]
+
+Project
+Executable
+Operation
+Toolpath
+
+
+Technology-Specific Process Description
+
+Operations and cutting tools for milling[11]
+Operations and cutting tools for turning[12]
+Operations and devices for inspection[10]
+
+
+
+STEP-NC can exchange the explicit toolpath descriptions in use today, and add part, stock, and fixture geometry, a description of the tools, geometric dimensions and tolerances, and PDM information. A STEP-NC file is difficult to edit by hand because it contains geometry descriptions but for large programs the file size can be smaller because STEP-NC uses a compressed XML format instead of ASCII codes.
+History[edit]
+STEP-NC is not the first attempt at providing better quality information to a CNC. The EIA 494 Basic Control Language (BCL)[13] defined a control language that was portable and had toolpaths independent of machine geometry, but did not contain any of the other product model information found in STEP-NC.[14]
+The core of STEP-NC is the ISO 14649 model for CNC control developed by European ESPRIT and IMS[15] STEP-NC projects begun in 1999. These were led by Siemens with contributions from RWTH Aachen University and the University of Stuttgart in Germany, Komatsu and FANUC in Japan, Heidenhain in Switzerland, and the Pohang University of Science and Technology in Korea.[16] Models for the control of CNC milling[11] and turning machines[12] were published in 2005, and draft models exist for EDM and contour cutting.
+Integration of the CNC model into STEP[17] to produce ISO 10303-238 was done in the United States, under the NIST ATP Model Driven Intelligent Control of Manufacturing project, led by STEP Tools, Inc. with an industrial review board (IRB) consisting of Fortune 500 companies, CAD and CAM software developers, machine tool manufacturers, job shops and industry experts.[18] STEP-NC AP238 was published in 2007.[2]
+
+
+
+
+STEP-NC Crown Wheel
+
+
+In 2005 the OMAC STEP-NC Working Group hosted an AP238 testing forum in Orlando to demonstrate 5-axis parts machined using AP238 CC1 machine independent toolpaths. Four CAD/CAM systems produced AP238 machining programs for milling a 5-axis test part (an NAS 979 circle/diamond/square with an inverted NAS 979 cone test in the center). Each run on a pair of CNCs configured for completely different machine geometries (AB tool tilt vs. BC table tilt).[19] In addition, Boeing cut parts on a variety of machines at their Tulsa facility and a machine at NIST in Gaithersburg.[20]
+In June 2006, a live 5-axis STEP-NC machining demonstration was hosted by Airbus at the Université Paul Sabatier Laboratoire de Génie mécanique in Toulouse.[21] Further machining and measurement demonstrations were conducted in Ibusuki Japan in 2007.[22]
+On March 10–12, 2008, the STEP Manufacturing team (ISO TC184 SC4 WG3 T24) met in Sandviken and Stockholm, Sweden to demonstrate use of STEP-NC for feed and speed optimization, high-speed machining, tolerance-driven tool compensation and traceability. The participants in the demonstrations included Airbus/Univ. Bordeaux, Boeing, Eurostep, KTH Royal Institute of Technology, NIST, Sandvik Coromant, Scania, STEP Tools, and Univ. of Vigo.[23]
+On October 1–2, 2008, the STEP Manufacturing team met at the Connecticut Center for Advanced Technology, in Hartford, Connecticut to demonstrate closed-loop machining, feed optimization, and measurement using STEP-NC. The highlight of the meeting was the live 5-axis machining of a titanium impeller. Participants in the machining demonstration and other activities included Boeing, Connecticut Center for Advanced Technology, Concepts NRec, DMG, KTH Royal Institute of Technology, Mitutoyo, NIST, Sandvik Coromant, Scania, Siemens, and STEP Tools.[24]
+These participants and others continue to hold STEP-NC international implementation and testing events on a roughly six-month cycle. The demonstrations in 2009 focused on machining a Mold part at multiple sites from the same AP238 data including one part machined on a FANUC-developed STEP-NC control. At a meeting in Seattle the parts were then measured for accuracy using a CMM probe and a laser scanner.[25]
+
+
+
+
+STEP-NC machining on an Okuma CNC at IMTS 2014.
+
+
+In the first half of 2010, the testing activity focused on tool wear management and machining a part in multiple setups with multiple alternate machining plans for 3, 4 and 5-axis machining. The new test part was a gear box that must be machined on all six sides. The tool wear and consequent machine loads were predicted from the STEP-NC data and verified using a dynamometer.[26] In the second half of 2010, the testing forum applied STEP-NC to set up compensation with on-machine measurement of part and fixture datums using a FaroArm portable measurement device.[27]
+In 2012, the testing focused on machine tool accuracy calculations, culminating in a demonstration in June at the KTH production engineering labs in Stockholm. The test case milled a forged blank for a Crown Wheel Gear on an older Mazak VQC 20. Accuracy data from the machine was combined with tool engagement information from the STEP-NC to predict the deflections, which were tested against actual machining results.[28]
+In 2014, CAM data exchange using STEP-NC was shown at IMTS 2014 with daily machining demonstrations hosted by Okuma. A base machining process for a mold part was created by Boeing and then sent to Sandvik and ISCAR for optimization, producing a STEP-NC description containing all three process options. All machining was done in titanium and a range of CAM software was used, with all results captured as STEP-NC.[29][30]
+Future work[edit]
+
+
+
+
+STEP-NC plasma cutting
+
+
+Work continues within the ISO standard committees to extend STEP-NC to new technologies and to incorporate refinements discovered during use. Process models for new technologies are usually produced by the ISO TC184/SC1/WG7 committee. Models for Wire & Sink EDM[31] and contour cutting of wood or stone are under investigation.
+Work on extending and integrating STEP-NC with the manufacturing enterprise takes place in the ISO TC184/SC4/WG3/T24 STEP Manufacturing Team.[32] This group also works on extensions and refinements discovered during testing. A series of traceability extensions have been proposed for linking STEP-NC machining programs with sensor feedback and machine state information during execution.[33]
+The National Shipbuilding Research Program (NSRP) has also hosted work to implement a prototype that connects a shipyard design system to a plate cutting using STEP-NC.[34] This work involved extending STEP-NC to steel plate cutting and marking using lasers and plasma torches.
+References[edit]
+
+
+^ ISO 14649-1 (2003). Industrial automation systems and integration -- Physical device control -- Data model for computerized numerical controllers -- Part 1: Overview and fundamental principles. Geneva: International Organization for Standardization. Retrieved 2008-10-27. 
+^ a b ISO 10303-238 (2007). Industrial automation systems and integration - Product data representation and exchange - Part 238: Application protocol: Application interpreted model for computerized numerical controllers. Geneva: International Organization for Standardization. Retrieved 2008-10-27. 
+^ ISO 10303-42 (2003). Industrial automation systems and integration -- Product data representation and exchange -- Part 42: Integrated generic resource: Geometric and topological representation. Geneva: International Organization for Standardization. Retrieved 2008-10-27. 
+^ Callen, John (2002-05-01). "Enabling Manufacturing's Future Without Limits". Modern Machine Shop. Retrieved 2008-10-28. 
+^ Xu, X; Klemm, P; Proctor, F; Suh., S. H. (September 2006). "STEP Compliant Process Planning and Manufacturing". International Journal of Computer Integrated Manufacturing. 19 (6): 491–494. doi:10.1080/09511920600669776. 
+^ Hardwick, M.; Loffredo, D. (March 2007). "STEP-NC: Smart Data for Smart Machining". Proceedings of the Intl. Conf. on Smart Machining Systems. Intl. Conf. on Smart Machining Systems. NIST, Gaithersburg, MD. 
+^ Kennedy, Bill (July 2007). "All Together Now: STEP-NC" (pdf). Cutting Tool Engineering. 59 (7). Retrieved 2008-10-27. 
+^ Woods, Susan (April 2006). "Stepin' Out" (pdf). Cutting Tool Engineering. 58 (4). Retrieved 2008-10-27. 
+^ "Boeing/Fanuc Tolerance Study". Retrieved 2008-10-27. 
+^ a b ISO 14649-10 (2004). Industrial automation systems and integration -- Physical device control -- Data model for computerized numerical controllers -- Part 10: Part 10: General process data. Geneva: International Organization for Standardization. Retrieved 2008-10-27. 
+^ a b ISO 14649-11 (2004). Industrial automation systems and integration -- Physical device control -- Data model for computerized numerical controllers -- Part 11: Process data for milling. Geneva: International Organization for Standardization. Retrieved 2008-10-27. 
+^ a b ISO 14649-12 (2005). Industrial automation systems and integration -- Physical device control -- Data model for computerized numerical controllers -- Part 11: Process data for turning. Geneva: International Organization for Standardization. Retrieved 2008-10-27. 
+^ ANSI/EIA-494-B-1992 (1992). 32-Bit Binary CL (BCL) and 7-Bit ASCII CL (ACL) Exchange Input Format for Numerically Controlled Machines. Washington, D.C: Electronic Industries Association. 
+^ Hardwick, M.; Loffredo, D. (September 2007). "Challenges and Choices in the Specification and Implementation of the STEP-NC AP-238 Standard". Journal of Computing and Information Science in Engineering. 7 (3): 283–291. doi:10.1115/1.2768090. 
+^ "Intelligent Manufacturing Systems". Retrieved 2008-10-27. 
+^ Suh, S. H.; Cho, J. H.; Hong, H. D. (January 2002). "On the architecture of intelligent STEP-compliant CNC". International Journal of Computer Integrated Manufacturing. 15 (2): 168–177. doi:10.1080/09511920110056541. 
+^ Loffredo, D (2006-07-14). "Validation Report for ISO/IS 10303-238". N2098. ISO TC184/SC4 WG3. Retrieved 2008-10-28. 
+^ "STEP-NC Industrial Review Board". Retrieved 2008-10-28. 
+^ Hardwick, M.; Loffredo, D. (September 2006). "Lessons Learned Implementing STEP-NC AP-238". International Journal of Computer Integrated Manufacturing. 19 (6): 523–532. doi:10.1080/09511920600627170. 
+^ Venkatesh, S.; Odendahl, D.; Michaloski, J.; Proctor, F.; Kramer, T. (2007-02-01). "Boeing, NIST help to take STEP-NC to new heights". Tooling & Production. Archived from the original on 2010-10-12. Retrieved 2010-10-12. 
+^ "International STEP-NC Testing in Toulouse". Retrieved 2008-10-27. 
+^ "STEP-NC Machining and Measurement in Ibusuki". Retrieved 2008-10-27. 
+^ "International STEP-NC Demonstration of Feed Optimization, High-Speed Machining, Tolerance-Driven Tool Compensation, and Traceability". Retrieved 2008-10-27. 
+^ "International STEP-NC Demonstration of Closed-Loop Machining, Feed Optimization, and Measurement". Retrieved 2008-10-27. 
+^ "International STEP-NC Demonstration, Renton, WA 2009". Retrieved 2010-03-25. 
+^ "International STEP-NC Demonstration, National Institute of Standards and Technology (NIST), Gaithersburg, MD, June 2010". Retrieved 2010-03-25. 
+^ "International STEP-NC Demonstration, Boeing Renton Plant, Renton, WA, October 12-13 2010". Retrieved 2011-03-23. 
+^ "STEP-NC Machining Accuracy Demonstration, Stockholm, June 14, 2012". Retrieved 2015-03-20. 
+^ "Okuma / Boeing STEP-NC presentation TRAM2014 describing the CAM Exchange demonstration,". Retrieved 2015-03-20. 
+^ Lorincz, Jim (September 2015). "Optimize Process for Best Performance". Advanced Manufacturing: Aerospace and Defense Manufacturing 2015. SME. Retrieved 2015-11-17. 
+^ Sokolov, A.; Richard, J.; Nguyen, V. K.; Stroud, I.; Maeder, W.; Xirouchakis, P. (September 2006). "Algorithms and an extended STEP-NC-compliant data model for wire electro discharge machining based on 3D representations". International Journal of Computer Integrated Manufacturing. 19 (6): 603–613. doi:10.1080/09511920600634903. 
+^ "Archives of the STEP Manufacturing Team (ISO TC184/SC4/WG3/T24)". 
+^ Garrido Campos, J.; Hardwick, M. (2006). "A Traceability Information Model for CNC Manufacturing". Computer-Aided Design. 38 (5): 540–551. doi:10.1016/j.cad.2006.01.011. 
+^ "AP238 Plate Cutting and Marking, NSRP Panel Project" (pdf). Retrieved 2012-08-15. 
+
+
+External links[edit]
+
+Video: STEP-NC impeller machining demo (2008-10-01)
+Video: STEP-NC tolerance-driven tool compensation demo (2008-03-12)
+What is STEP-NC?
+A toolkit for ISO 14649 Parts 10, 11, and 111
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Metalworking
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Machining and computing
+
+
+
+Computer-aided
+engineering
+
+
+
+2.5D
+CAD
+CAM
+G-code
+Numerical control (NC and CNC)
+Stewart platform
+
+
+
+
+
+Drilling and
+threading
+
+
+
+Die head
+Drill
+Drill bit
+Drill bit shank
+Drill bit sizes
+Drilling
+List of drill and tap sizes
+Tap and die
+Tap wrench
+Threading
+
+
+
+
+
+Grinding and
+lapping
+
+
+
+Abrasive
+Angle grinder
+Bench grinder
+Coated abrasives
+Cylindrical grinder
+Diamond plate
+Flick grinder
+Grinding
+Grinding dresser
+Grinding machine
+Grinding wheel
+Jig grinder
+Lapping
+Sanding
+Sharpening stone
+Spark testing
+Surface grinder
+Tool and cutter grinder
+
+
+
+
+
+Machining
+
+
+
+Boring
+Broaching
+Electrical discharge machining
+Electrochemical machining
+Electron beam machining
+Endmill
+Engraving
+Facing
+Hobbing
+Jig borer
+Machine tool
+Machining
+Metal lathe
+Milling cutter
+Milling machine
+Pantograph
+Photochemical machining
+Planer
+Reamer
+Rotary transfer machine
+Shaper
+Turning
+Ultrasonic machining
+
+
+
+
+
+Machine tooling
+
+
+
+Angle plate
+Chuck
+Collet
+Fixture
+Indexing head
+Jig
+Lathe center
+Machine taper
+Magnetic base
+Mandrel
+Rotary table
+Wiggler
+
+
+
+
+
+Terminology
+
+
+
+Cutting fluid
+Machining vibrations
+Speeds and feeds
+Swarf
+Tolerance
+Tool and die making
+Tramp oil
+
+
+
+
+
+
+
+
+
+
+
+Casting
+Fabrication
+Forming
+Jewellery
+Machining
+Metallurgy
+Smithing
+Tools and terminology
+Welding
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=STEP-NC&oldid=809480041"					Categories: AutomationComputer-aided engineeringMachine toolsProduction and manufacturingISO 10303

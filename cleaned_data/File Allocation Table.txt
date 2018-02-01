@@ -1,0 +1,2430 @@
+
+
+
+
+developers
+microsoft compaq digital research novell caldera
+
+
+full name
+file allocation table
+
+
+variants
+8bit fat12 fat16 fat16b fat32 exfat fatx
+
+
+introduced
+1977 1977 standalone disk basic80
+
+
+partition identifier
+mbrebr
+fat12 0x01 extended attribute
+fat16 0x04 0x06 0x0e
+fat32 0x0b 0x0c
+
+ebd0a0a2b9e5443387c068b6b72699c7
+
+
+structures
+
+
+directory contents
+table
+
+
+file allocation
+linked list
+
+
+blocks
+cluster tagging
+
+
+limits
+
+
+volume size
+fat12 clusters
+fat16 clusters
+fat32 sectors
+
+
+file size
+4294967295 bytes fat16b fat321
+
+
+number files
+fat12 4068 clusters
+fat16 65460 clusters
+fat32 268173300 clusters
+
+
+filename length
+filename ucs2 characters using
+
+
+features
+
+
+dates recorded
+modified datetime creation datetime higher access date available accdate enabled2 deletion datetime delwatch
+
+
+date range
+19800101 20991231 21071231
+
+
+date resolution
+seconds last modified time
+creation time
+access date
+seconds deletion time
+
+
+forks
+natively
+
+
+attributes
+readonly hidden system volume directory archive
+
+
+file system permissions
+fat12fat16 file directory volume access rights read write execute delete drdos palmdos novell opendos flexos 4680 4690 concurrent multiuser system manager real32 execute right flexos 4680 4690 individual file directory passwords flexos 4680 4690 worldgroupowner permission classes multiuser security loaded
+fat32 partial drdos real32 4690
+
+
+transparent compression
+fat12fat16 pervolume superstor stacker doublespace drivespace
+fat32
+
+
+transparent encryption
+fat12fat16 pervolume drdos
+fat32
+
+
+file allocation table computer file system architecture family industrystandard file systems utilizing file system legacy file system simple robust3 offers good performance even lightweight implementations cannot deliver performance reliability scalability modern file systems however supported compatibility reasons nearly currently developed operating systems personal computers many mobile devices embedded systems thus wellsuited format data exchange computers devices almost type 1981 present
+originally designed 1977 floppy disks soon adapted used almost universally hard disks throughout windows eras decades4 disk drives evolved capabilities file system extended accordingly resulting three major file system variants fat12 fat16 fat32 standard also expanded ways generally preserving backward compatibility existing software
+introduction powerful computers operating systems well development complex file systems longer default file system usage microsoft windows computers5
+file systems still commonly found floppy disks flash solidstate memory cards modules including flash drives well many portable embedded devices standard file system digital cameras specification
+
+
+
+contents
+
+
+overview
+
+concepts
+uses
+nomenclature
+
+
+types
+
+original 8bit
+fat12
+initial fat16
+logical sectored
+final fat16
+fat32
+
+
+extensions
+
+extended attributes
+long file names
+forks alternate data streams
+umsdos permissions filenames
+
+
+derivatives
+
+turbo
+fatx
+exfat
+
+
+
+patents
+
+challenges lawsuits
+
+
+also
+notes
+references
+external links
+
+
+
+overviewedit
+conceptsedit
+
+main article design file system
+
+
+
+
+
+
+section needs expansion general descriptions various file system types talk page alternatively missing information could added various existing file system types chapters technical contents previously residing technical design split design file system came existing link please link pointing design file system instead leave note talk page assistance previous embedded anchors continue exist article help adding 2014
+
+
+
+name file system originates file systems prominent usage index table file allocation table statically allocated time formatting table contains entries cluster contiguous area disk storage entry contains either number next cluster file else marker indicating file unused disk space special reserved areas disk root directory disk contains number first cluster file directory operating system traverse looking cluster number successive part disk file cluster chain file reached much subdirectories implemented special files containing directory entries respective files
+originally designed 8bit file system maximum number clusters significantly increased disk drives evolved number bits used identify cluster grown successive major variants format named number table element bits fat12 fat16 fat32 except original 8bit precursor variants stillwhen standard also expanded ways generally preserving backward compatibility existing software
+usesedit
+file system long history three decades usage desktops portable computers frequently used embedded solutions
+offers reasonably good performance robustness even lightweight implementations3 therefore widely adopted supported virtually existing operating systems personal computers well home computers multitude embedded systems also makes useful format solidstate memory cards convenient share data operating systems
+file systems default file system removable media exception dvds commonly found floppy disks superfloppies memory flash memory cards flash drives supported portable devices pdas digital cameras camcorders media players mobile phones fat12 omnipresent floppy disks fat16 fat32 typically found larger media
+also commonly used hard disks throughout windows eras hard drives declined since introduction windows primarily uses newer ntfs still used hard drives expected used multiple operating systems shared windows gnulinux environments
+widespread fatformatted media many operating systems provide support official thirdparty file system handlers example gnulinux freebsd beos provide builtin support even though also support sophisticated file systems ext4 btrfs macos support file systems volumes boot disk amigaos supports crossdos package
+many purposes ntfs file system superior terms features reliability main drawbacks complexity size overhead small volumes well limited support anything ntbased versions windows since exact specification trade secret microsoft availability ntfs3g since mid2006 much improved ntfs support unixlike operating systems considerably alleviating concern still possible ntfs doslike operating systems without thirdparty drivers turn makes difficult floppy recovery purposes microsoft provided recovery console work around issue security reasons severely limited could done recovery console default movement recovery utilities boot based bartpe linux ntfs3g winpe eroding drawback complexity ntfs prevents implementation lightweight operating systems embedded systems
+file system adopted almost digital cameras since 1998 defines logical file system filenames makes either fat12 fat16 fat32 exfat mandatory physical layer order maximize platform interoperability6
+also used internally system partition partition type 0xef boot stage eficompliant computers7
+hidden filesystems also used uefi boot partition modern uefi specification requires compliant firmware capable reading fat12 fat16 fat32 compliant partitions
+floppy disks standardized ecma1078 isoiec 929319949 superseding 9293198710 standards cover fat12 fat16 short filename support long filenames vfat partially patented11
+nomenclatureedit
+technically term file system refers three major variants file system fat12 fat16 fat32 parties clearly distinguish necessary contrast microsoft typically longer distinguishes three since introduction fat32 refers fat12 fat16 whereas fat32 gets treated specially dialog boxes documentation sometimes lead confusion actual type file system used mentioned cannot explicitly specified want format fat32 instead want format fat12 fat16 fat32
+another common cause confusion exists within group fat16 file systems since term fat16 refers either whole group file systems 16bit wide cluster entries specifically original implementation 16bit sector entries becomes necessary differentiate original later implementation technically newer variant 32bit sector entries called fat16b commonly referred name fat16 well particular since original variant rarely seen today typically used small media backward compatibility required
+term vfat various misconceptions wellnb sometimes erroneously used would describe another variant file system distinguished fat12 fat16 fat32 file systems reality specify another file system optional extension work file system fat12 fat16 fat32 volumes utilizing vfat longfilenames read also operating systems supporting vfat extension long operating systems support underlying file system fat12 fat16 fat32
+another cause misconceptions stems apparent redundancy possible ambiguity definition volumes general type file system fat12 fat16 fat32 determined width cluster entries specific threshold values amount clusters7 stored defined determine type used even though properties size volume count sectors format file system name ebpb case partitioned media used partition often seem wellsuited distinguishing criteria well cannot reliably used derive file system type scenarios7 whilst uncommon technically possible define fat12 fat16 volume using fat32 ebpb sort misnomer ebpb variant introduced normally used fat32 volumes onlynb also partition sometimes indicate special properties hidden secure access operating system often used conjunction particular file system variants typically used specify type file system rather keep older foreign operating systems aware partition accessing partitions cannot handle work with12 therefore necessary distinguish generic file system types fat12 fat16 fat32 partition types fat12 fat16 fat16b fat16x fat32 fat32x
+typesedit
+also timeline operating systems
+original 8bit fatedit
+
+8bit
+
+developers
+microsoft
+
+
+full name
+8bit file allocation table
+
+
+introduced
+19771978 basic
+1978 standalone disk basic80 16byte directory entries1314
+1978 standalone disk basic86 internal
+19790604 standalone disk basic86 16byte directory entries
+1979 midas 32byte directory entries
+
+
+limits
+
+
+file size
+
+
+
+file size granularity
+recordgranularity bytes1314
+
+
+filename length
+filename binary files characters ascii files1314
+
+
+directory depth
+subdirectories
+
+
+allowed characters filenames
+ascii 0x00 0xff allowed first character1314
+
+
+features
+
+
+dates recorded
+
+
+
+attributes
+write protected ebcdic conversion read write binary random rather sequential file1314
+
+
+original file system structure called initially designed coded marc mcdonald15 based series discussions mcdonald bill gates15 introduced 8bit table elements131415 valid data cluster numbers 0xbf1314 precursor microsofts standalone disk basic80 8080based successornb 7200 model dataentry terminal equipped 8inch floppy disks 1977161978nb 1978 standalone disk basic80 ported 8086 using emulator pdp1017 since real 8086 systems available time file system also utilized microsofts mdosmidas15 operating system 8080z80 platforms written mcdonald since 1979 standalone disk basic version supported three fats131418 whereas parameter midas reportedly midas also prepared support 10bit 12bit 16bit variants size directory entries bytes standalone disk basic1314 midas instead occupied bytes entry
+paterson seattle computer products first introduced microsofts structure helped orear adapting standalone disk basic86 emulator port onto scps s100 8086 board prototype guest week microsoft 197917 final product shown lifeboat associates booth stand national computer conference york17 june 1979 paterson learned sophisticated implementation mdosmidas15 mcdonald talked design file system16
+fat12edit
+
+fat12
+
+developers
+microsoft digital research novell
+
+
+full name
+12bit file allocation table
+
+
+introduced
+198007 qdos 16byte directory entries
+19810225 86dos 32byte directory entries several reserved sectors
+19810810 32byte directory entries reserved sector
+19820303 msdos 32byte directory entries reserved sector
+
+
+partition identifier
+mbrebr
+fat12 0x01
+
+ebd0a0a2b9e5443387c068b6b72699c7
+
+
+limits
+
+
+volume size
+clusters
+clusters
+
+
+file size
+limited volume size
+
+
+file size granularity
+byte
+
+
+number files
+4068 clusters
+
+
+filename length
+filename characters
+ucs2 characters using
+
+
+directory depth
+levels characters
+levels without
+
+
+features
+
+
+dates recorded
+modified date 86dos modified time 86dos creation datetime higher access date available accdate enabled2 deletion datetime delwatch
+
+
+date range
+19800101 20991231 21071231
+
+
+date resolution
+seconds last modified time
+creation time
+access date
+seconds deletion time
+
+
+attributes
+readonly since hidden system volume since msdos directory since msdos archive since
+
+
+file system permissions
+file directory volume access rights read write execute delete drdos palmdos novell opendos flexos 4680 4690 concurrent multiuser system manager real32 execute right flexos 4680 4690 individual file directory passwords flexos 4680 4690 worldgroupowner permission classes multiuser security loaded
+
+
+transparent compression
+pervolume superstor stacker doublespace drivespace
+
+
+transparent encryption
+pervolume drdos
+
+
+april august 1980 borrowing concept scps 8086 operating system qdos 01017 paterson extended table elements bits19 reduced number fats redefined semantics reserved cluster values modified disk layout root directory located data area implementation fat12 paterson also increased ninecharacter filename1314 length limit eleven characters order support cpmstyle filenames file control blocks format used microsoft standalone disk basics 8bit file system precursor supported qdos august 1980 qdos already renamed 86dos20 starting 86dos size layout directory entries changed bytes bytes21 order file date stamp21 increase theoretical file size limit beyond previous limit mb21 86dos became available early 1981 later 1981 86dos evolved microsofts msdos dos151922 capability read previously formatted volumes 16byte directory entries21 dropped msdos
+originally designed file system floppy disks fat12 used 12bit entries cluster addresses limited maximum generally possible count data clusters 4078 data clusters 0x002 0xfef2324 controlled scenarios even 4084 data clusters 0x002 0xff57825 made manipulation tricky 8bit 16bit registers msdos support 4084 data clusters fat12 volumes general cluster value 0xff0nb treated additional endofchain marker fat12 volume12 since msdospc also introduced 0xf0 media descriptor value therefore restricting maximum practical number data clusters 4078 compatibility purposes operating systems
+disks size stored calculated 16bit count sectors limited size logical sector size bytes fat12 used several manufacturers different physical formats typical floppy disk time 525inch singlesided tracks sectors track resulting capacity system areas files fat12 limitations exceeded capacity factor limit later circumvented using logical sectored fats logical sector sizes larger bytes versions msdos fell disuse fat16b became available supported 32bit sector numbers thereby lifted limits
+convention control structures organized inside first track thus avoiding head movement read write operations although varied depending manufacturer physical format disk limitation addressed much later fat32 sector control structures area track could prevent disk usable formatting tool rejected disks completely sectors allowed file data area since marked reserved value 0xff7 made entire containing cluster unusable
+86dos supported three disk formats 25025 1232 0xff 0xfe 8inch floppy drives released original personal computer 1981 supported 8sector floppy format formatted capacity 0xfe singlesided 525inch floppy drives added support doublesided format 0xff introduced support 9sector floppy formats 0xfc 0xfd
+86dos directory entries included date last modified date added last modified time file attributes included hidden system remaining bits undefined time support hierarchical file system still acceptable given number files disk typically dozen
+first hard drive supported hard drive fat12 0xf8 fixed assumption sectors clusters hard disks practically limited maximum partition size byte sectors clusters
+bios parameter block introduced well version also added readonly archive volume label directory attribute bits hierarchical subdirectories26
+msdos introduced support highdensity 525inch diskettes media descriptor 0xf9 notably sectors track hence space fats
+fat12 remains common floppy disks including later disks media descriptor byte 0xf0
+initial fat16edit
+
+fat16
+
+developers
+microsoft digital research novell
+
+
+full name
+16bit file allocation table
+16bit sector entries
+
+
+introduced
+19840814
+198408 msdos
+
+
+partition identifier
+mbrebr
+fat16 0x04
+ebd0a0a2b9e5443387c068b6b72699c7
+
+
+limits
+
+
+file size
+limited volume size
+
+
+file size granularity
+byte
+
+
+number files
+65536 clusters
+
+
+filename length
+filename characters
+ucs2 characters using
+
+
+directory depth
+levels characters
+levels without
+
+
+features
+
+
+dates recorded
+modified datetime creation datetime higher access date available accdate enabled2 deletion datetime delwatch
+
+
+date range
+19800101 20991231 21071231
+
+
+date resolution
+seconds last modified time
+creation time
+access date
+seconds deletion time
+
+
+attributes
+readonly hidden system volume directory archive
+
+
+file system permissions
+file directory volume access rights read write execute delete drdos palmdos novell opendos flexos 4680 4690 concurrent multiuser system manager real32 execute right flexos 4680 4690 individual file directory passwords flexos 4680 4690 worldgroupowner permission classes multiuser security loaded
+
+
+transparent compression
+pervolume superstor stacker doublespace drivespace
+
+
+transparent encryption
+pervolume drdos
+
+
+august 1984 released featured hard disk 302728 microsoft introduced msdos parallel cluster addresses increased 16bit allowing 65524 clusters volume consequently much greater file system sizes least theory however maximum possible number sectors maximum partition rather disk size change therefore although cluster addresses bits format today commonly understood fat16 partition type 0x04 indicates form fat16 less 65536 sectors less sector size
+initial implementation fat16 actually providing larger partition sizes fat12 early benefit fat16 enable smaller clusters making disk usage efficient particularly large numbers files hundred bytes size
+msdos hard disks larger incompatible later versions msdos29 hard disk formatted msdos accessible older msdos msdos support version fat16 msdos could still access msdos 20style cluster partitions
+logical sectored fatedit
+hard disks grew larger fat12 fat16 file system implementation msdos provide means take advantage extra storage several manufacturers developed variants address problem msdos issues30
+vendors nec30 supported eight instead standard four primary partition entries custom extended master boot record adapted msdos single primary partition
+vendors worked around volume size limits imposed 16bit sector entries arithmetics increasing size sectors file system dealt thereby blowing dimensions
+socalled logical sectors larger 8192 bytes physical sector size still typically bytes expected rombios disk drive hardware dosbios system bios would combine multiple physical sectors logical sectors file system work changes transparent file system implementation kernel since file systems abstraction level volumes seen linear series logically addressable sectors also known absolute sectors addressed logical sector number starting independent physical location volume physical medium geometry underlying dosbios translated logical sectors physical sectors according partitioning information drives physical geometry
+drawback approach less memoryefficient sector buffering deblocking dosbios thereby causing increased memory footprint data structures since older versions flexible enough work logical geometries oems introduce partition variants order hide offtheshelf issues msdos known partition logical sectored fats include 0x08 commodore msdos 0x11 leading edge msdos 0x14 msdos 0x24 msdos 33030 0x56 msdos 0xe5 tandy msdos 0xf2 sperry msdos unisys msdos also used digital research plus 2131 versions like toshiba msdos wyse msdos 3332 well zenith msdos also known utilized logical sectoring33
+nonstandard suboptimal variants perfectly valid according specifications file system therefore even default issues msdos able cope vendorspecific fat12 fat16 variants mounted flexible file system implementations operating systems drdos simply changing partition recognized typesnb also longer need recognized original operating systems existing partitions converted fat12 fat16 volumes compliant versions msdospc 40–63 support sector sizes different bytes34 switching 32bit entry number sectors introduced since fat16b keeping cluster size reducing logical sector size bytes time increasing counts logical sectors cluster reserved logical sectors total logical sectors logical sectors factor
+parallel development msdos allowed increase maximum possible size introduction multiple partitions hard disk allow partitions compatible partition type introduced 1986 extended partition ebr15 container additional partition called logical drive since april 1987 another optional extended partition containing next logical drive hard disk either define four primary partitions extended partition addition three primary partitions
+also extended boot record
+final fat16edit
+
+fat16b
+
+developers
+compaq digital research microsoft novell
+
+
+full name
+16bit file allocation table
+32bit sector entries
+
+
+introduced
+198711 compaq msdos
+19880628
+1988
+1988
+1988 msdos
+
+
+partition identifier
+mbrebr
+fat16b 0x06 0x0e
+
+ebd0a0a2b9e5443387c068b6b72699c7
+
+
+limits
+
+
+volume size
+byte sectors
+byte sectors
+sectors
+
+
+volume size
+clusters
+clusters ptsdos edrdos
+clusters sectors edrdos
+clusters byte sectors edrdos
+clusters sectors
+
+
+file size
+2147483647 bytes without
+4294967295 bytes
+limited volume size fat1635
+
+
+file size granularity
+byte
+
+
+number files
+65460 clusters
+
+
+filename length
+filename characters
+ucs2 characters using
+
+
+directory depth
+levels characters
+levels without
+
+
+features
+
+
+dates recorded
+modified datetime creation datetime higher access date available accdate enabled2 deletion datetime delwatch
+
+
+date range
+19800101 20991231 21071231
+
+
+date resolution
+seconds last modified time
+creation time
+access date
+seconds deletion time
+
+
+attributes
+readonly hidden system volume directory archive
+
+
+file system permissions
+file directory volume access rights read write execute delete drdos palmdos novell opendos flexos 4680 4690 concurrent multiuser system manager real32 execute right flexos 4680 4690 individual file directory passwords flexos 4680 4690 worldgroupowner permission classes multiuser security loaded
+
+
+transparent compression
+pervolume superstor stacker doublespace drivespace
+
+
+transparent encryption
+pervolume drdos
+
+
+november 1987 compaq personal computer modified version msdos released compaq machines introduced today simply known fat16 format expansion 16bit disk sector count bits although ondisk changes minor entire disk driver converted 32bit sector numbers task complicated fact written 16bit assembly language result initially called large file system microsofts dskprobe tool refers type 0x06 bigfat36 whereas older versions fdisk described bigdos technically known fat16b
+since older versions designed cope 65535 sectors necessary introduce partition type format order hide pre331 issues original form fat16 less 65536 sectors partition type 0x04 deal disks larger type 0x06 introduced indicate 65536 sectors addition disk driver expanded cope 65535 sectors well difference original fat16 newer fat16b format usage newer format 32bit sector entry therefore newer operating systems supporting fat16b format cope also original fat16 format without necessary changes
+partitions used predos issues need created modern tools criteria theoretically necessary meet sector count less 65536 usage partition 0x04 practice however type 0x01 0x04 primary partitions physically located outside first disk restrictions msdos could cope otherwise
+1988 fat16b improvement became generally available msdos limit partition size dictated 8bit signed count sectors cluster originally maximum poweroftwo value standard hard disk sector size bytes gives maximum cluster size thereby fixing definitive limit fat16 partition size sector size magnetooptical media sectors instead size limit proportionally larger
+much later windows increased maximum cluster size considering sectorspercluster count unsigned however resulting format compatible implementation time generated greater internal fragmentation windows also supported reading writing variant disk utilities work services available volumes contributes confusing compatibility situation
+prior 1995 versions accessed disk addressing msdos windows introduced disk access partitions could start physically located outside first disk thereby reach traditional addressing scheme partitions partially fully located beyond barrier therefore hidden nonlbaenabled operating systems using partition type 0x0e partition table instead fat16 partitions using partition type also named fat16x37 difference compared previous fat16 partitions fact chsrelated geometry entries record namely number sectors track number heads contain misleading values used
+number root directory entries available fat12 fat16 determined volume formatted stored 16bit field given number sector size number root directory sectors rdsceilrde×32ss normally chosen fill sectors rde32rdsss fat12 fat16 media typically root directory entries nonfloppy media thirdparty tools like mkdosfs allow user parameter38
+fat32edit
+
+fat32
+
+developers
+microsoft caldera
+
+
+full name
+32bit file allocation table
+28bit cluster entries
+
+
+introduced
+august 1996 windows osr2
+
+
+partition identifier
+mbrebr
+fat32 0x0b 0x0c
+
+ebd0a0a2b9e5443387c068b6b72699c7
+
+
+limits
+
+
+volume size
+mib45 65525 clusters byte sectors
+mib36 65525 clusters sectors
+
+
+volume size
+byte sectors
+sectors clusters
+sectors clusters
+
+
+file size
+2147483647 bytes without
+4294967295 bytes
+274877906943 bytes fat3235
+
+
+file size granularity
+byte
+
+
+number files
+268173300 clusters
+
+
+filename length
+filename characters
+ucs2 characters using
+
+
+directory depth
+levels characters
+levels without
+
+
+features
+
+
+dates recorded
+modified datetime creation datetime higher access date available accdate enabled2 deletion datetime delwatch
+
+
+date range
+19800101 20991231 21071231
+
+
+date resolution
+seconds last modified time
+creation time
+access date
+seconds deletion time
+
+
+attributes
+readonly hidden system volume directory archive
+
+
+file system permissions
+partial drdos real32 4690
+
+
+transparent compression
+
+
+
+transparent encryption
+
+
+
+order overcome volume size limit fat16 time allowing real mode code handle format microsoft designed version file system fat32 supported increased number possible clusters could reuse existing code conventional memory footprint increased less dos39 cluster values represented 32bit numbers bits used hold cluster number boot sector uses 32bit field sector count limiting fat32 volume size sector size bytes sector size 4096 bytes4041 fat32 introduced msdos windows osr2 1996 although reformatting needed drivespace version came windows osr2 windows never supported windows introduced utility convert existing hard disks fat16 fat32 without loss data windows line native support fat32 arrived windows 2000 free fat32 driver windows available winternals company later acquired microsoft acquisition driver official sources longer possible since 1998 calderas dynamically loadable drfat32 driver could used enable fat32 support drdos4243 first version drdos natively support fat32 access drdos 1999 year introduced native fat32 support real32 4690 added fat32 support version ahead software provided another dynamically loadable fat32exe driver drdos nero burning 2004 introduced native fat32 support 2003
+maximum possible size file fat32 volume minus byte 4294967295 bytes limit consequence file length entry directory table would also affect huge fat16 partitions sufficient sector size1 large video files images databases often exceed limit
+previous file systems design fat32 file system include direct builtin support long filenames fat32 volumes optionally hold vfat long filenames addition short filenames exactly vfat long filenames optionally implemented fat12 fat16 volumes
+partition types reserved fat32 partitions 0x0b 0x0c latter type also named fat32x order indicate usage disk access instead chs4245464748 partitions chsrelated geometry entries namely sector addresses well number sectors track number heads ebpb record contain misleading values used494748
+extensionsedit
+extended attributesedit
+heavily depends extended attributes stores hidden file called ea␠data␠sf root directory fat12 fat16 volume file indexed previously reserved bytes files directorys directory entry offset 0x1450 fat32 format bytes hold upper bits starting cluster number file directory hence making impossible store fat32 using method
+however thirdparty fat32 installable file system driver fat32ifs version higher henk kelder netlabs ecomstation stores extended attributes extra files filenames string ␠ea␠sf appended regular filename file belong driver also utilizes byte offset 0x0c directory entries store special mark byte indicating presence extended attributes help speed things5152 extension critically incompatible fat32 method store files larger minus fat32 volumes35
+extended attributes accessible workplace shell desktop rexx scripts many system commandline utilities 4os253
+accommodate subsystem windows supports handling extended attributes hpfs ntfs fat12 fat16 stores fat12 fat16 hpfs using exactly scheme support kind held ntfs volumes trying copy file ntfs volume hpfs volume gives warning message names adss lost support fat32ifs method store fat32 volumes
+windows 2000 onward acts exactly windows except ignores copying fat32 without warning shows warning adss like macintosh finder info macintosh resource fork
+cygwin uses ea␠data␠sf files well
+long file namesedit
+user experience goals designers windows ability long filenames lfns—up ucs2 code units long addition classic filenames sfns backward forward compatibility implemented optional extension existing file system structures using workaround directory entries laid
+transparent method store long file names existing file systems without altering data structures usually known vfat virtual windows virtual device drivernb
+vfatenabled operating systems still access files short file name alias without restrictions however associated long file names lost files long file names copied vfataware operating systems
+windows support vfat long filenames started version
+gnulinux provides vfat filesystem driver work volumes vfat long filenames uvfat driver available provide combined support umsdosstyle permissions vfat long filenames
+added long filename support using extended attributes introduction vfat thus vfat long filenames invisible long filenames invisible windows therefore experienced users operating systems would manually rename files
+human68k supported filenames shift kanji characters proprietary file system variant
+order support java applications flexosbased 4690 version introduced virtual file system architecture store long filenames file system backwards compatible fashion enabled virtual filenames available separate logical drive letters whereas real filenames remain available original drive letters54
+forks alternate data streamsedit
+file system designed supporting alternate data streams operating systems heavily depend devised various methods handling drives methods either store additional information extra files directories classic macos give semantics previously unused fields ondisk data structures windows
+using exchange stores various dates file attributes long filenames hidden file called finderdat resource forks common subdirectory called resourcefrk every directory used exchange onwards store long filenames standard long filenames convert filenames longer characters unique 31character filenames made visible macintosh applications
+macos stores resource forks metadata file attributes using appledouble format hidden file name constructed owner filename prefixed finder stores folder file metadata hidden file called dsstore note finder uses dsstore even macos native filesystem
+umsdos permissions filenamesedit
+information filesystem linux
+early gnulinux distributions also supported format known umsdos variant unix file attributes long file name access permissions stored separate file called linux umsdos fell disuse vfat released enabled default linux version onwards55 time linux also provided combined support umsdosstyle permissions vfat long filenames uvfat
+derivativesedit
+turbo fatedit
+main article turbo
+netware file system nwfs novell implemented heavily modified variant file system netware operating system larger files utilized performance feature named turbo
+fatxedit
+fatx family file systems designed microsofts xbox video game console hard disk drives memory cards5657 introduced 2001
+resembling basic design ideas fat16 fat32 fatx16 fatx32 ondisk structures simplified fundamentally incompatible normal fat16 fat32 file systems making impossible normal file system drivers mount volumes
+nonbootable superblock sector size holds byte large bpblike structure completely different normal bpbs clusters typically size copy xbox directory entries bytes size instead normal bytes files filenames characters long using character minus byte size ondisk timestamps hold creation modification access dates times differ epoch 1980 fatx epoch 2000 xbox epoch 198058
+exfatedit
+main article exfat
+exfat file system introduced windows embedded november 2006 brought windows family vista service pack windows service pack andor separate installation windows update kb955704 loosely based file allocation table architecture incompatible proprietary protected patents59
+exfat intended flash drives sdxc memory stick fat32 otherwise used microsofts commandline format utilities offer alternative ntfs smaller partitions fat16b fat32 partition type 0x07 used hpfs ntfs logical geometry information located stored format resembling kind
+fatedit
+2007 open draft proposed store larger files minus byte 274877906943 bytes slightly modified otherwise backwardcompatible fat32 volumes35 imposes risk disk tools fat32 implementations aware extension truncate delete files exceeding normal fat32 file size limit support fat32 fat16 limited versions drdos available mainstream operating systems60 extension critically incompatible option fat32ifs method store extended attributes fat32 volumes
+patentsedit
+microsoft applied granted series patents parts file system mid1990s four pertain longfilename extensions first seen windows patent 557951761 patent 574590262 patent 575835263 patent 628601364
+december 2003 microsoft announced65 would offering licenses specification associated intellectual property cost us025 royalty unit sold 250000 maximum royalty license agreement66 microsoft cited four patents file system basis intellectual property claims
+fat32 specification7 microsoft specifically grants number rights many readers interpreted permitting operating system vendors implement fat67
+nonmicrosoft patents affecting include patent 5367671 specific extended object attributes expired 201168
+challenges lawsuitsedit
+public patent foundation pubpat submitted evidence patent trade office uspto 2004 disputing validity patent 557951761 including prior references xerox ibm69 uspto opened investigation concluded rejecting claims patent70 next year uspto announced following reexamination process affirmed rejection additionally found patent 575835263 invalid grounds patent incorrect assignees
+however 2006 uspto ruled features microsofts implementation system novel nonobvious reversing earlier decisions leaving patents valid71
+february 2009 microsoft filed patent infringement lawsuit tomtom alleging device makers products infringe patents related vfat long filenames tomtom products based gnulinux marked first time microsoft tried enforce patents gnulinux platform72 lawsuit settled court following month agreement microsoft given access four tomtoms patents tomtom drop support vfat long filenames products return microsoft seek legal action tomtom fiveyear duration settlement agreement73
+october 2010 microsoft filed patent infringement lawsuit motorola alleging several patents including vfat patents licensed android operating system74 also submitted complaint itc75 developers open source software designed methods intended circumvent microsofts patents7677
+2013 patent ep0618540 common name space long short filenames invalidated germany78
+alsoedit
+
+comparison file systems
+design file system
+drive letter assignment
+list file systems
+transactionsafe file system
+
+notesedit
+
+
+driver named vfat appeared windows windows workgroups older version used implementing 32bit file access support long file names
+windows observed create similar hybrid disks reformatting fat16b formatted zip100 disks fat32 format resulting volumes fat32 format still used fat16b ebpb unclear windows determines location root directory fat32 volumes fat16 ebpb used
+sources differ regard first data entry terminal integrating support file system according stephen manes paul andrews gates development 8200 late 1977 incorrectly classified floppybased upgrade 7200 released 197511 model built around intel 8080 8bit processor cassettebased however century 8200 16bit minicomputer onto several data entry terminals could hooked marc mcdonald even remembered 8500 mainframe criterion series ruled well announced 197710 shipment 197802 also introduced i8100 series including 8080based i8130 i8150 models small business systems featuring dual floppy disks sources indicate either 7200 series successor series actual target platform basic plus based microsoft extended basic80 became available cassettebased 7200 model q11977 7500 series released 1978 based similar 8080 hardware including 7520 7530 models featuring 8inch diskettes basic precursor adaptation standalone disk basic80 available least since 1979 source claims special 7200 model variant 8inch diskettes microsoft basic existed imported sydney australia least
+endofchain marker special precautions regard occurrences cluster value 0xff0 fat12 volumes msdospc higher
+drdos able boot fat12fat16 logical sectored media logical sector sizes 1024 bytes
+
+
+referencesedit
+
+
+
+file systems microsoft technet 2001 retrieved 20110731
+microsoft 20061115 windows cdrom configtxt file article 135481 revision retrieved 20111222 hard disk specifies whether record date files last accessed last access dates turned drives computer started safe mode maintained floppy disks default syntax accdatedrive1 drive2
+file system windows embedded microsoft january 2010 retrieved 20130707
+brief introduction file allocation table formats wizcodes articles howtos guides hints tips articles wwwwizcodecom retrieved 20150924
+comparing ntfs file systems microsoft retrieved 20140127
+jeidajeitacipa 2010 standard camera imaging products association cipa dc009translation2010 design rule camera file system version edition 2010 archived original september 2013 retrieved 20110413
+microsoft extensible firmware initiative fat32 file system specification general overview ondisk format microsoft december 2000 retrieved 20110703
+volume file structure disk cartridges information interchange standard ecma107 june 1995 ecma 1995 retrieved 20110730
+information technology volume file structure disk cartridges information interchange isoiec 92931994 catalogue 1994 retrieved 20120106
+information processing volume file structure flexible disk cartridges information interchange 92931987 catalogue 1987 retrieved 20120106
+reynolds aaron adler dennis lipe ralph pedrizetti parsons jeffrey arun rasipuram 1998 common name space long short filenames patent 5758352 retrieved 20120119
+chappell geoff 1994 internals addison wesley isbn 0201608359 isbn 9780201608359
+xerox basic80 basic80 reference manual microsoft xerox 1979 610p70641 retrieved 20140602 microsoft standalone disk disk extended basic80 standalone disk extended basic86 basic compiler release
+microsoft basic80 version reference manual basic80 interpreter compiler addendum release microsoft 1979 retrieved 20140602 microsoft standalone disk disk extended basic80 standalone disk extended basic86 basic compiler release
+duncan 1988 msdos encyclopedia version microsoft press isbn 1556150490
+manes stephen andrews paul 1993 gates microsofts mogul reinvented industry—and made richest america doubleday isbn 0385420757
+hunter david 1983 paterson roots softalk personal computer march 1983 retrieved 20140602
+schulman andrew brown ralf maxey david michels raymond kyle 1994 undocumented programmers guide reserved msdos functions data structures expanded include msdos novell windows addison wesley isbn 020163287x isbn 9780201632873
+paterson september 2007 design dosman drivel retrieved 20110704
+seattle computer products august 1980 86dos 8086 operating system byte retrieved 20130818 advertisement already calls product 86dos mention specific version number version known called 86dos already name change must taken place either version immediately afterwards august 1980
+seattle computer products 1981 86dos addendum retrieved 20130310
+wallace james erickson 1992 hard drive bill gates making microsoft empire john wiley sons isbn 0471568864
+norton peter 1986 inside revised enlarged brady isbn 0893035831
+jenkinson brian sammes 2000 forensic computing practitioners guide practitioner series berlin springer isbn 1852332999 4096 allocation units clusters addressed fact number less since 000h 001h used ff0h fffh reserved used purposes leaving 002h fefh 4079 range possible clusters
+brouwer andries linux
+paterson 1983 inside look msdos byte archived original july 2011 retrieved 20110718 numbering starts first numbers reserved
+1984 announcement letter
+1985 technical reference first edition 6024181 dated february 1985
+microsoft knowledge base article msdos partitioning summary
+installing partitions novell january 1993 fyim1101 retrieved 20140812
+brouwer andries list partition identifiers
+microsoft december 2000 wyse partitions incompatible msdos document q78407 1permanent dead link
+microsoft december 2000 upgrading pre40 systems logical drives document q68176 2permanent dead link
+brouwer andries properties partition tables
+kuhnt georgiev luchezar davis jeremy 2007 fatplustxt draft revision retrieved 20150420 maint uses authors parameter link
+dskprobe overview data recovery microsoft technet march 2003 retrieved 20110803
+errors creating files folders root directory microsoft help support december 2004 retrieved 20061014
+mkdosfs page
+windows resource chapter disks file systems microsoft technet 1998 retrieved 20120716
+limitations fat32 file system microsoft knowledge base march 2007 retrieved 20110821 clusters cannot kilobytes larger
+limitations fat32 file system windows microsoft knowledge base december 2007 retrieved 20110821
+readmetxt caldera drdos fat32 enabled boot disk drfat32 caldera july 1998
+drfat32sys r100 interface fat32 redirector caldera september 1998
+4690 users guide version document sc30413401 20080110
+karpowitz christina september 1998 powerquest partitionmagic available powerquest archived original february 1999 retrieved 20150417
+livingston brian october 1998 fat32x operate differently fat32 large hard drives infoworld retrieved 20150417
+duitz neal july 2001 anyone explain fat32x win98 private windows consumer preview program archived original june 2004 retrieved 20150417
+costanzo lance 1998 fat32x archived original 1998 retrieved 20150417
+steinberg david 1998 fat32x partition tech powerquest technical support retrieved 20150417
+eager tavi systems october 2000 implementation extended attributes file system
+kelder henk 2003 fat32txt fat32ifs version 0913 byte modified running windows neighter scandisk defrag another program sets value 0x00 file longer found using dosfindfirstnext calls calls retrieving dosquerypathinfo dosqueryfileinfo dosenumattribute rely byte also opposite could occur situation performance directory scans decreased situations corrected chkdsk
+kelder henk fat32txt fat32ifs version archived copy archived original march 2012 retrieved january 2012 comment older version readme file still discusses 0xea 0xec magic values
+eager october 2000 implementation extended attributes file system tavi pages retrieved 20061014
+4690 programming guide version document sc30413701 20071206
+release notes v257 linux kernel archives march 2002 retrieved 20061014
+fatx specification free60 wiki retrieved 20110816
+quincey andrew murraypitts lucien august 2008 xbox partitioning file system details xboxlinux project archived original june 2010 retrieved 20140525
+steil michael february 2008 2003 differences xbox fatx msdos xboxlinux project archived original june 2010 retrieved 20140525
+microsoft exfat file system intellectual property licensing program archived original 2013 retrieved 20130423
+kuhnt july 2011 drdosopendos enhancement project retrieved 20150420
+5579517 reynolds aaron dennis adler ralph lipe common name space long short filenames issued 1996
+5745902 miller thomas gary kimura method system accessing file using file names different file name formats issued 1998
+5758352 reynolds aaron dennis adler ralph lipe common name space long short filenames issued 1998
+6286013 reynolds aaron dennis adler ralph lipe method system providing common name space long short file names operating system issued 1996
+microsoftcom archived august 2009 wayback machine
+file system intellectual property licensing microsoft permanent dead link
+garrett matthew january 2012 linux future awful linuxconfau youtube retrieved 20140112
+5367671 feigenbaum barry felix miro system accessing extended object attribute data file name handle linkages path tables issued 1994
+ravicher daniel april 2004 pubpats request reexamination microsofts patent public patent foundation retrieved 20140112
+uspto september 2004 patent offices office action rejecting microsoft patent public patent foundation retrieved 20140112
+broache anne january 2006 microsofts file system patent upheld cnet news
+paul ryan february 2009 microsoft suit patents could open pandoras arstechnicacom retrieved 20090228
+fried march 2009 microsoft tomtom settle patent dispute cnetcom retrieved 20090822
+microsoft motorola patent suit october 2010 retrieved 20101002
+protalinski emil october 2010 microsoft sues motorola citing android patent infringement arstechnicacom retrieved 20101002
+paul ryan july 2009 linux patch could circumvent microsofts patents arstechnicacom retrieved 20131030
+brown eric july 2009 patch avoid microsoft lawsuits desktoplinuxcom archived original january 2013 retrieved 20090823
+müller florian december 2013 federal patent court germany invalidates microsoft patent appeals court disagree foss patents retrieved 20140112
+
+
+
+external linksedit
+
+description fat32 file system microsoft knowledge base article 154997
+msdos directory subdirectory limitations microsoft knowledge base article 39927
+overview hpfs ntfs file systems microsoft knowledge base article 100108
+microsoft technet volume file size limits file systems copy made internet archive wayback machine article summary limits fat32 longer available microsoft website
+chen raymond microsoft technet brief incomplete history fat32
+fdisk recognize full size hard disks larger microsoft knowledge base article 263044
+microsoft windows fat32 file system copy made internet archive wayback machine article summary limits fat32 longer available microsoft website
+
+
+
+
+
+
+
+
+
+
+
+
+file systems
+
+
+
+
+
+
+comparison file systems
+
+distributed
+
+
+unix filesystem
+
+
+
+
+
+disk
+
+
+
+
+
+
+
+adfs
+advfs
+amiga
+amiga
+apfs
+athfs
+
+
+file system
+boot file system
+
+
+btrfs
+cvfs
+cxfs
+
+
+
+encrypting file system
+extent file system
+
+
+episode
+
+
+ext2
+ext3
+ext3cow
+ext4
+
+
+
+
+exfat
+
+
+files11
+fossil
+hammer
+
+
+hpfs
+htfs
+general parallel file system
+
+
+
+
+macintosh file system
+tivo media file system
+
+
+minix
+netware file system
+next3
+nilfs
+
+nilfs2
+
+
+
+ntfs
+onefs
+
+
+qnx4fs
+refs
+reiserfs
+
+reiser4
+
+
+reliance
+reliance nitro
+
+
+snfs
+soup apple
+tux3
+ubifs
+
+vxfs
+wafl
+xiafs
+
+xsan
+
+
+
+
+
+
+
+optical disc
+
+
+
+
+9660
+13490
+
+
+
+
+
+
+flash memory
+
+
+
+apfs
+
+exfat
+chfs
+tfat
+ffs2
+f2fs
+hpfs
+jffs
+jffs2
+
+logfs
+nilfs
+
+nilfs2
+
+
+nvfs
+yaffs
+ubifs
+
+
+
+
+
+distributed
+
+
+
+cxfs
+gfs2
+google file system
+ocfs2
+orangefs
+pvfs
+
+xsan
+
+
+
+
+
+
+
+
+
+
+
+
+
+openafs
+
+coda
+
+gpfs
+google file system
+lustre
+
+
+pohmelfs
+hadoop
+cifs
+sshfs
+
+
+
+
+
+
+specialized
+
+
+
+
+
+
+
+aufs
+axfs
+boot file system
+cdfs
+compact disc file system
+cramfs
+davfs2
+ftpfs
+fuse
+gmailfs
+lnfs
+ltfs
+nova
+mvfs
+squashfs
+umsdos
+overlayfs
+unionfs
+wbfs
+
+
+
+
+
+pseudo virtual
+
+
+
+configfs
+devfs
+debugfs
+kernfs
+procfs
+specfs
+sysfs
+tmpfs
+winfs
+
+
+
+
+
+encrypted
+
+
+
+ecryptfs
+encfs
+
+rubberhose
+sshfs
+
+
+
+
+
+
+
+
+
+types
+
+
+
+clustered
+
+global
+grid
+selfcertifying
+
+
+flash
+journaling
+logstructured
+object
+recordoriented
+semantic
+steganographic
+synthetic
+versioning
+
+
+
+
+
+features
+
+
+
+
+
+
+
+case preservation
+copyonwrite
+data deduplication
+data scrubbing
+execute place
+extent
+file attribute
+
+extended file attributes
+
+
+file change
+fork
+links
+
+hard
+symbolic
+
+
+
+
+
+
+
+access control
+
+
+
+access control list
+filesystemlevel encryption
+permissions
+
+modes
+sticky
+
+
+
+
+
+
+
+
+
+
+interfaces
+
+
+
+file manager
+file system
+
+installable file system
+
+
+virtual file system
+
+
+
+
+
+lists
+
+
+
+cryptographic
+default
+logstructured
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+microsoft windows components
+
+
+
+management
+tools
+
+
+
+installer
+command prompt
+control panel
+
+applets
+
+
+device manager
+disk cleanup
+disk defragmenter
+driver verifier
+event viewer
+iexpress
+management console
+netsh
+performance monitor
+recovery console
+resource monitor
+settings
+sysprep
+system configuration
+system file checker
+system information
+system policy editor
+system restore
+task manager
+windows error reporting
+windows
+windows installer
+powershell
+windows update
+
+windows insider
+
+
+winre
+
+
+
+
+
+
+apps
+
+
+
+builder
+alarms clock
+calculator
+calendar
+camera
+character
+cortana
+edge
+scan
+feedback
+help
+groove music
+magnifier
+mail
+messaging
+maps
+media player
+movies
+mobility center
+money
+news
+narrator
+notepad
+onedrive
+onenote
+paint
+paint
+people
+phone companion
+photos
+quick assist
+snipping tool
+speech recognition
+skype
+sports
+sticky notes
+view
+store
+tips
+voice recorder
+wallet
+weather
+windows
+windows story remix
+wordpad
+xbox
+
+
+
+
+
+shell
+
+
+
+action center
+aero
+autoplay
+autorun
+cleartype
+explorer
+search
+
+indexing service
+ifilter
+saved search
+namespace
+special folder
+
+
+start menu
+taskbar
+task view
+windows spotlight
+windows visual styles
+
+
+
+
+
+services
+
+
+
+service control manager
+bits
+clfs
+multimedia class scheduler
+shadow copy
+task scheduler
+error reporting
+wireless zero configuration
+
+
+
+
+
+file systems
+
+
+
+cdfs
+
+exfat
+
+
+ntfs
+
+hard link
+junction point
+mount point
+reparse point
+symbolic link
+
+
+
+
+refs
+
+
+
+
+
+
+server
+
+
+
+domains
+active directory
+
+group policy
+roaming user profiles
+folder redirection
+distributed transaction coordinator
+msmq
+windows media services
+rights management services
+
+remote desktop services
+wsus
+sharepoint
+network access protection
+
+replication
+remote differential compression
+print services unix
+remote installation services
+windows deployment services
+system resource manager
+hyperv
+server core
+
+
+
+
+
+architecture
+
+
+
+architecture windows
+startup process
+csrss
+desktop window manager
+portable executable
+
+
+
+
+
+enhanced write filter
+graphics device interface
+haldll
+request packet
+imaging format
+kernel transaction manager
+library files
+logical disk manager
+lsass
+minwin
+ntldr
+ntoskrnlexe
+object manager
+open paper specification
+registry
+resource protection
+security account manager
+server message block
+shadow copy
+smss
+system idle process
+user
+whea
+win32 console
+winlogon
+winusb
+
+
+
+
+
+security
+
+
+
+security maintenance
+bitlocker
+data execution prevention
+family safety
+kernel patch protection
+mandatory integrity control
+protected media path
+user account control
+user interface privilege isolation
+windows defender
+windows firewall
+
+
+
+
+
+compatibility
+
+
+
+commandcom
+virtual machine
+windows windows
+wow64
+windows subsystem linux
+
+
+
+
+
+
+
+
+
+active scripting
+
+
+vbscript
+jscript
+
+
+
+
+activex
+activex document
+structured storage
+dcom
+
+automation
+transaction server
+
+
+directx
+framework
+universal windows platform
+windows mixed reality
+windows runtime
+winusb
+
+
+
+
+
+games
+
+
+
+solitaire collection
+
+
+
+
+
+discontinued
+
+
+
+
+games
+
+
+
+pinball
+chess titans
+freecell
+hearts
+inkball
+hold
+purble place
+reversi
+spider solitaire
+solitaire
+tinker
+
+
+
+
+
+apps
+
+
+
+activemovie
+anytime upgrade
+address book
+backup restore
+cardfile
+cardspace
+contacts
+desktop gadgets
+diagnostics
+drivespace
+maker
+easy transfer
+
+file manager
+food drink
+help support center
+health fitness
+hyperterminal
+internet explorer
+journal
+media center
+meeting space
+messaging
+messenger
+mobile device center
+movie maker
+dialup
+netmeeting
+ntbackup
+outlook express
+travel
+photo gallery
+photo viewer
+program manager
+steps recorder
+winhelp
+write
+
+
+
+
+
+others
+
+
+
+scandisk
+file protection
+media control interface
+nextgeneration secure computing base
+posix subsystem
+interix
+video windows
+windows sideshow
+windows services unix
+windows system assessment tool
+winfs
+
+
+
+
+
+
+
+
+spun
+microsoft store
+
+
+
+player
+hover
+mahjong
+minesweeper
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards ecma international
+
+
+
+application interfaces
+
+
+
+ansi escape code
+common language infrastructure
+office open
+openxps
+
+
+
+
+
+file systems tape
+
+
+
+advanced intelligent tape
+
+
+super
+holographic versatile disc
+linear tapeopen ultrium1
+
+
+
+
+
+
+file systems disk
+
+
+
+cdrom
+file system cdfs
+
+
+fat12
+fat16
+fat16b
+
+
+
+
+ultra density optical
+universal media disc
+
+
+
+
+
+graphics
+
+
+
+universal
+
+
+
+
+
+programming languages
+
+
+
+ccli
+
+eiffel
+javascript ecmascript
+
+
+
+
+
+radio link interfaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ecma35
+
+
+
+
+
+
+list ecma standards 1961 present
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+list international electrotechnical commission standards
+
+
+
+standards
+
+
+
+60027
+60034
+60038
+60062
+60063
+60068
+60112
+60228
+60269
+60297
+60309
+60320
+60364
+60446
+60559
+60601
+60870
+
+608705
+608706
+
+
+609061
+60908
+60929
+60958
+
+aes3
+spdif
+
+
+61030
+61131
+
+611313
+
+
+61158
+61162
+61334
+61346
+61355
+61400
+61499
+61508
+61511
+61850
+61851
+61883
+61960
+61968
+61970
+620144
+62056
+62061
+62196
+62262
+62264
+62304
+62325
+62351
+62365
+62366
+62379
+62386
+62455
+62680
+62682
+62700
+
+
+
+
+
+isoiec standards
+
+
+
+isoiec
+isoiec 2022
+isoiec 4909
+isoiec 5218
+isoiec 6429
+isoiec 6523
+isoiec 7810
+isoiec 7811
+isoiec 7812
+isoiec 7813
+isoiec 7816
+isoiec 7942
+isoiec 8613
+isoiec 8632
+isoiec 8652
+isoiec 8859
+isoiec 9126
+isoiec 9293
+isoiec 9592
+isoiec 9593
+isoiec 9899
+isoiec 9945
+isoiec 9995
+isoiec 10021
+isoiec 10116
+isoiec 10165
+isoiec 10179
+isoiec 10646
+isoiec 10967
+isoiec 11172
+isoiec 11179
+isoiec 11404
+isoiec 11544
+isoiec 11801
+isoiec 12207
+isoiec 13250
+isoiec 13346
+isoiec 135225
+isoiec 13568
+isoiec 13818
+isoiec 14443
+isoiec 14496
+isoiec 14882
+isoiec 15288
+isoiec 15291
+isoiec 15408
+isoiec 15444
+isoiec 15445
+isoiec 15504
+isoiec 15511
+isoiec 15693
+isoiec 15897
+isoiec 15938
+isoiec 16262
+isoiec 17024
+isoiec 17025
+isoiec 18000
+isoiec 18004
+isoiec 18014
+isoiec 19752
+isoiec 19757
+isoiec 19770
+isoiec 19788
+isoiec 20000
+isoiec 21000
+isoiec 21827
+isoiec 23000
+isoiec 23003
+isoiec 23008
+isoiec 23270
+isoiec 23360
+isoiec 24707
+isoiec 24727
+isoiec 24744
+isoiec 24752
+isoiec 26300
+isoiec 27000
+isoiec 27000series
+isoiec 27002
+isoiec 27040
+isoiec 29119
+isoiec 33001
+isoiec 38500
+isoiec 42010
+isoiec 80000
+
+
+
+
+
+related
+
+
+
+international electrotechnical commission
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlefileallocationtableoldid817079359 categories 1977 softwarecomputer file systemsdisk file systemsdos technologywindows componentswindows disk file systemsecma standardsfile systems supported linux kernelhidden categories articles dead external linksarticles dead external links september 2017articles permanently dead external linkscs1 maint uses authors parameterwebarchive template wayback linksarticles dead external links july 2016use dates april 2016articles expanded 2014all articles expandedall articles vague ambiguous timevague ambiguous time august 2016

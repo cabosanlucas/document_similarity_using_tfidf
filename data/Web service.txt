@@ -1,0 +1,383 @@
+
+
+
+
+
+
+This article needs to be updated. In particular: Needs to be less centred on SOAP. Please update this article to reflect recent events or newly available information. (January 2017)
+
+
+
+A web service is a service offered by an electronic device to another electronic device, communicating with each other via the World Wide Web. In a web service, the Web technology such as HTTP—originally designed for human-to-machine communication—is utilized for machine-to-machine communication, more specifically for transferring machine-readable file formats such as XML and JSON. In practice, a web service typically provides an object-oriented web-based interface to a database server, utilized for example by another web server, or by a mobile app, that provides a user interface to the end user. Another common application offered to the end user may be a mashup, where a web server consumes several web services at different machines, and compiles the content into one user interface.
+The W3C defines a web service generally as:
+
+A web service is a software system designed to support interoperable machine-to-machine interaction over a network.
+— W3C, Web Services Glossary[1]
+
+Web services may use SOAP over HTTP protocol, allowing less costly (more efficient) interactions over the Internet than via proprietary solutions like EDI/B2B. Besides SOAP over HTTP, web services can also be implemented on other reliable transport mechanisms like FTP. In a 2002 document, the Web Services Architecture Working Group defined a web services architecture, requiring a standardized implementation of a "web service." In this:
+
+It [web service] has an interface described in a machine-processable format (specifically WSDL). Other systems interact with the web service in a manner prescribed by its description using SOAP-messages, typically conveyed using HTTP with an XML serialization in conjunction with other web-related standards.
+— W3C, Web Services Glossary[1]
+
+In a 2004 document, the W3C extended the definition:
+
+We can identify two major classes of web services:
+
+REST-compliant web services, in which the primary purpose of the service is to manipulate XML representations of web resources using a uniform set of "stateless" operations; and
+arbitrary web services, in which the service may expose an arbitrary set of operations.
+— W3C, Web Services Architecture[2]
+
+
+
+
+
+
+Contents
+
+
+1 Explanation
+2 Web API
+3 Automated design methods
+4 Web services that use markup languages
+5 Regression testing of web services
+6 Web service change management
+7 See also
+8 References
+9 External links
+
+
+
+Explanation[edit]
+
+
+
+
+Web services architecture: the service provider sends a WSDL file to UDDI. The service requester contacts UDDI to find out who is the provider for the data it needs, and then it contacts the service provider using the SOAP protocol. The service provider validates the service request and sends structured data in an XML file, using the SOAP protocol. This XML file would be validated again by the service requester using an XSD file.
+
+
+The term "web service" describes a standardized way of integrating web-based applications using the XML, SOAP, WSDL and UDDI open standards over an Internet Protocol backbone. XML is the data format used to contain the data and provide metadata around it, SOAP is used to transfer the data, WSDL is used for describing the services available and UDDI lists what services are available.
+A web service is a method of communication between two electronic devices over a network. It is a software function provided at a network address over the web with the service always on as in the concept of utility computing.
+Many organizations use multiple software systems for management.[citation needed] Different software systems often need to exchange data with each other, and a web service is a method of communication that allows two software systems to exchange this data over the internet. The software system that requests data is called a service requester, whereas the software system that would process the request and provide the data is called a service provider.
+Different software may use different programming languages, and hence there is a need for a method of data exchange that doesn't depend upon a particular programming language. Most types of software can, however, interpret XML tags. Thus, web services can use XML files for data exchange.
+Rules for communication between different systems need to be defined, such as:
+
+How one system can request data from another system.
+Which specific parameters are needed in the data request.
+What would be the structure of the data produced. (Normally, data is exchanged in XML files, and the structure of the XML file is validated against an .xsd file.)
+What error messages to display when a certain rule for communication is not observed, to make troubleshooting easier.
+
+All of these rules for communication are defined in a file called WSDL (Web Services Description Language), which has a .wsdl extension. (Proposals for Autonomous Web Services (AWS) seek to develop more flexible web services which do not rely on strict rules.[3])
+A directory called UDDI (Universal Description, Discovery and Integration) defines which software system should be contacted for which type of data. So when one software system needs one particular report/data, it would go to the UDDI and find out which other system it can contact for receiving that data. Once the software system finds out which other system it should contact, it would then contact that system using a special protocol called SOAP (Simple Object Access Protocol). The service provider system would first validate the data request by referring to the WSDL file, and then process the request and send the data under the SOAP protocol.
+Web API[edit]
+A Web API is a development in web services where emphasis has been moving to simpler representational state transfer (REST) based communications.[4] Restful APIs do not require XML-based web service protocols (SOAP and WSDL) to support their interfaces.
+Automated design methods[edit]
+
+
+
+
+Web services in a service-oriented architecture.
+
+
+Automated tools can aid in the creation of a web service. For services using WSDL, it is possible to either automatically generate WSDL for existing classes (a bottom-up model) or to generate a class skeleton given existing WSDL (a top-down model).
+
+A developer using a bottom-up model writes implementing classes first (in some programming language), and then uses a WSDL generating tool to expose methods from these classes as a web service. This is simpler to develop but may be harder to maintain if the original classes are subject to frequent change.[5]
+A developer using a top-down model writes the WSDL document first and then uses a code generating tool to produce the class skeleton, to be completed as necessary. This model is generally considered more difficult but can produce cleaner designs and is generally more resistant to change. As long as the message formats between sender and receiver do not change, changes in the sender and receiver themselves do not affect the web service. The technique is also referred to as contract first since the WSDL (or contract between sender and receiver) is the starting point.[6]
+A developer using a Subset WSDL (SWSDL)[7] (i.e. a WSDL with the subset operation in the original WSDL) can perform web service testing and top down development.
+
+Web services that use markup languages[edit]
+There are a number of web services that use markup languages:
+
+JSON-RPC
+JSON-WSP
+Web template
+Web Services Description Language (WSDL), developed by the W3C
+XML Interface for Network Services (XINS), provides a POX-style web service specification format
+Web Services Conversation Language (WSCL)
+Web Services Flow Language (WSFL), superseded by BPEL
+WS-MetadataExchange
+Representational state transfer (REST) versus remote procedure call (RPC)
+
+Critics of non-RESTful web services often complain that they are too complex[8] and based upon large software vendors or integrators, rather than typical open source implementations.
+There are also concerns about performance due to web services' use of XML as a message format and SOAP/HTTP in enveloping and transporting.[9]
+Regression testing of web services[edit]
+Functional and non-functional testing of web services is done with the help of WSDL parsing. Regression testing is performed by identifying the changes made to upgrade a software. Web service regression testing needs can be categorized in three different ways, namely, changes in WSDL, changes in code, and selective re-testing of operations. We can capture the above three needs in three intermediate forms of Subset WSDL,[7] namely, Difference WSDL (DWSDL), Unit WSDL (UWSDL), and Reduced WSDL (RWSDL), respectively. These three Subset WSDLs are then combined to form Combined WSDL (CWSDL) that is further used for regression testing of the web service. This will help in Automated Web Service Change Management (AWSCM),[10] by performing the selection of the relevant test cases to construct a reduced test suite from the old test suite. [11]
+Web services testing can also be automated using several test automation tools like SOAP UI, Oracle Application Testing Suite (OATS),[12][13] Unified Functional Testing, Selenium, etc.
+Web service change management[edit]
+Work related to the capture and visualization of changes made to a Web service. Visualization and computation of changes can be done in the form of intermediate artifacts (Subset WSDL).[7] The insight on computation of change impact is helpful in testing, top down development and reduce regression testing. AWSCM[10] is a tool that can identify subset operations in a WSDL file to construct a subset WSDL.
+See also[edit]
+
+List of web service frameworks
+List of web service protocols
+List of web service specifications
+Middleware
+Service-oriented architecture (SOA)
+
+References[edit]
+
+
+^ a b "Web Services Glossary § Web service". W3C. 11 February 2004. Retrieved 11 November 2017. 
+^ "Web Services Architecture § Relationship to the World Wide Web and REST Architectures". W3C. Retrieved 11 November 2017. 
+^ Compare: Oya, Makoto (2008-09-02). "Autonomous Web Services Based on Dynamic Model Harmonization". In Oya, Makoto; Uda, Ryuya; Yasunobu, Chizuko. Towards Sustainable Society on Ubiquitous Networks: The 8th IFIP Conference on E-Business, E-Services, and E-Society (I3E 2008), September 24 - 26, 2008, Tokyo, Japan. IFIP Advances in Information and Communication Technology. 286. Springer Science & Business Media (published 2008). p. 139. ISBN 9780387856902. Retrieved 2015-08-19. Under the current Web Services, [...] stakeholder systems must follow the predefined rules for a particular business service including those about business protocols to send/receive messages and about system operation. [...] More flexible mechanism is desired where freely built and autonomously running systems can exchange business messages without pre-agreed strict rules. We call it Autonomous Web Services (AWS) and proposed the framework called Dynamic Model Harmonization (DMH) with its algorithm, which dynamically adjusts different business process models between systems [...]. 
+^ Benslimane, D.; Dustdar, S.; Sheth, A. (2008). "Services Mashups: The New Generation of Web Applications". IEEE Internet Computing. 10 (5): 13–15. doi:10.1109/MIC.2008.110. 
+^ "Creating bottom-up Web services". Eclipse. Retrieved 11 November 2017. 
+^ "Creating top-down Web services". Eclipse. Retrieved 11 November 2017. 
+^ a b c Chaturvedi, Animesh (2014). Subset WSDL to Access Subset Service for Analysis. 2014 IEEE 6th International Conference on Cloud Computing Technology and Science. p. 688. doi:10.1109/CloudCom.2014.149. ISBN 978-1-4799-4093-6. 
+^ Bray, Tim (2004-10-28). "WS-Pagecount". TBray.org. Retrieved 2011-04-22. 
+^ Gray, N. A. B. (2005). "Performance of Java Middleware - Java RMI, JAXRPC, and CORBA". University of Wollongong. pp. 31–39. The results presented in this paper show that the nature of response data has a greater impact on relative performance than has been allowed for in most previous studies. 
+^ a b Chaturvedi, Animesh (2014). Automated Web Service Change Management AWSCM - A Tool. 2014 IEEE 6th International Conference on Cloud Computing Technology and Science. p. 715. doi:10.1109/CloudCom.2014.144. ISBN 978-1-4799-4093-6. 
+^ Chaturvedi, Animesh; Gupta, Atul (2013). A tool supported approach to perform efficient regression testing of web services. 2013 IEEE 7th International Symposium on the Maintenance and Evolution of Service-Oriented and Cloud-Based Systems. p. 50. doi:10.1109/MESOCA.2013.6632734. ISBN 978-1-4673-4889-8. 
+^ Oracle Application Testing Suite
+^ Web Services Testing using Oracle Application Testing Suite
+
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to Web services.
+
+
+
+
+
+Wikiversity has learning resources about Web service
+
+
+
+Messaging Design Pattern documentation at SOA Patterns
+The Web Services Activity page at W3C
+Web Services Architecture, the W3C Working Group Note (11 February 2004)
+Investigating Web Services on the World Wide Web, the analysis presented at the WWW2008 conference
+Guide to Secure Web Services (SP 800-95) at NIST
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Web interfaces
+
+
+
+Server-side
+
+
+
+
+Protocols
+
+
+
+HTTP
+CGI
+SCGI
+FCGI
+AJP
+WSRP
+WebSocket
+
+
+
+
+
+Server APIs
+
+
+
+C NSAPI
+C ASAPI
+C ISAPI
+COM ASP
+Java servlet
+
+container
+
+
+CLI OWIN
+ASP.NET Handler
+Python WSGI
+Ruby Rack
+JavaScript JSGI
+Perl PSGI
+Lua WSAPI
+Portlet
+
+container
+
+
+
+
+
+
+
+Apache modules
+
+
+
+mod_jk
+mod_lisp
+mod_mono
+mod_parrot
+mod_perl
+mod_php
+mod_proxy
+mod_python
+mod_wsgi
+mod_ruby
+Phusion Passenger
+
+
+
+
+
+Topics
+
+
+
+Web resource vs. Web service
+Open API
+Webhook
+Application server
+
+comparison
+
+
+Scripting
+
+
+
+
+
+
+
+
+Client-side
+
+
+
+
+Browser APIs
+
+
+
+C NPAPI
+
+LiveConnect
+XPConnect
+
+
+C NPRuntime
+C PPAPI
+
+NaCl
+
+
+ActiveX
+BHO
+XBAP
+WebAssembly
+
+
+
+
+
+Web APIs
+
+
+
+
+W3C
+
+
+
+Audio
+Canvas
+CORS
+DOM
+DOM events
+EME
+File
+Geolocation
+IndexedDB
+MSE
+SSE
+SVG
+Video
+WebRTC
+WebSocket
+Web messaging
+Web storage
+Web worker
+XMLHttpRequest
+
+
+
+
+
+Khronos
+
+
+
+WebCL
+WebGL
+
+
+
+
+
+Others
+
+
+
+Gears
+Web SQL Database (formerly W3C)
+
+
+
+
+
+
+
+
+Topics
+
+
+
+Ajax vs. DHTML
+Mashup
+Web IDL
+Scripting
+
+
+
+
+
+
+
+
+Topics
+
+
+
+Dynamic web page
+Open Web Platform
+Rich Internet application
+Web application
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Web_service&oldid=809853386"					Categories: Web servicesHidden categories: Wikipedia articles in need of updating from January 2017All Wikipedia articles in need of updatingAll articles with unsourced statementsArticles with unsourced statements from August 2015

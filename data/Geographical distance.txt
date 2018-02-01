@@ -1,0 +1,2426 @@
+
+
+Geodesy
+
+
+
+
+
+Fundamentals
+
+
+
+
+
+Geodesy
+Geodynamics
+Geomatics
+Cartography
+History
+
+
+
+
+
+Concepts
+
+
+
+
+
+Geographical distance
+Geoid
+Figure of the Earth
+Geodetic datum
+Geodesic
+Geographic coordinate system
+Horizontal position representation
+Latitude / Longitude
+Map projection
+Reference ellipsoid
+Satellite geodesy
+Spatial reference system
+
+
+
+
+
+Technologies
+
+
+
+
+Global Navigation Satellite System (GNSS)
+Global Positioning System (GPS)
+GLONASS (Russian)
+BeiDou (BDS) (Chinese)
+Galileo (European)
+
+Indian Regional Navigation
+Satellite System (IRNSS) (India)
+
+Quasi-Zenith Satellite System (QZSS) (Japan)
+Legenda (satellite system)
+
+
+
+
+Standards (History)
+
+
+
+
+
+NGVD 29
+Sea Level Datum 1929
+
+
+OSGB36
+Ordnance Survey Great Britain 1936
+
+
+SK-42
+Systema Koordinat 1942 goda
+
+
+ED50
+European Datum 1950
+
+
+SAD69
+South American Datum 1969
+
+
+GRS 80
+Geodetic Reference System 1980
+
+
+NAD 83
+North American Datum 1983
+
+
+WGS 84
+World Geodetic System 1984
+
+
+NAVD 88
+N. American Vertical Datum 1988
+
+
+ETRS89
+European Terrestrial Reference
+System 1989
+
+
+GCJ-02
+Chinese obfuscated datum 2002
+
+
+
+International Terrestrial Reference System
+Spatial Reference System Identifier (SRID)
+Universal Transverse Mercator (UTM)
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+Geographical distance is the distance measured along the surface of the earth. The formulae in this article calculate distances between points which are defined by geographical coordinates in terms of latitude and longitude. This distance is an element in solving the second (inverse) geodetic problem.
+
+
+
+Contents
+
+
+1 Introduction
+
+1.1 Nomenclature
+1.2 Singularities and discontinuity of latitude/longitude
+
+
+2 Flat-surface formulae
+
+2.1 Spherical Earth projected to a plane
+2.2 Ellipsoidal Earth projected to a plane
+2.3 Polar coordinate flat-Earth formula
+
+
+3 Spherical-surface formulae
+
+3.1 Tunnel distance
+
+
+4 Ellipsoidal-surface formulae
+
+4.1 Lambert's formula for long lines
+4.2 Bowring's method for short lines
+
+
+5 See also
+6 References
+7 External links
+
+
+
+Introduction[edit]
+Calculating the distance between geographical coordinates is based on some level of abstraction; it does not provide an exact distance, which is unattainable if one attempted to account for every irregularity in the surface of the earth.[1] Common abstractions for the surface between two geographic points are:
+
+Flat surface;
+Spherical surface;
+Ellipsoidal surface.
+
+All abstractions above ignore changes in elevation. Calculation of distances which account for changes in elevation relative to the idealized surface are not discussed in this article.
+Nomenclature[edit]
+Distance, 
+
+
+
+D
+,
+
+
+
+
+{\displaystyle D,\,\!}
+
+ is calculated between two points, 
+
+
+
+
+P
+
+1
+
+
+
+
+
+
+{\displaystyle P_{1}\,\!}
+
+ and 
+
+
+
+
+P
+
+2
+
+
+
+
+
+
+{\displaystyle P_{2}\,\!}
+
+. The geographical coordinates of the two points, as (latitude, longitude) pairs, are 
+
+
+
+(
+
+ϕ
+
+1
+
+
+,
+
+λ
+
+1
+
+
+)
+
+
+
+
+{\displaystyle (\phi _{1},\lambda _{1})\,\!}
+
+ and 
+
+
+
+(
+
+ϕ
+
+2
+
+
+,
+
+λ
+
+2
+
+
+)
+,
+
+
+
+
+{\displaystyle (\phi _{2},\lambda _{2}),\,\!}
+
+ respectively. Which of the two points is designated as 
+
+
+
+
+P
+
+1
+
+
+
+
+
+
+{\displaystyle P_{1}\,\!}
+
+ is not important for the calculation of distance.
+Latitude and longitude coordinates on maps are usually expressed in degrees. In the given forms of the formulae below, one or more values must be expressed in the specified units to obtain the correct result. Where geographic coordinates are used as the argument of a trigonometric function, the values may be expressed in any angular units compatible with the method used to determine the value of the trigonometric function. Many electronic calculators allow calculations of trigonometric functions in either degrees or radians. The calculator mode must be compatible with the units used for geometric coordinates.
+Differences in latitude and longitude are labeled and calculated as follows:
+
+
+
+
+
+
+
+
+
+Δ
+ϕ
+
+
+
+=
+
+ϕ
+
+2
+
+
+−
+
+ϕ
+
+1
+
+
+;
+
+
+
+
+Δ
+λ
+
+
+
+=
+
+λ
+
+2
+
+
+−
+
+λ
+
+1
+
+
+.
+
+
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}\Delta \phi &=\phi _{2}-\phi _{1};\\\Delta \lambda &=\lambda _{2}-\lambda _{1}.\end{aligned}}\,\!}
+
+
+
+It is not important whether the result is positive or negative when used in the formulae below.
+"Mean latitude" is labeled and calculated as follows:
+
+
+
+
+
+
+ϕ
+
+m
+
+
+=
+
+
+
+
+ϕ
+
+1
+
+
++
+
+ϕ
+
+2
+
+
+
+2
+
+
+.
+
+
+
+
+{\displaystyle \phi _{m}={\frac {\phi _{1}+\phi _{2}}{2}}.\,\!}
+
+
+
+Colatitude is labeled and calculated as follows:
+
+For latitudes expressed in radians:
+
+
+
+
+
+θ
+=
+
+
+π
+2
+
+
+−
+ϕ
+;
+
+
+
+
+{\displaystyle \theta ={\frac {\pi }{2}}-\phi ;\,\!}
+
+
+
+
+For latitudes expressed in degrees:
+
+
+
+
+
+θ
+=
+
+90
+
+∘
+
+
+−
+ϕ
+.
+
+
+
+
+{\displaystyle \theta =90^{\circ }-\phi .\,\!}
+
+
+
+
+
+Unless specified otherwise, the radius of the earth for the calculations below is:
+
+
+
+
+
+R
+
+
+
+
+{\displaystyle R\,\!}
+
+ = 6,371.009 kilometers = 3,958.761 statute miles = 3,440.069 nautical miles.
+
+
+
+
+
+
+D
+
+
+
+
+
+
+
+{\displaystyle D_{\,}\!}
+
+ = Distance between the two points, as measured along the surface of the earth and in the same units as the value used for radius unless specified otherwise.
+Singularities and discontinuity of latitude/longitude[edit]
+Longitude has singularities at the Poles (longitude is undefined) and a discontinuity at the ±180° meridian. Also, planar projections of the circles of constant latitude are highly curved near the Poles. Hence, the above equations for delta latitude/longitude (
+
+
+
+Δ
+ϕ
+
+
+
+{\displaystyle \Delta \phi \!}
+
+, 
+
+
+
+Δ
+λ
+
+
+
+{\displaystyle \Delta \lambda \!}
+
+) and mean latitude (
+
+
+
+
+ϕ
+
+m
+
+
+
+
+
+{\displaystyle \phi _{m}\!}
+
+) may not give the expected answer for positions near the Poles or the ±180° meridian. Consider e.g. the value of 
+
+
+
+Δ
+λ
+
+
+
+{\displaystyle \Delta \lambda \!}
+
+ (“east displacement”) when 
+
+
+
+
+λ
+
+1
+
+
+
+
+
+{\displaystyle \lambda _{1}\!}
+
+ and 
+
+
+
+
+λ
+
+2
+
+
+
+
+
+{\displaystyle \lambda _{2}\!}
+
+ are on either side of the ±180° meridian, or the value of 
+
+
+
+
+ϕ
+
+m
+
+
+
+
+
+{\displaystyle \phi _{m}\!}
+
+ (“mean latitude”) for the two positions (
+
+
+
+
+ϕ
+
+1
+
+
+
+
+
+{\displaystyle \phi _{1}\!}
+
+=89°, 
+
+
+
+
+λ
+
+1
+
+
+
+
+
+{\displaystyle \lambda _{1}\!}
+
+=45°) and (
+
+
+
+
+ϕ
+
+2
+
+
+
+
+
+{\displaystyle \phi _{2}\!}
+
+=89°, 
+
+
+
+
+λ
+
+2
+
+
+
+
+
+{\displaystyle \lambda _{2}\!}
+
+=−135°).
+If a calculation based on latitude/longitude should be valid for all Earth positions, it should be verified that the discontinuity and the Poles are handled correctly. Another solution is to use n-vector instead of latitude/longitude, since this representation does not have discontinuities or singularities.
+Flat-surface formulae[edit]
+A planar approximation for the surface of the earth may be useful over small distances. The accuracy of distance calculations using this approximation become increasingly inaccurate as:
+
+The separation between the points becomes greater;
+A point becomes closer to a geographic pole.
+
+The shortest distance between two points in plane is a straight line. The Pythagorean theorem is used to calculate the distance between points in a plane.
+Even over short distances, the accuracy of geographic distance calculations which assume a flat Earth depend on the method by which the latitude and longitude coordinates have been projected onto the plane. The projection of latitude and longitude coordinates onto a plane is the realm of cartography.
+The formulae presented in this section provide varying degrees of accuracy.
+Spherical Earth projected to a plane[edit]
+This formula takes into account the variation in distance between meridians with latitude:
+
+
+
+
+
+D
+=
+R
+
+
+(
+Δ
+ϕ
+
+)
+
+2
+
+
++
+(
+cos
+⁡
+(
+
+ϕ
+
+m
+
+
+)
+Δ
+λ
+
+)
+
+2
+
+
+
+
+,
+
+
+{\displaystyle D=R{\sqrt {(\Delta \phi )^{2}+(\cos(\phi _{m})\Delta \lambda )^{2}}},}
+
+
+where:
+
+
+
+
+
+Δ
+ϕ
+
+
+
+
+{\displaystyle \Delta \phi \,\!}
+
+ and 
+
+
+
+Δ
+λ
+
+
+
+
+{\displaystyle \Delta \lambda \,\!}
+
+ are in radians;
+
+
+
+
+
+ϕ
+
+m
+
+
+
+
+
+
+{\displaystyle \phi _{m}\,\!}
+
+ must be in units compatible with the method used for determining 
+
+
+
+cos
+⁡
+(
+
+ϕ
+
+m
+
+
+)
+.
+
+
+
+
+{\displaystyle \cos(\phi _{m}).\,\!}
+
+
+
+
+
+
+To convert latitude or longitude to radians use
+
+
+
+
+
+
+1
+
+∘
+
+
+=
+(
+π
+
+/
+
+180
+)
+
+
+r
+a
+d
+i
+a
+n
+s
+
+.
+
+
+{\displaystyle 1^{\circ }=(\pi /180)\,\mathrm {radians} .}
+
+
+
+
+
+This approximation is very fast and produces fairly accurate result for small distances[citation needed]. Also, when ordering locations by distance, such as in a database query, it is much faster to order by squared distance, eliminating the need for computing the square root.
+Ellipsoidal Earth projected to a plane[edit]
+The FCC prescribes the following formulae for distances not exceeding 475 kilometres (295 mi):[2]
+
+
+
+
+
+D
+=
+
+
+(
+
+K
+
+1
+
+
+Δ
+ϕ
+
+)
+
+2
+
+
++
+(
+
+K
+
+2
+
+
+Δ
+λ
+
+)
+
+2
+
+
+
+
+,
+
+
+{\displaystyle D={\sqrt {(K_{1}\Delta \phi )^{2}+(K_{2}\Delta \lambda )^{2}}},}
+
+
+where
+
+
+
+
+
+D
+
+
+
+
+{\displaystyle D\,\!}
+
+ = Distance in kilometers;
+
+
+
+
+Δ
+ϕ
+
+
+
+
+{\displaystyle \Delta \phi \,\!}
+
+ and 
+
+
+
+Δ
+λ
+
+
+
+
+{\displaystyle \Delta \lambda \,\!}
+
+ are in degrees;
+
+
+
+
+
+ϕ
+
+m
+
+
+
+
+
+
+{\displaystyle \phi _{m}\,\!}
+
+ must be in units compatible with the method used for determining 
+
+
+
+cos
+⁡
+(
+
+ϕ
+
+m
+
+
+)
+;
+
+
+
+
+{\displaystyle \cos(\phi _{m});\,\!}
+
+
+
+
+
+
+
+
+
+
+
+K
+
+1
+
+
+
+
+
+=
+111.13209
+−
+0.56605
+cos
+⁡
+(
+2
+
+ϕ
+
+m
+
+
+)
++
+0.00120
+cos
+⁡
+(
+4
+
+ϕ
+
+m
+
+
+)
+;
+
+
+
+
+
+K
+
+2
+
+
+
+
+
+=
+111.41513
+cos
+⁡
+(
+
+ϕ
+
+m
+
+
+)
+−
+0.09455
+cos
+⁡
+(
+3
+
+ϕ
+
+m
+
+
+)
++
+0.00012
+cos
+⁡
+(
+5
+
+ϕ
+
+m
+
+
+)
+.
+
+
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}K_{1}&=111.13209-0.56605\cos(2\phi _{m})+0.00120\cos(4\phi _{m});\\K_{2}&=111.41513\cos(\phi _{m})-0.09455\cos(3\phi _{m})+0.00012\cos(5\phi _{m}).\end{aligned}}\,\!}
+
+
+
+
+
+
+It may be interesting to note that:
+
+
+
+
+
+
+K
+
+1
+
+
+=
+M
+
+
+π
+180
+
+
+
+
+
+
+{\displaystyle K_{1}=M{\frac {\pi }{180}}\,\!}
+
+ = kilometers per degree of latitude difference;
+
+
+
+
+
+K
+
+2
+
+
+=
+cos
+⁡
+(
+
+ϕ
+
+m
+
+
+)
+N
+
+
+π
+180
+
+
+
+
+
+
+{\displaystyle K_{2}=\cos(\phi _{m})N{\frac {\pi }{180}}\,\!}
+
+ = kilometers per degree of longitude difference;
+where 
+
+
+
+M
+
+
+
+
+{\displaystyle M\,\!}
+
+ and 
+
+
+
+N
+
+
+
+
+{\displaystyle N\,\!}
+
+ are the meridional and its perpendicular, or "normal", radii of curvature (the expressions in the FCC formula are derived from the binomial series expansion form of 
+
+
+
+M
+
+
+
+
+{\displaystyle M\,\!}
+
+ and 
+
+
+
+N
+
+
+
+
+{\displaystyle N\,\!}
+
+, set to the Clarke 1866 reference ellipsoid).
+
+
+
+Polar coordinate flat-Earth formula[edit]
+
+
+
+
+
+D
+=
+R
+
+
+
+θ
+
+1
+
+
+2
+
+
+
+
++
+
+
+
+θ
+
+2
+
+
+2
+
+
+
+
+−
+
+
+2
+
+θ
+
+1
+
+
+
+θ
+
+2
+
+
+cos
+⁡
+(
+Δ
+λ
+)
+
+
+,
+
+
+{\displaystyle D=R{\sqrt {\theta _{1}^{2}\;{\boldsymbol {+}}\;\theta _{2}^{2}\;\mathbf {-} \;2\theta _{1}\theta _{2}\cos(\Delta \lambda )}},}
+
+
+where the colatitude values are in radians. For a latitude measured in degrees, the colatitude in radians may be calculated as follows: 
+
+
+
+θ
+=
+
+
+π
+180
+
+
+(
+
+90
+
+∘
+
+
+−
+ϕ
+)
+.
+
+
+
+
+{\displaystyle \theta ={\frac {\pi }{180}}(90^{\circ }-\phi ).\,\!}
+
+
+
+Spherical-surface formulae[edit]
+Main article: Great-circle distance
+If we are willing to accept a possible error of 0.5%, we can use formulas of spherical trigonometry on the sphere that best approximates the surface of the earth.
+The shortest distance along the surface of a sphere between two points on the surface is along the great-circle which contains the two points.
+The great-circle distance article gives the formula for calculating the distance along a great-circle on a sphere about the size of the Earth. That article includes an example of the calculation.
+Tunnel distance[edit]
+A tunnel between points on Earth is defined by a line through three-dimensional space between the points of interest. The great circle chord length may be calculated as follows for the corresponding unit sphere:
+
+
+
+
+
+
+
+
+
+
+Δ
+
+X
+
+=
+cos
+⁡
+(
+
+ϕ
+
+2
+
+
+)
+cos
+⁡
+(
+
+λ
+
+2
+
+
+)
+−
+cos
+⁡
+(
+
+ϕ
+
+1
+
+
+)
+cos
+⁡
+(
+
+λ
+
+1
+
+
+)
+;
+
+
+
+
+
+Δ
+
+Y
+
+=
+cos
+⁡
+(
+
+ϕ
+
+2
+
+
+)
+sin
+⁡
+(
+
+λ
+
+2
+
+
+)
+−
+cos
+⁡
+(
+
+ϕ
+
+1
+
+
+)
+sin
+⁡
+(
+
+λ
+
+1
+
+
+)
+;
+
+
+
+
+
+Δ
+
+Z
+
+=
+sin
+⁡
+(
+
+ϕ
+
+2
+
+
+)
+−
+sin
+⁡
+(
+
+ϕ
+
+1
+
+
+)
+;
+
+
+
+
+
+
+C
+
+h
+
+
+=
+
+
+(
+Δ
+
+X
+
+
+)
+
+2
+
+
++
+(
+Δ
+
+Y
+
+
+)
+
+2
+
+
++
+(
+Δ
+
+Z
+
+
+)
+
+2
+
+
+
+
+.
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}&\Delta {X}=\cos(\phi _{2})\cos(\lambda _{2})-\cos(\phi _{1})\cos(\lambda _{1});\\&\Delta {Y}=\cos(\phi _{2})\sin(\lambda _{2})-\cos(\phi _{1})\sin(\lambda _{1});\\&\Delta {Z}=\sin(\phi _{2})-\sin(\phi _{1});\\&C_{h}={\sqrt {(\Delta {X})^{2}+(\Delta {Y})^{2}+(\Delta {Z})^{2}}}.\end{aligned}}}
+
+
+
+The tunnel distance between points on the surface of a spherical Earth is 
+
+
+
+D
+=
+R
+
+C
+
+h
+
+
+
+
+{\displaystyle D=RC_{h}}
+
+. For short distances (
+
+
+
+D
+≪
+R
+
+
+{\displaystyle D\ll R}
+
+), this underestimates the great circle distance by 
+
+
+
+D
+(
+D
+
+/
+
+R
+
+)
+
+2
+
+
+
+/
+
+24
+
+
+{\displaystyle D(D/R)^{2}/24}
+
+.
+Ellipsoidal-surface formulae[edit]
+Main article: Geodesics on an ellipsoid
+
+
+
+
+Geodesic on an oblate ellipsoid
+
+
+An ellipsoid approximates the surface of the earth much better than a sphere or a flat surface does. The shortest distance along the surface of an ellipsoid between two points on the surface is along the geodesic. Geodesics follow more complicated paths than great circles and in particular, they usually don't return to their starting positions after one circuit of the earth. This is illustrated in the figure on the right where f is taken to be 1/50 to accentuate the effect. Finding the geodesic between two points on the earth, the so-called inverse geodetic problem, was the focus of many mathematicians and geodesists over the course of the 18th and 19th centuries with major contributions by Clairaut,[3] Legendre,[4] Bessel,[5] and Helmert.[6] Rapp[7] provides a good summary of this work.
+Methods for computing the geodesic distance are widely available in geographical information systems, software libraries, standalone utilities, and online tools. The most widely used algorithm is by Vincenty,[8] who uses a series which is accurate to third order in the flattening of the ellipsoid, i.e., about 0.5 mm; however, the algorithm fails to converge for points that are nearly anti-podal. (For details, see Vincenty's formulae.) This defect is cured in the algorithm given by Karney,[9] who employs series which are accurate to sixth order in the flattening. This results in an algorithm which is accurate to full double precision and which converges for arbitrary pairs of points on the earth. This algorithm is implemented in GeographicLib.[10]
+The exact methods above are feasible when carrying out calculations on a computer. They are intended to give millimeter accuracy on lines of any length; we can use simpler formulas if we don't need millimeter accuracy, or if we do need millimeter accuracy but the line is short. Rapp,[11] Chap. 6, describes the Puissant method, the Gauss mid-latitude method, and the Bowring method.[12]
+Lambert's formula for long lines[edit]
+Lambert's formulae[13] give accuracy on the order of 10 meters over thousands of kilometers. First convert the latitudes 
+
+
+
+
+
+ϕ
+
+1
+
+
+
+
+
+{\displaystyle \scriptstyle \phi _{1}}
+
+, 
+
+
+
+
+
+ϕ
+
+2
+
+
+
+
+
+{\displaystyle \scriptstyle \phi _{2}}
+
+ of the two points to reduced latitudes 
+
+
+
+
+
+β
+
+1
+
+
+
+
+
+{\displaystyle \scriptstyle \beta _{1}}
+
+, 
+
+
+
+
+
+β
+
+2
+
+
+
+
+
+{\displaystyle \scriptstyle \beta _{2}}
+
+
+
+
+
+
+tan
+⁡
+β
+=
+(
+1
+−
+f
+)
+tan
+⁡
+ϕ
+,
+
+
+{\displaystyle \tan \beta =(1-f)\tan \phi ,}
+
+
+where 
+
+
+
+f
+
+
+{\displaystyle f}
+
+ is the flattening. Then calculate the central angle 
+
+
+
+σ
+
+
+{\displaystyle \sigma }
+
+ in radians between two points 
+
+
+
+(
+
+β
+
+1
+
+
+,
+
+
+λ
+
+1
+
+
+)
+
+
+{\displaystyle (\beta _{1},\;\lambda _{1})}
+
+ and 
+
+
+
+(
+
+β
+
+2
+
+
+,
+
+
+λ
+
+2
+
+
+)
+
+
+{\displaystyle (\beta _{2},\;\lambda _{2})}
+
+ on a sphere in the usual way (law of cosines or haversine formula), with longitudes 
+
+
+
+
+λ
+
+1
+
+
+
+
+
+{\displaystyle \lambda _{1}\;}
+
+ and 
+
+
+
+
+λ
+
+2
+
+
+
+
+
+{\displaystyle \lambda _{2}\;}
+
+ being the same on the sphere as on the spheroid.
+
+
+
+
+P
+=
+
+
+
+
+β
+
+1
+
+
++
+
+β
+
+2
+
+
+
+2
+
+
+
+Q
+=
+
+
+
+
+β
+
+2
+
+
+−
+
+β
+
+1
+
+
+
+2
+
+
+
+
+{\displaystyle P={\frac {\beta _{1}+\beta _{2}}{2}}\qquad Q={\frac {\beta _{2}-\beta _{1}}{2}}}
+
+
+
+
+
+
+X
+=
+(
+σ
+−
+sin
+⁡
+σ
+)
+
+
+
+
+sin
+
+2
+
+
+⁡
+P
+
+cos
+
+2
+
+
+⁡
+Q
+
+
+
+cos
+
+2
+
+
+⁡
+
+
+σ
+2
+
+
+
+
+
+
+
+Y
+=
+(
+σ
++
+sin
+⁡
+σ
+)
+
+
+
+
+cos
+
+2
+
+
+⁡
+P
+
+sin
+
+2
+
+
+⁡
+Q
+
+
+
+sin
+
+2
+
+
+⁡
+
+
+σ
+2
+
+
+
+
+
+
+
+{\displaystyle X=(\sigma -\sin \sigma ){\frac {\sin ^{2}P\cos ^{2}Q}{\cos ^{2}{\frac {\sigma }{2}}}}\qquad \qquad Y=(\sigma +\sin \sigma ){\frac {\cos ^{2}P\sin ^{2}Q}{\sin ^{2}{\frac {\sigma }{2}}}}}
+
+
+
+
+
+
+
+d
+i
+s
+t
+a
+n
+c
+e
+
+=
+a
+
+
+(
+
+
+σ
+−
+
+
+
+f
+2
+
+
+
+(
+X
++
+Y
+)
+
+
+)
+
+
+
+
+{\displaystyle \mathrm {distance} =a{\bigl (}\sigma -{\tfrac {f}{2}}(X+Y){\bigr )}}
+
+
+where 
+
+
+
+a
+
+
+{\displaystyle a}
+
+ is the equatorial radius of the chosen spheroid.
+On the GRS 80 spheroid Lambert's formula is off by
+
+0 North 0 West to 40 North 120 West, 12.6 meters
+0N 0W to 40N 60W, 6.6 meters
+40N 0W to 40N 60W, 0.85 meter
+
+Bowring's method for short lines[edit]
+Bowring maps the points to a sphere of radius R′, with latitude and longitude represented as φ′ and λ′. Define
+
+
+
+
+
+A
+=
+
+
+1
++
+
+e
+
+′
+
+2
+
+
+
+
+cos
+
+4
+
+
+⁡
+
+ϕ
+
+1
+
+
+
+
+,
+
+B
+=
+
+
+1
++
+
+e
+
+′
+
+2
+
+
+
+
+cos
+
+2
+
+
+⁡
+
+ϕ
+
+1
+
+
+
+
+,
+
+
+{\displaystyle A={\sqrt {1+e'^{2}\cos ^{4}\phi _{1}}},\quad B={\sqrt {1+e'^{2}\cos ^{2}\phi _{1}}},}
+
+
+
+where the second eccentricity squared is
+
+
+
+
+
+
+e
+
+′
+
+2
+
+
+
+=
+
+
+
+
+a
+
+2
+
+
+−
+
+b
+
+2
+
+
+
+
+b
+
+2
+
+
+
+
+=
+
+
+
+f
+(
+2
+−
+f
+)
+
+
+(
+1
+−
+f
+
+)
+
+2
+
+
+
+
+
+.
+
+
+{\displaystyle e'^{2}={\frac {a^{2}-b^{2}}{b^{2}}}={\frac {f(2-f)}{(1-f)^{2}}}.}
+
+
+
+The spherical radius is
+
+
+
+
+
+
+R
+′
+
+=
+
+
+
+1
++
+
+e
+
+′
+
+2
+
+
+
+
+
+B
+
+2
+
+
+
+
+a
+.
+
+
+{\displaystyle R'={\frac {\sqrt {1+e'^{2}}}{B^{2}}}a.}
+
+
+
+(The Gaussian curvature of the ellipsoid at φ1 is 1/R′2.) The spherical coordinates are given by
+
+
+
+
+
+
+
+
+
+tan
+⁡
+
+ϕ
+
+1
+
+′
+
+
+
+
+=
+
+
+
+tan
+⁡
+ϕ
+
+B
+
+
+,
+
+
+
+
+Δ
+
+ϕ
+′
+
+
+
+
+=
+
+
+
+Δ
+ϕ
+
+B
+
+
+
+
+[
+
+
+1
++
+
+
+
+3
+
+e
+
+′
+
+2
+
+
+
+
+
+4
+
+B
+
+2
+
+
+
+
+
+(
+Δ
+ϕ
+)
+sin
+⁡
+(
+2
+
+ϕ
+
+1
+
+
++
+
+
+
+2
+3
+
+
+
+Δ
+ϕ
+)
+
+
+]
+
+
+,
+
+
+
+
+Δ
+
+λ
+′
+
+
+
+
+=
+A
+Δ
+λ
+,
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}\tan \phi _{1}'&={\frac {\tan \phi }{B}},\\\Delta \phi '&={\frac {\Delta \phi }{B}}{\biggl [}1+{\frac {3e'^{2}}{4B^{2}}}(\Delta \phi )\sin(2\phi _{1}+{\tfrac {2}{3}}\Delta \phi ){\biggr ]},\\\Delta \lambda '&=A\Delta \lambda ,\end{aligned}}}
+
+
+
+where 
+
+
+
+Δ
+ϕ
+=
+
+ϕ
+
+2
+
+
+−
+
+ϕ
+
+1
+
+
+
+
+{\displaystyle \Delta \phi =\phi _{2}-\phi _{1}}
+
+, 
+
+
+
+Δ
+
+ϕ
+′
+
+=
+
+ϕ
+
+2
+
+′
+
+−
+
+ϕ
+
+1
+
+′
+
+
+
+{\displaystyle \Delta \phi '=\phi _{2}'-\phi _{1}'}
+
+, 
+
+
+
+Δ
+λ
+=
+
+λ
+
+2
+
+
+−
+
+λ
+
+1
+
+
+
+
+{\displaystyle \Delta \lambda =\lambda _{2}-\lambda _{1}}
+
+, 
+
+
+
+Δ
+
+λ
+′
+
+=
+
+λ
+
+2
+
+′
+
+−
+
+λ
+
+1
+
+′
+
+
+
+{\displaystyle \Delta \lambda '=\lambda _{2}'-\lambda _{1}'}
+
+. The resulting problem on the sphere may be solved using the techniques for great-circle navigation to give approximations for the spheroidal distance and bearing. Detailed formulas are given by Rapp,[11] §6.5 and Bowring.[12]
+See also[edit]
+
+Earth radius
+Spherical Earth
+Great-circle distance
+Great-circle navigation
+Vincenty's formulae
+Meridian arc
+
+References[edit]
+
+
+
+^ http://www.cartography.org.uk/default.asp?contentID=749
+^ "Reference points and distance computations" (PDF). Code of Federal Regulations (annual edition). Title 47: Telecommunication. 73.208. October 1, 2016. Retrieved 8 November 2017. 
+^ Clairaut, A. C. (1735). "Détermination géometrique de la perpendiculaire à la méridienne tracée par M. Cassini" [Geometrical determination of the perpendicular to the meridian drawn by Jacques Cassini]. Mémoires de l'Académie Royale des Sciences de Paris 1733 (in French): 406–416. 
+^ Legendre, A. M. (1806). "Analyse des triangles tracées sur la surface d'un sphéroïde" [Analysis of spheroidal triangles]. Mémoires de l'Institut National de France (in French) (1st semester): 130–161. 
+^ Bessel, F. W. (2010) [1825]. . Translated by C. F. F. Karney & R. E. Deakin. "The calculation of longitude and latitude from geodesic measurements". Astronomische Nachrichten. 331 (8): 852–861. arXiv:0908.1824 . doi:10.1002/asna.201011352. English translation of Astron. Nachr. 4, 241–254 (1825). Errata. 
+^ Helmert, F. R. (1964) [1880]. Mathematical and Physical Theories of Higher Geodesy. 1. St. Louis: Aeronautical Chart and Information Center. English translation of Die Mathematischen und Physikalischen Theorieen der Höheren Geodäsie, Vol. 1 (Teubner, Leipzig, 1880). 
+^ Rapp, R. H. (March 1993). Geometric Geodesy, Part II (Technical report). Ohio State University. Retrieved 2011-08-01. 
+^ Vincenty, T. (April 1975). "Direct and Inverse Solutions of Geodesics on the Ellipsoid with application of nested equations" (PDF). Survey Review. 23 (176): 88–93. doi:10.1179/sre.1975.23.176.88. Retrieved 2009-07-11. Addendum: Survey Review 23 (180): 294 (1976). 
+^ Karney, C. F. F. (2013). "Algorithms for geodesics". Journal of Geodesy. 87 (1): 43–55. arXiv:1109.4448 . Bibcode:2013JGeod..87...43K. doi:10.1007/s00190-012-0578-z (open access). Addenda. 
+^ Karney, C. F. F. (2013). "GeographicLib". 1.32. 
+^ a b Rapp, R, H, (1991). Geometric Geodesy, Part I (Report). Ohio Start Univ. 
+^ a b Bowring, B. R. (1981). "The direct and inverse problems for short geodesics lines on the ellipsoid". Surveying and Mapping. 41 (2): 135–141. 
+^ Lambert, W. D (1942). "The distance between two widely separated points on the surface of the earth". J. Washington Academy of Sciences. 32 (5): 125–130. 
+
+
+
+External links[edit]
+
+An online geodesic calculator (based on GeographicLib).
+An online geodesic bibliography.
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Geographical_distance&oldid=809416387"					Categories: CartographyEarthGeodesyHidden categories: CS1 French-language sources (fr)All articles with unsourced statementsArticles with unsourced statements from October 2010

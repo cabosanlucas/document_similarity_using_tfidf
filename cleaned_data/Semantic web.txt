@@ -1,0 +1,1306 @@
+semantic extension world wide standards world wide consortium w3c1 standards promote common data formats exchange protocols fundamentally resource description framework
+according semantic provides common framework allows data shared reused across application enterprise community boundaries2 term coined bernerslee data processed machines3—that much meaning machinereadable critics questioned feasibility proponents argue applications industry biology human sciences research already proven validity original concept4
+2001 scientific american article bernerslee hendler lassila described expected evolution existing semantic web5 2006 bernerslee colleagues stated simple idea…remains largely unrealized6 2013 four million domains contained semantic markup7
+
+
+
+contents
+
+
+example
+background
+
+limitations html
+semantic solutions
+
+
+
+challenges
+standards
+
+components
+current state standardization
+
+
+applications
+skeptical reactions
+
+practical feasibility
+censorship privacy
+doubling output formats
+
+
+research activities corporate applications
+also
+references
+reading
+external links
+
+
+
+exampleedit
+following example text paul schuster born dresden website annotated connecting person place birth following htmlfragment shows small graph described rdfasyntax using schemaorg vocabulary wikidata
+
+
+graph resulting rdfa example
+
+
+
+
+vocabhttpschemaorg typeofperson
+span propertynamepaul schusterspan born
+span propertybirthplace typeofplace hrefhttpwwwwikidataorgentityq1731
+span propertynamedresdenspan
+span
+
+
+example defines following five triples shown turtle syntax triple represents edge resulting graph first element triple subject name node edge starts second element predicate type edge last third element object either name node edge ends literal value text number
+
+
+httpwwww3org19990222rdfsyntaxnstype httpschemaorgperson
+httpschemaorgname paul schuster
+httpschemaorgbirthplace httpwwwwikidataorgentityq1731
+httpwwwwikidataorgentityq1731 httpschemaorgitemtype httpschemaorgplace
+httpwwwwikidataorgentityq1731 httpschemaorgname dresden
+
+triples result graph shown given figure
+
+
+graph resulting rdfa example enriched data
+
+
+advantages using uniform resource identifier uris dereferenced using http protocol according socalled linked open data principles dereferenced result document offers data given example uris edges nodes httpschemaorgperson httpschemaorgbirthplace httpwwwwikidataorgentityq1731 dereferenced result graphs describing dresden city germany person sense fictional
+second graph shows previous example enriched triples documents result dereferencing httpschemaorgperson green edge httpwwwwikidataorgentityq1731 blue edges
+additionally edges given involved documents explicitly edges automatically inferred triple
+
+
+httpwwww3org19990222rdfsyntaxnstype httpschemaorgperson
+
+original rdfa fragment triple
+
+
+httpschemaorgperson httpwwww3org200207owlequivalentclass httpxmlnscomfoaf01person
+
+document httpschemaorgperson green edge figure allow infer following triple given semantics dashed line second figure
+
+
+httpwwww3org19990222rdfsyntaxnstype httpxmlnscomfoaf01person
+
+backgroundedit
+concept semantic network model formed early 1960s cognitive scientist allan collins linguist ross quillian psychologist elizabeth loftus form represent semantically structured knowledge applied context modern internet extends network hyperlinked humanreadable pages inserting machinereadable metadata pages related enables automated agents access intelligently perform tasks behalf users term semantic coined bernerslee3 inventor world wide director world wide consortium oversees development proposed semantic standards defines semantic data processed directly indirectly machines
+many technologies proposed already existed positioned umbrella used various contexts particularly dealing information encompasses limited defined domain sharing data common necessity scientific research data exchange among businesses addition technologies similar goals emerged microformats
+bernerslee originally expressed vision semantic follows
+
+dream computers become capable analyzing data content links transactions people computers semantic makes possible emerge daytoday mechanisms trade bureaucracy daily lives handled machines talking machines intelligent agents people touted ages finally materialize8
+
+semantic regarded integrator across different content information applications systems applications publishing blogging many areas
+limitations htmledit
+many files typical computer also loosely divided human readable documents machine readable data documents like mail messages reports brochures read humans data calendars addressbooks playlists spreadsheets presented using application program lets viewed searched combined
+currently world wide based mainly documents written hypertext markup language html markup convention used coding body text interspersed multimedia objects images interactive forms metadata tags provide method computers categorise content pages example
+
+
+meta namekeywords contentcomputing computer studies computer
+meta namedescription contentcheap widgets sale
+meta nameauthor contentjohn
+
+html tool render perhaps browser software perhaps another user agent create present page lists items sale html catalog page make simple documentlevel assertions documents title widget superstore capability within html assert unambiguously example item number x586172 acme gizmo retail price €199 consumer product rather html span text x586172 something positioned near acme gizmo €199 catalog even establish acme gizmo kind title €199 price also express pieces information bound together describing discrete item distinct items perhaps listed page
+semantic html refers traditional html practice markup following intention rather specifying layout details directly example denoting emphasis rather specifies italics layout details left browser combination cascading style sheets practice falls short specifying semantics objects items sale prices
+microformats extend html syntax create machinereadable semantic markup objects including people organisations events products9 similar initiatives include rdfa microdata schemaorg
+semantic solutionsedit
+semantic takes solution involves publishing languages specifically designed data resource description framework ontology language extensible markup language html describes documents links contrast describe arbitrary things people meetings airplane parts
+technologies combined order provide descriptions supplement replace content documents thus content manifest descriptive data stored webaccessible databases10 markup within documents particularly extensible html xhtml interspersed often purely layout rendering cues stored separately machinereadable descriptions enable content managers meaning content describe structure knowledge content machine process knowledge instead text using processes similar human deductive reasoning inference thereby obtaining meaningful results helping computers perform automated information gathering research
+example would used nonsemantic page
+
+
+itemblogitem
+
+encoding similar information semantic page might look like
+
+
+item rdfabouthttpexampleorgsemanticwebsemantic webitem
+
+bernerslee calls resulting network linked data giant global graph contrast htmlbased world wide bernerslee posits past document sharing future data sharing answer question provides three points instruction point data anyone accessing data back three relationships data point additional urls data
+30edit
+bernerslee described semantic component 3011
+
+people keep asking think maybe youve overlay scalable vector graphics everything rippling folding looking misty access semantic integrated across huge space data youll access unbelievable data resource
+bernerslee 2006
+
+semantic sometimes used synonym 3012 though definition term varies started emerge movement away centralisation services like search social media chat applications dependent single organisation function13
+challengesedit
+challenges semantic include vastness vagueness uncertainty inconsistency deceit automated reasoning systems deal issues order deliver promise semantic
+
+vastness world wide contains many billions pages snomed medical terminology ontology alone contains 370000 class names existing technology able eliminate semantically duplicated terms automated reasoning system deal truly huge inputs
+vagueness imprecise concepts like young tall arises vagueness user queries concepts represented content providers matching query terms provider terms trying combine different knowledge bases overlapping subtly different concepts fuzzy logic common technique dealing vagueness
+uncertainty precise concepts uncertain values example patient might present symptoms correspond number different distinct diagnoses different probability probabilistic reasoning techniques generally employed address uncertainty
+inconsistency logical contradictions inevitably arise development large ontologies ontologies separate sources combined deductive reasoning fails catastrophically faced inconsistency anything follows contradiction defeasible reasoning paraconsistent reasoning techniques employed deal inconsistency
+deceit producer information intentionally misleading consumer information cryptography techniques currently utilized alleviate threat providing means determine informations integrity including relates identity entity produced published information however credibility issues still addressed cases potential deceit
+
+list challenges illustrative rather exhaustive focuses challenges unifying logic proof layers semantic world wide consortium incubator group uncertainty reasoning world wide urw3xg final report lumps problems together single heading uncertainty many techniques mentioned require extensions ontology language example annotate conditional probabilities area active research14
+standardsedit
+standardization semantic context care w3c15
+componentsedit
+term semantic often used specifically refer formats technologies enable collection structuring recovery linked data enabled technologies provide formal description concepts terms relationships within given knowledge domain technologies specified standards include
+
+resource description framework general method describing information
+schema rdfs
+simple knowledge organization system skos
+sparql query language
+notation3 designed humanreadability mind
+ntriples format storing transmitting data
+turtle terse triple language
+ontology language family knowledge representation languages
+rule interchange format framework rule language dialects supporting rule interchange
+
+
+
+semantic stack
+
+
+semantic stack illustrates architecture semantic functions relationships components summarized follows16
+
+provides elemental syntax content structure within documents associates semantics meaning content contained within present necessary component semantic technologies cases alternative syntaxes exists turtle turtle facto standard formal standardization process
+schema language providing restricting structure content elements contained within documents
+simple language expressing data models refer objects resources relationships rdfbased model represented variety syntaxes rdfxml turtle rdfa fundamental standard semantic web1718
+schema extends vocabulary describing properties classes rdfbased resources semantics generalizedhierarchies properties classes
+adds vocabulary describing properties classes among others relations classes disjointness cardinality exactly equality richer typing properties characteristics properties symmetry enumerated classes
+sparql protocol query language semantic data sources
+rule interchange format language expressing rules computers execute provides multiple versions called dialects includes basic logic dialect rifbld production rules dialect
+
+current state standardizationedit
+wellestablished standards
+
+
+rdfs
+rule interchange format
+sparql
+unicode
+uniform resource identifier
+ontology language
+
+
+fully realized
+
+unifying logic proof layers
+semantic rule language swrl
+
+applicationsedit
+intent enhance usability usefulness interconnected resources creating semantic services
+
+servers expose existing data systems using sparql standards many converters exist different applications relational databases important source semantic server attaches existing system without affecting operation
+documents marked semantic information extension html meta tags used todays pages supply information search engines using crawlers could machineunderstandable information humanunderstandable content document creator title description could purely metadata representing facts resources services elsewhere site note anything identified uniform resource identifier described semantic reason animals people places ideas four semantic annotation formats used html documents microformat rdfa microdata jsonld19 semantic markup often generated automatically rather manually
+common metadata vocabularies ontologies maps vocabularies allow document creators know mark documents agents information supplied metadata author sense author page wont confused author sense book subject book review
+automated agents perform tasks users semantic using data
+webbased services often agents supply information specifically agents example trust service agent could online store history poor service spamming
+
+services could useful public search engines could used knowledge management within organization business applications include
+
+facilitating integration information mixed sources
+dissolving ambiguities corporate terminology
+improving information retrieval thereby reducing information overload increasing refinement precision data retrieved20212223
+identifying relevant information respect given domain24
+providing decision making support
+
+corporation closed group users management able enforce company guidelines like adoption specific ontologies semantic annotation compared public semantic lesser requirements scalability information circulating within company trusted general privacy less issue outside handling customer data
+skeptical reactionsedit
+practical feasibilityedit
+critics question basic feasibility complete even partial fulfillment semantic pointing difficulties setting lack generalpurpose usefulness prevents required effort invested 2003 paper marshall shipman point cognitive overhead inherent formalizing knowledge compared authoring traditional hypertext25
+
+learning basics html relatively straightforward learning knowledge representation language tool requires author learn representations methods abstraction effect reasoning example understanding classinstance relationship superclasssubclass relationship understanding concept “type another concept abstractions taught computer scientists generally knowledge engineers specifically match similar natural language meaning type something effective formal representation requires author become skilled knowledge engineer addition skills required domain learned formal representation language still often much effort express ideas representation less formal representation indeed form programming based declaration semantic data requires understanding reasoning algorithms interpret authored structures
+
+according marshall shipman tacit changing nature much knowledge adds knowledge engineering problem limits semantic webs applicability specific domains issue point domain organisationspecific ways express knowledge must solved community agreement rather technical means25 turns specialized communities organizations intracompany projects tended adopt semantic technologies greater peripheral lessspecialized communities26 practical constraints toward adoption appeared less challenging domain scope limited general public worldwide web26
+finally marshall shipman pragmatic problems idea knowledge navigatorstyle intelligent agents working largely manually curated semantic web25
+
+situations user needs known distributed information resources well described approach highly effective situations foreseen bring together unanticipated array information resources google approach robust furthermore semantic relies inference chains brittle missing element chain results failure perform desired action human supply missing pieces googlelike approach costbenefit tradeoffs work favor speciallycreated semantic metadata directed weaving together sensible wellstructured domainspecific information resources close attention usercustomer needs drive federations successful
+
+cory doctorows critique metacrap perspective human behavior personal preferences example people include spurious metadata pages attempt mislead semantic engines naively assume metadatas veracity phenomenon wellknown metatags fooled altavista ranking algorithm elevating ranking certain pages google indexing engine specifically looks attempts manipulation peter gärdenfors timo honkela point logicbased semantic technologies cover fraction relevant phenomena related semantics2728
+censorship privacyedit
+enthusiasm semantic could tempered concerns regarding censorship privacy instance textanalyzing techniques easily bypassed using words metaphors instance using images place words advanced implementation semantic would make much easier governments control viewing creation online information information would much easier automated contentblocking machine understand addition issue also raised foaf files geolocation metadata would little anonymity associated authorship articles things personal blog concerns addressed policy aware project29 active research development topic
+doubling output formatsedit
+another criticism semantic would much timeconsuming create publish content would need formats piece data human viewing machines however many applications development addressing issue creating machinereadable format upon publishing data request machine data development microformats reaction kind criticism another argument defense feasibility semantic likely falling price human intelligence tasks digital labor markets amazons mechanical turkcitation needed
+specifications erdf rdfa allow arbitrary data embedded html pages grddl gleaning resource descriptions dialects language mechanism allows existing material including microformats automatically interpreted publishers need single format html
+research activities corporate applicationsedit
+first research group explicitly focusing corporate semantic acacia team inriasophiaantipolis founded 2002 results work include rdfs based corese search engine application semantic technology realm elearning30
+since 2008 corporate semantic research group located free university berlin focuses building blocks corporate semantic search corporate semantic collaboration corporate ontology engineering31
+ontology engineering research includes question involve nonexpert users creating ontologies semantically annotated content32 extracting explicit knowledge interaction users within enterprises
+alsoedit
+
+
+
+
+
+book semantic
+
+
+
+
+
+
+agris
+business semantics management
+computational semantics
+calais reuters product
+conceptual interoperability
+dbpedia
+entityattributevalue model
+open data portal
+gopubmed
+internet things
+linked data
+list emerging technologies
+nextbio
+ontology learning
+semantic computing
+semantic geospatial
+semantic mediawiki
+semantic sensor
+semantic social network
+semanticallyinterlinked online communities
+smartm3
+social semantic
+engineering
+science
+
+
+referencesedit
+
+
+semantic standards timeline 20120204
+semantic activity world wide consortium november 2011 retrieved november 2011
+bernerslee james hendler lassila 2001 semantic scientific american retrieved march 2008
+feigenbaum 2007 semantic action scientific american retrieved february 2010
+bernerslee 2001 semantic scientific american retrieved march 2008
+nigel shadbolt wendy hall bernerslee 2006 semantic revisited ieee intelligent systems retrieved april 2007
+ramanathan guha 2013 light tunnel international semantic conference 2013 keynote retrieved march 2015
+bernerslee fischetti mark 1999 weaving harpersanfrancisco chapter isbn 9780062515872
+allsopp john march 2007 microformats empowering markup friends isbn 9781590598146
+artem chebotko shiyong querying semantic efficient approach using relational databases lambert academic publishing isbn 9783838302645 2009
+victoria shannon june 2006 revolutionary international herald tribune retrieved 2006
+james williams introducing concept tweak trick retrieved january 2017
+matthew hodgson october 2016 decentralized would give power back people online techcrunch retrieved december 2016
+lukasiewicz thomas umberto straccia managing uncertainty vagueness description logics semantic semantics science services agents world wide 291–308 doi101016jwebsem200804001
+semantic standards published
+ontology language overview world wide consortium february 2004 retrieved november 2011
+resource description framework world wide consortium
+allemang hendler 2011 –the basis semantic semantic working ontologist morgan kaufmann doi101016b9780123859655100032 isbn 9780123859655
+sikos leslie 2015 mastering structured data semantic html5 microdata linked open data apress isbn 1484210492
+omar alonso hugo zaragoza 2008 exploiting semantic annotations information retrieval esair sigir forum june 2008 5558 doihttpdxdoiorg10114513942511394262
+jaap kamps jussi karlgren ralf schenkel 2011 report third workshop exploiting semantic annotations information retrieval esair sigir forum 2011 3341 doihttpdxdoiorg10114519888521988858
+jaap kamps jussi karlgren peter mika vanessa murdock 2012 fifth workshop exploiting semantic annotations information retrieval esair12 proceedings 21st international conference information knowledge management cikm york 27722773 doihttpdxdoiorg10114523967612398761
+omar alonso jaap kamps jussi karlgren 2015 report seventh workshop exploiting semantic annotations information retrieval esair14 sigir forum june 2015 2734 doihttpdxdoiorg10114527954032795412
+kuriakose john september 2009 understanding adopting semantic technology cutter journal cutter information corp 10–18
+marshall catherine shipman frank 2003 semantic proc conf hypertext hypermedia 57–66
+ivan herman 2007 state semantic semantic days 2007 retrieved july 2007
+gärdenfors peter 2004 make semantic semantic formal ontology information systems proceedings third international conference fois2004 press 17–34
+honkela timo könönen ville lindhknuutila tiina paukkeri marisanna 2008 simulating processes concept formation communication journal economic methodology
+policy aware project policyawareweborg retrieved 20130614
+buffa michel dehors sylvain faronzucker catherine sander peter 2005 towards corporate semantic approach designing learning systems review trial solutioins project international workshop applications semantic technologies elearning amsterdam holland 73–76
+httpwwwcorporatesemanticwebde
+hinze annika heese ralf luczakrösch markus paschke adrian 2012 semantic enrichment nonexperts usability manual annotation tools iswc12 proceedings 11th international conference semantic boston 165–181
+
+
+readingedit
+
+liyang december 2014 developers guide semantic web2nd springer isbn 9783662437964
+aaron swartzs programmable unfinished work donated morgan claypool publishers aaron swartzs death january 2013
+grigoris antoniou frank harmelen march 2008 semantic primer edition press isbn 0262012421
+dean allemang james hendler 2008 semantic working ontologist effective modeling rdfs morgan kaufmann isbn 9780123735560
+pascal hitzler markus krötzsch sebastian rudolph august 2009 foundations semantic technologies crcpress isbn 142009050x
+thomas passin march 2004 explorers guide semantic manning publications isbn 1932394206
+jeffrey pollock march 2009 semantic dummies dummies isbn 0470396792
+
+external linksedit
+
+find aboutsemantic webat wikipedias sister projects
+
+media wikimedia commons
+data wikidata
+
+
+
+official website
+
+
+
+
+
+
+
+
+
+
+
+
+semantic
+
+
+
+background
+
+
+
+databases
+hypertext
+internet
+ontologies
+semantic networks
+world wide
+
+
+
+
+
+subtopics
+
+
+
+data
+dataspaces
+hyperdata
+linked data
+rulebased systems
+
+
+
+
+
+applications
+
+
+
+semantic analytics
+semantic broker
+semantic computing
+semantic mapper
+semantic matching
+semantic publishing
+semantic reasoner
+semantic search
+semantic serviceoriented architecture
+semantic wiki
+
+
+
+
+
+related topics
+
+
+
+collective intelligence
+description logic
+folksonomy
+geotagging
+information architecture
+knowledge extraction
+knowledge management
+knowledge representation
+library
+metadata
+mind mapping
+odbc
+references
+topic maps
+
+engineering
+science trust
+
+
+
+
+
+standards
+
+
+
+
+syntax supporting technologies
+
+
+
+http
+
+
+
+
+
+
+
+triples
+rdfxml
+jsonld
+turtle
+trig
+notation3
+ntriples
+trix standard
+
+
+rrid
+sparql
+
+
+
+
+
+
+schemas ontologies rules
+
+
+
+common logic
+
+rdfs
+rule interchange format
+semantic rule language
+alps
+
+
+
+
+
+semantic annotation
+
+
+
+erdf
+grddl
+microdata
+microformats
+rdfa
+sawsdl
+facebook platform
+
+
+
+
+
+common vocabularies
+
+
+
+doap
+dublin core
+foaf
+schemaorg
+sioc
+skos
+
+
+
+
+
+microformat vocabularies
+
+
+
+hatom
+hcalendar
+hcard
+hproduct
+hrecipe
+hresume
+hreview
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+emerging technologies
+
+
+
+fields
+
+
+
+
+agriculture
+
+
+
+agricultural robot
+closed ecological systems
+cultured meat
+genetically modified food
+precision agriculture
+vertical farming
+
+
+
+
+
+architecture
+
+
+
+arcology
+building printing
+
+contour crafting
+dshape
+
+
+domed city
+
+
+
+
+
+biomedical
+
+
+
+artificial uterus
+ampakine
+brain transplant
+cryonics
+
+cryoprotectant
+cryopreservation
+vitrification
+suspended animation
+
+
+deextinction
+genetic engineering
+
+gene therapy
+
+
+head transplant
+isolated brain
+life extension
+
+strategies engineered negligible senescence
+
+
+nanomedicine
+nanosensors
+personalized medicine
+regenerative medicine
+
+stemcell therapy
+tissue engineering
+
+
+robotassisted surgery
+synthetic biology
+
+synthetic genomics
+
+
+virotherapy
+
+oncolytic virus
+
+
+tricorder
+whole genome sequencing
+
+
+
+
+
+displays
+
+
+
+
+next generation
+
+
+
+
+flcd
+imod
+laser
+
+oled
+olet
+qdled
+
+
+tdel
+tmos
+
+
+
+
+
+screenless
+
+
+
+bionic contact lens
+headmounted display
+headup display
+optical headmounted display
+virtual retinal display
+
+
+
+
+
+
+
+
+
+autostereoscopy
+flexible display
+holographic display
+
+computergenerated holography
+
+
+multiprimary color display
+ultra
+volumetric display
+
+
+
+
+
+
+
+
+electronics
+
+
+
+electronic nose
+etextiles
+flexible electronics
+molecular electronics
+nanoelectromechanical systems
+memristor
+spintronics
+thermal copper pillar bump
+
+
+
+
+
+energy
+
+
+
+
+production
+
+
+
+airborne wind turbine
+artificial photosynthesis
+biofuels
+carbonneutral fuel
+concentrated solar power
+fusion power
+home fuel cell
+hydrogen economy
+methanol economy
+molten salt reactor
+nantenna
+photovoltaic pavement
+spacebased solar power
+vortex engine
+
+
+
+
+
+storage
+
+
+
+beltway battery
+compressed energy storage
+flywheel energy storage
+grid energy storage
+lithium–air battery
+moltensalt battery
+nanowire battery
+research lithiumion batteries
+silicon–air battery
+thermal energy storage
+ultracapacitor
+
+
+
+
+
+
+
+
+
+smart grid
+wireless power
+
+
+
+
+
+
+
+
+
+information
+communications
+
+
+
+
+ambient intelligence
+
+internet things
+
+
+artificial intelligence
+
+applications artificial intelligence
+progress artificial intelligence
+machine translation
+mobile translation
+machine vision
+semantic
+speech recognition
+
+
+atomtronics
+carbon nanotube fieldeffect transistor
+cybermethodology
+fourthgeneration optical discs
+
+optical data storage
+holographic data storage
+
+
+gpgpu
+memory
+
+cbram
+fram
+millipede
+mram
+nram
+pram
+racetrack memory
+rram
+sonos
+
+
+optical computing
+rfid
+
+chipless rfid
+
+
+softwaredefined radio
+threedimensional integrated circuit
+
+
+
+
+
+manufacturing
+
+
+
+printing
+claytronics
+molecular assembler
+utility
+
+
+
+
+
+materials science
+
+
+
+aerogel
+amorphous metal
+artificial muscle
+conductive polymer
+femtotechnology
+fullerene
+graphene
+hightemperature superconductivity
+hightemperature superfluidity
+linear acetylenic carbon
+metamaterials
+
+metamaterial cloaking
+
+
+metal foam
+multifunction structures
+nanotechnology
+
+carbon nanotubes
+molecular nanotechnology
+nanomaterials
+
+
+picotechnology
+programmable matter
+quantum dots
+silicene
+superalloy
+synthetic diamond
+
+
+
+
+
+military
+
+
+
+antimatter weapon
+caseless ammunition
+directedenergy weapon
+
+laser
+maser
+particlebeam weapon
+sonic weapon
+coilgun
+railgun
+
+
+plasma weapon
+pure fusion weapon
+stealth technology
+vortex ring
+
+
+
+
+
+neuroscience
+
+
+
+artificial brain
+
+blue brain project
+
+
+brain–computer interface
+electroencephalography
+mind uploading
+
+brainreading
+neuroinformatics
+
+
+neuroprosthetics
+
+bionic
+brain implant
+exocortex
+retinal implant
+
+
+
+
+
+
+
+quantum
+
+
+
+quantum algorithms
+quantum amplifier
+quantum
+quantum channel
+quantum circuit
+quantum complexity theory
+quantum computing
+quantum cryptography
+quantum dynamics
+quantum electronics
+quantum error correction
+quantum imaging
+quantum information
+quantum distribution
+quantum logic
+quantum logic gates
+quantum machine
+quantum machine learning
+quantum metamaterial
+quantum metrology
+quantum network
+quantum neural network
+quantum optics
+quantum programming
+quantum sensing
+quantum simulator
+quantum teleportation
+
+
+
+
+
+robotics
+
+
+
+domotics
+nanorobotics
+powered exoskeleton
+selfreconfiguring modular robot
+swarm robotics
+uncrewed vehicle
+
+
+
+
+
+space science
+
+
+
+
+launch
+
+
+
+fusion rocket
+nonrocket spacelaunch
+
+mass driver
+orbital ring
+skyhook
+space elevator
+space fountain
+space tether
+
+
+reusable launch system
+
+
+
+
+
+propulsion
+
+
+
+beampowered propulsion
+thruster
+laser propulsion
+plasma propulsion engine
+
+helicon thruster
+vasimr
+
+
+project orion
+nuclear pulse propulsion
+solar sail
+
+
+
+
+
+
+
+
+
+interstellar travel
+propellant depot
+
+
+
+
+
+
+
+
+transport
+
+
+
+
+aerial
+
+
+
+adaptive compliant wing
+aeroscraft
+backpack helicopter
+delivery drone
+flying
+highaltitude platform
+pack
+pulse detonation engine
+scramjet
+spaceplane
+
+skylon
+
+
+supersonic transport
+
+
+
+
+
+land
+
+
+
+airless tire
+
+tweel
+
+
+alternative fuel vehicle
+
+hydrogen vehicle
+
+
+driverless
+ground effect train
+maglev train
+personal rapid transit
+vactrain
+
+global alliance
+hyperloop
+
+
+vehicular communication systems
+
+
+
+
+
+pipeline
+
+
+
+pneumatic transport
+
+automated vacuum collection
+foodtubes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+antigravity
+cloak invisibility
+digital scent technology
+force field
+
+plasma window
+
+
+immersive virtual reality
+
+virtusphere
+
+
+magnetic refrigeration
+phasedarray optics
+
+
+
+
+
+
+
+
+topics
+
+
+
+collingridge dilemma
+differential technological development
+ephemeralization
+exploratory engineering
+fictional technology
+proactionary principle
+technological change
+
+technological unemployment
+
+
+technological convergence
+technological evolution
+technological paradigm
+technology forecasting
+
+accelerating change
+moores
+technological singularity
+technology scouting
+
+
+technology readiness level
+technology roadmap
+transhumanism
+
+
+
+
+
+
+
+
+category
+list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+computable knowledge
+
+
+
+topics
+concepts
+
+
+
+alphabet human thought
+authority control
+automated reasoning
+commonsense knowledge
+commonsense reasoning
+computability
+formal system
+inference engine
+knowledge base
+knowledgebased systems
+knowledge engineering
+knowledge extraction
+knowledge representation
+knowledge retrieval
+library classification
+logic programming
+ontology
+personal knowledge base
+question answering
+semantic reasoner
+
+
+
+
+
+proposals
+implementations
+
+
+
+zairja
+magna 1300
+essay towards real character philosophical language 1688
+calculus ratiocinator characteristica universalis 1700
+dewey decimal classification 1876
+begriffsschrift 1879
+mundaneum 1910
+logical atomism 1918
+tractatus logicophilosophicus 1921
+hilberts program 1920s
+incompleteness theorem 1931
+world brain 1938
+memex 1945
+general problem solver 1959
+prolog 1972
+1984
+semantic 2001
+2007
+wolfram alpha 2009
+watson 2011
+siri 2011
+knowledge graph 2012
+wikidata 2012
+cortana 2014
+2016
+
+
+
+
+
+fiction
+
+
+
+engine gullivers travels 1726
+logic named 1946
+librarian snow crash 1992
+know artificial intelligence 2001
+waterhouse baroque cycle 2003
+
+also logic machines fiction list fictional computers
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh2002000569
+46883721
+cb14521343b data
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlesemanticweboldid813002894 categories emerging technologiesinternet agesknowledge engineeringsemantic webweb serviceshidden categories articles unsourced statementsarticles unsourced statements february 2015wikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiers

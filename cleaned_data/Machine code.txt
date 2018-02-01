@@ -1,0 +1,398 @@
+
+
+program execution
+
+
+general concepts
+
+
+
+
+code
+translation
+
+compiler
+optimizing compiler
+
+
+intermediate representation
+execution
+
+runtime system
+executable
+interpreter
+virtual machine
+
+
+
+
+
+
+types code
+
+
+
+
+source code
+object code
+bytecode
+machine code
+microcode
+
+
+
+
+compilation strategies
+
+
+
+
+justintime
+
+tracing justintime
+
+
+aheadoftime
+transcompilation
+recompilation
+
+
+
+
+notable runtimes
+
+
+
+
+android runtime
+common language runtime
+crt0
+java virtual machine
+nodejs
+zend engine
+
+
+
+
+notable compilers toolchains
+
+
+
+
+compiler collection
+llvm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+machine language monitor w65c816s singleboard computer displaying code disassembly well processor register memory dumps
+
+
+machine code machine language instructions executed directly computers central processing unit instruction performs specific task load jump operation unit data register memory every program directly executed made series instructions phrase directly executed needs qualification machine code definition lowest level programming detail visible programmer internally many processors microcode optimise transform machine code instructions sequences microops sophisticated
+numerical machine code assembly code regarded lowestlevel representation compiled assembled computer program primitive hardwaredependent programming language possible write programs directly numerical machine code tedious error prone manage individual bits calculate numerical addresses constants manually reason programs almost never written directly machine code modern contexts three exceptions level debugging program patching assembly language disassembly would called absence assembly source code machine language object code available
+practical programs today written higherlevel languages assembly language source code translated executable machine code utilities compilers assemblers linkers important exception interpreted programs1 translated machine code however interpreter seen executor processor performing instructions source code typically consists directly executable machine code generated assembly highlevel language source code
+
+
+
+contents
+
+
+machine code instructions
+programs
+assembly languages
+example
+relationship microcode
+relationship bytecode
+storing memory
+readability humans
+also
+notes references
+reading
+
+
+
+machine code instructionsedit
+main article instruction
+every processor processor family machine code instruction instructions patterns bits physical design correspond different commands machine thus instruction specific class processors using mostly architecture successor derivative processor designs often include instructions predecessor additional instructions occasionally successor design discontinue alter meaning instruction code typically needed purposes affecting code compatibility extent even nearly completely compatible processors show slightly different behavior instructions rarely problem systems also differ details memory arrangement operating systems peripheral devices program normally relies factors different systems typically machine code even type processor used
+machine code instruction instructions length variablelength instructions patterns organized varies strongly particular architecture often also type instruction instructions opcode fields specifies basic instruction type arithmetic logical jump actual operation compare fields give type operands addressing modes addressing offsets index actual value constant operands contained instruction called immediates2
+machines individual instructions explicit operands accumulator machine combined left operand result implicit accumulator arithmetic instructions architectures 8086 x86family accumulator versions common instructions accumulator regarded general registers longer instructions stack machine operands implicit stack special purpose instructions also often lack explicit operands cpuid architecture writes values four implicit destination registers instance distinction explicit implicit operands important code generators especially register allocation live range tracking parts good code optimizer track implicit well explicit operands allow frequent constant propagation constant folding registers register assigned result constant expression freed replacing constant code enhancements
+programsedit
+computer program sequence instructions executed simple processors execute instructions another superscalar processors capable executing several instructions
+program flow influenced special jump instructions transfer execution instruction numerically following conditional jumps taken execution continues another address execution continues next instruction depending condition
+assembly languagesedit
+main article assembly language
+much readable rendition machine language called assembly language uses mnemonic codes refer machine code instructions rather using instructions numeric values directly example zilog processor machine code 00000101 causes decrement processor register would represented assembly language
+exampleedit
+mips architecture provides specific example machine code whose instructions always bits long general type instruction given operation field highest bits jtype jump itype immediate instructions fully specified rtype register instructions include additional field funct determine exact operation fields used types
+
+bits
+shamt funct rtype
+addressimmediate itype
+target address jtype
+
+indicate register operands shamt gives shift amount address immediate fields contain operand directly
+example adding registers placing result register encoded
+
+shamt funct
+decimal
+000000 00001 00010 00110 00000 100000 binary
+
+load value register taken memory cell cells location listed register
+
+addressimmediate
+decimal
+100011 00011 01000 00000 00001 000100 binary
+
+jumping address 1024
+
+target address
+1024 decimal
+000010 00000 00000 00000 10000 000000 binary
+
+relationship microcodeedit
+computer architectures machine code implemented even fundamental underlying layer called microcode providing common machine language interface across line family different models computer widely different underlying dataflows done facilitate porting machine language programs different models example system360 family computers successors dataflow path widths bits bits beyond nevertheless present common architecture machine language level across entire line
+using microcode implement emulator enables computer present architecture entirely different computer system360 line used allow porting programs earlier machines family computers 140114401460 emulator s360 model
+relationship bytecodeedit
+machine code generally different bytecode also known pcode either executed interpreter compiled machine code faster direct execution exception processor designed particular bytecode directly machine code case java processors
+machine code assembly code sometimes called native code referring platformdependent parts language features libraries3
+storing memoryedit
+harvard architecture computer architecture physically separate storage signal pathways code instructions data today processors implement separate signal pathways performance reasons actually implement modified harvard architecturecitation needed support tasks like loading executable program disk storage data executing harvard architecture contrasted neumann architecture data code stored memory read processor allowing computer execute commands
+point view process code space part address space code execution stored multitasking systems comprises programs code segment usually shared libraries multithreading environment different threads process share code space along data space reduces overhead context switching considerably compared process switching
+readability humansedit
+pamela samuelson wrote machine code unreadable united states copyright office cannot identify whether particular encoded program original work authorship4 however copyright office allow copyright registration computer programs5 programs machine code sometimes decompiled order make functioning easily understandable humans6
+cognitive science professor douglas hofstadter compared machine code genetic code saying looking program written machine language vaguely comparable looking molecule atom atom7
+alsoedit
+
+
+
+look machine code wiktionary free dictionary
+
+
+
+assembly language
+endianness
+list machine languages
+machine code monitor
+overhead code
+pcode machine
+reduced instruction computing risc
+long instruction word
+teaching machine code microprofessor mpfi
+
+notes referencesedit
+
+
+
+many versions basic especially early ones well smalltalk matlab perl python ruby special purpose scripting languages
+bradley kjell kjell ieee immediate operand
+managed unmanaged native kind code developercom retrieved 20080902
+pamela samuelson 1984 contu revisited case copyright protection computer programs machinereadable form 1984 duke journal 663–769 jstor 1372418
+copyright registration computer programs copyright office august 2008 retrieved february 2014
+decompile definition whatiscom whatiscom retrieved 20161226
+hofstadter 1980 gödel escher bach eternal golden braid
+
+
+
+readingedit
+
+hennessy john patterson david computer organization design hardwaresoftware interface morgan kaufmann publishers isbn 155860281x
+tanenbaum andrew structured computer organization prentice hall isbn 0130204358
+brookshear glenn computer science overview addison wesley isbn 0321387015
+
+
+
+
+
+
+
+
+
+
+
+
+application binary interface
+
+
+
+parts
+conventions
+
+
+
+alignment
+calling convention
+call stack
+library
+
+static
+
+
+machine code
+memory segmentation
+name mangling
+object code
+opaque pointer
+positionindependent code
+relocation
+system call
+virtual method table
+
+
+
+
+
+related topics
+
+
+
+binary code compatibility
+foreign function interface
+language binding
+linker
+
+dynamic
+
+
+loader
+year 2038 problem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+types programming languages
+
+
+
+
+
+
+actorbased
+array
+aspectoriented
+classbased
+concatenative
+concurrent
+datastructured
+dataflow
+declarative
+domainspecific
+dynamic
+esoteric
+eventdriven
+extensible
+functional
+imperative
+logic
+macro
+metaprogramming
+multiparadigm
+objectbased
+objectoriented
+pipeline
+procedural
+prototypebased
+reflective
+rulebased
+scripting
+synchronous
+templating
+
+
+
+
+
+
+
+
+assembly
+compiled
+interpreted
+machine
+
+
+
+
+
+
+
+
+lowlevel
+highlevel
+highlevel
+
+
+
+
+
+
+
+
+first generation
+second generation
+third generation
+fourth generation
+fifth generation
+
+
+
+
+
+
+
+
+nonenglishbased
+visual
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+40378275
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlemachinecodeoldid810423752 categories assembly languagesmachine codehidden categories articles unsourced statementsarticles unsourced statements march 2014wikipedia articles identifiers

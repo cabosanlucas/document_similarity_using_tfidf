@@ -1,0 +1,609 @@
+Language resource management - Lexical markup framework (LMF; ISO 24613:2008), is the ISO International Organization for Standardization ISO/TC37 standard for natural language processing (NLP) and machine-readable dictionary (MRD) lexicons.[1] The scope is standardization of principles and methods relating to language resources in the contexts of multilingual communication and cultural diversity.
+
+
+
+Contents
+
+
+1 Objectives
+2 History
+3 Current stage
+4 As one of the members of the ISO/TC37 family of standards
+5 Key standards
+6 Model structure
+7 Example
+8 Selected publications about LMF
+9 Dedicated book
+
+9.1 Related scientific communications
+
+
+10 See also
+11 References
+
+11.1 External links
+
+
+
+
+
+Objectives[edit]
+The goals of LMF are to provide a common model for the creation and use of lexical resources, to manage the exchange of data between and among these resources, and to enable the merging of large number of individual electronic resources to form extensive global electronic resources.
+Types of individual instantiations of LMF can include monolingual, bilingual or multilingual lexical resources. The same specifications are to be used for both small and large lexicons, for both simple and complex lexicons, for both written and spoken lexical representations. The descriptions range from morphology, syntax, computational semantics to computer-assisted translation. The covered languages are not restricted to European languages but cover all natural languages. The range of targeted NLP applications is not restricted. LMF is able to represent most lexicons, including WordNet, EDR and PAROLE lexicons.
+History[edit]
+In the past, lexicon standardization has been studied and developed by a series of projects like GENELEX, EDR, EAGLES, MULTEXT, PAROLE, SIMPLE and ISLE. Then, the ISO/TC37 National delegations decided to address standards dedicated to NLP and lexicon representation. The work on LMF started in Summer 2003 by a new work item proposal issued by the US delegation. In Fall 2003, the French delegation issued a technical proposition for a data model dedicated to NLP lexicons. In early 2004, the ISO/TC37 committee decided to form a common ISO project with Nicoletta Calzolari (CNR-ILC Italy) as convenor and Gil Francopoulo (Tagmatica France) and Monte George (ANSI USA) as editors. The first step in developing LMF was to design an overall framework based on the general features of existing lexicons and to develop a consistent terminology to describe the components of those lexicons. The next step was the actual design of a comprehensive model that best represented all of the lexicons in detail. A large panel of 60 experts contributed a wide range of requirements for LMF that covered many types of NLP lexicons. The editors of LMF worked closely with the panel of experts to identify the best solutions and reach a consensus on the design of LMF. Special attention was paid to the morphology in order to provide powerful mechanisms for handling problems in several languages that were known as difficult to handle. 13 versions have been written, dispatched (to the National nominated experts), commented and discussed during various ISO technical meetings. After five years of work, including numerous face-to-face meetings and e-mail exchanges, the editors arrived at a coherent UML model. In conclusion, LMF should be considered a synthesis of the state of the art in NLP lexicon field.
+Current stage[edit]
+The ISO number is 24613. The LMF specification has been published officially as an International Standard on 17 November 2008.
+As one of the members of the ISO/TC37 family of standards[edit]
+The ISO/TC37 standards are currently elaborated as high level specifications and deal with word segmentation (ISO 24614), annotations (ISO 24611 a.k.a. MAF, ISO 24612 a.k.a. LAF, ISO 24615 a.k.a. SynAF, and ISO 24617-1 a.k.a. SemAF/Time), feature structures (ISO 24610), multimedia containers (ISO 24616 a.k.a. MLIF), and lexicons (ISO 24613). These standards are based on low level specifications dedicated to constants, namely data categories (revision of ISO 12620), language codes (ISO 639), scripts codes (ISO 15924), country codes (ISO 3166) and Unicode (ISO 10646).
+The two level organization forms a coherent family of standards with the following common and simple rules:
+
+the high level specification provides structural elements that are adorned by the standardized constants;
+the low level specifications provide standardized constants as metadata.
+
+Key standards[edit]
+The linguistics constants like /feminine/ or /transitive/ are not defined within LMF but are recorded in the Data Category Registry (DCR) that is maintained as a global resource by ISO/TC37 in compliance with ISO/IEC 11179-3:2003.[2] And these constants are used to adorn the high level structural elements.
+The LMF specification complies with the modeling principles of Unified Modeling Language (UML) as defined by Object Management Group (OMG). The structure is specified by means of UML class diagrams. The examples are presented by means of UML instance (or object) diagrams.
+An XML DTD is given in an annex of the LMF document.
+Model structure[edit]
+LMF is composed of the following components:
+
+The core package that is the structural skeleton which describes the basic hierarchy of information in a lexical entry.
+Extensions of the core package which are expressed in a framework that describes the reuse of the core components in conjunction with the additional components required for a specific lexical resource.
+
+The extensions are specifically dedicated to morphology, MRD, NLP syntax, NLP semantics, NLP multilingual notations, NLP morphological patterns, multiword expression patterns, and constraint expression patterns.
+Example[edit]
+In the following example, the lexical entry is associated with a lemma clergyman and two inflected forms clergyman and clergymen. The language coding is set for the whole lexical resource. The language value is set for the whole lexicon as shown in the following UML instance diagram.
+
+The elements Lexical Resource, Global Information, Lexicon, Lexical Entry, Lemma, and Word Form define the structure of the lexicon. They are specified within the LMF document. On the contrary, languageCoding, language, partOfSpeech, commonNoun, writtenForm, grammaticalNumber, singular, plural are data categories that are taken from the Data Category Registry. These marks adorn the structure. The values ISO 639-3, clergyman, clergymen are plain character strings. The value eng is taken from the list of languages as defined by ISO 639-3.
+With some additional information like dtdVersion and feat, the same data can be expressed by the following XML fragment:
+
+
+<LexicalResource dtdVersion="15">
+    <GlobalInformation>
+        <feat att="languageCoding" val="ISO 639-3"/>
+    </GlobalInformation>
+    <Lexicon>
+        <feat att="language" val="eng"/>
+        <LexicalEntry>
+            <feat att="partOfSpeech" val="commonNoun"/>
+            <Lemma>
+                <feat att="writtenForm" val="clergyman"/>
+            </Lemma>
+            <WordForm>
+                 <feat att="writtenForm" val="clergyman"/>
+                 <feat att="grammaticalNumber" val="singular"/>
+            </WordForm>
+            <WordForm>
+                <feat att="writtenForm" val="clergymen"/>
+                <feat att="grammaticalNumber" val="plural"/>
+            </WordForm>
+        </LexicalEntry>
+    </Lexicon>
+</LexicalResource>
+
+This example is rather simple, while LMF can represent much more complex linguistic descriptions the XML tagging is correspondingly complex.
+Selected publications about LMF[edit]
+The first publication about the LMF specification as it has been ratified by ISO (this paper became (in 2015) the 9th most cited paper within the Language Resources and Evaluation conferences from LREC papers):
+
+Language Resources and Evaluation LREC-2006/Genoa: Gil Francopoulo, Monte George, Nicoletta Calzolari, Monica Monachini, Nuria Bel, Mandy Pet, Claudia Soria: Lexical Markup Framework (LMF) [3]
+
+About semantic representation:
+
+Gesellschaft für linguistische Datenverarbeitung GLDV-2007/Tübingen: Gil Francopoulo, Nuria Bel, Monte George Nicoletta Calzolari, Monica Monachini, Mandy Pet, Claudia Soria: Lexical Markup Framework ISO standard for semantic information in NLP lexicons [4]
+
+About African languages:
+
+Traitement Automatique des langues naturelles, Marseille, 2014: Mouhamadou Khoule, Mouhamad Ndiankho Thiam, El Hadj Mamadou Nguer: Toward the establishment of a LMF-based Wolof language lexicon (Vers la mise en place d'un lexique basé sur LMF pour la langue wolof) [in French][5]
+
+About Asian languages:
+
+Lexicography, Journal of ASIALEX, Springer 2014: Lexical Markup Framework: Gil Francopoulo, Chu-Ren Huang: An ISO Standard for Electronic Lexicons and its Implications for Asian Languages DOI 10.1007/s40607-014-0006-z
+
+About European languages:
+
+COLING 2010: Verena Henrich, Erhard Hinrichs: Standardizing Wordnets in the ISO Standard LMF: Wordnet-LMF for GermaNet [6]
+EACL 2012: Judith Eckle-Kohler, Iryna Gurevych: Subcat-LMF: Fleshing out a standardized format for subcategorization frame interoperability [7]
+EACL 2012: Iryna Gurevych, Judith Eckle-Kohler, Silvana Hartmann, Michael Matuschek, Christian M Meyer, Christian Wirth: UBY - A Large-Scale Unified Lexical-Semantic Resource Based on LMF.[8]
+
+About Semitic languages:
+
+Journal of Natural Language Engineering, Cambridge University Press (to appear in Spring 2015): Aida Khemakhem, Bilel Gargouri, Abdelmajid Ben Hamadou, Gil Francopoulo: ISO Standard Modeling of a large Arabic Dictionary.
+Proceedings of the seventh Global Wordnet Conference 2014: Nadia B M Karmani, Hsan Soussou, Adel M Alimi: Building a standardized Wordnet in the ISO LMF for aeb language.[9]
+Proceedings of the workshop: HLT & NLP within Arabic world, LREC 2008: Noureddine Loukil, Kais Haddar, Abdelmajid Ben Hamadou: Towards a syntactic lexicon of Arabic Verbs.[10]
+Traitement Automatique des Langues Naturelles, Toulouse (in French) 2007: Khemakhem A, Gargouri B, Abdelwahed A, Francopoulo G: Modélisation des paradigmes de flexion des verbes arabes selon la norme LMF-ISO 24613.[11]
+
+Dedicated book[edit]
+There is a book published in 2013: LMF Lexical Markup Framework[12] which is entirely dedicated to LMF. The first chapter deals with the history of lexicon models, the second chapter is a formal presentation of the data model and the third one deals with the relation with the data categories of the ISO-DCR. The other 14 chapters deal with a lexicon or a system, either in the civil or military domain, either within scientific research labs or for industrial applications. These are Wordnet-LMF, Prolmf, DUELME, UBY-LMF, LG-LMF, RELISH, GlobalAtlas (or Global Atlas) and Wordscape.
+Related scientific communications[edit]
+
+Language Resources and Evaluation LREC-2006/Genoa: The relevance of standards for research infrastructures [2]
+
+See also[edit]
+
+Computational lexicology
+Lexical semantics
+Morphology (linguistics) for explanations concerning paradigms and morphosyntax
+Machine translation for a presentation of the different types of multilingual notations (see section Approaches)
+Morphological pattern for the difference between a paradigm and a paradigm pattern
+WordNet for a presentation of the most famous semantic lexicon for the English language
+Universal Terminology eXchange (UTX) for a user-oriented, alternative format for machine-readable dictionaries
+Universal Networking Language
+UBY-LMF
+
+References[edit]
+
+
+
+^ "ISO 24613:2008 - Language resource management - Lexical markup framework (LMF)". Iso.org. Retrieved 2016-01-24. 
+^ a b "The relevance of standards for research infrastructures" (PDF). Hal.inria.fr. Retrieved 2016-01-24. 
+^ "Lexical Markup Framework (LMF)" (PDF). Hal.inria.fr. Retrieved 2016-01-24. 
+^ "Lexical markup framework (LMF) for NLP multilingual resources" (PDF). Hal.inria.fr. Retrieved 2016-01-24. 
+^ "Vers la mise en place d'un lexique basé sur LMF pour la langue Wolof" (PDF). Aclweb.org. Retrieved 2016-01-24. 
+^ "Standardizing Wordnets in the ISO Standard LMF: Wordnet-LMF for GermaNet" (PDF). Aclweb.org. Retrieved 2016-01-24. 
+^ "Subcat-LMF: Fleshing out a standardized format for subcategorization frame interoperability" (PDF). Aclweb.org. Retrieved 2016-01-24. 
+^ "UBY – A Large-Scale Unified Lexical-Semantic Resource Based on LMF" (PDF). Aclweb.org. Retrieved 2016-01-24. 
+^ "Building a standardized Wordnet in the ISO LMF for aeb language" (PDF). Aclweb.org. Retrieved 2016-01-24. 
+^ "LREC 2008 Proceedings". Lrec-conf.org. Retrieved 2016-01-24. 
+^ "Modélisation des paradigmes de flexion des verbes arabes selon la norme LMF - ISO 24613" (PDF). Aclweb.org. Retrieved 2016-01-24. 
+^ Gil Francopoulo (edited by) LMF Lexical Markup Framework, ISTE / Wiley 2013 (ISBN 978-1-84821-430-9)
+
+
+
+External links[edit]
+
+LMF web site
+LIRICS web site
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Lexical_Markup_Framework&oldid=814124901"					Categories: Computational linguisticsSpeech recognitionNatural language processingISO standards

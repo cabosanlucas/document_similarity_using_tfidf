@@ -1,0 +1,813 @@
+A topic map is a standard for the representation and interchange of knowledge, with an emphasis on the findability of information. Topic maps were originally developed in the late 1990s as a way to represent back-of-the-book index structures so that multiple indexes from different sources could be merged. However, the developers quickly realized that with a little additional generalization, they could create a meta-model with potentially far wider application. The ISO standard is formally known as ISO/IEC 13250:2003.
+
+
+
+
+
+
+
+A topic map represents information using
+
+topics, representing any concept, from people, countries, and organizations to software modules, individual files, and events,
+associations, representing hypergraph relationships between topics, and
+occurrences, representing information resources relevant to a particular topic.
+
+Topic maps are similar to concept maps and mind maps in many respects, though only topic maps are ISO standards. Topic maps are a form of semantic web technology similar to RDF.
+
+
+
+Contents
+
+
+1 Ontology and merging
+2 Current standard
+3 Graphical notation
+4 Data format
+
+4.1 XML serialization formats
+4.2 Other formats
+
+
+5 Related standards
+
+5.1 Topic Maps API
+5.2 Query standard
+5.3 Constraint standards
+5.4 Earlier standards
+
+
+6 RDF relationship
+7 See also
+8 References
+9 External links
+
+
+
+Ontology and merging[edit]
+Topics, associations, and occurrences can all be typed, where the types must be defined by the one or more creators of the topic map(s). The definitions of allowed types is known as the ontology of the topic map.
+Topic maps explicitly support the concept of merging of identity between multiple topics or topic maps. Furthermore, because ontologies are topic maps themselves, they can also be merged thus allowing for the automated integration of information from diverse sources into a coherent new topic map. Features such as subject identifiers (URIs given to topics) and PSIs (published subject indicators) are used to control merging between differing taxonomies. Scoping on names provides a way to organise the various names given to a particular topic by different sources.
+Current standard[edit]
+The work standardizing topic maps (ISO/IEC 13250) took place under the umbrella of the ISO/IEC JTC1/SC34/WG3 committee (ISO/IEC Joint Technical Committee 1, Subcommittee 34, Working Group 3 – Document description and processing languages – Information Association).[1][2][3] However, WG3 was disbanded and maintenance of ISO/IEC 13250 was assigned to WG8.
+The topic maps (ISO/IEC 13250) reference model and data model standards are defined independent of any specific serialization or syntax.
+
+TMRM Topic Maps – Reference Model
+TMDM Topic Maps – Data Model
+
+Graphical notation[edit]
+
+
+
+
+Topic Maps Martian Notation (example)
+
+
+There are different ways of notating topic maps graphically, in addition to GTM, listed below. One recently developed example is Topic Maps Martian Notation. TMMN (its acronym) is a simple graphical notation used to explain the Topic Maps data model, and map out both ontologies and representative instance data.[4] It is designed for use on whiteboard or paper, as well as within any diagram-based software including everyday presentation tools such as PowerPoint and OpenOffice.org. TMMN uses only a very small number of symbols – "blob", "label", "line", "dotted line", and "arrow" – to represent the relationships and basic elements of the topic maps model: topics, names, associations (and roles), scope, and cccurrences (including subject identifiers and subject locators). The "Martian" refers to the archetypal "Martian Scientist",[citation needed] namely, the ability to communicate knowledge across linguistic and cultural barriers, known and unknown. It was developed as part of the musicDNA project.[5] Advanced Topic Maps Martian Notation is currently under development by the musicDNA community and includes shorthand notation for various types of whole-part relationships.
+
+Data format[edit]
+The specification is summarized in the abstract as follows: "This specification provides a model and grammar for representing the structure of information resources used to define topics, and the associations (relationships) between topics. Names, resources, and relationships are said to be characteristics of abstract subjects, which are called topics. Topics have their characteristics within scopes: i.e. the limited contexts within which the names and resources are regarded as their name, resource, and relationship characteristics. One or more interrelated documents employing this grammar is called a topic map."
+XML serialization formats[edit]
+
+In 2000, Topic Maps was defined in an XML syntax XTM. This is now commonly known as "XTM 1.0" and is still in fairly common use.
+The ISO standards committee published an updated XML syntax in 2006, XTM 2.0 which is increasingly in use today.
+
+Note that XTM 1.0 predates and therefore is not compatible with the more recent versions of the (ISO/IEC 13250) standard.
+Other formats[edit]
+Other proposed or standardized serialization formats include:
+
+CXTM – Canonical XML Topic Maps format (canonicalization of topic maps)
+CTM – a Compact Topic Maps Notation (not based on XML)
+GTM – a Graphical Topic Maps Notation
+
+The above standards are all recently proposed or defined as part of ISO/IEC 13250. As described below, there are also other, serialization formats such as LTM, AsTMa= that have not been put forward as standards.
+Linear topic map notation (LTM) serves as a kind of shorthand for writing topic maps in plain text editors. This is useful for writing short personal topic maps or exchanging partial topic maps by email. The format can be converted to XTM.
+There is another format called AsTMa which serves a similar purpose. When writing topic maps manually it is much more compact, but of course can be converted to XTM. Alternatively, it can be used directly with the Perl Module TM (which also supports LTM).
+The data formats of XTM and LTM are similar to the W3C standards for RDF/XML or the older N3 notation.[6]
+Related standards[edit]
+Topic Maps API[edit]
+A de facto API standard called Common Topic Maps Application Programming Interface (TMAPI) was published in April 2004 and is supported by many Topic Maps implementations or vendors:
+
+TMAPI – Common Topic Maps Application Programming Interface
+TMAPI 2.0 Topic Maps Application Programming Interface (v2.0)
+
+Query standard[edit]
+In normal use it is often desirable to have a way to arbitrarily query the data within a particular Topic Maps store. Many implementations provide a syntax by which this can be achieved (somewhat like 'SQL for Topic Maps') but the syntax tends to vary a lot between different implementations. With this in mind, work has gone into defining a standardized syntax for querying topic maps:
+
+ISO 18048: TMQL – Topic Maps Query Language
+
+Constraint standards[edit]
+It can also be desirable to define a set of constraints that can be used to guarantee or check the semantic validity of topic maps data for a particular domain. (Somewhat like database constraints for topic maps). Constraints can be used to define things like 'every document needs an author' or 'all managers must be human'. There are often implementation specific ways of achieving these goals, but work has gone into defining a standardized constraint language as follows:
+
+ISO 19756: TMCL – Topic Maps Constraint Language
+
+TMCL is functionally similar to RDF Schema with OWL.[6]
+Earlier standards[edit]
+The "Topic Maps" concept has existed for a long time. The HyTime standard was proposed as far back as 1992 (or earlier?). Earlier versions of ISO 13250 (than the current revision) also exist. More information about such standards can be found at the ISO Topic Maps site.
+RDF relationship[edit]
+Some work has been undertaken to provide interoperability between the W3C's RDF/OWL/SPARQL family of semantic web standards and the ISO's family of Topic Maps standards though the two have slightly different goals.
+The semantic expressive power of Topic Maps is, in many ways, equivalent to that of RDF, but the major differences are that Topic Maps (i) provide a higher level of semantic abstraction (providing a template of topics, associations and occurrences, while RDF only provides a template of two arguments linked by one relationship) and (hence) (ii) allow n-ary relationships (hypergraphs) between any number of nodes, while RDF is limited to triplets.
+See also[edit]
+
+Back-of-the-book index Index (publishing)
+Semantic Web
+Concept map
+Mind map
+Unified Modeling Language (UML)
+Ontology (information science)
+Web Ontology Language (OWL)
+Metamodeling
+Topincs (a commercial proprietary Topic Maps editor)
+Ontopia (a commercially supported open source Topic Maps editor)
+
+References[edit]
+
+
+
+^ ISO JTC1/SC34. "JTC 1/SC 34 – Document Description and Processing Languages". Retrieved 2009-12-25. 
+^ "Home of SC34/WG3 – Information Association". 3 June 2008. Retrieved 2009-12-26. 
+^ ISO. "JTC 1/SC 34 – Document description and processing languages". ISO. Retrieved 2009-12-25. 
+^ https://dl.dropbox.com/u/10497886/TMMN/index.html Topic Maps Martian Notation tutorial
+^ http://beta.musicdna.info/about.aspx musicDNA
+^ a b Lars Marius Garshol (2003). "Living With Topic Maps and RDF". Retrieved 2014-02-21. 
+
+
+
+
+Lutz Maicher and Jack Park: Charting the Topic Maps Research and Applications Landscape, Springer, ISBN 3-540-32527-1
+Jack Park and Sam Hunting: XML Topic Maps: Creating and Using Topic Maps for the Web, Addison-Wesley, ISBN 0-201-74960-2 (in bibMap)
+Passin, Thomas B. (2004). Explorer's Guide to the Semantic Web. Manning Publications. ISBN 1-932394-20-6. 
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to Topic Maps.
+
+
+
+Information portal about Topic Maps
+Home page of the Topic Maps ISO standards
+ISO/IEC 13250 Topic Maps, Second Edition
+XML Topic Maps (XTM) 1.0 Specification
+What Are Topic Maps?
+Towards knowledge organization with Topic Maps
+An Introduction to Topic Maps (MSDN)
+tinyTiM – The tiny Topic Maps engine (Open Source)
+Mappa – Topic Maps engine for Python (Open Source)
+Information portal of the Topic Maps Lab
+Topic Maps Snippets, news from the Topic Maps community
+topicmap.com, portal covering tools, conferences, papers and news
+Topic engine in Cfengine for configuration management with semantic knowledge map
+QuaaxTM – A PHP Topic Maps engine (Open Source)
+TMXTM.it – Italian website about Topic Maps and XTM
+Wandora – Topic Maps authoring and creation application (Open Source)
+
+
+
+
+
+
+
+v
+t
+e
+
+
+List of International Electrotechnical Commission standards
+
+
+
+IEC standards
+
+
+
+IEC 60027
+IEC 60034
+IEC 60038
+IEC 60062
+IEC 60063
+IEC 60068
+IEC 60112
+IEC 60228
+IEC 60269
+IEC 60297
+IEC 60309
+IEC 60320
+IEC 60364
+IEC 60446
+IEC 60559
+IEC 60601
+IEC 60870
+
+IEC 60870-5
+IEC 60870-6
+
+
+IEC 60906-1
+IEC 60908
+IEC 60929
+IEC 60958
+
+AES3
+S/PDIF
+
+
+IEC 61030
+IEC 61131
+
+IEC 61131-3
+
+
+IEC 61158
+IEC 61162
+IEC 61334
+IEC 61346
+IEC 61355
+IEC 61400
+IEC 61499
+IEC 61508
+IEC 61511
+IEC 61850
+IEC 61851
+IEC 61883
+IEC 61960
+IEC 61968
+IEC 61970
+IEC 62014-4
+IEC 62056
+IEC 62061
+IEC 62196
+IEC 62262
+IEC 62264
+IEC 62304
+IEC 62325
+IEC 62351
+IEC 62365
+IEC 62366
+IEC 62379
+IEC 62386
+IEC 62455
+IEC 62680
+IEC 62682
+IEC 62700
+
+
+
+
+
+ISO/IEC standards
+
+
+
+ISO/IEC 646
+ISO/IEC 2022
+ISO/IEC 4909
+ISO/IEC 5218
+ISO/IEC 6429
+ISO/IEC 6523
+ISO/IEC 7810
+ISO/IEC 7811
+ISO/IEC 7812
+ISO/IEC 7813
+ISO/IEC 7816
+ISO/IEC 7942
+ISO/IEC 8613
+ISO/IEC 8632
+ISO/IEC 8652
+ISO/IEC 8859
+ISO/IEC 9126
+ISO/IEC 9293
+ISO/IEC 9592
+ISO/IEC 9593
+ISO/IEC 9899
+ISO/IEC 9945
+ISO/IEC 9995
+ISO/IEC 10021
+ISO/IEC 10116
+ISO/IEC 10165
+ISO/IEC 10179
+ISO/IEC 10646
+ISO/IEC 10967
+ISO/IEC 11172
+ISO/IEC 11179
+ISO/IEC 11404
+ISO/IEC 11544
+ISO/IEC 11801
+ISO/IEC 12207
+ISO/IEC 13250
+ISO/IEC 13346
+ISO/IEC 13522-5
+ISO/IEC 13568
+ISO/IEC 13818
+ISO/IEC 14443
+ISO/IEC 14496
+ISO/IEC 14882
+ISO/IEC 15288
+ISO/IEC 15291
+ISO/IEC 15408
+ISO/IEC 15444
+ISO/IEC 15445
+ISO/IEC 15504
+ISO/IEC 15511
+ISO/IEC 15693
+ISO/IEC 15897
+ISO/IEC 15938
+ISO/IEC 16262
+ISO/IEC 17024
+ISO/IEC 17025
+ISO/IEC 18000
+ISO/IEC 18004
+ISO/IEC 18014
+ISO/IEC 19752
+ISO/IEC 19757
+ISO/IEC 19770
+ISO/IEC 19788
+ISO/IEC 20000
+ISO/IEC 21000
+ISO/IEC 21827
+ISO/IEC 23000
+ISO/IEC 23003
+ISO/IEC 23008
+ISO/IEC 23270
+ISO/IEC 23360
+ISO/IEC 24707
+ISO/IEC 24727
+ISO/IEC 24744
+ISO/IEC 24752
+ISO/IEC 26300
+ISO/IEC 27000
+ISO/IEC 27000-series
+ISO/IEC 27002
+ISO/IEC 27040
+ISO/IEC 29119
+ISO/IEC 33001
+ISO/IEC 38500
+ISO/IEC 42010
+ISO/IEC 80000
+
+
+
+
+
+Related
+
+
+
+International Electrotechnical Commission
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Topic_map&oldid=807304812"					Categories: Knowledge representation languagesTechnical communicationISO standardsIEC standardsDiagramsHidden categories: Use dmy dates from October 2017All articles with unsourced statementsArticles with unsourced statements from January 2016

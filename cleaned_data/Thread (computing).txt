@@ -1,0 +1,721 @@
+article concurrency concept multithreading hardware multithreading computer architecture form code consisting entirely subroutine calls threaded code uses thread disambiguation
+
+
+
+
+
+
+article includes list references sources remain unclear insufficient inline citations please help improve article introducing precise citations december 2009 learn remove template message
+
+
+
+
+
+
+
+process threads execution running processor
+
+
+computer science thread execution smallest sequence programmed instructions managed independently scheduler typically part operating system1 implementation threads processes differs operating systems cases thread component process multiple threads exist within process executing concurrently sharing resources memory different processes share resources particular threads process share executable code values variables given time
+
+
+
+contents
+
+
+single multiprocessor systems
+history
+threads processes
+single threading
+multithreading
+scheduling
+processes kernel threads user threads fibers
+
+thread fiber issues
+
+concurrency data structures
+scheduling
+
+
+
+
+models
+
+kernellevel threading
+userlevel threading
+hybrid threading
+hybrid implementation examples
+fiber implementation examples
+
+
+programming language support
+practical multithreading
+also
+notes
+references
+external links
+
+
+
+single multiprocessor systemsedit
+systems single processor generally implement multithreading time slicing central processing unit switches different software threads context switching generally happens often rapidly enough users perceive threads tasks running parallel multiprocessor multicore system multiple threads execute parallel every processor core executing separate thread simultaneously processor core hardware threads separate software threads also executed concurrently separate hardware threads
+historyedit
+threads made early appearance os360 multiprogramming variable number tasks 1967 context called tasks term thread attributed victor vyssotsky2 process schedulers many modern operating systems directly support timesliced multiprocessor threading operating system kernel allows programmers manipulate threads exposing required functionality system call interface threading implementations called kernel threads whereas lightweight processes specific type kernel thread share state information furthermore programs userspace threads threading timers signals methods interrupt execution performing sort time slicing
+threads processesedit
+threads differ traditional multitasking operating system processes
+
+processes typically independent threads exist subsets process
+processes carry considerably state information threads whereas multiple threads within process share process state well memory resources
+processes separate address spaces whereas threads share address space
+processes interact systemprovided interprocess communication mechanisms
+context switching threads process typically faster context switching processes
+
+systems windows said cheap threads expensive processes operating systems great difference except cost address space switch architectures notably results translation lookaside buffer flush
+single threadingedit
+computer programming singlethreading processing command time3 opposite singlethreading multithreading4 suggested term singlethreading misleadingfurther explanation needed term widely accepted within functional programming community5
+multithreadingedit
+multithreading mainly found multitasking operating systems multithreading widespread programming execution model allows multiple threads exist within context process threads share processs resources able execute independently threaded programming model provides developers useful abstraction concurrent execution multithreading also applied process enable parallel execution multiprocessing system
+multithreaded applications following advantages
+
+responsiveness multithreading allow application remain responsive input onethread program main execution thread blocks longrunning task entire application appear freeze moving longrunning tasks worker thread runs concurrently main execution thread possible application remain responsive user input executing tasks background hand cases multithreading keep program responsive nonblocking andor unix signals available gaining similar results6
+faster execution advantage multithreaded program allows operate faster computer systems multiple central processing units cpus multicore processors across cluster machines threads program naturally lend parallel execution assuming sufficient independence need wait
+lower resource consumption using threads application serve multiple clients concurrently using fewer resources would need using multiple process copies example apache http server uses thread pools pool listener threads listening incoming requests pool server threads processing requests
+better system utilization example file system using multiple threads achieve higher throughput lower latency since data faster medium cache memory retrieved thread another thread retrieves data slower medium external storage neither thread waiting finish
+simplified sharing communication unlike processes require message passing shared memory mechanism perform interprocess communication threads communicate data code files already share
+parallelization applications looking multicore multicpu systems multithreading split data tasks parallel subtasks underlying architecture manage threads either concurrently core parallel multiple cores computing environments like cuda opencl multithreading model dozens hundreds threads parallel across data large number cores
+
+multithreading following drawbacks
+
+synchronization since threads share address space programmer must careful avoid race conditions nonintuitive behaviors order data correctly manipulated threads often need rendezvous time order process data correct order threads also require mutually exclusive operations often implemented using mutexes order prevent common data simultaneously modified read process modified careless primitives lead deadlocks livelocks races resources
+thread crashes process illegal operation performed thread crashes entire process therefore misbehaving thread disrupt processing threads application
+
+schedulingedit
+operating systems schedule threads either preemptively cooperatively multiuser operating systems preemptive multithreading widely used approach finer grained control execution time context switching however preemptive scheduling context switch threads moments unanticipated programmers therefore causing lock convoy priority inversion sideeffects contrast cooperative multithreading relies threads relinquish control execution thus ensuring threads completion create problems cooperatively multitasked thread blocks waiting resource starves threads yielding control execution intensive computation
+early 2000s desktop computers singlecore support hardware threads although threads still used computers switching threads generally still quicker fullprocess context switches 2002 intel added support simultaneous multithreading pentium processor name hyperthreading 2005 introduced dualcore pentium processor introduced dualcore athlon processor
+processors embedded systems higher requirements realtime behaviors might support multithreading decreasing threadswitch time perhaps allocating dedicated register file thread instead savingrestoring common register file
+processes kernel threads user threads fibersedit
+main articles process computing fiber computer science
+scheduling done kernel level user level multitasking done preemptively cooperatively yields variety related concepts
+kernel level process contains kernel threads share processs resources memory file handles process unit resources thread unit scheduling execution kernel scheduling typically uniformly done preemptively less commonly cooperatively user level process runtime system schedule multiple threads execution share data erlang usually analogously called processes7 share data usually called user threads particularly preemptively scheduled cooperatively scheduled user threads known fibers different processes schedule user threads differently user threads executed kernel threads various ways onetoone manytoone manytomany term lightweight process variously refers user threads kernel mechanisms scheduling user threads onto kernel threads
+process heavyweight unit kernel scheduling creating destroying switching processes relatively expensive processes resources allocated operating system resources include memory code data file handles sockets device handles windows process control block processes isolated process isolation share address spaces file resources except explicit methods inheriting file handles shared memory segments mapping file shared interprocess communication creating destroying process relatively expensive resources must acquired released processes typically preemptively multitasked process switching relatively expensive beyond basic cost context switching issues cache flushinga
+kernel thread lightweight unit kernel scheduling least kernel thread exists within process multiple kernel threads exist within process share memory file resources kernel threads preemptively multitasked operating systems process scheduler preemptive kernel threads resources except stack copy registers including program counter threadlocal storage thus relatively cheap create destroy thread switching also relatively cheap requires context switch saving restoring registers stack pointer change virtual memory thus cachefriendly leaving valid kernel assign thread logical core system processor splits multiple logical cores supports multithreading supports logical core physical core swap threads blocked however kernel threads take much longer user threads swapped
+threads sometimes implemented userspace libraries thus called user threads kernel unaware managed scheduled userspace implementations base user threads several kernel threads benefit multiprocessor machines model article term thread without kernel user qualifier defaults referring kernel threads user threads implemented virtual machines also called green threads user threads generally fast create manage cannot take advantage multithreading multiprocessing blocked associated kernel threads blocked even user threads ready
+fibers even lighter unit scheduling cooperatively scheduled running fiber must explicitly yield allow another fiber makes implementation much easier kernel user threads fiber scheduled thread process permits applications gain performance improvements managing scheduling instead relying kernel scheduler tuned application parallel programming environments openmp typically implement tasks fibers closely related fibers coroutines distinction coroutines languagelevel construct fibers systemlevel construct
+thread fiber issuesedit
+concurrency data structuresedit
+threads process share address space allows concurrently running code couple tightly conveniently exchange data without overhead complexity shared threads however even simple data structures become prone race conditions require instruction update threads attempting update data structure time find unexpectedly changing underfoot bugs caused race conditions difficult reproduce isolate
+prevent threading application programming interfaces apis offer synchronization primitives mutexes lock data structures concurrent access uniprocessor systems thread running locked mutex must sleep hence trigger context switch multiprocessor systems thread instead poll mutex spinlock performance force processors symmetric multiprocessing systems contend memory especially granularity locking fine
+
+although threads seem small step sequential computation fact represent huge step discard essential appealing properties sequential computation understandability predictability determinism threads model computation wildly nondeterministic programmer becomes pruning nondeterminism
+problem threads edward berkeley 20068
+
+schedulingedit
+user thread fiber implementations typically entirely userspace result context switching user threads fibers within process extremely efficient require interaction kernel context switch performed locally saving registers used currently executing user thread fiber loading registers required user thread fiber executed since scheduling occurs userspace scheduling policy easily tailored requirements programs workload
+however blocking system calls user threads opposed kernel threads fibers problematic user thread fiber performs system call blocks user threads fibers process unable system call returns typical example problem performing programs written perform synchronously operation initiated system call made return operation completed intervening period entire process blocked kernel cannot starves user threads fibers process executing
+common solution problem providing implements synchronous interface using nonblocking internally scheduling another user thread fiber operation progress similar solutions provided blocking system calls alternatively program written avoid synchronous blocking system calls
+sunos implemented lightweight processes lwps netbsd dragonfly implement lwps kernel threads model sunos sunos well netbsd netbsd implemented level model multiplexing user level threads kernel thread model sunos later well netbsd eliminated user threads support returning model9 freebsd implemented model freebsd supported users could choose used given program using etclibmapconf starting freebsd became default freebsd longer supports model
+kernel threads simplifies user code moving complex aspects threading kernel program need schedule threads explicitly yield processor user code written familiar procedural style including calls blocking apis without starving threads however kernel threading force context switch threads time thus expose race hazards concurrency bugs would otherwise latent systems exacerbated kernel threads literally execute separate processors parallel
+modelsedit
+kernellevel threadingedit
+threads created user correspondence schedulable entities kernel10 simplest possible threading implementation win32 used approach start linux usual library implements approach nptl older linuxthreads approach also used solaris netbsd freebsd macos
+userlevel threadingedit
+model implies applicationlevel threads kernellevel scheduled entity10 kernel knowledge application threads approach context switching done quickly addition implemented even simple kernels support threading major drawbacks however cannot benefit hardware acceleration multithreaded processors multiprocessor computers never thread scheduled time10 example threads needs execute request whole process blocked threading advantage cannot used portable threads uses userlevel threading state threads
+hybrid threadingedit
+maps number application threads onto number kernel entities10 virtual processors compromise kernellevel userlevel threading general threading systems complex implement either kernel user threads changes kernel userspace code required implementation threading library responsible scheduling user threads available schedulable entities makes context switching threads fast avoids system calls however increases complexity likelihood priority inversion well suboptimal scheduling without extensive expensive coordination userland scheduler kernel scheduler
+hybrid implementation examplesedit
+
+scheduler activations used netbsd native posix threads library implementation model opposed kernel userspace implementation model
+lightweight processes used older versions solaris operating system
+marcel project
+teracray mta2
+microsoft windows 7citation needed
+glasgow haskell compiler language haskell uses lightweight threads scheduled operating system threads
+
+fiber implementation examplesedit
+fibers implemented without operating system support although operating systems libraries provide explicit support
+
+win32 supplies fiber api11 windows later
+ruby green threads
+netscape portable runtime includes userspace fibers implementation
+ribs2
+
+programming language supportedit
+plif included support multithreading called multitasking late 1960s continued optimizing compiler later versions enterprise compiler introduced model thread neither version part standard
+many programming languages support threading capacity many implementations support threading provide access native threading apis operating system higher level usually crossplatform programming languages java python framework languages expose threading developers abstracting platform specific differences threading implementations runtime several programming languages language extensions also abstract concept concurrency threading developer fully cilk openmp message passing interface languages designed sequential parallelism instead especially using gpus without requiring concurrency threads ateji cuda
+interpreted programming languages implementations ruby ruby cpython python support threading concurrency parallel execution threads global interpreter lock mutual exclusion lock held interpreter prevent interpreter simultaneously interpreting applications code threads effectively limits parallelism multiple core systems limits performance mostly processorbound threads require processor much iobound networkbound ones
+implementations interpreted programming languages using thread extension avoid limit using apartment model data code must explicitly shared threads thread interpreters
+eventdriven programming hardware description languages verilog different threading model supports extremely large numbers threads modeling hardware
+practical multithreadingedit
+standardized interface thread implementation posix threads pthreads cfunction library calls vendors free implement interface desired application developer able interface across multiple platforms unix platforms including linux support pthreads microsoft windows thread functions processh interface multithreading like beginthread java provides another standardized interface host operating system using java concurrency library javautilconcurrent
+multithreading libraries provide function call create thread takes function parameter concurrent thread created starts running passed function ends function returns thread libraries also offer synchronization functions make possible implement race conditionerror free multithreading functions using mutexes condition variables critical sections semaphores monitors synchronization primitives
+another paradigm thread usage thread pools number threads created startup wait task assigned task arrives wakes completes task goes back waiting avoids relatively expensive thread creation destruction functions every task performed takes thread management application developers hand leaves library operating system better suited optimize thread management example frameworks like grand central dispatch threading building blocks
+programming models cuda designed data parallel computation array threads code parallel using find data memory essence application must designed thread performs operation different segments memory operate parallel architecture
+alsoedit
+
+
+computer programming portal
+computing portal
+
+
+
+
+clone linux system call
+communicating sequential processes
+computer multitasking
+multicore computing
+multithreading computer hardware
+nonblocking algorithm
+priority inversion
+protothreads
+simultaneous multithreading
+thread pool pattern
+thread safety
+win32 thread information block
+
+
+notesedit
+
+
+
+process switching changes virtual memory addressing causing invalidation thus flushing untagged translation lookaside buffer notably
+
+
+
+referencesedit
+
+
+
+lamport leslie september 1979 make multiprocessor computer correctly executes multiprocess programs ieee transactions computers c–28 690–691 doi101109tc19791675439
+traffic control multiplexed computer system jerome howard saltzer doctor science thesis 1966 footnote page
+raúl menéndez doug lowe 2001 murachs cics cobol programmer mike murach associates isbn 189077409x
+stephen fraser visual ccli platform apress isbn 1430210532
+peter william ohearn tennent 1997 algollike languages birkhäuser verlag isbn 0817639373
+singlethreading back future sergey ignatchenko overload
+erlang processes
+problem threads edward berkeley january 2006 technical report ucbeecs20061
+multithreading solaris operating environment 2002 archived original february 2009
+gagne abraham silberschatz peter baer galvin greg 2013 operating system concepts hoboken wiley 170–171 isbn 9781118063330
+createfiber msdn
+
+
+
+
+
+david butenhof programming posix threads addisonwesley isbn 0201633922
+bradford nichols dick buttlar jacqueline proulx farell pthreads programming oreilly associates isbn 1565921151
+charles northrup programming unix threads john wiley sons isbn 0471137510
+mark walmsley multithreaded programming springer isbn 1852331461
+paul hyde java thread programming sams isbn 0672315858
+bill lewis threads primer guide multithreaded programming prentice hall isbn 0134436989
+steve kleiman devang shah bart smaalders programming threads sunsoft press isbn 0131723898
+villani advanced win32 programming files threads process synchronization harpercollins publishers isbn 0879305630
+beveridge robert wiener multithreading applications win32 addisonwesley isbn 0201442345
+thuan pham pankaj garg multithreaded programming windows prentice hall isbn 0131206435
+dorfman marc neuberger effective multithreading mcgrawhill osborne media isbn 0070178410
+alan burns andy wellings concurrency cambridge university press isbn 052162911x
+uresh vahalia unix internals frontiers prentice hall isbn 0131019082
+alan dennis multithreading manning publications company isbn 1930110545
+tobin titus fabio claudio ferracchiati srinivasa sivakumar tejaswi redkar sandra gopikrishna threading handbook peer information isbn 1861008295
+tobin titus fabio claudio ferracchiati srinivasa sivakumar tejaswi redkar sandra gopikrishna visual basic threading handbook wrox press isbn 1861007132
+
+
+external linksedit
+
+
+
+wikiversity learning resources processes threads
+operating systemsprocess thread
+
+
+
+
+makes multithreaded programming hard
+article query slice parallel execute join thread pool pattern java binildas
+article free lunch fundamental turn toward concurrency software herb sutter
+article problem threads edward
+contest tool testing multithreaded java applications
+debugging optimizing multithreaded openmp programs
+multithreading curlie based dmoz
+multithreading solaris operating environment
+posix threads explained daniel robbins
+c10k problem
+
+
+
+
+
+
+
+
+
+
+
+
+parallel computing
+
+
+
+general
+
+
+
+distributed computing
+parallel computing
+massively parallel
+cloud computing
+highperformance computing
+multiprocessing
+manycore processor
+gpgpu
+computer network
+systolic array
+
+
+
+
+
+levels
+
+
+
+
+instruction
+thread
+task
+data
+memory
+loop
+pipeline
+
+
+
+
+
+multithreading
+
+
+
+temporal
+simultaneous
+speculative spmt
+preemptive
+cooperative
+clustered multithread
+hardware scout
+
+
+
+
+
+theory
+
+
+
+pram model
+analysis parallel algorithms
+amdahls
+gustafsons
+cost efficiency
+karp–flatt metric
+slowdown
+speedup
+
+
+
+
+
+elements
+
+
+
+process
+thread
+fiber
+instruction window
+
+
+
+
+
+coordination
+
+
+
+multiprocessing
+memory coherency
+cache coherency
+cache invalidation
+barrier
+synchronization
+application checkpointing
+
+
+
+
+
+programming
+
+
+
+stream processing
+dataflow programming
+models
+
+implicit parallelism
+explicit parallelism
+concurrency
+
+
+nonblocking algorithm
+
+
+
+
+
+hardware
+
+
+
+flynns taxonomy
+
+sisd
+simd
+simt
+misd
+mimd
+
+
+dataflow architecture
+pipelined processor
+superscalar processor
+vector processor
+multiprocessor
+
+symmetric
+asymmetric
+
+
+memory
+
+shared
+distributed
+distributed shared
+
+numa
+coma
+
+
+massively parallel computer
+computer cluster
+grid computer
+
+
+
+
+
+apis
+
+
+
+ateji
+boostthread
+chapel
+charm
+cilk
+coarray fortran
+cuda
+dryad
+
+global arrays
+
+openmp
+opencl
+openhmpp
+openacc
+
+plinq
+
+posix threads
+raftlib
+
+
+
+
+
+
+
+
+problems
+
+
+
+deadlock
+livelock
+deterministic algorithm
+embarrassingly parallel
+parallel slowdown
+race condition
+software lockout
+scalability
+starvation
+
+
+
+
+
+
+
+
+category parallel computing
+media related parallel computing wikimedia commons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+operating systems
+
+
+
+general
+
+
+
+advocacy
+comparison
+forensic engineering
+history
+hobbyist development
+list
+timeline
+usage share
+
+
+
+
+
+kernel
+
+
+
+
+architectures
+
+
+
+exokernel
+hybrid
+microkernel
+monolithic
+rump kernel
+unikernel
+
+
+
+
+
+components
+
+
+
+device driver
+loadable kernel module
+microkernel
+user space
+
+
+
+
+
+
+
+
+process management
+
+
+
+
+concepts
+
+
+
+context switch
+interrupt
+
+process
+process control block
+realtime
+thread
+timesharing
+
+
+
+
+
+scheduling
+algorithms
+
+
+
+computer multitasking
+fixedpriority preemptive
+multilevel feedback queue
+preemptive
+roundrobin
+shortest next
+
+
+
+
+
+
+
+
+memory management
+resource protection
+
+
+
+error
+general protection fault
+memory protection
+paging
+protection ring
+segmentation fault
+virtual memory
+
+
+
+
+
+storage access
+file systems
+
+
+
+boot loader
+defragmentation
+device file
+file attribute
+inode
+journal
+partition
+virtual file system
+virtual tape library
+
+
+
+
+
+list
+
+
+
+amigaos
+android
+beos
+
+chrome
+
+
+
+haiku
+illumos
+includeos
+
+linux
+macintosh
+
+classic
+macos
+
+
+minix
+morphos
+musicsp
+nemesis
+
+openvms
+orvyl
+
+
+pick
+
+reactos
+risc
+rstse
+rsx11
+rt11
+solaris
+tops10tops20
+
+unix
+visi
+vmcms
+
+windows
+xinu
+
+
+
+
+
+
+miscellaneous concepts
+
+
+
+
+computer network
+
+live
+live
+shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh97002264
+43774829
+cb133204714 data
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlethreadcomputingoldid818470859 categories concurrent computingthreads computinghidden categories articles lacking intext citations december 2009all articles lacking intext citationswikipedia articles needing clarification february 2017all articles unsourced statementsarticles unsourced statements february 2015articles dmoz linkswikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiers

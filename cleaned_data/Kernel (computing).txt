@@ -1,0 +1,645 @@
+kernel computer science redirects confused compute kernel kernel method kernel image processing
+kernel computing redirects uses kernelcomputing
+kernel computer program core computers operating system complete control everything system1 systems first programs loaded startup bootloader handles rest startup well inputoutput requests software translating dataprocessing instructions central processing unit handles memory peripherals like keyboards monitors printers speakers
+
+
+
+
+kernel connects application software hardware computer
+
+
+critical code kernel usually loaded protected area memory prevents overwritten applications minor parts operating system kernel performs tasks running processes handling interrupts kernel space contrast everything user user space writing text text editor running programs separation prevents user data kernel data interfering causing instability slowness1
+kernels interface lowlevel abstraction layer process makes requests kernel called system call kernel designs differ manage system calls resources monolithic kernel runs operating system instructions address space speed microkernel runs processes user space2 modularity3
+
+
+
+contents
+
+
+functions kernel
+
+memory management
+device management
+system calls
+
+
+kernel design decisions
+
+issues kernel support protection
+
+hardwarebased languagebased protection
+
+
+process cooperation
+devices management
+
+
+kernelwide design approaches
+
+monolithic kernels
+microkernels
+monolithic kernels microkernels
+
+performance
+
+
+hybrid modular kernels
+nanokernels
+exokernels
+
+
+history kernel development
+
+early operating system kernels
+timesharing operating systems
+amiga
+unix
+
+microsoft windows
+supervisor
+development microkernels
+
+
+also
+notes
+references
+reading
+external links
+
+
+
+functions kerneledit
+kernels primary function mediate access computers resources including4
+
+central processing unit
+central component computer system responsible running executing programs kernel takes responsibility deciding time many running programs allocated processor processors usually program time
+randomaccess memory
+randomaccess memory used store program instructions data typically need present memory order program execute often multiple programs want access memory frequently demanding memory computer available kernel responsible deciding memory process determining enough memory available
+inputoutput devices
+devices include peripherals keyboards mice disk drives printers devices network adapters display devices kernel allocates requests applications perform appropriate device provides convenient methods using device typically abstracted point application need know implementation details device
+
+aspects necessary resource management definition execution domain address space protection mechanism used mediate accesses resources within domain4
+kernels also usually provide methods synchronization communication processes called interprocess communication
+kernel implement features rely processes runs provide facilities processes although case must provide means allow processes access facilities provided
+finally kernel must provide running programs method make requests access facilities
+memory managementedit
+details topic memory management operating systems
+kernel full access systems memory must allow processes safely access memory require often first step virtual addressing usually achieved paging andor segmentation virtual addressing allows kernel make given physical address appear another address virtual address virtual address spaces different different processes memory process accesses particular virtual address different memory another process accesses address allows every program behave apart kernel running thus prevents applications crashing other5
+many systems programs virtual address refer data currently memory layer indirection provided virtual addressing allows operating system data stores like hard drive store would otherwise remain main memory result operating systems allow programs memory system physically available program needs data currently signals kernel happened kernel responds writing contents inactive memory block disk necessary replacing data requested program program resumed point stopped scheme generally known demand paging
+virtual addressing also allows creation virtual partitions memory disjointed areas reserved kernel kernel space applications user space applications permitted processor address kernel memory thus preventing application damaging running kernel fundamental partition memory space contributed much current designs actual generalpurpose kernels almost universal systems although research kernels singularity take approaches
+device managementedit
+perform useful functions processes need access peripherals connected computer controlled kernel device drivers device driver computer program enables operating system interact hardware device provides operating system information control communicate certain piece hardware driver important vital piece program application design goal driver abstraction function driver translate osmandated function calls programming calls devicespecific calls theory device work correctly suitable driver device drivers used things video cards sound cards printers scanners modems cards common levels abstraction device drivers
+hardware side
+
+interfacing directly
+using high level interface video bios
+using lowerlevel device driver file drivers using disk drivers
+simulating work hardware something entirely different
+
+software side
+
+allowing operating system direct access hardware resources
+implementing primitives
+implementing interface nondriver software example twain
+implementing language sometimes highlevel example postscript
+
+example show user something screen application would make request kernel would forward request display driver responsible actually plotting characterpixel5
+kernel must maintain list available devices list known advance embedded system kernel rewritten available hardware changes configured user typical older systems designed personal detected operating system time normally called plug play plug play system device manager first performs scan different hardware buses peripheral component interconnect universal serial detect installed devices searches appropriate drivers
+device management osspecific topic drivers handled differently kind kernel design every case kernel provide allow drivers physically access devices port memory location important decisions made designing device management system designs accesses involve context switches making operation cpuintensive easily causing significant performance overheadcitation needed
+system callsedit
+main article system call
+computing system call process requests service operating systems kernel normally permission system calls provide interface process operating system operations interacting system require permissions available user level process performed device present system form communication processes requires system calls
+system call mechanism used application program request service operating system machinecode instruction causes processor change mode example would supervisor mode protected mode operating system performs actions like accessing hardware devices memory management unit generally operating system provides library sits operating system normal programs usually library glibc windows library handles lowlevel details passing information kernel switching supervisor mode system calls include close open read wait write
+actually perform useful work process must able access services provided kernel implemented differently kernel provide library turn invokes related kernel functions6
+method invoking kernel function varies kernel kernel memory isolation impossible user process call kernel directly would violation processors access control rules possibilities
+
+using softwaresimulated interrupt method available hardware therefore common
+using call gate call gate special address stored kernel list kernel memory location known processor processor detects call address instead redirects target location without causing access violation requires hardware support hardware quite common
+using special system call instruction technique requires special hardware support common architectures notably lack system call instructions added recent models processors however operating systems make available
+using memorybased queue application makes large numbers requests need wait result details requests area memory kernel periodically scans find requests
+
+kernel design decisionsedit
+issues kernel support protectionedit
+important consideration design kernel support provides protection faults fault tolerance malicious behaviours security aspects usually clearly distinguished adoption distinction kernel design leads rejection hierarchical structure protection4
+mechanisms policies provided kernel classified according several criteria including static enforced compile time dynamic enforced time preemptive postdetection according protection principles satisfy denning78 whether hardware supported language based whether open mechanism binding policy many
+support hierarchical protection domains9 typically implemented using modes
+many kernels provide implementation capabilities objects provided user code allow limited access underlying object managed kernel common example occurs file handling file representation information stored permanent storage device kernel able perform many different operations read write delete execute file contents user level application permitted perform operations allowed read file common implementation kernel provide object application typically called file handle application invoke operations validity kernel checks time operation requested system extended cover objects kernel manages indeed objects provided user applications
+efficient simple provide hardware support capabilities delegate responsibility checking accessrights every memory access mechanism called capabilitybased addressing10 commercial computer architectures lack support capabilities
+alternative approach simulate capabilities using commonly supported hierarchical domains approach protected object must reside address space application access kernel also maintains list capabilities memory application needs access object protected capability performs system call kernel checks whether applications capability grants permission perform requested action permitted performs access either directly delegating request another userlevel process performance cost address space switching limits practicality approach systems complex interactions objects used current operating systems objects accessed frequently expected perform quickly1112 approaches protection mechanism firmware supported instead simulated higher levels simulating capabilities manipulating page tables hardware direct support possible performance implications13 lack hardware support issue however systems choose languagebased protection14
+important kernel design decision choice abstraction levels security mechanisms policies implemented kernel security mechanisms play critical role supporting security higher levels1015161718
+approach firmware kernel support fault tolerance build security policy malicious behavior adding features cryptography mechanisms necessary delegating responsibility compiler approaches delegate enforcement security policy compiler andor application level often called languagebased security
+lack many critical security mechanisms current mainstream operating systems impedes implementation adequate security policies application abstraction level15 fact common misconception computer security security policy implemented application regardless kernel support15
+hardwarebased languagebased protectionedit
+typical computer systems today hardwareenforced rules programs allowed access data processor monitors execution stops program violates rule user process read write kernel memory systems lack support capabilities processes isolated using separate address spaces19 calls user processes kernel regulated requiring abovedescribed system call methods
+alternative approach languagebased protection languagebased protection system kernel allow code execute produced trusted language compiler language designed impossible programmer instruct something violate security requirement14
+advantages approach include
+
+need separate address spaces switching address spaces slow operation causes great deal overhead optimization work currently performed order prevent unnecessary switches current operating systems switching completely unnecessary languagebased protection system code safely operate address space
+flexibility protection scheme designed expressed programming language implemented using method changes protection scheme hierarchical system capabilitybased require hardware
+
+disadvantages include
+
+longer application start time applications must verified started ensure compiled correct compiler need recompiling either source code bytecode
+inflexible type systems traditional systems applications frequently perform operations type safe operations cannot permitted languagebased protection system means applications need rewritten cases lose performance
+
+examples systems languagebased protection include microsofts singularity
+process cooperationedit
+edsger dijkstra proved logical point view atomic lock unlock operations operating binary semaphores sufficient primitives express functionality process cooperation20 however approach generally held lacking terms safety efficiency whereas message passing approach flexible21 number approaches either lower higherlevel available well many modern kernels providing support systems shared memory remote procedure calls
+devices managementedit
+idea kernel devices handled uniformly processes parallel cooperating processes first proposed implemented brinch hansen although similar ideas suggested 19672223 hansens description common processes called internal processes devices called external processes21
+similar physical memory allowing applications direct access controller ports registers cause controller malfunction system crash depending complexity device devices surprisingly complex program several different controllers providing abstract interface manage device important interface normally done device driver hardware abstraction layer frequently applications require access devices kernel must maintain list devices querying system done bios various system buses pcipcie application requests operation device displaying character kernel needs send request current active video driver video driver turn needs carry request example inter process communication
+kernelwide design approachesedit
+naturally listed tasks features provided many ways differ design implementation
+principle separation mechanism policy substantial difference philosophy micro monolithic kernels2425 mechanism support allows implementation many different policies policy particular mode operation instance mechanism provide user login attempts call authorization server determine whether access granted policy authorization server request password check encrypted password stored database mechanism generic policy could easily changed requiring security token mechanism policy integrated module
+minimal microkernel basic policies included25 mechanisms allows running kernel remaining part operating system applications decide policies adopt memory management high level process scheduling file system management etc421 monolithic kernel instead tends include many policies therefore restricting rest system rely
+brinch hansen presented arguments favour separation mechanism policy421 failure properly fulfill separation major causes lack substantial innovation existing operating systems4 problem common computer architecture262728 monolithic design induced kernel modeuser mode architectural approach protection technically called hierarchical protection domains common conventional commercial systems29 fact every module needing protection therefore preferably included kernel29 link monolithic design privileged mode reconducted issue mechanismpolicy separation4 fact privileged mode architectural approach melts together protection mechanism security policies major alternative architectural approach capabilitybased addressing clearly distinguishes leading naturally microkernel design4 separation protection security
+monolithic kernels execute code address space kernel space microkernels services user space aiming improve maintainability modularity codebase3 kernels exactly categories rather found designs called hybrid kernels exotic designs nanokernels exokernels available seldom used production systems hypervisor example exokernel
+monolithic kernelsedit
+main article monolithic kernel
+
+
+
+
+diagram monolithic kernel
+
+
+monolithic kernel services along main kernel thread thus also residing memory area approach provides rich powerful hardware access developers unix developer thompson maintain easier implement monolithic kernel30 microkernels main disadvantages monolithic kernels dependencies system components device driver might crash entire system fact large kernels become difficult maintain
+monolithic kernels traditionally used unixlike operating systems contain operating system core functions device drivers traditional design unix systems monolithic kernel single program contains code necessary perform every kernel related task every part accessed programs cannot library kernel space device drivers scheduler memory handling file systems network stacks many system calls provided applications allow access services monolithic kernel initially loaded subsystems needed tuned point fast faster specifically designed hardware although relevant general sense modern monolithic kernels linux freebsd fall category unixlike operating systems feature ability load modules runtime thereby allowing easy extension kernels capabilities required helping minimize amount code running kernel space monolithic kernel advantages hinge points
+
+since less software involved faster
+single piece software smaller source compiled forms
+less code generally means fewer bugs translate fewer security problems
+
+work monolithic kernel done system calls interfaces usually kept tabular structure access subsystem within kernel disk operations essentially calls made within programs checked copy request passed system call hence travel monolithic linux kernel made extremely small ability dynamically load modules also ease customization fact versions small enough together large number utilities programs single floppy disk still provide fully functional operating system popular mulinux ability miniaturize kernel also rapid growth linux embedded systems
+types kernels consist core functions operating system device drivers ability load modules runtime provide rich powerful abstractions underlying hardware provide small simple hardware abstractions applications called servers provide functionality particular approach defines highlevel virtual interface hardware system calls implement operating system services process management concurrency memory management several modules supervisor mode design several flaws limitations
+
+coding kernel challenging part cannot common libraries like fullfeatured libc needs sourcelevel debugger like rebooting computer often required problem convenience developers debugging harder difficulties become stronger becomes likely code buggier
+bugs part kernel strong side effects since every function kernel privileges function corrupt data structure another totally unrelated part kernel running program
+kernels often become large difficult maintain
+even modules servicing operations separate whole code integration tight difficult correctly
+since modules address space bring entire system
+monolithic kernels portable therefore must rewritten architecture operating system used
+
+
+
+
+
+microkernel approach kernel provides basic functionality allows execution servers separate programs assume former kernel functions device drivers servers
+
+
+microkernelsedit
+main article microkernel
+microkernel also abbreviated term describing approach operating system design functionality system moved traditional kernel servers communicate minimal kernel leaving little possible system space much possible user space microkernel designed specific platform device ever going needs operate microkernel approach consists defining simple abstraction hardware primitives system calls implement minimal services memory management multitasking interprocess communication services including normally provided kernel networking implemented userspace programs referred servers microkernels easier maintain monolithic kernels large number system calls context switches might slow system typically generate overhead plain function calls
+parts really require privileged mode kernel space interprocess communication basic scheduler scheduling primitives basic memory handling basic primitives many critical parts running user space complete scheduler memory handling file systems network stacks micro kernels invented reaction traditional monolithic kernel design whereby system functionality static program running special system mode processor microkernel fundamental tasks performed able access necessarily hardware manage memory coordinate message passing processes systems micro kernels hurd case hurd user sessions entire snapshots system views referred essence microkernel architecture illustrates advantages
+
+maintenance generally easier
+patches tested separate instance swapped take production instance
+rapid development time software tested without reboot kernel
+persistence general instance goes haywire often possible substitute operational mirror
+
+micro kernels message passing system sort handle requests server another message passing system generally operates port basis microkernel example request memory sent port opened microkernel request sent within microkernel steps similar system calls rationale would bring modularity system architecture would entail cleaner system easier debug dynamically modify customizable users needs performing part operating systems like beos hurd mach macos minix although micro kernels small combination required auxiliary code fact often larger monolithic kernels advocates monolithic kernels also point twotiered structure microkernel systems operating system interact directly hardware creates notinsignificant cost terms system efficiency types kernels normally provide minimal services defining memory address spaces interprocess communication process management functions running hardware processes handled directly micro kernels proponents micro kernels point monolithic kernels disadvantage error kernel cause entire system crash however microkernel kernel process crashes still possible prevent crash system whole merely restarting service caused error
+services provided kernel networking implemented userspace programs referred servers servers allow operating system modified simply starting stopping programs machine without networking support instance networking server started task moving kernel move data various applications servers creates overhead detrimental efficiency micro kernels comparison monolithic kernels
+disadvantages microkernel exist however
+
+larger running memory footprint
+software interfacing required potential performance loss
+messaging bugs harder longer trip take versus copy monolithic kernel
+process management general complicated
+
+disadvantages micro kernels extremely context based example work well small single purpose critical systems many processes need complications process management effectively mitigated
+microkernel allows implementation remaining part operating system normal application program written highlevel language different operating systems unchanged kernel21 also possible dynamically switch among operating systems active simultaneously21
+monolithic kernels microkernelsedit
+computer kernel grows grows size vulnerability trusted computing base besides reducing security problem enlarging memory footprint mitigated degree perfecting virtual memory system computer architectures virtual memory support31 reduce kernels footprint extensive editing performed carefully remove unneeded code difficult nonobvious interdependencies parts kernel millions lines code
+early 1990s various shortcomings monolithic kernels versus microkernels monolithic kernels considered obsolete virtually operating system researcherscitation needed result design linux monolithic kernel rather microkernel topic famous debate linus torvalds andrew tanenbaum32 merit sides argument presented tanenbaum–torvalds debate
+performanceedit
+monolithic kernels designed code address space kernel space developers argue necessary increase performance system33 developers also maintain monolithic systems extremely efficient well written33 monolithic model tends efficient34 shared kernel memory rather slower system microkernel designs typically based message passingcitation needed
+performance microkernels poor 1980s early 1990s3536 however studies empirically measured performance microkernels analyze reasons inefficiency35 explanations data left folklore assumption increased frequency switches kernelmode usermode35 increased frequency interprocess communication35 increased frequency context switches35
+fact guessed 1995 reasons poor performance microkernels might well actual inefficiency whole microkernel approach particular concepts implemented microkernels particular implementation concepts35 therefore remained studied solution build efficient microkernel unlike previous attempts apply correct construction techniques35
+hierarchical protection domains architecture leads design monolithic kernel29 significant performance drawback time theres interaction different levels protection process manipulate data structure user mode supervisor mode since requires message copying value37
+mid1990s researchers abandoned belief careful tuning could reduce overhead dramaticallycitation needed recently newer microkernels optimized performance l438 addressed problemsverification needed
+
+
+
+
+hybrid kernel approach combines speed simpler design monolithic kernel modularity execution safety microkernel
+
+
+hybrid modular kernelsedit
+main article hybrid kernel
+hybrid kernels used commercial operating systems microsoft windows 2000 vista apple incs macos uses hybrid kernel called based upon code osf1s mach kernel osfmk 7339 freebsds monolithic kernel similar micro kernels except include additional code kernelspace increase performance kernels represent compromise implemented developers demonstrated pure micro kernels provide high performance types kernels extensions micro kernels properties monolithic kernels unlike monolithic kernels types kernels unable load modules runtime hybrid kernels micro kernels nonessential code kernelspace order code quickly would userspace hybrid kernels compromise monolithic microkernel designs implies running services network stack filesystem kernel space reduce performance overhead traditional microkernel still running kernel code device drivers servers user space
+many traditionally monolithic kernels least adding actively exploiting module capability well known kernels linux kernel modular kernel essentially parts built core kernel binary binaries load memory demand important note code tainted module potential destabilize running kernel many people become confused point discussing micro kernels possible write driver microkernel completely separate memory space test going live kernel module loaded accesses monolithic portions memory space adding needs therefore opening doorway possible pollution advantages modular hybrid kernel
+
+faster development time drivers operate within modules reboot required testing provided kernel destabilized
+demand capability versus spending time recompiling whole kernel things like drivers subsystems
+faster integration third party technology related development pertinent unto nonetheless
+
+modules generally communicate kernel using module interface sort interface generalized although particular given operating system always possible modules often device drivers need flexibility module interface affords essentially system calls often safety checks done monolithic kernel done twice disadvantages modular approach
+
+interfaces pass possibility increased bugs exists implies security holes
+maintaining modules confusing administrators dealing problems like symbol differences
+
+nanokernelsedit
+main article nanokernel
+nanokernel delegates virtually services including even basic ones like interrupt controllers timer device drivers make kernel memory requirement even smaller traditional microkernel40
+exokernelsedit
+main article exokernel
+exokernels stillexperimental approach operating system design differ types kernels functionality limited protection multiplexing hardware providing hardware abstractions develop applications separation hardware protection hardware management enables application developers determine make efficient available hardware specific program
+exokernels extremely small however accompanied library operating systems also unikernel providing application developers functionalities conventional operating system major advantage exokernelbased systems incorporate multiple library operating systems exporting different example high level development realtime control
+history kernel developmentedit
+early operating system kernelsedit
+main article history operating systems
+strictly speaking operating system thus kernel required computer programs directly loaded executed bare metal machine provided authors programs willing work without hardware abstraction operating system support early computers operated 1950s early 1960s reset reloaded execution different programs eventually small ancillary programs program loaders debuggers left memory runs loaded developed formed basis became early operating system kernels bare metal approach still used today video game consoles embedded systems41 general newer computers modern operating systems kernels
+1969 4000 multiprogramming system introduced system design philosophy small nucleus upon operating systems different purposes could built orderly manner42 would called microkernel approach
+timesharing operating systemsedit
+main article timesharing
+decade preceding unix computers grown enormously power point computer operators looking ways people spare time machines major developments timesharing whereby number users would small slices computer time rate appeared connected slower machine43
+development timesharing systems number problems users particularly universities systems developed seemed want hack system time reason security access control became major focus multics project 196544 another ongoing issue properly handling computing resources users spent time staring terminal thinking input instead actually using resources computer timesharing system give time active user periods finally systems typically offered memory hierarchy several layers deep partitioning expensive resource major developments virtual memory systems
+amigaedit
+main article amigaos
+commodore amiga released 1985 among first certainly successful home computers feature advanced kernel architecture amigaos kernels executive component execlibrary uses microkernel messagepassing design kernel components like graphicslibrary direct access hardware memory protection kernel almost always running user mode special actions executed kernel mode usermode applications operating system execute code kernel mode
+unixedit
+main article unix
+
+
+
+
+diagram predecessorsuccessor family relationship unixlike systems
+
+
+design phase unix programmers decided model every highlevel device file believed purpose computation data transformation45
+instance printers represented file known location data copied file printed systems provide similar functionality tended virtualize devices lower level devices files would instances lower level concept virtualizing system file level allowed users manipulate entire system using existing file management utilities concepts dramatically simplifying operation extension paradigm unix allows programmers manipulate files using series small programs using concept pipes allowed users complete operations stages feeding file chain singlepurpose tools although result using smaller programs dramatically increased flexibility well ease development allowing user modify workflow adding removing program chain
+unix model operating system consists parts first huge collection utility programs drive operations kernel runs programs45 unix programming standpoint distinction fairly thin kernel program running supervisor mode46 acts program loader supervisor small utility programs making rest system provide locking services programs beyond kernel didnt intervene user space
+years computing model changed unixs treatment everything file byte stream longer universally applicable although terminal could treated file byte stream printed read seem true graphical user interface networking posed another problem even network communication compared file access lowlevel packetoriented architecture dealt discrete chunks data whole files capability computers grew unix became increasingly cluttered code also modularity unix kernel extensively scalable47 kernels might 100000 lines code seventies eighties kernels modern unix successors like linux million lines48
+modern unixderivatives generally based moduleloading monolithic kernels examples linux kernel many distributions well berkeley software distribution variant kernels freebsd dragonflybsd openbsd netbsdand macos apart alternatives amateur developers maintain active operating system development community populated selfwritten hobby kernels mostly sharing many features linux freebsd dragonflybsd openbsd netbsd kernels andor compatible them49
+osedit
+main articles classic macos
+apple first launched classic 1984 bundled macintosh personal computer apple moved nanokernel design modern macos originally named based darwin uses hybrid kernel called created combining 43bsd kernel mach kernel50
+microsoft windowsedit
+main article history microsoft windows
+microsoft windows first released 1985 addon msdos dependence another operating system initial releases windows prior windows considered operating environment confused operating system product line continued evolve 1980s 1990s windows series adding 32bit addressing preemptive multitasking ended release windows 2000
+microsoft also developed windows operating system similar interface intended highend business users line started release windows 1993 introduced general users release windows october 2001—replacing windows completely different much sophisticated operating system line continues windows
+architecture windows kernel considered hybrid kernel kernel contains tasks window manager managers clientserver layered subsystem model51
+supervisoredit
+supervisory program supervisor computer program usually part operating system controls execution routines regulates work scheduling inputoutput operations error actions similar functions regulates flow work data processing system
+historically term essentially associated ibms line mainframe operating systems starting os360 operating systems supervisor generally called kernel
+1970s abstracted supervisor state hardware resulting hypervisor enabled full virtualization capacity multiple operating systems machine totally independently hence first system called virtual machine
+development microkernelsedit
+although mach developed carnegie mellon university 1985 1994 bestknown generalpurpose microkernel microkernels developed specific aims microkernel family mainly kernel created demonstrate microkernels necessarily slow38 newer implementations fiasco pistachio able linux next processes separate address spaces5253
+additionally microkernel principally used embedded systems54 opensource software minix originally created educational purposes focussed highly reliable selfhealing microkernel
+alsoedit
+
+comparison operating system kernels
+interprocess communication
+
+notesedit
+
+
+kernel linfo bellevue linux users group retrieved september 2016
+daemon computing
+roch 2004
+wulf 1974 pp337–345
+silberschatz 1991
+tanenbaum andrew 2008 modern operating systems prentice hall 50–51 isbn 0136006639 nearly system calls invoked programs calling library procedure library procedure executes trap instruction switch user mode kernel mode start execution
+denning 1976
+swift 2005 quote isolation resource control decision verification checking error recovery
+schroeder
+linden
+stephane eranian david mosberger virtual memory ia64 linux kernel prentice hall 2002
+silberschatz galvin operating system concepts
+hoch charles browne july 1980 implementation capabilities pdp1145 sigops operating systems review 22–32 doi101145850697850701 retrieved 20070107
+languagebased approach security schneider morrissett cornell university harper carnegie mellon university
+loscocco smalley muckelbauer taylor turner farrell inevitability failure flawed assumption security modern computing environments archived 20070621 wayback machine proceedings 21st national information systems security conference pages 303–314 1998
+lepreau persistent relevance local operating system global applications proceedings sigops eurcshelfbook001book001html information security integrated collection essays ieee comp 1995
+anderson computer security technology planning study force elect systems esdtr7351 october 1972
+jerry saltzer mike schroeder september 1975 protection information computer systems proceedings ieee 1278–1308 doi101109proc19759939
+jonathan shapiro jonathan smith david farber 1999 eros fast capability system proceedings seventeenth symposium operating systems principles 170–185 doi101145319344319163
+dijkstra cooperating sequential processes math technological eindhoven sept 1965
+brinch hansen pp238–241
+sharer time sharing system 6600 retrieved 20070107
+dynamic supervisors design construction retrieved 20070107
+baiardi 1988
+levin
+denning 1980
+jürgen nehmer immortality operating systems research operating systems still justified lecture notes computer science proceedings international workshop operating systems beyond 77–83 1991 isbn 3540549870 quote past years shown research operating system architecture minor effect existing main stream systems
+levy quote although complexity computer applications increases yearly underlying hardware architecture applications remained unchanged decades
+levy quote conventional architectures support single privileged mode operation structure leads monolithic design module needing protection must part single operating system kernel instead module could execute within protected domain systems could built collection independent modules extensible user
+open sources voices open source revolution
+virtual addressing commonly achieved builtin memory management unit
+recordings debate torvalds tanenbaum found dinadk archived 20121003 wayback machine groupsgooglecom oreillycom andrew tanenbaums website
+matthew russell darwin powers oreilly media quote tightly coupled nature monolithic kernel allows make efficient underlying hardware microkernels hand core processes userland unfortunately benefits come cost microkernel pass information kernel space process known context switch context switches introduce considerable overhead therefore result performance penalty
+operating systemskernel models
+liedtke
+härtig
+hansen section p233 interactions different levels protection require transmission messages value
+microkernel family overview
+httpswwwyoutubecomwatchvggnfodqzgmu
+keykos nanokernel architecture archived 20110621 wayback machine
+ball embedded microprocessor designs
+hansen 2001 pp17–18
+bstj version cacm unix paper
+introduction overview multics system corbató vissotsky
+single unix specification open group
+highest privilege level various names throughout different architectures supervisor mode kernel mode cpl0 dpl0 ring ring computer security information
+unixs revenge horace dediu
+linux kernel worth david wheeler october 2004
+community mostly gathers bona fide development megatokyo message board operating system enthusiast sites
+kernel archived 20110822 webcite
+windows history windows desktop products history
+fiasco microkernel overview
+l4ka microkernel family friends
+realtime operating system overview
+
+
+referencesedit
+
+
+roch benjamin 2004 monolithic kernel microkernel archived original 20061101 retrieved 20061012
+silberschatz abraham james peterson peter galvin 1991 operating system concepts boston massachusetts addisonwesley isbn 020151379x
+ball stuart 2002 2002 embedded microprocessor systems real world designs first elsevier science isbn 0750675349
+deitel harvey 1984 1982 introduction operating systems revisited first addisonwesley isbn 0201145022
+denning peter december 1976 fault tolerant operating systems computing surveys 359–389 doi101145356678356680 issn 03600300
+denning peter april 1980 innovations computer architecture sigarch computer architecture news doi101145859504859506 issn 01635964
+hansen brinch april 1970 nucleus multiprogramming system communications 238–241 doi101145362258362278 issn 00010782
+hansen brinch 1973 operating system principles englewood cliffs prentice hall isbn 0136378439
+hansen brinch 2001 evolution operating systems retrieved 20061024 included book brinch hansen 2001 classic operating systems batch processing distributed systems york springerverlag 1–36 isbn 038795113x
+hermann härtig michael hohmuth jochen liedtke sebastian schönberg jean wolter performance μkernelbased systems härtig hermann hohmuth michael liedtke jochen schönberg sebastian 1997 performance μkernelbased systems proceedings sixteenth symposium operating systems principles sosp doi101145268998266660 isbn 0897919165 sigops operating systems review 66–77 1997
+houdek soltis hoffman 1981 system38 support capabilitybased addressing proceedings international symposium computer architecture acmieee 341–348
+intel corporation 2002 ia32 architecture software developers manual volume basic architecture
+levin cohen corwin pollack wulf william 1975 policymechanism separation hydra symposium operating systems principles proceedings fifth symposium operating systems principles 132–140 doi1011451067629806531
+levy henry 1984 capabilitybased computer systems maynard mass digital press isbn 0932376223
+liedtke jochen µkernel constructionpermanent dead link proc 15th symposium operating system principles sosp december 1995
+linden theodore december 1976 operating system structures support security reliable software computing surveys 409–445 doi101145356678356682 issn 03600300 operating system structures support security reliable software retrieved 20100619
+lorin harold 1981 operating systems boston massachusetts addisonwesley 161–186 isbn 0201144646
+schroeder michael jerome saltzer march 1972 hardware architecture implementing protection rings communications 157–170 doi101145361268361275 issn 00010782
+shaw alan 1974 logical design operating systems prenticehall isbn 0135401127
+tanenbaum andrew 1979 structured computer organization englewood cliffs jersey prenticehall isbn 0131485210
+wulf cohen corwin jones levin pierson pollack june 1974 hydra kernel multiprocessor operating system communications 337–345 doi101145355616364017 issn 00010782
+baiardi tomasi vanneschi 1988 architettura sistemi elaborazione volume italian franco angeli isbn 882042746x
+swift michael brian bershad henry levy improving reliability commodity operating systems
+improving reliability commodity operating systems doiacmorg doi101002spe4380201404 retrieved 20100619
+transactions computer systems tocs 77–110 february 2005 missing empty help
+
+
+readingedit
+
+andrew tanenbaum operating systems design implementation third edition
+andrew tanenbaum modern operating systems second edition
+daniel bovet marco cesati linux kernel
+david peterson nitin indurkhya patterson computer organization design morgan koffman isbn 1558604286
+chalk computer organisation architecture macmillan pisbn 0333645510
+
+external linksedit
+
+
+
+wikiversity learning resources kernel models
+operating systemskernel models
+
+
+
+
+detailed comparison popular operating system kernels
+
+
+
+
+
+
+
+
+
+
+
+
+operating systems
+
+
+
+general
+
+
+
+advocacy
+comparison
+forensic engineering
+history
+hobbyist development
+list
+timeline
+usage share
+
+
+
+
+
+kernel
+
+
+
+
+architectures
+
+
+
+exokernel
+hybrid
+microkernel
+monolithic
+rump kernel
+unikernel
+
+
+
+
+
+components
+
+
+
+device driver
+loadable kernel module
+microkernel
+user space
+
+
+
+
+
+
+
+
+process management
+
+
+
+
+concepts
+
+
+
+context switch
+interrupt
+
+process
+process control block
+realtime
+thread
+timesharing
+
+
+
+
+
+scheduling
+algorithms
+
+
+
+computer multitasking
+fixedpriority preemptive
+multilevel feedback queue
+preemptive
+roundrobin
+shortest next
+
+
+
+
+
+
+
+
+memory management
+resource protection
+
+
+
+error
+general protection fault
+memory protection
+paging
+protection ring
+segmentation fault
+virtual memory
+
+
+
+
+
+storage access
+file systems
+
+
+
+boot loader
+defragmentation
+device file
+file attribute
+inode
+journal
+partition
+virtual file system
+virtual tape library
+
+
+
+
+
+list
+
+
+
+amigaos
+android
+beos
+
+chrome
+
+
+
+haiku
+illumos
+includeos
+
+linux
+macintosh
+
+classic
+macos
+
+
+minix
+morphos
+musicsp
+nemesis
+
+openvms
+orvyl
+
+
+pick
+
+reactos
+risc
+rstse
+rsx11
+rt11
+solaris
+tops10tops20
+
+unix
+visi
+vmcms
+
+windows
+xinu
+
+
+
+
+
+
+miscellaneous concepts
+
+
+
+
+computer network
+
+live
+live
+shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+43386799
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlekerneloperatingsystemoldid818510589 categories operating system kernelshidden categories webarchive template wayback linkswebarchive template webcite linksall articles unsourced statementsarticles unsourced statements july 2007articles unsourced statements june 2015all pages needing factual verificationwikipedia articles needing factual verification july 2007all articles dead external linksarticles dead external links december 2017articles permanently dead external linkscs1 italianlanguage sources itpages using citations urlwikipedia articles identifiers

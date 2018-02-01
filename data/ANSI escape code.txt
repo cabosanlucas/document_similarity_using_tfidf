@@ -1,0 +1,2916 @@
+"ANSI code" redirects here. For other uses, see ANSI (disambiguation).
+
+
+
+
+
+
+
+This article has multiple issues. Please help improve it or discuss these issues on the talk page. (Learn how and when to remove these template messages)
+
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (January 2017) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This article may be too technical for most readers to understand. Please help improve it to make it understandable to non-experts, without removing the technical details. (June 2016) (Learn how and when to remove this template message)
+
+
+
+
+
+(Learn how and when to remove this template message)
+
+
+
+ANSI escape sequences are a standard for in-band signaling to control the cursor location, color, and other options on video text terminals. Certain sequences of bytes, most starting with Esc and '[', are embedded into the text, which the terminal looks for and interprets as commands, not as character codes.
+ANSI sequences were introduced in the 1970s to replace vendor-specific sequences and became widespread in the computer equipment market by the early 1980s. They were used by the nascent bulletin board systems to offer improved displays compared to earlier systems lacking cursor movement, a primary reason they became a standard adopted by all manufacturers.
+Although hardware text terminals have become increasingly rare in the 21st century, the relevance of the ANSI standard persists because most terminal emulators interpret at least some of the ANSI escape sequences in output text. One notable exception was the Win32 console of Microsoft Windows before Windows 10 update TH2.[1]
+
+
+
+Contents
+
+
+1 History
+2 Platform support
+
+2.1 Windows and DOS
+
+
+3 Escape sequences
+4 CSI sequences
+5 SGR (Select Graphic Rendition) parameters
+6 Bracketed paste mode
+7 Colors
+
+7.1 3/4 bit
+7.2 8-bit
+7.3 24-bit
+
+
+8 Examples
+
+8.1 Example of use in shell scripting
+
+
+9 Invalid and ambiguous sequences in use
+10 See also
+11 Notes
+12 References
+13 External links
+
+
+
+History[edit]
+Almost all manufacturers of video terminals added vendor-specific escape sequences to perform operations such as placing the cursor at arbitrary positions on the screen. One example is the VT52 terminal, which allowed the cursor to be placed at an x,y location on the screen by sending the ESC character, a y character, and then two characters representing with numerical values equal to the x,y location plus 32 (thus starting at the ASCII space character and avoiding the control characters).
+As these sequences were different for different terminals, elaborate libraries such as termcap and utilities such as tput had to be created so programs could use the same API to work with any terminal. In addition many of these terminals required sending numbers (such as row and column) as the binary values of the characters; for some programming languages, and for systems that did not use ASCII internally, it was often difficult or impossible to turn a number into the correct character.
+The ANSI standard attempted to address these problems by making a command set that all terminals would use and requiring all numeric information to be transmitted as ASCII numbers. The first standard in the series was ECMA-48, adopted in 1976. It was a continuation of a series of character coding standards, the first one being ECMA-6 from 1965, a 7-bit standard from which ISO 646 originates. The name "ANSI escape sequence" dates from 1979 when ANSI adopted ANSI X3.64. The ANSI X3L2 committee collaborated with the ECMA committee TC 1 to produce nearly identical standards. These two standards were merged into an international standard, ISO 6429.[2] In 1994, ANSI withdrew its standard in favor of the international standard.
+The first popular video terminal to support these sequences was the Digital VT100, introduced in 1978.[3] This model was very successful in the market, which sparked a variety of VT100 clones, among the earliest and most popular of which was the much more affordable Zenith Z-19 in 1979.[4] Others included the Qume QVT-108, Televideo TVI-970, Wyse WY-99GT as well as optional "VT100" or "VT103" or "ANSI" modes with varying degrees of compatibility on many other brands. The popularity of these gradually led to more and more software (especially bulletin board systems) assuming the escape sequences worked, leading to almost all new terminals and emulator programs supporting them.
+In 1981, ANSI X3.64 was adopted for use in the US government by FIPS publication 86. Later, the US government stopped duplicating industry standards, so FIPS pub. 86 was withdrawn.[5]
+ECMA-48 has been updated several times and is currently at its 5th edition, from 1991. It is also adopted by ISO and IEC as standard ISO/IEC 6429.
+Platform support[edit]
+The widespread use of ANSI by bulletin boards and online services led to almost universal platform support by the mid 1980s. In most cases this took the form of a terminal emulator (such as xterm on Unix or the OS X Terminal or ZTerm on MacOS and many communication programs for the IBM PC), although there was increasing support in the standard text output of many operating systems.
+Unix and the AmigaOS all included some ANSI support in the OS, which led to widespread use of ANSI by programs running on those platforms. Unix-like operating systems could produce ANSI codes through libraries such as termcap and curses used by many pieces of software to update the display. These libraries are supposed to support non-ANSI terminals as well, but this is so rarely tested nowadays that they are unlikely to work.[citation needed] Many games and shell scripts (such as colored prompts) directly write the ANSI sequences and thus cannot be used on a terminal that does not interpret them.
+AmigaOS not only interprets ANSI code sequences for text output to the screen, the AmigaOS printer driver also interprets them (with extensions proprietary to AmigaOS) and translates them into the codes required for the particular printer that is actually attached.[6]
+In spite of its popularity, ANSI codes were not universally supported. Support was not built-in on the original "classic" Mac OS, while the Atari ST used the command system adapted from the VT52 with some expansions for color support.[7]
+Windows and DOS[edit]
+MS-DOS 1.x did not support the ANSI or any other escape sequences. Only a few control characters (BEL, CR, LF, BS) were interpreted by the underlying BIOS, making it almost[nb 1] impossible to do any kind of full-screen application. Any display effects had to be done with BIOS calls, which were notoriously slow, or by directly manipulating the IBM PC hardware.
+DOS 2.0 introduced the ability to add a device driver for the ANSI escape sequences – the de facto standard being ANSI.SYS, but others like ANSI.COM,[8] NANSI.SYS[9] and ANSIPLUS.EXE are used as well (these are considerably faster as they bypass the BIOS). Slowness and the fact that it was not installed by default made software rarely take advantage of it; instead, applications continued to directly manipulate the hardware to get the text display needed.[citation needed] ANSI.SYS and similar drivers continued to work in Windows 9x up to Windows Me, and in NT-derived systems for 16-bit legacy programs executing under the NTVDM.
+The Win32 console did not support ANSI escape sequences at all. Some replacements or additions for the console window such as JP Software's TCC (formerly 4NT), Michael J. Mefford's ANSI.COM, Jason Hood's ANSICON[10] and Maximus5's ConEmu interpreted ANSI escape sequences printed by programs. A Python package[11] internally interpreted ANSI escape sequences in text being printed, translating them to calls to manipulate the color and cursor position, to make it easier to port Python code using ANSI to Windows.
+In 2016 with Windows 10 "Threshold 2"[1] Microsoft unexpectedly started supporting ANSI escape sequences in the console app, making the porting of software from (or remote access to) Unix much easier.
+Escape sequences[edit]
+Sequences have different lengths. All sequences start with the ASCII character ESC (27 / hex 0x1B), followed by a second byte in the range 0x40–0x5F (ASCII @A–Z[\]^_).[12]:5.3.a
+The standard says that in 8-bit environments these two-byte sequences can be merged into single byte in the 0x80–0x9F range (for details see C1 control codes).[12]:5.4.a However on modern devices those codes are often used for other purposes, such as parts of UTF-8 or for CP-1252 characters, so only the 2-byte sequence is used.
+Other C0 codes besides ESC — commonly BEL, BS, CR, LF, FF, TAB, VT, SO, and SI — may produce similar or identical effects to some control sequences when output.
+
+Some ANSI escape sequences (not a complete list)
+
+Sequence
+C1
+Name
+Effect
+
+
+ESC N
+0x8e
+SS2 – Single Shift Two
+Select a single character from one of the alternative character sets. In xterm, SS2 selects the G2 character set, and SS3 selects the G3 character set.[13]
+
+
+ESC O
+0x8f
+SS3 – Single Shift Three
+
+
+ESC P
+0x90
+DCS – Device Control String
+Controls a device. In xterm, uses of this sequence include defining User-Defined Keys, and requesting or setting Termcap/Terminfo data.[13]
+
+
+ESC [
+0x9b
+CSI - Control Sequence Introducer
+Most of the useful sequences, see next section. Ends at ASCII 64 to 126 (@ to ~ / hex 0x40 to 0x7E).[12]
+
+
+ESC \
+0x9c
+ST – String Terminator
+Terminates strings in other controls (including APC, DCS, OSC, PM, and SOS).[12]:8.3.143
+
+
+ESC ]
+0x9d
+OSC – Operating System Command
+Starts a control string for the operating system to use. OSC sequences are similar to CSI sequences, but are not limited to integer arguments. In general, these control sequences are terminated by ST.[12]:8.3.89 In xterm, they may also be terminated by BEL.[13] For example, in xterm, the window title can be set by OSC 0;this is the window title BEL.
+
+
+ESC X
+0x98
+SOS – Start of String
+Takes an argument of a string of text, terminated by ST. The uses for these string control sequences are defined by the application[12]:8.3.2,8.3.128 or privacy discipline.[12]:8.3.94 These functions are not implemented and the arguments are ignored by xterm.[13]
+
+
+ESC ^
+0x9e
+PM – Privacy Message
+
+
+ESC _
+0x9f
+APC – Application Program Command
+
+
+ESC c
+
+RIS – Reset to Initial State
+Resets the device to its original state. This may include (if applicable): reset graphic rendition, clear tabulation stops, reset to default font, and more.
+
+
+Pressing special keys on the keyboard, as well as outputting many xterm CSI, DCS, or OSC sequences, often produces a CSI, DCS, or OSC sequence, sent from the terminal to the computer as though the user typed it.
+       
+CSI sequences[edit]
+The ESC [ is followed by any number (including none) of "parameter bytes" in the range 0x30–0x3F (ASCII 0–9:;<=>?), then by any number of "intermediate bytes" in the range 0x20–0x2F (ASCII space and !"#$%&'()*+,-./), then finally by a single "final byte" in the range 0x40–0x7E (ASCII @A–Z[\]^_`a–z{|}~).[12]:5.4
+All common sequences just use the parameters as a series of semicolon-separated numbers such as 1;2;3. Missing numbers are treated as 0 (1;;3 acts like the middle number is 0, and no parameters at all in ESC[m acts like a 0 reset code). Some sequences (such as CUU) treat 0 as 1 in order to make missing parameters useful.:F.4.2 Bytes other than digits and semicolon seem to not be used.[citation needed]
+A subset of arrangements was declared "private" so that terminal manufacturers could insert their own sequences without conflicting with the standard. This includes use of the parameter bytes <=>? or the final bytes 0x70–0x7F (p–z{|}~). Examples are the VT320 sequences CSI?25h and CSI?25l to turn the cursor on/off.
+The behavior of the terminal is undefined in the case where a CSI sequence contains any character outside of the range 0x20–0x7E. These illegal characters are either C0 control characters (the range 0–0x1F), DEL (0x7F), or bytes with the high bit set. Possible responses are to ignore the byte, to process it immediately, and furthermore whether to continue with the CSI sequence, to abort it immediately, or to ignore the rest of it.[citation needed]
+
+Some ANSI control sequences (not a complete list)
+
+Code
+Name
+Effect
+
+
+
+
+CSI n A
+CUU – Cursor Up
+Moves the cursor 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ (default 1) cells in the given direction. If the cursor is already at the edge of the screen, this has no effect.
+
+
+
+
+CSI n B
+CUD – Cursor Down
+
+
+
+
+CSI n C
+CUF – Cursor Forward
+
+
+
+
+CSI n D
+CUB – Cursor Back
+
+
+CSI n E
+CNL – Cursor Next Line
+Moves cursor to beginning of the line 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ (default 1) lines down. (not ANSI.SYS)
+
+
+CSI n F
+CPL – Cursor Previous Line
+Moves cursor to beginning of the line 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ (default 1) lines up. (not ANSI.SYS)
+
+
+CSI n G
+CHA – Cursor Horizontal Absolute
+Moves the cursor to column 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ (default 1). (not ANSI.SYS)
+
+
+
+
+CSI n ; m H
+CUP – Cursor Position
+Moves the cursor to row 
+
+
+
+n
+
+
+{\displaystyle n}
+
+, column 
+
+
+
+m
+
+
+{\displaystyle m}
+
+. The values are 1-based, and default to 1 (top left corner) if omitted. A sequence such as CSI ;5H is a synonym for CSI 1;5H as well as CSI 17;H is the same as CSI 17H and CSI 17;1H
+
+
+
+
+CSI n J
+ED – Erase in Display
+Clears part of the screen. If 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is 0 (or missing), clear from cursor to end of screen. If 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is 1, clear from cursor to beginning of the screen. If 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is 2, clear entire screen (and moves cursor to upper left on DOS ANSI.SYS). If 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is 3, clear entire screen and delete all lines saved in the scrollback buffer (this feature was added for xterm and is supported by other terminal applications).
+
+
+
+
+CSI n K
+EL – Erase in Line
+Erases part of the line. If 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is zero (or missing), clear from cursor to the end of the line. If 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is one, clear from cursor to beginning of the line. If 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is two, clear entire line. Cursor position does not change.
+
+
+
+
+CSI n S
+SU – Scroll Up
+Scroll whole page up by 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ (default 1) lines. New lines are added at the bottom. (not ANSI.SYS)
+
+
+
+
+CSI n T
+SD – Scroll Down
+Scroll whole page down by 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ (default 1) lines. New lines are added at the top. (not ANSI.SYS)
+
+
+
+
+CSI n ; m f
+HVP – Horizontal Vertical Position
+Same as CUP
+
+
+
+
+CSI n m
+SGR – Select Graphic Rendition
+Sets SGR parameters, including text color. After CSI can be zero or more parameters separated with semicolon. If none, CSI m is treated as CSI 0 m (reset / normal).
+
+
+
+
+CSI 5i
+AUX Port On
+Enable aux serial port usually for local serial printer
+
+
+
+
+CSI 4i
+AUX Port Off
+Disable aux serial port usually for local serial printer
+
+
+
+
+CSI 6n
+DSR – Device Status Report
+Reports the cursor position (CPR) to the application as (as though typed at the keyboard) ESC[n;mR, where 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is the row and 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ is the column.)
+
+
+
+
+CSI s
+SCP – Save Cursor Position
+Saves the cursor position/state.
+
+
+
+
+CSI u
+RCP – Restore Cursor Position
+Restores the cursor position/state.
+
+
+SGR (Select Graphic Rendition) parameters[edit]
+
+
+Code
+Effect
+Note
+
+
+0
+Reset / Normal
+all attributes off
+
+
+1
+Bold or increased intensity
+
+
+
+2
+Faint (decreased intensity)
+Not widely supported.
+
+
+3
+Italic
+Not widely supported. Sometimes treated as inverse.
+
+
+4
+Underline
+
+
+
+5
+Slow Blink
+less than 150 per minute
+
+
+6
+Rapid Blink
+MS-DOS ANSI.SYS; 150+ per minute; not widely supported
+
+
+7
+reverse video
+swap foreground and background colors
+
+
+8
+Conceal
+Not widely supported.
+
+
+9
+Crossed-out
+Characters legible, but marked for deletion. Not widely supported.
+
+
+10
+Primary(default) font
+
+
+
+11–19
+Alternative font
+Select alternative font 
+
+
+
+n
+−
+10
+
+
+{\displaystyle n-10}
+
+
+
+
+20
+Fraktur
+hardly ever supported
+
+
+21
+Bold off or Double Underline
+Bold off not widely supported; double underline hardly ever supported.
+
+
+22
+Normal color or intensity
+Neither bold nor faint
+
+
+23
+Not italic, not Fraktur
+
+
+
+24
+Underline off
+Not singly or doubly underlined
+
+
+25
+Blink off
+
+
+
+27
+Inverse off
+
+
+
+28
+Reveal
+conceal off
+
+
+29
+Not crossed out
+
+
+
+30–37
+Set foreground color
+See color table below
+
+
+38
+Set foreground color
+Next arguments are 5;n or 2;r;g;b, see below
+
+
+39
+Default foreground color
+implementation defined (according to standard)
+
+
+40–47
+Set background color
+See color table below
+
+
+48
+Set background color
+Next arguments are 5;n or 2;r;g;b, see below
+
+
+49
+Default background color
+implementation defined (according to standard)
+
+
+51
+Framed
+
+
+
+52
+Encircled
+
+
+
+53
+Overlined
+
+
+
+54
+Not framed or encircled
+
+
+
+55
+Not overlined
+
+
+
+60
+ideogram underline or right side line
+hardly ever supported
+
+
+61
+ideogram double underline or
+double line on the right side
+
+
+62
+ideogram overline or left side line
+
+
+63
+ideogram double overline or
+double line on the left side
+
+
+64
+ideogram stress marking
+
+
+65
+ideogram attributes off
+reset the effects of all of 60–64
+
+
+90–97
+Set bright foreground color
+aixterm (not in standard)
+
+
+100–107
+Set bright background color
+aixterm (not in standard)
+
+
+Bracketed paste mode[edit]
+When a terminal is running in bracketed paste mode, text pasted into the terminal will be surrounded by the sequence ESC [200~ and ESC [201~. This indicates to programs that support it that the text within was pasted and should not be treated specially (for example, as command keypresses in vim).[14]
+The sequence ESC [?2004h echoed to a terminal enables bracketed paste mode, and ESC [?2004l disables it.
+Colors[edit]
+3/4 bit[edit]
+The original specification only had 8 colors, and just gave them names. The SGR parameters 30-37 selected the foreground color, while 40-47 selected the background. Quite a few terminals implemented "bold" (SGR code 1) as a brighter color rather than a different font, thus providing 8 additional foreground colors. Usually you could not get these as background colors, though sometimes inverse video (SGR code 7) would allow that. Examples: to get black letters on white background use ESC[30;47m, to get red use ESC[31m, to get bright red use ESC[1;31m. To reset colors to their defaults, use ESC[39;49m (not supported on some terminals), or reset all attributes with ESC[0m. Later terminals added the ability to directly specify the "bright" colors with 90-97 and 100-107.
+When hardware started using 8-bit DACs several pieces of software assigned 24-bit color numbers to these names. The chart below shows values sent to the DAC for some common hardware and software.[citation needed]
+
+
+Name
+FG Code
+BG Code
+VGA[nb 2]
+CMD[nb 3]
+Terminal.app
+PuTTY
+mIRC
+xterm
+X[nb 4]
+Ubuntu[nb 5]
+
+
+Black
+30
+40
+0,0,0
+1,1,1
+
+
+Red
+31
+41
+170,0,0
+128,0,0
+194,54,33
+187,0,0
+127,0,0
+205,0,0
+255,0,0
+222,56,43
+
+
+Green
+32
+42
+0,170,0
+0,128,0
+37,188,36
+0,187,0
+0,147,0
+0,205,0
+0,255,0
+57,181,74
+
+
+Yellow
+33
+43
+170,85,0[nb 6]
+128,128,0
+173,173,39
+187,187,0
+252,127,0
+205,205,0
+255,255,0
+255,199,6
+
+
+Blue
+34
+44
+0,0,170
+0,0,128
+73,46,225
+0,0,187
+0,0,127
+0,0,238[15]
+0,0,255
+0,111,184
+
+
+Magenta
+35
+45
+170,0,170
+128,0,128
+211,56,211
+187,0,187
+156,0,156
+205,0,205
+255,0,255
+118,38,113
+
+
+Cyan
+36
+46
+0,170,170
+0,128,128
+51,187,200
+0,187,187
+0,147,147
+0,205,205
+0,255,255
+44,181,233
+
+
+White
+37
+47
+170,170,170
+192,192,192
+203,204,205
+187,187,187
+210,210,210
+229,229,229
+255,255,255
+204,204,204
+
+
+Bright Black
+90
+100
+85,85,85
+128,128,128
+129,131,131
+85,85,85
+127,127,127
+127,127,127
+
+128,128,128
+
+
+Bright Red
+91
+101
+255,85,85
+255,0,0
+252,57,31
+255,85,85
+255,0,0
+255,0,0
+
+255,0,0
+
+
+Bright Green
+92
+102
+85,255,85
+0,255,0
+49,231,34
+85,255,85
+0,252,0
+0,255,0
+144,238,144
+0,255,0
+
+
+Bright Yellow
+93
+103
+255,255,85
+255,255,0
+234,236,35
+255,255,85
+255,255,0
+255,255,0
+255,255,224
+255,255,0
+
+
+Bright Blue
+94
+104
+85,85,255
+0,0,255
+88,51,255
+85,85,255
+0,0,252
+92,92,255[16]
+173,216,230
+0,0,255
+
+
+Bright Magenta
+95
+105
+255,85,255
+255,0,255
+249,53,248
+255,85,255
+255,0,255
+255,0,255
+
+255,0,255
+
+
+Bright Cyan
+96
+106
+85,255,255
+0,255,255
+20,240,240
+85,255,255
+0,255,255
+0,255,255
+224,255,255
+0,255,255
+
+
+Bright White
+97
+107
+255,255,255
+255,255,255
+233,235,235
+255,255,255
+255,255,255
+255,255,255
+
+255,255,255
+
+
+8-bit[edit]
+As 256-color lookup tables became common on graphic cards, escape sequences were added to select from a pre-defined set of 256 colors:[citation needed]
+
+   ESC[ … 38;5;<n> … m Select foreground color
+   ESC[ … 48;5;<n> … m Select background color
+     0-  7:  standard colors (as in ESC [ 30–37 m)
+     8- 15:  high intensity colors (as in ESC [ 90–97 m)
+    16-231:  6 × 6 × 6 cube (216 colors): 16 + 36 × r + 6 × g + b (0 ≤ r, g, b ≤ 5)
+   232-255:  grayscale from black to white in 24 steps
+
+The ITU's T.416 Information technology - Open Document Architecture (ODA) and interchange format: Character content architectures[17] uses ':' as separator characters instead:
+
+   ESC[ … 38:5:<n> … m Select foreground color
+   ESC[ … 48:5:<n> … m Select background color
+
+
+
+256-color mode — foreground: ESC[38;5;#m   background: ESC[48;5;#m
+
+
+Standard colors
+High-intensity colors
+
+
+
+
+
+ 0 
+ 1 
+ 2 
+ 3 
+ 4 
+ 5 
+ 6 
+ 7 
+
+ 8 
+ 9 
+10
+11
+12
+13
+14
+15
+
+
+
+
+
+216 colors
+
+
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+
+
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+
+
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+
+
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+
+
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+
+
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+
+
+Grayscale colors
+
+
+
+
+
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+
+
+
+
+
+24-bit[edit]
+As "true color" graphic cards with 16 to 24 bits of color became common, Xterm,[13] KDE's Konsole,[18] as well as all libvte based terminals[19] (including GNOME Terminal) support ISO-8613-3 24-bit foreground and background color setting[better source needed][20]
+
+   ESC[ … 38;2;<r>;<g>;<b> … m Select RGB foreground color
+   ESC[ … 48;2;<r>;<g>;<b> … m Select RGB background color
+
+The ITU's T.416 Information technology - Open Document Architecture (ODA) and interchange format: Character content architectures[21] which was adopted as ISO/IEC International Standard 8613-6 gives an alternative version that seems to be less supported:
+
+   ESC[ … 38:2:<Color-Space-ID>:<r>:<g>:<b>:<unused>:<CS tolerance>:<Color-Space: 0="CIELUV"; 1="CIELAB">m Select RGB foreground color
+   ESC[ … 48:2:<Color-Space-ID>:<r>:<g>:<b>:<unused>:<CS tolerance>:<Color-Space: 0="CIELUV"; 1="CIELAB">m Select RGB background color
+
+Note that this uses the otherwise reserved ':' character to separate the sub-options which may have been a source of confusion for real-world implementations. It also documents using '3' as the second parameter to specify colors using a Cyan-Magenta-Yellow scheme and '4' for a Cyan-Magenta-Yellow-Black one, the latter using the position marked as "unused" in the above examples for the Black component.
+Also note that many implementation that recognize ':' as the separator erroneously forget about the color space identifier parameter and hence shift the position of the remaining ones.
+Examples[edit]
+CSI 2 J — This clears the screen and, on some devices, locates the cursor to the y,x position 1,1 (upper left corner).
+CSI 32 m — This makes text green. On MS-DOS, normally the green would be dark, dull green, so you may wish to enable Bold with the sequence CSI 1 m which would make it bright green, or combined as CSI 32 ; 1 m. MS-DOS ANSI.SYS uses the Bold state to make the character Bright; also the Blink state can be set (via INT 10, AX 1003h, BL 00h) to render the Background in the Bright mode. MS-DOS ANSI.SYS does not support SGR codes 90–97 and 100–107 directly.
+CSI 0 ; 6 8 ; "DIR" ; 13 p — This reassigns the key F10 to send to the keyboard buffer the string "DIR" and ENTER, which in the DOS command line would display the contents of the current directory. (MS-DOS ANSI.SYS only) This was sometimes used for ANSI bombs. This is a private-use code (as indicated by the letter p), using a non-standard extension to include a string-valued parameter. Following the letter of the standard would consider the sequence to end at the letter D.
+CSI s — This saves the cursor position. Using the sequence CSI u will restore it to the position. Say the current cursor position is 7(y) and 10(x). The sequence CSI s will save those two numbers. Now you can move to a different cursor position, such as 20(y) and 3(x), using the sequence CSI 20 ; 3 H or CSI 20 ; 3 f. Now if you use the sequence CSI u the cursor position will return to 7(y) and 10(x). Some terminals require the DEC sequences ESC 7 / ESC 8 instead which is more widely supported.
+Example of use in shell scripting[edit]
+ANSI escape codes are often used in UNIX and UNIX-like terminals to provide syntax highlighting. For example, on compatible terminals, the following list command color-codes file and directory names by type.
+ls --color
+Users can employ escape codes in their scripts by including them as part of standard output or standard error. For example, the following GNU sed command embellishes the output of the make command by displaying lines containing words starting with "WARN" in reverse video and words starting with "ERR" in bright yellow on a dark red background (letter case is ignored). The representations of the codes are highlighted.[22]
+
+make 2>&1 | sed -e 's/.*\bWARN.*/\x1b[7m&\x1b[0m/i' -e 's/.*\bERR.*/\x1b[93;41 m&\x1b[0m/i'
+
+The following Bash function flashes the terminal (by alternately sending reverse and normal video mode codes) until the user presses a key.[23]
+
+flasher () { while true; do printf \\e[?5h; sleep 0.1; printf \\e[?5l; read -s -n1 -t1 && break; done; }
+
+This can be used to alert a programmer when a lengthy command terminates, such as with make ; flasher .[24]
+
+printf \\033c
+
+This will reset the console, similar to the command reset on modern Linux systems; however it should work even on older Linux systems and on other (non-Linux) UNIX variants.
+Invalid and ambiguous sequences in use[edit]
+
+The Linux console uses OSC P n rr gg bb to change the palette, which, if hard-coded into an application, may hang other terminals. However, appending ST will be ignored by Linux and form a proper, ignorable sequence for other terminals.[citation needed]
+On the Linux console, certain function keys generate sequences of the form CSI [ char. The CSI sequence should terminate on the [.
+Old versions of Terminator generate SS3 1; modifiers char when F1–F4 are pressed with modifiers. The faulty behavior was copied from GNOME Terminal.[citation needed]
+xterm replies CSI row ; column R if asked for cursor position and CSI 1 ; modifiers R if the F3 key is pressed with modifiers, which collide in the case of row == 1. This can be avoided by using the ? private modifier, which will be reflected in the response.[clarification needed]
+many terminals prepend ESC to any character that is typed with the alt key down. This creates ambiguity for uppercase letters and symbols @[\]^_, which would form C1 codes.[clarification needed]
+Konsole generates SS3 modifiers char when F1–F4 are pressed with modifiers.[clarification needed]
+
+See also[edit]
+
+ANSI art
+Control character
+Advanced Video Attribute Terminal Assembler and Recreator (AVATAR)
+ISO/IEC JTC 1/SC 2
+
+Notes[edit]
+
+
+
+^ The screen display could be replaced by drawing the entire new screen's contents at the bottom, scrolling the previous screen up sufficiently to erase all the old text. The user would see the scrolling, and the hardware cursor would be left at the very bottom. Some early batch files achieved rudimentary "full screen" displays in this way.
+^ Typical colors that are used when booting PCs and leaving them in text mode, which used a 16-entry color table. The colors are different in the EGA/VGA graphic modes.
+^ As of Windows XP
+^ Above color name from X11 rgb.txt color database, with "light" prefixed for the bright colors.
+^ For virtual terminals, from /etc/vtrgb.
+^ On terminals based on CGA compatible hardware, such as ANSI.SYS running on DOS, this normal intensity foreground color is rendered as Orange. CGA RGBI monitors contained hardware to modify the dark yellow color to an orange/brown color by reducing the green component. See this ansi art as an example.
+
+
+
+References[edit]
+
+
+
+^ a b Grehan, Oisin (2016-02-04). "Windows 10 TH2 (v1511) Console Host Enhancements". Retrieved 2016-02-10. 
+^ Historical version of ECMA-48
+^ Williams, Paul (2006). "Digital's Video Terminals". VT100.net. Retrieved 2011-08-17. 
+^ Heathkit Company (1979). "Heathkit Catalog 1979". Heathkit Company. Archived from the original on 2012-01-13. Retrieved 2011-11-04. 
+^ Withdrawn FIPS Listed by Number
+^ "Amiga Printer Command Definitions". Commodore. Retrieved 2013-07-10. 
+^ "Using C-Kermit", p. 88.
+^ Mefford, Michael (1989-02-07). "ANSI.com: Download It Here". PC Magazine. Retrieved 2011-08-10. 
+^ Kegel, Dan; Auer, Eric (1999-02-28). "Nansi and NNansi – ANSI Drivers for MS-DOS". Dan Kegel's Web Hostel. Retrieved 2011-08-10. 
+^ Hood, Jason (2005). "Process ANSI escape sequences for Windows console programs". Jason Hood's Home page. Retrieved 2013-05-09. 
+^ "colorama 0.2.5 :". Python Package Index. Retrieved 2013-08-17. 
+^ a b c d e f g h "Standard ECMA-48: Control Functions for Coded Character Sets" (Fifth ed.). Ecma International. June 1991. 
+^ a b c d e "XTerm Control Sequences". invisible-island.net. 2014-01-13. Retrieved 2014-04-13. 
+^ https://cirw.in/blog/bracketed-paste
+^ Changed from 0,0,205 in July 2004 "Patch #192 – 2004/7/12 – XFree86 4.4.99.9". 
+^ Changed from 0,0,255 in July 2004 "Patch #192 – 2004/7/12 – XFree86 4.4.99.9". 
+^ "T.416 Information technology - Open Document Architecture (ODA) and interchange format: Character content architectures". 
+^ "color-spaces.pl (a copy of 256colors2.pl from xterm dated 1999-07-11)". KDE. 2006-12-06. 
+^ "libvte's bug report and patches". GNOME Bugzilla. 2014-04-04. Retrieved 2016-06-05. 
+^ "README.moreColors". KDE. 2010-04-22. 
+^ "T.416 Information technology - Open Document Architecture (ODA) and interchange format: Character content architectures". 
+^ "Chapter 9. System tips". debian.org. 
+^ "VT100.net: Digital VT100 User Guide". Retrieved 2015-01-19. 
+^ "bash – How to get a notification when my commands are done – Ask Different". Retrieved 2015-01-19. 
+
+
+
+External links[edit]
+
+Standard ECMA-48, Control Functions For Coded Character Sets. (5th edition, June 1991), European Computer Manufacturers Association, Geneva 1991 (also published by ISO and IEC as standard ISO/IEC 6429)
+vt100.net DEC Documents
+ANSI.SYS -- ansi terminal emulation escape sequences at the Wayback Machine (archived 6 February 2006)
+Xterm / Escape Sequences
+AIXterm / Escape Sequences
+A collection of escape sequences for terminals that are vaguely compliant with ECMA-48 and friends.
+ANSI Escape Sequences
+ITU-T Rec. T.416 (03/93) Information technology – Open Document Architecture (ODA) and interchange format: Character content architectures
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Character encodings
+
+
+
+Early telecommunications
+
+
+
+ASCII
+ISO/IEC 646
+ISO/IEC 6937
+T.61
+BCDIC
+Baudot code
+Morse code
+
+Telegraph code
+Wabun code
+
+
+Special telegraphy codes
+
+Non-Latin
+Chinese
+Cyrillic
+
+
+Needle telegraph codes
+
+
+
+
+
+ISO/IEC 8859
+
+
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+
+
+
+Bibliographic use
+
+
+
+ANSEL
+ISO 5426 / 5426-2 / 5427 / 5428 / 6438 / 6861 / 6862 / 10585 / 10586 / 10754 / 11822
+MARC-8
+
+
+
+
+
+National standards
+
+
+
+ArmSCII
+BraSCII
+CNS 11643
+ELOT 927
+GOST 10859
+GB 18030
+HKSCS
+ISCII
+JIS X 0201
+JIS X 0208
+JIS X 0212
+JIS X 0213
+KOI-7
+KPS 9566
+KS X 1001
+PASCII
+SI 960
+TIS-620
+TSCII
+VISCII
+YUSCII
+
+
+
+
+
+EUC
+
+
+
+CN
+JP
+KR
+TW
+
+
+
+
+
+ISO/IEC 2022
+
+
+
+CN
+JP
+KR
+CCCII
+
+
+
+
+
+MacOS code pages
+("scripts")
+
+
+
+Arabic
+Celtic
+CentEuro
+ChineseSimp / EUC-CN
+ChineseTrad / Big5
+Croatian
+Cyrillic
+Devanagari
+Dingbats
+Esperanto
+Farsi
+Gaelic
+Greek
+Gujarati
+Gurmukhi
+Hebrew
+Iceland
+Japanese / ShiftJIS
+Korean / EUC-KR
+Latin-1
+Roman
+Romanian
+Sámi
+Symbol
+Thai / TIS-620
+Turkish
+Ukrainian
+
+
+
+
+
+DOS code pages
+
+
+
+100
+111
+112
+113
+151
+152
+161
+162
+163
+164
+165
+166
+210
+220
+301
+437
+449
+489
+620
+667
+668
+707
+708
+709
+710
+711
+714
+715
+720
+721
+737
+768
+770
+771
+772
+773
+774
+775
+776
+777
+778
+790
+850
+851
+852
+853
+854
+855/872
+856
+857
+858
+859
+860
+861
+862
+863
+864/17248
+865
+866/808
+867
+868
+869
+874/1161/1162
+876
+877
+878
+881
+882
+883
+884
+885
+891
+895
+896
+897
+898
+899
+900
+903
+904
+906
+907
+909
+910
+911
+926
+927
+928
+929
+932
+934
+936
+938
+941
+942
+943
+944
+946
+947
+948
+949
+950/1370
+951
+966
+991
+1034
+1039
+1040
+1041
+1042
+1043
+1044
+1046
+1086
+1088
+1092
+1093
+1098
+1108
+1109
+1114
+1115
+1116
+1117
+1118
+1119
+1125/848
+1126
+1127
+1131/849
+1139
+1167
+1168
+1300
+1351
+1361
+1362
+1363
+1372
+1373
+1374
+1375
+1380
+1381
+1385
+1386
+1391
+1392
+1393
+1394
+Kamenický
+Mazovia
+CWI-2
+KOI8
+MIK
+Iran System
+
+
+
+
+
+IBM AIX code pages
+
+
+
+367
+371
+806
+813
+819
+895
+896
+912
+913
+914
+915
+916
+919
+920
+921/901
+922/902
+923
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+963
+964
+965
+970
+971
+1004
+1006
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1029
+1036
+1089
+1111
+1124
+1129/1163
+1133
+1350
+1382
+1383
+
+
+
+
+
+IBM Apple MacIntosh
+emulations
+
+
+
+1275
+1280
+1281
+1282
+1283
+1284
+1285
+1286
+
+
+
+
+
+IBM Adobe emulations
+
+
+
+1038
+1276
+1277
+
+
+
+
+
+IBM DEC emulations
+
+
+
+1020
+1021
+1023
+1090
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1287
+1288
+
+
+
+
+
+IBM HP emulations
+
+
+
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+
+
+
+
+
+Windows code pages
+
+
+
+CER-GS
+874/1162 (TIS-620)
+932/943 (Shift JIS)
+936/1386 (GBK)
+950/1370 (Big5)
+949/1363 (EUC-KR)
+1169
+1174
+Extended Latin-8
+1200 (UTF-16LE)
+1201 (UTF-16BE)
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1261
+1270
+54936 (GB18030)
+
+
+
+
+
+EBCDIC code pages
+
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37/1140
+38
+39
+40
+251
+252
+254
+256
+257
+258
+259
+260
+264
+273/1141
+274
+275
+276
+277/1142
+278/1143
+279
+280/1144
+281
+282
+283
+284/1145
+285/1146
+286
+287
+288
+289
+290
+293
+297/1147
+298
+300
+310
+320
+321
+322
+330
+351
+352
+353
+355
+357
+358
+359
+360
+361
+363
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+410
+420/16804
+421
+423
+424/8616/12712
+425
+435
+500/1148
+803
+829
+833
+834
+835
+836
+837
+838/838
+839
+870/1110/1153
+871/1149
+875/4971/9067
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+892
+893
+905
+918
+924
+930/1390
+931
+933/1364
+935/1388
+937/1371
+939/1399
+1001
+1002
+1003
+1005
+1007
+1024
+1025/1154
+1026/1155
+1027
+1028
+1030
+1031
+1032
+1033
+1037
+1047
+1068
+1069
+1070
+1071
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1087
+1091
+1097
+1112/1156
+1113
+1122/1157
+1123/1158
+1130/1164
+1132
+1136
+1137
+1150
+1151
+1152
+1159
+1165
+1166
+1278
+1279
+1303
+1364
+1376
+1377
+JEF
+KEIS
+
+
+
+
+
+Platform specific
+
+
+
+Acorn
+Adobe Standard
+Apple II
+ATASCII
+Atari ST
+BICS
+Casio calculators
+CDC
+CPC
+DEC Radix-50
+DEC MCS/NRCS
+DG International
+ELWRO-Junior
+FIELDATA
+GEM
+GEOS
+GSM 03.38
+HP Roman Extension
+HP Roman-8
+HP Roman-9
+HP FOCAL
+HP RPL
+LICS
+LMBCS
+MSX
+NEC APC
+NeXT
+PCW
+PETSCII
+Sharp calculators
+TI calculators
+TRS-80
+Ventura International
+Ventura Symbol
+WISCII
+XCCS
+ZX80
+ZX81
+ZX Spectrum
+
+
+
+
+
+Unicode / ISO/IEC 10646
+
+
+
+UTF-1
+UTF-7
+UTF-8
+UTF-16 (UTF-16LE/UTF-16BE) / UCS-2
+UTF-32 (UTF-32LE/UTF-32BE) / UCS-4
+UTF-EBCDIC
+GB 18030
+BOCU-1
+CESU-8
+SCSU
+
+
+
+
+
+Miscellaneous code pages
+
+
+
+ABICOMP
+APL
+ARIB STD-B24
+Cork
+HZ
+INIS
+INIS-8
+Johab
+LY1
+OML
+OMS
+OT1
+SEASCII
+TACE16
+TRON
+UTF-5
+UTF-6
+WTF-8
+
+
+
+
+
+Related topics
+
+
+
+Code page
+Control character (C0 C1)
+CCSID
+Character encodings in HTML
+Charset detection
+Han unification
+Hardware
+ISO 6429/IEC 6429/ANSI X3.64
+Mojibake
+
+
+
+
+
+
+ Character sets
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Standards of Ecma International
+
+
+
+Application interfaces
+
+
+
+ANSI escape code
+Common Language Infrastructure
+Office Open XML
+OpenXPS
+
+
+
+
+
+File systems (tape)
+
+
+
+Advanced Intelligent Tape
+DDS
+DLT
+Super DLT
+Holographic Versatile Disc
+Linear Tape-Open (Ultrium-1)
+VXA
+
+
+
+
+
+File systems (disk)
+
+
+
+CD-ROM
+CD File System (CDFS)
+FAT
+
+FAT12
+FAT16
+FAT16B
+
+
+FD
+UDF
+Ultra Density Optical
+Universal Media Disc
+
+
+
+
+
+Graphics
+
+
+
+Universal 3D
+
+
+
+
+
+Programming languages
+
+
+
+C++/CLI
+C#
+Eiffel
+JavaScript (E4X, ECMAScript)
+
+
+
+
+
+Radio link interfaces
+
+
+
+NFC
+UWB
+
+
+
+
+
+Other
+
+
+
+ECMA-35
+
+
+
+
+
+
+List of Ecma standards (1961 - Present)
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+List of International Electrotechnical Commission standards
+
+
+
+IEC standards
+
+
+
+IEC 60027
+IEC 60034
+IEC 60038
+IEC 60062
+IEC 60063
+IEC 60068
+IEC 60112
+IEC 60228
+IEC 60269
+IEC 60297
+IEC 60309
+IEC 60320
+IEC 60364
+IEC 60446
+IEC 60559
+IEC 60601
+IEC 60870
+
+IEC 60870-5
+IEC 60870-6
+
+
+IEC 60906-1
+IEC 60908
+IEC 60929
+IEC 60958
+
+AES3
+S/PDIF
+
+
+IEC 61030
+IEC 61131
+
+IEC 61131-3
+
+
+IEC 61158
+IEC 61162
+IEC 61334
+IEC 61346
+IEC 61355
+IEC 61400
+IEC 61499
+IEC 61508
+IEC 61511
+IEC 61850
+IEC 61851
+IEC 61883
+IEC 61960
+IEC 61968
+IEC 61970
+IEC 62014-4
+IEC 62056
+IEC 62061
+IEC 62196
+IEC 62262
+IEC 62264
+IEC 62304
+IEC 62325
+IEC 62351
+IEC 62365
+IEC 62366
+IEC 62379
+IEC 62386
+IEC 62455
+IEC 62680
+IEC 62682
+IEC 62700
+
+
+
+
+
+ISO/IEC standards
+
+
+
+ISO/IEC 646
+ISO/IEC 2022
+ISO/IEC 4909
+ISO/IEC 5218
+ISO/IEC 6429
+ISO/IEC 6523
+ISO/IEC 7810
+ISO/IEC 7811
+ISO/IEC 7812
+ISO/IEC 7813
+ISO/IEC 7816
+ISO/IEC 7942
+ISO/IEC 8613
+ISO/IEC 8632
+ISO/IEC 8652
+ISO/IEC 8859
+ISO/IEC 9126
+ISO/IEC 9293
+ISO/IEC 9592
+ISO/IEC 9593
+ISO/IEC 9899
+ISO/IEC 9945
+ISO/IEC 9995
+ISO/IEC 10021
+ISO/IEC 10116
+ISO/IEC 10165
+ISO/IEC 10179
+ISO/IEC 10646
+ISO/IEC 10967
+ISO/IEC 11172
+ISO/IEC 11179
+ISO/IEC 11404
+ISO/IEC 11544
+ISO/IEC 11801
+ISO/IEC 12207
+ISO/IEC 13250
+ISO/IEC 13346
+ISO/IEC 13522-5
+ISO/IEC 13568
+ISO/IEC 13818
+ISO/IEC 14443
+ISO/IEC 14496
+ISO/IEC 14882
+ISO/IEC 15288
+ISO/IEC 15291
+ISO/IEC 15408
+ISO/IEC 15444
+ISO/IEC 15445
+ISO/IEC 15504
+ISO/IEC 15511
+ISO/IEC 15693
+ISO/IEC 15897
+ISO/IEC 15938
+ISO/IEC 16262
+ISO/IEC 17024
+ISO/IEC 17025
+ISO/IEC 18000
+ISO/IEC 18004
+ISO/IEC 18014
+ISO/IEC 19752
+ISO/IEC 19757
+ISO/IEC 19770
+ISO/IEC 19788
+ISO/IEC 20000
+ISO/IEC 21000
+ISO/IEC 21827
+ISO/IEC 23000
+ISO/IEC 23003
+ISO/IEC 23008
+ISO/IEC 23270
+ISO/IEC 23360
+ISO/IEC 24707
+ISO/IEC 24727
+ISO/IEC 24744
+ISO/IEC 24752
+ISO/IEC 26300
+ISO/IEC 27000
+ISO/IEC 27000-series
+ISO/IEC 27002
+ISO/IEC 27040
+ISO/IEC 29119
+ISO/IEC 33001
+ISO/IEC 38500
+ISO/IEC 42010
+ISO/IEC 80000
+
+
+
+
+
+Related
+
+
+
+International Electrotechnical Commission
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ANSI_escape_code&oldid=817465021"					Categories: Computer standardsEcma standardsANSI standardsText user interfaceHidden categories: Articles needing additional references from January 2017All articles needing additional referencesWikipedia articles that are too technical from June 2016All articles that are too technicalArticles needing expert attention from June 2016All articles needing expert attentionArticles with multiple maintenance issuesUse dmy dates from May 2012All articles with unsourced statementsArticles with unsourced statements from July 2014Articles with unsourced statements from August 2011Articles with unsourced statements from November 2010Articles with unsourced statements from July 2015Articles with unsourced statements from October 2010Articles with unsourced statements from September 2013All articles lacking reliable referencesArticles lacking reliable references from September 2013Articles with unsourced statements from January 2017Articles with unsourced statements from December 2010Wikipedia articles needing clarification from November 2010Webarchive template wayback links

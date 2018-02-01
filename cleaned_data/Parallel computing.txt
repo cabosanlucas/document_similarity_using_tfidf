@@ -1,0 +1,932 @@
+
+
+
+
+ibms blue genep massively parallel supercomputer
+
+
+parallel computing type computation many calculations execution processes carried simultaneously1 large problems often divided smaller ones solved time several different forms parallel computing bitlevel instructionlevel data task parallelism parallelism employed many years mainly highperformance computing interest grown lately physical constraints preventing frequency scaling2 power consumption consequently heat generation computers become concern recent years3 parallel computing become dominant paradigm computer architecture mainly form multicore processors4
+parallel computing closely related concurrent computing—they frequently used together often conflated though distinct possible parallelism without concurrency bitlevel parallelism concurrency without parallelism multitasking timesharing singlecore cpu56 parallel computing computational task typically broken several often many similar subtasks processed independently whose results combined afterwards upon completion contrast concurrent computing various processes often address related tasks typical distributed computing separate tasks varied nature often require interprocess communication execution
+parallel computers roughly classified according level hardware supports parallelism multicore multiprocessor computers multiple processing elements within single machine clusters mpps grids multiple computers work task specialized parallel computer architectures sometimes used alongside traditional processors accelerating specific tasks
+cases parallelism transparent programmer bitlevel instructionlevel parallelism explicitly parallel algorithms particularly concurrency difficult write sequential ones7 concurrency introduces several classes potential software bugs race conditions common communication synchronization different subtasks typically greatest obstacles getting good parallel program performance
+theoretical upper bound speedup single program result parallelization given amdahls
+
+
+
+contents
+
+
+background
+
+amdahls gustafsons
+dependencies
+race conditions mutual exclusion synchronization parallel slowdown
+finegrained coarsegrained embarrassing parallelism
+consistency models
+flynns taxonomy
+
+
+types parallelism
+
+bitlevel parallelism
+instructionlevel parallelism
+task parallelism
+
+
+hardware
+
+memory communication
+classes parallel computers
+
+multicore computing
+symmetric multiprocessing
+distributed computing
+
+3231 cluster computing
+3232 massively parallel computing
+3233 grid computing
+
+
+specialized parallel computers
+
+3241 reconfigurable computing fieldprogrammable gate arrays
+3242 generalpurpose computing graphics processing units gpgpu
+3243 applicationspecific integrated circuits
+3244 vector processors
+
+
+
+
+
+
+software
+
+parallel programming languages
+automatic parallelization
+application checkpointing
+
+
+algorithmic methods
+faulttolerance
+history
+biological brain massively parallel computer
+also
+references
+reading
+external links
+
+
+
+backgroundedit
+traditionally computer software written serial computation solve problem algorithm constructed implemented serial stream instructions instructions executed central processing unit computer instruction execute time—after instruction finished next executed8
+parallel computing hand uses multiple processing elements simultaneously solve problem accomplished breaking problem independent parts processing element execute part algorithm simultaneously others processing elements diverse include resources single computer multiple processors several networked computers specialized hardware combination above8
+frequency scaling dominant reason improvements computer performance mid1980s 2004 runtime program equal number instructions multiplied average time instruction maintaining everything else constant increasing clock frequency decreases average time takes execute instruction increase frequency thus decreases runtime computebound programs9
+however power consumption chip given equation capacitance switched clock cycle proportional number transistors whose inputs change voltage processor frequency cycles second10 increases frequency increase amount power used processor increasing processor power consumption ultimately intels 2004 cancellation tejas jayhawk processors generally cited frequency scaling dominant computer architecture paradigm11
+moores empirical observation number transistors microprocessor doubles every months12 despite power consumption issues repeated predictions moores still effect frequency scaling additional transistors longer used frequency scaling used extra hardware parallel computing
+amdahls gustafsons lawedit
+
+
+
+
+graphical representation amdahls speedup program parallelization limited much program parallelized example program parallelized theoretical maximum speedup using parallel computing would times matter many processors used
+
+
+
+
+
+
+assume task independent parts part takes roughly time whole computation working hard able make part times faster reduces time whole computation little contrast need perform less work make part twice fast make computation much faster optimizing part even though part speedup greater ratio times versus times
+
+
+optimally speedup parallelization would linear—doubling number processing elements halve runtime doubling second time halve runtime however parallel algorithms achieve optimal speedup nearlinear speedup small numbers processing elements flattens constant value large numbers processing elements
+potential speedup algorithm parallel computing platform given amdahls law13
+
+
+
+
+
+
+
+
+latency
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle stextlatencysfrac 11pfrac
+
+
+
+
+
+slatency potential speedup latency execution whole task
+speedup latency execution parallelizable part task
+percentage execution time whole task concerning parallelizable part task parallelization
+
+since slatency shows small part program cannot parallelized limit overall speedup available parallelization program solving large mathematical engineering problem typically consist several parallelizable parts several nonparallelizable serial parts nonparallelizable part program accounts runtime times speedup regardless many processors added puts upper limit usefulness adding parallel execution units task cannot partitioned sequential constraints application effort effect schedule bearing child takes nine months matter many women assigned14
+
+
+
+
+graphical representation gustafsons
+
+
+amdahls applies cases problem size fixed practice computing resources become available tend used larger problems larger datasets time spent parallelizable part often grows much faster inherently serial work15 case gustafsons gives less pessimistic realistic assessment parallel performance16
+
+
+
+
+
+
+
+
+latency
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle stextlatencys1psp
+
+
+
+amdahls gustafsons assume running time serial part program independent number processors amdahls assumes entire problem fixed size total amount work done parallel also independent number processors whereas gustafsons assumes total amount work done parallel varies linearly number processors
+dependenciesedit
+understanding data dependencies fundamental implementing parallel algorithms program quickly longest chain dependent calculations known critical path since calculations depend upon prior calculations chain must executed order however algorithms consist long chain dependent calculations usually opportunities execute independent calculations parallel
+program segments bernsteins conditions17 describe independent executed parallel input variables output variables likewise independent satisfy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle ijcap oivarnothing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle iicap ojvarnothing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle oicap ojvarnothing
+
+
+
+violation first condition introduces flow dependency corresponding first segment producing result used second segment second condition represents antidependency second segment produces variable needed first segment third final condition represents output dependency segments write location result comes logically last executed segment18
+consider following functions demonstrate several kinds dependencies
+
+function depa
+
+
+function
+
+example instruction cannot executed even parallel instruction instruction uses result instruction violates condition thus introduces flow dependency
+
+function nodepa
+
+
+
+function
+
+example dependencies instructions parallel
+bernsteins conditions allow memory shared different processes means enforcing ordering accesses necessary semaphores barriers synchronization method
+race conditions mutual exclusion synchronization parallel slowdownedit
+subtasks parallel program often called threads parallel computer architectures smaller lightweight versions threads known fibers others bigger versions known processes however threads generally accepted generic term subtasks threads often need update variable shared instructions programs interleaved order example consider following program
+
+
+thread
+thread
+
+
+read variable
+read variable
+
+
+variable
+variable
+
+
+write back variable
+write back variable
+
+
+instruction executed instruction executed program produce incorrect data known race condition programmer must lock provide mutual exclusion lock programming language construct allows thread take control variable prevent threads reading writing variable unlocked thread holding lock free execute critical section section program requires exclusive access variable unlock data finished therefore guarantee correct program execution program rewritten locks
+
+
+thread
+thread
+
+
+lock variable
+lock variable
+
+
+read variable
+read variable
+
+
+variable
+variable
+
+
+write back variable
+write back variable
+
+
+unlock variable
+unlock variable
+
+
+thread successfully lock variable thread locked out—unable proceed unlocked guarantees correct execution program locks necessary ensure correct program execution greatly slow program
+locking multiple variables using nonatomic locks introduces possibility program deadlock atomic lock locks multiple variables cannot lock lock threads need lock variables using nonatomic locks possible thread lock second thread lock second variable case neither thread complete deadlock results
+many parallel programs require subtasks synchrony requires barrier barriers typically implemented using software lock class algorithms known lockfree waitfree algorithms altogether avoids locks barriers however approach generally difficult implement requires correctly designed data structures
+parallelization results speedup generally task split threads threads spend everincreasing portion time communicating eventually overhead communication dominates time spent solving problem parallelization splitting workload even threads increases rather decreases amount time required finish known parallel slowdown19
+finegrained coarsegrained embarrassing parallelismedit
+applications often classified according often subtasks need synchronize communicate application exhibits finegrained parallelism subtasks must communicate many times second exhibits coarsegrained parallelism communicate many times second exhibits embarrassing parallelism rarely never communicate embarrassingly parallel applications considered easiest parallelize
+consistency modelsedit
+main article consistency model
+parallel programming languages parallel computers must consistency model also known memory model consistency model defines rules operations computer memory occur results produced
+first consistency models leslie lamports sequential consistency model sequential consistency property parallel program parallel execution produces results sequential program specifically program sequentially consistent results execution operations processors executed sequential order operations individual processor appear sequence order specified program20
+software transactional memory common type consistency model software transactional memory borrows database theory concept atomic transactions applies memory accesses
+mathematically models represented several ways petri nets introduced carl adam petris 1962 doctoral thesis early attempt codify rules consistency models dataflow theory later built upon dataflow architectures created physically implement ideas dataflow theory beginning late 1970s process calculi calculus communicating systems communicating sequential processes developed permit algebraic reasoning systems composed interacting components recent additions process calculus family πcalculus added capability reasoning dynamic topologies logics lamports mathematical models traces actor event diagrams also developed describe behavior concurrent systems
+also relaxed sequential
+flynns taxonomyedit
+michael flynn created earliest classification systems parallel sequential computers programs known flynns taxonomy flynn classified programs computers whether operating using single multiple sets instructions whether instructions using single multiple sets data
+
+
+flynns taxonomy
+
+
+single data stream
+
+
+
+
+sisd
+misd
+
+
+
+
+multiple data streams
+
+
+
+
+simd
+mimd
+spmd
+mpmd
+
+
+
+
+singleinstructionsingledata sisd classification equivalent entirely sequential program singleinstructionmultipledata simd classification analogous operation repeatedly large data commonly done signal processing applications multipleinstructionsingledata misd rarely used classification computer architectures deal devised systolic arrays applications class materialized multipleinstructionmultipledata mimd programs common type parallel programs
+according david patterson john hennessy machines hybrids categories course classic model survived simple easy understand gives good first approximation also—perhaps understandability—the widely used scheme21
+types parallelismedit
+bitlevel parallelismedit
+main article bitlevel parallelism
+advent verylargescale integration vlsi computerchip fabrication technology 1970s 1986 speedup computer architecture driven doubling computer word size—the amount information processor manipulate cycle22 increasing word size reduces number instructions processor must execute perform operation variables whose sizes greater length word example 8bit processor must 16bit integers processor must first lowerorder bits integer using standard addition instruction higherorder bits using addwithcarry instruction carry lower order addition thus 8bit processor requires instructions complete single operation 16bit processor would able complete operation single instruction
+historically 4bit microprocessors replaced 8bit 16bit 32bit microprocessors trend generally came introduction 32bit processors standard generalpurpose computing decades early 2000s advent x8664 architectures 64bit processors become commonplace
+instructionlevel parallelismedit
+main article instructionlevel parallelism
+
+
+
+
+canonical processor without pipeline takes five clock cycles complete instruction thus processor issue subscalar performance
+
+
+
+
+
+
+canonical fivestage pipelined processor best case scenario takes clock cycle complete instruction thus processor issue scalar performance
+
+
+computer program essence stream instructions executed processor without instructionlevel parallelism processor issue less instruction clock cycle processors known subscalar processors instructions reordered combined groups executed parallel without changing result program known instructionlevel parallelism advances instructionlevel parallelism dominated computer architecture mid1980s mid1990s23
+modern processors multistage instruction pipelines stage pipeline corresponds different action processor performs instruction stage processor nstage pipeline different instructions different stages completion thus issue instruction clock cycle processors known scalar processors canonical example pipelined processor risc processor five stages instruction fetch instruction decode execute memory access register write back pentium processor 35stage pipeline24
+
+
+
+
+canonical fivestage pipelined superscalar processor best case scenario takes clock cycle complete instructions thus processor issue superscalar performance
+
+
+modern processors also multiple execution units usually combine feature pipelining thus issue instruction clock cycle processors known superscalar processors instructions grouped together data dependency scoreboarding tomasulo algorithm similar scoreboarding makes register renaming common techniques implementing outoforder execution instructionlevel parallelism
+task parallelismedit
+main article task parallelism
+task parallelisms characteristic parallel program entirely different calculations performed either different sets data25 contrasts data parallelism calculation performed different sets data task parallelism involves decomposition task subtasks allocating subtask processor execution processors would execute subtasks simultaneously often cooperatively task parallelism usually scale size problem26
+hardwareedit
+memory communicationedit
+main memory parallel computer either shared memory shared processing elements single address space distributed memory processing element local address space27 distributed memory refers fact memory logically distributed often implies physically distributed well distributed shared memory memory virtualization combine approaches processing element local memory access memory nonlocal processors accesses local memory typically faster accesses nonlocal memory
+
+
+
+
+logical view nonuniform memory access numa architecture processors directory access directorys memory less latency access memory directorys memory
+
+
+computer architectures element main memory accessed equal latency bandwidth known uniform memory access systems typically achieved shared memory system memory physically distributed system property known nonuniform memory access numa architecture distributed memory systems nonuniform memory access
+computer systems make caches—small fast memories located close processor store temporary copies memory values nearby physical logical sense parallel computer systems difficulties caches store value location possibility incorrect program execution computers require cache coherency system keeps track cached values strategically purges thus ensuring correct program execution snooping common methods keeping track values accessed thus purged designing large highperformance cache coherence systems difficult problem computer architecture result shared memory computer architectures scale well distributed memory systems do27
+processor–processor processor–memory communication implemented hardware several ways including shared either multiported multiplexed memory crossbar switch shared interconnect network myriad topologies including star ring tree hypercube hypercube hypercube processor node ndimensional mesh
+parallel computers based interconnected networks need kind routing enable passing messages nodes directly connected medium used communication processors likely hierarchical large multiprocessor machines
+classes parallel computersedit
+parallel computers roughly classified according level hardware supports parallelism classification broadly analogous distance basic computing nodes mutually exclusive example clusters symmetric multiprocessors relatively common
+multicore computingedit
+main article multicore processor
+multicore processor processor includes multiple processing units called cores chip processor differs superscalar processor includes multiple execution units issue multiple instructions clock cycle instruction stream thread contrast multicore processor issue multiple instructions clock cycle multiple instruction streams ibms cell microprocessor designed sony playstation prominent multicore processor core multicore processor potentially superscalar well—that every clock cycle core issue multiple instructions thread
+simultaneous multithreading intels hyperthreading best known early form pseudomulticoreism processor capable simultaneous multithreading includes multiple execution units processing unit—that superscalar architecture—and issue multiple instructions clock cycle multiple threads temporal multithreading hand includes single execution unit processing unit issue instruction time multiple threads
+symmetric multiprocessingedit
+main article symmetric multiprocessing
+symmetric multiprocessor computer system multiple identical processors share memory connect bus28 contention prevents architectures scaling result smps generally comprise processors29 small size processors significant reduction requirements bandwidth achieved large caches symmetric multiprocessors extremely costeffective provided sufficient amount memory bandwidth exists28
+distributed computingedit
+main article distributed computing
+distributed computer also known distributed memory multiprocessor distributed memory computer system processing elements connected network distributed computers highly scalable terms concurrent computing parallel computing distributed computing overlap clear distinction exists them30 system characterized parallel distributed processors typical distributed system concurrently parallel
+cluster computingedit
+main article computer cluster
+
+
+
+
+beowulf cluster
+
+
+cluster group loosely coupled computers work together closely respects regarded single computer32 clusters composed multiple standalone machines connected network machines cluster symmetric load balancing difficult common type cluster beowulf cluster cluster implemented multiple identical commercial offtheshelf computers connected tcpip ethernet local area network33 beowulf technology originally developed thomas sterling donald becker vast majority top500 supercomputers clusters34
+grid computing systems described easily handle embarrassingly parallel problems modern clusters typically designed handle difficult problems—problems require nodes share intermediate results often requires high bandwidth importantly lowlatency interconnection network many historic current supercomputers customized highperformance network hardware specifically designed cluster computing cray gemini network35 2014 current supercomputers offtheshelf standard network hardware often myrinet infiniband gigabit ethernet
+massively parallel computingedit
+main article massively parallel computing
+
+
+
+
+cabinet ibms blue genel massively parallel supercomputer
+
+
+massively parallel processor single computer many networked processors mpps many characteristics clusters mpps specialized interconnect networks whereas clusters commodity hardware networking mpps also tend larger clusters typically processors36 contains memory copy operating system application subsystem communicates others highspeed interconnect37
+ibms blue genel fifth fastest supercomputer world according june 2009 top500 ranking
+grid computingedit
+main article grid computing
+grid computing distributed form parallel computing makes computers communicating internet work given problem bandwidth extremely high latency available internet distributed computing typically deals embarrassingly parallel problems many distributed computing applications created setihome foldinghome bestknown examples38
+grid computing applications middleware software sits operating system application manage network resources standardize software interface common distributed computing middleware berkeley open infrastructure network computing boinc often distributed computing software makes spare cycles performing computations times computer idling
+specialized parallel computersedit
+within parallel computing specialized parallel devices remain niche areas interest domainspecific tend applicable classes parallel problems
+reconfigurable computing fieldprogrammable gate arraysedit
+reconfigurable computing fieldprogrammable gate array fpga coprocessor generalpurpose computer fpga essence computer chip rewire given task
+fpgas programmed hardware description languages vhdl verilog however programming languages tedious several vendors created languages attempt emulate syntax semantics programming language programmers familiar best known languages mitrionc impulse dimec handelc specific subsets systemc based also used purpose
+amds decision open hypertransport technology thirdparty vendors become enabling technology highperformance reconfigurable computing39 according michael damour chief operating officer computer corporation first walked called socket stealers call partners39
+generalpurpose computing graphics processing units gpgpuedit
+main article gpgpu
+
+
+
+
+nvidias tesla gpgpu card
+
+
+generalpurpose computing graphics processing units gpgpu fairly recent trend computer engineering research gpus coprocessors heavily optimized computer graphics processing40 computer graphics processing field dominated data parallel operations—particularly linear algebra matrix operations
+early days gpgpu programs used normal graphics apis executing programs however several programming languages platforms built general purpose computation gpus nvidia releasing programming environments cuda stream respectively programming languages include brookgpu peakstream rapidmind nvidia also released specific products computation tesla series technology consortium khronos group released opencl specification framework writing programs execute across platforms consisting cpus gpus apple intel nvidia others supporting opencl
+applicationspecific integrated circuitsedit
+main article applicationspecific integrated circuit
+several applicationspecific integrated circuit asic approaches devised dealing parallel applications414243
+asic definition specific given application fully optimized application result given application asic tends outperform generalpurpose computer however asics created photolithography process requires mask extremely expensive mask cost million dollars44 smaller transistors required chip expensive mask meanwhile performance increases generalpurpose computing time described moores tend wipe gains chip generations39 high initial cost tendency overtaken mooreslawdriven generalpurpose computing rendered asics unfeasible parallel computing applications however built example pflops riken mdgrape3 machine uses custom asics molecular dynamics simulation
+vector processorsedit
+main article vector processor
+
+
+
+
+cray1 vector processor
+
+
+vector processor computer system execute instruction large sets data vector processors highlevel operations work linear arrays numbers vectors example vector operation 64element vectors 64bit floatingpoint numbers45 closely related flynns simd classification45
+cray computers became famous vectorprocessing computers 1970s 1980s however vector processors—both cpus full computer systems—have generally disappeared modern processor instruction sets include vector processing instructions freescale semiconductors altivec intels streaming simd extensions
+softwareedit
+parallel programming languagesedit
+main article list concurrent parallel programming languages
+concurrent programming languages libraries apis parallel programming models algorithmic skeletons created programming parallel computers generally divided classes based assumptions make underlying memory architecture—shared memory distributed memory shared distributed memory shared memory programming languages communicate manipulating shared memory variables distributed memory uses message passing posix threads openmp widely used shared memory apis whereas message passing interface widely used messagepassing system api46 concept used programming parallel programs future concept part program promises deliver required datum another part program future time
+caps entreprise pathscale also coordinating effort make hybrid multicore parallel programming hmpp directives open standard called openhmpp openhmpp directivebased programming model offers syntax efficiently offload computations hardware accelerators optimize data movement tofrom hardware memory openhmpp directives describe remote procedure call accelerator device generally cores directives annotate fortran codes describe sets functionalities offloading procedures denoted codelets onto remote device optimization data transfers main memory accelerator memory
+rise consumer gpus support compute kernels either graphics apis referred compute shaders dedicated apis opencl language extensions
+automatic parallelizationedit
+main article automatic parallelization
+automatic parallelization sequential program compiler holy grail parallel computing despite decades work compiler researchers automatic parallelization limited success47
+mainstream parallel programming languages remain either explicitly parallel best partially implicit programmer gives compiler directives parallelization fully implicit parallel programming languages exist—sisal parallel haskell sequencel system fpgas mitrionc vhdl verilog
+application checkpointingedit
+main article application checkpointing
+computer system grows complexity mean time failures usually decreases application checkpointing technique whereby computer system takes snapshot application—a record current resource allocations variable states akin core dump— information used restore program computer fail application checkpointing means program restart last checkpoint rather beginning checkpointing provides benefits variety situations especially useful highly parallel systems large number processors used high performance computing48
+algorithmic methodsedit
+parallel computers become larger faster becomes feasible solve problems previously took long parallel computing used wide range fields bioinformatics protein folding sequence analysis economics mathematical finance common types problems found parallel computing applications are49
+
+dense linear algebra
+sparse linear algebra
+spectral methods cooley–tukey fast fourier transform
+nbody problems barnes–hut simulation
+structured grid problems lattice boltzmann methods
+unstructured grid problems found finite element analysis
+monte carlo method
+combinational logic bruteforce cryptographic techniques
+graph traversal sorting algorithms
+dynamic programming
+branch bound methods
+graphical models detecting hidden markov models constructing bayesian networks
+finitestate machine simulation
+
+faulttoleranceedit
+information faulttolerant computer system
+parallel computing also applied design faulttolerant computer systems particularly lockstep systems performing operation parallel provides redundancy case component fail also allows automatic error detection error correction results differ methods used help prevent single event upsets caused transient errors50 although additional measures required embedded specialized systems method provide cost effective approach achieve nmodular redundancy commercial offtheshelf systems
+historyedit
+main article history computing
+
+
+
+
+illiac infamous supercomputers51
+
+
+origins true mimd parallelism back luigi federico menabrea sketch analytic engine invented charles babbage525354
+april 1958 gill ferranti discussed parallel programming need branching waiting55 also 1958 researchers john cocke daniel slotnick discussed parallelism numerical calculations first time56 burroughs corporation introduced d825 1962 fourprocessor computer accessed memory modules crossbar switch57 1967 amdahl slotnick published debate feasibility parallel processing american federation information processing societies conference56 debate amdahls coined define limit speedup parallelism
+1969 company honeywell introduced first multics system symmetric multiprocessor system capable running eight processors parallel56 cmmp 1970s multiprocessor project carnegie mellon university among first multiprocessors processors53 first busconnected multiprocessor snooping caches synapse 198453
+simd parallel computers traced back 1970s motivation behind early simd computers amortize gate delay processors control unit multiple instructions58 1964 slotnick proposed building massively parallel computer lawrence livermore national laboratory56 design funded force earliest simd parallelcomputing effort illiac iv56 design fairly high parallelism processors allowed machine work large datasets would later known vector processing however illiac called infamous supercomputers project fourth completed took years cost almost four times original estimate51 finally ready first real application 1976 outperformed existing commercial supercomputers cray1
+biological brain massively parallel computeredit
+early 1970s computer science artificial intelligence laboratory marvin minsky seymour papert started developing came known society mind theory views biological brain massively parallel computer 1986 minsky published society mind claims “mind formed many little agents mindless itself”59 theory attempts explain call intelligence could product interaction nonintelligent parts minsky says biggest source ideas theory came work trying create machine uses robotic video camera computer build childrens blocks60
+similar models also view biological brain massively parallel computer brain made constellation independent semiindependent agents also described
+
+thomas blakeslee61
+michael gazzaniga6263
+robert ornstein64
+ernest hilgard6566
+michio kaku67
+george ivanovich gurdjieff68
+neurocluster brain model69
+
+alsoedit
+
+list important publications concurrent parallel distributed computing
+list distributed computing conferences
+concurrency computer science
+synchronous programming
+content addressable parallel processor
+manycore
+serializability
+transputer
+parallel programming model
+vector processing
+multi tasking
+
+referencesedit
+
+
+gottlieb allan almasi george 1989 highly parallel computing redwood city calif benjamincummings isbn 0805301771
+adve november 2008 parallel computing research illinois upcrc agenda parallelillinois university illinois urbanachampaign main techniques performance benefits—increased clock frequency smarter increasingly complex architectures—are hitting socalled power wall computer industry accepted future performance increases must largely come increasing number processors cores rather making single core faster
+asanovic conventional wisdom power free transistors expensive conventional wisdom power expensive transistors free
+asanovic krste december 2006 landscape parallel computing research view berkeley university california berkeley technical report ucbeecs2006183 conventional wisdom increasing clock frequency primary method improving processor performance conventional wisdom increasing parallelism primary method improving processor performance… even representatives intel company generally associated higher clockspeed better position warned traditional approaches maximizing performance maximizing clock speed pushed limits
+concurrency parallelism waza conference 2012 pike slides video
+parallelism concurrency haskell wiki
+hennessy john patterson david larus james 1999 computer organization design hardwaresoftware interface print francisco kaufmann isbn 1558604286
+barney blaise introduction parallel computing lawrence livermore national laboratory retrieved 20071109
+hennessy john patterson david 2002 computer architecture quantitative approach francisco calif international thomson isbn 1558607242
+rabaey 1996 digital integrated circuits design perspective upper saddle river prenticehall isbn 0131786091
+flynn laurie 2004 intel halts development microprocessors york times retrieved june 2012
+moore gordon 1965 cramming components onto integrated circuits electronics magazine archived original 20080218 retrieved 20061111
+amdahl gene 1967 validity single processor approach achieving large scale computing capabilities proceeding afips spring proceedings april 18–20 1967 spring joint computer conference 483–485 doi10114514654821465560
+brooks frederick 1996 mythical month essays software engineering anniversary repr corr reading mass addisonwesley isbn 0201835959
+michael mccool james reinders arch robison 2013 structured parallel programming patterns efficient computation elsevier
+gustafson john 1988 reevaluating amdahls communications 532–533 doi1011454241142415 archived original 20070927
+bernstein october 1966 analysis programs parallel processing ieee transactions electronic computers ec15 757–763 doi101109pgec1966264565
+roosta seyed 2000 parallel processing parallel algorithms theory computation york springer isbn 0387987169
+kukanov alexey 20080304 simple test parallel slowdown retrieved 20150215
+lamport leslie september 1979 make multiprocessor computer correctly executes multiprocess programs ieee transactions computers c–28 690–691 doi101109tc19791675439
+patterson hennessy
+singh david culler 1997 parallel computer architecture nachdr francisco morgan kaufmann publ isbn 1558603433
+culler
+patt yale april 2004 microprocessor years challenges meet archived 20080414 wayback machine distinguished lecturer talk carnegie mellon university retrieved november 2007
+culler
+culler
+patterson hennessy
+hennessy patterson
+patterson hennessy
+ghosh 2007 keidar 2008
+lynch 1996 peleg 2000
+clustering webopedia computer dictionary retrieved november 2007
+beowulf definition magazine retrieved november 2007
+architecture share 062007 archived 20071114 wayback machine top500 supercomputing sites clusters make 7460 machines list retrieved november 2007
+interconnect archived 20150128 wayback machine
+hennessy patterson
+definition magazine retrieved november 2007
+kirkpatrick scott 2003 computer science rough times ahead science 5607 668–669 doi101126science1081623 pmid 12560537
+damour michael chief operating officer computer corporation standard reconfigurable computing invited speaker university delaware february 2007
+boggan shakia daniel pressel august 2007 gpus emerging platform generalpurpose computation arlsr154 army research retrieved november 2007
+maslennikov oleg 2002 systematic generation executing programs processor elements parallel asic fpgabased systems transformation vhdldescriptions processor element control units lecture notes computer science 23282002
+shimokawa fuwa aramaki 18–21 november 1991 parallel asic vlsi neurocomputer large number neurons billion connections second speed international joint conference neural networks 2162–2167 doi101109ijcnn1991170708 isbn 0780302273
+acken kevin irwin mary jane owens robert july 1998 parallel asic architecture efficient fractal image coding journal vlsi signal processing 97–113 doi101023a1008005616596
+kahng andrew june 2004 scoping problem semiconductor industry archived 20080131 wayback machine university california diego future design manufacturing technology must reduce design nonrecoverable expenditure cost directly address manufacturing nonrecoverable expenditures—the cost mask probe card—which well million technology node creates significant damper semiconductorbased innovation
+patterson hennessy
+sidney fernbach award given inventor bill gropp refers dominant communications interface
+shen john paul mikko lipasti 2004 modern processor design fundamentals superscalar processors dubuque iowa mcgrawhill isbn 0070570647 however holy grail research—automated parallelization serial programs—has materialize automated parallelization certain classes algorithms demonstrated success largely limited scientific numeric applications predictable flow control nested loop structures statically determined iteration counts statically analyzable memory access patterns walks large multidimensional arrays floatpoint data
+encyclopedia parallel computing volume david padua 2011 isbn 0387097651 page
+asanovic krste december 2006 landscape parallel computing research view berkeley university california berkeley technical report ucbeecs2006183 table pages 17–19
+dobel hartig engel 2012 operating system support redundant multithreading proceedings tenth international conference embedded software 83–92 doi10114523803562380375
+patterson hennessy 749–50 although successful pushing several technologies useful later projects illiac failed computer costs escalated million estimated 1966 million 1972 despite construction quarter planned machine perhaps infamous supercomputers project started 1965 first real application 1976
+menabrea 1842 sketch analytic engine invented charles babbage bibliothèque universelle genève retrieved november 2007 quote long series identical computations performed required formation numerical tables machine brought play give several results time greatly abridge whole amount processes
+patterson hennessy
+hockney jesshope parallel computers architecture programming algorithms volume 1988 quote earliest reference parallelism computer design thought general menabreas publication 1842 entitled sketch analytical engine invented charles babbage
+parallel programming gill computer journal pp210 british computer society april 1958
+wilson gregory 1994 history development parallel computing virginia technorfolk state university interactive learning digital library computer science retrieved 20080108
+anthes november 2001 power parallelism computerworld archived original january 2008 retrieved 20080108
+patterson hennessy
+minsky marvin 1986 society mind york simon schuster isbn 0671607405
+minsky marvin 1986 society mind york simon schuster isbn 0671607405
+blakeslee thomas 1996 beyond conscious mind unlocking secrets self
+gazzaniga michael ledoux joseph 1978 integrated mind 132–161
+gazzaniga michael 1985 social brain discovering networks mind 77–79
+ornstein robert 1992 evolution consciousness origins think
+hilgard ernest 1977 divided consciousness multiple controls human thought action york wiley isbn 9780471396024
+hilgard ernest 1986 divided consciousness multiple controls human thought action expanded edition york wiley isbn 0471805726
+kaku michio 2014 future mind
+ouspenskii pyotr 1992 chapter search miraculous fragments unknown teaching 72–83
+official neurocluster brain model site retrieved july 2017
+
+
+readingedit
+
+rodriguez villagra baran august 2008 asynchronous team algorithms boolean satisfiability bioinspired models network information computing systems 2007 bionetics 2007 66–69 doi101109bimnics20074610083
+sechin parallel computing photogrammetry international 2016 21–23
+
+external linksedit
+
+listen article infodl
+
+
+
+
+
+
+
+
+
+
+
+
+audio file created revision article parallel computing dated 20130821 reflect subsequent edits article audio help
+spoken articles
+
+
+
+
+wikibooks book topic distributed systems
+
+
+
+
+
+wikiversity learning resources parallel computing
+
+
+
+instructional videos fortran standard john reid appendix
+parallel computing curlie based dmoz
+lawrence livermore national laboratory introduction parallel computing
+designing building parallel programs foster
+internet parallel computing archive
+parallel processing topic area ieee distributed computing online
+parallel computing works free online book
+frontiers supercomputing free online book covering topics like algorithms industrial applications
+universal parallel computing research center
+course parallel programming columbia university collaboration watson project
+parallel distributed gröbner bases computation also gröbner basis
+course parallel computing university wisconsinmadison
+berkeley progress parallel computing landscape editors david patterson dennis gannon michael wrinn august 2013
+trouble multicore david patterson posted 2010
+landscape parallel computing research view berkeley many dead link site
+
+
+
+
+
+
+
+
+
+
+
+
+parallel computing
+
+
+
+general
+
+
+
+distributed computing
+parallel computing
+massively parallel
+cloud computing
+highperformance computing
+multiprocessing
+manycore processor
+gpgpu
+computer network
+systolic array
+
+
+
+
+
+levels
+
+
+
+
+instruction
+thread
+task
+data
+memory
+loop
+pipeline
+
+
+
+
+
+multithreading
+
+
+
+temporal
+simultaneous
+speculative spmt
+preemptive
+cooperative
+clustered multithread
+hardware scout
+
+
+
+
+
+theory
+
+
+
+pram model
+analysis parallel algorithms
+amdahls
+gustafsons
+cost efficiency
+karp–flatt metric
+slowdown
+speedup
+
+
+
+
+
+elements
+
+
+
+process
+thread
+fiber
+instruction window
+
+
+
+
+
+coordination
+
+
+
+multiprocessing
+memory coherency
+cache coherency
+cache invalidation
+barrier
+synchronization
+application checkpointing
+
+
+
+
+
+programming
+
+
+
+stream processing
+dataflow programming
+models
+
+implicit parallelism
+explicit parallelism
+concurrency
+
+
+nonblocking algorithm
+
+
+
+
+
+hardware
+
+
+
+flynns taxonomy
+
+sisd
+simd
+simt
+misd
+mimd
+
+
+dataflow architecture
+pipelined processor
+superscalar processor
+vector processor
+multiprocessor
+
+symmetric
+asymmetric
+
+
+memory
+
+shared
+distributed
+distributed shared
+
+numa
+coma
+
+
+massively parallel computer
+computer cluster
+grid computer
+
+
+
+
+
+apis
+
+
+
+ateji
+boostthread
+chapel
+charm
+cilk
+coarray fortran
+cuda
+dryad
+
+global arrays
+
+openmp
+opencl
+openhmpp
+openacc
+
+plinq
+
+posix threads
+raftlib
+
+
+
+
+
+
+
+
+problems
+
+
+
+deadlock
+livelock
+deterministic algorithm
+embarrassingly parallel
+parallel slowdown
+race condition
+software lockout
+scalability
+starvation
+
+
+
+
+
+
+
+
+category parallel computing
+media related parallel computing wikimedia commons
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleparallelcomputingoldid810990938 categories parallel computinghidden categories webarchive template wayback linksspoken articlesarticles haudio microformatsarticles dmoz linksfeatured articles

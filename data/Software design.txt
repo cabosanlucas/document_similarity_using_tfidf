@@ -1,0 +1,1385 @@
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (January 2013) (Learn how and when to remove this template message)
+
+
+
+
+
+Software development
+
+
+Core activities
+
+
+
+
+Processes
+Requirements
+Design
+Engineering
+Construction
+Testing
+Debugging
+Deployment
+Maintenance
+
+
+
+
+Paradigms and models
+
+
+
+
+Agile
+Cleanroom
+Incremental
+Prototyping
+Spiral
+Waterfall
+
+
+
+
+Methodologies and frameworks
+
+
+
+
+DevOps
+DSDM
+FDD
+IID
+Kanban
+Lean SD
+MDD
+MSF
+PSP
+RAD
+SAFe
+Scrum
+SEMAT
+TSP
+UP
+V-Model
+XP
+
+
+
+
+Supporting disciplines
+
+
+
+
+Configuration management
+Documentation
+Software quality assurance (SQA)
+Project management
+User experience
+
+
+
+
+Practices
+
+
+
+
+ATDD
+BDD
+CCO
+CI
+CD
+DDD
+PP
+Stand-up
+TDD
+
+
+
+
+Tools
+
+
+
+
+Compiler
+Debugger
+Profiler
+GUI designer
+Modeling
+IDE
+Build automation
+Release automation
+Infrastructure as Code
+Testing
+
+
+
+
+Standards and BOKs
+
+
+
+
+CMMI
+IEEE standards
+ISO 9001
+ISO/IEC standards
+SWEBOK
+PMBOK
+BABOK
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+Software design is the process by which an agent creates a specification of a software artifact, intended to accomplish goals, using a set of primitive components and subject to constraints.[1] Software design may refer to either "all the activity involved in conceptualizing, framing, implementing, commissioning, and ultimately modifying complex systems" or "the activity following requirements specification and before programming, as ... [in] a stylized software engineering process."[2]
+Software design usually involves problem solving and planning a software solution. This includes both a low-level component and algorithm design and a high-level, architecture design.
+
+
+
+Contents
+
+
+1 Overview
+2 Design Concepts
+3 Design considerations
+4 Modeling language
+5 Design patterns
+6 Technique
+7 Usage
+8 See also
+9 References
+
+
+
+Overview[edit]
+Software design is the process of implementing software solutions to one or more sets of problems. One of the main components of software design is the software requirements analysis (SRA). SRA is a part of the software development process that lists specifications used in software engineering. If the software is "semi-automated" or user centered, software design may involve user experience design yielding a storyboard to help determine those specifications. If the software is completely automated (meaning no user or user interface), a software design may be as simple as a flow chart or text describing a planned sequence of events. There are also semi-standard methods like Unified Modeling Language and Fundamental modeling concepts. In either case, some documentation of the plan is usually the product of the design. Furthermore, a software design may be platform-independent or platform-specific, depending upon the availability of the technology used for the design.
+The main difference between software analysis and design is that the output of a software analysis consists of smaller problems to solve. Additionally, the analysis should not be designed very differently across different team members or groups. In contrast, the design focuses on capabilities, and thus multiple designs for the same problem can and will exist. Depending on the environment, the design often varies, whether it is created from reliable frameworks or implemented with suitable design patterns. Design examples include operation systems, webpages, mobile devices or even the new cloud computing paradigm.
+Software design is both a process and a model. The design process is a sequence of steps that enables the designer to describe all aspects of the software for building. Creative skill, past experience, a sense of what makes "good" software, and an overall commitment to quality are examples of critical success factors for a competent design. It is important to note, however, that the design process is not always a straightforward procedure; the design model can be compared to an architect’s plans for a house. It begins by representing the totality of the thing that is to be built (e.g., a three-dimensional rendering of the house); slowly, the thing is refined to provide guidance for constructing each detail (e.g., the plumbing lay). Similarly, the design model that is created for software provides a variety of different views of the computer software. Basic design principles enable the software engineer to navigate the design process. Davis [DAV95][full citation needed] suggests a set of principles for software design, which have been adapted and extended in the following list:
+
+The design process should not suffer from "tunnel vision." A good designer should consider alternative approaches, judging each based on the requirements of the problem, the resources available to do the job.
+The design should be traceable to the analysis model. Because a single element of the design model can often be traced back to multiple requirements, it is necessary to have a means for tracking how requirements have been satisfied by the design model.
+The design should not reinvent the wheel. Systems are constructed using a set of design patterns, many of which have likely been encountered before. These patterns should always be chosen as an alternative to reinvention. Time is short and resources are limited; design time should be invested in representing truly new ideas and integrating patterns that already exist when applicable.
+The design should "minimize the intellectual distance" between the software and the problem as it exists in the real world. That is, the structure of the software design should, whenever possible, mimic the structure of the problem domain.
+The design should exhibit uniformity and integration. A design is uniform if it appears fully coherent. In order to achieve this outcome, rules of style and format should be defined for a design team before design work begins. A design is integrated if care is taken in defining interfaces between design components.
+The design should be structured to accommodate change. The design concepts discussed in the next section enable a design to achieve this principle.
+The design should be structured to degrade gently, even when aberrant data, events, or operating conditions are encountered. Well- designed software should never "bomb"; it should be designed to accommodate unusual circumstances, and if it must terminate processing, it should do so in a graceful manner.
+Design is not coding, coding is not design. Even when detailed procedural designs are created for program components, the level of abstraction of the design model is higher than the source code. The only design decisions made at the coding level should address the small implementation details that enable the procedural design to be coded.
+The design should be assessed for quality as it is being created, not after the fact. A variety of design concepts and design measures are available to assist the designer in assessing quality throughout the development process.
+The design should be reviewed to minimize conceptual (semantic) errors. There is sometimes a tendency to focus on minutiae when the design is reviewed, missing the forest for the trees. A design team should ensure that major conceptual elements of the design (omissions, ambiguity, inconsistency) have been addressed before worrying about the syntax of the design model.
+
+Design Concepts[edit]
+The design concepts provide the software designer with a foundation from which more sophisticated methods can be applied. A set of fundamental design concepts has evolved. They are as follows:
+
+Abstraction - Abstraction is the process or result of generalization by reducing the information content of a concept or an observable phenomenon, typically in order to retain only information which is relevant for a particular purpose.It is an act of Representing essential features without including the background details or explanations.
+Refinement - It is the process of elaboration. A hierarchy is developed by decomposing a macroscopic statement of function in a step-wise fashion until programming language statements are reached. In each step, one or several instructions of a given program are decomposed into more detailed instructions. Abstraction and Refinement are complementary concepts.
+Modularity - Software architecture is divided into components called modules.
+Software Architecture - It refers to the overall structure of the software and the ways in which that structure provides conceptual integrity for a system. Good software architecture will yield a good return on investment with respect to the desired outcome of the project, e.g. in terms of performance, quality, schedule and cost.
+Control Hierarchy - A program structure that represents the organization of a program component and implies a hierarchy of control.
+Structural Partitioning - The program structure can be divided both horizontally and vertically. Horizontal partitions define separate branches of modular hierarchy for each major program function. Vertical partitioning suggests that control and work should be distributed top down in the program structure.
+Data Structure - It is a representation of the logical relationship among individual elements of data.
+Software Procedure - It focuses on the processing of each module individually.
+Information Hiding - Modules should be specified and designed so that information contained within a module is inaccessible to other modules that have no need for such information.
+
+In his object model, Grady Booch mentions Abstraction, Encapsulation, Modularisation, and Hierarchy as fundamental software design principles.[3] The acronym PHAME (Principles of Hierarchy, Abstraction, Modularisation, and Encapsulation) is sometimes used to refer to these four fundamental principles.[4]
+Design considerations[edit]
+There are many aspects to consider in the design of a piece of software. The importance of each consideration should reflect the goals and expectations that the software is being created to meet. Some of these aspects are:
+
+Compatibility - The software is able to operate with other products that are designed for interoperability with another product. For example, a piece of software may be backward-compatible with an older version of itself.
+Extensibility - New capabilities can be added to the software without major changes to the underlying architecture.
+Modularity - the resulting software comprises well defined, independent components which leads to better maintainability. The components could be then implemented and tested in isolation before being integrated to form a desired software system. This allows division of work in a software development project.
+Fault-tolerance - The software is resistant to and able to recover from component failure.
+Maintainability - A measure of how easily bug fixes or functional modifications can be accomplished. High maintainability can be the product of modularity and extensibility.
+Reliability (Software durability) - The software is able to perform a required function under stated conditions for a specified period of time.
+Reusability - The ability to use some or all of the aspects of the preexisting software in other projects with little to no modification.
+Robustness - The software is able to operate under stress or tolerate unpredictable or invalid input. For example, it can be designed with resilience to low memory conditions.
+Security - The software is able to withstand and resist hostile acts and influences.
+Usability - The software user interface must be usable for its target user/audience. Default values for the parameters must be chosen so that they are a good choice for the majority of the users.[5]
+Performance - The software performs its tasks within a time-frame that is acceptable for the user, and does not require too much memory.
+Portability - The software should be usable across a number of different conditions and environments.
+Scalability - The software adapts well to increasing data or number of users satisfaction.
+
+Modeling language[edit]
+A modeling language is any artificial language that can be used to express information, knowledge or systems in a structure that is defined by a consistent set of rules. These rules are used for interpretation of the components within the structure. A modeling language can be graphical or textual. Examples of graphical modeling languages for software design are:
+
+Architecture description language (ADL) is a language used to describe and represent the software architecture of a software system.
+Business Process Modeling Notation (BPMN) is an example of a Process Modeling language.
+EXPRESS and EXPRESS-G (ISO 10303-11) is an international standard general-purpose data modeling language.
+Extended Enterprise Modeling Language (EEML) is commonly used for business process modeling across a number of layers.
+Flowchart is a schematic representation of an algorithm or step-wise process.
+Fundamental Modeling Concepts (FMC) is modeling language for software-intensive systems.
+IDEF is a family of modeling languages, the most notable of which include IDEF0 for functional modeling, IDEF1X for information modeling, and IDEF5 for modeling ontologies.
+Jackson Structured Programming (JSP) is a method for structured programming based on correspondences between data stream structure and program structure.
+LePUS3 is an object-oriented visual Design Description Language and a formal specification language that is suitable primarily for modeling large object-oriented (Java, C++, C#) programs and design patterns.
+Unified Modeling Language (UML) is a general modeling language to describe software both structurally and behaviorally. It has a graphical notation and allows for extension with a Profile (UML).
+Alloy (specification language) is a general purpose specification language for expressing complex structural constraints and behavior in a software system. It provides a concise language base on first-order relational logic.
+Systems Modeling Language (SysML) is a new general-purpose modeling language for systems engineering.
+Service-oriented modeling framework (SOMF)[6]
+
+Design patterns[edit]
+A software designer or architect may identify a design problem which has been visited and perhaps even solved by others in the past. A template or pattern describing a solution to a common problem is known as a design pattern. The reuse of such patterns can help speed up the software development process.[7]
+Technique[edit]
+The difficulty of using the term "design" in relation to software is that in some senses, the source code of a program is the design for the program that it produces. To the extent that this is true, "software design" refers to the design of the design. Edsger W. Dijkstra referred to this layering of semantic levels as the "radical novelty" of computer programming,[8] and Donald Knuth used his experience writing TeX to describe the futility of attempting to design a program prior to implementing it:
+
+TEX would have been a complete failure if I had merely specified it and not participated fully in its initial implementation. The process of implementation constantly led me to unanticipated questions and to new insights about how the original specifications could be improved.[9]
+
+Usage[edit]
+Software design documentation may be reviewed or presented to allow constraints, specifications and even requirements to be adjusted prior to computer programming. Redesign may occur after review of a programmed simulation or prototype. It is possible to design software in the process of programming, without a plan or requirement analysis,[10] but for more complex projects this would not be considered feasible. A separate design prior to programming allows for multidisciplinary designers and Subject Matter Experts (SMEs) to collaborate with highly skilled programmers for software that is both useful and technically sound.
+See also[edit]
+
+
+
+Wikimedia Commons has media related to Software design.
+
+
+
+Aspect-oriented software development
+Bachelor of Science in Information Technology
+Design rationale
+Interaction design
+Icon design
+Search-based software engineering
+Software Design Description (IEEE 1016)
+Software development
+User experience
+User interface design
+Zero One Infinity
+
+References[edit]
+
+
+
+^ Ralph, P. and Wand, Y. (2009). A proposal for a formal definition of the design concept. In Lyytinen, K., Loucopoulos, P., Mylopoulos, J., and Robinson, W., editors, Design Requirements Workshop (LNBIP 14), pp. 103–136. Springer-Verlag, p. 109 doi:10.1007/978-3-540-92966-6_6.
+^ Freeman, Peter; David Hart (2004). "A Science of design for software-intensive systems". Communications of the ACM. 47 (8): 19–21 [20]. doi:10.1145/1012037.1012054. 
+^ Booch, Grady; et al. (2004). Object-Oriented Analysis and Design with Applications (3rd ed.). MA, USA: Addison Wesley. ISBN 0-201-89551-X. Retrieved 30 January 2015. 
+^ Suryanarayana, Girish (November 2014). Refactoring for Software Design Smells. Morgan Kaufmann. p. 258. ISBN 978-0128013977. Retrieved 31 January 2015. 
+^ Carroll, John, ed. (1995). Scenario-Based Design: Envisioning Work and Technology in System Development. New York: John Wiley & Sons. ISBN 0471076597. 
+^ Bell, Michael (2008). "Introduction to Service-Oriented Modeling". Service-Oriented Modeling: Service Analysis, Design, and Architecture. Wiley & Sons. ISBN 978-0-470-14111-3. 
+^ Judith Bishop. "C# 3.0 Design Patterns: Use the Power of C# 3.0 to Solve Real-World Problems". C# Books from O'Reilly Media. Retrieved 2012-05-15. If you want to speed up the development of your .NET applications, you're ready for C# design patterns -- elegant, accepted and proven ways to tackle common programming problems. 
+^ Dijkstra, E. W. (1988). "On the cruelty of really teaching computing science". Retrieved 2014-01-10. 
+^ Knuth, Donald E. (1989). "Notes on the Errors of TeX" (PDF). 
+^ Ralph, P., and Wand, Y. A Proposal for a Formal Definition of the Design Concept. In, Lyytinen, K., Loucopoulos, P., Mylopoulos, J., and Robinson, W., (eds.), Design Requirements Engineering: A Ten-Year Perspective: Springer-Verlag, 2009, pp. 103-136
+
+
+
+^Roger S. Pressman. Software engineering: a practitioner’s approach. McGraw-Hill. ISBN 0-07-365578-3. 
+
+
+
+
+
+
+v
+t
+e
+
+
+Major fields of computer science
+
+
+
+
+Note: This template roughly follows the 2012 ACM Computing Classification System.
+
+
+
+Hardware
+
+
+
+Printed circuit board
+Peripheral
+Integrated circuit
+Very-large-scale integration
+Energy consumption
+Electronic design automation
+
+
+
+
+
+Computer systems
+organization
+
+
+
+Computer architecture
+Embedded system
+Real-time computing
+Dependability
+
+
+
+
+
+Networks
+
+
+
+Network architecture
+Network protocol
+Network components
+Network scheduler
+Network performance evaluation
+Network service
+
+
+
+
+
+Software organization
+
+
+
+Interpreter
+Middleware
+Virtual machine
+Operating system
+Software quality
+
+
+
+
+
+Software notations
+and tools
+
+
+
+Programming paradigm
+Programming language
+Compiler
+Domain-specific language
+Modeling language
+Software framework
+Integrated development environment
+Software configuration management
+Software library
+Software repository
+
+
+
+
+
+Software development
+
+
+
+Software development process
+Requirements analysis
+Software design
+Software construction
+Software deployment
+Software maintenance
+Programming team
+Open-source model
+
+
+
+
+
+Theory of computation
+
+
+
+Model of computation
+Formal language
+Automata theory
+Computational complexity theory
+Logic
+Semantics
+
+
+
+
+
+Algorithms
+
+
+
+Algorithm design
+Analysis of algorithms
+Randomized algorithm
+Computational geometry
+
+
+
+
+
+Mathematics
+of computing
+
+
+
+Discrete mathematics
+Probability
+Statistics
+Mathematical software
+Information theory
+Mathematical analysis
+Numerical analysis
+
+
+
+
+
+Information
+systems
+
+
+
+Database management system
+Information storage systems
+Enterprise information system
+Social information systems
+Geographic information system
+Decision support system
+Process control system
+Multimedia information system
+Data mining
+Digital library
+Computing platform
+Digital marketing
+World Wide Web
+Information retrieval
+
+
+
+
+
+Security
+
+
+
+Cryptography
+Formal methods
+Security services
+Intrusion detection system
+Hardware security
+Network security
+Information security
+Application security
+
+
+
+
+
+Human–computer
+interaction
+
+
+
+Interaction design
+Social computing
+Ubiquitous computing
+Visualization
+Accessibility
+
+
+
+
+
+Concurrency
+
+
+
+Concurrent computing
+Parallel computing
+Distributed computing
+Multithreading
+Multiprocessing
+
+
+
+
+
+Artificial
+intelligence
+
+
+
+Natural language processing
+Knowledge representation and reasoning
+Computer vision
+Automated planning and scheduling
+Search methodology
+Control method
+Philosophy of artificial intelligence
+Distributed artificial intelligence
+
+
+
+
+
+Machine learning
+
+
+
+Supervised learning
+Unsupervised learning
+Reinforcement learning
+Multi-task learning
+Cross-validation
+
+
+
+
+
+Graphics
+
+
+
+Animation
+Rendering
+Image manipulation
+Graphics processing unit
+Mixed reality
+Virtual reality
+Image compression
+Solid modeling
+
+
+
+
+
+Applied
+computing
+
+
+
+E-commerce
+Enterprise software
+Computational mathematics
+Computational physics
+Computational chemistry
+Computational biology
+Computational social science
+Computational engineering
+Computational healthcare
+Digital art
+Electronic publishing
+Cyberwarfare
+Electronic voting
+Video game
+Word processing
+Operations research
+Educational technology
+Document management
+
+
+
+
+
+
+
+
+ Book
+ Category
+ Portal
+WikiProject
+ Commons
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Software engineering
+
+
+
+Fields
+
+
+
+Computer programming
+Requirements engineering
+Software deployment
+Software design
+Software maintenance
+Software testing
+Systems analysis
+Formal methods
+
+
+
+
+
+Concepts
+
+
+
+Data modeling
+Enterprise architecture
+Functional specification
+Modeling language
+Orthogonality
+Programming paradigm
+Software
+Software archaeology
+Software architecture
+Software configuration management
+Software development methodology
+Software development process
+Software quality
+Software quality assurance
+Software verification and validation
+Structured analysis
+
+
+
+
+
+Orientations
+
+
+
+Agile
+Aspect-oriented
+Object orientation
+Ontology
+Service orientation
+SDLC
+
+
+
+
+
+Models
+
+
+
+
+Developmental
+
+
+
+Agile
+EUP
+Executable UML
+Incremental model
+Iterative model
+Prototype model
+RAD
+UP
+Scrum
+Spiral model
+V-Model
+Waterfall model
+XP
+
+
+
+
+
+Other
+
+
+
+SPICE
+CMMI
+Data model
+ER model
+Function model
+Information model
+Metamodeling
+Object model
+Systems model
+View model
+
+
+
+
+
+Languages
+
+
+
+IDEF
+UML
+USL
+SysML
+
+
+
+
+
+
+
+
+
+Software
+engineers
+
+
+
+
+Victor Basili
+Kent Beck
+Grady Booch
+Fred Brooks
+Barry Boehm
+Peter Chen
+Danese Cooper
+Ward Cunningham
+Tom DeMarco
+Edsger W. Dijkstra
+Delores M. Etter
+Martin Fowler
+Adele Goldstine
+Margaret Hamilton
+C. A. R. Hoare
+Lois Haibt
+Mary Jean Harrold
+Grace Hopper
+Watts Humphrey
+Michael A. Jackson
+Ivar Jacobson
+Alan Kay
+Nancy Leveson
+Stephen J. Mellor
+Bertrand Meyer
+David Parnas
+Trygve Reenskaug
+Winston W. Royce
+James Rumbaugh
+Mary Shaw
+Peri Tarr
+Elaine Weyuker
+Niklaus Wirth
+Edward Yourdon
+
+
+
+
+
+Related fields
+
+
+
+Computer science
+Computer engineering
+Project management
+Risk management
+Systems engineering
+
+
+
+
+
+
+
+
+ Category
+ Commons
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Design
+
+
+
+
+
+
+Outline
+Portal
+Designer
+
+
+
+
+
+
+
+
+
+
+Disciplines
+
+
+
+
+
+
+
+Communication
+design
+
+
+
+Advertising
+Book design
+Corporate design
+Exhibit design
+Film title design
+Graphic design
+
+Motion
+Postage stamp design
+Print design
+
+
+Illustration
+Information design
+Instructional design
+News design
+Photography
+Retail design
+Signage / Traffic sign design
+Typography / Type design
+Video design
+Visual merchandising
+
+
+
+
+
+Environmental
+design
+
+
+
+Architecture
+Architectural lighting design
+Building design
+
+Passive solar
+
+
+Ecological design
+Environmental impact design
+Garden design
+
+Computer-aided
+
+
+Healthy community design
+Hotel design
+Interior architecture
+Interior design
+
+EID
+
+
+Keyline design
+Landscape architecture
+
+Sustainable
+
+
+Landscape design
+Spatial design
+Urban design
+
+
+
+
+
+Industrial
+design
+
+
+
+Automotive design
+Automotive suspension design
+CMF design
+Corrugated box design
+Electric guitar design
+Furniture design
+
+Sustainable
+
+
+Hardware interface design
+Motorcycle design
+Packaging and labeling
+Photographic lens design
+Product design
+Production design
+Sensory design
+Service design
+
+
+
+
+
+Interaction
+design
+
+
+
+Experience design
+
+EED
+
+
+Game design
+
+Level design
+Video game design
+
+
+Hardware interface design
+Icon design
+Immersive design
+Information design
+Sonic interaction design
+User experience design
+User interface design
+Web design
+
+
+
+
+
+Other
+applied arts
+
+
+
+Public art design
+Ceramic / glass design
+Fashion design
+
+Costume design
+Jewelry design
+
+
+Floral design
+Game art design
+Property design
+Scenic design
+Sound design
+Stage/set lighting design
+Textile design
+
+
+
+
+
+Other
+design
+& engineering
+
+
+
+Algorithm design
+Boiler design
+Conceptual design
+Database design
+Drug design
+Electrical system design
+Experimental design
+Filter design
+Job design
+Integrated circuit design
+
+Circuit design
+Physical design
+Power network design
+
+
+Mechanism design
+Nuclear weapon design
+Nucleic acid design
+Organization design
+Process design
+Processor design
+Protein design
+Research design
+Social design
+Software design
+Spacecraft design
+Strategic design
+Systems design
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Approaches
+
+
+
+
+
+
+Activity-centered
+Adaptive web
+Affective
+Brainstorming
+By committee
+By contract
+C-K theory
+Closure
+Co-design
+Concept-oriented
+Configuration
+Contextual
+Continuous
+Cradle-to-cradle
+Creative problem-solving
+Creativity techniques
+Critical
+
+Design fiction
+
+
+Defensive
+Design–bid–build
+Design–build
+
+architect-led
+
+
+Domain-driven
+Ecodesign
+Energy neutral
+Engineering design process
+
+Probabilistic design
+
+
+Error-tolerant
+Fault-tolerant
+Framework-oriented
+For assembly
+For behaviour change
+For manufacturability
+For Six Sigma
+For testing
+For X
+Functional
+Generative
+Geodesign
+High-level
+Integrated
+Integrated topside
+Intelligence-based
+Iterative
+KISS principle
+Low-level
+Metadesign
+Mind mapping
+Modular
+New Wave
+Object-oriented
+Open
+Parametric
+Participatory
+Platform-based
+Policy-based
+Process-centered
+Public interest
+Rational
+Regenerative
+Reliability engineering
+Research-based
+Responsibility-driven
+RWD
+Safe-life
+Sustainable
+Systemic
+
+SOD
+
+
+Tableless web
+Theory of constraints
+Top-down and bottom-up
+Transformation
+Transgenerational
+TRIZ
+Universal
+
+Design for All
+
+
+Usage-centered
+Use-centered
+User-centered
+
+Empathic
+
+
+User innovation
+Value-driven
+Value sensitive
+
+Privacy by
+
+
+
+
+Design choice
+computing
+controls
+flow
+leadership
+management
+marker
+methods
+pattern
+research
+science
+strategy
+theory
+thinking
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tools
+Intellectual property
+Organizations
+Awards
+
+
+
+
+
+
+
+
+
+
+Tools
+
+
+
+AAD
+Architectural model
+Blueprint
+Comprehensive layout
+CAD
+
+CAID
+Virtual home design software
+
+
+CAutoD
+Design quality indicator
+Electronic design automation
+Flowchart
+Mockup
+Product design specification
+Prototype
+Sketch
+Storyboard
+Technical drawing
+Web design program
+Website wireframe
+
+
+
+
+
+Intellectual
+property
+
+
+
+Community design
+Design around
+Design patent
+Fashion design copyright
+Geschmacksmuster
+Industrial design rights
+
+European Union
+
+
+
+
+
+
+
+Organizations
+
+
+
+AIGA
+Chartered Society of Designers
+Design and Industries Association
+Design Council
+International Forum Design
+The Design Society
+Design Research Society
+
+
+
+
+
+Awards
+
+
+
+European Design Award
+German Design Award
+Good Design Award (Chicago)
+Good Design Award (Japan)
+Graphex
+IF product design award
+James Dyson Award
+Prince Philip Designers Prize
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Related topics
+
+
+
+
+
+
+Aesthetics
+Agile
+Concept art
+Creative industries
+Cultural icon
+.design
+Enterprise architecture
+Futures studies
+Innovation Management
+Intelligent design
+Lean Startup
+New product development
+OODA Loop
+Philosophy of design
+Process simulation
+Slow design
+STEAM fields
+Unintelligent design
+Visualization
+Wicked problem
+
+
+Design brief
+change
+classic
+director
+education
+elements and principles
+engineer
+firm
+history
+knowledge
+language
+life
+load
+museum
+paradigm
+rationale
+review
+specification
+studio
+technology
+
+
+
+
+
+
+
+
+
+
+
+Commons
+Wikibooks
+Wikinews
+Wikiquote
+Wikisource
+Wiktionary
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Software_design&oldid=818154743"					Categories: Computer occupationsSoftware designHidden categories: Articles needing additional references from January 2013All articles needing additional referencesArticles needing more detailed references

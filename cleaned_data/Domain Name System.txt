@@ -1,0 +1,621 @@
+redirects uses disambiguation
+
+
+internet protocol suite
+
+
+application layer
+
+
+
+
+
+dhcp
+
+
+http
+imap
+ldap
+mgcp
+mqtt
+nntp
+
+
+oncrpc
+
+rtsp
+
+
+smtp
+snmp
+
+telnet
+tlsssl
+xmpp
+
+
+
+
+
+transport layer
+
+
+
+
+
+
+dccp
+sctp
+rsvp
+
+
+
+
+
+internet layer
+
+
+
+
+
+
+ipv4
+ipv6
+
+
+icmp
+icmpv6
+
+igmp
+ipsec
+
+
+
+
+
+link layer
+
+
+
+
+
+
+ospf
+tunnels
+
+l2tp
+
+
+
+
+
+ethernet
+
+isdn
+fddi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+domain name system hierarchical decentralized naming system computers services resources connected internet private network associates various information domain names assigned participating entities prominently translates readily memorized domain names numerical addresses needed locating identifying computer services devices underlying network protocols providing worldwide distributed directory service domain name system essential component functionality internet since 1985
+domain name system delegates responsibility assigning domain names mapping names internet resources designating authoritative name servers domain network administrators delegate authority subdomains allocated name space name servers mechanism provides distributed fault tolerant service designed avoid single large central database
+domain name system also specifies technical functionality database service core defines protocol detailed specification data structures data communication exchanges used part internet protocol suite historically directory services preceding scalable large global directories originally based text files prominently hosts file
+internet maintains principal namespaces domain name hierarchy1 internet protocol address spaces2 domain name system maintains domain name hierarchy provides translation services address spaces internet name servers communication protocol implement domain name system3 name server server stores records domain name server responds answers queries database
+common types records stored database start authority addresses aaaa smtp mail exchangers name servers pointers reverse lookups domain name aliases cname although intended general purpose database store records types data either automatic lookups dnssec records human queries responsible person records general purpose database also used combating unsolicited email spam storing realtime blackhole list database traditionally stored structured zone file
+
+
+
+contents
+
+
+function
+history
+structure
+
+domain name space
+domain name syntax
+internationalized domain names
+name servers
+
+authoritative name server
+
+
+
+
+operation
+
+address resolution mechanism
+
+recursive caching name server
+
+
+resolvers
+circular dependencies glue records
+record caching
+reverse lookup
+client lookup
+
+broken resolvers
+
+
+applications
+
+
+message format
+protocol transport
+resource records
+
+wildcard records
+
+
+protocol extensions
+dynamic zone updates
+security issues
+domain name registration
+documents
+
+standards
+
+1211 security
+
+
+experimental
+best current practices
+informational
+unknown
+
+
+also
+references
+external links
+
+
+
+functionedit
+oftenused analogy explain domain name system serves phone book internet translating humanfriendly computer hostnames addresses example domain name wwwexamplecom translates addresses 93184216119 ipv4 260628002206d26bf14471097aa7 ipv6 unlike phone book quickly updated allowing services location network change without affecting users continue host name users take advantage meaningful uniform resource locators urls email addresses without know computer actually locates services
+important ubiquitous function central role distributed internet services cloud services content delivery networks4 user accesses distributed internet service using domain name translated address server proximal user functionality exploited different users simultaneously receive different translations domain name point divergence traditional phonebook view process using assign proximal servers users providing faster reliable responses internet widely used major internet services5
+reflects structure administrative responsibility internet6 subdomain zone administrative autonomy delegated manager zones operated registry administrative information often complemented registrys rdap whois services data used gain insight track responsibility given host internet7
+historyedit
+using simpler memorable name place hosts numerical address dates back arpanet stanford research institute international maintained text file named hoststxt mapped host names numerical addresses computers arpanet89 maintenance numerical addresses called assigned numbers list handled postel university southern californias information sciences institute whose team worked closely sri10
+addresses assigned manually request host name address computer master file users contacted sris network information center directed elizabeth feinler telephone business hours11
+early 1980s maintaining single centralized host table become slow unwieldy emerging network required automated naming system address technical personnel issues postel directed task forging compromise five competing proposals solutions paul mockapetris mockapetris instead created domain name system11
+internet engineering task force published original specifications november 19831213
+1984 four berkeley students douglas terry mark painter david riggle songnian zhou wrote first unix name server implementation berkeley internet name domain commonly referred bind14 1985 kevin dunlap substantially revised implementation mike karels phil almquist paul vixie maintained bind since then15 early 1990s bind ported windows platform widely distributed especially unix systems still widely used software internet15
+november 1987 10341 10353 superseded 1983 specifications several additional request comments proposed extensions core protocols16
+structure edit
+domain name spaceedit
+domain name space consists tree data structure node leaf tree label zero resource records hold information associated domain name domain name consists label possibly concatenated name parent node right separated dot17 tree subdivides zones beginning root zone zone consist domain consist many domains subdomains depending administrative choices zone manager also partitioned according class separate classes thought array parallel namespace trees18
+
+
+
+
+hierarchical domain name system class internet organized zones served name server
+
+
+administrative responsibility zone divided creating additional zones authority zone said delegated designated name server parent zone ceases authoritative zone18
+domain name syntaxedit
+definitive descriptions rules forming domain names appear 1035 1123 2181 domain name consists parts technically called labels conventionally concatenated delimited dots examplecom
+rightmost label conveys toplevel domain example domain name wwwexamplecom belongs toplevel domain
+hierarchy domains descends right left label left specifies subdivision subdomain domain right example label example specifies subdomain domain subdomain examplecom tree subdivisions levelscitation needed
+label contain zero characters null label length zero reserved root zone full domain name exceed length characters textual representation1 internal binary representation maximum length requires octets storage also stores length name3
+although domain names theoretically consist character representable octet host names preferred format character characters allowed labels subset ascii character consisting characters digits hyphen rule known rule letters digits hyphen domain names interpreted caseindependent manner19 labels start hyphen20 additional rule requires toplevel domain names allnumeric20
+internationalized domain namesedit
+limited ascii characters permitted prevented representation names words many languages native alphabets scripts make possible icann approved internationalizing domain names applications idna system user applications browsers unicode strings valid character using punycode 2009 icann approved installation internationalized domain name country code toplevel domains cctlds addition many registries existing level domain names tlds adopted idna system
+name serversedit
+domain name system maintained distributed database system uses client–server model nodes database name servers domain least authoritative server publishes information domain name servers domains subordinate hierarchy served root name servers servers query looking resolving
+authoritative name serveredit
+authoritative name server name server gives answers queries data configured original source example domain administrator dynamic methods contrast answers obtained query another name server maintains cache data
+authoritative name server either master server slave server master server server stores original master copies zone records slave server uses special automatic updating mechanism protocol communication master maintain identical copy master records
+every zone must assigned authoritative name servers servers stored parent domain zone name server records
+authoritative server indicates status supplying definitive answers deemed authoritative setting protocol flag called authoritative answer responses3 flag usually reproduced prominently output administration query tools indicate responding name server authority domain name question3
+operationedit
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed september 2014 learn remove template message
+
+
+
+address resolution mechanismedit
+domain name resolvers determine domain name servers responsible domain name question sequence queries starting rightmost toplevel domain label
+
+
+
+
+resolver implements iterative approach mandated 1034 case resolver consults three name servers resolve fully qualified domain name wwwwikipediaorg
+
+
+proper operation domain name resolver network host configured initial cache hints known addresses root name servers hints updated periodically administrator retrieving dataset reliable source
+assuming resolver cached records accelerate process resolution process starts query root servers typical operation root servers answer directly respond referral authoritative servers query wwwwikipediaorg referred servers resolver queries servers referred iteratively repeat process receives authoritative answer diagram illustrates process host named fully qualified domain name wwwwikipediaorg
+mechanism would place large traffic burden root servers every resolution internet required starting root practice caching used servers offload root servers result root name servers actually involved fraction requests
+recursive caching name serveredit
+theory authoritative name servers sufficient operation internet however authoritative name servers operating every query must start recursive queries root zone domain name system user system would implement resolver software capable recursive operation
+improve efficiency reduce traffic across internet increase performance enduser applications domain name system supports cache servers store query results period time determined configuration timetolive domain name record question typically caching servers also implement recursive algorithm necessary resolve given name starting root authoritative name servers queried domain function implemented name server user applications gain efficiency design operation
+combination caching recursive functions name server mandatory functions implemented independently servers special purposes
+internet service providers typically provide recursive caching name servers customers addition many home networking routers implement caches recursors improve efficiency local network
+resolversedit
+client side called resolver resolver responsible initiating sequencing queries ultimately lead full resolution translation resource sought translation domain name address individual query either nonrecursive recursive iterative combination these1
+
+nonrecursive query method resolver client queries server provides record domain authoritative provides partial result without querying servers case caching resolver nonrecursive query local cache delivers result reduces load upstream servers caching request records period time initial response upstream servers
+recursive query approach resolver client query single server query client servers behalf requester example simple stub resolver running home router typically make recursive query server users recursive query server fully answer query give error querying name servers needed typical operation client issue recursive query caching recursive server issue nonrecursive queries determine answer send single answer back client resolver another server acting recursively behalf resolver negotiates recursive service using bits query headers servers required support recursive queries
+iterative query procedure resolver client query chain servers server refer client next server chain current server fully resolve request example possible resolution wwwexamplecom would query global root server server finally examplecom server
+
+circular dependencies glue recordsedit
+name servers delegations identified name rather address means resolving name server must issue another request find address server referred name given delegation subdomain domain delegation provided circular dependency
+case name server providing delegation must also provide addresses authoritative name server mentioned delegation information called glue delegating name server provides glue form records additional section response provides delegation authority section response glue record combination name server address
+example authoritative name server exampleorg ns1exampleorg computer trying resolve wwwexampleorg first resolves ns1exampleorg contained exampleorg requires resolving exampleorg first presents circular dependency break dependency name server level domain includes glue along delegation exampleorg glue records address records provide addresses ns1exampleorg resolver uses addresses query domains authoritative servers allows complete query
+record cachingedit
+standard practice implementing name resolution applications reduce load domain name system servers caching results locally intermediate resolver hosts results obtained request always associated time live expiration time results must discarded refreshed administrator authoritative server period validity vary seconds days even weeks
+result distributed caching architecture changes records propagate throughout network immediately require caches expire refreshed 1912 conveys basic rules determining appropriate values
+resolvers override values protocol supports caching years caching negative caching caching fact nonexistence record determined name servers authoritative zone must include start authority record reporting data requested type exists value minimum field record used establish negative answer
+reverse lookupedit
+main article reverse lookup
+reverse lookup query domain names address known multiple domain names associated address stores addresses form domain names specially formatted names pointer records within infrastructure toplevel domain arpa ipv4 domain inaddrarpa ipv6 reverse lookup domain ip6arpa address represented name reverseordered octet representation ipv4 reverseordered nibble representation ipv6
+performing reverse lookup client converts address formats querying name record following delegation chain query example assuming ipv4 address 208801522 assigned wikimedia represented name reverse order 215280208inaddrarpa resolver gets pointer request begins querying root servers point servers american registry internet numbers arin 208inaddrarpa zone arins servers delegate 15280208inaddrarpa wikimedia resolver sends another query 215280208inaddrarpa results authoritative response
+client lookupedit
+
+
+
+
+resolution sequence
+
+
+users generally communicate directly resolver instead resolution takes place transparently applications browsers email clients internet applications application makes request requires domain name lookup programs send resolution request resolver local operating system turn handles communications required
+resolver almost invariably cache containing recent lookups cache provide answer request resolver return value cache program made request cache contain answer resolver send request designated servers case home users internet service provider machine connects usually supply server user either configured servers address manually allowed dhcp however systems administrators configured systems servers resolvers point separately maintained name servers organization event name server thus queried follow process outlined either successfully finds result returns results resolver assuming found result resolver duly caches result future hands result back software initiated request
+broken resolversedit
+large isps configured servers violate rules disobeying ttls indicating domain name exist name servers respond21
+applications browsers maintain internal cache avoid repeated lookups network practice extra difficulty debugging issues obscures history data caches typically short caching times order minute22
+internet explorer represents notable exception versions cache records hours default internet explorer later versions decrease default time value half hour changed modifying default configuration23
+google chrome triggers specific error message issues server broken google chrome returns error message24
+applicationsedit
+domain name system includes several functions features
+hostnames addresses required match onetoone relationship multiple hostnames correspond single address useful virtual hosting many sites served single host alternatively single hostname resolve many addresses facilitate fault tolerance load distribution multiple server instances across enterprise global internet
+serves purposes addition translating names addresses instance mail transfer agents find best mail server deliver email record provides mapping domain mail exchanger provide additional layer fault tolerance load distribution
+used efficient storage distribution addresses blacklisted email hosts common method place address subject host subdomain higher level domain name resolve name record indicates positive negative indication
+example
+
+address 102345 blacklisted points 543102blacklistexample resolves 127001
+address 102346 blacklisted points 643102blacklistexample hostname either configured resolves 127002
+
+email servers query blacklistexample find specific host connecting blacklist many blacklists either subscriptionbased free cost available email administrators antispam software
+sender policy framework domainkeys designed take advantage another record type record since assigned specific record types
+provide resilience event computer network failure multiple servers usually provided coverage domain level global thirteen groups root name servers exist additional copies distributed worldwide anycast addressing
+dynamic ddns updates server client address onthefly example moving isps mobile spots address changes administratively
+message formatedit
+protocol uses types messages queries replies format message consists header four sections question answer authority additional space header field flags controls content four sections1
+header section contains following fields identification flags number questions number answers number authority resource records number additional identification field used match responses queries flag field consists several subfields first single indicates message query reply second subfield consists four bits value present packet reply present packet status value present packet request singlebit subfield indicates server authoritative queried hostname another singlebit subfield indicates client wants send recursive query next singlebit subfield indicates replying server supports recursion servers configured task another subfield indicates request truncated reason fourbit subfield indicates status question section contains domain name type record aaaa resolved domain name broken discrete labels concatenated label prefixed length label answer section resource records queried name domain name occur multiple records multiple addresses associated25
+protocol transportedit
+primarily uses user datagram protocol port number serve requests3 queries consist single request client followed single reply server transmission control protocol used response data size exceeds bytes tasks zone transfers resolver implementations queries
+
+resource recordsedit
+
+
+
+
+
+
+article section written style abstract readily understandable general audiences please improve defining technical terminology adding examples november 2017
+
+
+
+domain name system specifies various types resource records basic information elements domain name system record type name number expiration time time live class typespecific data resource records type described resource record rrset order resource records returned resolver application undefined often servers implement roundrobin ordering achieve load balancing domain name system security extensions dnssec however work complete resource record canonical order
+sent internet protocol network records common format specified 103526
+
+resource record fields
+
+field
+description
+length octets
+
+
+name
+name node record pertains
+variable
+
+
+type
+type numeric form
+
+
+
+class
+class code
+
+
+
+
+count seconds stays valid maximum 231−1 years
+
+
+
+rdlength
+length rdata field specified octets
+
+
+
+rdata
+additional rrspecific data
+variable rdlength
+
+
+name fully qualified domain name node tree clarification needed wire name shortened using label compression ends domain names mentioned earlier packet substituted current domain name free standing used denote current origin
+type record type indicates format data gives hint intended example record used translate domain name ipv4 address record lists name servers answer lookups zone record specifies mail server used handle mail domain specified email address
+rdata data typespecific relevance address address records priority hostname records well known record types label compression rdata field unknown record types must 3597
+class record internet common records involving internet hostnames servers addresses addition classes chaos hesiod exist27 class independent name space potentially different delegations zones
+addition resource records defined zone file domain name system also defines several request types used communication nodes wire performing zone transfers axfrixfr edns
+wildcard recordsedit
+domain name system supports wildcard records specify names start asterisk label example128 records belonging wildcard domain names specify rules generating resource records within single zone substituting whole labels matching components query name including specified descendants example following configuration zone xexample specifies subdomains including subdomains subdomains xexample mail exchanger axexample record axexample needed specify mail exchanger address result excluding domain name subdomains wildcard matches additional record subdomain axexample well wildcarded record subdomains must also defined zone
+
+xexample axexample
+xexample axexample
+axexample axexample
+axexample axexample
+axexample aaaa 2001db81
+
+role wildcard records refined 4592 original definition 1034 incomplete resulted misinterpretations implementers28
+protocol extensionsedit
+original protocol limited provisions extension features 1999 paul vixie published 2671 extension mechanism called extension mechanisms edns introduced optional protocol elements without increasing overhead accomplished pseudoresource record exists wire transmissions protocol zone files initial extensions also suggested edns0 increasing message size datagrams
+dynamic zone updatesedit
+dynamic updates update opcode remove resource records dynamically zone database maintained authoritative server feature described 2136 facility useful register network clients boot become otherwise available network booting client assigned different address time dhcp server possible provide static assignments clients
+security issuesedit
+originally security concerns major design considerations software software deployment early internet network open participation general public however expansion internet commercial sector 1990s changed requirements security measures protect data integrity user authentication
+several vulnerability issues discovered exploited malicious users issue cache poisoning data distributed caching resolvers pretense authoritative origin server thereby polluting data store potentially false information long expiration times timetolive subsequently legitimate application requests redirected network hosts operated malicious intent
+responses traditionally cryptographic signature leading many attack possibilities domain name system security extensions dnssec modify support cryptographically signed responses dnscurve proposed alternative dnssec extensions tsig support cryptographic authentication trusted peers commonly used authorize zone transfer dynamic update operations
+domain names used achieve spoofing effects example paypalcom paypa1com different names users unable distinguish graphical user interface depending users chosen typeface many fonts letter numeral look similar even identical problem acute systems support internationalized domain names many character codes 10646 appear identical typical computer screens vulnerability occasionally exploited phishing29
+techniques forwardconfirmed reverse also used help validate results
+domain name registrationedit
+right domain name delegated domain name registrars accredited internet corporation assigned names numbers icann organizations opennic charged overseeing name number systems internet addition icann toplevel domain maintained serviced technically administrative organization operating registry registry responsible operating database names within authoritative zone although term often used tlds registrant person organization asked domain registration16 registry receives registration information domain name registrar authorized accredited assign names corresponding zone publishes information using whois protocol 2015 usage rdap considered30
+icann publishes complete list tlds registries domain name registrars registrant information associated domain names maintained online database accessible whois service country code toplevel domains cctlds domain registries maintain whois registrant name servers expiration dates information instance denic germany holds domain data 2001 generic toplevel domain gtld registries adopted socalled thick registry approach keeping whois data central registries instead registrar databases
+domain names thin registry model used domain registry verisign holds basic whois data registrar name servers find detailed whois registrant name servers expiry dates registrars
+domain name registries often called network information centers also function registrars endusers major generic toplevel domain registries domains info registryregistrar model consisting many domain name registrars31 method management registry manages domain name database relationship registrars registrants users domain name customers registrar cases additional layers resellers
+documentsedit
+standardsedit
+domain name system defined request comments documents published internet engineering task force internet standards following list rfcs define protocol
+
+1034 domain names concepts facilities
+1035 domain names implementation specification
+1123 requirements internet hosts—application support
+1995 incremental zone transfer
+1996 mechanism prompt notification zone changes notify
+2136 dynamic updates domain name system update
+2181 clarifications specification
+2308 negative caching queries ncache
+2671 extension mechanisms edns0
+2672 nonterminal name redirection
+2845 secret transaction authentication tsig
+3225 indicating resolver support dnssec
+3226 dnssec ipv6 aware serverresolver message size requirements
+3597 handling unknown resource record types
+4343 domain name system case insensitivity clarification
+4592 role wildcards domain name system
+4635 hmac tsig algorithm identifiers
+5001 name server identifier nsid option
+5452 measures making resilient forged answers
+5890 internationalized domain names applications idnadefinitions document framework
+5891 internationalized domain names applications idna protocol
+5892 unicode code points internationalized domain names applications idna
+5893 righttoleft scripts internationalized domain names applications idna
+7766 transport implementation requirements
+
+securityedit
+
+4033 security introduction requirements
+4034 resource records security extensions
+4035 protocol modifications security extensions
+4509 sha256 dnssec delegation signer resource records
+4470 minimally covering nsec records dnssec online signing
+5011 automated updates security dnssec trust anchors
+5155 security dnssec hashed authenticated denial existence
+5702 sha2 algorithms dnskey rrsig resource records dnssec
+5910 domain name system security extensions mapping extensible provisioning protocol
+5933 gost signature algorithms dnskey rrsig resource records dnssec
+7858 specification transport layer security
+
+experimentaledit
+
+1183 definitions
+
+best current practicesedit
+
+2182 selection operation secondary servers
+2317 classless inaddrarpa delegation
+5625 proxy implementation guidelines
+6895 domain name system iana considerations
+7720 root name service protocol deployment requirements
+
+informationaledit
+rfcs advisory nature provide useful information despite defining neither standard 1796
+
+1178 choosing name computer
+1591 domain name system structure delegation
+1912 common operational configuration errors
+2100 naming hosts
+3696 application techniques checking transformation names
+4892 requirements mechanism identifying name server instance
+5894 internationalized domain names applications idnabackground explanation rationale
+5895 mapping characters internationalized domain names applications idna 2008
+7626 privacy considerations
+7706 decreasing access time root servers running loopback
+
+unknownedit
+rfcs official status unknown clearly labeled
+
+domain requirements specified original toplevel domains
+1032 domain administrators guide
+1033 domain administrators operations guide
+1101 encodings network names types
+
+alsoedit
+
+
+internet portal
+computer science portal
+
+
+
+
+alternative root
+comparison server software
+hijacking
+management software
+list record types
+list managed providers
+ipv6 brokenness whitelisting
+multicast
+public recursive name server
+splithorizon
+resolvconf
+hierarchical namespace
+
+
+referencesedit
+
+
+1034 domain names concepts facilities mockapetris internet society november 1987
+internet protocol darpa internet program protocol specification information sciences institute postel internet society september 1981
+1035 domain names implementation specification mockapetris internet society november 1987
+dilley maggs parikh prokop sitaraman weihl globally distributed content delivery ieee internet computing septemberoctober 2002 5058
+nygren sitaraman 2010 akamai network platform highperformance internet applications sigops operating systems review 2–19 doi10114518427331842736 retrieved november 2012
+paul mockapetris november 1987 rdata format domain names implementation specification ietf 3313 1035 httpstoolsietforghtmlrfc1035section3313 retrieved december 2015
+champika wijayatunga february 2015 abuse handling apnic retrieved december 2016
+3467 role domain name system klensin klensin february 2003
+cricket albitz paul 2006 bind oreilly media isbn 9780596100575
+ieee annals 3b29 man20110300743d 297011 1154 page
+still work christmas paul mockapetris internet hall fame internethalloffameorg
+andrei robachevsky november 2013 happy 30th birthday internet society retrieved december 2015
+elizabeth feinler ieee annals 3b29 man20110300743d 297011 1154 page
+terry douglas june 12–15 1984 berkeley internet name domain server summer conference salt lake city 1984 proceedings usenix association software tools users group 23–31
+internet systems consortium widely used name server software bind history bind retrieved july 2013
+paul hoffman andrew sullivan kazunori fujiwara december 2015 terminology ietf 7719 httpstoolsietforghtmlrfc7719 retrieved december 2015
+paul mockapetris november 1987 name space specifications terminology domain names domain concepts facilities ietf 1034 httpstoolsietforghtmlrfc1034section31 retrieved december 2015
+paul mockapetris november 1987 database divided zones domain names domain concepts facilities ietf 1034 httpstoolsietforghtmlrfc1034section42 retrieved december 2015
+network working group ietf january 2006 4343 domain name system case insensitivity clarification
+3696 application techniques checking transformation names klensin
+providers ignoring slashdot 2005 retrieved 20120407
+anderson september 2011 anderson browser caching thing retrieved october 2014
+internet explorer uses cache host entries microsoft corporation 2004 retrieved 20100725
+google chrome errors appuals 2015 retrieved 20160828
+james kurose keith ross computer networking topdown approach essex england pearson educ limited 2012
+5395 domain name system iana considerations eastlake november 2008 section
+5395 domain name system iana considerations eastlake november 2008
+4592 role wildcards domain name system lewis july 2006
+apwg global phishing survey domain name trends 1h2010 10152010 apwgorg
+registration data access protocol rdap operational profile gtld registries registrars icann december 2015 archived original december 2015 retrieved december 2015
+find registrar verisign retrieved december 2015
+
+
+external linksedit
+
+
+
+wikiversity learning resources domain name system
+
+
+
+vixie paul 20070401 complexity queue archived original 20070610
+zytraxcom open source guide rocket scientists
+internet governance domain name system issues congress congressional research service
+ball james february 2014 meet seven people hold keys worldwide internet security guardian guardian news media limited retrieved february 2014
+
+
+
+
+
+
+
+
+
+
+
+
+uniform resource identifier schemes
+
+
+
+official
+
+
+
+
+acct
+crid
+data
+file
+
+gopher
+http
+https
+info
+ldap
+mailto
+sips
+
+
+
+viewsource
+wais
+
+
+
+
+
+
+unofficial
+
+
+
+coffee
+ed2k
+feed
+irc6 ircs
+ldaps
+magnet
+ymsgr
+
+
+
+
+
+
+protocol list
+
+
+
+
+
+
+
+authority control
+
+
+
+43483185
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitledomainnamesystemoldid818321358 categories computerrelated introductions 1983domain name systemapplication layer protocolsinternet standardshidden categories pages using magic linksall articles unsourced statementsarticles unsourced statements 2017articles needing additional references september 2014all articles needing additional referenceswikipedia articles needing clarification november 2017pages using small parameterwikipedia articles identifiers

@@ -1,0 +1,1103 @@
+Computational complexity theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other. A computational problem is understood to be a task that is in principle amenable to being solved by a computer, which is equivalent to stating that the problem may be solved by mechanical application of mathematical steps, such as an algorithm.
+A problem is regarded as inherently difficult if its solution requires significant resources, whatever the algorithm used. The theory formalizes this intuition, by introducing mathematical models of computation to study these problems and quantifying the amount of resources needed to solve them, such as time and storage. Other complexity measures are also used, such as the amount of communication (used in communication complexity), the number of gates in a circuit (used in circuit complexity) and the number of processors (used in parallel computing). One of the roles of computational complexity theory is to determine the practical limits on what computers can and cannot do.
+Closely related fields in theoretical computer science are analysis of algorithms and computability theory. A key distinction between analysis of algorithms and computational complexity theory is that the former is devoted to analyzing the amount of resources needed by a particular algorithm to solve a problem, whereas the latter asks a more general question about all possible algorithms that could be used to solve the same problem. More precisely, computational complexity theory tries to classify problems that can or cannot be solved with appropriately restricted resources. In turn, imposing restrictions on the available resources is what distinguishes computational complexity from computability theory: the latter theory asks what kind of problems can, in principle, be solved algorithmically.
+
+
+
+Contents
+
+
+1 Computational problems
+
+1.1 Problem instances
+1.2 Representing problem instances
+1.3 Decision problems as formal languages
+1.4 Function problems
+1.5 Measuring the size of an instance
+
+
+2 Machine models and complexity measures
+
+2.1 Turing machine
+2.2 Other machine models
+2.3 Complexity measures
+2.4 Best, worst and average case complexity
+2.5 Upper and lower bounds on the complexity of problems
+
+
+3 Complexity classes
+
+3.1 Defining complexity classes
+3.2 Important complexity classes
+3.3 Hierarchy theorems
+3.4 Reduction
+
+
+4 Important open problems
+
+4.1 P versus NP problem
+4.2 Problems in NP not known to be in P or NP-complete
+4.3 Separations between other complexity classes
+
+
+5 Intractability
+6 History
+7 See also
+8 References
+
+8.1 Citations
+8.2 Textbooks
+8.3 Surveys
+
+
+9 External links
+
+
+
+Computational problems[edit]
+
+
+
+
+A traveling salesman tour through Germany's 15 largest cities.
+
+
+Problem instances[edit]
+A computational problem can be viewed as an infinite collection of instances together with a solution for every instance. The input string for a computational problem is referred to as a problem instance, and should not be confused with the problem itself. In computational complexity theory, a problem refers to the abstract question to be solved. In contrast, an instance of this problem is a rather concrete utterance, which can serve as the input for a decision problem. For example, consider the problem of primality testing. The instance is a number (e.g. 15) and the solution is "yes" if the number is prime and "no" otherwise (in this case "no"). Stated another way, the instance is a particular input to the problem, and the solution is the output corresponding to the given input.
+To further highlight the difference between a problem and an instance, consider the following instance of the decision version of the traveling salesman problem: Is there a route of at most 2000 kilometres passing through all of Germany's 15 largest cities? The quantitative answer to this particular problem instance is of little use for solving other instances of the problem, such as asking for a round trip through all sites in Milan whose total length is at most 10 km. For this reason, complexity theory addresses computational problems and not particular problem instances.
+Representing problem instances[edit]
+When considering computational problems, a problem instance is a string over an alphabet. Usually, the alphabet is taken to be the binary alphabet (i.e., the set {0,1}), and thus the strings are bitstrings. As in a real-world computer, mathematical objects other than bitstrings must be suitably encoded. For example, integers can be represented in binary notation, and graphs can be encoded directly via their adjacency matrices, or by encoding their adjacency lists in binary.
+Even though some proofs of complexity-theoretic theorems regularly assume some concrete choice of input encoding, one tries to keep the discussion abstract enough to be independent of the choice of encoding. This can be achieved by ensuring that different representations can be transformed into each other efficiently.
+Decision problems as formal languages[edit]
+
+
+
+
+A decision problem has only two possible outputs, yes or no (or alternately 1 or 0) on any input.
+
+
+Decision problems are one of the central objects of study in computational complexity theory. A decision problem is a special type of computational problem whose answer is either yes or no, or alternately either 1 or 0. A decision problem can be viewed as a formal language, where the members of the language are instances whose output is yes, and the non-members are those instances whose output is no. The objective is to decide, with the aid of an algorithm, whether a given input string is a member of the formal language under consideration. If the algorithm deciding this problem returns the answer yes, the algorithm is said to accept the input string, otherwise it is said to reject the input.
+An example of a decision problem is the following. The input is an arbitrary graph. The problem consists in deciding whether the given graph is connected, or not. The formal language associated with this decision problem is then the set of all connected graphs—of course, to obtain a precise definition of this language, one has to decide how graphs are encoded as binary strings.
+Function problems[edit]
+A function problem is a computational problem where a single output (of a total function) is expected for every input, but the output is more complex than that of a decision problem, that is, it isn't just yes or no. Notable examples include the traveling salesman problem and the integer factorization problem.
+It is tempting to think that the notion of function problems is much richer than the notion of decision problems. However, this is not really the case, since function problems can be recast as decision problems. For example, the multiplication of two integers can be expressed as the set of triples (a, b, c) such that the relation a × b = c holds. Deciding whether a given triple is a member of this set corresponds to solving the problem of multiplying two numbers.
+Measuring the size of an instance[edit]
+To measure the difficulty of solving a computational problem, one may wish to see how much time the best algorithm requires to solve the problem. However, the running time may, in general, depend on the instance. In particular, larger instances will require more time to solve. Thus the time required to solve a problem (or the space required, or any measure of complexity) is calculated as a function of the size of the instance. This is usually taken to be the size of the input in bits. Complexity theory is interested in how algorithms scale with an increase in the input size. For instance, in the problem of finding whether a graph is connected, how much more time does it take to solve a problem for a graph with 2n vertices compared to the time taken for a graph with n vertices?
+If the input size is n, the time taken can be expressed as a function of n. Since the time taken on different inputs of the same size can be different, the worst-case time complexity T(n) is defined to be the maximum time taken over all inputs of size n. If T(n) is a polynomial in n, then the algorithm is said to be a polynomial time algorithm. Cobham's thesis says that a problem can be solved with a feasible amount of resources if it admits a polynomial time algorithm.
+Machine models and complexity measures[edit]
+Turing machine[edit]
+
+
+
+
+An illustration of a Turing machine
+
+
+Main article: Turing machine
+A Turing machine is a mathematical model of a general computing machine. It is a theoretical device that manipulates symbols contained on a strip of tape. Turing machines are not intended as a practical computing technology, but rather as a thought experiment representing a computing machine—anything from an advanced supercomputer to a mathematician with a pencil and paper. It is believed that if a problem can be solved by an algorithm, there exists a Turing machine that solves the problem. Indeed, this is the statement of the Church–Turing thesis. Furthermore, it is known that everything that can be computed on other models of computation known to us today, such as a RAM machine, Conway's Game of Life, cellular automata or any programming language can be computed on a Turing machine. Since Turing machines are easy to analyze mathematically, and are believed to be as powerful as any other model of computation, the Turing machine is the most commonly used model in complexity theory.
+Many types of Turing machines are used to define complexity classes, such as deterministic Turing machines, probabilistic Turing machines, non-deterministic Turing machines, quantum Turing machines, symmetric Turing machines and alternating Turing machines. They are all equally powerful in principle, but when resources (such as time or space) are bounded, some of these may be more powerful than others.
+A deterministic Turing machine is the most basic Turing machine, which uses a fixed set of rules to determine its future actions. A probabilistic Turing machine is a deterministic Turing machine with an extra supply of random bits. The ability to make probabilistic decisions often helps algorithms solve problems more efficiently. Algorithms that use random bits are called randomized algorithms. A non-deterministic Turing machine is a deterministic Turing machine with an added feature of non-determinism, which allows a Turing machine to have multiple possible future actions from a given state. One way to view non-determinism is that the Turing machine branches into many possible computational paths at each step, and if it solves the problem in any of these branches, it is said to have solved the problem. Clearly, this model is not meant to be a physically realizable model, it is just a theoretically interesting abstract machine that gives rise to particularly interesting complexity classes. For examples, see non-deterministic algorithm.
+Other machine models[edit]
+Many machine models different from the standard multi-tape Turing machines have been proposed in the literature, for example random access machines. Perhaps surprisingly, each of these models can be converted to another without providing any extra computational power. The time and memory consumption of these alternate models may vary.[1] What all these models have in common is that the machines operate deterministically.
+However, some computational problems are easier to analyze in terms of more unusual resources. For example, a non-deterministic Turing machine is a computational model that is allowed to branch out to check many different possibilities at once. The non-deterministic Turing machine has very little to do with how we physically want to compute algorithms, but its branching exactly captures many of the mathematical models we want to analyze, so that non-deterministic time is a very important resource in analyzing computational problems.
+Complexity measures[edit]
+For a precise definition of what it means to solve a problem using a given amount of time and space, a computational model such as the deterministic Turing machine is used. The time required by a deterministic Turing machine M on input x is the total number of state transitions, or steps, the machine makes before it halts and outputs the answer ("yes" or "no"). A Turing machine M is said to operate within time f(n), if the time required by M on each input of length n is at most f(n). A decision problem A can be solved in time f(n) if there exists a Turing machine operating in time f(n) that solves the problem. Since complexity theory is interested in classifying problems based on their difficulty, one defines sets of problems based on some criteria. For instance, the set of problems solvable within time f(n) on a deterministic Turing machine is then denoted by DTIME(f(n)).
+Analogous definitions can be made for space requirements. Although time and space are the most well-known complexity resources, any complexity measure can be viewed as a computational resource. Complexity measures are very generally defined by the Blum complexity axioms. Other complexity measures used in complexity theory include communication complexity, circuit complexity, and decision tree complexity.
+The complexity of an algorithm is often expressed using big O notation.
+Best, worst and average case complexity[edit]
+
+
+
+
+Visualization of the quicksort algorithm that has average case performance 
+
+
+
+
+
+O
+
+
+(
+n
+log
+⁡
+n
+)
+)
+
+
+{\displaystyle {\mathcal {O}}(n\log n))}
+
+.
+
+
+The best, worst and average case complexity refer to three different ways of measuring the time complexity (or any other complexity measure) of different inputs of the same size. Since some inputs of size n may be faster to solve than others, we define the following complexities:
+
+Best-case complexity: This is the complexity of solving the problem for the best input of size n.
+Worst-case complexity: This is the complexity of solving the problem for the worst input of size n.
+Average-case complexity: This is the complexity of solving the problem on an average. This complexity is only defined with respect to a probability distribution over the inputs. For instance, if all inputs of the same size are assumed to be equally likely to appear, the average case complexity can be defined with respect to the uniform distribution over all inputs of size n.
+
+For example, consider the deterministic sorting algorithm quicksort. This solves the problem of sorting a list of integers that is given as the input. The worst-case is when the input is sorted or sorted in reverse order, and the algorithm takes time O(n2) for this case. If we assume that all possible permutations of the input list are equally likely, the average time taken for sorting is O(n log n). The best case occurs when each pivoting divides the list in half, also needing O(n log n) time.
+Upper and lower bounds on the complexity of problems[edit]
+To classify the computation time (or similar resources, such as space consumption), one is interested in proving upper and lower bounds on the minimum amount of time required by the most efficient algorithm solving a given problem. The complexity of an algorithm is usually taken to be its worst-case complexity, unless specified otherwise. Analyzing a particular algorithm falls under the field of analysis of algorithms. To show an upper bound T(n) on the time complexity of a problem, one needs to show only that there is a particular algorithm with running time at most T(n). However, proving lower bounds is much more difficult, since lower bounds make a statement about all possible algorithms that solve a given problem. The phrase "all possible algorithms" includes not just the algorithms known today, but any algorithm that might be discovered in the future. To show a lower bound of T(n) for a problem requires showing that no algorithm can have time complexity lower than T(n).
+Upper and lower bounds are usually stated using the big O notation, which hides constant factors and smaller terms. This makes the bounds independent of the specific details of the computational model used. For instance, if T(n) = 7n2 + 15n + 40, in big O notation one would write T(n) = O(n2).
+Complexity classes[edit]
+Main article: Complexity class
+Defining complexity classes[edit]
+A complexity class is a set of problems of related complexity. Simpler complexity classes are defined by the following factors:
+
+The type of computational problem: The most commonly used problems are decision problems. However, complexity classes can be defined based on function problems, counting problems, optimization problems, promise problems, etc.
+The model of computation: The most common model of computation is the deterministic Turing machine, but many complexity classes are based on non-deterministic Turing machines, Boolean circuits, quantum Turing machines, monotone circuits, etc.
+The resource (or resources) that are being bounded and the bounds: These two properties are usually stated together, such as "polynomial time", "logarithmic space", "constant depth", etc.
+
+Of course, some complexity classes have complicated definitions that do not fit into this framework. Thus, a typical complexity class has a definition like the following:
+
+The set of decision problems solvable by a deterministic Turing machine within time f(n). (This complexity class is known as DTIME(f(n)).)
+
+But bounding the computation time above by some concrete function f(n) often yields complexity classes that depend on the chosen machine model. For instance, the language {xx | x is any binary string} can be solved in linear time on a multi-tape Turing machine, but necessarily requires quadratic time in the model of single-tape Turing machines. If we allow polynomial variations in running time, Cobham-Edmonds thesis states that "the time complexities in any two reasonable and general models of computation are polynomially related" (Goldreich 2008, Chapter 1.2). This forms the basis for the complexity class P, which is the set of decision problems solvable by a deterministic Turing machine within polynomial time. The corresponding set of function problems is FP.
+Important complexity classes[edit]
+
+
+
+
+A representation of the relation among complexity classes
+
+
+Many important complexity classes can be defined by bounding the time or space used by the algorithm. Some important complexity classes of decision problems defined in this manner are the following:
+
+
+
+
+
+Complexity class
+Model of computation
+Resource constraint
+
+
+Deterministic time
+
+
+DTIME(f(n))
+Deterministic Turing machine
+Time f(n)
+
+
+ 
+ 
+ 
+
+
+P
+Deterministic Turing machine
+Time poly(n)
+
+
+EXPTIME
+Deterministic Turing machine
+Time 2poly(n)
+
+
+Non-deterministic time
+
+
+NTIME(f(n))
+Non-deterministic Turing machine
+Time f(n)
+
+
+ 
+ 
+ 
+
+
+NP
+Non-deterministic Turing machine
+Time poly(n)
+
+
+NEXPTIME
+Non-deterministic Turing machine
+Time 2poly(n)
+
+
+
+
+
+
+Complexity class
+Model of computation
+Resource constraint
+
+
+Deterministic space
+
+
+DSPACE(f(n))
+Deterministic Turing machine
+Space f(n)
+
+
+L
+Deterministic Turing machine
+Space O(log n)
+
+
+PSPACE
+Deterministic Turing machine
+Space poly(n)
+
+
+EXPSPACE
+Deterministic Turing machine
+Space 2poly(n)
+
+
+Non-deterministic space
+
+
+NSPACE(f(n))
+Non-deterministic Turing machine
+Space f(n)
+
+
+NL
+Non-deterministic Turing machine
+Space O(log n)
+
+
+NPSPACE
+Non-deterministic Turing machine
+Space poly(n)
+
+
+NEXPSPACE
+Non-deterministic Turing machine
+Space 2poly(n)
+
+
+
+
+
+The logarithmic-space classes (necessarily) do not take into account the space needed to represent the problem.
+It turns out that PSPACE = NPSPACE and EXPSPACE = NEXPSPACE by Savitch's theorem.
+Other important complexity classes include BPP, ZPP and RP, which are defined using probabilistic Turing machines; AC and NC, which are defined using Boolean circuits; and BQP and QMA, which are defined using quantum Turing machines. #P is an important complexity class of counting problems (not decision problems). Classes like IP and AM are defined using Interactive proof systems. ALL is the class of all decision problems.
+Hierarchy theorems[edit]
+Main articles: time hierarchy theorem and space hierarchy theorem
+For the complexity classes defined in this way, it is desirable to prove that relaxing the requirements on (say) computation time indeed defines a bigger set of problems. In particular, although DTIME(n) is contained in DTIME(n2), it would be interesting to know if the inclusion is strict. For time and space requirements, the answer to such questions is given by the time and space hierarchy theorems respectively. They are called hierarchy theorems because they induce a proper hierarchy on the classes defined by constraining the respective resources. Thus there are pairs of complexity classes such that one is properly included in the other. Having deduced such proper set inclusions, we can proceed to make quantitative statements about how much more additional time or space is needed in order to increase the number of problems that can be solved.
+More precisely, the time hierarchy theorem states that
+
+
+
+
+
+
+
+D
+T
+I
+M
+E
+
+
+
+
+(
+
+
+f
+(
+n
+)
+
+
+)
+
+
+⊊
+
+
+D
+T
+I
+M
+E
+
+
+
+
+(
+
+
+f
+(
+n
+)
+⋅
+
+log
+
+2
+
+
+⁡
+(
+f
+(
+n
+)
+)
+
+
+)
+
+
+
+
+{\displaystyle {\mathsf {DTIME}}{\big (}f(n){\big )}\subsetneq {\mathsf {DTIME}}{\big (}f(n)\cdot \log ^{2}(f(n)){\big )}}
+
+.
+
+The space hierarchy theorem states that
+
+
+
+
+
+
+
+D
+S
+P
+A
+C
+E
+
+
+
+
+(
+
+
+f
+(
+n
+)
+
+
+)
+
+
+⊊
+
+
+D
+S
+P
+A
+C
+E
+
+
+
+
+(
+
+
+f
+(
+n
+)
+⋅
+log
+⁡
+(
+f
+(
+n
+)
+)
+
+
+)
+
+
+
+
+{\displaystyle {\mathsf {DSPACE}}{\big (}f(n){\big )}\subsetneq {\mathsf {DSPACE}}{\big (}f(n)\cdot \log(f(n)){\big )}}
+
+.
+
+The time and space hierarchy theorems form the basis for most separation results of complexity classes. For instance, the time hierarchy theorem tells us that P is strictly contained in EXPTIME, and the space hierarchy theorem tells us that L is strictly contained in PSPACE.
+Reduction[edit]
+Main article: Reduction (complexity)
+Many complexity classes are defined using the concept of a reduction. A reduction is a transformation of one problem into another problem. It captures the informal notion of a problem being at least as difficult as another problem. For instance, if a problem X can be solved using an algorithm for Y, X is no more difficult than Y, and we say that X reduces to Y. There are many different types of reductions, based on the method of reduction, such as Cook reductions, Karp reductions and Levin reductions, and the bound on the complexity of reductions, such as polynomial-time reductions or log-space reductions.
+The most commonly used reduction is a polynomial-time reduction. This means that the reduction process takes polynomial time. For example, the problem of squaring an integer can be reduced to the problem of multiplying two integers. This means an algorithm for multiplying two integers can be used to square an integer. Indeed, this can be done by giving the same input to both inputs of the multiplication algorithm. Thus we see that squaring is not more difficult than multiplication, since squaring can be reduced to multiplication.
+This motivates the concept of a problem being hard for a complexity class. A problem X is hard for a class of problems C if every problem in C can be reduced to X. Thus no problem in C is harder than X, since an algorithm for X allows us to solve any problem in C. Of course, the notion of hard problems depends on the type of reduction being used. For complexity classes larger than P, polynomial-time reductions are commonly used. In particular, the set of problems that are hard for NP is the set of NP-hard problems.
+If a problem X is in C and hard for C, then X is said to be complete for C. This means that X is the hardest problem in C. (Since many problems could be equally hard, one might say that X is one of the hardest problems in C.) Thus the class of NP-complete problems contains the most difficult problems in NP, in the sense that they are the ones most likely not to be in P. Because the problem P = NP is not solved, being able to reduce a known NP-complete problem, Π2, to another problem, Π1, would indicate that there is no known polynomial-time solution for Π1. This is because a polynomial-time solution to Π1 would yield a polynomial-time solution to Π2. Similarly, because all NP problems can be reduced to the set, finding an NP-complete problem that can be solved in polynomial time would mean that P = NP.[2]
+Important open problems[edit]
+
+
+
+
+Diagram of complexity classes provided that P ≠ NP. The existence of problems in NP outside both P and NP-complete in this case was established by Ladner.[3]
+
+
+P versus NP problem[edit]
+Main article: P versus NP problem
+The complexity class P is often seen as a mathematical abstraction modeling those computational tasks that admit an efficient algorithm. This hypothesis is called the Cobham–Edmonds thesis. The complexity class NP, on the other hand, contains many problems that people would like to solve efficiently, but for which no efficient algorithm is known, such as the Boolean satisfiability problem, the Hamiltonian path problem and the vertex cover problem. Since deterministic Turing machines are special non-deterministic Turing machines, it is easily observed that each problem in P is also member of the class NP.
+The question of whether P equals NP is one of the most important open questions in theoretical computer science because of the wide implications of a solution.[2] If the answer is yes, many important problems can be shown to have more efficient solutions. These include various types of integer programming problems in operations research, many problems in logistics, protein structure prediction in biology,[4] and the ability to find formal proofs of pure mathematics theorems.[5] The P versus NP problem is one of the Millennium Prize Problems proposed by the Clay Mathematics Institute. There is a US$1,000,000 prize for resolving the problem.[6]
+Problems in NP not known to be in P or NP-complete[edit]
+It was shown by Ladner that if P ≠ NP then there exist problems in NP that are neither in P nor NP-complete.[3] Such problems are called NP-intermediate problems. The graph isomorphism problem, the discrete logarithm problem and the integer factorization problem are examples of problems believed to be NP-intermediate. They are some of the very few NP problems not known to be in P or to be NP-complete.
+The graph isomorphism problem is the computational problem of determining whether two finite graphs are isomorphic. An important unsolved problem in complexity theory is whether the graph isomorphism problem is in P, NP-complete, or NP-intermediate. The answer is not known, but it is believed that the problem is at least not NP-complete.[7] If graph isomorphism is NP-complete, the polynomial time hierarchy collapses to its second level.[8] Since it is widely believed that the polynomial hierarchy does not collapse to any finite level, it is believed that graph isomorphism is not NP-complete. The best algorithm for this problem, due to László Babai and Eugene Luks has run time 
+
+
+
+O
+(
+
+2
+
+
+n
+log
+⁡
+n
+
+
+
+)
+
+
+{\displaystyle O(2^{\sqrt {n\log n}})}
+
+ for graphs with n vertices, although some recent work by Babai offers some potentially new perspectives on this.[9]
+The integer factorization problem is the computational problem of determining the prime factorization of a given integer. Phrased as a decision problem, it is the problem of deciding whether the input has a prime factor less than k. No efficient integer factorization algorithm is known, and this fact forms the basis of several modern cryptographic systems, such as the RSA algorithm. The integer factorization problem is in NP and in co-NP (and even in UP and co-UP[10]). If the problem is NP-complete, the polynomial time hierarchy will collapse to its first level (i.e., NP will equal co-NP). The best known algorithm for integer factorization is the general number field sieve, which takes time 
+
+
+
+O
+(
+
+e
+
+
+
+(
+
+
+64
+9
+
+
+)
+
+
+1
+
+/
+
+3
+
+
+(
+log
+⁡
+n
+
+)
+
+1
+
+/
+
+3
+
+
+(
+log
+⁡
+log
+⁡
+n
+
+)
+
+2
+
+/
+
+3
+
+
+
+
+)
+
+
+{\displaystyle O(e^{\left({\frac {64}{9}}\right)^{1/3}(\log n)^{1/3}(\log \log n)^{2/3}})}
+
+[11] to factor an integer n. However, the best known quantum algorithm for this problem, Shor's algorithm, does run in polynomial time. Unfortunately, this fact doesn't say much about where the problem lies with respect to non-quantum complexity classes.
+Separations between other complexity classes[edit]
+Many known complexity classes are suspected to be unequal, but this has not been proved. For instance P ⊆ NP ⊆ PP ⊆ PSPACE, but it is possible that P = PSPACE. If P is not equal to NP, then P is not equal to PSPACE either. Since there are many known complexity classes between P and PSPACE, such as RP, BPP, PP, BQP, MA, PH, etc., it is possible that all these complexity classes collapse to one class. Proving that any of these classes are unequal would be a major breakthrough in complexity theory.
+Along the same lines, co-NP is the class containing the complement problems (i.e. problems with the yes/no answers reversed) of NP problems. It is believed[12] that NP is not equal to co-NP; however, it has not yet been proven. It is clear that if these two complexity classes are not equal then P is not equal to NP, since if P=NP we would also have P=co-NP, since problems in NP are dual to those in co-NP.
+Similarly, it is not known if L (the set of all problems that can be solved in logarithmic space) is strictly contained in P or equal to P. Again, there are many complexity classes between the two, such as NL and NC, and it is not known if they are distinct or equal classes.
+It is suspected that P and BPP are equal. However, it is currently open if BPP = NEXP.
+Intractability[edit]
+See also: Combinatorial explosion
+
+
+
+Look up tractable, feasible, intractability, or infeasible in Wiktionary, the free dictionary.
+
+
+A problem that can be solved in theory (e.g. given large but finite resources, especially time), but for which in practice any solution takes too many resources to be useful, is known as an intractable problem.[13] Conversely, a problem that can be solved in practice is called a tractable problem, literally "a problem that can be handled". The term infeasible (literally "cannot be done") is sometimes used interchangeably with intractable,[14] though this risks confusion with a feasible solution in mathematical optimization.[15]
+Tractable problems are frequently identified with problems that have polynomial-time solutions (P, PTIME); this is known as the Cobham–Edmonds thesis. Problems that are known to be intractable in this sense include those that are EXPTIME-hard. If NP is not the same as P, then NP-hard problems are also intractable in this sense.
+However, this identification is inexact: a polynomial-time solution with large exponent or large constant term grows quickly, and may be impractical for practical size problems; conversely, an exponential-time solution that grows slowly may be practical on realistic input, or a solution that takes a long time in the worst case may take a short time in most cases or the average case, and thus still be practical. Saying that a problem is not in P does not imply that all large cases of the problem are hard or even that most of them are. For example, the decision problem in Presburger arithmetic has been shown not to be in P, yet algorithms have been written that solve the problem in reasonable times in most cases. Similarly, algorithms can solve the NP-complete knapsack problem over a wide range of sizes in less than quadratic time and SAT solvers routinely handle large instances of the NP-complete Boolean satisfiability problem.
+To see why exponential-time algorithms are generally unusable in practice, consider a program that makes 2n operations before halting. For small n, say 100, and assuming for the sake of example that the computer does 1012 operations each second, the program would run for about 4 × 1010 years, which is the same order of magnitude as the age of the universe. Even with a much faster computer, the program would only be useful for very small instances and in that sense the intractability of a problem is somewhat independent of technological progress. However, an exponential-time algorithm that takes 1.0001n operations is practical until n gets relatively large.
+Similarly, a polynomial time algorithm is not always practical. If its running time is, say, n15, it is unreasonable to consider it efficient and it is still useless except on small instances. Indeed, in practice even n3 or n2 algorithms are often impractical on realistic sizes of problems.
+History[edit]
+An early example of algorithm complexity analysis is the running time analysis of the Euclidean algorithm done by Gabriel Lamé in 1844.
+Before the actual research explicitly devoted to the complexity of algorithmic problems started off, numerous foundations were laid out by various researchers. Most influential among these was the definition of Turing machines by Alan Turing in 1936, which turned out to be a very robust and flexible simplification of a computer.
+The beginning of systematic studies in computational complexity is attributed to the seminal 1965 paper "On the Computational Complexity of Algorithms" by Juris Hartmanis and Richard E. Stearns, which laid out the definitions of time complexity and space complexity, and proved the hierarchy theorems.[16] In addition, in 1965 Edmonds suggested to consider a "good" algorithm to be one with running time bounded by a polynomial of the input size.[17]
+Earlier papers studying problems solvable by Turing machines with specific bounded resources include[16] John Myhill's definition of linear bounded automata (Myhill 1960), Raymond Smullyan's study of rudimentary sets (1961), as well as Hisao Yamada's paper[18] on real-time computations (1962). Somewhat earlier, Boris Trakhtenbrot (1956), a pioneer in the field from the USSR, studied another specific complexity measure.[19] As he remembers:
+
+However, [my] initial interest [in automata theory] was increasingly set aside in favor of computational complexity, an exciting fusion of combinatorial methods, inherited from switching theory, with the conceptual arsenal of the theory of algorithms. These ideas had occurred to me earlier in 1955 when I coined the term "signalizing function", which is nowadays commonly known as "complexity measure".[20]
+
+In 1967, Manuel Blum developed an axiomatic complexity theory based on his axioms and proved an important result, the so-called, speed-up theorem. The field really began to flourish in 1971 when the US researcher Stephen Cook and, working independently, Leonid Levin in the USSR, proved that there exist practically relevant problems that are NP-complete. In 1972, Richard Karp took this idea a leap forward with his landmark paper, "Reducibility Among Combinatorial Problems", in which he showed that 21 diverse combinatorial and graph theoretical problems, each infamous for its computational intractability, are NP-complete.[21]
+See also[edit]
+
+
+Category:Computational problems
+Context of computational complexity
+Descriptive complexity theory
+Game complexity
+List of complexity classes
+List of computability and complexity topics
+List of important publications in theoretical computer science
+List of unsolved problems in computer science
+Parameterized complexity
+Proof complexity
+Quantum complexity theory
+Structural complexity theory
+Transcomputational problem
+
+
+References[edit]
+Citations[edit]
+
+
+^ See Arora & Barak 2009, Chapter 1: The computational model and why it doesn't matter
+^ a b See Sipser 2006, Chapter 7: Time complexity
+^ a b Ladner, Richard E. (1975), "On the structure of polynomial time reducibility" (PDF), Journal of the ACM, 22 (1): 151–171, doi:10.1145/321864.321877. 
+^ Berger, Bonnie A.; Leighton, T (1998), "Protein folding in the hydrophobic-hydrophilic (HP) model is NP-complete", Journal of Computational Biology, 5 (1): 27–40, doi:10.1089/cmb.1998.5.27, PMID 9541869. 
+^ Cook, Stephen (April 2000), The P versus NP Problem (PDF), Clay Mathematics Institute, retrieved 2006-10-18. 
+^ Jaffe, Arthur M. (2006), "The Millennium Grand Challenge in Mathematics" (PDF), Notices of the AMS, 53 (6), retrieved 2006-10-18. 
+^ Arvind, Vikraman; Kurur, Piyush P. (2006), "Graph isomorphism is in SPP", Information and Computation, 204 (5): 835–852, doi:10.1016/j.ic.2006.02.002. 
+^ Schöning, Uwe (1987). "Graph isomorphism is in the low hierarchy". Proceedings of the 4th Annual Symposium on Theoretical Aspects of Computer Science. Lecture Notes in Computer Science. 1987: 114–124. doi:10.1007/bfb0039599. ISBN 3-540-17219-X. ; also: Schöning, Uwe (1988). "Graph isomorphism is in the low hierarchy". Journal of Computer and System Sciences. 37 (3): 312–323. doi:10.1016/0022-0000(88)90010-4. 
+^ Babai, László (2016). "Graph Isomorphism in Quasipolynomial Time". arXiv:1512.03547  [cs.DS]. 
+^ Lance Fortnow. Computational Complexity Blog: Complexity Class of the Week: Factoring. September 13, 2002. http://weblog.fortnow.com/2002/09/complexity-class-of-week-factoring.html
+^ Wolfram MathWorld: Number Field Sieve
+^ Boaz Barak's course on Computational Complexity Lecture 2
+^ Hopcroft, J.E., Motwani, R. and Ullman, J.D. (2007) Introduction to Automata Theory, Languages, and Computation, Addison Wesley, Boston/San Francisco/New York (page 368)
+^ Meurant, Gerard (2014). Algorithms and Complexity. p. p. 4. ISBN 978-0-08093391-7. 
+^ Zobel, Justin (2015). Writing for Computer Science. p. 132. ISBN 978-1-44716639-9. 
+^ a b Fortnow & Homer (2003)
+^ Richard M. Karp, "Combinatorics, Complexity, and Randomness", 1985 Turing Award Lecture
+^ Yamada, H. (1962). "Real-Time Computation and Recursive Functions Not Real-Time Computable". IEEE Transactions on Electronic Computers. EC-11 (6): 753–760. doi:10.1109/TEC.1962.5219459. 
+^ Trakhtenbrot, B.A.: Signalizing functions and tabular operators. Uchionnye Zapiski Penzenskogo Pedinstituta (Transactions of the Penza Pedagogoical Institute) 4, 75–87 (1956) (in Russian)
+^ Boris Trakhtenbrot, "From Logic to Theoretical Computer Science – An Update". In: Pillars of Computer Science, LNCS 4800, Springer 2008.
+^ Richard M. Karp (1972), "Reducibility Among Combinatorial Problems" (PDF), in R. E. Miller and J. W. Thatcher (editors), Complexity of Computer Computations, New York: Plenum, pp. 85–103 CS1 maint: Extra text: editors list (link)
+
+
+Textbooks[edit]
+
+Arora, Sanjeev; Barak, Boaz (2009), Computational Complexity: A Modern Approach, Cambridge, ISBN 978-0-521-42426-4, Zbl 1193.68112 
+Downey, Rod; Fellows, Michael (1999), Parameterized complexity, Berlin, New York: Springer-Verlag 
+Du, Ding-Zhu; Ko, Ker-I (2000), Theory of Computational Complexity, John Wiley & Sons, ISBN 978-0-471-34506-0 
+Garey, Michael R.; Johnson, David S. (1979), Computers and Intractability: A Guide to the Theory of NP-Completeness, W. H. Freeman, ISBN 0-7167-1045-5 
+Goldreich, Oded (2008), Computational Complexity: A Conceptual Perspective, Cambridge University Press 
+van Leeuwen, Jan, ed. (1990), Handbook of theoretical computer science (vol. A): algorithms and complexity, MIT Press, ISBN 978-0-444-88071-0 
+Papadimitriou, Christos (1994), Computational Complexity (1st ed.), Addison Wesley, ISBN 0-201-53082-1 
+Sipser, Michael (2006), Introduction to the Theory of Computation (2nd ed.), USA: Thomson Course Technology, ISBN 0-534-95097-3 
+
+Surveys[edit]
+
+Khalil, Hatem; Ulery, Dana (1976), "A Review of Current Studies on Complexity of Algorithms for Partial Differential Equations", Proceedings of the annual conference on - ACM 76, ACM '76 Proceedings of the 1976 Annual Conference: 197, doi:10.1145/800191.805573 
+Cook, Stephen (1983), "An overview of computational complexity" (PDF), Commun. ACM, ACM, 26 (6): 400–408, doi:10.1145/358141.358144, ISSN 0001-0782 
+Fortnow, Lance; Homer, Steven (2003), "A Short History of Computational Complexity" (PDF), Bulletin of the EATCS, 80: 95–133 
+Mertens, Stephan (2002), "Computational Complexity for Physicists", Computing in Science and Eng., Piscataway, NJ, USA: IEEE Educational Activities Department, 4 (3): 31–47, arXiv:cond-mat/0012185 , doi:10.1109/5992.998639, ISSN 1521-9615 
+
+External links[edit]
+
+The Complexity Zoo
+Hazewinkel, Michiel, ed. (2001) [1994], "Computational complexity classes", Encyclopedia of Mathematics, Springer Science+Business Media B.V. / Kluwer Academic Publishers, ISBN 978-1-55608-010-4 
+http://mathoverflow.net/questions/34487/what-are-the-most-important-results-and-papers-in-complexity-theory-that-every/
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Important complexity classes (more)
+
+
+
+Considered feasible
+
+
+
+DLOGTIME
+AC0
+ACC0
+TC0
+L
+SL
+RL
+NL
+NC
+SC
+CC
+P
+
+P-complete
+
+
+ZPP
+RP
+BPP
+BQP
+APX
+
+
+
+
+
+Suspected infeasible
+
+
+
+UP
+NP
+
+NP-complete
+NP-hard
+co-NP
+co-NP-complete
+
+
+AM
+QMA
+PH
+⊕P
+PP
+#P
+
+#P-complete
+
+
+IP
+PSPACE
+
+PSPACE-complete
+
+
+
+
+
+
+
+Considered infeasible
+
+
+
+EXPTIME
+NEXPTIME
+EXPSPACE
+ELEMENTARY
+PR
+R
+RE
+ALL
+
+
+
+
+
+Class hierarchies
+
+
+
+Polynomial hierarchy
+Exponential hierarchy
+Grzegorczyk hierarchy
+Arithmetical hierarchy
+Boolean hierarchy
+
+
+
+
+
+Families of classes
+
+
+
+DTIME
+NTIME
+DSPACE
+NSPACE
+Probabilistically checkable proof
+Interactive proof system
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Major fields of computer science
+
+
+
+
+Note: This template roughly follows the 2012 ACM Computing Classification System.
+
+
+
+Hardware
+
+
+
+Printed circuit board
+Peripheral
+Integrated circuit
+Very-large-scale integration
+Energy consumption
+Electronic design automation
+
+
+
+
+
+Computer systems
+organization
+
+
+
+Computer architecture
+Embedded system
+Real-time computing
+Dependability
+
+
+
+
+
+Networks
+
+
+
+Network architecture
+Network protocol
+Network components
+Network scheduler
+Network performance evaluation
+Network service
+
+
+
+
+
+Software organization
+
+
+
+Interpreter
+Middleware
+Virtual machine
+Operating system
+Software quality
+
+
+
+
+
+Software notations
+and tools
+
+
+
+Programming paradigm
+Programming language
+Compiler
+Domain-specific language
+Modeling language
+Software framework
+Integrated development environment
+Software configuration management
+Software library
+Software repository
+
+
+
+
+
+Software development
+
+
+
+Software development process
+Requirements analysis
+Software design
+Software construction
+Software deployment
+Software maintenance
+Programming team
+Open-source model
+
+
+
+
+
+Theory of computation
+
+
+
+Model of computation
+Formal language
+Automata theory
+Computational complexity theory
+Logic
+Semantics
+
+
+
+
+
+Algorithms
+
+
+
+Algorithm design
+Analysis of algorithms
+Randomized algorithm
+Computational geometry
+
+
+
+
+
+Mathematics
+of computing
+
+
+
+Discrete mathematics
+Probability
+Statistics
+Mathematical software
+Information theory
+Mathematical analysis
+Numerical analysis
+
+
+
+
+
+Information
+systems
+
+
+
+Database management system
+Information storage systems
+Enterprise information system
+Social information systems
+Geographic information system
+Decision support system
+Process control system
+Multimedia information system
+Data mining
+Digital library
+Computing platform
+Digital marketing
+World Wide Web
+Information retrieval
+
+
+
+
+
+Security
+
+
+
+Cryptography
+Formal methods
+Security services
+Intrusion detection system
+Hardware security
+Network security
+Information security
+Application security
+
+
+
+
+
+Human–computer
+interaction
+
+
+
+Interaction design
+Social computing
+Ubiquitous computing
+Visualization
+Accessibility
+
+
+
+
+
+Concurrency
+
+
+
+Concurrent computing
+Parallel computing
+Distributed computing
+Multithreading
+Multiprocessing
+
+
+
+
+
+Artificial
+intelligence
+
+
+
+Natural language processing
+Knowledge representation and reasoning
+Computer vision
+Automated planning and scheduling
+Search methodology
+Control method
+Philosophy of artificial intelligence
+Distributed artificial intelligence
+
+
+
+
+
+Machine learning
+
+
+
+Supervised learning
+Unsupervised learning
+Reinforcement learning
+Multi-task learning
+Cross-validation
+
+
+
+
+
+Graphics
+
+
+
+Animation
+Rendering
+Image manipulation
+Graphics processing unit
+Mixed reality
+Virtual reality
+Image compression
+Solid modeling
+
+
+
+
+
+Applied
+computing
+
+
+
+E-commerce
+Enterprise software
+Computational mathematics
+Computational physics
+Computational chemistry
+Computational biology
+Computational social science
+Computational engineering
+Computational healthcare
+Digital art
+Electronic publishing
+Cyberwarfare
+Electronic voting
+Video game
+Word processing
+Operations research
+Educational technology
+Document management
+
+
+
+
+
+
+
+
+ Book
+ Category
+ Portal
+WikiProject
+ Commons
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+GND: 4120591-1
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Computational_complexity_theory&oldid=811980244"					Categories: Computational complexity theoryComputational fields of studyHidden categories: CS1 maint: Extra text: editors listUse mdy dates from September 2017Wikipedia articles with GND identifiers

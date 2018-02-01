@@ -1,0 +1,795 @@
+
+amazon simple storage service
+
+
+type site
+
+cloud storage
+
+
+available
+english
+
+
+owner
+amazoncom
+
+
+website
+awsamazoncoms3
+
+
+ipv6 support
+
+
+
+commercial
+
+
+
+registration
+required
+
+
+launched
+march 2006 years 20060314
+
+
+current status
+active
+
+
+amazon simple storage service service offered amazon services amazon provides storage services interfaces rest soap bittorrent1 amazon launched fifth publicly available servicecitation needed united states march 20062 europe november 20073
+amazon says uses scalable storage infrastructure amazoncom uses global ecommerce network4
+amazon reported store trillion objects april 2013update5 billion october 20076 billion january 2008 billion october 20087 billion march 20098 billion objects august 20099 billion objects march 201010 uses include hosting image hosting storage backup systems guarantees monthly uptime servicelevel agreement sla11 minutes downtime month12
+
+
+
+contents
+
+
+design
+pricing
+hosting entire websites
+notable users
+amazon logs
+competing services
+amazon tools
+notes
+references
+external links
+
+
+
+designedit
+
+
+
+
+summit 2013 werner vogels announces trillion objects stored
+
+
+amazon make details design public though clearly manages data object storage architecture according amazon design aims provide scalability high availability latency commodity costscitation needed
+designed provide 99999999999 durability 9999 availability objects given year13 though servicelevel agreement durability
+stores arbitrary objects computer files terabytes size accompanied kilobytes metadata objects organized buckets owned amazon services account identified within bucket unique userassigned amazon machine images amis used elastic compute cloud exported bundles14
+buckets objects created listed retrieved using either reststyle http interface soap interface additionally objects downloaded using http interface bittorrent protocol
+requests authorized using access control list associated bucket object
+bucket names keys chosen objects addressable using http urls
+
+https3amazonawscombucketkey
+httpbuckets3amazonawscomkey
+httpbucketkey bucket cname record pointing buckets3amazonawscom
+
+objects accessible unmodified http clients used replace significant existing static hosting infrastructure15 amazon authentication mechanism allows bucket owner create authenticated timebounded validity someone construct handed thirdparty access period next minutes next hours
+every item bucket also served bittorrent feed store seed host torrent bittorrent client retrieve file drastically reduces bandwidth costs download popular objects bittorrent reduce bandwidth provide native bandwidth limiting users access automated cost control lead users freetier small hobby users amassing dramatic bills representatives previously stated feature design table 2006 201016 recently stated feature longer development17
+bucket configured save http information sibling bucket used later data mining operations18
+pricingedit
+inception amazon charged users us015 gigabytemonth additional charges bandwidth used sending receiving data perrequest charge19 november 2008 pricing moved tiers users storing terabytes receive discounted pricing7
+hosting entire websitesedit
+amazon provides options host static websites index document support error document support20 support added result user requests dating least 200621 example suppose amazon configured cname records host httpsubdomainexamplecom past visitor would find xmlformatted list objects instead general landing page indexhtml accommodate casual visitors however websites hosted designate default page display another page display event partially invalid
+notable usersedit
+photo hosting service smugmug used since april 2006 experienced number initial outages slowdowns year described considerably reliable internal storage claimed saved almost million storage costs22
+various user mode file system fusebased file systems unixlike operating systems linux used mount bucket file system note semantics file system posix file system file system behave entirely expected23
+apache hadoop file systems hosted requirements file system partially s324 result hadoop used mapreduce algorithms servers reading data writing results back
+netflix uses amazon services storage compute operations system record netflix implemented tool s3mper25 address limitations eventual consistency amazon provides26 s3mper stores filesystem metadata filenames directory structure permissions amazon dynamodb
+reddit hosted s327
+dropbox28 bitcasa29 tahoelafsons330 among others online backup synchronization services
+mojang hosts minecraft game updates player skins s331
+tumblr formspring pinterest host images
+swiftypes mentioned company uses s332
+used past enterprises long term archiving solution amazon glacier releasedcitation needed
+become popular method object storage33 result applications built natively support api34 includes applications write data well s3compatible object stores35
+
+
+type
+company name
+product
+
+
+client backup
+haystack software
+backup36
+
+
+client backup
+cloudberry
+cloudberry backup37
+
+
+client backup
+opensource
+duplicati38
+
+
+client backup
+novosoft
+handy backup39
+
+
+file browser
+odrive
+odrive40
+
+
+mysql backup
+oracle
+mysql enterprise backup
+
+
+oracle database backup
+oracle
+oracle secure backup cloud manager41
+
+
+server backup
+commvault
+commvault42
+
+
+server backup
+veritas
+netbackup43
+
+
+server backup
+asigra
+asigra cloud backup44
+
+
+server backup
+rubrik
+rubrik45
+
+
+cloud storage
+wasabi
+wasabi storage
+
+
+cloud storage gateway
+ctera networks
+series46
+
+
+cloud storage gateway
+avere
+series47
+
+
+cloud storage gateway
+
+cloudarray48
+
+
+cloud storage gateway
+microsoft
+storsimple49
+
+
+cloud storage gateway
+nasuni
+series50
+
+
+cloud storage gateway
+netapp
+altavault51
+
+
+cloud storage gateway
+panzura
+global file system52
+
+
+sync share
+storage made easy
+
+
+
+hybrid storage
+cloudian
+cloudian hyperstore53
+
+
+hybrid storage
+noobaa
+noobaa storage
+
+
+onpremises storage
+pure storage
+flashblade
+
+
+onpremises storage
+scality
+ring storage54
+
+
+open source
+zenkoio
+open source server55
+
+
+amazon logsedit
+amazon allows users enable disable logging enabled logs stored amazon buckets analyzed logs contain useful information like
+
+date time access users content
+protocol used
+http status
+turn around time
+
+logs analyzed managed using thirdparty tools s3stat cloudlytics qloudstat stats splunk
+competing servicesedit
+broad adoption amazon related tooling given rise competing services based services standard programming interface however differentiated underlying technologies supporting business models56 cloud storage standard like electrical networking standards enables competing service providers design services clients using different parts different ways still communicate provide following benefits57
+
+increase competition providing rules level playing field encouraging market entry smaller companies might otherwise precluded
+encourage innovation cloud storage tool vendors developers focus improving products services instead focusing compatibility
+allow economies scale implementation service provider encounters outage clients outgrow tools need faster operating systems tools easily swap solutions
+provide timely solutions delivering functionality response demands marketplace business growth locations increases demand clients easily change service providers simply subscribing service
+
+examples competing compliant storage implementations include
+
+pure storages flashblade
+minio object storage
+noobaa hybrid storage
+scality ring
+google cloud storage
+cloudian hyperstore
+bluemix object storage
+cleversafe onpremise clouds
+netapp storagegrid onpremise clouds
+rackspaces cloud files
+openstack swift
+object scaler onpremises cloud storage
+apache cloudstack
+connectrias cloud storage5859
+eucalyptus
+nimbula acquired oracle
+riak cs60 implements subset including rest acls objects buckets
+ceph rados gateway61
+digitalocean spaces62
+
+amazon toolsedit
+amazon provides thirdparty developers describes various operations related request response structures error codes63
+notesedit
+
+
+amazon cloud computing storage files images videos awsamazoncom 20060301 retrieved 20130809
+amazon services launches amazon press release amazoncom 20060314 retrieved 20150922
+amazon services offers european storage amazon press release amazoncom 20071106 retrieved 20150922
+data storage infrastructure amazon uses global network sites
+amazon trillion objects million requests second
+vogels werner 20080319 happy birthday amazon things distributed
+amazon busier ever amazoncom 20081008
+year billion objects today billion
+amazons simple storage service alone billion objects
+brian lillie equinix said amazon hosting billion objects
+amazon
+minhour hours days
+amazon protecting data
+starting websphere cloud saving data
+amazon hosting
+developer forums limit bandwidth forumsawsamazoncom retrieved 20130809
+developer forums status bill capping forumsawsamazoncom retrieved 20130809
+httpdocsawsamazoncomamazons3latestdevserverlogshtml server access logging
+amazon pricing amazoncom 20090205 retrieved 20140502
+amazon simple storage service docsamazonwebservicescom retrieved 20130809
+garnaat mitch 2009 default default document possible specify retrieved 2010
+amazon show money smugmug blog smugmug november 2006
+comparison s3ql file systems retrieved 20120629
+hadoop filesystem specification
+s3mper consistency cloud
+introduction amazon amazon retrieved december 2017
+case study reddit awsamazoncom 2015 retrieved march 2015
+files stored november 2010
+bitcasa legal 2013
+tahoelafsons3 august 2012
+minecraft beta 1202 january 2010
+swiftype explains cloud stack july 2013
+lelii sonia september 2013 amazon cloud storage leads pack techtargetcom retrieved 2016
+evans chris january 2016 become defacto standard architectingit retrieved 2016
+leopold george july 2017 scality targets multicloud data storage datanami news portal
+sadun erica november 2012 cloud backup adds lowcost amazon glacier support wwwengadgetcom retrieved 2016
+moran december 2015 data backup software review cloudberry backup wwwsmallbusinesscomputingcom retrieved 2016
+sanders james august 2014 securely back personal files duplicati open source clients creators wwwtechrepubliccom retrieved 2016
+handy backup april 2017 amazon backup software cloud backup wwwhandybackupnet retrieved september 2017
+lohnash mike june 2015 odrive review folder clouds wwwbackupreviewcom retrieved 2016
+oracle database backup cloud amazon simple storage service oraclecom retrieved 2016
+cloud storage support commvaultcom retrieved 2016
+veritas launches netbackup emphasis cloud backup searchdatabackup retrieved 20160531
+asigra veeam remain users choice backup applications searchdatabackup retrieved 20160531
+startup rubrik aiming erase backup recovery software wwweweekcom retrieved 20160531
+netapp seagate hill seagate rolls storage manufacturers ctera networks offers incloud server backup spectralogic talks hybrid flashtape cartridge welcome tape robot overlords backup ctera networks offers incloud server retrieved 20160531
+mellor chris october 2015 like wedding cake avere unveils threetier cloud theregistercom retrieved june 2016
+armstrong adam january 2015 cloudarray launched storagereviewcom retrieved june 2016
+mackie kurt june 2015 microsoft storsimple extends cloud support openstack redmondchannelpartnercom retrieved june 2016
+mellor chris 2015 azure gives blues nasuni cloud storage poll theregistercom retrieved june 2016
+ramel david 2015 netapp introduces altavault cloud backup awsinsidernet retrieved june 2016
+knuth gabe 2015 panzura explains global file system help deploy xendesktop retrieved june 2016 brianmaddencom
+cloudian deploys amazon s3compatible onpremises object storage sold metered marketplace cloudian cloudian retrieved 20161121
+scality ring connector scality scality retrieved 20170902
+armstrong adam july 2017 scality releases zenko multicloud controller storage review
+watters audrey cloud community debates amazon standard media retrieved december 2012
+committee standards workshop planning board telecommunications computer applications commission engineering technical systems national research council 1990 crossroads information technology standards washington national academies press 1990 36–37 maint uses authors parameter link
+connectria cloud storage amazon compatible cloud storage service connectria connectria retrieved december 2012
+connectria hosting launches cloud storage solution connectria hosting retrieved december 2012
+riak basho 20130118 retrieved 20130809
+ceph object gateway ceph documentation cephcom retrieved 20130809
+digitalocean spaces digitalocean documentation developersdigitaloceancom retrieved 20171030
+amazon simple storage service documentation
+
+
+referencesedit
+
+
+server access logging
+amazon developer guide 20060301
+amazon introduces storage pricing tiers 20081008
+rightscale ruby library access amazon cloudfront 20071027
+
+
+external linksedit
+
+official website
+
+
+
+
+
+
+
+
+
+
+
+
+cloud computing
+
+
+
+applications
+
+
+
+
+google
+
+suite
+docs sheets slides
+
+
+cloud closed
+microsoft online
+rackspace
+salesforce
+zoho
+
+
+
+
+
+platforms
+
+
+
+alpha7
+amazon
+appscale
+
+bluemix
+cloud foundry
+cocaine paas
+engine yard
+platform
+helion
+predix
+google engine
+greenqloud
+heroku
+inktank
+jelastic
+mendix
+microsoft azure
+outsystems
+openqrm
+openshift
+pythonanywhere
+rightscale
+forcecom
+cloud platform
+vmware vcloud
+wavemaker
+
+
+
+
+
+infrastructure
+
+
+
+amazon
+abiquo enterprise edition
+cloudstack
+ctrls
+digitalocean
+atmos
+eucalyptus
+fujitsu
+gogrid
+google cloud platform
+greenbutton
+greenqloud
+cloud computing
+iland
+joyent
+lunacloud
+nimbula
+nimbus
+opennebula
+openstack
+orionvm
+rackspace cloud
+softlayer
+zadara storage
+libvirt
+libguestfs
+ovirt
+virtual machine manager
+wakamevdc
+virtual private cloud ondemand
+
+
+
+
+
+technologies
+
+
+
+cloud database
+data centers
+distributed file system cloud
+hardware virtualization
+internet
+networking
+security
+structured storage
+virtual appliance
+apis
+virtual private cloud
+
+
+
+
+
+
+
+
+category
+commons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+amazon
+
+
+
+people
+
+
+
+
+current
+
+
+
+jeff bezos
+tony hsieh
+werner vogels
+gregg zehr
+
+
+
+
+
+former
+
+
+
+rick dalzell
+brian mcbride
+shriram
+szkutak
+brian valentine
+christopher north
+
+
+
+
+
+
+
+
+facilities
+
+
+
+doppler
+
+
+
+
+
+
+
+products
+services
+
+
+
+
+websites
+
+
+
+a9com
+abebooks
+amazoncom
+alexa internet
+book depository
+bookfinder
+china
+curse
+digital photography review
+fresh
+goodreads
+imdb
+
+office mojo
+withoutabox
+
+
+jungleecom
+local
+marketplace
+payments
+twitchtv
+wireless
+wootcom
+zappos
+souqcom
+
+
+
+
+
+services
+
+
+
+
+cloudfront
+dynamodb
+
+
+mturk
+neptune
+product advertising
+
+
+
+simpledb
+
+
+silk
+glacier
+storywriter
+
+
+
+
+
+digital
+
+
+
+alexa
+appstore
+audible
+comixology
+amazon drive
+video
+prime
+
+
+
+
+kindle store
+music
+reflexive entertainment
+fire
+amazon digital game store
+
+
+
+
+
+devices
+
+
+
+blink home
+cloud
+dash buttons
+dash wand
+echo
+
+show
+
+
+kindle
+kindle fire
+
+fire
+fire
+
+
+fire
+
+stick
+
+
+fire phone
+
+
+
+
+
+technology
+
+
+
+1click
+amazon game studios
+amazon robotics
+carbonado
+dynamo
+graphiq
+gurupa
+lab126
+double helix games
+obidos
+liquavista
+
+
+
+
+
+publishing
+
+
+
+amazon publishing
+amazon studios
+breakthrough novel award
+best books year
+kindle direct publishing
+
+
+
+
+
+retail
+
+
+
+amazon books
+amazon
+whole foods market
+
+
+
+
+
+logistics
+
+
+
+amazon
+amazon prime
+
+
+
+
+
+former
+
+
+
+things
+askville
+amapedia
+amie street songza
+cdnow
+diaperscom
+endlesscom
+lexcycle
+livingsocial
+lovefilm
+mobipocket
+planetall
+sellaband
+shelfari
+
+
+
+
+
+
+
+
+
+
+
+
+amazon light
+asin
+controversies
+fishbowl
+locker
+perfect amazoncom
+statistically improbable phrase
+vine
+list amazon brands
+list amazon locations
+list mergers acquisitions amazon
+list amazon products services
+librarything
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleamazons3oldid817494362 categories amazon servicescloud storagefile hostingnetwork file systemshidden categories maint uses authors parameterall articles unsourced statementsarticles unsourced statements june 2017articles containing potentially dated statements april 2013all articles containing potentially dated statementsarticles unsourced statements august 2016articles unsourced statements june 2013

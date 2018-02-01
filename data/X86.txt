@@ -1,0 +1,2509 @@
+This article is about Intel microprocessor architecture in general. For the 32-bit generation of this architecture that is also referred to as "x86", see IA-32.
+
+x86
+
+Designer
+Intel, AMD
+
+
+Bits
+16-bit, 32-bit and 64-bit
+
+
+Introduced
+1978 (16-bit), 1985 (32-bit), 2003 (64-bit)
+
+
+Design
+CISC
+
+
+Type
+Register–memory
+
+
+Encoding
+Variable (1 to 15 bytes)
+
+
+Branching
+Condition code
+
+
+Endianness
+Little
+
+
+Page size
+8086–i286: None
+i386, i486: 4 KB pages
+P5 Pentium: added 4 MB pages
+(Legacy PAE: 4 KB→2 MB)
+x86-64: added 1 GB pages
+
+
+Extensions
+x87, IA-32, X86-64, MMX, 3DNow!, SSE, SSE2, SSE3, SSSE3, SSE4, SSE4.2, SSE5, AES-NI, CLMUL, RdRand, SHA, MPX, SGX, XOP, F16C, ADX, BMI, FMA, AVX, AVX2, AVX512, VT-x, AMD-V, TSX, ASF
+
+
+Open
+Partly. For some advanced features, x86 may require license from Intel; x86-64 may require an additional license from AMD. The 80486 processor has been on the market for more than 20 years[1] and so cannot be subject to patent claims. The pre-586 subset of the x86 architecture is therefore fully open.
+
+
+Registers
+
+
+General purpose
+
+
+
+16-bit: 6 semi-dedicated registers, BP and SP are not general-purpose
+32-bit: 8 GPRs, including EBP and ESP
+64-bit: 16 GPRs, including RBP and RSP
+
+
+
+
+
+Floating point
+
+
+
+16-bit: optional separate x87 FPU
+32-bit: optional separate or integrated x87 FPU, integrated SSE2 units in later processors
+64-bit: integrated x87 and SSE2 units
+
+
+
+
+
+
+
+
+
+Intel 8086
+
+
+
+
+
+
+Intel Core 2 Duo –  an example of an x86-compatible, 64-bit multicore processor
+
+
+
+
+
+
+AMD Athlon (early version) –  a technically different but fully compatible x86 implementation
+
+
+x86 is a family of backward-compatible instruction set architectures[a] based on the Intel 8086 CPU and its Intel 8088 variant. The 8086 was introduced in 1978 as a fully 16-bit extension of Intel's 8-bit-based 8080 microprocessor, with memory segmentation as a solution for addressing more memory than can be covered by a plain 16-bit address. The term "x86" came into being because the names of several successors to Intel's 8086 processor end in "86", including the 80186, 80286, 80386 and 80486 processors.
+Many additions and extensions have been added to the x86 instruction set over the years, almost consistently with full backward compatibility.[b] The architecture has been implemented in processors from Intel, Cyrix, AMD, VIA and many other companies; there are also open implementations, such as the Zet SoC platform.[2]
+The term is not synonymous with IBM PC compatibility, as this implies a multitude of other computer hardware; embedded systems, as well as general-purpose computers, used x86 chips before the PC-compatible market started,[c] some of them before the IBM PC (1981) itself.
+As of 2017, the majority of personal computers and laptops sold are based on the x86 architecture (despite inroads from Chromebook-style ARM designs, the segment-leading[citation needed] Apple MacBook family remains exclusively x86), while other categories—especially high-volume mobile categories such as smartphones or tablets—are dominated by ARM; at the high end, x86 continues to dominate compute-intensive workstation and cloud computing segments.[3]
+
+
+
+Contents
+
+
+1 Overview
+2 Chronology
+3 History
+
+3.1 Other manufacturers
+3.2 Extensions of word size
+
+
+4 Overview
+
+4.1 Basic properties of the architecture
+
+4.1.1 Floating point and SIMD
+
+
+4.2 Current implementations
+
+
+5 Segmentation
+6 Addressing modes
+7 x86 registers
+
+7.1 16-bit
+7.2 32-bit
+7.3 64-bit
+7.4 128-bit
+7.5 256-bit
+7.6 512-bit
+7.7 Miscellaneous/special purpose
+7.8 Purpose
+7.9 Structure
+
+
+8 Operating modes
+
+8.1 Real mode
+8.2 Protected mode
+
+8.2.1 Virtual 8086 mode
+
+
+8.3 Long mode
+
+
+9 Extensions
+
+9.1 Floating point unit
+9.2 MMX
+9.3 3DNow!
+9.4 SSE
+9.5 Physical Address Extension (PAE)
+9.6 x86-64
+9.7 Virtualization
+
+
+10 See also
+11 Notes
+12 References
+13 Further reading
+14 External links
+
+
+
+Overview[edit]
+In the 1980s and early 1990s, when the 8088 and 80286 were still in common use, the term x86 usually represented any 8086 compatible CPU. Today, however, x86 usually implies a binary compatibility also with the 32-bit instruction set of the 80386. This is due to the fact that this instruction set has become something of a lowest common denominator for many modern operating systems and probably also because the term became common after the introduction of the 80386 in 1985.
+A few years after the introduction of the 8086 and 8088, Intel added some complexity to its naming scheme and terminology as the "iAPX" of the ambitious but ill-fated Intel iAPX 432 processor was tried on the more successful 8086 family of chips,[d] applied as a kind of system-level prefix. An 8086 system, including coprocessors such as 8087 and 8089, as well as simpler Intel-specific system chips,[e] was thereby described as an iAPX 86 system.[4][f] There were also terms iRMX (for operating systems), iSBC (for single-board computers), and iSBX (for multimodule boards based on the 8086-architecture) –  all together under the heading Microsystem 80.[5][6] However, this naming scheme was quite temporary, lasting for a few years during the early 1980s.[g]
+Although the 8086 was primarily developed for embedded systems and small multi-user or single-user computers, largely as a response to the successful 8080-compatible Zilog Z80,[7] the x86 line soon grew in features and processing power. Today, x86 is ubiquitous in both stationary and portable personal computers, and is also used in midrange computers, workstations, servers and most new supercomputer clusters of the TOP500 list. A large amount of software, including operating systems (OSs) such as DOS, Windows, Linux, FreeBSD, NetBSD, OpenBSD, Solaris and macOS, functions with x86-based hardware.
+Modern x86 is relatively uncommon in embedded systems, however, and small low power applications (using tiny batteries) as well as low-cost microprocessor markets, such as home appliances and toys, lack any significant x86 presence.[h] Simple 8-bit and 16-bit based architectures are common here, although the x86-compatible VIA C7, VIA Nano, AMD's Geode, Athlon Neo and Intel Atom are examples of 32- and 64-bit designs used in some relatively low power and low cost segments.
+There have been several attempts, including by Intel itself, to end the market dominance of the "inelegant" x86 architecture designed directly from the first simple 8-bit microprocessors. Examples of this are the iAPX 432 (a project originally named the "Intel 8800"[8]), the Intel 960, Intel 860 and the Intel/Hewlett-Packard Itanium architecture. However, the continuous refinement of x86 microarchitectures, circuitry and semiconductor manufacturing would make it hard to replace x86 in many segments. AMD's 64-bit extension of x86 (which Intel eventually responded to with a compatible design)[9] and the scalability of x86 chips such as the eight-core Intel Xeon and 12-core AMD Opteron is underlining x86 as an example of how continuous refinement of established industry standards can resist the competition from completely new architectures.[10]
+Chronology[edit]
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (October 2016) (Learn how and when to remove this template message)
+
+
+
+The table below lists processor models and model series implementing variations of the x86 instruction set, in chronological order. Each line item is characterized by significantly improved or commercially successful processor microarchitecture designs.
+
+
+First introduced
+Prominent CPU brands
+Linear address size (bits)
+Segment / offset size (bits)
+Physical address size (bits)
+Notable (new) features
+
+
+1978
+Intel 8086, Intel 8088 and clones
+16
+N/A
+20
+First x86 microprocessors
+
+
+1982
+Intel 80186, Intel 80188 and clones, NEC V20/V30
+16
+N/A
+20
+Hardware for fast address calculations, fast multiplication and division
+
+
+1982
+Intel 80286 and clones
+16
+14 / 16
+24
+MMU, for protected mode and a larger address space
+
+
+1985
+Intel 80386 and clones, AMD Am386
+32
+14 / 32
+32
+32-bit instruction set, MMU with paging, PGA132 socket
+
+
+1989
+Intel 80486 and clones, AMD Am486
+32
+14 / 32
+32
+RISC-like pipelining, integrated x87 FPU (80-bit), on-chip cache, PGA168 socket
+
+
+1992
+Cyrix Cx486SLC, Cyrix Cx486DLC
+32
+14 / 32
+32
+L1 cache and pipelining introduced into the 386 platform, PGA132 socket
+
+
+1993
+Pentium, Pentium MMX, Rise mP6
+32
+14 / 32
+32
+Superscalar, 64-bit databus, faster FPU, MMX (2× 32-bit), Socket 7, SMP
+
+
+1995
+Pentium Pro
+32
+14 / 32
+36 (PAE)
+µ-op translation, conditional move instructions, out-of-order, register renaming, speculative execution, PAE (Pentium Pro), in-package L2 cache (Pentium Pro), Socket 8
+
+
+1996
+AMD K5, Cyrix 6x86, Cyrix MII, Nx586 (1994), IDT/Centaur-C6, Cyrix III-Samuel (2000), VIA C3-Samuel2 / VIA C3-Ezra (2001)
+32
+14 / 32
+32
+Discrete microarchitecture (µ-op translation)
+
+
+1997
+Am5x86, Cyrix 5x86, Pentium OverDrive
+32
+14 / 32
+32
+Partial Pentium's specification brought into the 486 platform
+
+
+1997
+Pentium II/III, Celeron, Xeon
+32
+14 / 32
+36 (PAE)
+SSE (2× 64-bit), on-die L2 Cache (Mendocino, Coppermine), SLOT 1 or Socket 370
+
+
+1997
+AMD K6/2/III, Cyrix III-Joshua (2000)
+32
+14 / 32
+32
+On-die L2-Cache (K6-III, Cyrix III Joshua), 3DNow!, no PAE support, Super Socket 7 (K6-2)
+
+
+1999
+Athlon, Athlon XP
+32
+14 / 32
+36 (PAE[11])
+Superscalar FPU, wide design (up to three x86 instr./clock), Slot A or Socket A, SMP
+
+
+2000
+Pentium 4
+32
+14 / 32
+36 (PAE)
+Deeply pipelined, 20 pipeline stages, Intel VT-x, Rapid Execution Engine, Execution Trace Cache, Replay system, Quad-Pumped Front-Side Bus, high frequency, SSE2, hyper-threading, Socket 478
+
+
+2000
+Transmeta Crusoe, Transmeta Efficeon
+32
+14 / 32
+32
+VLIW design with x86 emulator, on-die memory controller
+
+
+2001
+Intel Itanium IA-32 compatibility mode
+32
+14 / 32
+N/A
+EPIC architecture with an on-package engine (pre-2006 chips, later using IA-32 Execution Layer) that provides backward support for most IA-32 applications
+
+
+2003
+Pentium M, VIA C7 (2005), Intel Core (2006)
+32
+14 / 32
+36 (PAE)
+Optimized for low thermal design power, four pumped FSB, μ-op fusion
+
+
+2003
+Athlon 64, Athlon 64 X2 (2005), Sempron (2004), Opteron
+64
+N/A
+36 (Athlon FX, Sampron)/40 (Opteron)
+AMD64 processor (excluding 32-bit Sempron), on-die memory controller, HyperTransport, CMP, virtualization (AMD-V) on some models, Socket 754/939/940 or AM2 socket
+
+
+2005
+Pentium 4 Prescott F/506/516/5x1/6xx, Celeron D 3x1/3x6/355, Pentium D
+64
+N/A
+36
+EM64T technology introduced, very deeply pipelined, 31 pipeline stages, high frequency, SSE3, LGA 775 socket, CMP, x86-64
+
+
+2006
+Intel Core 2
+64
+N/A
+36 (Intel Core 2,[12] Xeon 5100 [13]/40 (Xeon 7200/7300 on LGA771[14])
+Intel 64 processor, low power, multi-core, lower clock frequency, SSE4 (Penryn), wide dynamic execution, µ-op fusion, macro-µ-op fusion, virtualization (Intel VT) on some models
+
+
+2007
+DM&P Vortex86
+32
+14 / 32
+36
+in-order core with high pipeline, deep integrated with sound&graphic unit(SoC), on-chip memory controller, low clock, low power for embedded use
+
+
+2007
+AMD Phenom, AMD Phenom II (2008)
+64
+N/A
+40 (Phenom, Athlon, Sampron)/48 (Phenom II, Opteron)
+Monolithic quad-core, SSE4a, HyperTransport 3, AM2+ or AM3 socket
+
+
+2008
+VIA Nano
+64
+N/A
+36
+Out-of-order, superscalar, 64-bit (integer CPU), hardware-based encryption; very low power; adaptive power management
+
+
+2008
+1st gen. Intel Core i3, i5 and i7 (Nehalem and Westmere)
+64
+N/A
+40
+Hyper-Threading, Intel Turbo Boost 1.0, AES-NI, Out-of-order, QuickPath, native memory controller, on-die L3 cache, modular, Intel HD Graphics introduced onto CPU chip (Clarkdale), LGA 1366 (Nehalem) or LGA 1156 socket
+
+
+2008
+Intel Atom
+32
+14 / 32
+32 (Bonnell) 36 (Bay Trailer and later)
+In-order but highly pipelined, very-low-power, some models (Diamondville) with 32-bit (integer CPU), on-die GPU (Penwell, Cedarview)
+
+
+2010
+AMD FX
+64
+N/A
+48 (FX) 52(Opteron)
+highly pipelined, about 20 stages long pipeline, very-power hungry, very high clock, share instruction cache and FlexFPU between two cores in the module, first consumer octa-core processor, CMT (Clustered Multi-Thread), FMA, OpenCL, support up to 64 socket per chipset.
+
+
+2011
+AMD APU C, E and Z Series (Bobcat)
+64
+N/A
+36
+Out-of-order, 64-bit (integer CPU), on-die GPU; low power (Bobcat), Socket FM1 (Desktop)
+
+
+2011
+AMD APU A and E Series (Llano)
+64
+N/A
+40
+on-die GPU, first generation fusion APU
+
+
+2011
+AMD APU A Series (Bulldozer, Trinity and later)
+64
+N/A
+48
+SSE5/AVX (4× 64-bit), highly modular design, integrated on-die GPU, Socket FM2 or Socket FM2+, GPGPU
+
+
+2011
+2nd and 3rd gen. Intel Core i3, i5 and i7 (Sandy Bridge and Ivy Bridge)
+64
+N/A
+42
+Internal Ring connection, Intel Turbo Boost 2.0, F16C[15] AVX, GPGPU, Micro-operation cache(Uop Cache), relatively long pipeline (14 to 19 stages),[16]LGA 1155 socket.
+
+
+2012
+Intel Xeon Phi (Larrabee)
+64
+N/A
+36
+many integrated core (MIC) architecture (w/62), in-order P54C with x86-64, very wide vector unit, LRBni instructions (8× 64-bit), four threads per core.
+
+
+2013
+4th and 5th gen. Intel Core i3, Core i5 and Core i7 (Haswell and Broadwell)
+64
+N/A
+44
+AVX2, FMA3, TSX, BMI1, BMI2 and ABM instructions, Intel ADX, Fully integrated voltage regulator (FIVR), Intel Turbo Boost 3.0 Max(Broadwell-E), high clock rate, LGA 1150 socket
+
+
+2015
+6th, 7th and 8th gen. Intel Core i3, i5 and i7 (Skylake, Kaby Lake and Coffee Lake)
+64
+N/A
+46
+Out-of-order, 64-bit (integer CPU), AVX-512, Intel SGX, Intel MPX, high clock rate, integrated on-die southbridge, integrated on-die x86 MIC array GPU, SoC, MIC
+
+
+History[edit]
+Other manufacturers[edit]
+
+
+
+
+Am386, released by AMD in 1991
+
+
+Further information: List of former IA-32 compatible processor manufacturers
+At various times, companies such as IBM, NEC,[i] AMD, TI, STM, Fujitsu, OKI, Siemens, Cyrix, Intersil, C&T, NexGen, UMC, and DM&P started to design or manufacture[j] x86 processors (CPUs) intended for personal computers as well as embedded systems. Such x86 implementations are seldom simple copies but often employ different internal microarchitectures as well as different solutions at the electronic and physical levels. Quite naturally, early compatible microprocessors were 16-bit, while 32-bit designs were developed much later. For the personal computer market, real quantities started to appear around 1990 with i386 and i486 compatible processors, often named similarly to Intel's original chips. Other companies, which designed or manufactured x86 or x87 processors, include ITT Corporation, National Semiconductor, ULSI System Technology, and Weitek.
+Following the fully pipelined i486, Intel introduced the Pentium brand name (which, unlike numbers, could be trademarked) for their new set of superscalar x86 designs; with the x86 naming scheme now legally cleared, other x86 vendors had to choose different names for their x86-compatible products, and initially some chose to continue with variations of the numbering scheme: IBM partnered with Cyrix to produce the 5x86 and then the very efficient 6x86 (M1) and 6x86MX (MII) lines of Cyrix designs, which were the first x86 microprocessors implementing register renaming to enable speculative execution. AMD meanwhile designed and manufactured the advanced but delayed 5k86 (K5), which, internally, was closely based on AMD's earlier 29K RISC design; similar to NexGen's Nx586, it used a strategy such that dedicated pipeline stages decode x86 instructions into uniform and easily handled micro-operations, a method that has remained the basis for most x86 designs to this day.
+Some early versions of these microprocessors had heat dissipation problems. The 6x86 was also affected by a few minor compatibility problems, the Nx586 lacked a floating point unit (FPU) and (the then crucial) pin-compatibility, while the K5 had somewhat disappointing performance when it was (eventually) introduced. Customer ignorance of alternatives to the Pentium series further contributed to these designs being comparatively unsuccessful, despite the fact that the K5 had very good Pentium compatibility and the 6x86 was significantly faster than the Pentium on integer code.[k] AMD later managed to establish itself as a serious contender with the K6 set of processors, which gave way to the very successful Athlon and Opteron. There were also other contenders, such as Centaur Technology (formerly IDT), Rise Technology, and Transmeta. VIA Technologies' energy efficient C3 and C7 processors, which were designed by the Centaur company, have been sold for many years. Centaur's newest design, the VIA Nano, is their first processor with superscalar and speculative execution. It was, perhaps interestingly, introduced at about the same time as Intel's first "in-order" processor since the P5 Pentium, the Intel Atom.
+Extensions of word size[edit]
+The instruction set architecture has twice been extended to a larger word size. In 1985, Intel released the 32-bit 80386 (later known as i386) which gradually replaced the earlier 16-bit chips in computers (although typically not in embedded systems) during the following years; this extended programming model was originally referred to as the i386 architecture (like its first implementation) but Intel later dubbed it IA-32 when introducing its (unrelated) IA-64 architecture.
+In 1999-2003, AMD extended this 32-bit architecture to 64 bits and referred to it as x86-64 in early documents and later as AMD64. Intel soon adopted AMD's architectural extensions under the name IA-32e, later using the name EM64T and finally using Intel 64. Microsoft and Sun Microsystems/Oracle also use term "x64", while many Linux distributions also use the "amd64" term. Microsoft Windows, for example, designates its 32-bit versions as "x86" and 64-bit versions as "x64", while installation files of 64-bit Windows versions are required to be placed into a directory called "AMD64".[17]
+Overview[edit]
+Basic properties of the architecture[edit]
+The x86 architecture is a variable instruction length, primarily "CISC" design with emphasis on backward compatibility. The instruction set is not typical CISC, however, but basically an extended version of the simple eight-bit 8008 and 8080 architectures. Byte-addressing is enabled and words are stored in memory with little-endian byte order. Memory access to unaligned addresses is allowed for all valid word sizes. The largest native size for integer arithmetic and memory addresses (or offsets) is 16, 32 or 64 bits depending on architecture generation (newer processors include direct support for smaller integers as well). Multiple scalar values can be handled simultaneously via the SIMD unit present in later generations, as described below.[l] Immediate addressing offsets and immediate data may be expressed as 8-bit quantities for the frequently occurring cases or contexts where a -128..127 range is enough. Typical instructions are therefore 2 or 3 bytes in length (although some are much longer, and some are single-byte).
+To further conserve encoding space, most registers are expressed in opcodes using three or four bits, the latter via an opcode prefix in 64-bit mode, while at most one operand to an instruction can be a memory location.[m] However, this memory operand may also be the destination (or a combined source and destination), while the other operand, the source, can be either register or immediate. Among other factors, this contributes to a code size that rivals eight-bit machines and enables efficient use of instruction cache memory. The relatively small number of general registers (also inherited from its 8-bit ancestors) has made register-relative addressing (using small immediate offsets) an important method of accessing operands, especially on the stack. Much work has therefore been invested in making such accesses as fast as register accesses, i.e. a one cycle instruction throughput, in most circumstances where the accessed data is available in the top-level cache.
+Floating point and SIMD[edit]
+A dedicated floating point processor with 80-bit internal registers, the 8087, was developed for the original 8086. This microprocessor subsequently developed into the extended 80387, and later processors incorporated a backward compatible version of this functionality on the same microprocessor as the main processor. In addition to this, modern x86 designs also contain a SIMD-unit (see SSE below) where instructions can work in parallel on (one or two) 128-bit words, each containing two or four floating point numbers (each 64 or 32 bits wide respectively), or alternatively, 2, 4, 8 or 16 integers (each 64, 32, 16 or 8 bits wide respectively).
+The presence of wide SIMD registers means that existing x86 processors can load or store up to 128 bits of memory data in a single instruction and also perform bitwise operations (although not integer arithmetic[n]) on full 128-bits quantities in parallel. Intel's Sandy Bridge processors added the AVX (Advanced Vector Extensions) instructions, widening the SIMD registers to 256 bits. Knights Corner, the architecture used by Intel on their Xeon Phi co-processors, uses 512-bit wide SIMD registers.
+Current implementations[edit]
+During execution, current x86 processors employ a few extra decoding steps to split most instructions into smaller pieces called micro-operations. These are then handed to a control unit that buffers and schedules them in compliance with x86-semantics so that they can be executed, partly in parallel, by one of several (more or less specialized) execution units. These modern x86 designs are thus pipelined, superscalar, and also capable of out of order and speculative execution (via branch prediction, register renaming, and memory dependence prediction), which means they may execute multiple (partial or complete) x86 instructions simultaneously, and not necessarily in the same order as given in the instruction stream.[18] Intel's and AMD's (starting from AMD Zen) CPUs are also capable of simultaneous multithreading with two threads per core (Xeon Phi has four threads per core) and in case of Intel transactional memory (TSX).
+When introduced, in the mid-1990s, this method was sometimes referred to as a "RISC core" or as "RISC translation", partly for marketing reasons, but also because these micro-operations share some properties with certain types of RISC instructions. However, traditional microcode (used since the 1950s) also inherently shares many of the same properties; the new method differs mainly in that the translation to micro-operations now occurs asynchronously. Not having to synchronize the execution units with the decode steps opens up possibilities for more analysis of the (buffered) code stream, and therefore permits detection of operations that can be performed in parallel, simultaneously feeding more than one execution unit.
+The latest processors also do the opposite when appropriate; they combine certain x86 sequences (such as a compare followed by a conditional jump) into a more complex micro-op which fits the execution model better and thus can be executed faster or with less machine resources involved.
+Another way to try to improve performance is to cache the decoded micro-operations, so the processor can directly access the decoded micro-operations from a special cache, instead of decoding them again. Intel followed this approach with the Execution Trace Cache feature in their NetBurst Microarchitecture (for Pentium 4 processors) and later in the Decoded Stream Buffer (for Core-branded processors since Sandy Bridge).[19]
+Transmeta used a completely different method in their x86 compatible CPUs. They used just-in-time translation to convert x86 instructions to the CPU's native VLIW instruction set. Transmeta argued that their approach allows for more power efficient designs since the CPU can forgo the complicated decode step of more traditional x86 implementations.
+Segmentation[edit]
+
+
+
+
+
+
+This section does not cite any sources. Please help improve this section by adding citations to reliable sources. Unsourced material may be challenged and removed. (February 2013) (Learn how and when to remove this template message)
+
+
+
+Further information: x86 memory segmentation
+Minicomputers during the late 1970s were running up against the 16-bit 64-KB address limit, as memory had become cheaper. Some minicomputers like the PDP-11 used complex bank-switching schemes, or, in the case of Digital's VAX, redesigned much more expensive processors which could directly handle 32-bit addressing and data. The original 8086, developed from the simple 8080 microprocessor and primarily aiming at very small and inexpensive computers and other specialized devices, instead adopted simple segment registers which increased the memory address width by only 4 bits. By multiplying a 64-KB address by 16, the 20-bit address could address a total of one megabyte (1,048,576 bytes) which was quite a large amount for a small computer at the time. The concept of segment registers was not new to many mainframes which used segment registers to swap quickly to different tasks. In practice, on the x86 it was (is) a much-criticized implementation which greatly complicated many common programming tasks and compilers. However, the architecture soon allowed linear 32-bit addressing (starting with the 80386 in late 1985) but major actors (such as Microsoft) took several years to convert their 16-bit based systems. The 80386 (and 80486) was therefore largely used as a fast (but still 16-bit based) 8086 for many years.
+Data and code could be managed within "near" 16-bit segments within 64 KB portions of the total 1 MB address space, or a compiler could operate in a "far" mode using 32-bit segment:offset pairs reaching (only) 1 MB. While that would also prove to be quite limiting by the mid-1980s, it was working for the emerging PC market, and made it very simple to translate software from the older 8008, 8080, 8085, and Z80 to the newer processor. During 1985, the 16-bit segment addressing model was effectively factored out by the introduction of 32-bit offset registers, in the 386 design.
+In real mode, segmentation is achieved by shifting the segment address left by 4 bits and adding an offset in order to receive a final 20-bit address. For example, if DS is A000h and SI is 5677h, DS:SI will point at the absolute address DS × 10h + SI = A5677h. Thus the total address space in real mode is 220 bytes, or 1 MB, quite an impressive figure for 1978. All memory addresses consist of both a segment and offset; every type of access (code, data, or stack) has a default segment register associated with it (for data the register is usually DS, for code it is CS, and for stack it is SS). For data accesses, the segment register can be explicitly specified (using a segment override prefix) to use any of the four segment registers.
+In this scheme, two different segment/offset pairs can point at a single absolute location. Thus, if DS is A111h and SI is 4567h, DS:SI will point at the same A5677h as above. This scheme makes it impossible to use more than four segments at once. CS and SS are vital for the correct functioning of the program, so that only DS and ES can be used to point to data segments outside the program (or, more precisely, outside the currently executing segment of the program) or the stack.
+In protected mode, introduced in the 80286, a segment register no longer contains the physical address of the beginning of a segment, but contain a "selector" that points to a system-level structure called a segment descriptor. A segment descriptor contains the physical address of the beginning of the segment, the length of the segment, and access permissions to that segment. The offset is checked against the length of the segment, with offsets referring to locations outside the segment causing an exception. Offsets referring to locations inside the segment are combined with the physical address of the beginning of the segment to get the physical address corresponding to that offset.
+The segmented nature can make programming and compiler design difficult because the use of near and far pointers affects performance.
+Addressing modes[edit]
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (March 2014) (Learn how and when to remove this template message)
+
+
+
+Addressing modes for 16-bit x86 processors can be summarized by the formula:
+
+
+
+
+
+
+
+{
+
+
+
+
+
+C
+S
+
+
+:
+
+
+
+
+
+
+D
+S
+
+
+:
+
+
+
+
+
+
+S
+S
+
+
+:
+
+
+
+
+
+
+E
+S
+
+
+:
+
+
+
+}
+
+
+
+
+[
+
+
+
+
+
+{
+
+
+
+
+
+B
+X
+
+
+
+
+
+
+
+
+B
+P
+
+
+
+
+
+}
+
+
+
+
+
+]
+
+
++
+
+
+[
+
+
+
+
+
+{
+
+
+
+
+
+S
+I
+
+
+
+
+
+
+
+
+D
+I
+
+
+
+
+
+}
+
+
+
+
+
+]
+
+
++
+
+
+[
+d
+i
+s
+p
+l
+a
+c
+e
+m
+e
+n
+t
+]
+
+
+
+
+{\displaystyle {\begin{Bmatrix}{\mathtt {CS}}:\\{\mathtt {DS}}:\\{\mathtt {SS}}:\\{\mathtt {ES}}:\end{Bmatrix}}{\begin{bmatrix}{\begin{Bmatrix}{\mathtt {BX}}\\{\mathtt {BP}}\end{Bmatrix}}\end{bmatrix}}+{\begin{bmatrix}{\begin{Bmatrix}{\mathtt {SI}}\\{\mathtt {DI}}\end{Bmatrix}}\end{bmatrix}}+{\rm {[displacement]}}}
+
+
+
+Addressing modes for 32-bit address size on 32-bit or 64-bit x86 processors can be summarized by the formula:[20]
+
+
+
+
+
+
+
+{
+
+
+
+
+
+C
+S
+
+
+:
+
+
+
+
+
+
+D
+S
+
+
+:
+
+
+
+
+
+
+S
+S
+
+
+:
+
+
+
+
+
+
+E
+S
+
+
+:
+
+
+
+
+
+
+F
+S
+
+
+:
+
+
+
+
+
+
+G
+S
+
+
+:
+
+
+
+}
+
+
+
+
+[
+
+
+
+
+
+{
+
+
+
+
+
+E
+A
+X
+
+
+
+
+
+
+
+
+E
+B
+X
+
+
+
+
+
+
+
+
+E
+C
+X
+
+
+
+
+
+
+
+
+E
+D
+X
+
+
+
+
+
+
+
+
+E
+S
+P
+
+
+
+
+
+
+
+
+E
+B
+P
+
+
+
+
+
+
+
+
+E
+S
+I
+
+
+
+
+
+
+
+
+E
+D
+I
+
+
+
+
+
+}
+
+
+
+
+
+]
+
+
++
+
+
+[
+
+
+
+
+
+{
+
+
+
+
+
+E
+A
+X
+
+
+
+
+
+
+
+
+E
+B
+X
+
+
+
+
+
+
+
+
+E
+C
+X
+
+
+
+
+
+
+
+
+E
+D
+X
+
+
+
+
+
+
+
+
+E
+B
+P
+
+
+
+
+
+
+
+
+E
+S
+I
+
+
+
+
+
+
+
+
+E
+D
+I
+
+
+
+
+
+}
+
+
+∗
+
+
+{
+
+
+
+1
+
+
+
+
+2
+
+
+
+
+4
+
+
+
+
+8
+
+
+
+}
+
+
+
+
+
+]
+
+
++
+
+
+[
+d
+i
+s
+p
+l
+a
+c
+e
+m
+e
+n
+t
+]
+
+
+
+
+{\displaystyle {\begin{Bmatrix}{\mathtt {CS}}:\\{\mathtt {DS}}:\\{\mathtt {SS}}:\\{\mathtt {ES}}:\\{\mathtt {FS}}:\\{\mathtt {GS}}:\end{Bmatrix}}{\begin{bmatrix}{\begin{Bmatrix}{\mathtt {EAX}}\\{\mathtt {EBX}}\\{\mathtt {ECX}}\\{\mathtt {EDX}}\\{\mathtt {ESP}}\\{\mathtt {EBP}}\\{\mathtt {ESI}}\\{\mathtt {EDI}}\end{Bmatrix}}\end{bmatrix}}+{\begin{bmatrix}{\begin{Bmatrix}{\mathtt {EAX}}\\{\mathtt {EBX}}\\{\mathtt {ECX}}\\{\mathtt {EDX}}\\{\mathtt {EBP}}\\{\mathtt {ESI}}\\{\mathtt {EDI}}\end{Bmatrix}}*{\begin{Bmatrix}1\\2\\4\\8\end{Bmatrix}}\end{bmatrix}}+{\rm {[displacement]}}}
+
+
+
+Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by the formula:
+
+
+
+
+
+
+
+{
+
+
+
+
+
+{
+
+
+
+
+
+F
+S
+
+
+:
+
+
+
+
+
+
+G
+S
+
+
+:
+
+
+
+}
+
+
+
+
+[
+
+
+
+
+
+g
+e
+n
+e
+r
+a
+l
+
+r
+e
+g
+i
+s
+t
+e
+r
+
+
+
+
+
+]
+
+
++
+
+
+[
+
+
+
+
+
+g
+e
+n
+e
+r
+a
+l
+
+r
+e
+g
+i
+s
+t
+e
+r
+
+
+∗
+
+
+{
+
+
+
+1
+
+
+
+
+2
+
+
+
+
+4
+
+
+
+
+8
+
+
+
+}
+
+
+
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+R
+I
+P
+
+
+
+
+
+}
+
+
++
+
+
+[
+d
+i
+s
+p
+l
+a
+c
+e
+m
+e
+n
+t
+]
+
+
+
+
+{\displaystyle {\begin{Bmatrix}{\begin{Bmatrix}{\mathtt {FS}}:\\{\mathtt {GS}}:\end{Bmatrix}}{\begin{bmatrix}{\rm {general\;register}}\end{bmatrix}}+{\begin{bmatrix}{\rm {general\;register}}*{\begin{Bmatrix}1\\2\\4\\8\end{Bmatrix}}\end{bmatrix}}\\\\{\mathtt {RIP}}\end{Bmatrix}}+{\rm {[displacement]}}}
+
+
+
+Instruction relative addressing in 64-bit code (RIP + displacement, where RIP is the instruction pointer register) simplifies the implementation of position-independent code (as used in shared libraries in some operating systems).
+The 8086 had 7001640000000000000♠64 KB of eight-bit (or alternatively 7001320000000000000♠32 K-word of 16-bit) I/O space, and a 7001640000000000000♠64 KB (one segment) stack in memory supported by computer hardware. Only words (two bytes) can be pushed to the stack. The stack grows toward numerically lower addresses, with SS:SP pointing to the most recently pushed item. There are 256 interrupts, which can be invoked by both hardware and software. The interrupts can cascade, using the stack to store the return address.
+x86 registers[edit]
+For a description of the general notion of a CPU register, see Processor register.
+16-bit[edit]
+The original Intel 8086 and 8088 have fourteen 16-bit registers. Four of them (AX, BX, CX, DX) are general-purpose registers (GPRs), although each may have an additional purpose; for example, only CX can be used as a counter with the loop instruction. Each can be accessed as two separate bytes (thus BX's high byte can be accessed as BH and low byte as BL). Two pointer registers have special roles: SP (stack pointer) points to the "top" of the stack, and BP (base pointer) is often used to point at some other place in the stack, typically above the local variables (see frame pointer). The registers SI, DI, BX and BP are address registers, and may also be used for array indexing.
+Four segment registers (CS, DS, SS and ES) are used to form a memory address. The FLAGS register contains flags such as carry flag, overflow flag and zero flag. Finally, the instruction pointer (IP) points to the next instruction that will be fetched from memory and then executed; this register cannot be directly accessed (read or written) by a program.[21]
+The Intel 80186 and 80188 are essentially an upgraded 8086 or 8088 CPU, respectively, with on-chip peripherals added, and they have the same CPU registers as the 8086 and 8088 (in addition to interface registers for the peripherals).
+The 8086, 8088, 80186, and 80188 can use an optional floating-point coprocessor, the 8087. The 8087 appears to the programmer as part of the CPU and adds eight 80-bit wide registers, st(0) to st(7), each of which can hold numeric data in one of seven formats: 32-, 64-, or 80-bit floating point, 16-, 32-, or 64-bit (binary) integer, and 80-bit packed decimal integer.[6]:S-6, S-13..S-15
+In the Intel 80286, to support protected mode, three special registers hold descriptor table addresses (GDTR, LDTR, IDTR), and a fourth task register (TR) is used for task switching. The 80287 is the floating-point coprocessor for the 80286 and has the same registers as the 8087 with the same data formats.
+32-bit[edit]
+
+
+
+
+Registers available in the x86-64 instruction set
+
+
+With the advent of the 32-bit 80386 processor, the 16-bit general-purpose registers, base registers, index registers, instruction pointer, and FLAGS register, but not the segment registers, were expanded to 32 bits. The nomenclature represented this by prefixing an "E" (for "extended") to the register names in x86 assembly language. Thus, the AX register corresponds to the lowest 16 bits of the new 32-bit EAX register, SI corresponds to the lowest 16 bits of ESI, and so on. The general-purpose registers, base registers, and index registers can all be used as the base in addressing modes, and all of those registers except for the stack pointer can be used as the index in addressing modes.
+Two new segment registers (FS and GS) were added. With a greater number of registers, instructions and operands, the machine code format was expanded. To provide backward compatibility, segments with executable code can be marked as containing either 16-bit or 32-bit instructions. Special prefixes allow inclusion of 32-bit instructions in a 16-bit segment or vice versa.
+The 80386 had an optional floating-point coprocessor, the 80387; it had eight 80-bit wide registers: st(0) to st(7),[22] like the 8087 and 80287. The 80386 could also use an 80287 coprocessor.[23] With the 80486 and all subsequent x86 models, the floating-point processing unit (FPU) is integrated on-chip.
+The Pentium MMX added eight 64-bit MMX integer registers (MMX0 to MMX7, which share lower bits with the 80-bit-wide FPU stack).[24] With the Pentium III, Intel added a 32-bit Streaming SIMD Extensions (SSE) control/status register (MXCSR) and eight 128-bit SSE floating point registers (XMM0 to XMM7).[25]
+64-bit[edit]
+Starting with the AMD Opteron processor, the x86 architecture extended the 32-bit registers into 64-bit registers in a way similar to how the 16 to 32-bit extension took place. An R-prefix identifies the 64-bit registers (RAX, RBX, RCX, RDX, RSI, RDI, RBP, RSP, RFLAGS, RIP), and eight additional 64-bit general registers (R8-R15) were also introduced in the creation of x86-64. However, these extensions are only usable in 64-bit mode, which is one of the two modes only available in long mode. The addressing modes were not dramatically changed from 32-bit mode, except that addressing was extended to 64 bits, virtual addresses are now sign extended to 64 bits (in order to disallow mode bits in virtual addresses), and other selector details were dramatically reduced. In addition, an addressing mode was added to allow memory references relative to RIP (the instruction pointer), to ease the implementation of position-independent code, used in shared libraries in some operating systems.
+128-bit[edit]
+See also: Streaming SIMD Extensions § Registers
+SIMD registers XMM0–XMM15.
+256-bit[edit]
+See also: Advanced Vector Extensions § New features
+SIMD registers YMM0–YMM15.
+512-bit[edit]
+See also: Advanced Vector Extensions § AVX-512
+SIMD registers ZMM0–ZMM31.
+Miscellaneous/special purpose[edit]
+x86 processors that have a protected mode, i.e. the 80286 and later processors, also have three descriptor registers (GDTR, LDTR, IDTR) and a task register (TR).
+32-bit x86 processors (starting with the 80386) also include various special/miscellaneous registers such as control registers (CR0 through 4, CR8 for 64-bit only), debug registers (DR0 through 3, plus 6 and 7), test registers (TR3 through 7; 80486 only), and model-specific registers (MSRs, appearing with the Pentium[o]).
+Purpose[edit]
+Although the main registers (with the exception of the instruction pointer) are "general-purpose" in the 32-bit and 64-bit versions of the instruction set and can be used for anything, it was originally envisioned that they be used for the following purposes:
+
+AL/AH/AX/EAX/RAX: Accumulator
+BL/BH/BX/EBX/RBX: Base index (for use with arrays)
+CL/CH/CX/ECX/RCX: Counter (for use with loops and strings)
+DL/DH/DX/EDX/RDX: Extend the precision of the accumulator (e.g. combine 32-bit EAX and EDX for 64-bit integer operations in 32-bit code)
+SI/ESI/RSI: Source index for string operations.
+DI/EDI/RDI: Destination index for string operations.
+SP/ESP/RSP: Stack pointer for top address of the stack.
+BP/EBP/RBP: Stack base pointer for holding the address of the current stack frame.
+IP/EIP/RIP: Instruction pointer. Holds the program counter, the current instruction address.
+
+Segment registers:
+
+CS: Code
+DS: Data
+SS: Stack
+ES: Extra data
+FS: Extra data #2
+GS: Extra data #3
+
+No particular purposes were envisioned for the other 8 registers available only in 64-bit mode.
+Some instructions compile and execute more efficiently when using these registers for their designed purpose. For example, using AL as an accumulator and adding an immediate byte value to it produces the efficient add to AL opcode of 04h, whilst using the BL register produces the generic and longer add to register opcode of 80C3h. Another example is double precision division and multiplication that works specifically with the AX and DX registers.
+Modern compilers benefited from the introduction of the sib byte (scale-index-base byte) that allows registers to be treated uniformly (minicomputer-like). However, using the sib byte universally is non-optimal, as it produces longer encodings than only using it selectively when necessary. (The main benefit of the sib byte is the orthogonality and more powerful addressing modes it provides, which make it possible to save instructions and the use of registers for address calculations such as scaling an index.) Some special instructions lost priority in the hardware design and became slower than equivalent small code sequences. A notable example is the LODSW instruction.
+Structure[edit]
+
+General Purpose Registers (A, B, C and D)
+
+64
+56
+48
+40
+32
+24
+16
+8
+
+
+R?X
+
+
+
+E?X
+
+
+
+ ?X
+
+
+
+ ?H
+ ?L
+
+
+
+64-bit mode-only General Purpose Registers (R8, R9, R10, R11, R12, R13, R14, R15)
+
+64
+56
+48
+40
+32
+24
+16
+8
+
+
+ ?
+
+
+
+ ?D
+
+
+
+ ?W
+
+
+
+ ?B
+
+
+
+Segment Registers (C, D, S, E, F and G)
+
+16
+8
+
+
+ ?S
+
+
+
+Pointer Registers (S and B)
+
+64
+56
+48
+40
+32
+24
+16
+8
+
+
+R?P
+
+
+
+E?P
+
+
+
+?P
+
+
+
+ ?PL
+
+
+Note: The ?PL registers are only available in 64-bit mode.
+
+Index Registers (S and D)
+
+64
+56
+48
+40
+32
+24
+16
+8
+
+
+R?I
+
+
+
+E?I
+
+
+
+ ?I
+
+
+
+ ?IL
+
+
+Note: The ?IL registers are only available in 64-bit mode.
+
+Instruction Pointer Register (I)
+
+64
+56
+48
+40
+32
+24
+16
+8
+
+
+RIP
+
+
+
+EIP
+
+
+
+IP
+
+
+Operating modes[edit]
+Real mode[edit]
+Main article: Real mode
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (January 2014) (Learn how and when to remove this template message)
+
+
+
+Real Address mode,[26] commonly called Real mode, is an operating mode of 8086 and later x86-compatible CPUs. Real mode is characterized by a 20-bit segmented memory address space (meaning that only 1 MiB of memory can be addressed—actually, slightly more[p]), direct software access to peripheral hardware, and no concept of memory protection or multitasking at the hardware level. All x86 CPUs in the 80286 series and later start up in real mode at power-on; 80186 CPUs and earlier had only one operational mode, which is equivalent to real mode in later chips. (On the IBM PC platform, direct software access to the IBM BIOS routines is available only in real mode, since BIOS is written for real mode. However, this is not a characteristic of the x86 CPU but of the IBM BIOS design.)
+In order to use more than 64 KB of memory, the segment registers must be used. This created great complications for compiler implementors who introduced odd pointer modes such as "near", "far" and "huge" to leverage the implicit nature of segmented architecture to different degrees, with some pointers containing 16-bit offsets within implied segments and other pointers containing segment addresses and offsets within segments. It is technically possible to use up to 256 KB of memory for code and data, with up to 64 KB for code, by setting all four segment registers once and then only using 16-bit offsets (optionally with default-segment override prefixes) to address memory, but this puts substantial restrictions on the way data can be addressed and memory operands can be combined, and it violates the architectural intent of the Intel designers, which is for separate data items (e.g. arrays, structures, code units) to be contained in separate segments and addressed by their own segment addresses, in new programs that are not ported from earlier 8-bit processors with 16-bit address spaces.
+Protected mode[edit]
+Main article: Protected mode
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (January 2014) (Learn how and when to remove this template message)
+
+
+
+In addition to real mode, the Intel 80286 supports protected mode, expanding addressable physical memory to 16 MB and addressable virtual memory to 1 GB, and providing protected memory, which prevents programs from corrupting one another. This is done by using the segment registers only for storing an index into a descriptor table that is stored in memory. There are two such tables, the Global Descriptor Table (GDT) and the Local Descriptor Table (LDT), each holding up to 8192 segment descriptors, each segment giving access to 64 KB of memory. In the 80286, a segment descriptor provides a 24-bit base address, and this base address is added to a 16-bit offset to create an absolute address. The base address from the table fulfills the same role that the literal value of the segment register fulfills in real mode; the segment registers have been converted from direct registers to indirect registers. Each segment can be assigned one of four ring levels used for hardware-based computer security. Each segment descriptor also contains a segment limit field which specifies the maximum offset that may be used with the segment. Because offsets are 16 bits, segments are still limited to 64 KB each in 80286 protected mode.[27]
+Each time a segment register is loaded in protected mode, the 80286 must read a 6-byte segment descriptor from memory into a set of hidden internal registers. Therefore, loading segment registers is much slower in protected mode than in real mode, and changing segments very frequently is to be avoided. Actual memory operations using protected mode segments are not slowed much because the 80286 and later have hardware to check the offset against the segment limit in parallel with instruction execution.
+The Intel 80386 extended offsets and also the segment limit field in each segment descriptor to 32 bits, enabling a segment to span the entire memory space. It also introduced support in protected mode for paging, a mechanism making it possible to use paged virtual memory (with 4 KB page size). Paging allows the CPU to map any page of the virtual memory space to any page of the physical memory space. To do this, it uses additional mapping tables in memory called page tables. Protected mode on the 80386 can operate with paging either enabled or disabled; the segmentation mechanism is always active and generates virtual addresses that are then mapped by the paging mechanism if it is enabled. The segmentation mechanism can also be effectively disabled by setting all segments to have a base address of 0 and size limit equal to the whole address space; this also requires a minimally-sized segment descriptor table of only four descriptors (since the FS and GS segments need not be used).[q]
+Paging is used extensively by modern multitasking operating systems. Linux, 386BSD and Windows NT were developed for the 386 because it was the first Intel architecture CPU to support paging and 32-bit segment offsets. The 386 architecture became the basis of all further development in the x86 series.
+x86 processors that support protected mode boot into real mode for backward compatibility with the older 8086 class of processors. Upon power-on (a.k.a. booting), the processor initializes in real mode, and then begins executing instructions. Operating system boot code, which might be stored in ROM, may place the processor into the protected mode to enable paging and other features. The instruction set in protected mode is similar to that used in real mode. However, certain constraints that apply to real mode (such as not being able to use ax,cx,dx in addressing[citation needed]) do not apply in protected mode. Conversely, segment arithmetic, a common practice in real mode code, is not allowed in protected mode.
+Virtual 8086 mode[edit]
+Main article: Virtual 8086 mode
+There is also a sub-mode of operation in 32-bit protected mode (a.k.a. 80386 protected mode) called virtual 8086 mode, also known as V86 mode. This is basically a special hybrid operating mode that allows real mode programs and operating systems to run while under the control of a protected mode supervisor operating system. This allows for a great deal of flexibility in running both protected mode programs and real mode programs simultaneously. This mode is exclusively available for the 32-bit version of protected mode; it does not exist in the 16-bit version of protected mode, or in long mode.
+Long mode[edit]
+Main article: Long mode
+In the mid 1990s, it was obvious that the 32-bit address space of the x86 architecture was limiting its performance in applications requiring large data sets. A 32-bit address space would allow the processor to directly address only 4 GB of data, a size surpassed by applications such as video processing and database engines. Using 64-bit addresses, it is possible to directly address 16 EiB of data, although most 64-bit architectures do not support access to the full 64-bit address space; for example, AMD64 supports only 48 bits from a 64-bit address, split into four paging levels.
+In 1999, AMD published a (nearly) complete specification for a 64-bit extension of the x86 architecture which they called x86-64 with claimed intentions to produce. That design is currently used in almost all x86 processors, with some exceptions intended for embedded systems.
+Mass-produced x86-64 chips for the general market were available four years later, in 2003, after the time was spent for working prototypes to be tested and refined; about the same time, the initial name x86-64 was changed to AMD64. The success of the AMD64 line of processors coupled with lukewarm reception of the IA-64 architecture forced Intel to release its own implementation of the AMD64 instruction set. Intel had previously implemented support for AMD64[28] but opted not to enable it in hopes that AMD would not bring AMD64 to market before Itanium's new IA-64 instruction set was widely adopted. It branded its implementation of AMD64 as EM64T, and later re-branded it Intel 64.
+In its literature and product version names, Microsoft and Sun refer to AMD64/Intel 64 collectively as x64 in the Windows and Solaris operating systems. Linux distributions refer to it either as "x86-64", its variant "x86_64", or "amd64". BSD systems use "amd64" while macOS uses "x86_64".
+Long mode is mostly an extension of the 32-bit instruction set, but unlike the 16–to–32-bit transition, many instructions were dropped in the 64-bit mode. This does not affect actual binary backward compatibility (which would execute legacy code in other modes that retain support for those instructions), but it changes the way assembler and compilers for new code have to work.
+This was the first time that a major extension of the x86 architecture was initiated and originated by a manufacturer other than Intel. It was also the first time that Intel accepted technology of this nature from an outside source.
+Extensions[edit]
+Floating point unit[edit]
+Main article: x87
+Further information: Floating point unit
+Early x86 processors could be extended with floating-point hardware in the form of a series of floating point numerical co-processors with names like 8087, 80287 and 80387, abbreviated x87. This was also known as the NPX (Numeric Processor eXtension), an apt name since the coprocessors, while used mainly for floating-point calculations, also performed integer operations on both binary and decimal formats. With very few exceptions, the 80486 and subsequent x86 processors then integrated this x87 functionality on chip which made the x87 instructions a de facto integral part of the x86 instruction set.
+Each x87 register, known as ST(0) through ST(7), is 80 bits wide and stores numbers in the IEEE floating-point standard double extended precision format. These registers are organized as a stack with ST(0) as the top. This was done in order to conserve opcode space, and the registers are therefore randomly accessible only for either operand in a register-to-register instruction; ST0 must always be one of the two operands, either the source or the destination, regardless of whether the other operand is ST(x) or a memory operand. However, random access to the stack registers can be obtained through an instruction which exchanges any specified ST(x) with ST(0).
+The operations include arithmetic and transcendental functions, including trigonometric and exponential functions, as well as instructions that load common constants (such as 0; 1; e, the base of the natural logarithm; log2(10); and log10(2)) into one of the stack registers. While the integer capability is often overlooked, the x87 can operate on larger integers with a single instruction than the 8086, 80286, 80386, or any x86 CPU without to 64-bit extensions can, and repeated integer calculations even on small values (e.g. 16-bit) can be accelerated by executing integer instructions on the x86 CPU and the x87 in parallel. (The x86 CPU keeps running while the x87 coprocessor calculates, and the x87 sets a signal to the x86 when it is finished or interrupts the x86 if it needs attention because of an error.)
+MMX[edit]
+
+
+
+
+
+
+This section does not cite any sources. Please help improve this section by adding citations to reliable sources. Unsourced material may be challenged and removed. (February 2013) (Learn how and when to remove this template message)
+
+
+
+Main article: MMX (instruction set)
+MMX is a SIMD instruction set designed by Intel and introduced in 1997 for the Pentium MMX microprocessor. The MMX instruction set was developed from a similar concept first used on the Intel i860. It is supported on most subsequent IA-32 processors by Intel and other vendors. MMX is typically used for video processing (in multimedia applications, for instance).
+MMX added 8 new "registers" to the architecture, known as MM0 through MM7 (henceforth referred to as MMn). In reality, these new "registers" were just aliases for the existing x87 FPU stack registers. Hence, anything that was done to the floating point stack would also affect the MMX registers. Unlike the FP stack, these MMn registers were fixed, not relative, and therefore they were randomly accessible. The instruction set did not adopt the stack-like semantics so that existing operating systems could still correctly save and restore the register state when multitasking without modifications.
+Each of the MMn registers are 64-bit integers. However, one of the main concepts of the MMX instruction set is the concept of packed data types, which means instead of using the whole register for a single 64-bit integer (quadword), one may use it to contain two 32-bit integers (doubleword), four 16-bit integers (word) or eight 8-bit integers (byte). Given that the MMX's 64-bit MMn registers are aliased to the FPU stack and each of the floating point registers are 80 bits wide, the upper 16 bits of the floating point registers are unused in MMX. These bits are set to all ones by any MMX instruction, which correspond to the floating point representation of NaNs or infinities.
+3DNow![edit]
+Main article: 3DNow!
+
+
+
+
+
+
+This section does not cite any sources. Please help improve this section by adding citations to reliable sources. Unsourced material may be challenged and removed. (February 2013) (Learn how and when to remove this template message)
+
+
+
+In 1997 AMD introduced 3DNow!. The introduction of this technology coincided with the rise of 3D entertainment applications and was designed to improve the CPU's vector processing performance of graphic-intensive applications. 3D video game developers and 3D graphics hardware vendors use 3DNow! to enhance their performance on AMD's K6 and Athlon series of processors.
+3DNow! was designed to be the natural evolution of MMX from integers to floating point. As such, it uses exactly the same register naming convention as MMX, that is MM0 through MM7. The only difference is that instead of packing integers into these registers, two single precision floating point numbers are packed into each register. The advantage of aliasing the FPU registers is that the same instruction and data structures used to save the state of the FPU registers can also be used to save 3DNow! register states. Thus no special modifications are required to be made to operating systems which would otherwise not know about them.
+SSE[edit]
+
+
+
+
+
+
+This section does not cite any sources. Please help improve this section by adding citations to reliable sources. Unsourced material may be challenged and removed. (February 2013) (Learn how and when to remove this template message)
+
+
+
+Main articles: Streaming SIMD Extensions, SSE2, SSE3, SSSE3, SSE4, and SSE5
+In 1999, Intel introduced the Streaming SIMD Extensions (SSE) instruction set, following in 2000 with SSE2. The first addition allowed offloading of basic floating-point operations from the x87 stack and the second made MMX almost obsolete and allowed the instructions to be realistically targeted by conventional compilers. Introduced in 2004 along with the Prescott revision of the Pentium 4 processor, SSE3 added specific memory and thread-handling instructions to boost the performance of Intel's HyperThreading technology. AMD licensed the SSE3 instruction set and implemented most of the SSE3 instructions for its revision E and later Athlon 64 processors. The Athlon 64 does not support HyperThreading and lacks those SSE3 instructions used only for HyperThreading.
+SSE discarded all legacy connections to the FPU stack. This also meant that this instruction set discarded all legacy connections to previous generations of SIMD instruction sets like MMX. But it freed the designers up, allowing them to use larger registers, not limited by the size of the FPU registers. The designers created eight 128-bit registers, named XMM0 through XMM7. (Note: in AMD64, the number of SSE XMM registers has been increased from 8 to 16.) However, the downside was that operating systems had to have an awareness of this new set of instructions in order to be able to save their register states. So Intel created a slightly modified version of Protected mode, called Enhanced mode which enables the usage of SSE instructions, whereas they stay disabled in regular Protected mode. An OS that is aware of SSE will activate Enhanced mode, whereas an unaware OS will only enter into traditional Protected mode.
+SSE is a SIMD instruction set that works only on floating point values, like 3DNow!. However, unlike 3DNow! it severs all legacy connection to the FPU stack. Because it has larger registers than 3DNow!, SSE can pack twice the number of single precision floats into its registers. The original SSE was limited to only single-precision numbers, like 3DNow!. The SSE2 introduced the capability to pack double precision numbers too, which 3DNow! had no possibility of doing since a double precision number is 64-bit in size which would be the full size of a single 3DNow! MMn register. At 128 bits, the SSE XMMn registers could pack two double precision floats into one register. Thus SSE2 is much more suitable for scientific calculations than either SSE1 or 3DNow!, which were limited to only single precision. SSE3 does not introduce any additional registers.
+Physical Address Extension (PAE)[edit]
+Main article: Physical Address Extension
+Physical Address Extension or PAE was first added in the Intel Pentium Pro, and later by AMD in the Athlon processors,[11] to allow up to 64 GB of RAM to be addressed. Without PAE, physical RAM in 32-bit protected mode is usually limited to 4 GB. PAE defines a different page table structure with wider page table entries and a third level of page table, allowing additional bits of physical address. Although the initial implementations on 32-bit processors theoretically supported up to 64 GB of RAM, chipset and other platform limitations often restricted what could actually be used. x64 processors define page table structures that theoretically allow up to 52 bits of physical address, although again, chipset and other platform concerns (like the number of DIMM slots available, and the maximum RAM possible per DIMM) prevent such a large physical address space to be realized. On x64 processors PAE mode must be active before the switch to long mode, and must remain active while long mode is active, so while in long mode there is no "non-PAE" mode. PAE mode does not affect the width of linear or virtual addresses.
+x86-64[edit]
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (March 2016) (Learn how and when to remove this template message)
+
+
+
+Main article: x86-64
+
+
+
+
+In supercomputer clusters (as tracked by TOP 500 data and visualized on the diagram above, last updated 2013), the appearance of 64-bit extensions for the x86 architecture enabled 64-bit x86 processors by AMD and Intel (olive-drab with small open circles, and red with small open circles, in the diagram, respectively) to replace most RISC processor architectures previously used in such systems (including PA-RISC, SPARC, Alpha and others), as well as 32-bit x86 (green on the diagram), even though Intel itself initially tried unsuccessfully to replace x86 with a new incompatible 64-bit architecture in the Itanium processor. The main non-x86 architecture which is still used, as of 2014, in supercomputing clusters is the Power Architecture used by IBM POWER microprocessors (blue with diamond tiling in the diagram), with SPARC as a distant second.
+
+
+By the 2000s it had become obvious[to whom?] that 32-bit x86 processors' limitations in memory addressing were an obstacle to their utilization in high-performance computing clusters and powerful desktop workstations. The aged 32-bit x86 was competing with much more advanced 64-bit RISC architectures which could address much more memory. Intel and the whole x86 ecosystem needed 64-bit memory addressing if x86 was to survive the 64-bit computing era, as workstation and desktop software applications were soon to start hitting the limitations present in 32-bit memory addressing. However, Intel felt that it was the right time to make a bold step and use the transition to 64-bit desktop computers for a transition away from the x86 architecture in general, an experiment which ultimately failed.
+In 2001, Intel attempted to introduce a non-x86 64-bit architecture named IA-64 in its Itanium processor, initially aiming for the high-performance computing market, hoping that it would eventually replace the 32-bit x86.[29] While IA-64 was incompatible with x86, the Itanium processor did provide emulation capabilities for translating x86 instructions into IA-64, but this affected the performance of x86 programs so badly that it was rarely, if ever, actually useful to the users: programmers should rewrite x86 programs for the IA-64 architecture or their performance on Itanium would be orders of magnitude worse than on a true x86 processor. The market rejected the Itanium processor since it broke backward compatibility and preferred to continue using x86 chips, and very few programs were rewritten for IA-64.
+AMD decided to take another path toward 64-bit memory addressing, making sure backward compatibility would not suffer. In April 2003, AMD released the first x86 processor with 64-bit general-purpose registers, the Opteron, capable of addressing much more than 4 GB of virtual memory using the new x86-64 extension (also known as AMD64 or x64). The 64-bit extensions to the x86 architecture were enabled only in the newly introduced long mode, therefore 32-bit and 16-bit applications and operating systems could simply continue using an AMD64 processor in protected or other modes, without even the slightest sacrifice of performance[30] and with full compatibility back to the original instructions of the 16-bit Intel 8086.[31](p13–14) The market responded positively, adopting the 64-bit AMD processors for both high-performance applications and business or home computers.
+Seeing the market rejecting the incompatible Itanium processor and Microsoft supporting AMD64, Intel had to respond and introduced its own x86-64 processor, the "Prescott" Pentium 4, in July 2004.[32] As a result, the Itanium processor with its IA-64 instruction set is rarely used and x86, through its x86-64 incarnation, is still the dominant CPU architecture in non-embedded computers.
+x86-64 also introduced the NX bit, which offers some protection against security bugs caused by buffer overruns.
+As a result of AMD's 64-bit contribution to the x86 lineage and its subsequent acceptance by Intel, the 64-bit RISC architectures ceased to be a threat to the x86 ecosystem and almost disappeared from the workstation market. x86-64 began to be utilized in powerful supercomputers (in its AMD Opteron and Intel Xeon incarnations), a market which was previously the natural habitat for 64-bit RISC designs (such as the IBM POWER microprocessors or SPARC processors). The great leap toward 64-bit computing and the maintenance of backward compatibility with 32-bit and 16-bit software enabled the x86 architecture to become an extremely flexible platform today, with x86 chips being utilized from small low-power systems (for example, Intel Quark and Intel Atom) to fast gaming desktop computers (for example, Intel Core i7 and AMD FX/Ryzen), and even dominate large supercomputing clusters, effectively leaving only the ARM 32-bit and 64-bit RISC architecture as a competitor in the smartphone and tablet market.
+Virtualization[edit]
+Main article: x86 virtualization
+Prior to 2005 x86 architecture processors were unable to meet the Popek and Goldberg requirements - a specification for virtualization created in 1974 by Gerald J. Popek and Robert P. Goldberg. However both commercial and open source x86 virtualization hypervisor products were developed using software-based virtualization. Commercial systems included VMware ESX, VMware Workstation, Parallels, Microsoft Hyper-V Server, and Microsoft Virtual PC; while open source systems included QEMU/KQEMU, VirtualBox, and Xen.
+The introduction of the AMD-V and Intel VT-x instruction sets in 2005 allowed x86 processors to meet the Popek and Goldberg virtualization requirements.[33]
+See also[edit]
+
+
+x86 assembly language
+x86 instruction listings
+CPUID
+Itanium
+680x0, a competing architecture in the 16 & early 32bit eras
+PowerPC, a competing architecture in the later 32bit and 64bit eras
+Microarchitecture
+List of AMD microprocessors
+List of Intel microprocessors
+List of VIA microprocessors
+List of x86 manufacturers
+Input/Output Base Address
+Interrupt request
+iAPX
+
+
+Notes[edit]
+
+
+^ Unlike the microarchitecture (and specific electronic and physical implementation) used for a specific microprocessor design.
+^ Intel abandoned its "x86" naming scheme with the P5 Pentium during 1993 (as numbers could not be trademarked). However, the term x86 was already established among technicians, compiler writers etc.
+^ The GRID Compass laptop, for instance.
+^ Including the 8088, 80186, 80188 and 80286 processors.
+^ Such a system also contained the usual mix of standard 7400 series support components, including multiplexers, buffers and glue logic.
+^ The actual meaning of iAPX was Intel Advanced Performance Architecture, or sometimes Intel Advanced Processor Architecture.
+^ late 1981 to early 1984, approximately
+^ The embedded processor market is populated by more than 25 different architectures, which, due to the price sensitivity, low power and hardware simplicity requirements, outnumber the x86.
+^ The NEC V20 and V30 also provided the older 8080 instruction set, allowing PCs equipped with these microprocessors to operate CP/M applications at full speed (i.e. without the need to simulate an 8080 by software).
+^ Fabless companies designed the chip and contracted another company to manufacture it, while fabbed companies would do both the design and the manufacturing themselves. Some companies started as fabbed manufacturers and later became fabless designers, one such example being AMD.
+^ It had a slower FPU however, which is slightly ironic as Cyrix started out as a designer of fast Floating point units for x86 processors.
+^ 16-bit and 32-bit microprocessors were introduced during 1978 and 1985 respectively; plans for 64-bit was announced during 1999 and gradually introduced from 2003 and onwards.
+^ Some "CISC" designs, such as the PDP-11, may use two.
+^ That is because integer arithmetic generates carry between subsequent bits (unlike simple bitwise operations).
+^ Two MSRs of particular interest are SYSENTER_EIP_MSR and SYSENTER_ESP_MSR, introduced on the Pentium® II processor, which store the address of the kernel mode system service handler and corresponding kernel stack pointer. Initialized during system startup, SYSENTER_EIP_MSR and SYSENTER_ESP_MSR are used by the SYSENTER (Intel) or SYSCALL (AMD) instructions to achieve Fast System Calls, about three times faster than the software interrupt method used previously.
+^ Because a segmented address is the sum of a 16-bit segment multiplied by 16 and a 16-bit offset, the maximum address is 1,114,095 (10FFEF hex), for an addressability of 1,114,096 bytes = 1 MB + 65,520 bytes. Before the 80286, x86 CPUs had only 20 physical address lines (address bit signals), so the 21st bit of the address, bit 20, was dropped and addresses past 1 MB were mirrors of the low end of the address space (starting from address zero). Since the 80286, all x86 CPUs have at least 24 physical address lines, and bit 20 of the computed address is brought out onto the address bus in real mode, allowing the CPU to address the full 1,114,096 bytes reachable with an x86 segmented address. On the popular IBM PC platform, switchable hardware to disable the 21st address bit was added to machines with an 80286 or later so that all programs designed for 8088/8086-based models could run, while newer software could take advantage of the "high" memory in real mode and the full 16 MB or larger address space in protected mode—see A20 gate.
+^ An extra descriptor record at the top of the table is also required, because the table starts at zero but the minimum descriptor index that can be loaded into a segment register is 1; the value 0 is reserved to represent a segment register that points to no segment.
+
+
+References[edit]
+
+
+^ Pryce, Dave (May 11, 1989). "80486 32-bit CPU breaks new ground in chip density and operating performance. (Intel Corp.) (product announcement) EDN" (Press release). 
+^ "Zet - The x86 (IA-32) open implementation :: Overview". opencores.org. November 4, 2013. Retrieved January 5, 2014. 
+^ Brandon, Jonathan (15 April 2015). "The cloud beyond x86: How old architectures are making a comeback". businesscloudnews.com. Business Cloud News. Retrieved 16 November 2016. Despite the dominance of x86 in the datacentre it is difficult to ignore the noise vendors have been making over the past couple of years around non-x86 architectures like ARM... 
+^ John C Dvorak. "Whatever Happened to the Intel iAPX432?". Dvorak.org. Retrieved April 18, 2014. 
+^ iAPX 286 Programmer's Reference (PDF). Intel. 1983. 
+^ a b iAPX 86, 88 User's Manual (PDF). Intel. August 1981. 
+^ Benj Edwards (June 16, 2008). "Birth of a Standard: The Intel 8086 Microprocessor". PCWorld. Retrieved September 14, 2014. 
+^ Stanley Mazor (January–March 2010). "Intel's 8086". IEEE Annals of the History of Computing. 32 (1): 75–79. doi:10.1109/MAHC.2010.22. 
+^ "AMD Discloses New Technologies At Microprocessor Forum" (Press release). AMD. October 5, 1999. Archived from the original on March 2, 2000. "Time and again, processor architects have looked at the inelegant x86 architecture and declared it cannot be stretched to accommodate the latest innovations," said Nathan Brookwood, principal analyst, Insight 64. 
+^ "Microsoft to End Intel Itanium Support". Retrieved September 14, 2014. 
+^ a b AMD, Inc. (February 2002). "Appendix E". AMD Athlon™ Processor x86 Code Optimization Guide (PDF) (Revision K ed.). p. 250. Retrieved 2017-04-13. A 2-bit index consisting of PCD and PWT bits of the page table entry is used to select one of four PAT register fields when PAE (page address extensions) is enabled, or when the PDE doesn’t describe a large page. 
+^ "Intel Core 2 Duo Processor E8000 and E7000 Series Datasheet" (PDF). Intel. June 2009. p. 66. 
+^ "Dual-Core Intel Xeon Processor 5100 Series Datasheet" (PDF). Intel. August 2007. p. 24. 
+^ "Intel Xeon Processor 7200 Series and 7300 Series Datasheet" (PDF). Intel. September 2008. p. 87. 
+^ Chuck Walbourn (September 11, 2012). "DirectXMath: F16C and FMA". Games for Windows and the DirectX SDK blog. Microsoft. 
+^ Anand Lal Shimpi (October 5, 2012). "Intel's Haswell Architecture Analyzed: Building a New PC and a New Intel". Anandtech. The Haswell Front End. 
+^ "Setup and installation considerations for Windows x64 Edition-based computers". Retrieved September 14, 2014. 
+^ "Processors — What mode of addressing do the Intel Processors use?". Retrieved September 14, 2014. 
+^ "DSB Switches". Intel VTune Amplifier 2013. Intel. Retrieved August 26, 2013. 
+^ Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1: Basic Architecture. Intel Corporation. February 2014. Chapter 3. 
+^ "Guide to x86 Assembly". Cs.virginia.edu. September 11, 2013. Retrieved February 6, 2014. 
+^ Intel 64 and IA-32 Architectures Software Developer’s Manual Volume 1: Basic Architecture (PDF). Intel. March 2013. Chapter 8. 
+^ "Intel 80287 family". CPU-world. 
+^ Intel 64 and IA-32 Architectures Software Developer’s Manual Volume 1: Basic Architecture (PDF). Intel. March 2013. Chapter 9. 
+^ Intel 64 and IA-32 Architectures Software Developer’s Manual Volume 1: Basic Architecture (PDF). Intel. March 2013. Chapter 10. 
+^ iAPX 286 Programmer's Reference (PDF). Intel. 1983. Section 1.2, "Modes of Operation". Retrieved January 27, 2014. 
+^ iAPX 286 Programmer's Reference (PDF). Intel. 1983. Chapter 6, "Memory Management and Virtual Addressing". Retrieved January 27, 2014. 
+^ Intel's Yamhill Technology: x86-64 compatible | Geek.com
+^ Manek Dubash (July 20, 2006). "Will Intel abandon the Itanium?". Techworld. Retrieved December 19, 2010. Once touted by Intel as a replacement for the x86 product line, expectations for Itanium have been throttled well back. 
+^ IBM Corporation (September 6, 2007). "IBM WebSphere Application Server 64-bit Performance Demystified" (PDF). p. 14. Retrieved April 9, 2010. Figures 5, 6 and 7 also show the 32-bit version of WAS runs applications at full native hardware performance on the POWER and x86-64 platforms. Unlike some 64-bit processor architectures, the POWER and x86-64 hardware does not emulate 32-bit mode. Therefore applications that do not benefit from 64-bit features can run with full performance on the 32-bit version of WebSphere running on the above mentioned 64-bit platforms. 
+^ AMD Corporation (September 2012). "Volume 2: System Programming" (PDF). AMD64 Architecture Programmer's Manual. AMD Corporation. Retrieved February 17, 2014. 
+^ Charlie Demerjian (September 26, 2003). "Why Intel's Prescott will use AMD64 extensions". The Inquirer. Retrieved October 7, 2009. 
+^ Adams, Keith; Agesen, Ole (October 21–25, 2006). A Comparison of Software and Hardware Techniques for x86 Virtualization (PDF). Proceedings of the International Conference on Architectural Support for Programming Languages and Operating Systems, San Jose, CA, USA, 2006. ACM 1-59593-451-0/06/0010. Retrieved December 22, 2006. 
+
+
+Further reading[edit]
+
+Rosenblum, Mendel; Garfinkel, Tal (May 2005). Virtual machine monitors: current technology and future trends (PDF). 
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to X86 Microprocessors.
+
+
+
+
+
+Wikibooks has a book on the topic of: X86 Assembly/X86 Architecture
+
+
+
+25 Years of Intel Architecture
+x86 CPUs guide
+Why Intel can't seem to retire the x86
+32/64-bit x86 Instruction Reference
+Intel Intrinsics Guide, an interactive reference tool for Intel intrinsic instructions
+
+
+
+
+
+
+
+v
+t
+e
+
+
+x86 assembly topics
+
+
+
+Topics
+
+
+
+Assembly language
+Comparison of assemblers
+Disassembler
+Instruction set
+Low-level programming language
+Machine code
+Microassembler
+x86 assembly language
+
+
+
+
+
+Assemblers
+
+
+
+A86/A386
+Flat Assembler (FASM)
+GNU Assembler (GAS)
+High Level Assembly (HLA)
+Microsoft Macro Assembler (MASM)
+Netwide Assembler (NASM)
+Turbo Assembler (TASM)
+Open Watcom Assembler (WASM)
+Yasm
+
+
+
+
+
+Programming
+issues
+
+
+
+Call stack
+Flags
+
+Carry flag
+Direction flag
+Interrupt flag
+Overflow flag
+Zero flag
+
+
+Opcode
+Program counter
+Processor register
+Calling conventions
+Instruction listings
+Registers
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Instruction set extensions
+
+
+
+SIMD (RISC)
+
+
+
+Alpha
+
+MVI
+
+
+ARM
+
+NEON
+
+
+MIPS
+
+MDMX
+MIPS-3D
+MXU
+MIPS SIMD
+
+
+PA-RISC
+
+MAX
+
+
+Power ISA
+
+AltiVec
+
+
+SPARC
+
+VIS
+
+
+
+
+
+
+
+SIMD (x86)
+
+
+
+MMX (1996)
+3DNow! (1998)
+SSE (1999)
+SSE2 (2001)
+SSE3 (2004)
+SSSE3 (2006)
+SSE4 (2006)
+SSE5 (2007)
+AVX (2008)
+F16C (2009)
+XOP (2009)
+FMA (FMA4: 2011, FMA3: 2012)
+AVX2 (2013)
+AVX-512 (2015)
+
+
+
+
+
+Bit manipulation
+
+
+
+BMI (ABM: 2007, BMI1: 2012, BMI2: 2013, TBM: 2012)
+ADX (2014)
+
+
+
+
+
+Compressed instructions
+
+
+
+Thumb
+MIPS16e ASE
+
+
+
+
+
+Security and cryptography
+
+
+
+AES-NI (2008); 32- and 64-bit ARMv8 also has AES instructions
+CLMUL (2010)
+RdRand (2012)
+SHA (2013)
+MPX (2015)
+SGX (2015)
+
+
+
+
+
+Transactional memory
+
+
+
+TSX (2013)
+ASF
+
+
+
+
+
+Virtualization
+
+
+
+VT-x (2005)
+AMD-V (2006)
+
+
+
+
+
+
+Suspended extensions' dates have been struck through.
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Intel
+
+
+
+Subsidiaries
+
+
+
+3Dlabs
+Altera
+Comneon
+Intel Security
+Mobileye
+Recon Instruments
+Virtutech
+Wind River Systems
+4Group Holdings (50% owned by Technicolor SA)
+
+
+
+
+
+Products
+
+
+
+Intel AZ210
+3D XPoint
+Accounts & SSO
+Amplify Tablet
+Advanced Programmable Interrupt Controller
+Cache Acceleration Software
+Client Initiated Remote Access
+Direct Media Interface
+Flexible Display Interface
+Hella Zippy
+Intel 1103
+Intel Display Power Saving Technology
+Intel Modular Server System
+Intel Reader
+Intel SPSH4
+Intel System Development Kit
+Intel Upgrade Service
+Intel740
+InTru3D
+IXP1200
+OFono
+Omni-Path
+Performance acceleration technology
+Shooting Star
+Smart Cache
+SSDs (X25-M)
+Stable Image Platform
+Virtual 8086 mode
+WiDi
+X86
+Intel Clear Video
+Intel Quick Sync Video
+
+
+
+
+
+Litigation
+
+
+
+Advanced Micro Devices, Inc. v. Intel Corp.
+High-Tech Employee Antitrust Litigation
+Intel Corp. v. Advanced Micro Devices, Inc.
+Intel Corp. v. Hamidi
+Intel Corporation Inc. v CPM United Kingdom Ltd
+Silvaco Data Systems v. Intel Corp.
+
+
+
+
+
+People
+
+
+
+Gordon Moore
+Robert Noyce
+
+
+
+
+
+Related
+
+
+
+Intel Foundation Achievement Award
+Apple's transition to Intel processors
+Intel Architecture Labs
+ASCI Red
+BiiN
+Classmate PC
+Convera Corporation
+Copy Exactly!
+Cornell Cup USA
+Intel Developer Forum
+Dynamic video memory technology
+Intel Extreme Masters
+List of Intel microprocessors
+List of Intel graphics processing units (2013 or earlier)
+I/O Acceleration Technology
+IA-32 Execution Layer
+IM Flash Technologies
+The Innovators
+Inside
+Inside Films
+Intel ADX
+Intel Capital
+Intel Cluster Ready
+Intel Compute Stick
+Intel Ireland
+Intel Mobile Communications
+Intel Outstanding Researcher Award
+Intel SHA extensions
+Intel Teach
+List of semiconductor fabrication plants
+List of Intel manufacturing sites
+Intel Museum
+OnCue
+Intel PRO/Wireless
+Intel International Science and Engineering Fair
+Regeneron Science Talent Search
+Simple Firmware Interface
+Single-chip Cloud Computer
+Software Guard Extensions
+Supervisor Mode Access Prevention
+Tarari
+Intel Technology Journal
+Intel Tera-Scale
+Timeline of Intel
+Xircom
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+CPU technologies
+
+
+
+Architecture
+
+
+
+Turing machine
+Post–Turing machine
+Universal Turing machine
+Quantum Turing machine
+Belt machine
+Stack machine
+Register machine
+Counter machine
+Pointer machine
+Random access machine
+Random access stored program machine
+Finite-state machine
+Queue automaton
+Von Neumann
+Harvard (modified)
+HIVE (Hierarchical Identify Verify Exploit)
+Dataflow
+TTA
+Cellular
+Artificial neural network
+
+Machine learning
+Deep learning
+Neural processing unit (NPU)
+
+
+Convolutional neural network
+Load/store architecture
+Register memory architecture
+Register register architecture
+Endianness
+FIFO
+Zero-copy
+NUMA
+HUMA
+HSA
+Mobile computing
+Surface computing
+Wearable computing
+Heterogeneous computing
+Parallel computing
+Concurrent computing
+Distributed computing
+Cloud computing
+Amorphous computing
+Ubiquitous computing
+Fabric computing
+Reconfigurable computing
+Cognitive computing
+Analogous computing
+Mechanical computing
+Electric computing
+Hybrid computing
+Digital computing
+DNA computing
+Peptide computing
+Chemical computing
+Organic computing
+Wetware computing
+Quantum computing
+Neuromorphic computing
+Optical computing
+Reversible computing
+Unconventional computing
+Hypercomputation
+Ternary computer
+Symmetric multiprocessing (SMP)
+Asymmetric multiprocessing (AMP)
+Cache hierarchy
+Memory hierarchy
+
+
+
+
+
+ISA types
+
+
+
+ASIP
+CISC
+RISC
+EDGE (TRIPS)
+VLIW (EPIC)
+MISC
+OISC
+NISC
+ZISC
+Comparison
+
+
+
+
+
+ISAs
+
+
+
+x86
+z/Architecture
+ARM
+MIPS
+Power Architecture (PowerPC)
+SPARC
+VISC
+Mill
+Itanium (IA-64)
+Alpha
+Prism
+SuperH
+Clipper
+VAX
+Unicore
+PA-RISC
+MicroBlaze
+
+
+
+
+
+Word size
+
+
+
+1-bit
+2-bit
+4-bit
+8-bit
+9-bit
+10-bit
+12-bit
+15-bit
+16-bit
+18-bit
+22-bit
+24-bit
+25-bit
+26-bit
+27-bit
+31-bit
+32-bit
+33-bit
+34-bit
+36-bit
+39-bit
+40-bit
+48-bit
+50-bit
+60-bit
+64-bit
+128-bit
+256-bit
+512-bit
+Variable
+
+
+
+
+
+Execution
+
+
+
+Instruction pipelining
+
+Bubble
+Operand forwarding
+
+
+Out-of-order execution
+
+Register renaming
+
+
+Speculative execution
+
+Branch predictor
+Memory dependence prediction
+
+
+Hazards
+
+
+
+
+
+Parallel level
+
+
+
+Bit
+
+Bit-serial
+Word
+
+
+Instruction
+Pipelining
+
+Scalar
+Superscalar
+
+
+Task
+
+Thread
+Process
+
+
+Data
+
+Vector
+
+
+Memory
+
+
+
+
+
+Multithreading
+
+
+
+Temporal
+Simultaneous (SMT) (Hyper-threading)
+Speculative (SpMT)
+Preemptive
+Cooperative
+Clustered Multi-Thread (CMT)
+Hardware scout
+
+
+
+
+
+Flynn's taxonomy
+
+
+
+SISD
+SIMD (SWAR)
+SIMT
+MISD
+MIMD
+
+SPMD
+
+
+Addressing mode
+
+
+
+
+
+CPU performance
+
+
+
+Instructions per second (IPS)
+Instructions per clock (IPC)
+Cycles per instruction (CPI)
+Floating-point operations per second (FLOPS)
+Transactions per second (TPS)
+Synaptic Updates Per Second (SUPS)
+Performance per watt
+Orders of magnitude (computing)
+Cache performance measurement and metric
+
+
+
+
+
+Core count
+
+
+
+Single-core processor
+Multi-core processor
+Manycore processor
+
+
+
+
+
+Types
+
+
+
+Central processing unit (CPU)
+GPGPU
+AI accelerator
+Vision processing unit (VPU)
+Vector processor
+Barrel processor
+Stream processor
+Digital signal processor (DSP)
+I/O processor/DMA controller
+Network processor
+Baseband processor
+Physics processing unit (PPU)
+Coprocessor
+Secure cryptoprocessor
+ASIC
+FPGA
+FPOA
+CPLD
+Microcontroller
+Microprocessor
+Mobile processor
+Notebook processor
+Ultra-low-voltage processor
+Multi-core processor
+Manycore processor
+Tile processor
+Multi-chip module (MCM)
+Chip stack multi-chip modules
+System on a chip (SoC)
+Multiprocessor system-on-chip (MPSoC)
+Programmable System-on-Chip (PSoC)
+Network on a chip (NoC)
+
+
+
+
+
+Components
+
+
+
+Execution unit (EU)
+Arithmetic logic unit (ALU)
+Address generation unit (AGU)
+Floating-point unit (FPU)
+Load-store unit (LSU)
+Fixed-point unit (FXU)
+Vector unit (VU)
+Branch predictor
+Branch execution unit (BEU)
+Instruction Decoder
+Instruction Scheduler
+Instruction Fetch Unit
+Instruction Dispatch Unit
+Instruction Sequencing Unit
+Unified Reservation Station
+Barrel shifter
+Uncore
+Sum addressed decoder (SAD)
+Front-side bus
+Back-side bus
+Northbridge (computing)
+Southbridge (computing)
+Adder (electronics)
+Binary multiplier
+Binary decoder
+Address decoder
+Multiplexer
+Demultiplexer
+Registers
+Cache
+Memory management unit (MMU)
+Input–output memory management unit (IOMMU)
+Integrated Memory Controller (IMC)
+Power Management Unit (PMU)
+Translation lookaside buffer (TLB)
+Stack engine
+Register file
+Processor register
+Hardware register
+Memory buffer register (MBR)
+Program counter
+Microcode ROM
+Datapath
+Control unit
+Instruction unit
+Re-order buffer
+Data buffer
+Write buffer
+Coprocessor
+Electronic switch
+Electronic circuit
+Integrated circuit
+Three-dimensional integrated circuit
+Boolean circuit
+Digital circuit
+Analog circuit
+Mixed-signal integrated circuit
+Power management integrated circuit
+Quantum circuit
+Logic gate
+
+Combinational logic
+Sequential logic
+Emitter-coupled logic (ECL)
+Transistor–transistor logic (TTL)
+Glue logic
+
+
+Quantum gate
+Gate array
+Counter (digital)
+Bus (computing)
+Semiconductor device
+Clock rate
+CPU multiplier
+Vision chip
+Memristor
+
+
+
+
+
+Power
+management
+
+
+
+APM
+ACPI
+Dynamic frequency scaling
+Dynamic voltage scaling
+Clock gating
+
+
+
+
+
+Hardware
+security
+
+
+
+Non-executable memory (NX bit)
+Memory Protection Extensions (Intel MPX)
+Intel Secure Key
+Hardware restriction (firmware)
+Software Guard Extensions (Intel SGX)
+Trusted Execution Technology
+OmniShield
+Trusted Platform Module (TPM)
+Secure cryptoprocessor
+Hardware security module
+Hengzhi chip
+
+
+
+
+
+Related
+
+
+
+History of general-purpose CPUs
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=X86&oldid=817511193"					Categories: Computer-related introductions in 1978Intel productsInstruction set architecturesIBM PC compatiblesX86 architectureHidden categories: Use mdy dates from June 2016All articles with unsourced statementsArticles with unsourced statements from November 2017Articles needing additional references from October 2016All articles needing additional referencesArticles needing additional references from February 2013Articles needing additional references from March 2014Articles needing additional references from January 2014Articles with unsourced statements from April 2017Articles needing additional references from March 2016All articles with specifically marked weasel-worded phrasesArticles with specifically marked weasel-worded phrases from December 2016

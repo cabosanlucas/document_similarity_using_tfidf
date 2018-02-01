@@ -1,0 +1,967 @@
+
+
+
+
+
+
+This article includes a list of references, but its sources remain unclear because it has insufficient inline citations. Please help to improve this article by introducing more precise citations. (January 2010) (Learn how and when to remove this template message)
+
+
+
+ISO 10303 is an ISO standard for the computer-interpretable representation and exchange of product manufacturing information. Its official title is: Automation systems and integration — Product data representation and exchange. It is known informally as "STEP", which stands for "Standard for the Exchange of Product model data". ISO 10303 can represent 3D objects in Computer-aided design (CAD) and related information.
+
+
+
+Contents
+
+
+1 Overview
+2 History
+3 Structure
+4 Coverage of STEP Application Protocols (AP)
+5 See also
+6 References
+7 External links
+
+
+
+Overview[edit]
+The international standard's objective is to provide a mechanism that is capable of describing product data throughout the life cycle of a product, independent from any particular system. The nature of this description makes it suitable not only for neutral file exchange, but also as a basis for implementing and sharing product databases and archiving.[1]
+Typically STEP can be used to exchange data between CAD, computer-aided manufacturing, computer-aided engineering, product data management/enterprise data modeling and other CAx systems. STEP addresses product data from mechanical and electrical design, geometric dimensioning and tolerancing, analysis and manufacturing, as well as additional information specific to various industries such as automotive, aerospace, building construction, ship, oil and gas, process plants and others.
+STEP is developed and maintained by the ISO technical committee TC 184, Automation systems and integration, sub-committee SC 4, Industrial data. Like other ISO and IEC standards STEP is copyright by ISO and is not freely available. However, the 10303 EXPRESS schemas are freely available, as are the recommended practices for implementers.
+Other standards developed and maintained by ISO TC 184/SC 4 are:[2]
+
+ISO 13584 PLIB - Parts Library
+ISO 15531 MANDATE - Industrial manufacturing management data
+ISO 15926 Process Plants including Oil and Gas facilities Life-Cycle data
+ISO 18629 PSL- Process specification language
+ISO 18876 IIDEAS - Integration of industrial data for exchange, access, and sharing
+ISO 22745 Open technical dictionaries and their application to master data
+ISO 8000 Data quality
+
+STEP is closely related with PLIB (ISO 13584, IEC 61360).
+History[edit]
+The evolution of STEP can be divided into four release phases. The development of STEP started in 1984 as a successor of IGES, SET and VDA-FS.[3] The initial plan was that "STEP shall be based on one single, complete, implementation-independent Product Information Model, which shall be the Master Record of the integrated topical and application information models".[4] But because of the complexity, the standard had to be broken up into smaller parts that can be developed, balloted and approved separately.[5] In 1994/95 ISO published the initial release of STEP as international standards (IS) with the parts 1, 11, 21, 31, 41, 42, 43, 44, 46, 101, AP 201 and AP 203.[6] Today AP 203 Configuration controlled 3D design is still one of the most important parts of STEP and supported by many CAD systems for import and export.
+In the second phase the capabilities of STEP were widely extended, primarily for the design of products in the aerospace, automotive, electrical, electronic, and other industries. This phase ended in the year 2002 with the second major release, including the STEP parts AP 202, AP 209, AP 210, AP 212, AP 214, AP 224, AP 225, AP 227, AP 232.[7] Basic harmonization between the APs especially in the geometric areas was achieved by introducing the Application Interpreted Constructs (AIC, 500 series).
+A major problem with the monolithic APs of the first and second releases is that they are too big, have too much overlap with each other, and are not sufficiently harmonized. These deficits led to the development of the STEP modular architecture (400 and 1000 series).[8] This activity was primarily driven by new APs covering additional life-cycle phases such as early requirement analysis (AP 233) and maintenance and repair (AP 239), and also new industrial areas (AP 221, AP 236). New editions of the previous monolithic APs on a modular basis have been developed (AP 203, AP 209, AP 210). The publication of these new editions coincided with the release in 2010 of the new ISO product SMRL, the STEP Module and Resource Library, that contains all STEP resource parts and application modules on a single CD. The SMRL will be revised frequently and is available at a much lower cost than purchasing all the parts separately.
+In December 2014 ISO published the first edition of a new major Application Protocol, AP 242 Managed model based 3d engineering, that combined and replaced the following previous APs in an upward compatible way:
+
+AP 201, Explicit draughting. Simple 2D drawing geometry related to a product. No association, no assembly hierarchy.
+AP 202, Associative draughting. 2D/3D drawing with association, but no product structure.
+AP 203, Configuration controlled 3D designs of mechanical parts and assemblies.
+AP 204, Mechanical design using boundary representation
+AP 214, Core data for automotive mechanical design processes
+
+In addition AP242 edition 1 contains extensions and significant updates for
+
+Geometric dimensioning and tolerancing
+Kinematics
+Tessellation
+
+Two APs had been modified to be directly based on AP242 and thus become supersets of it:
+
+AP 209, Composite and metallic structural analysis and related design
+AP 210, Electronic assembly, interconnect and packaging design. The most complex and sophisticated STEP AP.
+
+The development of a second edition of AP242 has started which is extending the scope for electrical harness.
+Structure[edit]
+Main article: List of STEP (ISO 10303) parts
+STEP is divided into many parts, grouped into
+
+Environment
+
+Parts 1x: Description methods: EXPRESS, EXPRESS-X
+Parts 2x: Implementation methods: STEP-File, STEP-XML, SDAI
+Parts 3x: Conformance testing methodology and framework
+
+
+Integrated data models
+
+The Integrated Resources (IR), consisting of
+
+Parts 4x and 5x: Integrated generic resources
+Parts 1xx: Integrated application resources
+PLIB ISO 13584-20 Parts library: Logical model of expressions
+
+
+Parts 5xx: Application Interpreted Constructs (AIC)
+Parts 1xxx: Application Modules (AM)
+
+
+Top parts
+
+Parts 2xx: Application Protocols (AP)
+Parts 3xx: Abstract Test Suites (ATS) for APs
+Parts 4xx: Implementation modules for APs
+
+
+
+In total STEP consists of several hundred parts and every year new parts are added or new revisions of older parts are released. This makes STEP the biggest standard within ISO. Each part has its own scope and introduction
+The APs are the top parts. They cover a particular application and industry domain and hence are most relevant for users of STEP. Every AP defines one or several Conformance Classes, suitable for a particular kind of product or data exchange scenario. To provide a better understanding of the scope, information requirements and usage scenarios an informative application activity model (AAM) is added to every AP, using IDEF0
+STEP is primarily defining data models using the EXPRESS modeling language. Application data according to a given data model can be exchanged either by a STEP-File, STEP-XML or via shared database access using SDAI.
+Every AP defines a top data models to be used for data exchange, called the Application Interpreted Model (AIM) or in the case of a modular AP called Module Interpreted Models (MIM). These interpreted models are constructed by choosing generic objects defined in lower level data models (4x, 5x, 1xx, 5xx) and adding specializations needed for the particular application domain of the AP. The common generic data models are the basis for interoperability between APs for different kinds of industries and life cycle stages.
+In APs with several Conformance Classes the top data model is divided into subsets, one for each Conformance Class. The requirements of a conformant STEP application are:
+
+implementation of either a preprocessor or a postprocessor or both,
+using one of the STEP implementation methods STEP-File, STEP-XML or SDAI for the AIM/MIM data model and
+supporting one or several conformance classes of an AP.
+
+Originally every APs was required to have a companion Abstract test suite (ATS) (e.g. ATS 303 for AP 203), providing Test Purposes, Verdict Criteria and Abstract Test Cases together with example STEP-Files. But because the development of an ATS was very expensive and inefficient this requirement was dropped and replaced by the requirements to have an informal validation report and recommended practises how to use it. Today the recommended practises are a primary source for those going to implement STEP.
+The Application Reference Models (ARM) is the mediator between the AAM and the AIM/MIM. Originally its purpose was only to document high level application objects and the basic relations between them. IDEF1X diagrams documented the AP of early APs in an informal way. The ARM objects, their attributes and relations are mapped to the AIM so that it is possible to implement an AP. As APs got more and more complex formal methods were needed to document the ARM and so EXPRESS which was originally only developed for the AIM was also used for the ARM. Over time these ARM models got very detailed till to the point that some implementations preferred to use the ARM instead of the formally required AIM/MIM. Today a few APs have ARM based exchange formats standardized outside of ISO TC184/SC4:
+
+PLM-Services within the OMG for AP 214
+ISO 14649 Data model for computerized numerical controllers for AP 238
+PLCS-DEXs within OASIS (organization) for AP 239
+
+There is a bigger overlap between APs because they often need to refer to the same kind of products, product structures, geometry and more. And because APs are developed by different groups of people it was always an issue to ensure interoperability between APs on a higher level. The Application Interpreted Constructs (AIC) solved this problem for common specializations of generic concepts, primarily in the geometric area. To address the problem of harmonizing the ARM models and their mapping to the AIM the STEP modules were introduced. They contain a piece of the ARM, the mapping and a piece of the AIM, called MIM. Modules are built on each other, resulting in an (almost) directed graph with the AP and conformance class modules at the very top. The modular APs are:
+
+AP 209, Composite and metallic structural analysis and related design
+AP 210, Electronic assembly, interconnect and packaging design
+AP 221, Functional data and schematic representation of process plants
+AP 236, Furniture product data and project data
+AP 239, Product life cycle support
+AP 242, Managed model based 3d engineering
+
+The modular editions of AP 209 and 210 are explicit extensions of AP 242.
+Coverage of STEP Application Protocols (AP)[edit]
+The STEP APs can be roughly grouped into the three main areas design, manufacturing and life cycle support.
+Design APs:
+
+Mechanical:
+
+AP 207, Sheet metal die planning and design
+AP 209, Composite and metallic structural analysis and related design
+AP 235, Materials information for the design and verification of products
+AP 236, Furniture product data and project data
+AP 242, Managed model based 3d engineering
+
+
+Connectivity oriented electric, electronic and piping/ventilation:
+
+AP 210, Electronic assembly, interconnect and packaging design. The most complex and sophisticated STEP AP.
+AP 212, Electrotechnical design and installation.
+AP 227, Plant spatial configuration
+
+
+Ship:
+
+AP 215, Ship arrangement
+AP 216, Ship moulded forms
+AP 218, Ship structures
+
+
+Others:
+
+AP 225, Building elements using explicit shape representation
+AP 232, Technical data packaging core information and exchange
+AP 233, Systems engineering data representation
+AP 237, Fluid dynamics has been cancelled and the functionality included in AP 209
+
+
+
+Manufacturing APs:
+
+AP 219, Dimensional inspection information exchange
+AP 223, Exchange of design and manufacturing product information for cast parts
+AP 224, Mechanical product definition for process plans using machining features
+AP 238 - Application interpreted model for computer numeric controllers
+AP 240, Process plans for machined products
+
+Life cycle support APs:
+
+AP 239, Product life cycle support
+AP 221, Functional data and schematic representation of process plants
+AP 241, Generic Model for Life Cycle Support of AEC Facilities (planned)
+
+The AP 221 model is very similar to the ISO 15926-2 model, whereas AP 221 follows the STEP architecture and ISO 15926-2 has a different architecture. They both use ISO-15926-4 as their common reference data library or dictionary of standard instances. A further development of both standards resulted in Gellish English as general product modeling language that is application domain independent and that is proposed as a work item (NWI) for a new standard.
+The original intent of STEP was to publish one integrated data-model for all life cycle aspects. But due to the complexity, different groups of developers and different speed in the development processes, the splitting into several APs was needed. But this splitting made it difficult to ensure that APs are interoperable in overlapping areas. Main areas of harmonization are:
+
+AP 212, 221, 227 and 242 for technical drawings with extension in AP 212 and 221 for schematic functionality
+AP 224, 238 and 242 for machining features and for Geometric dimensioning and tolerancing
+
+For complex areas it is clear that more than one APs are needed to cover all major aspects:
+
+AP 212 and 242 for electro-mechanical products such as a car or a transformer. This will be addressed by the second edition of AP242 that is currently under development
+AP 242, 209 and 210 for electro/electronic-mechanical products
+AP 212, 215, 216, 218, 227 for ships
+AP 203/214, 224, 240 and 238 for the complete design and manufacturing process of piece parts.
+
+See also[edit]
+
+Boundary representation
+Geometric dimensioning and tolerancing
+
+References[edit]
+
+
+
+^ ISO 10303-1:1994 Industrial automation systems and integration -- Product data representation and exchange -- Part 1: Overview and fundamental principles
+^ Standards and projects under the direct responsibility of ISO/TC 184/SC 4 Secretariat [1]
+^ ISO TC184 / SC4 resolution 1, Gaithersburg - July 1984
+^ ISO TC184 / SC4 resolution 33, Tokyo - December 1988
+^ ISO TC184 / SC4 resolution 55, Paris - January 1990
+^ ISO TC184 / SC4 resolution 195 and 196, Davos - May 1994
+^ ISO TC184 / SC4 resolution 361, Bad Aibling, Germany – June 1998
+^ ISO TC184 / SC4 resolution 394, San Francisco, California - January 1999
+
+
+
+External links[edit]
+
+Standardization group ISO TC184/SC4
+
+List of STEP parts
+STEP Ship team ISO TC 184/SC 4/WG 3/T 23
+
+
+STEP AP242 Project
+The STEP Module Repository on SourceForge
+CAx Implementor Forum - information on existing implementations and testing activities
+WikiSTEP - tutorial and overview information about STEP and recommended practices
+PDES, Inc. - recommended practices and links
+Korea STEP Center
+Product Life Cycle Support (PLCS) Resources
+Application Protocol 224 implementation
+Introducing STEP
+PDM schema - a common subset extracted from AP 203 and AP 214
+STEP-OAGIS Harmonization
+BRLCAD and STEP
+STEP File Analyzer - generate a spreadsheet from a STEP file, also checks for some CAx-IF recommended practices
+
+STEP programs
+
+STEP3D.com - Web-based STEP Viewer
+ISO 10303 STEP Standards – STEP Tools, Inc.
+STP viewer 2.3 - download
+STL Viewer – Download
+IGS viewer - download
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Vector graphics markup languages and file formats
+
+
+
+By type
+
+
+
+
+2D
+
+
+
+Asymptote
+CGM
+DrawingML
+Graphics Layout Engine
+GeoGebra
+HVIF
+MetaPost
+PGF/TikZ
+PGML
+PSTricks
+Remote Imaging Protocol
+SVG
+SWF
+VML
+WMF
+
+EMF
+
+
+XAML
+Xar
+
+
+
+
+
+3D
+
+
+
+3DMLW
+3DXML
+Asymptote
+COLLADA
+DWF
+GeoGebra
+IGES
+JT
+OpenGEX
+PRC
+STEP
+STL
+U3D
+VRML
+X3D
+XAML
+XVL
+xVRML
+
+
+
+
+
+
+
+
+See also
+
+
+
+Web3D
+Web3D Consortium
+Linden Scripting Language
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+CAD software
+
+
+
+Free and open-source
+
+
+
+
+Mechanical
+
+
+
+BRL-CAD
+FreeCAD
+HeeksCAD
+LibreCAD
+Open Cascade Technology
+OpenSCAD
+QCad
+Salome
+SolveSpace
+
+
+
+
+
+Electrical
+
+
+
+Electric
+Fritzing
+gEDA
+KiCad
+kTechLab
+Magic
+Oregano
+QUCS
+XCircuit
+
+
+
+
+
+
+
+
+Proprietary
+
+
+
+
+Mechanical
+
+
+
+AutoCAD
+Autodesk Alias
+Autodesk Inventor
+Autodesk Revit
+ArchiCAD
+BricsCAD
+nanoCAD Plus
+CADKEY
+CATIA
+Cimatron
+DesignSpark Mechanical
+PTC Creo Elements/Pro
+FastCAD
+FORAN
+GstarCAD
+IRONCAD
+KeyCreator
+MEDUSA
+MicroStation
+nanoCAD
+Onshape
+Siemens NX
+PDMS
+Pro/DESKTOP
+progeCAD
+Rhinoceros 3D
+
+Grasshopper 3D
+
+
+RUCAPS
+Solid Edge
+SolidWorks
+SpaceClaim
+T-FLEX CAD
+TurboCAD
+VariCAD
+Vectorworks
+FINE MEP
+
+
+
+
+
+Electrical
+
+
+
+AutoCAD Electrical
+Altium Designer
+DipTrace
+EAGLE
+Micro-Cap
+NI Multisim
+NI Ultiboard
+OrCAD
+Protel
+Proteus
+SolidWorks Electrical
+TARGET
+TopoR
+Upverter
+Zuken CADSTAR
+
+
+
+
+
+
+
+
+File formats
+
+
+
+3MF
+ACIS
+AMF
+C3D
+CKD
+DWF
+DWFX
+DWG
+DXF
+IGES
+OBJ
+OpenDWG
+PLY
+PSpice
+STEP
+STL
+
+
+
+
+
+Modeling kernels
+
+
+
+ACIS
+C3D
+Open CASCADE Technology
+Parasolid
+RGK
+Romulus
+KernelCAD
+ShapeManager
+Teigha
+IntelliCAD
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_10303&oldid=810147744"					Categories: ISO standardsCAD file formatsHidden categories: Articles lacking in-text citations from January 2010All articles lacking in-text citations

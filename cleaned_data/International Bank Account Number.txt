@@ -1,0 +1,1636 @@
+
+
+
+
+typical british bank statement header fictitious bank showing location accounts iban
+
+
+international bank account number iban internationally agreed system identifying bank accounts across national borders facilitate communication processing cross border transactions reduced risk transcription errors originally adopted european committee banking standards ecbs later international standard 136161997 current standard 136162007 indicates swift formal registrar initially developed facilitate payments within european union implemented european countries numerous countries parts world mainly middle east caribbean february 2016 countries using iban numbering system1
+iban consists alphanumeric characters comprising country code check digits number includes domestic bank account number branch identifier potential routing information check digits enable sanity check bank account number confirm integrity submitting transaction
+
+
+
+contents
+
+
+background
+structure
+
+basic bank account number
+check digits
+
+
+processing
+
+algorithms
+
+validating iban
+generating iban check digits
+modulo operation iban
+
+3131 example
+
+
+
+
+
+
+adoption
+
+territories
+
+single euro payments area
+
+
+noneea
+iban formats country
+
+
+criticism
+also
+notes
+references
+external links
+
+
+
+backgroundedit
+iban differing national standards bank account identification bank branch routing codes account number confusing users often necessary routing information missing payments routing information specified 9362 also known business identifier codes code swift swift code swiftbic require specific format transaction identification accounts transaction types left agreements transaction partners also contain check digits errors transcription detectable possible sending bank validate routing information prior submitting payment routing errors caused delayed payments incurred extra costs sending receiving banks often intermediate routing banks2
+1997 overcome difficulties international organization standardization published 1361619973 proposal degree flexibility european committee banking standards ecbs believed would make unworkable produced slimmed version standard amongst things permitted uppercase letters required iban country fixed length4 136161997 subsequently withdrawn replaced 1361620033 standard revised 2007 split parts 1361612007 specifies elements international bank account number iban used facilitate processing data internationally data interchange financial environments well within industries specify internal procedures file organization techniques storage media languages used implementation5 1361622007 describes registration authority responsible registry iban formats compliant 136161 procedures registering 13616compliant iban formats6 official iban registrar 1361622007 swift7
+iban imposes flexible regular format sufficient account identification contains validation information avoid errors transcription carries routing information needed payment bank another wherever contains bank account details country code branch codes known sort codes ireland account numbers contains check digits validated source according single standard procedure8 used ibans reduced transnational money transfer errors total payments
+structureedit
+iban consists alphanumeric characters follows
+
+country code using 31661 alpha2 letters
+check digits digits
+basic bank account number bban alphanumeric characters countryspecific1
+
+check digits enable sanity check bank account number confirm integrity submitting transaction
+iban contain spaces transmitted electronically printed expressed groups four characters separated single space last group variable length shown example below1
+
+
+country
+iban formatting example
+
+
+germany
+de44 5001 0517 5407 3249
+
+
+greece
+gr16 0110 1250 0000 0001 2300
+
+
+united kingdom
+gb29 nwbk 6016 1331 9268
+
+
+saudi arabia
+sa03 8000 0000 6080 1016 7519
+
+
+switzerland
+ch93 0076 2011 6238 5295
+
+
+romania
+ro33 0006 1005 1978 6457 8413
+
+
+permitted iban characters digits uppercase latin alphabetic characters applies even countries thailand characters used national language
+basic bank account numberedit
+basic bank account number bban format decided national central bank designated payment authority country consistency formats adopted national authority register bban format swift obliged adopt iban without registration swift also acts registration authority swift system used countries adopted iban major difference systems swift requirement bbans used within country predefined length
+bban must fixed length country comprise caseinsensitive alphanumeric characters includes domestic bank account number branch identifier potential routing information country different national routingaccount numbering system maximum alphanumeric characters
+check digitsedit
+check digits enable sending bank customer perform sanity check routing destination account number single string data time data entry4 check guaranteed detect instances single character omitted duplicated mistyped characters transposed thus routing account number errors virtually eliminated9
+processingedit
+
+
+
+
+
+
+article section appears contradict range check digits section implies section says please talk page information june 2016
+
+
+
+design aims iban enable much validation possible done point data entry10 particular computer program accepts iban able validate
+
+country code
+number characters iban correspond number specified country code
+bban format specified country code
+account number bank code country code combination compatible check digits
+
+check digits calculated using mod9710 isoiec 706420039 abbreviated mod97 article specifies check character systems capable protecting strings errors occur people copy data particular standard states following detected
+
+single substitution errors substitution single character another example 4234 1234
+nearly single local transposition errors transposition single characters either adjacent character example 12354 12543 12345
+nearly shift errors shifts whole string left right
+high proportion double substitution errors separate single substitution errors string example 7234587 1234567
+high proportion errors
+
+underlying rules ibans accountservicing financial institution issue iban number areas different ibans could generated account branch numbers would satisfy generic iban validation rules particular cases valid check digit valid check digit likewise valid check digit valid check digit similarly
+cefact tbg5 published free iban validation service languages countriesneeds update adopted iban standard11 also published javascript source code verification algorithm12
+english language iban checker ecbs member country bank accounts available website13
+algorithmsedit
+
+validating ibanedit
+iban validated converting integer performing basic mod97 operation described 7064 iban valid remainder equals 1note algorithm iban validation follows8
+
+check total iban length correct country iban invalid
+move four initial characters string
+replace letter string digits thereby expanding string
+interpret string decimal integer compute remainder number division
+
+remainder check digit test passed iban might valid
+example fictitious united kingdom bank sort code 123456 account number 98765432
+
+
+
+
+iban
+
+gb82 west 1234 5698 7654
+
+
+
+rearrange
+
+t12345698765432
+
+
+
+convert integer
+
+3214282912345698765432161182
+
+
+
+compute remainder
+
+3214282912345698765432161182
+
+
+
+
+
+generating iban check digitsedit
+according ecbs generation iban shall exclusive responsibility bankbranch servicing account8 ecbs document replicates part isoiec 70642003 standard method generating check digits range check digits ranges also provide validation iban standard silent whether ranges used
+preferred algorithm
+
+check total iban length correct country iban invalid
+replace check digits gb00
+move four initial characters string
+replace letters string digits expanding string necessary alphabetic character therefore replaced digits
+convert string integer ignore leading zeroes
+calculate mod97 number results remainder
+subtract remainder result check digits result single digit number leading make twodigit number
+
+modulo operation ibanedit
+computer programming language software package used compute directly must ability handle integers digits practice done software either supports arbitraryprecision arithmetic handle unsigned integersnote features often standard application software provide ability handle integers size modulo operation performed piecewise manner case cefact tbg5 javascript program
+piecewise calculation done many ways follows14
+
+starting leftmost digit construct number using first digits call nnote
+calculate
+construct 9digit concatenating result step next digits fewer digits remaining least construct less digits result step followed remaining digits
+repeat steps digits processed
+
+result final calculation step
+exampleedit
+example algorithm applied 3214282912345698765432161182 digits colourcoded description result iban corresponding passes check digit test
+
+construct first digits
+
+321428291
+
+
+calculate
+construct 9digit result step followed next digits
+
+702345698
+
+
+calculate
+construct 9digit result step followed next digits
+
+297654321
+
+
+calculate
+construct result step followed remaining digits
+
+2461182
+
+
+calculate
+
+step final result iban passed check digit test
+adoptionedit
+
+
+
+
+adoption iban january 2014
+iban structure defined
+iban structure registered swift
+country participates sepa
+euro countrys currency
+
+
+
+international bank transactions either iban 9362 business identifier code system swift code conjunction bban basic bank account number
+territoriesedit
+banks countries europe publish account numbers using iban format nationally recognised identifiers mandatory within european economic area15
+daytoday administration banking british overseas territories varies territory territory south georgia south sandwich islands small population warrant banking system others bermuda thriving financial sector16 iban local government gibraltar part european union required iban15 crown dependencies british clearing system17 british virgin islands chosen april 2013update british overseas territories chosen iban1 banks caribbean netherlands also iban
+
+
+
+
+since february 2014 iban mandatory banking transactions countries euro
+
+
+single euro payments areaedit
+main article single euro payments area
+iban designation scheme chosen foundation electronic straightthrough processing european economic area european parliament mandated bank charge needs amount domestic credit transfers crossborder credit transfers regulated decision 25602001 updated 924200915 regulation took effect 2003 payments euro €12500 bank account designated iban covered regulation
+euro payments regulation foundation decision create single euro payments area sepa european central bank created target2 interbank network unifies technical infrastructure central banks european union although sweden optedout sepa selfregulatory initiative banking sector europe represented european payments council european union made scheme mandatory payment services directive published 2007 since january 2008 countries must support sepa credit transfer sepa direct debit must supported since november 2009 regulation sepa payments increases charge price domestic payments crossborder payments €50000
+decision european parliament iban scheme bank accounts fully replaced domestic numbering schemes december 201218 december 2010 european commission published proposed regulations make iban support mandatory domestic credit transfer 2013 domestic direct debit 2014 months transition period respectively19 countries already replaced traditional bank account scheme iban includes switzerland iban introduced national credit transfer january 2006 support bank account numbers required january 201020
+based december 2011 memorandum21 parliament resolved mandatory dates adoption iban february 201222 february 2014 national systems credit transfer direct debit must abolished replaced ibanbased system22 extended crossborder sepa transactions february 2016 article section dates iban sufficient identify account home foreign financial transactions sepa countries banks longer permitted require customer supply beneficiarys bank
+runup february 2014 deadline became apparent many bank account numbers allocated ibans—an issue addressed countrybycountry basis germany example german federal bank german banking industry committee require holders german bank codes bankleitzahl publish specifics iban generation format taking account generation check digits also handling legacy bank codes thereby enabling third parties generate ibans independently bank23 first catalogue published june 2013 variant bank code catalog bankleitzahlendatei24
+noneeaedit
+banks numerous noneuropean countries including states middle east north africa caribbean implemented iban format account identification1 countries iban used basis example ukraine account numbers used international transfers four national banks additional aliases follow iban format precursor formal swift registration25
+degree bank verifies validity recipients bank account number depends configuration transmitting banks software—many major software packages supply bank account validation standard function26 banks outside europe recognize iban though expected diminish time noneuropean banks usually accept ibans accounts europe although might treat ibans differently foreign bank account numbers particular might check ibans validity prior sending transfer27
+banks united states iban account numbers accounts28 adoption iban standard banks would likely initiated ansi financial services standards development organization working group wgab20 established subcommittee generate iban construction bank accounts29
+canadian financial institutions adopted iban bank transit numbers issued canadian payments association domestic transfers swift international transfers formal governmental private sector regulatory requirement canada major banks iban
+australia zealand iban bank state branch codes domestic transfers swift international transfers30
+iban formats countryedit
+table summarises iban formats country1
+
+twocharacter country code represents check digits calculated rest iban characters constant country concerned stated comments column happens bban check digits algorithm iban check digits
+bban format column shows format bban part iban terms upper case alpha characters denoted numeric characters denoted mixed case alphanumeric characters denoted example bulgarian bban 4a6n8c consists alpha characters followed numeric characters mixedcase alphanumeric characters
+descriptions comments field standardised country specific names brackets format various fields deduced bban field
+countries planning introduce iban shown italics planned date introduction bold
+
+
+
+country
+chars
+bban format
+iban fields
+comment
+
+
+albania
+
+8n16c
+alkk bbbs sssx cccc cccc cccc cccc
+national bank code
+branch code
+national check digit
+account number
+
+
+andorra
+
+8n12c
+adkk bbbb ssss cccc cccc cccc
+national bank code
+branch code
+account number
+
+
+austria
+
+
+atkk bbbb bccc cccc cccc
+national bank code
+account number
+
+
+azerbaijan
+
+4c20n
+azkk bbbb cccc cccc cccc cccc cccc
+national bank code
+account number
+
+
+bahrain
+
+4a14c
+bhkk bbbb cccc cccc cccc
+national bank code
+account number
+
+
+belarus
+july 201731
+
+
+bykk bbbb aaaa cccc cccc cccc cccc
+national bank branch code
+balance account number
+account number
+
+
+belgium
+
+
+bekk bbbc cccc ccxx
+national bank code
+account number
+national check digits
+
+
+bosnia herzegovina
+
+
+bakk bbbs sscc cccc ccxx
+iban check digits always
+national bank code
+branch code
+account number
+national check digits
+
+
+brazil
+
+23n1a1c
+brkk bbbb bbbb ssss sccc cccc ccct
+iban check digits calculated 9710
+national bank code
+branch code
+account number
+account type cheque account savings account
+owner account number etc32
+
+
+bulgaria
+
+4a6n8c
+bgkk bbbb ssss ttcc cccc
+bank code
+branch number
+account type
+account number
+
+
+costa rica
+
+
+crkk 0bbb cccc cccc cccc
+always zero
+bank code
+account number
+
+
+
+croatia
+
+
+hrkk bbbb bbbc cccc cccc
+bank code
+account number
+
+
+cyprus
+
+8n16c
+cykk bbbs ssss cccc cccc cccc cccc
+national bank code
+branch code
+account number
+
+
+czech republic
+
+
+czkk bbbb ssss sscc cccc cccc
+national bank code
+account number prefix
+account number
+
+
+denmark
+
+
+dkkk bbbb cccc cccc
+national bank code
+account number
+
+
+dominican republic
+
+4a20n
+dokk bbbb cccc cccc cccc cccc cccc
+bank identifier
+account number
+
+
+east timor
+
+
+tlkk bbbc cccc cccc cccc
+iban check digits always
+bank identifier
+account number
+national check digit
+
+
+estonia
+
+
+eekk bbss cccc cccc cccx
+national bank code
+branch code
+account number
+national check digit
+
+
+faroe islandsnote
+
+
+fokk bbbb cccc cccc
+national bank code
+account number
+national check digit
+
+
+finland
+
+
+fikk bbbb bbcc cccc
+bank branch code
+account number
+national check digit
+
+
+francenote
+
+10n11c2n
+frkk bbbb bsss sscc cccc cccc
+national bank code
+branch code frcode guichet
+account number
+national check digits frclé
+
+
+georgia
+
+2c16n
+gekk bbcc cccc cccc cccc
+national bank code
+account number
+
+
+germany
+
+
+dekk bbbb bbbb cccc cccc
+bank branch identifier debankleitzahl
+account number
+
+
+gibraltar
+
+4a15c
+gikk bbbb cccc cccc cccc
+bank code
+account number
+
+
+greece
+
+7n16c
+grkk bbbs sssc cccc cccc cccc
+national bank code
+branch code
+account number
+
+
+greenlandnote
+
+
+glkk bbbb cccc cccc
+national bank code
+account number
+
+
+guatemala
+
+4c20c
+gtkk bbbb mmtt cccc cccc cccc cccc
+national bank code
+account number
+currency
+account type
+
+
+hungary
+
+
+hukk bbbs sssx cccc cccc cccc cccx
+national bank code
+branch code
+account number
+national check digit
+
+
+iceland
+
+
+iskk bbbb sscc cccc iiii iiii
+national bank code
+branch code
+account number
+holders kennitala national identification number
+
+
+ireland
+
+4c14n
+iekk aaaa bbbb bbcc cccc
+bank code
+bankbranch code sort code
+account number
+
+
+israel
+
+
+ilkk bbbn nncc cccc cccc
+national bank code
+branch number
+account number digits padded zeros
+
+
+italy
+
+1a10n12c
+itkk xbbb bbss sssc cccc cccc
+check char
+national bank code associazione bancaria italiana codice
+branch code itcoordinate bancarie codice davviamento bancario
+account number
+
+
+jordan34
+
+4a22n
+jokk bbbb ssss cccc cccc cccc cccc
+national bank code
+branch code
+account number
+
+
+kazakhstan
+
+3n13c
+kzkk bbbc cccc cccc cccc
+national bank code
+account number
+
+
+kosovo
+
+4n10n2n
+xkkk bbbb cccc cccc cccc
+national bank code
+account number
+
+
+kuwait
+
+4a22c
+kwkk bbbb cccc cccc cccc cccc cccc
+national bank code
+account number
+
+
+latvia
+
+4a13c
+lvkk bbbb cccc cccc cccc
+bank code
+account number
+
+
+lebanon
+
+4n20c
+lbkk bbbb cccc cccc cccc cccc cccc
+national bank code
+account number
+
+
+liechtenstein
+
+5n12c
+likk bbbb bccc cccc cccc
+national bank code
+account number
+
+
+lithuania
+
+
+ltkk bbbb bccc cccc cccc
+national bank code
+account number
+
+
+luxembourg
+
+3n13c
+lukk bbbc cccc cccc cccc
+national bank code
+account number
+
+
+macedonia
+
+3n10c2n
+mkkk bbbc cccc cccc
+iban check digits always
+national bank code
+account number
+national check digits
+
+
+malta
+
+4a5n18c
+mtkk bbbb ssss sccc cccc cccc cccc
+bank code
+branch code
+account number
+
+
+mauritania
+
+
+mrkk bbbb bsss sscc cccc cccc
+iban check digits always
+national bank code
+branch code frcode guichet
+account number
+national check digits frclé
+
+
+mauritius
+
+4a19n3a
+mukk bbbb bbss cccc cccc cccc 000m
+national bank code
+branch identifier
+account number
+zeroes
+currency symbol
+
+
+monaco
+
+10n11c2n
+mckk bbbb bsss sscc cccc cccc
+national bank code
+branch code frcode guichet
+account number
+national check digits frclé
+
+
+moldova
+
+2c18c
+mdkk bbcc cccc cccc cccc cccc
+national bank code
+account number
+
+
+montenegro
+
+
+mekk bbbc cccc cccc cccc
+iban check digits always
+bank code
+account number
+national check digits
+
+
+netherlandsnote
+
+4a10n
+nlkk bbbb cccc cccc
+bank code
+account number
+
+
+norway
+
+
+nokk bbbb cccc
+national bank code
+account number
+modulo11 national check digit
+
+
+pakistan
+
+4c16n
+pkkk bbbb cccc cccc cccc cccc
+national bank code
+account number
+
+
+palestinian territories
+
+4c21n
+pskk bbbb xxxx xxxx xccc cccc cccc
+national bank code
+account number
+specified
+
+
+poland
+
+
+plkk bbbs sssx cccc cccc cccc cccc
+national bank code
+branch code
+national check digit
+account number
+
+
+portugal
+
+
+ptkk bbbb ssss cccc cccc cccx
+iban check digits always
+national bank code numeric
+branch code numeric
+account number numeric
+national check digits numeric
+
+
+qatar
+
+4a21c
+qakk bbbb cccc cccc cccc cccc cccc
+national bank code
+account number35
+
+
+romania
+
+4a16c
+rokk bbbb cccc cccc cccc cccc
+bank code first four alpha characters
+branch code account number bankspecific format
+
+
+marino
+
+1a10n12c
+smkk xbbb bbss sssc cccc cccc
+check char itcin
+national bank code itassociazione bancaria italiana codice
+branch code itcoordinate bancarie codice davviamento bancario
+account number
+
+
+saudi arabia
+
+2n18c
+sakk bbcc cccc cccc cccc cccc
+national bank code
+account number preceded zeros required
+
+
+serbia
+
+
+rskk bbbc cccc cccc cccc
+national bank code always
+account number
+account check digits
+
+
+slovakia
+
+
+skkk bbbb ssss sscc cccc cccc
+national bank code
+account number prefix
+account number
+
+
+slovenia
+
+
+sikk bbss sccc cccc
+iban check digits always
+national bank code
+branch code
+account number
+national check digits
+
+
+spain
+
+
+eskk bbbb ssss xxcc cccc cccc
+national bank code
+branch code
+check digits
+account number
+
+
+sweden
+
+
+sekk bbbc cccc cccc cccc cccc
+national bank code
+account number
+
+
+switzerland
+
+5n12c
+chkk bbbb bccc cccc cccc
+national bank code
+account number
+
+
+tunisia
+
+
+tnkk bbss sccc cccc cccc cccc
+iban check digits always
+national bank code
+branch code
+account number
+
+
+turkey
+
+5n17c
+trkk bbbb bxcc cccc cccc cccc
+national bank code
+reserved future currently
+account number
+
+
+united arab emirates
+
+3n16n
+aekk bbbc cccc cccc cccc
+national bank code
+account number
+
+
+united kingdomnote
+
+4a14n
+gbkk bbbb ssss sscc cccc
+bank code
+bank branch code sort code
+account number
+
+
+virgin islands british
+
+4c16n
+vgkk bbbb cccc cccc cccc cccc
+national bank code
+account number
+
+
+addition list nordea catalogued ibans countries listed below36
+list
+
+represent iban checksum
+represents alphabetic character
+represents numeric character
+represents bank code character
+represents account digit
+represents character
+
+
+
+country
+chars
+example
+comments
+
+
+algeria
+
+dzkk nnnn nnnn nnnn nnnn nnnn
+
+
+angola
+
+aokk nnnn nnnn nnnn nnnn nnnn
+
+
+benin
+
+bjkk annn nnnn nnnn nnnn nnnn nnnn
+
+
+burkina faso
+
+bfkk nnnn nnnn nnnn nnnn nnnn nnnn
+
+
+burundi
+
+bikk nnnn nnnn nnnn
+
+
+cameroon
+
+cmkk nnnn nnnn nnnn nnnn nnnn
+
+
+cape verde
+
+cvkk nnnn nnnn nnnn nnnn nnnn
+
+
+iran
+
+irkk 0bb0 nnnn nnnn nnnn nnnn
+
+
+ivory coast
+
+cikk annn nnnn nnnn nnnn nnnn nnnn
+
+
+madagascar
+
+mgkk nnnn nnnn nnnn nnnn nnnn
+format identical french format
+
+
+mali
+
+mlkk annn nnnn nnnn nnnn nnnn nnnn
+
+
+mozambique
+
+mzkk nnnn nnnn nnnn nnnn nnnn
+
+
+senegal
+
+snkk annn nnnn nnnn nnnn nnnn nnnn
+
+
+ukraine
+
+uakk bbbb bbcc cccc cccc cccc cccc
+
+
+addition list countries process introducing iban retrieved swift partner website listed below37
+list
+
+represent iban checksum
+represents alphabetic character
+represents numeric character
+
+
+
+country
+chars
+example
+
+
+comoros
+
+kmkk nnnn nnnn nnnn nnnn nnnn
+
+
+chad
+
+tdkk nnnn nnnn nnnn nnnn nnnn
+
+
+congo
+
+cgkk nnnn nnnn nnnn nnnn nnnn
+
+
+egypt
+
+egkk nnnn nnnn nnnn nnnn nnnn
+
+
+gabon
+
+gakk nnnn nnnn nnnn nnnn nnnn
+
+
+honduras
+
+hnkk aaaa nnnn nnnn nnnn nnnn nnnn
+
+
+morocco
+
+makk nnnn nnnn nnnn nnnn nnnn nnnn
+
+
+nicaragua
+
+nikk aaaa nnnn nnnn nnnn nnnn nnnn nnnn
+
+
+niger
+
+nekk aann nnnn nnnn nnnn nnnn nnnn
+
+
+togo
+
+tgkk aann nnnn nnnn nnnn nnnn nnnn
+
+
+criticismedit
+criticism length readability iban printed paper iban often difficult read therefore popular group iban four symbols however electronic documents invoice copy paste grouped iban result errors online banking forms fewcitation needed user friendly bank institutes allow detect copy paste grouped ungrouped iban
+alsoedit
+
+bank card number
+bank regulation
+routing transit number
+
+notesedit
+
+
+
+equations remainder divided denoted remainders
+maximum length decimal digits fully generic iban alphanumeric digits check digits however numeric 2220 equal 1066 inferred unsigned integers accommodate unsigned integers digits
+approximately equal making possible 9digit integer handled using integer arithmetic
+registered swift part denmark country code
+french guyana french polynesia french southern territories guadeloupe martinique mayotte caledonia réunion saint barthélemy saint martin french part saint pierre miquelon wallis futuna islands country code iban country code
+applicable aruba curaçao sint maarten caribbean netherlands
+united kingdom great britain northern ireland isle bailiwicks guernsey jersey format british overseas territories formats gibraltar british virgin islands ibans
+
+
+
+referencesedit
+
+
+iban registry registry provides detailed information 13616compliant national iban formats release swift february 2016 retrieved february 2016
+handbook standardisation application basic bank account number bban international bank account number iban cyprus central bank cyprus september 2003 introduction retrieved august 2012
+banking related financial services international bank account number iban international organisation standardisation july 2003 retrieved august 2012
+iban standard implementation guidelines sig203 european committee banking standards december 2000 ordering customer retrieved august 2012 ibans make validation possible telebanking fedi
+1361612007 financial services international bank account number iban part structure iban international organization standardization retrieved january 2010
+1361622007 financial services international bank account number iban part role responsibilities registration authority international organization standardization retrieved january 2010
+iso13616 iban registry swift retrieved january 2010
+iban international bank account number ebs204 european committee banking standards august 2003 retrieved august 2010
+isoiec 70642003 information technology security techniques check character systems international organization standardization retrieved january 2010
+handbook standardisation application basic bank account number bban international bank account number iban cyprus central bank cyprus september 2003 section advantages retrieved august 2012 reduction human errors
+international bank account number iban iban online check uncefact united nations centre trade facilitation electronic business april 2012 retrieved august 2012
+international bank account number iban basic information uncefact united nations centre trade facilitation electronic business april 2012 retrieved august 2012
+iban checker european banking resources ecbsorg september 2008 retrieved september 2012
+standard format iban issued international bank account number payments administration june 2016 retrieved august 2012
+regulation 9242009 european parliament council september 2009 crossborder payments community repealing regulation 25602001 eurlex retrieved september 2016
+bermuda monetary authority home page 2013 retrieved april 2013
+world payments guide pacnet services 2011 retrieved april 2013
+frist umstieg sepaprodukte widerstand programmiert deadline migration sepa products programmed resistance german jones deutschland december 2010 archived original december 2010 retrieved december 2010
+proposal regulation european parliament council establishing technical requirements credit transfers direct debits euros amending regulation 9242009 european parliament council european union december 2010 retrieved january 2011
+ibannummer noch kein obligatorium iban number mandatory german november 2009 retrieved december 2010
+commissioner michel barnier welcomes agreement council parliament establishing sepa migration enddates press release european commission december 2010 memo11935
+european parliament legislative resolution february 2012 proposal regulation european parliament council establishing technical requirements credit transfers direct debits euros amending regulation 9242009 european parliament february 2012 p7taprov20120037
+rundschreiben 732012 abkommen über ibanregeln circular 702012 agreement regarding iban rules german deutsche bundesbank december 2012 retrieved june 2013
+ibanregeln bankleitzahlendatei iban rules bank sort codes german deutsche bundesbank june 2013 retrieved june 2013
+засідання комітету питань банківської інфраструктури платіжних систем news committee meeting banking infrastructure payment systems ukrainian march 2013 archived original july 2013 retrieved april 2013
+bank account validation work portal retrieved 2013
+avoiding pitfalls iban payments reed business information limited 2013 retrieved 2013
+understanding swift iban essential details making money transfer currency solutions 2013 retrieved 2013
+board subcommittees working groups wgab20 iban international bank account number accredited standards committee retrieved october 2017
+iban swift codes switzerland buying guide 2013 archived original july 2014 retrieved july 2013
+переход iban национальный банк республики беларусь
+iban implementation guidelines brazil circular 3625 banco central brasil february 2013 retrieved august 2013
+convertidor cuentas estandarizadas standardized account converter spanish banco guatemala
+international bank account number iban citibank
+iban registry qatar page swift november 2013 archived original november 2013 retrieved november 2013
+iban countries nordea 2016 retrieved 2016
+experimental iban countries ibancom 2017 retrieved march 2017
+
+
+external linksedit
+
+
+
+wikimedia commons media related iban
+
+
+
+official 13616 registry society worldwide interbank financial telecommunication swift
+1361612007 international organization standardization
+iban implementation guidelines state bank pakistan 2012
+handbook standardization application bban iban cyprus central bank cyprus
+check digits characters checksum number help prevent manual typing errors check digits characters checksum number help prevent manual typing errors
+
+
+
+
+
+
+
+
+
+
+
+
+international numbering standards
+
+
+
+
+standards
+
+
+
+
+
+
+
+2108 international standard book number isbn
+3297 international standard serial number issn
+3901 international standard recording code isrc
+6166 international securities identification number isin
+isoiec 7812 issuer identification number
+10957 international standard music number ismn
+13616 international bank account number iban
+15511 international standard identifier libraries isil
+15706 international standard audiovisual number isan
+15707 international standard musical work code iswc
+17316 international standard link identifier isli
+17442 legal entity identifier
+21047 international standard text code istc
+26324 digital object identifier system
+27729 international standard name identifier isni
+caeipi
+virtual international authority file viaf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleinternationalbankaccountnumberoldid818275916 categories banking termsfinancial regulationiso standardsbank codeschecksum algorithmshidden categories germanlanguage sources decs1 uses ukrainianlanguage script ukcs1 ukrainianlanguage sources ukcs1 spanishlanguage sources esselfcontradictory articles june 2016all selfcontradictory articleswikipedia articles need updating october 2016all wikipedia articles need updatingarticles containing potentially dated statements april 2013all articles containing potentially dated statementsall articles unsourced statementsarticles unsourced statements january 2016

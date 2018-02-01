@@ -1,0 +1,1343 @@
+
+
+
+
+
+
+article needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed february 2010 learn remove template message
+
+
+
+
+
+optical discs
+
+
+
+
+general
+
+
+optical disc
+optical disc drive
+optical disc authoring
+authoring software
+recording technologies
+
+recording modes
+packet writing
+
+
+
+
+
+
+
+
+
+
+optical media types
+
+
+compact disc cdda cdrom cdrw music disc super audio sacd photo video video super video svcd cdtext cdrom
+dvdr dvdr dvdr dvdr dvdr dvdr dvdrw dvdrw dvdram dvdd dvda ecodisc
+bluray disc bdre ultra bluray
+bluray
+universal media disc
+enhanced versatile disc
+forward versatile disc
+holographic versatile disc
+china blue highdefinition disc cbhd
+dvdr dvdrw dvdram
+highdefinition versatile multilayer disc
+vcdhd
+gdrom
+personal video disc
+minidisc himd
+laserdisc ldrom lvrom
+video single disc
+ultra density optical
+stacked volumetric optical disk svod
+five dimensional disc
+nintendo optical disc
+archival disc
+professional disc
+
+
+
+
+
+
+
+
+standards
+
+
+atapimmc
+
+mount rainier packet writing
+mount fuji layer jump recording
+
+
+rainbow books
+file systems
+
+9660
+
+joliet
+romeo
+rock ridge susp
+torito
+apple 9660 extensions
+
+
+universal disk format
+13490
+
+
+
+
+
+
+
+
+
+
+also
+
+
+history optical storage media
+highdefinition optical disc format
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9660 file system optical disc media
+published international organization standardization file system considered international technical standard
+since specification available anybody purchase1 implementations written many operating systems
+
+
+
+contents
+
+
+history
+specifications
+
+overall structure
+volume descriptor
+
+volume descriptor
+
+
+directories files
+path tables
+
+
+limitations
+
+directory depth limit
+file size limit
+limit number directories
+
+
+extensions improvements
+disc images
+operating system support
+also
+references
+external links
+
+
+
+historyedit
+9660 traces roots high sierra format file system2 high sierra arranged file information dense sequential layout minimize nonsequential access using hierarchical eight levels directories deep tree file system arrangement similar unix facilitate cross platform compatibility defined minimal common file attributes directory ordinary file time recording name attributes name extension version used separate system area future optional extensions file specified
+high sierra adopted december 1986 changes international standard ecma international ecma1193 submitted fast tracking eventually accepted 966019884
+2013 published amendment 9660 standard introducing data structures relaxed file name rules intended bring harmonization 9660 widely used joliet specification5
+specificationsedit
+overall structureedit
+following rough overall structure 9660 file system
+
+
+9660 file system
+
+
+system area 32768
+unused 9660
+
+
+data area
+
+
+volume descriptor
+
+
+path tables directories files
+
+
+system area first 32768 data bytes disk sectors 2048 bytes unused 9660 therefore available uses example cdrom contain alternative file system descriptor area often used hybrid offer classic osspecific macosspecific content
+multibyte values stored twice littleendian bigendian format either oneafteranother specification calls bothbyte orders duplicated data structures path table structures designed unaligned members endian encoding however help implementors data structures need read bytewise convert properly aligned data
+volume descriptor setedit
+data area begins volume descriptors terminated volume descriptor terminator collectively volume descriptor acts header data area describing content similar bios parameter block used hpfs ntfs formatted disks
+
+
+volume descriptor
+
+
+volume descriptor
+
+
+
+
+
+volume descriptor
+
+
+volume descriptor terminator
+
+
+volume descriptor terminator simply particular type volume descriptor purpose marking structures
+volume descriptoredit
+volume descriptor 2048 bytes size fitting perfectly single mode mode form sector following structure
+
+
+
+2048 bytes
+
+
+parts
+type
+identifier always cd001
+version always 0x01
+data
+
+
+sizes
+byte
+bytes
+byte
+2041 bytes
+
+
+data field volume descriptor subdivided several fields exact content depending type
+standard volume descriptor types following
+
+
+basic volume descriptor types
+
+
+type field value
+type
+
+
+
+boot record volume descriptor
+
+
+
+primary volume descriptor
+
+
+
+supplementary volume descriptor
+enhanced volume descriptor
+
+
+
+
+volume partition descriptor
+
+
+
+volume descriptor terminator
+
+
+9660 compliant disk contains least primary volume descriptor describing file system volume descriptor terminator indicating descriptor sequence
+primary volume descriptor provides information volume characteristics metadata including root directory record indicates sector root directory located fields contain description name volume information created application size logical blocks file system uses segment volume also stored field inside primary volume descriptor well amount space occupied volume measured number logical blocks
+addition primary volume descriptors supplementary volume descriptors enhanced volume descriptors present
+supplementary volume descriptors describe volume primary volume descriptor normally used providing additional code page support standard code tables insufficient standard specifies 2022 used managing code sets wider bytes 2375 escape sequences used identify particular code page used consequently 9660 supports international singlebyte multibyte character sets provided framework referenced standards however 9660 specify code pages guaranteed supported code tables defined standard subject agreement originator recipient volume
+enhanced volume descriptors introduced 9660 amendment relax requirements volume descriptors directory records referenced example directory depth exceed eight file identifiers need contain file version number length file directory identifier maximized
+redundant copies volume descriptor also included case first copy descriptor becomes corrupt
+directories filesedit
+
+
+
+
+overview 9660 directory structure
+
+
+directory entries stored following location root directory entry evaluation filenames begun directories files stored extents sequential series sectors
+files directories differentiated file attribute indicates nature similar unix attributes file stored directory entry describes file optionally extended attribute record
+locate file directory names files path checked sequentially going location directory obtain location subsequent subdirectory however file also located path table provided file system path table stores information directory parent location disk since path table stored contiguous region searched much faster jumping particular locations directory files path thus reducing seek time
+standard specifies three nested levels interchange paraphrased section
+
+level file names limited eight characters threecharacter extension directory names limited eight characters files contain single file section
+level files contain single file section
+level additional restrictions stipulated main body standard directory identifiers exceed characters length file name file name extension exceed characters length sections files also allowed consist multiple noncontiguous sections restrictions order
+
+additional restrictions body standard depth directory hierarchy must exceed root directory level path length file must exceed section 6821
+standard also specifies following name restrictions sections
+
+levels restrict file names mandatory file hierarchy upper case letters digits underscores also section annex
+characters specified file name file name extension shall consist least character
+characters specified file name extension file name shall consist least character
+file names shall
+directory names shall dots
+
+authoring applications allow user almost character strictly speaking conform 9660 standard operating systems read 9660 file systems problem outofspec names however names could appear wrong user
+path tablesedit
+path tables summarize directory structure relevant directory hierarchy providing directory identifier location extent directory recorded length extended attributes associated directory index parent directory path table entry
+limitationsedit
+directory depth limitedit
+restrictions filename length characters plus character extension interchange level directory depth levels including root directory6 serious limitation 9660 file system
+rock ridge extension works around eightdirectory depth limit folding paths practice however drivers oses care directory depth rule often ignored
+addition restrictions mentioned cdrom producer choose lower levels interchange specified chapter standard restrict file name length characters file identifiers directory identifiers order promote interchangeability implementations implement full standard sometimes mistakenly interpreted restriction 9660 standard
+file size limitedit
+numbers 9660 file systems except single byte value used offset unsigned numbers length files extent disk stored value7 allows maximum length precisely byte less note older operating systems handle values incorrectly signed instead unsigned would make impossible access files larger size latter holds true also operating systems without large file support
+based often assumed file 9660 formatted disc cannot larger 2321 size files size stored unsigned value 2321 maximum
+however possible circumvent limitation using multiextent fragmentation feature 9660 level create 9660 filesystems single files files larger split multiple extents sequential series sectors exceeding limit example free software infrarecorder imgburn mkisofs well roxio toast able create 9660 filesystems multiextent files store files larger appropriate media recordable dvds
+empirical tests fragmented file media shown microsoft windows supports 1048 handle case properly case driver appears support file fragmentation supports 9660 level level linux supports multiple extents8 freebsd shows reads last extent multiextent filecitation neededoriginal research
+limit number directoriesedit
+another limitation less well known number directories image structure called path table directory image path table provides number parent directory entry problem parent directory number 16bit number limiting range 655359 content directory written also different place making path table redundant suitable fast searching
+operating systems windows path table others linux image disk consists 65535 directories readable linux early windows versions files additional directories visible show empty zero length current windowswhen versions appear handle correctly
+software tools problems managing path table directory limit exceeded popular application using format mkisofs aborts path table overflow nero burning windows pinnacle instant cddvd check whether problem occurs produce invalid file disk without warning tool isovfy cannot easily report problem
+extensions improvementsedit
+several extensions 9660 relax limitations
+
+rock ridge supports preservation posix unixstyle permissions longer names
+joliet supports unicode names stored ucs2 thus allowing almost character used even nonlatin scripts
+torito enables bootable
+apple 9660 extensions adds support classic osspecific macosspecific file characteristics resource forks file backup date
+
+operating systems support extensions name translation file transtbl must used located every directory including root directory obsolete since operating systems today
+13490 standard extension 9660 format adds support multiple sessions disc since 9660 design readonly premastered file system data written session medium written provision altering stored content 13490 created allow adding files writeable disc multiple sessions
+13346ecma16710 standard designed conjunction 13490 standard address shortcomings 966011 subset evolved format adopted dvds
+06061998 also known 96601999 japanese industrial standard draft created japanese national body jtc1 n4222 order make improvements remove limitations original 9660 standard12 draft submitted 1998 ratified standard changes includes removal restrictions imposed original standard extending maximum file name length characters removing eightlevel maximum directory nesting limit removing special meaning character filenames operating systems allow relaxations well reading optical discs several disc authoring tools nero burning mkisofs imgburn support socalled 96601999 mode sometimes called 9660 9660 level mode removes restrictions following guidelines 96601999 draft
+disc imagesedit
+main articles image optical disc image
+9660 file system images images common electronically transfer contents cdroms often filename extension iso9660 less common also commonly referred isos
+operating system supportedit
+operating systems support reading 9660 formatted discs versions support extensions rock ridge joliet operating systems support extensions usually show basic nonextended features plain 9660 disc
+operating systems support 9660 extensions include following
+
+access extensions mscdexexe microsoft cdrom extension nwcdexexe corelcdxexe
+microsoft windows windows windows read 9660 level joliet
+microsoft windows windows 2000 windows newer windows versions read 9660 level joliet 96601999 windows also mistake format cdfs information
+linux 9660 level joliet rock ridge 96601999
+apple gsos level support hsfst file system translator13
+classic level optional free software supports rock ridge joliet including level joke ridge joliet volume access
+macos versions level joliet rock ridge extensions level currently supported although users able mount disks14
+amigaos supports extensions preserve amiga protection bits file comments
+
+ultrix
+ecomstation
+beos zeta haiku
+openvms supports 9660 interchange levels extensions15
+risc support optical media written patchy cdrsrws work perfectly however dvdrsrwsrams entirely miss running risc risc risc 620citation needed
+
+alsoedit
+
+list international organization standardization standards
+hybrid
+disk image emulator
+comparison image software
+
+referencesedit
+
+
+96601988en information processing volume file structure cdrom information interchange international organization standardization 1988 retrieved 20171217
+working paper information processing volume file structure cdrom information interchange optical information systems 29–49 january 1987
+volume file structure cdrom information interchange ecma international december 1987
+volume file structure cdrom information interchange corrected geneva international organisation standardization 19880901
+9660 amendment 96601988amd12013e
+9660 section 6821
+9660 section
+kern95222 file sections iso9660 level ignored
+iso9660 sections
+ecma167 volume file structure writeonce rewritable media using nonsequential recording information interchange
+birth announcement isoiec 13346 isoiec 13490
+06061998 96601999 draft specification
+virtual using disk images apple emulators juicedgs volume issue 2004
+work pccreated joliet level 2004
+openvms frequently asked questions faqs hoffman labs retrieved september 2011
+
+
+external linksedit
+
+9660
+ecma119 ecma release 96601988 standard available free download
+summary 9660 specifications
+description data structures iso9660
+9660 analyzer tool freecode
+
+
+
+
+
+
+
+
+
+
+
+
+file systems
+
+
+
+
+
+
+comparison file systems
+
+distributed
+
+
+unix filesystem
+
+
+
+
+
+disk
+
+
+
+
+
+
+
+adfs
+advfs
+amiga
+amiga
+apfs
+athfs
+
+
+file system
+boot file system
+
+
+btrfs
+cvfs
+cxfs
+
+
+
+encrypting file system
+extent file system
+
+
+episode
+
+
+ext2
+ext3
+ext3cow
+ext4
+
+
+
+
+exfat
+
+
+files11
+fossil
+hammer
+
+
+hpfs
+htfs
+general parallel file system
+
+
+
+
+macintosh file system
+tivo media file system
+
+
+minix
+netware file system
+next3
+nilfs
+
+nilfs2
+
+
+
+ntfs
+onefs
+
+
+qnx4fs
+refs
+reiserfs
+
+reiser4
+
+
+reliance
+reliance nitro
+
+
+snfs
+soup apple
+tux3
+ubifs
+
+vxfs
+wafl
+xiafs
+
+xsan
+
+
+
+
+
+
+
+optical disc
+
+
+
+
+9660
+13490
+
+
+
+
+
+
+flash memory
+
+
+
+apfs
+
+exfat
+chfs
+tfat
+ffs2
+f2fs
+hpfs
+jffs
+jffs2
+
+logfs
+nilfs
+
+nilfs2
+
+
+nvfs
+yaffs
+ubifs
+
+
+
+
+
+distributed
+
+
+
+cxfs
+gfs2
+google file system
+ocfs2
+orangefs
+pvfs
+
+xsan
+
+
+
+
+
+
+
+
+
+
+
+
+
+openafs
+
+coda
+
+gpfs
+google file system
+lustre
+
+
+pohmelfs
+hadoop
+cifs
+sshfs
+
+
+
+
+
+
+specialized
+
+
+
+
+
+
+
+aufs
+axfs
+boot file system
+cdfs
+compact disc file system
+cramfs
+davfs2
+ftpfs
+fuse
+gmailfs
+lnfs
+ltfs
+nova
+mvfs
+squashfs
+umsdos
+overlayfs
+unionfs
+wbfs
+
+
+
+
+
+pseudo virtual
+
+
+
+configfs
+devfs
+debugfs
+kernfs
+procfs
+specfs
+sysfs
+tmpfs
+winfs
+
+
+
+
+
+encrypted
+
+
+
+ecryptfs
+encfs
+
+rubberhose
+sshfs
+
+
+
+
+
+
+
+
+
+types
+
+
+
+clustered
+
+global
+grid
+selfcertifying
+
+
+flash
+journaling
+logstructured
+object
+recordoriented
+semantic
+steganographic
+synthetic
+versioning
+
+
+
+
+
+features
+
+
+
+
+
+
+
+case preservation
+copyonwrite
+data deduplication
+data scrubbing
+execute place
+extent
+file attribute
+
+extended file attributes
+
+
+file change
+fork
+links
+
+hard
+symbolic
+
+
+
+
+
+
+
+access control
+
+
+
+access control list
+filesystemlevel encryption
+permissions
+
+modes
+sticky
+
+
+
+
+
+
+
+
+
+
+interfaces
+
+
+
+file manager
+file system
+
+installable file system
+
+
+virtual file system
+
+
+
+
+
+lists
+
+
+
+cryptographic
+default
+logstructured
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards ecma international
+
+
+
+application interfaces
+
+
+
+ansi escape code
+common language infrastructure
+office open
+openxps
+
+
+
+
+
+file systems tape
+
+
+
+advanced intelligent tape
+
+
+super
+holographic versatile disc
+linear tapeopen ultrium1
+
+
+
+
+
+
+file systems disk
+
+
+
+cdrom
+file system cdfs
+
+
+fat12
+fat16
+fat16b
+
+
+
+
+ultra density optical
+universal media disc
+
+
+
+
+
+graphics
+
+
+
+universal
+
+
+
+
+
+programming languages
+
+
+
+ccli
+
+eiffel
+javascript ecmascript
+
+
+
+
+
+radio link interfaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ecma35
+
+
+
+
+
+
+list ecma standards 1961 present
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleiso9660oldid816993815 categories disk file systemsiso standardsecma standardsoptical computer storagehidden categories dates july 2012articles needing additional references february 2010all articles needing additional referencesall articles unsourced statementsarticles unsourced statements august 2008all articles contain original researcharticles contain original research 2014all articles vague ambiguous timevague ambiguous time january 2017articles unsourced statements december 2017

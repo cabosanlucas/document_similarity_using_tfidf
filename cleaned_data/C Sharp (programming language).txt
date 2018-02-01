@@ -1,0 +1,1733 @@
+correct title article programming language substitution omission technical restrictions
+
+
+
+
+
+
+paradigm
+structured imperative objectoriented eventdriven taskdriven functional generic reflective concurrent
+
+
+family
+
+
+
+designed
+microsoft
+
+
+developer
+microsoft
+
+
+first appeared
+2000 years 20001
+
+
+
+
+
+stable release
+
+november 2017 days 20171115
+
+
+
+preview release
+
+
+
+
+
+
+
+
+typing discipline
+static dynamic4 strong safe nominative partially inferred
+
+
+platform
+common language infrastructure
+
+
+license
+
+mitx115
+mono compiler dual gplv3 mitx11
+libraries lgplv2
+dotgnu dual lgplv2
+
+
+filename extensions
+
+
+
+website
+docsmicrosoftcomdotnetcsharplanguagereference
+
+
+major implementations
+
+
+visual framework mono dotgnu
+
+
+dialects
+
+
+spec polyphonic enhanced
+
+
+influenced
+
+
+eiffel java6 modula3 object pascal7 icon haskell rust
+
+
+influenced
+
+
+chapel8 crystal9 dart10 hack java1112 kotlin monkey nemerle oxygene ring13 rust swift14 vala
+
+
+
+
+sharp programming wikibooks
+
+
+
+
+ʃɑːrp multiparadigm programming language encompassing strong typing imperative declarative functional generic objectoriented classbased componentoriented programming disciplines developed microsoft within initiative later approved standard ecma ecma334 isoiec 232702006 programming languages designed common language infrastructure
+generalpurpose objectoriented programming language15 development team anders hejlsberg recent version released 2017 along visual studio 2017 version 15516
+
+
+
+contents
+
+
+design goals
+history
+
+name
+versions
+features
+
+
+syntax
+distinguishing features
+
+portability
+typing
+metaprogramming
+methods functions
+property
+namespace
+memory access
+exception
+polymorphism
+language integrated query linq
+functional programming
+
+
+common type system
+
+categories data types
+boxing unboxing
+
+
+libraries
+examples
+standardization licensing
+implementations
+also
+notes
+references
+reading
+external links
+
+
+
+design goalsedit
+ecma standard lists design goals
+
+language intended simple modern generalpurpose objectoriented programming language
+language implementations thereof provide support software engineering principles strong type checking array bounds checking detection attempts uninitialized variables automatic garbage collection software robustness durability programmer productivity important
+language intended developing software components suitable deployment distributed environments
+portability important source code programmers especially already familiar
+support internationalization important
+intended suitable writing applications hosted embedded systems ranging large sophisticated operating systems small dedicated functions
+although applications intended economical regard memory processing power requirements language intended compete directly performance size assembly language
+
+historyedit
+development framework class libraries originally written using managed code compiler system called simple managed smc1718 january 1999 anders hejlsberg formed team build language time called cool stood clike object oriented language19 microsoft considered keeping name cool final name language chose trademark reasons time project publicly announced july 2000 professional developers conference language renamed class libraries aspnet runtime ported
+hejlsberg principal designer lead architect microsoft previously involved design turbo pascal embarcadero delphi formerly codegear delphi inprise delphi borland delphi visual interviews technical papers stated flawscitation needed major programming languages java delphi smalltalk drove fundamentals common language runtime turn drove design language
+james gosling created java programming language 1994 bill cofounder microsystems originator java called imitation java gosling said sort java reliability productivity security deleted2021 klaus kreft angelika langer authors streams book stated blog post java almost identical programming languages boring repetition lacks innovation22 hardly anybody claim java revolutionary programming languages changed write programs borrowed java vice versa supports boxing unboxing well similar feature java23 july 2000 hejlsberg said java clone much closer design24
+since release november 2005 java languages evolved increasingly divergent trajectories becoming somewhat less similar first major departures came addition generics languages vastly different implementations makes reification provide firstclass generic objects used like class code generation performed classload time25 furthermore added several major features accommodate functionalstyle programming culminating linq extensions released supporting framework lambda expressions extension methods anonymous types26 features enable programmers functional programming techniques closures advantageous application linq extensions functional imports help developers reduce amount boilerplate code included common tasks like querying database parsing file searching data structure shifting emphasis onto actual program logic help improve readability maintainability27
+used mascot called andy named anders hejlsberg retired january 200428
+originally submitted subcommittee review29 isoiec 23270200330 withdrawn approved isoiec 23270200631
+nameedit
+
+
+
+
+csharp musical note
+
+
+name sharp inspired musical notation sharp indicates written note made semitone higher pitch32 similar language name indicates variable incremented sharp symbol also resembles ligature four symbols twobytwo grid implying language increment
+technical limitations display standard fonts browsers fact sharp symbol u266f music sharp sign html 9839 present keyboard layouts number sign u0023 number sign html chosen approximate sharp symbol written name programming language34 convention reflected ecma334 language specification15 however practical example advertising art35 microsoft uses intended musical symbol
+sharp suffix used number languages variants existing languages including language also designed microsoft derived java functional programming language original implementation eiffel called eiffel37 name retired since full eiffel language supported suffix also used libraries wrapper gnome libraries cocoa wrapper cocoa
+versionsedit
+
+
+version
+language specification
+date
+framework
+visual studio
+
+
+ecma
+isoiec
+microsoft
+
+
+
+december 2002
+april 2003
+january 2002
+january 2002
+framework
+visual studio 2002
+
+
+
+
+october 2003
+april 2003
+framework
+visual studio 2003
+
+
+
+june 2006
+september 2006
+september 2005c
+november 2005
+framework
+visual studio 2005
+
+
+
+noned
+august 2007
+november 2007
+
+framework except linq38
+framework except linq38
+framework
+
+visual studio 2008
+visual studio 2010
+
+
+
+april 2010
+april 2010
+framework
+visual studio 2010
+
+
+
+progress39
+noned
+june 2013
+august 2012
+framework
+visual studio 2012
+visual studio 2013
+
+
+
+noned
+draft
+july 2015
+framework
+visual studio 2015
+
+
+
+none
+march 2017
+framework
+visual studio 2017
+
+
+
+none
+none
+none
+august 2017
+framework
+visual studio 2017 version 15340
+
+
+
+none
+none
+none
+november 2017
+framework
+visual studio 2017 version 15541
+
+
+featuresedit
+
+
+
+
+generics42
+partial types42
+anonymous methods42
+iterators42
+nullable types42
+gettersetter separate accessibility42
+method group conversions delegates42
+contravariance delegates42
+static classes42
+delegate inference42
+
+
+
+
+
+implicitly typed local variables43
+object collection initializers43
+autoimplemented properties43
+anonymous types43
+extension methods43
+query expressions43
+lambda expression43
+expression trees43
+partial methods44
+
+
+
+
+
+dynamic binding45
+named optional arguments45
+generic contravariance45
+embedded interop types nopia45
+
+
+5046
+
+
+asynchronous methods47
+caller info attributes47
+
+
+
+
+
+compilerasaservice roslyn
+import static type members namespace48
+exception filters48
+await catchfinally blocks48
+auto property initializers48
+default values getteronly properties48
+expressionbodied members48
+null propagator nullconditional operator succinct null checking48
+string interpolation48
+nameof operator48
+dictionary initializer48
+
+
+704950
+
+
+variables
+pattern matching
+tuples
+deconstruction
+local functions
+digit separators
+binary literals
+returns locals
+generalized async return types
+expression bodied constructors finalizers
+expression bodied getters setters
+throw also used expression
+
+
+7151
+
+
+async main
+default literal expressions
+inferred tuple element names
+
+
+7252
+
+
+reference semantics value types
+nontrailing named arguments
+leading underscores numeric literals
+private protected access modifier
+
+syntaxedit
+main article sharp syntax
+also syntax programming languages
+core syntax language similar cstyle languages java particular
+
+semicolons used denote statement
+curly brackets used group statements statements commonly grouped methods functions methods classes classes namespaces
+variables assigned using equals sign compared using consecutive equals signs
+square brackets used arrays declare value given index
+
+distinguishing featuresedit
+also comparison sharp java
+notable features distinguish java noted
+portabilityedit
+design programming language directly reflects underlying common language infrastructure cli53 intrinsic types correspond valuetypes implemented framework however language specification state code generation requirements compiler state compiler must target common language runtime generate common intermediate language generate specific format theoretically compiler could generate machine code like traditional compilers fortran
+typingedit
+supports strongly typed implicit variable declarations keyword implicitly typed arrays keyword followed collection initializer
+supports strict boolean data type bool statements take conditions require expression type implements true operator boolean type also boolean type freely converted integers expressions require convertible bool allowing pointer disallows integer meaning true false approach grounds forcing programmers expressions return exactly bool prevent certain types programming mistakes assignment instead equality error caught compiler anyway
+type safe implicit conversions default considered safe widening integers enforced compiletime cases runtime implicit conversions occur booleans integers enumeration members integers except literal implicitly converted enumerated type userdefined conversion must explicitly marked explicit implicit unlike copy constructors conversion operators implicit default
+explicit support covariance contravariance generic types unlike degree support contravariance simply semantics return types virtual methods
+enumeration members placed scope
+language allow global variables functions methods members must declared within classes static members public classes substitute global variables functions
+local variables cannot shadow variables enclosing block unlike
+metaprogrammingedit
+metaprogramming attributes part language many attributes duplicate functionality gccs visualcs platformdependent preprocessor directives
+methods functionsedit
+methods programming language members class project methods signatures dont signatures methods void return something like string integer double decimal float bool method void means method return data type
+like unlike java programmers must keyword virtual allow methods overridden subclasses
+extension methods allow programmers static methods methods classs method table allowing programmers methods object feel exist object derivatives
+type dynamic allows runtime method binding allowing javascriptlike method calls runtime object composition
+support stronglytyped function pointers keyword delegate like frameworks pseudoc signal slot semantics specifically surrounding publishsubscribe style events though uses delegates
+offers javalike synchronized method calls attribute methodimplmethodimploptionssynchronized support mutuallyexclusive locks keyword lock
+propertyedit
+provides properties syntactic sugar common pattern pair methods accessor getter mutator setter encapsulate operations single attribute class redundant method signatures gettersetter implementations need written property accessed using attribute syntax rather verbose method calls
+namespaceedit
+namespace provides level code isolation java package namespace similar rules features package
+memory accessedit
+memory address pointers used within blocks specifically marked unsafe programs unsafe code need appropriate permissions object access done safe object references always either point live object welldefined null value impossible obtain reference dead object garbage collected random block memory unsafe pointer point instance valuetype array string block memory allocated stack code marked unsafe still store manipulate pointers systemintptr type cannot dereference
+managed memory cannot explicitly freed instead automatically garbage collected garbage collection addresses problem memory leaks freeing programmer responsibility releasing memory longer needed
+exceptionedit
+checked exceptions present contrast java conscious decision based issues scalability versionability54
+polymorphismedit
+unlike support multiple inheritance although class implement number interfaces design decision languages lead architect avoid complication simplify architectural requirements throughout implementing multiple interfaces contain method signature allows implementing method depending interface method called like java allows implementing method invocation call classs interfaces
+however unlike java supports operator overloading commonly overloaded operators overloaded
+language integrated query linqedit
+ability utilize linq microsoftnet framework ienumerable interface developer query collection class documents adonet datasets databases55 advantages using linq follows intellisense support strong filtering capabilities type safety compile error checking ability brings consistency querying data variety sources56 several different language structures utilized linq query expressions lambda expressions anonymous types implicitly typed variables extension methods object initializers
+functional programmingedit
+though primarily imperative language offered limited support functional programming firstclass functions closures form anonymous delegates expanded support functional programming introduction lightweight syntax lambda expressions extension methods affordance modules list comprehension syntax form query comprehension language
+common type systemedit
+unified type system unified type system called common type system cts58
+unified type system implies types including primitives integers subclasses systemobject class example every type inherits tostring method
+categories data typesedit
+separates data types categories58
+
+reference types
+value types
+
+instances value types referential identity referential comparison semantics equality inequality comparisons value types compare actual data values within instances unless corresponding operators overloaded value types derived systemvaluetype always default value always created copied limitations value types cannot derive implement interfaces cannot explicit default parameterless constructor examples value types primitive types signed 32bit integer float 32bit ieee floatingpoint number char 16bit unicode code unit systemdatetime identifies specific point time nanosecond precision examples enum enumerations struct user defined structures
+contrast reference types notion referential identity instance reference type inherently distinct every instance even data within instances reflected default equality inequality comparisons reference types test referential rather structural equality unless corresponding operators overloaded case systemstring general always possible create instance reference type copy existing instance perform value comparison existing instances though specific reference types provide services exposing public constructor implementing corresponding interface icloneable icomparable examples reference types object ultimate base class classes systemstring string unicode characters systemarray base class arrays
+type categories extensible userdefined types
+boxing unboxingedit
+boxing operation converting valuetype object value corresponding reference type58 boxing implicit
+unboxing operation converting value reference type previously boxed value value type58 unboxing requires explicit type cast boxed object type unboxed nullable
+example
+
+
+value type
+object boxed
+foo2 intbar unboxed back value type
+
+librariesedit
+specification details minimum types class libraries compiler expects available practice often used implementation common language infrastructure standardized ecma335 common language infrastructure
+examplesedit
+following simple program version classic hello world example
+
+
+using system
+
+class program
+
+static void mainstring args
+
+consolewritelinehello world
+
+
+
+display program
+
+hello world
+
+line purpose
+
+
+using system
+
+line code tells compiler system candidate prefix types used source code case compiler sees console type later source code tries find type named console first current assembly followed referenced assemblies case compiler fails find type since name type actually systemconsole compiler attempts find type named systemconsole using system prefix using statement time succeeds using statement allows programmer state candidate prefixes compilation instead always using full type names
+
+
+class program
+
+class definition everything following pair braces describes program
+
+
+static void mainstring args
+
+declares class member method program begins execution runtime calls main method note main also called elsewhere like method another method program static keyword makes method accessible without instance program console applications main entry point must declared static otherwise program would require instance instance would require program avoid irresolvable circular dependency compilers processing console applications like report error static main method void keyword declares main return value
+
+
+consolewritelinehello world
+
+line writes output console static class system namespace provides interface standard input output error streams console applications program calls console method writeline displays console line argument string hello world
+example
+
+
+using systemwindowsforms
+
+class program
+
+static void mainstring args
+
+messageboxshowhello world
+systemconsolewritelineis almost argument
+
+
+
+example similar previous example except generates dialog contains message hello world instead writing console
+standardization licensingedit
+august 2001 microsoft corporation hewlettpackard intel corporation cosponsored submission specifications well common language infrastructure standards organization ecma international december 2001 ecma released ecma334 language specification became standard 2003 isoiec 232702003 information technology programming languages ecma previously adopted equivalent specifications edition december 2002
+june 2005 ecma approved edition specification updated ecma334 additions included partial classes anonymous methods nullable types generics somewhat similar templates
+july 2005 ecma submitted isoiec latters fasttrack process standards related process usually takes months
+language definition standardized ecma standards provide reasonable nondiscriminatory licensing protection patent claims
+microsoft agreed open source developers violating patents nonprofit projects part framework covered osp60 microsoft also agreed enforce patents relating novell products novells paying customers61 exception list products explicitly mention novells implementation mono project62 however novell maintains mono infringe microsoft patents63 microsoft also made specific agreement enforce patent rights related moonlight browser plugin depends mono provided obtained novell64
+implementationsedit
+microsoft leading development opensource reference compiler tools previously codenamed roslyn compiler entirely written managed code opened functionality surfaced apis thus enabling developers create refactoring diagnostics tools6566 implementations exist visual commonly used67 unity game engine uses primary scripting language allowing multiplatform games developed visual studio68
+compilers often including implementation common language infrastructure class libraries
+
+mono project provides opensource compiler complete opensource implementation common language infrastructure including required framework libraries appear ecma specification nearly complete implementation microsoft proprietary class libraries mono plans exist implement planned later release partial implementations linq wcf69
+dotgnu project discontinued also provided opensource compiler nearly complete implementation common language infrastructure including required framework libraries appear ecma specification subset remaining microsoft proprietary class libraries documented included ecma specification included microsofts standard framework distribution
+microsofts shared source common language infrastructure codenamed rotor provides shared source implementation runtime compiler licensed educational research subset required common language infrastructure framework libraries ecma specification supported windows
+
+alsoedit
+
+
+
+
+
+topics
+
+
+syntax
+comparison java
+comparison visual basic
+standard libraries
+list libraries frameworks
+
+
+
+
+
+computer programming portal
+
+
+
+ides
+
+
+microsoft visual studio
+microsoft visual studio express
+monodevelop
+morfik
+sharpdevelop
+turbo sharp
+rider
+
+
+
+
+
+
+notesedit
+
+
+
+async
+convention number sign used second character normal text artistic representations sometimes true sharp sign used
+microsoft specification document contains features older features specification
+ecma isoiec specifications exist
+
+
+
+referencesedit
+
+
+httpswwwinfoqcomminibooksemagcsharppreview
+welcome microsoft docs microsoft retrieved 20171115
+nullable reference types preview github microsoft retrieved 20171215
+torgersen mads october 2008 features microsoft retrieved october 2008
+httpsgithubcomdotnetcoreclrblobmasterlicensetxt
+naugler david 2007 java programmer conference workshop journal computing sciences colleges although strongly influenced java also strongly influenced best viewed descendant java
+hamilton naomi october 2008 programming languages computerworld retrieved february 2010 stand shoulders giants every language builds went java delphi things came anders hejlsberg
+chapel spec acknowlegements cray 20151001 retrieved 20160114
+borenszweig crystal 0180 released heavily inspired ruby languages like python
+languages fast code always fashion dart google 2013 google retrieved december 2013
+java added several language features enhanced loop autoboxing varargs annotations introduced similar competing language
+cornelius barry december 2005 java catches university oxford computing services retrieved june 2014 opinion caused radical changes java language barry cornelius
+ring team december 2017 ring programming language languages ringlangnet ringlang
+lattner chris 20140603 chris lattners homepage chris lattner retrieved 20140603 swift language product tireless effort team language experts documentation gurus compiler optimization ninjas incredibly important internal dogfooding group provided feedback help refine battletest ideas course also greatly benefited experiences hardwon many languages field drawing ideas objectivec rust haskell ruby python many others list
+language specification ecma international june 2006 retrieved january 2012
+welcome microsoft docs retrieved november 2017
+zander jason november 2008 couple historical facts retrieved february 2009
+guthrie scott november 2006 language aspnet originally written retrieved february 2008
+hamilton naomi october 2008 programming languages computerworld retrieved october 2008
+wylie wong 2002 microsofts isnt cnet interactive retrieved 2014
+bill february 2002 microsofts blind spot cnetcom retrieved january 2010
+klaus kreft angelika langer 2003 java next retrieved june 2013
+klaus kreft angelika langer july 2003 java next artimacom retrieved january 2010
+osborn john august 2000 deep inside interview microsoft chief architect anders hejlsberg oreilly media retrieved november 2009
+generics programming guide microsoft retrieved march 2011
+anders hejlsberg february 2007 linq languageintegrated query microsoft retrieved march 2011
+mercer april 2010 functional programming linq often better procedural code aboditcom retrieved march 2011
+andy retires fernandezs blog blogsmsdncom january 2004 retrieved october 2012
+technical committees programming languages environments system software interfaces retrieved october 2012
+isoiec 232702003 information technology language specification isoorg august 2006 retrieved october 2012
+isoiec 232702006 information technology programming languages isoorg january 2012 retrieved october 2012
+kovacs james september 2007 cnet history lesson retrieved june 2009
+hejlsberg anders october 2008 programming languages computerworld
+microsoft microsoft archived original february 2006 retrieved march 2008
+visual cnet standard jpeg microsoft september 2003 retrieved june 2009
+microsoft research archived original february 2009 retrieved june 2009
+simon raphael stapf emmanuel meyer bertrand june 2002 full eiffel framework microsoft retrieved june 2009
+using danielmothcom 2007 retrieved october 2012
+mono roslyn tirania blog miguel icaza retrieved april 2014 work progress
+httpswwwvisualstudiocomenusnewsreleasenotesvs2017relnotesv153cs71
+httpswwwvisualstudiocomenusnewsreleasenotesvs2017relnotes
+whats language compiler microsoft developer network microsoft retrieved june 2014
+hejlsberg anders torgersen mads overview microsoft developer network microsoft retrieved june 2014
+ghosh wriju partial garbage collection methods msdn blogs microsoft retrieved june 2014
+burrows chris features framework microsoft developer network microsoft retrieved june 2014
+hejlsberg anders future directions visual basic lead architect microsoft retrieved september 2011
+introduction features msdn blogs microsoft retrieved june 2014
+language feature implementation status github microsoft retrieved february 2015
+whats microsoft docs 20161221
+features blog retrieved 20170609
+whats microsoft docs retrieved 20171009
+whats microsoft docs retrieved 20171126
+visual studio 2010 sixinone wrox press 2010 isbn 0470499486
+venners bill eckel bruce august 2003 trouble checked exceptions retrieved march 2010
+zhang research database access technology undernet framework applied mechanics materials vols 644650 30773080 2014
+otey 2006 linq future server magazine 1721 retrieved httpezaccesslibrariespsueduloginurlhttpssearchproquestcomezaccesslibrariespsuedudocview214859896accountid13158
+sheldon 2010 features linq server magazine 3740 retrieved httpezaccesslibrariespsueduloginurlhttpssearchproquestcomezaccesslibrariespsuedudocview770609095accountid13158
+archer 2001 part chapter type system inside redmond washington microsoft press isbn 0735612889
+lippert eric march 2009 representation identity fabulous adventures coding blogsmsdncom retrieved october 2012
+patent pledge open source developers
+patent cooperation agreement microsoft novell interoperability collaboration microsoft november 2006 retrieved july 2009 microsoft behalf subsidiaries collectively microsoft hereby covenants novells customers novells subsidiaries customers infringement covered patents microsoft account customers specific copies covered product distributed novell subsidiaries collectively novell novell received revenue directly indirectly specific copies provided foregoing covenant limited customer specific copies authorized novell consideration revenue within scope authorized novell consideration revenue
+definitions microsoft november 2006 retrieved july 2009
+steinman justin november 2006 novell answers questions community retrieved july 2009 maintain mono infringe microsoft patents
+covenant downstream recipients moonlight microsoft novell interoperability collaboration microsoft september 2007 retrieved march 2008 downstream recipient means entity individual uses intended purpose moonlight implementation obtained directly novell intermediate recipient microsoft reserves right update including discontinue foregoing covenant moonlight implementation means specific portions moonlight moonlight plugin browser personal computer licensed gplv3 similar license
+httpsgithubcomdotnetroslyn
+httpsdocsmicrosoftcomenusdotnetarticlescsharpcsharp
+watson 2010 beginning visual 2010 indianapolis indiana wiley
+build unity games visual studio microsoft retrieved december 2017
+compatibility mono monoprojectcom december 2011 retrieved october 2012
+
+
+readingedit
+
+drayton peter albahari neward 2002 language pocket reference oreilly isbn 059600429x
+petzold charles 2002 programming microsoft windows microsoft press isbn 0735613702
+
+external linksedit
+
+
+
+wikibooks book topic sharp programming
+
+
+
+language specification msdn
+programming guide msdn
+microsoft visual studio
+language specification
+features online compiler
+compiler platform roslyn source code
+list features introduced csharp infographic
+
+
+
+
+
+
+
+
+
+
+
+
+common language infrastructure
+
+
+
+architecture
+
+
+
+application domain
+code access security
+common intermediate language
+
+instructions
+
+
+common type system
+platform invocation services pinvoke
+virtual execution system
+
+
+
+
+
+components
+
+
+
+assembly
+delegate
+global assembly cache
+manifest
+metadata
+
+
+
+
+
+standard
+libraries
+
+
+
+
+kernel profile
+
+
+
+base class library
+runtime infrastructure library
+
+
+
+
+
+compact profile
+
+
+
+network library
+reflection library
+library
+
+
+
+
+
+
+
+
+extended array library
+extended numerics library
+parallel library
+vararg library
+
+
+
+
+
+
+
+
+implementations
+
+
+
+
+microsoft
+
+
+
+framework
+compact framework
+micro framework
+shared source common language infrastructure
+
+
+
+
+
+
+
+
+
+core
+mono
+portablenet
+
+
+
+
+
+
+
+
+languages
+
+
+
+
+microsoft
+
+
+
+
+visual basic
+ccli
+
+managed
+
+
+
+
+
+jscript
+powershell
+
+
+
+
+
+
+
+
+
+axum
+
+
+cobra
+ironscheme
+
+ironlisp
+
+
+ironpython
+ironruby
+nemerle
+oxygene
+phalanger
+
+scala
+
+
+
+
+
+comparison
+
+
+
+java
+visual basic
+java platforms
+visual basic visual basic
+
+
+
+
+
+
+
+
+organizations
+
+
+
+foundation
+dotgnu
+microsoft
+xamarin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards ecma international
+
+
+
+application interfaces
+
+
+
+ansi escape code
+common language infrastructure
+office open
+openxps
+
+
+
+
+
+file systems tape
+
+
+
+advanced intelligent tape
+
+
+super
+holographic versatile disc
+linear tapeopen ultrium1
+
+
+
+
+
+
+file systems disk
+
+
+
+cdrom
+file system cdfs
+
+
+fat12
+fat16
+fat16b
+
+
+
+
+ultra density optical
+universal media disc
+
+
+
+
+
+graphics
+
+
+
+universal
+
+
+
+
+
+programming languages
+
+
+
+ccli
+
+eiffel
+javascript ecmascript
+
+
+
+
+
+radio link interfaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ecma35
+
+
+
+
+
+
+list ecma standards 1961 present
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+programming languages
+
+
+
+
+
+
+comparison
+timeline
+history
+
+
+
+
+
+
+
+
+assembly
+basic
+
+
+
+cobol
+fortran
+
+groovy
+haskell
+java
+javascript
+kotlin
+lisp
+
+objectivec
+pascal
+perl
+
+python
+rexx
+ruby
+shell
+smalltalk
+swift
+visual basic vbnet
+vbscript
+
+
+
+
+
+
+
+
+
+category
+lists
+
+alphabetical
+categorical
+generational
+nonenglishbased
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+list international electrotechnical commission standards
+
+
+
+standards
+
+
+
+60027
+60034
+60038
+60062
+60063
+60068
+60112
+60228
+60269
+60297
+60309
+60320
+60364
+60446
+60559
+60601
+60870
+
+608705
+608706
+
+
+609061
+60908
+60929
+60958
+
+aes3
+spdif
+
+
+61030
+61131
+
+611313
+
+
+61158
+61162
+61334
+61346
+61355
+61400
+61499
+61508
+61511
+61850
+61851
+61883
+61960
+61968
+61970
+620144
+62056
+62061
+62196
+62262
+62264
+62304
+62325
+62351
+62365
+62366
+62379
+62386
+62455
+62680
+62682
+62700
+
+
+
+
+
+isoiec standards
+
+
+
+isoiec
+isoiec 2022
+isoiec 4909
+isoiec 5218
+isoiec 6429
+isoiec 6523
+isoiec 7810
+isoiec 7811
+isoiec 7812
+isoiec 7813
+isoiec 7816
+isoiec 7942
+isoiec 8613
+isoiec 8632
+isoiec 8652
+isoiec 8859
+isoiec 9126
+isoiec 9293
+isoiec 9592
+isoiec 9593
+isoiec 9899
+isoiec 9945
+isoiec 9995
+isoiec 10021
+isoiec 10116
+isoiec 10165
+isoiec 10179
+isoiec 10646
+isoiec 10967
+isoiec 11172
+isoiec 11179
+isoiec 11404
+isoiec 11544
+isoiec 11801
+isoiec 12207
+isoiec 13250
+isoiec 13346
+isoiec 135225
+isoiec 13568
+isoiec 13818
+isoiec 14443
+isoiec 14496
+isoiec 14882
+isoiec 15288
+isoiec 15291
+isoiec 15408
+isoiec 15444
+isoiec 15445
+isoiec 15504
+isoiec 15511
+isoiec 15693
+isoiec 15897
+isoiec 15938
+isoiec 16262
+isoiec 17024
+isoiec 17025
+isoiec 18000
+isoiec 18004
+isoiec 18014
+isoiec 19752
+isoiec 19757
+isoiec 19770
+isoiec 19788
+isoiec 20000
+isoiec 21000
+isoiec 21827
+isoiec 23000
+isoiec 23003
+isoiec 23008
+isoiec 23270
+isoiec 23360
+isoiec 24707
+isoiec 24727
+isoiec 24744
+isoiec 24752
+isoiec 26300
+isoiec 27000
+isoiec 27000series
+isoiec 27002
+isoiec 27040
+isoiec 29119
+isoiec 33001
+isoiec 38500
+isoiec 42010
+isoiec 80000
+
+
+
+
+
+related
+
+
+
+international electrotechnical commission
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh2001001705
+46168436
+cb13614817q data
+ph137696
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlecsharpprogramminglanguageoldid818436134 categories american inventionsprogramming languagesc sharp programming language familynet programming languagesclassbased programming languagesecma standardsfunctional languagesiec standardsiso standardsprogramming languages created 2000programming languages standardstatically typed programming languages2000 softwarehighlevel programming languageshidden categories articles inconsistent citation formatsgood articlesuse dates october 2012use british english oxford spelling december 2011pages using deprecated image syntaxall articles unsourced statementsarticles unsourced statements february 2010wikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiers

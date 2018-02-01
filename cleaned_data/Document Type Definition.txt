@@ -1,0 +1,449 @@
+document type definition markup declarations define document type sgmlfamily markup language sgml html
+document type definition defines legal building blocks document defines document structure list legal elements attributes declared inline inside document external reference1
+uses subset sgml
+2009update newer namespaceaware schema languages schema relax largely superseded dtds namespaceaware version dtds developed part dsdl dtds persist applications need special publishing characters html character entity references derive larger sets defined part sgml standard effort
+
+
+
+contents
+
+
+associating dtds documents
+
+examples
+
+
+markup declarations
+
+element type declarations
+attribute list declarations
+entity declarations
+notation declarations
+
+
+dtds schema validation
+schema example
+security
+also
+references
+external links
+
+
+
+associating dtds documentsedit
+associated sgml document means document type declaration doctype doctype appears syntactic fragment doctypedecl near start document2 declaration establishes document instance type defined referenced
+dtds make sorts declaration
+
+optional external subset
+optional internal subset
+
+declarations internal subset form part doctype document declarations external subset located separate text file external subset referenced public identifier andor system identifier programs reading documents required read external subset
+note valid sgml document references external subset whose body contains references parsed external entities declared including declared within internal subset partially parsed cannot fully validated validating sgml parsers standalone mode means validating parsers dont attempt retrieve external entities replacement text accessible
+however documents still fully parsable nonstandalone mode validating parsers signals error cant locate external entities specified public identifier system identifier inaccessible notations declared also referencing external entities unparsed entities needed validation documents standalone mode parsers validation external entities referenced notations left application using sgml parser nonvalidating parsers eventually attempt locate external entities nonstandalone mode partially interpreting resolve declared parsable entities validate content model documents
+examplesedit
+following example doctype contains public system identifiers
+
+
+doctype html public w3cdtd xhtml transitionalen
+httpwwww3orgtrxhtml1dtdxhtml1transitionaldtd
+
+html documents conform three sgml dtds public identifiers dtds constant follows
+
+w3cdtd html 401en
+w3cdtd html transitionalen
+w3cdtd html frameseten
+
+system identifiers dtds present doctype references system identifier usually points specific declarations resolvable location sgml allows mapping public identifiers system identifiers catalogs optionally available resolvers used document parsing software
+note doctype appear optional declaration document body document syntax conforms includes xhtml documents
+
+
+version10 encodingutf8
+doctype html public w3cdtd xhtml transitionalen
+httpwwww3orgtrxhtml1dtdxhtml1transitionaldtd
+xhtml document body starts
+html xmlnshttpwwww3org1999xhtml
+
+html
+
+additional internal subset also provided external subset
+
+
+version10 encodingutf8
+doctype html public w3cdtd xhtml transitionalen
+httpwwww3orgtrxhtml1dtdxhtml1transitionaldtd
+internal subset embedded
+
+xhtml document body starts
+html xmlnshttpwwww3org1999xhtml
+
+html
+
+alternatively internal subset provided
+
+
+version10 encodingutf8
+doctype html
+internal subset embedded
+
+xhtml document body starts
+html xmlnshttpwwww3org1999xhtml
+
+html
+
+finally document type definition include subset case specifies document single toplevel element implicit requirement valid html documents document fragments sgml documents whose toplevel elements different implied root element indicates type name root element
+
+
+version10 encodingutf8
+doctype html
+xhtml document body starts
+html xmlnshttpwwww3org1999xhtml
+
+html
+
+markup declarationsedit
+dtds describe structure class documents element attributelist declarations element declarations name allowable elements within document specify whether declared elements runs character data contained within element attributelist declarations name allowable attributes declared element including type attribute value explicit valid values
+markup declarations declare element types attribute lists entities notations allowed structure corresponding class documents3
+element type declarationsedit
+element type declaration defines element possible content valid document contains elements defined
+various keywords characters specify element’s content
+
+empty specifying defined element allows content cant children elements even text elements whitespaces ignored
+specifying defined element allows content without restriction number including none type children elements including text elements
+expression specifying elements allowed direct children content defined element content either
+
+mixed content means content include least text element zero named elements order number occurrences cant restricted
+
+pcdata historically meaning parsed character data means text element allowed content quantifier allowed
+pcdata element name limited choice exclusive list parentheses separated pipe characters terminated required quantifier child elements including text elements specified named elements used order number occurrences content
+
+
+element content means must text elements children elements content whitespaces encoded child elements ignored like comments element content specified content particle variant backus–naur form without terminal symbols element names nonterminal symbols element content consists
+
+content particle either name element declared sequence list choice list followed optional quantifier
+
+sequence list means ordered list specified parentheses separated comma character content particles content particles must appear successively direct children content defined element specified position relative order
+choice list means mutually exclusive list specified parentheses separated pipe character content particles content particles appear content defined element position
+
+
+quantifier single character immediately follows specified item applies restrict number successive occurrences items specified position content element either
+
+specifying must occurrences item effective content occurrence different
+specifying number zero occurrences allowed item optional effective content occurrence different
+specifying must occurrence item optional
+quantifier specified item must occur exactly time specified position content element
+
+
+
+
+
+
+
+example
+
+
+element html head body
+element pcdata table h1h2h3
+
+note element type declarations ignored nonvalidating sgml parsers cases elements accepted order number occurrences parsed document declarations still checked form validity
+attribute list declarationsedit
+attribute list specifies given element type list possible attribute associated type possible attribute contains
+
+declared name attribute
+data type enumeration possible values
+default value4
+
+example
+
+
+attlist
+cdata required
+implied
+sort cdata fixed true
+print
+
+
+attribute types supported sgml
+
+cdata
+type means characters data indicates effective value attribute textual value unless attribute specified fixed comments document values effectively accepted syntax allow precise specification
+
+effective value attribute must valid identifier used define anchor current element target references using defined identifier including document fragment identifiers specified sign error distinct elements document defining identifier uniqueness constraint also implies identifier carries semantics identifiers must treated opaque applications note also predefines standard pseudoattribute xmlid type without needing declaration uniqueness constraint also applies defined identifiers specified anywhere document
+idref idrefs
+effective value attribute valid identifier spaceseparated list identifiers must referencing unique element defined document attribute declared type unique element defined document pseudoattribute xmlid whose effective value identifier
+nmtoken nmtokens
+effective value attribute valid name token spacedseparated list name tokens restricted unique identifier within document name carry supplementary applicationdependent semantics require additional naming constraints scope
+entity entities
+effective value attribute name unparsed external entity spaceseparated list names must also declared document type declaration type supported html parsers valid sgml including xhtml
+value1
+effective value attribute enumerated list specified parentheses separated pipe character textual values value enumeration possibly specified single double quotation marks simple name token
+notation notation1
+effective value attribute enumerated list specified parentheses separated pipe character notation names notation name enumeration must also declared document type declaration type supported html parsers valid sgml including xhtml
+
+default value define whether attribute must occur required implied whether fixed value fixed value used default value case given attribute left
+note attribute list declarations ignored nonvalidating sgml parsers cases attribute accepted within elements parsed document declarations still checked wellformedness validity
+entity declarationsedit
+entity similar macro entity declaration assigns value retained throughout document common name recognizable numeric character reference unfamiliar character5 entities help improve legibility text general types internal external
+
+internal parsed entities associating name arbitrary textual content defined declaration internal subset external subset declared document named entity reference encountered rest document including rest entity name effectively defined parsed entity reference replaced immediately textual content defined parsed entity parsing continues within replacement text
+
+predefined named character entities similar internal entities however treated specially sgml html parsers entities different normal parsed entities named character entity reference encountered document reference also replaced immediately character content defined entity parsing continues replacement text immediately inserted literally currently parsed token character permitted textual value token allows characters needed core syntax html escaped special syntactic role notably reserved beginning entity references delimit markup tags double single quotation marks delimit values attributes entity definitions predefined character entities also include numeric character references handled also used escape characters represent bypass limitations character repertoire supported document encoding
+basic profiles sgml html documents declaration internal entities possible external subsets retrieved internal subsets supported basic profiles
+instead html standards predefine large several hundred named character entities still handled standard parsed entities defined used parser
+
+
+external entities refer external storage objects declared unique name document defined public identifier andor system identifier interpreted specifying source content exist fact variants
+
+parsed external entities often defined system identifier indicating content associated definition named annotation case validating sgml parsers retrieve contents parse declared internal entities external entity containing effective replacement text
+unparsed external entities defined associated annotation name case treated opaque references signaled application using sgml parser interpretation retrieval parsing left application according types annotations supports next section annotations examples unparsed external entities
+external entities supported basic profiles sgml html documents valid full implementations sgml including xhtml even strictly needed document types
+
+
+
+example internal entity declarations internal subset sgml document
+
+
+doctype sgml
+element sgml
+entity standard sgml
+entity signature x2014 author
+entity question couldnx2019t publish books directly
+entity author william shakespeare
+
+
+
+
+sgmlquestionsignaturesgml
+
+note internal entities defined order long referenced parsed body document order parsing valid include reference still undefined entity within content parsed entity invalid include anywhere else named entity reference entity fully defined including internal entities referenced defined content also prevents circular recursive definitions internal entities document parsed
+
+
+doctype sgml
+element sgml
+entity standard sgml
+entity signature author
+entity question couldn’t publish books directly standard sgml
+entity author william shakespeare
+
+
+
+
+sgmlwhy couldn’t publish books directly standard sgml william shakespearesgml
+
+note reference author internal entity substituted replacement text signature internal entity instead replaced signature entity reference parsed within content sgml element validating parsers nonvalidating parsers substitute entity references occurring within contents element within attribute values body document
+possible replacement text specified internal entity definitions permits distinction parameter entity references introduced character whose replacement applies parsed contents general entity references introduced character whose replacement delayed effectively parsed validated character introducing parameter entity references loses special role outside becomes literal character
+however references predefined numeric character entities substituted wherever occur without needing validating parser introduced character
+notation declarationsedit
+notations used sgml provide complete reference unparsed external entities whose interpretation left application interprets directly retrieves external entity assigning simple name usable body document example notations used reference nonxml data document example annotate images associate specific renderer
+
+
+notation typeimagesvg system imagesvg
+
+declares mime type external images type associates notation name typeimagesvg however notation names usually follow naming convention specific application generating using notation notations interpreted additional metadata whose effective content external entity either public registered catalogs used sgml parsers system whose interpretation application dependent mime type interpreted relative could absolute specific renderer indicating osspecific object identifier uuid
+declared notation name must unique within document type declaration external subset well internal subset least conformance xml67
+notations associated unparsed external entities included body sgml document public system parameter external entities specifies andor unparsed data external entity located additional ndata parameter defined entities specifies additional notation effectively mime type example
+
+
+doctype sgml
+element sgml
+
+element empty
+attlist
+data entity implied
+
+entity example1svg system example1svg ndata example1svgrdf
+notation example1svgrdf system example1svgrdf
+
+
+
+
+sgml
+dataexample1svg
+sgml
+
+within body sgml document referenced external entities whose name specified replaced like usual named entities defined cdata value left distinct unparsed tokens used either value element attribute like within element contents provided either allows external entities declared content type elements declared type attributes entity type data attribute sgml parser validating content
+notations also associated directly elements additional metadata without associating another external entity giving names possible values additional attributes also declared within attlist declaration element example
+
+
+doctype sgml
+element sgml
+
+optional type attribute value notation
+
+attlist sgml
+type notation
+typevendorspecific implied
+
+element optional content parsable sgml data
+
+optional title attribute value must parsable text
+optional data attribute value unparsed external entity
+optional type attribute value notations
+
+attlist
+title cdata implied
+data entity implied
+type notation
+typeimagesvg
+typeimagegif implied
+
+
+notations referencing external entities type attributes
+must referenced defined external entities cannot parsed
+
+notation typeimagesvg public w3cdtd 11en
+httpwwww3orggraphicssvg11dtdsvg11dtd
+notation typeimagegif public imagegif
+notation typevendorspecific public applicationvndspecificsgml
+
+entity example1svgtitle title example1svg parsed internal entity
+entity example1svg system example1svg parsed external entity
+entity example1giftitle title example1gif parsed internal entity
+entity example1gif system example1gif ndata typeimagegif unparsed external entity
+
+
+
+
+sgml typetypevendorspecific
+image parsable valid sgml text
+titleexample1svgtitle typetypeimagesvgexample1svgimg
+
+also referenced unparsed external entity
+titleexample1svgtitle dataexample1svg
+
+image parsable referenced external entity
+titleexample1giftitle dataexample1gif
+sgml
+
+example shows notation named typeimagesvg references standard public system identifier standard document instead specifying system identifier first example relative interpreted locally mime type annotation referenced directly within unparsed type attribute element content retrieved also declares another notation vendorspecific application annotate sgml root element document cases declared notation named used directly declared type attribute whose content specified notation attribute type type attribute declared sgml element well element
+however title attribute element specifies internal entity example1svgtitle whose declaration define annotation parsed validating parsers entity replacement text title example1svg
+content element references another external entity example1svg whose declaration also define notation also parsed validating parsers entity replacement text located defined system identifier example1svg also interpreted relative effective content element content second external resource difference image image parsed within sgml document according declarations image referenced opaque external object parsable sgml data attribute whose value type opaque entity
+notation name specified value entity attributes theres support sgml multiple notation names declared external entity separate attributes needed however multiple external entities referenced spaceseparated list names attributes declared type entities named external entity also declared notation
+notations also completely opaque sgml parsers differentiated type external entity reference parsers unique name associated public identifier andor system identifier
+applications sgml parsers also allow referencing notations indirectly naming urnname value standard cdata attribute everywhere specified however behaviour applicationspecific requires application maintains catalog known urns resolve notations parsed standard sgml parser allows notations defined stored external entity referenced external subset documents allows documents remain compatible validating sgml parsers direct support notations
+notations used html basic profiles xhtml
+
+external entities used standard document types referenced simple attributes declared cdata type standard href attribute anchor element attribute image element whose values interpreted without needing catalog public identifiers known
+external entities additional metadata referenced either
+
+additional attributes type indicates mime type external entity charset attribute indicates encoding
+additional elements link meta html xhtml within attributes
+standard pseudoattributes xhtml xmllang xmlns xmlns namespace declarations
+
+
+
+note also even validating sgml parsers external entities referenced andor declared notations retrieved automatically parsers instead parsers provide application parsed andor associated notations found parsed sgml document facility dictionary containing notation names declared validating parsers also check uniqueness notation name declarations report validation error notation names used anywhere document body declared
+
+application cant notation andor unknown supported local catalog notations either ignored silently application application could signal error
+otherwise applications decide interpret external entities must retrieved parsed separately
+applications signal error interpretation retrieval separate parsing fails
+unrecognized notations cause application signal error block interpretation validated document using
+
+dtds schema validationedit
+syntax several schema languages however many schema languages fully replace notably allows defining entities notations direct equivalents dtdless internal entities parsable external entities part schema languages unparsed external entities notations simple equivalent mappings schema languages
+schema languages replacements element declarations attribute list declarations becomes possible parse documents nonvalidating parsers purpose external subset define schema addition documents schema languages must parsed separately validating schema documents pure standalone mode really possible languages document type declaration remains necessary least identifying catalog schema used parsed document validated another language
+common misconception holds nonvalidating parser read document type declarations fact document type declarations must still scanned correct syntax well validity declarations parser must still parse entity declarations internal subset substitute replacement texts internal entities occurring anywhere document type declaration document body
+nonvalidating parser however elect read parsable external entities including external subset honor content model restrictions defined element declarations attribute list declarations
+document depends parsable external entities including specified external subset parsable external entities declared internal subset assert standaloneno declaration validating identified using catalogs retrieve specified external subset
+example document declared standaloneno external subset document type declaration
+
+
+version10 encodingutf8 standaloneno
+doctype peoplelist system exampledtd
+peoplelist
+
+document type declaration includes system identifier external subset cant safely processed standalone retrieved otherwise unknown named character entities whose definition needed correctly parse effective syntax internal subset document body syntax parsing normally performed substitution named entities excluding five entities predefined implicitly substituted parsing document lexical tokens includes public identifier processed standalone processor knows public identifier local catalog retrieve associated entity
+schema exampleedit
+example simple external describe schema list persons might consist
+
+
+element peoplelist person
+element person name birthdate gender socialsecuritynumber
+element name pcdata
+element birthdate pcdata
+element gender pcdata
+element socialsecuritynumber pcdata
+
+taking line line
+
+peoplelist valid element name instance element contains number person elements denotes person elements within peoplelist element
+person valid element name instance element contains element named name followed named birthdate optional gender also optional socialsecuritynumber also optional indicates element optional reference name element name person element must contain name element
+name valid element name instance element contains parsed character data pcdata
+birthdate valid element name instance element contains parsed character data
+gender valid element name instance element contains parsed character data
+socialsecuritynumber valid element name instance element contains parsed character data
+
+example file uses conforms follows referenced external subset system specifier assumes identify relative reference exampledtd peoplelist doctype tells root tags first element defined called peoplelist
+
+
+version10 encodingutf8 standaloneno
+doctype peoplelist system exampledtd
+peoplelist
+person
+namefred bloggsname
+birthdate20081127birthdate
+gendermalegender
+person
+peoplelist
+
+render xmlenabled browser internet explorer mozilla firefox pasting saving component text file named exampledtd file differentlynamed text file opening file browser files saved directory however many browsers check document conforms rules required check syntactically correct security reasons also choose read external
+also embedded directly document internal subset encasing within square brackets document type declaration case document longer depends external entities processed standalone mode
+
+
+version10 encodingutf8 standaloneyes
+doctype peoplelist
+element peoplelist person
+element person name birthdate gender socialsecuritynumber
+element name pcdata
+element birthdate pcdata
+element gender pcdata
+element socialsecuritynumber pcdata
+
+peoplelist
+person
+namefred bloggsname
+birthdate20081127birthdate
+gendermalegender
+person
+peoplelist
+
+alternatives dtds specifying schemas available
+
+schema also referred schema definition achieved recommendation status within w3c8 popular data oriented transactional nonpublishing stronger typing easier roundtripping java declarationscitation needed publishing world found added complexity would bring particular benefitscitation needed dtds still popular schema definition document
+relax also part dsdl international standard9 expressive xsdcitation needed providing simpler syntaxcitation needed commercial software support slow coming
+
+securityedit
+used create denial service attack defining nested entities expand exponentially sending parser external resource never returns10
+reason framework provides property allows prohibiting skipping parsing10 recent versions microsoft office applications microsoft office 2010 higher refuse open files contain declarations
+alsoedit
+
+semantic
+schema language comparison comparison schema languages
+schema
+
+referencesedit
+
+
+
+introduction
+doctypedecl extensible markup language
+watt andrew 2002 sams teach minutes sams publishing
+attributelist declaration specifications extensible markup language
+entities tutorial w3schools
+notation declarations specifications extensible markup language
+notation declarations specifications extensible markup language
+schema part structures second edition 2004 retrieved 20110517
+isoiec 1975722008 information technology document schema definition language dsdl part regulargrammarbased validation relax retrieved 20110517
+bryan sullivan november 2009 denial service attacks defenses msdn magazine retrieved 20131021
+
+
+
+external linksedit
+
+definition document type declaration extensible markup language fourth edition w3org
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitledocumenttypedefinitionoldid808096274 categories xmlbased standardshidden categories articles containing potentially dated statements 2009all articles containing potentially dated statementsall articles unsourced statementsarticles unsourced statements february 2011articles unsourced statements november 2008

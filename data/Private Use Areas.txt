@@ -1,0 +1,760 @@
+For Private Use characters used in Wikipedia pages, see MOS:PUA
+In Unicode, a Private Use Area (PUA) is a range of code points that, by definition, will not be assigned characters by the Unicode Consortium.[1] Currently, three private use areas are defined: one in the Basic Multilingual Plane (U+E000–U+F8FF), and one each in, and nearly covering, planes 15 and 16 (U+F0000–U+FFFFD, U+100000–U+10FFFD). The code points in these areas cannot be considered as standardized characters in Unicode itself. They are intentionally left undefined so that third parties may define their own characters without conflicting with Unicode Consortium assignments. Under the Unicode Stability Policy,[2] the Private Use Areas will remain allocated for that purpose in all future Unicode versions.
+Assignments to Private Use Area characters need not be "private" in the sense of strictly internal to an organisation; a number of assignment schemes have been published by several organisations. Such publication may include a font that supports the definition (showing the glyphs), and software making use of the private-use characters (e.g. a graphics character for a "print document" function). By definition, multiple private parties may assign different characters to the same code point, with the consequence that a user may see one private character from an installed font where a different one was intended.
+
+
+
+Contents
+
+
+1 Definition
+2 Assignment
+3 Usage
+
+3.1 Standardization initiative uses
+3.2 Vendor use
+
+
+4 Unicode PUA blocks
+5 Private-use characters in other character sets
+6 Notes
+7 References
+
+
+
+Definition[edit]
+Under the Unicode definition, code points in the Private Use Areas are assigned characters—they are not noncharacters, reserved, or unassigned. Their category is "Other, private use (Co)", and no character names are specified. No representative glyphs are provided, and character semantics are left to private agreement.
+
+Private-use characters are assigned Unicode code points whose interpretation is not specified by this standard and whose use may be determined by private agreement among cooperating users. These characters are designated for private use and do not have defined, interpretable semantics except by private agreement.
+…
+No charts are provided for private-use characters, as any such characters are, by their very nature, defined only outside the context of this standard.[3]
+Assignment[edit]
+In the Basic Multilingual Plane (plane 0), the block titled Private Use Area has 6400 code points. Planes 15 and 16 are almost[note 1] entirely assigned to two further Private Use Areas, Supplemental Private Use Area-A and Supplemental Private Use Area-B respectively.
+In order to encode characters from planes 15 and 16 in UTF-16, a further block of the BMP is assigned to High Private Use Surrogates (U+DB80..U+DBFF, 128 code points).
+
+
+
+
+
+v
+t
+e
+
+
+Unicode: Private Use Areas
+
+
+Definition by character property: General Category=Co[a][b]
+
+
+Range
+Plane
+Block name
+Number of code points
+Note
+
+
+U+E000..U+F8FF
+BMP (0)
+Private Use Area
+6,400
+
+
+
+U+F0000..U+FFFFD[c]
+PUP (15)[d]
+Supplemental Private Use Area-A
+65,534
+UTF-16 encodes these characters using codepoints from the block High Private Use Surrogates (U+DB80..U+DBFF) in the BMP.
+
+
+U+100000..U+10FFFD[c]
+PUP (16)[d]
+Supplemental Private Use Area-B
+65,534
+
+
+Notes
+
+
+^ Unicode 10.0 Data
+^ The Unicode Standard, Section 23.5: Private-Use Characters
+^ Code points U+FFFFE, U+FFFFF, U+10FFFE, and U+10FFFF are noncharacters, not private-use characters.
+^ Private Use Plane: Unicode has not published identifying names for planes 15 and 16. Chapter 2.8 says The two Private Use Planes (Planes 15 and 16), while the PUA block names used are Supplemental PUA-A and Supplemental PUA-B.
+
+
+
+
+
+Usage[edit]
+Standardization initiative uses[edit]
+Many people and institutions have created character collections for the PUA. Some of these private use agreements are published, so other PUA implementers can aim for unused or less used code points to prevent overlaps. Several characters and scripts previously encoded in private use agreements have actually been fully encoded in Unicode, necessitating mappings from the PUA to other Unicode code points.
+One of the more well-known and broadly implemented PUA agreements is maintained by the ConScript Unicode Registry (CSUR). The CSUR, which is not officially endorsed or associated with the Unicode Consortium, provides a mapping for constructed scripts, such as Klingon pIqaD and Ferengi script (Star Trek), Tengwar and Cirth (J.R.R. Tolkien's cursive and runic scripts), Alexander Melville Bell's Visible Speech, and Dr. Seuss' alphabet from On Beyond Zebra. The CSUR previously encoded the undeciphered Phaistos characters, as well as the Shavian and Deseret alphabets, which have all been accepted for official encoding in Unicode.
+Another common PUA agreement is maintained by the Medieval Unicode Font Initiative (MUFI). This project is attempting to support all of the scribal abbreviations, ligatures, precomposed characters, symbols, and alternate letterforms found in medieval texts written in the Latin alphabet. The express purpose of MUFI is to experimentally determine which characters are necessary to represent these texts, and to have those characters officially encoded in Unicode. As of Unicode version 5.1, 152 MUFI characters have been incorporated into the official Unicode encoding.
+Some agreed-upon PUA character collections exist in part or whole because Unicode Consortium is in no hurry to encode them. Some, such as unrepresented languages, are likely to end up encoded in the future. Some unusual cases such as fictional languages are outside the usual scope of Unicode but not explicitly ruled out by the principles of Unicode, and may show up eventually (such as the Star Trek and Tolkien writing systems). In other cases, the proposed encoding violates one or more Unicode principles and hence is unlikely to ever be officially recognized by Unicode—mostly where users want to directly encode alternate forms, ligatures, or base-character-plus-diacritic combinations (such as the TUNE scheme).
+
+
+Publishing organisation
+Topic
+PUA area used
+Font
+
+
+CSUR
+Artificial scripts
+PUA (BMP) and Plane 15
+Code2000
+
+
+MUFI
+Medieval scripts
+PUA (BMP)
+several
+
+
+SIL
+Phonetics and languages
+PUA (BMP)
+Charis SIL
+
+
+TITUS
+Ancient and medieval scripts
+PUA (BMP)
+TITUS Cyberbit Basic
+
+
+
+Emoji is an encoding for picture characters or emoticons used in Japanese wireless messages and webpages. With Unicode 6.0 and later, many of these have been encoded in the block Miscellaneous Symbols And Pictographs and elsewhere in the SMP.
+GB/T 20542-2006 ("Tibetan Coded Character Set Extension A") and GB/T 22238-2008 ("Tibetan Coded Character Set Extension B") are Chinese national standards that use the PUA to encode precomposed Tibetan ligatures.
+GB 18030 and GBK use the PUA to provisionally encode characters not found in Unicode standards.
+The Institute of the Estonian Language uses the PUA to encode Latin and Cyrillic precomposed characters[4] that have no Unicode encoding.
+The Free Tengwar Font Project uses a different mapping from the ConScript Unicode Registry that largely follows Michael Everson’s 2001-03-07 Tengwar discussion paper, but diverges in some details.
+The MARC 21 standard uses the PUA to encode East Asian characters present in MARC-8[5] that have no Unicode encoding.
+The SIL Corporate PUA uses the PUA to encode characters used in minority languages that have not yet been accepted into Unicode.
+The STIX Fonts project uses the PUA to provide a comprehensive font set of mathematical symbols and alphabets, many of which are also available in the SMP now, e.g. in the Mathematical Alphanumeric Symbols block.
+The Tamil Unicode New Encoding (TUNE)[6] is a proposed scheme for encoding Tamil that overcomes perceived deficiencies in the current Unicode encoding.
+
+Vendor use[edit]
+Informally, the range U+F000 through U+F8FF is known as Corporate Use Area.
+
+The Adobe Glyph List used to use the PUA for some of its glyphs.
+Apple lists a range of 1,280 characters in its developer documentation[7] of U+F400–U+F8FF within the PUA for Apple’s use. Of those, only 311 are used in the range U+F700–U+F8FF (NeXT (NeXTSTEP and OPENSTEP) and Apple (Mac OS X AppKit)).[8] Of these is U+F8FF the Apple logo generally supported by Apple's 8-bit sets.
+WGL4 uses the PUA (U+F001 and U+F002) to encode duplicates of the ligatures ﬁ (U+FB01) ﬂ (U+FB02).[9]
+In old versions of its RichEdit component, Microsoft mapped U+F020–U+F0FF within the PUA to symbol fonts. For any character in this range, RichEdit would show a character from a symbol font instead of the end-user-defined character (EUDC)[10][11]
+AutoCAD uses U+F8FC–U+F8FE for ⌀ (diameter sign), ± (plus-minus sign) and ° (degree sign) respectively.
+Some fonts place Windows logo key at U+F000.
+Number U+F000 is a numeral succession starting at 13 or 18 in some video games like Agar.io.
+On Ubuntu, U+E0FF is displayed as the "Circle Of Friends" logo and U+F200 is "ubuntu" in the Ubuntu (typeface) with a superscripted "Circle Of Friends" (this itself is U+F0FF).
+The 3270 font includes the Debian logo at U+F100
+In the Linux Libertine font, U+E000 displays Tux, the mascot of Linux
+The Font Awesome icon font utilizes the PUA to display various glyphs.
+Powerline, a status line plugin for vim, use U+E0A0–U+E0A2 and U+E0B0–U+E0B3 for extra box-drawing characters.[12][13]
+On the Fira Sans typeface used in Firefox OS, U+E003 is displayed as the Mozilla logo (the dinosaur head).
+Lotus Multi-Byte Character Set (LMBCS), the encoding and character set internally used by Lotus/IBM Lotus 1-2-3, Symphony, SmartSuite, Notes, Domino as well as a number of third-party products such as Microsoft Works, uses some characters (U+F862-U+F89F and U+F8FB-U+F8FE) in the Private Use Area for symbols not defined in Unicode. Of these, U+F8FB is known to be reserved for a crown currency symbol ("Kr"), and U+F8FC and U+F8FD were later mapped to U+FB02 (ﬂ) and U+FB01 (ﬁ) respectively.[14][15]
+IBM reserved several code page IDs for PUA code pages: Code page 1445 (IBM AFP PUA No. 1), code page 1446 (ISO 10646 UCS-PUP15), code page 1447 (ISO 10646 UCS-PUP16), code page 1449 (IBM default PUA).
+
+Unicode PUA blocks[edit]
+There are three PUA blocks in Unicode.[16]
+
+
+Private Use Area
+
+
+Range
+U+E000..U+F8FF
+(6,400 code points)
+
+
+Plane
+BMP
+
+
+Scripts
+Unknown
+
+
+Assigned
+6,400 code points
+
+
+Unused
+0 reserved code points
+
+
+Unicode version history
+
+
+
+
+
+1.0.0
+5,632 (+5,632)
+
+
+1.0.1
+6,400 (+768)
+
+
+
+
+
+Note: Version 1.0.1 moved and expanded the Private Use Area block (previously located at U+E800-U+FDFF in version 1.0.0).[17][18][19]
+
+
+
+
+Supplementary Private Use Area-A
+
+
+Range
+U+F0000..U+FFFFF
+(65,536 code points)
+
+
+Plane
+SPUA-A
+
+
+Scripts
+Unknown
+
+
+Assigned
+65,534 code points
+
+
+Unused
+0 reserved code points
+2 non-characters
+
+
+Unicode version history
+
+
+
+
+
+2.0
+65,534 (+65,534)
+
+
+
+
+
+Note: [18][19]
+
+
+
+
+Supplementary Private Use Area-B
+
+
+Range
+U+100000..U+10FFFF
+(65,536 code points)
+
+
+Plane
+SPUA-B
+
+
+Scripts
+Unknown
+
+
+Assigned
+65,534 code points
+
+
+Unused
+0 reserved code points
+2 non-characters
+
+
+Unicode version history
+
+
+
+
+
+2.0
+65,534 (+65,534)
+
+
+
+
+
+Note: [18][19]
+
+
+
+Private-use characters in other character sets[edit]
+The concept of reserving specific code points for Private Use is based on similar earlier usage in other character sets. In particular, many otherwise obsolete characters in East Asian scripts continue to be used in specific names or other situations, and so some character sets for those scripts made allowance for private-use characters (such as the user-defined planes of CNS 11643, or gaiji in certain Japanese encodings). The Unicode standard references these uses under the name "End User Character Definition" (EUCD).[3]
+Additionally, the C1 control block contains two codes intended for private use "control functions" by ECMA-48: 0x91 private use one (PU1) and 0x92 private use two (PU2).[20][21] Unicode includes these at U+0091 <control-0091> and U+0092 <control-0092> but defines them as control characters (category Cc), not private-use characters (category Co).[18][22]
+Encodings which do not have private use areas but have more or less unused areas, such as ISO/IEC 8859 and Shift JIS, have seen uncontrolled variants of these encodings evolve.[23] For Unicode, software companies can use the Private Use Areas for their desired additions.
+Notes[edit]
+
+
+
+^ The last two characters of every plane are defined to be non-characters. The remaining 65,534 characters of each of planes 15 and 16 are assigned as private-use characters.
+
+
+
+References[edit]
+
+
+
+^ Unicode Consortium. Glossary of Unicode Terms: "Private Use Area (PUA)"
+^ "Unicode Character Encoding Stability Policy". 2012-05-29. Retrieved 2012-08-15. 
+^ a b Unicode Standard chapter 16.5 Private Use characters
+^ "Letter Database". Eki.ee. Retrieved 2013-04-11. 
+^ "Character Sets: East Asian Characters: Alternative Unicode Mappings for MARC 21 Characters Assigned to the Private Use Area (PUA): MARC 21 Specifications for Record Structure, Character Sets, and Exchange Media (Library of Congress)". Loc.gov. 2004-09-02. Retrieved 2013-04-11. 
+^ "tunerfc.tn.nic.in". tunerfc.tn.nic.in. Retrieved 2013-04-11. 
+^ "NSCharacterSet Class Reference". Developer.apple.com. 2008-10-15. Retrieved 2013-04-11. 
+^ Apple Computer, Inc. (2005) [1994]. "CORPCHAR.TXT - Registry (external version) of Apple use of Unicode corporate-zone characters". c03. Unicode Inc. Retrieved 2017-02-13. 
+^ See WGL4 Unicode Range U+2013 through U+FB02
+^ Microsoft Knowledge Base, The range of characters between U+F020 and U+F0FF in the Private Use Area of Unicode is mapped to symbol fonts in Richedit 4.1.
+^ SIL International, Handling of PUA Characters in Microsoft Software
+^ Powerline status line plugin question on StackOverflow mentioning private use area characters
+^ Pictures showing private use area characters in Powerline patched fonts
+^ "lmb-excp.ucm". megadaddeln / icu_chrome. 2010 [1995]. Archived from the original on 2016-12-06. Retrieved 2016-12-06. 
+^ "Anhang 2. Der Lotus Multibyte Zeichensatz (LMBCS)" [Appendix 2. The Lotus Multibyte Character Set (LMBCS)]. Lotus 1-2-3 Version 3.1 Referenzhandbuch [Lotus 1-2-3 Version 3.1 Reference Manual] (in German) (1 ed.). Cambridge, MA, USA: Lotus Development Corporation. 1989. pp. A2–1 – A2–13. 302168. 
+^ "Chapter 16: Special Areas and Format Characters" (PDF). The Unicode Standard. Unicode Consortium. 
+^ "Unicode 1.0.1 Addendum" (PDF). The Unicode Standard. 1992-11-03. Retrieved 2016-07-09. 
+^ a b c d "Unicode character database". The Unicode Standard. Retrieved 2016-07-09. 
+^ a b c "Enumerated Versions of The Unicode Standard". The Unicode Standard. Retrieved 2016-07-09. 
+^ Standard ECMA-48, Fifth Edition - June 1991 §8.2.14 Miscellaneous control functions, §8.3.100, §8.3.101
+^ C1 Control Character Set of ISO 6429 (1983)
+^ Unicode 6.1.0, Chapter 4, Table 4-9
+^ Map (external version) from Mac OS Japanese encoding to Unicode 2.1 and later.
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Unicode
+
+
+
+Unicode
+
+
+
+Unicode Consortium
+ISO/IEC 10646 (Universal Character Set)
+Versions
+
+
+
+
+
+Code points
+
+
+
+Blocks
+Universal Character Set
+Character charts
+Character property
+Planes
+Private Use Areas
+
+
+
+
+
+Characters
+
+
+
+
+Special purpose
+
+
+
+BOM
+Combining Grapheme Joiner
+Left-to-right mark / Right-to-left mark
+Soft hyphen
+Word joiner
+Zero-width joiner
+Zero-width non-joiner
+Zero-width space
+
+
+
+
+
+Lists
+
+
+
+Characters
+CJK Unified Ideographs
+Combining character
+Duplicate characters
+Numerals
+Scripts
+Spaces
+Symbols
+Halfwidth and fullwidth
+
+
+
+
+
+
+
+
+Processing
+
+
+
+
+Algorithms
+
+
+
+Bi-directional text
+Collation
+
+ISO 14651
+
+
+Equivalence
+Variation sequences
+International Ideographs Core
+
+
+
+
+
+Comparison
+
+
+
+BOCU-1
+CESU-8
+Punycode
+SCSU
+UTF-1
+UTF-7
+UTF-8
+UTF-9/UTF-18
+UTF-16/UCS-2
+UTF-32/UCS-4
+UTF-EBCDIC
+
+
+
+
+
+
+
+
+On pairs of
+code points
+
+
+
+Combining character
+Compatibility characters
+Duplicate characters
+Equivalence
+Homoglyph
+Precomposed character
+
+list
+
+
+Z-variant
+Variation sequences
+Regional Indicator Symbol
+Fitzpatrick modifiers
+
+
+
+
+
+Usage
+
+
+
+Domain names (IDN)
+Email
+Fonts
+HTML
+
+entity references
+numeric references
+
+
+Input
+International Ideographs Core
+
+
+
+
+
+Related standards
+
+
+
+Common Locale Data Repository (CLDR)
+GB 18030
+ISO/IEC 8859
+ISO 15924
+
+
+
+
+
+Related topics
+
+
+
+Anomalies
+ConScript Unicode Registry
+Ideographic Rapporteur Group
+International Components for Unicode
+People involved with Unicode
+Han unification
+
+
+
+
+
+
+
+
+
+
+Scripts and symbols in Unicode
+
+
+
+Common and
+inherited scripts
+
+
+
+Combining marks
+Diacritics
+Punctuation
+Space
+Numbers
+
+
+
+
+
+Modern scripts
+
+
+
+Adlam
+Arabic
+
+diacritics
+
+
+Armenian
+Balinese
+Bamum
+Batak
+Bengali
+Bopomofo
+Braille
+Buhid
+Burmese
+Canadian Aboriginal
+Chakma
+Cham
+Cherokee
+CJK Unified Ideographs (Han)
+Cyrillic
+Deseret
+Devanagari
+Ge'ez
+Georgian
+Greek
+Gujarati
+Gurmukhī
+Hangul
+Hanja
+Hanunó'o
+Hebrew
+
+diacritics
+
+
+Hiragana
+Javanese
+Kanji
+Kannada
+Katakana
+Kayah Li
+Khmer
+Khudawadi
+Lao
+Latin
+Lepcha
+Limbu
+Lisu (Fraser)
+Lontara
+Malayalam
+Mandaic
+Masaram Gondi
+Meetei Mayek
+Mende Kikakui
+Miao (Pollard)
+Mongolian
+Mro
+N'Ko
+New Tai Lue
+Newa
+Nushu
+Ol Chiki
+Oriya
+Osage
+Osmanya
+Pahawh Hmong
+Pau Cin Hau
+Rejang
+Samaritan
+Śāradā
+Saurashtra
+Shavian
+Sinhala
+Sorang Sompeng
+Sundanese
+Sylheti Nagari
+Syriac
+Tagalog (Baybayin)
+Tagbanwa
+Tai Le
+Tai Tham
+Tai Viet
+Takri
+Tamil
+Telugu
+Thaana
+Thai
+Tibetan
+Tifinagh
+Tirhuta
+Vai
+Warang Citi
+Yi
+
+
+
+
+
+Ancient and
+historic scripts
+
+
+
+Ahom
+Anatolian hieroglyphs
+Ancient North Arabian
+Avestan
+Bassa Vah
+Bhaiksuki
+Brāhmī
+Carian
+Caucasian Albanian
+Coptic
+Cuneiform
+Cypriot
+Egyptian hieroglyphs
+Elbasan
+Glagolitic
+Gothic
+Grantha
+Hatran
+Imperial Aramaic
+Inscriptional Pahlavi
+Inscriptional Parthian
+Kaithi
+Kharosthi
+Khojki
+Linear A
+Linear B
+Lycian
+Lydian
+Mahajani
+Manichaean
+Marchen
+Meroitic
+Modi
+Multani
+Nabataean
+Ogham
+Old Hungarian
+Old Italic
+Old Permic
+Old Persian cuneiform
+Old Turkic
+Palmyrene
+'Phags-pa
+Phoenician
+Psalter Pahlavi
+Runic
+Siddham
+South Arabian
+Soyombo
+Tangut
+Ugaritic
+Zanabazar Square
+
+
+
+
+
+Notational scripts
+
+
+
+Duployan
+SignWriting
+
+
+
+
+
+Symbols
+
+
+
+Cultural, political, and religious symbols
+Currency
+Mathematical operators and symbols
+Phonetic symbols (including IPA)
+Emoji
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Private_Use_Areas&oldid=817633386"					Categories: UnicodeUnicode blocksArticles with unsupported PUA charactersHidden categories: CS1 German-language sources (de)

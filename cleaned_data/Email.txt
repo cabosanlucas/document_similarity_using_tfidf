@@ -1,0 +1,779 @@
+article communications medium former manufacturing conglomerate email limited
+inbox redirects google product inbox gmail
+
+
+
+
+screenshot shows inbox page email system users emails take actions reading deleting saving responding messages
+
+
+
+
+
+
+sign part every smtp email address1
+
+
+electronic mail email email method exchanging messages people using electronic devices email first entered limited 1960s mid1970s taken form recognized email email operates across computer networks today primarily internet early email systems required author recipient online time common instant messaging todays email systems based storeandforward model email servers accept forward deliver store messages neither users computers required online simultaneously need connect briefly typically mail server webmail interface long takes send receive messages
+originally ascii textonly communications medium internet email extended multipurpose internet mail extensions mime carry text character sets multimedia content attachments international email internationalized email addresses using utf8 standardized 2017 widely adopted2
+history modern internet email services reaches back early arpanet standards encoding email messages published early 1973 email message sent early 1970s looks similar basic email sent today email important role creating internet3 conversion arpanet internet early 1980s produced core current services
+
+
+
+contents
+
+
+terminology
+origin
+operation
+message format
+
+message header
+
+header fields
+
+
+message body
+
+content encoding
+plain text html
+
+
+
+
+servers client applications
+
+filename extensions
+scheme mailto
+
+
+types
+
+webbased email
+pop3 email services
+imap email servers
+mapi email servers
+
+
+uses
+
+business organizational
+
+email marketing
+
+
+personal
+
+personal computer
+mobile
+
+
+
+
+issues
+
+attachment size limitation
+information overload
+spam
+malware
+email spoofing
+email bombing
+privacy concerns
+flaming
+email bankruptcy
+internationalization
+tracking sent mail
+
+
+also
+references
+reading
+external links
+
+
+
+terminologyedit
+historically term electronic mail used generically electronic document transmission example several writers early 1970s used term describe document transmission45 result difficult find first citation term specific meaning today
+electronic mail commonly called email email since around 19936 variations spelling used
+
+email common form used online required ietf requests comments working groups7 increasingly style guides89 spelling also appears dictionaries10111213141516
+email format sometimes appears edited published american english british english writing reflected corpus contemporary american english data17 falling favor style guides918
+mail form used original protocol standard 52419 service referred mail single piece electronic mail called message2021
+email traditional form used rfcs authors address2021 expressly required historical reasons22
+email sometimes used capitalizing initial similar abbreviations like epiano eguitar abomb hbomb23
+
+internet email consists24 envelope content content turn consists25 header body
+originedit
+main article history email
+computerbased mail messaging became possible advent timesharing computers early 1960s informal methods using shared files pass messages soon expanded first mail systems developers early mainframes minicomputers developed similar generally incompatible mail applications time complex gateways routing systems linked many many universities part arpanet created late1960s aimed software portability systems portability helped make simple mail transfer protocol smtp increasingly influential
+time late 1980s early 1990s seemed likely either proprietary commercial system x400 email system part government open systems interconnection profile gosip would predominate however final restrictions carrying commercial traffic internet ended 19952627 combination factors made current internet suite smtp pop3 imap email protocols standard
+operationedit
+diagram right shows typical sequence events28 takes place sender alice transmits message using mail user agent addressed email address recipient
+
+
+
+
+email operation
+
+
+
+formats message email format uses submission protocol profile simple mail transfer protocol smtp send message content local mail submission agent case smtpaorg
+determines destination address provided smtp protocol message header case bobborg part sign local part address often username recipient part sign domain name resolves domain name determine fully qualified domain name mail server domain name system
+server domain borg nsborg responds records listing mail exchange servers domain case mxborg message transfer agent server recipients isp29
+smtpaorg sends message mxborg using smtp server need forward message mtas message reaches final message delivery agent
+delivers mailbox user
+bobs picks message using either post office protocol pop3 internet message access protocol imap
+
+addition example alternatives complications exist email system
+
+alice client connected corporate email system lotus notes microsoft exchange systems often internal email format clients typically communicate email server using vendorspecific proprietary protocol server sends receives email internet products internet mail gateway also necessary reformatting alice work company entire transaction happen completely within single corporate email system
+alice computer instead connect webmail service
+alices computer avoiding transfer step
+pick email many ways example logging mxborg reading directly using webmail service
+domains usually several mail exchange servers continue accept mail even primary available
+
+many mtas used accept messages recipient internet best deliver mtas called open mail relays important early days internet network connections unreliablecitation needed however mechanism proved exploitable originators unsolicited bulk email consequence open mail relays become rare30 many mtas accept messages open mail relays
+message format edit
+internet email message format defined 5322 encoding nonascii data multimedia content attachments defined 2045 2049 collectively called multipurpose internet mail extensions mime 5322 replaced earlier 2822 2008 turn 2822 2001 replaced standard internet email nearly years published 1982 based earlier arpanet31
+internet email messages consist major sections message header message body collectively known content3233 header structured fields subject date information email process transporting email messages systems smtp communicates delivery parameters information using message header fields body contains message unstructured text sometimes containing signature block header separated body blank line
+message headeredit
+message exactly header structured fields field name value 5322 specifies precise syntax
+informally line text header begins printable character begins separate field field name starts first character line ends separator character separator followed field value body field value continued onto subsequent lines lines space first character field names values restricted 7bit ascii characters nonascii values represented using mime encoded words
+header fieldsedit
+email header fields multiline line characters long event characters long34 header fields defined 5322 contain usascii characters encoding characters sets syntax specified 2047 used35 recently ietf working group defined standards track extensions3637 replacing previous experimental extensions allow utf8 encoded unicode characters used within header particular allows email addresses nonascii characters addresses supported google microsoft products promoted governments38
+message header must include least following fields3940
+
+email address optionally name authors many email clients changeable except changing account settings
+date local time date message written like field many email clients fill automatically sending recipients client display time format time zone local himher
+
+3864 describes registration procedures message header fields iana provides permanent provisional field names including also fields defined mime netnews http referencing relevant rfcs common header fields email include41
+
+email addresses optionally names messages recipients indicates primary recipients multiple allowed secondary recipients
+subject brief summary topic message certain abbreviations commonly used subject including
+carbon copy many email clients mark email ones inbox differently depending whether list blind carbon copy addresses usually specified smtp delivery usually listed message header
+contenttype information message displayed usually mime type
+precedence commonly values bulk junk list used indicate automated vacation office responses returned mail prevent vacation notices sent subscribers mailing list sendmail uses field affect prioritization queued email precedence specialdelivery messages delivered sooner modern highbandwidth networks delivery priority less issue microsoft exchange respects finegrained automatic response suppression mechanism xautoresponsesuppress field42
+messageid also automatically generated field used prevent multiple delivery reference inreplyto
+inreplyto messageid message reply used link related messages together field applies reply messages
+references messageid message reply messageid message previous reply reply
+replyto address used reply message
+sender address actual sender acting behalf author listed field secretary list manager
+archivedat direct link archived form individual email message
+
+note field necessarily related addresses message delivered actual delivery list supplied separately transport protocol smtp originally extracted header content field similar addressing conventional letter delivered according address outer envelope field real sender email message mail servers apply email authentication systems messages relayed data pertaining servers activity also part header defined
+smtp defines trace information message also saved header using following fields43
+
+received smtp server accepts message inserts trace record header last first
+returnpath delivery smtp server makes final delivery message inserts field header
+
+fields added header receiving server called trace fields broader sense44
+
+authenticationresults server carries authentication checks save results field consumption downstream agents45
+receivedspf stores results checks detail authenticationresults46
+autosubmitted used mark automatically generated messages47
+vbrinfo claims whitelisting48
+
+message bodyedit
+content encodingedit
+internet email originally designed 7bit ascii49 email software 8bit clean must assume communicate 7bit servers mail readers mime standard introduced character specifiers content transfer encodings enable transmission nonascii data quoted printable mostly 7bit content characters outside range base64 arbitrary binary data 8bitmime binary extensions introduced allow transmission mail without need encodings many mail transport agents still support fully countries several encoding schemes coexist result default message nonlatin alphabet language appears nonreadable form exception coincidence sender receiver encoding scheme therefore international character sets unicode growing popularitycitation needed
+plain text htmledit
+modern graphic email clients allow either plain text html message body option user html email messages often include automatically generated plain text copy well compatibility reasons advantages html include ability include inline links images apart previous messages block quotes wrap naturally display emphasis underlines italics change font styles disadvantages include increased size email privacy concerns bugs abuse html email vector phishing attacks spread malicious software50
+webbased mailing lists recommend posts made plaintext characters line5152 reasons also significant number readers using textbased email clients mutt microsoft email clients allow rich formatting using proprietary rich text format avoided unless recipient guaranteed compatible email client53
+servers client applicationsedit
+
+
+
+
+interface email client thunderbird
+
+
+messages exchanged hosts using simple mail transfer protocol software programs called mail transfer agents mtas delivered mail store programs called mail delivery agents mdas also sometimes called local delivery agents ldas accepting message obliges deliver it54 message cannot delivered must send bounce message back sender indicating problem
+users retrieve messages servers using standard protocols imap likely large corporate environment proprietary protocol specific novell groupwise lotus notes microsoft exchange servers programs used users retrieving reading managing email called mail user agents muas
+mail stored client server side places standard formats mailboxes include maildir mbox several prominent email clients proprietary format require conversion software transfer email serverside storage often proprietary format since access standard protocol imap moving email server another done supporting protocol
+many current email users programs webbased email platform gmail hotmail yahoo mail performs tasks55 webmail interfaces allow users access mail standard browser computer rather relying email client
+filename extensionsedit
+upon reception email messages email client applications save messages operating system files file system clients save individual messages separate files others various database formats often proprietary collective storage historical standard storage mbox format specific format used often indicated special filename extensions
+
+
+used many email clients including novell groupwise microsoft outlook express lotus notes windows mail mozilla thunderbird postbox files contain email contents plain text mime format containing email header body including attachments several formats
+emlx
+used apple mail
+
+used microsoft office outlook officelogic groupware
+
+used opera mail kmail apple mail based mbox format
+
+applications like apple mail leave attachments encoded messages searching also saving separate copies attachments others separate attachments messages save specific directory
+scheme mailtoedit
+main article mailto
+scheme registered iana defines mailto scheme smtp email addresses though strictly defined urls form intended used open message window users mail client activated address defined field56
+typesedit
+webbased emailedit
+main article webmail
+many email providers webbased email client mail gmail outlookcom hotmail yahoo mail allows users email account using compatible browser send receive email mail typically downloaded client cant read without current internet connection
+pop3 email servicesedit
+post office protocol pop3 mail access protocol used client application read messages mail server received messages often deleted server supports simple downloadanddelete requirements access remote mailboxes termed maildrop rfcs57
+imap email serversedit
+internet message access protocol imap provides features manage mailbox multiple devices small portable devices like smartphones increasingly used check email travelling make brief replies larger devices better keyboard access used reply greater length imap shows headers messages sender subject device needs request download specific messages usually mail left folders mail server
+mapi email serversedit
+messaging application programming interface mapi used microsoft outlook communicate microsoft exchange server range email server products axigen mail server kerio connect scalix zimbra openmail lotus notes zarafa bynari vendors added mapi support allow products accessed directly outlook
+usesedit
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed november 2007 learn remove template message
+
+
+
+business organizational useedit
+email widely accepted business governments nongovernmental organizations developed world parts erevolution workplace communication plank widespread adoption highspeed internet sponsored 2010 study workplace communication found knowledge workers felt email critical success productivity work58
+benefits business organizations including
+
+facilitating logistics
+much business world relies communications people physically building area even country setting attending inperson meeting telephone call conference call inconvenient timeconsuming costly email provides method exchanging information people setup costs generally less expensive physical meeting phone call
+helping synchronisation
+real time communication meetings phone calls participants must work schedule participant must spend amount time meeting call email allows asynchrony participant control schedule independently
+reducing cost
+sending email much less expensive sending postal mail long distance telephone calls telex telegrams
+increasing speed
+much faster alternatives
+creating written record
+unlike telephone inperson conversation email nature creates detailed written record communication identity senders recipients date time message sent event contract legal dispute saved emails used prove individual advised certain issues email date time recorded
+
+email marketingedit
+email marketing optin often successfully used send special sales offerings product information59 depending recipients culture60 email sent without permission—such optin—is likely viewed unwelcome email spam
+personal useedit
+personal computeredit
+many users access personal email friends family members using personal computer house apartment
+mobileedit
+email become used smartphones types computers mobile apps email increase accessibility medium users home earliest years email users could access email desktop computers 2010s possible users check email away home whether across town across world alerts also sent smartphone device notify immediately messages given email ability used frequent communication users allowed check email write messages throughout today estimated billion email users worldwide billion nonspam emails sent dailycitation needed
+individuals often check email smartphones personal workrelated messages found adults check email browse check facebook accounts making email popular activity users smartphones respondents study revealed check email phone61 also found consumers smartphone check email likely check email least smartphone however percentage consumers using email smartphone ranges differs dramatically across different countries example comparison consumers used india did62
+issuesedit
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed october 2016 learn remove template message
+
+
+
+attachment size limitationedit
+main article email attachment
+email messages attachments additional files appended email typical attachments include microsoft word documents documents scanned images paper documents principle technical restriction size number attachments practice email clients servers internet service providers implement various limitations size files complete email typically 25mb less636465 furthermore technical reasons attachment sizes seen transport systems differ user sees66 confusing senders trying assess whether safely send file email larger files need shared file hosting services various sorts available generally suggested6768 large files digital photos color presentations video music files large email systems69
+information overloadedit
+ubiquity email knowledge workers white collar employees concerns recipients face information overload dealing increasing volumes email7071 growth mobile devices default employees also receive workrelated emails outside working lead increased stress decreased satisfaction work observers even argue could significant negative economic effect72 efforts read many emails could reduce productivity
+spamedit
+main article email spam
+email spam term used describe unsolicited bulk email cost sending email meant 2003 total email traffic already spam737475 threatening usefulness email practical tool canspam 2003 similar laws elsewhere76 impact number effective antispam techniques largely mitigate impact spam filtering rejecting users77 volume sent still high—and increasingly consists advertisements products malicious content links78
+malwareedit
+range malicious email types exist range various types email scams including social engineering scams advancefee scam nigerian letters phishing email bombardment email worms
+email spoofingedit
+main article email spoofing
+email spoofing occurs email message header designed make message appear come known trusted source email spam phishing methods typically spoofing mislead recipient true message origin email spoofing done prank part criminal effort defraud individual organization example potentially fraudulent email spoofing individual creates email appears invoice major company sends recipients cases fraudulent emails incorporate logo purported organization even email address appear legitimate
+email bombingedit
+main article email bomb
+email bombing intentional sending large volumes messages target address overloading target email address render unusable even cause mail server crash
+privacy concernsedit
+main article internet privacy
+today important distinguish internet internal email systems internet email travel stored networks computers without senders recipients control transit time possible third parties read even modify content internal mail systems information never leaves organizational network secure although information technology personnel others whose function involve monitoring managing accessing email employees
+email privacy without security precautions compromised
+
+email messages generally encrypted
+email messages intermediate computers reaching destination meaning relatively easy others intercept read messages
+many internet service providers store copies email messages mail servers delivered backups remain several months server despite deletion mailbox
+receivedfields information email often identify sender preventing anonymous communication
+bugs invisibly embedded email content alert sender email whenever email read reread address also reveal whether email read smartphone apple device user agent string
+
+cryptography applications serve remedy example virtual private networks anonymity network used encrypt traffic user machine safer network smemail79 smime used endtoend message encryption smtp starttls smtp transport layer securitysecure sockets layer used encrypt communications single mail smtp client smtp server
+additionally many mail user agents protect logins passwords making easy intercept attacker encrypted authentication schemes sasl prevent finally attached files share many hazards found peertopeer filesharing attached files contain trojans viruses
+flamingedit
+flaming occurs person sends message many messages angry antagonistic content term derived word incendiary describe particularly heated email discussions ease impersonality email communications mean social norms encourage civility person telephone exist civility forgotten80
+email bankruptcyedit
+main article email bankruptcy
+also known email fatigue email bankruptcy user ignores large number email messages falling behind reading answering reason falling behind often information overload general sense much information possible read solution people occasionally send boilerplate message explaining email inbox full process clearing messages harvard university professor lawrence lessig credited coining term popularized it81
+internationalizationedit
+originally internet email completely ascii textbased mime allows body content text header content text international character sets headers email addresses using utf8 standardized82 widely adopted283
+information international email email address internationalization
+tracking sent mailedit
+original smtp mail service provides limited mechanisms tracking transmitted message none verifying delivered read requires mail server must either deliver onward return failure notice bounce message software bugs system failures cause messages lost remedy ietf introduced delivery status notifications delivery receipts message disposition notifications return receipts however universally deployed production complete message tracking mechanism also defined never gained traction rfcs 388584 388885
+many isps deliberately disable nondelivery reports ndrs delivery receipts activities spammers
+
+delivery reports used verify whether address exists indicates spammer available spammed
+spammer uses forged sender email address email spoofing innocent email address used flooded ndrs many invalid email addresses spammer attempted mail ndrs constitute spam innocent user
+
+absence standard methods range system based around bugs developed however often seen underhand raising privacy concerns868788 work email clients support rendering html many mail clients default showing content89 webmail providers also disrupt bugs precaching images90
+alsoedit
+
+
+anonymous remailer
+antispam techniques
+biff
+bounce message
+comparison email clients
+dark mail alliance
+disposable email address
+ecard
+electronic mailing list
+email
+email authentication
+email digest
+email encryption
+email hosting service
+email storm
+email tracking
+html email
+information overload
+internet
+internet mail standards
+list email subject abbreviations
+mail
+netiquette
+posting style
+privacyenhanced electronic mail
+push email
+
+telegraphy
+unicode email
+usenet quoting
+webmail comparison webmail providers
+xoriginatingip
+x400
+yerkish
+
+
+referencesedit
+
+
+
+5321 simple mail transfer protocol network working group archived original january 2015 retrieved january 2015
+datamail worlds first free linguistic email service supports eight india languages archived original 20161022
+partridge 2008
+brown invades mail market scientist archived 20160509 wayback machine 1972 pages 218–221
+herbert luckett whats news electronicmail delivery gets started popular science archived 20160430 wayback machine march 1973 page
+google ngram viewer booksgooglecom archived original 20130516 retrieved 20130421
+editor terms list ietf archived original 20131228 suggested document style guide archived 20150424 wayback machine
+yahoo style guide styleguideyahoocom archived original 2013 retrieved 20140109
+removes hyphen ‘email’ style guide archived 20150512 wayback machine march 2011 huffingtonpostcom
+askoxford language query team correct spell words email ecommerce egovernment oxford university press archived original july 2008 retrieved september 2009 recommend email common form
+referencecom dictionaryreferencecom archived original 20131216 retrieved 20140109
+random house unabridged dictionary 2006
+american heritage dictionary english language fourth edition
+princeton university wordnet
+american heritage science dictionary 2002
+merriamwebster dictionary merriamwebster archived original 2014 retrieved 2014
+email email english language usage stack exchange august 2010 archived original august 2010 retrieved september 2010
+gerri berendzen daniel hunt changes email email 15th national conference american copy editors society 2011 phoenix aces archived original march 2011 retrieved march 2011
+rfc524 proposed mail protocol faqsorg 19730613 archived original 20160403 retrieved 20161118
+1939 rfc1939 post office protocol version faqsorg archived original 20140107 retrieved 20140109
+3501 rfc3501 internet message access protocol version 4rev1 faqsorg archived original 20140107 retrieved 20140109
+style guide table decisions consistent usage archived original 20131228 retrieved 20140109
+excerpt list usenet newsgroup altusageenglish altusageenglishorg archived original 20120403 retrieved 20140109
+mail objects simple mail transfer protocol ietf 5321 httpstoolsietforghtmlrfc5321section231 smtp transports mail object mail object contains envelope content
+mail objects simple mail transfer protocol ietf 5321 httpstoolsietforghtmlrfc5321section231 smtp content sent smtp data protocol unit parts header section body content conforms contemporary standards header section consists collection header fields consisting header name colon data structured message format specification
+retiring nsfnet backbone service chronicling archived 20160101 wayback machine susan harris elise gerich connexions april 1996
+brief history internet archived original 20150811
+email works howstuffworkscom 2008 archived original 20170611
+record explanation archived 20150117 wayback machine itcornelledu
+hoffman paul 20020820 allowing relaying smtp series surveys reports internet mail consortium archived original 20070118 retrieved 20080413
+simpson october 2008 update email standards mailchannels blog entry archived original october 2008
+klensin october 2008 mail objects simple mail transfer protocol 5321 httpstoolsietforghtmlrfc5321section231 smtp transports mail object mail object contains envelope content smtp content sent smtp data protocol unit parts header section body
+crocker july 2009 message data internet mail architecture 5598 httpstoolsietforghtmlrfc5598section41 message comprises transithandling envelope message content envelope contains information used content divided structured header body
+resnick october 2008 5322 internet message format ietf archived original 20150222
+moore november 1996 mime multipurpose internet mail extensions part three message header extensions nonascii text ietf archived original 20120114 retrieved 20120121
+yang february 2012 6532 internationalized email headers ietf issn 20701721 archived original 20150218
+february 2012 6531 smtp extension internationalized email addresses ietf issn 20701721 archived original 20150218 maint multiple names authors list link
+email address hindi economic times economic times archived original 20160828 retrieved 20161017
+5322 field definitions toolsietforg october 2008 archived original 20131230 retrieved 20140109
+5322 identification fields toolsietforg october 2008 archived original 20131230 retrieved 20140109
+5064 toolsietforg december 2007 archived original 20140725 retrieved 20140109
+microsoft auto response suppress 2010 microsoft reference archived 20110407 wayback machine 2010
+john klensin october 2008 trace information simple mail transfer protocol ietf 5321 httpstoolsietforghtmlrfc5321section44
+john levine january 2012 trace headers email message ietf archived original august 2012 retrieved january 2012 many trace fields
+extensible field defined 7001 also defines iana registry email authentication parameters
+7208
+defined 3834 updated 5436
+5518
+craig hunt 2002 tcpip network administration oreilly media isbn 9780596002978
+email policies prevent viruses archived original 20070512 maint originalurl status unknown link
+posting rootsweb mailing list helpdeskrootswebcom archived original 20140219 retrieved 20140109
+plain text characters line openbsdorg archived original 20140208 retrieved 20140109
+prevent winmaildat file sent internet users supportmicrosoftcom 20100702 archived original 20140109 retrieved 20140109
+practice accepted messages nowadays delivered recipients inbox instead spam junk folder especially corporate environment inaccessible recipient
+free email providers yahoo directory diryahoocom archived original 20140704
+2368 section paul hoffman 1998 discusses operation mailto
+allen david 2004 windows linux prentice hall archived original 20161226
+malik gigaom email curse boon archived 20101204 wayback machine september 2010 retrieved october 2010
+martin brett durme joel raulas mika merisavo marko 2003 email marketing exploratory insights finland journal advertising research 293–300 doi101017s0021849903030265 archived original 20121021
+amir spam culture part china archived original 20161110
+email activity smartphones ahead browsing facebook study march 2013 archived original april 2014
+ultimate mobile email statistics overview archived original 20140711
+setting message size limits exchange 2010 exchange 2007 archived 20130212 wayback machine
+google updates file size limits gmail youtube geekcom archived 20111219 wayback machine
+maximum attachment size mailgooglecom
+exchange 2007 attachment size increase technet magazine microsoftcom 20100325 archived original 20160825
+send large files people archived 20160807 wayback machine microsoftcom
+ways email large attachments archived 20160702 wayback machine chris hoffman december 2012 makeuseofcom
+bunin rachel biheller 20120801 microsoft outlook 2010 essentials cengage learning isbn 1133418201 archived original 20180102
+radicati sara email statistics report 2010 archived original 20110901
+gross doug july 2011 happy information overload archived original january 2012
+stross randall 20080420 struggling evade email tsunami york times archived original april 2009 retrieved 2010
+seeing spam take care google analytics data sitepronewscom archived original november 2017 retrieved september 2017
+rich kawanagh email spam list 2005 itvibe news 2006 january itvibecom archived 20080720 wayback machine
+microsoft losing spam saloncom archived 20080629 wayback machine
+spam bill 2003 archived 20060911 wayback machine
+google says catches percent gmail spam archived 20160916 wayback machine cade metz july 2015 wiredcom
+spam phishing 2016 archived 20160809 wayback machine 2016 securelistcom
+smemail protocol secure email mobile environments proceedings australian telecommunications networks applications conference atnac08 39–44 adelaide australia 2008
+kiesler zubrow moses geller 1985 affect computermediated communication experiment synchronous terminaltoterminal discussion humancomputer interaction 77–104 doi101207s15327051hci01013
+barrett grant december 2007 saying york times archived original april 2009 retrieved 20071224
+internationalized domain names idns registryin registryin archived original 20160513 retrieved 20161017
+made india datamail empowers russia email address russian language digital conqueror december 2016 archived original march 2017
+3885 smtp service extension message tracking
+3888 message tracking model requirements
+harmon 20001122 software tracks email raising privacy concerns york times retrieved 20120113
+aboutcom emailaboutcom 20131219 archived original 20180102 retrieved 20140109
+webdevelopersnotescom webdevelopersnotescom archived original 20140109 retrieved 20140109
+outlook bugs blocked html images archived 20150218 wayback machine slipstickcom
+gmail blows email marketing archived 20170607 wayback machine amadeo 2013 technica
+
+
+
+readingedit
+
+
+cemil betanov introduction x400 artech house isbn 0890065977
+marsha egan inbox detox habit email excellence acanthus publishing isbn 9780981558981
+lawrence hughes internet email protocols standards implementation artech house publishers isbn 0890069395
+kevin johnson internet email protocols developers guide addisonwesley professional isbn 0201432889
+pete loshin essential email standards rfcs protocols made practical john wiley sons isbn 0471345970
+partridge craig april–june 2008 technical development internet email ieee annals history computing berlin ieee computer society 3–29 doi101109mahc200832 issn 19341547
+sara radicati electronic mail introduction x400 message handling standards mcgrawhill isbn 0070511047
+john rhoton programmers guide internet mail smtp imap ldap elsevier isbn 1555582125
+john rhoton x400 smtp battle email protocols elsevier isbn 155558165x
+david wood programming internet mail oreilly isbn 1565924797
+
+
+external linksedit
+
+
+
+look email outbox wiktionary free dictionary
+
+
+
+ianas list standard header fields
+history email dave crockers attempt capturing sequence significant occurrences evolution email collaborative effort also cites page
+history electronic mail personal memoir implementer early email system
+look origins network email short vivid recap historical facts
+business email compromise emerging global threat
+
+
+
+
+
+
+
+
+
+
+
+
+computermediated communication
+
+
+
+
+
+
+online chat
+online discussion
+communication software
+collaborative software
+social network service
+virtual learning environment
+
+
+
+
+
+asynchronous conferencing
+
+
+
+email
+electronic mailing list
+fidonet
+usenet
+internet forum
+
+textboard
+imageboard
+
+
+shoutbox
+bulletin board system
+online guestbook
+
+
+
+
+
+synchronous conferencing
+
+
+
+data conferencing
+instant messaging
+internet relay chat
+messenger
+talker
+videoconferencing
+voice
+
+voice chat online gaming
+
+
+chat
+conferencing
+
+
+
+
+
+publishing
+
+
+
+blog
+microblogging
+wiki
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+email clients
+
+
+
+free software
+
+
+
+alpine
+balsa
+citadelux
+classilla
+claws mail
+columba
+cone
+
+evolution
+fetchmail
+geary
+getmail
+gnumail
+gnus
+gnuzilla
+
+kmail
+mahogany
+mailpile
+mailx
+mailx heirloom project
+modest
+mozilla thunderbird
+mulberry
+mutt
+
+nylas
+offlineimap
+roundcube
+seamonkey
+squirrelmail
+sylpheed
+trojitá
+
+zimbra
+
+
+
+
+
+freeware
+
+
+
+client
+emailtray
+foxmail
+inky
+iscribe
+mailbird
+opera mail
+touchmail
+
+
+
+
+
+retail
+
+
+
+hiri
+bloombawordperfect mail
+newton
+notes
+inscribe
+mail apple
+mail windows
+microsoft outlook
+novell groupwise
+
+
+
+
+
+shareware
+
+
+
+becky
+eureka email
+forté agent
+gyazmail
+pocomail
+
+
+
+
+
+
+donationware
+
+
+
+pegasus mail
+
+
+
+
+
+discontinued
+
+
+
+arachne
+beonex communicator
+blitzmail
+ccmail
+claris emailer
+columbia
+courier
+cyberdog
+cyberjack
+embrowser
+eudora
+hula
+mailbox
+mailody
+microsoft entourage
+microsoft internet mail news
+minuet
+mozilla mail newsgroups
+netscape mail
+netscape messenger
+nextmail
+outlook express
+pine
+popmail
+sparrow
+spicebird
+turnpike
+webspyder
+windows live mail
+windows mail
+windows messaging
+
+
+
+
+
+related technologies
+
+
+
+extended smtp
+imap
+
+pushimap
+smap
+smtp
+uucp
+
+
+
+
+
+related topics
+
+
+
+email
+unicode email
+
+
+
+
+
+
+
+
+category
+comparison
+list
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+41914272
+00576450
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleemailoldid818336615 categories emailinternet terminologyelectronic documentshistory internetcomputerrelated introductions 1971hidden categories webarchive template wayback linkscs1 maint multiple names authors listcs1 maint originalurl status unknownpages using magic linksall articles unsourced statementsarticles unsourced statements july 2015articles unsourced statements september 2014articles needing additional references november 2007all articles needing additional referencesarticles unsourced statements december 2017articles needing additional references october 2016articles inconsistent citation formatswikipedia articles identifiers

@@ -1,0 +1,2084 @@
+
+Linux kernel
+
+
+Tux the penguin, mascot of Linux[1]
+
+
+
+
+Linux kernel 3.0.0 booting
+
+
+
+Developer
+Linus Torvalds and thousands of collaborators
+
+
+Written in
+C and assembly[2]
+
+
+OS family
+Unix-like
+
+
+Initial release
+0.01 (17 September 1991; 26 years ago (1991-09-17))
+
+
+Latest release
+4.14.11 (3 January 2018; 1 day ago (2018-01-03)) [±][3]
+
+
+Latest preview
+4.15-rc6 (31 December 2017; 4 days ago (2017-12-31)) [±][4]
+
+
+Available in
+English
+
+
+Kernel type
+Monolithic
+
+
+License
+GNU General Public License, version 2[5][6] plus various optional freely redistributable (proprietary) binary blobs[7][8]
+
+
+Official website
+kernel.org
+
+
+The Linux kernel is an open source monolithic Unix-like computer operating system kernel. The Linux family of operating systems is based on this kernel and deployed on both traditional computer systems such as personal computers and servers, usually in the form of Linux distributions,[9] and on various embedded devices such as routers, wireless access points, PBXes, set-top boxes, FTA receivers, smart TVs, PVRs, and NAS appliances. The Android operating system for tablet computers, smartphones, and smartwatches uses services provided by the Linux kernel to implement its functionality. While the adoption on desktop computers is low, Linux-based operating systems dominate nearly every other segment of computing, from mobile devices to mainframes. As of November 2017[update], all of the world's 500 most powerful supercomputers run Linux.[10]
+The Linux kernel was conceived and created in 1991 by Linus Torvalds[11] for his personal computer and with no cross-platform intentions, but has since expanded to support a huge array of computer architectures, many more than other operating systems or kernels. Linux rapidly attracted developers and users who adopted it as the kernel for other free software projects, notably the GNU Operating System.[12] The Linux kernel has received contributions from nearly 12,000 programmers from more than 1,200 companies, including some of the largest software and hardware vendors.[13][14]
+The Linux kernel API, the application programming interface (API) through which user programs interact with the kernel, is meant to be very stable and to not break userspace programs (some programs, such as those with GUIs, rely on other APIs as well). As part of the kernel's functionality, device drivers control the hardware; "mainlined" device drivers are also meant to be very stable. However, the interface between the kernel and loadable kernel modules (LKMs), unlike in many other kernels and operating systems, is not meant to be very stable by design.[15]
+The Linux kernel, developed by contributors worldwide, is a prominent example of free and open source software,[16] and it's supported up to six years depending on version. Day-to-day development discussions take place on the Linux kernel mailing list (LKML). The Linux kernel is released under the GNU General Public License version 2 (GPLv2),[6][17] with some firmware images released under various non-free licenses.[8]
+
+
+
+Contents
+
+
+1 History
+
+1.1 Tanenbaum–Torvalds debate
+1.2 Popularity
+
+
+2 Legal aspects
+
+2.1 Licensing terms
+
+2.1.1 GPL version 3
+
+
+2.2 Loadable kernel modules
+2.3 Firmware binary blobs
+2.4 Trademark
+2.5 SCO litigation
+
+
+3 Architecture
+
+3.1 Programming language
+3.2 Compiler compatibility
+3.3 Interfaces
+
+3.3.1 Kernel-to-userspace API
+3.3.2 Kernel-to-userspace ABI
+3.3.3 In-kernel API
+3.3.4 In-kernel ABI
+
+
+3.4 Technical features
+
+3.4.1 Preemption
+3.4.2 Portability
+3.4.3 Kernel panic and oopses
+3.4.4 Live patching
+
+
+3.5 Security
+3.6 Feature history
+
+
+4 Development
+
+4.1 Developer community
+4.2 Codebase
+4.3 Estimated cost to redevelop
+4.4 Development model
+
+4.4.1 Relation with Linux distributions
+
+
+4.5 Maintenance
+
+4.5.1 Releases before 2.6.0
+4.5.2 2.6.x.y releases
+4.5.3 3.x.y releases
+4.5.4 4.x.y releases
+
+
+4.6 Revision control
+4.7 Version numbering
+4.8 Timeline
+4.9 Variants
+
+
+5 See also
+6 Notes
+7 References
+8 Further reading
+9 External links
+
+
+
+History[edit]
+See also: History of Linux
+
+
+
+
+Linus Torvalds
+
+
+In April 1991, Linus Torvalds, at the time a 21-year-old computer science student at the University of Helsinki, Finland, started working on some simple ideas for an operating system. He started with a task switcher in Intel 80386 assembly language and a terminal driver. On 25 August 1991, Torvalds posted the following to comp.os.minix, a newsgroup on Usenet:[18]
+
+I'm doing a (free) operating system (just a hobby, won't be big and professional like gnu) for 386(486) AT clones. This has been brewing since April, and is starting to get ready. I'd like any feedback on things people like/dislike in minix, as my OS resembles it somewhat (same physical layout of the file-system (due to practical reasons) among other things).
+I've currently ported bash(1.08) and gcc(1.40), and things seem to work. This implies that I'll get something practical within a few months [...] Yes - it's free of any minix code, and it has a multi-threaded fs. It is NOT portable (uses 386 task switching etc), and it probably never will support anything other than AT-harddisks, as that's all I have :-(.
+[...] It's mostly in C, but most people wouldn't call what I write C. It uses every conceivable feature of the 386 I could find, as it was also a project to teach me about the 386. As already mentioned, it uses a MMU, for both paging (not to disk yet) and segmentation. It's the segmentation that makes it REALLY 386 dependent (every task has a 64Mb segment for code & data - max 64 tasks in 4Gb. Anybody who needs more than 64Mb/task - tough cookies). [...] Some of my "C"-files (specifically mm.c) are almost as much assembler as C. [...] Unlike minix, I also happen to LIKE interrupts, so interrupts are handled without trying to hide the reason behind them.
+
+After that, many people contributed code to the project. Early on, the MINIX community contributed code and ideas to the Linux kernel. At the time, the GNU Project had created many of the components required for a free operating system, but its own kernel, GNU Hurd, was incomplete and unavailable. The BSD operating system had not yet freed itself from legal encumbrances. Despite the limited functionality of the early versions, Linux rapidly gained developers and users.
+By September 1991, version 0.01 of the Linux kernel was released on the FTP server (ftp.funet.fi) of the Finnish University and Research Network (FUNET). It had 10,239 lines of code. In October 1991, version 0.02 of the Linux kernel was released.[19]
+In December 1991, Linux kernel 0.11 was released. This version was the first to be self-hosted as Linux kernel 0.11 could be compiled by a computer running the same kernel version. When Torvalds released version 0.12 in February 1992, he adopted the GNU General Public License (GPL) over his previous self-drafted license, which had not permitted commercial redistribution.[20]
+On 19 January 1992, the first post to the new newsgroup alt.os.linux was submitted.[21] On 31 March 1992, the newsgroup was renamed comp.os.linux.[22]
+The X Window System was ported to Linux, so that in March 1992, Linux version 0.95 was the first to be capable of running X. This large jump in version numbers, from 0.1x to 0.9x, resulted from the expectation that version 1.0, without major missing pieces, was imminent. However, this proved to be wrong and from 1993 to early 1994, 15 development versions of version 0.99 appeared.
+On 14 March 1994, Linux kernel 1.0.0 was released, with 176,250 lines of code. In March 1995, Linux kernel 1.2.0 was released, with 310,950 lines of code.
+Version 2 of the Linux kernel, released on 9 June 1996, was followed by additional major versions under the version 2 header:
+
+25 January 1999 – release of Linux kernel 2.2.0 (1,800,847 lines of code)
+18 December 1999 – IBM mainframe patches for 2.2.13 were published, allowing Linux kernel to be used on enterprise-class machines
+4 January 2001 – release of Linux kernel 2.4.0 (3,377,902 lines of code)
+17 December 2003 – release of Linux kernel 2.6.0 (5,929,913 lines of code)
+
+Starting in 2004, the release process changed and new kernels started coming out on a regular schedule every 2–3 months, numbered 2.6.0, 2.6.1, up through 2.6.39.
+On 21 July 2011, Torvalds announced the release of Linux kernel 3.0: "Gone are the 2.6.<bignum> days".[23] The version bump is not about major technological changes when compared to Linux 2.6.39;[24] it marks the kernel's 20th anniversary.[25] The time-based release process remained the same.
+Version 3.10 of the Linux kernel, released in June 2013, contains 15,803,499 lines of code,[26] while the version 4.1, released in June 2015, has grown to over 19.5 million lines of code contributed by almost 14,000 programmers.[27]
+Tanenbaum–Torvalds debate[edit]
+Main article: Tanenbaum–Torvalds debate
+The fact that Linux is a monolithic kernel rather than a microkernel was the topic of a debate between Andrew S. Tanenbaum, the creator of MINIX, and Linus Torvalds.[28] The debate, started in 1992 on the Usenet discussion group comp.os.minix, was about Linux and kernel architecture in general.[29] Tanenbaum argued that microkernels were superior to monolithic kernels and that therefore Linux was obsolete. Unlike traditional monolithic kernels, device drivers in Linux are easily configured as loadable kernel modules and are loaded or unloaded while running the system. This subject was revisited on 9 May 2006,[30] and on 12 May 2006 Tanenbaum wrote a position statement.[31]
+Popularity[edit]
+The huge rise in popularity of the Android operating system, which includes the Linux kernel, has made the kernel the most popular choice for mobile devices, rivaling the installed base of all other operating systems.[32][33][34] Including previous years, three billion Android smartphones were estimated to have been sold by the end of 2014.
+Many consumer routers also use the Linux kernel,[35] as well as a wide variety of other embedded devices, such as smart TVs, set-top boxes, and webcams. Many desktop Linux distributions including the Linux kernel exist, but the usage share of Linux distributions is low in comparison to other operating systems.
+Legal aspects[edit]
+Licensing terms[edit]
+Initially, Torvalds released Linux under a license which forbade any commercial use.[36] This was changed in version 0.12 by a switch to the GNU General Public License (GPL).[20] This license allows distribution and sale of possibly modified and unmodified versions of Linux but requires that all those copies be released under the same license and be accompanied by the complete corresponding source code.
+Torvalds has described licensing Linux under the GPL as the "best thing I ever did".[36]
+GPL version 3[edit]
+The Linux kernel is licensed explicitly only under version 2 of the GPL,[6] without offering the licensee the option to choose "any later version", which is a common GPL extension. There was considerable debate about how easily the license could be changed to use later GPL versions (including version 3), and whether this change is even desirable.[37] Torvalds himself specifically indicated upon the release of version 2.4.0 that his own code is released only under version 2.[38] However, the terms of the GPL state that if no version is specified, then any version may be used[39], and Alan Cox pointed out that very few other Linux contributors had specified a particular version of the GPL.[40]
+In September 2006, a survey of 29 key kernel programmers indicated that 28 preferred GPLv2 to the then-current GPLv3 draft. Torvalds commented, "I think a number of outsiders... believed that I personally was just the odd man out, because I've been so publicly not a huge fan of the GPLv3."[41] This group of high-profile kernel developers, including Linus Torvalds, Greg Kroah-Hartman and Andrew Morton, commented on mass media about their objections to the GPLv3.[42] They referred to clauses regarding DRM/tivoization, patents, "additional restrictions" and warned a Balkanisation of the "Open Source Universe" by the GPLv3.[42][43] Linus Torvalds, who decided not to adopt the GPLv3 for the Linux kernel, reiterated his criticism even years later.[44]
+Loadable kernel modules[edit]
+It is debated whether loadable kernel modules (LKMs) are to be considered derivative works under copyright law, and thereby fall under the terms of the GPL.
+Torvalds has stated his belief that LKMs using only a limited, "public" subset of the kernel interfaces can sometimes be non-derived works, thus allowing some binary-only drivers and other LKMs that are not licensed under the GPL.[citation needed] A very good example for this is the usage of dma_buf by the proprietary Nvidia graphics drivers. dma_buf is a recent kernel feature (like the rest of the kernel, it is licensed under the GPL) that allows multiple GPUs to quickly copy data into each other's framebuffers.[45] One possible use case would be Nvidia Optimus that pairs a fast GPU with an Intel integrated GPU, where the Nvidia GPU writes into the Intel framebuffer when it is active. But, Nvidia cannot use this infrastructure because it uses a technical means to enforce the rule that it can only be used by LKMs that are also GPL. Alan Cox replied on LKML, rejecting a request from one of their engineers to remove this technical enforcement from the API.[46] Not all Linux kernel contributors agree with this interpretation, however, and even Torvalds agrees that many LKMs are clearly derived works, and indeed he writes that "kernel modules ARE derivative 'by default'".[47]
+On the other hand, Torvalds has also said that "one gray area in particular is something like a driver that was originally written for another operating system (i.e. clearly not a derived work of Linux in origin). [...] THAT is a gray area, and _that_ is the area where I personally believe that some modules may be considered to not be derived works simply because they weren't designed for Linux and don't depend on any special Linux behaviour."[48] Proprietary graphics drivers, in particular, are heavily discussed. Ultimately, it is likely that such questions can only be resolved by a court.
+Firmware binary blobs[edit]
+One point of licensing controversy is the use of firmware "binary blobs" in Linux kernel to support several hardware devices. These files are under a variety of licenses, out of which many are restrictive and their exact underlying source code is usually unknown.[8]
+In 2002, Richard Stallman stated why, in his point of view, such blobs make the Linux kernel partially non-free software, and that distributing Linux kernel "violates the GPL", which requires "complete corresponding source code" to be available.[7] In 2008, Free Software Foundation Latin America started Linux-libre as a project that creates a completely free variant of the Linux kernel without proprietary objects; it is used by certain completely free Linux distributions, such as those endorsed by the Free Software Foundation, while it can also be used on most distributions.[49]
+On 15 December 2010, the Debian Project announced that the next Debian stable version "6.0 Squeeze" would come with a kernel "stripped of all non-free firmware bits".[50] This policy was continued to be applied in later stable Debian releases.
+Trademark[edit]
+See also: Linux: Copyright, trademark, and naming
+Linux is a registered trademark of Linus Torvalds in the United States and some other countries. This is the result of an incident in which William Della Croce, Jr., who was not involved in the Linux project, trademarked the name and subsequently demanded royalties for its use.[51] Several Linux backers retained legal counsel and filed suit against Della Croce. The issue was settled in August 1997 when the trademark was assigned to Linus Torvalds.[52][53]
+SCO litigation[edit]
+For more details on this topic, see SCO/Linux controversies.
+
+In early 2007, SCO filed the specific details of the purported copyright infringement. Despite previous claims that SCO was the rightful owner of 1 million lines of code, they specified 326 lines of code, most of which were uncopyrightable.[54] In August 2007, the court in the Novell case ruled that SCO did not actually own the Unix copyrights to begin with,[55] though the Tenth Circuit Court of Appeals ruled in August 2009 that the question of who owned the copyright properly remained for a jury to answer.[56] The jury case was decided on 30 March 2010 in Novell's favour.[57]
+Architecture[edit]
+See also: vmlinux
+
+
+
+
+Map of the Linux kernel
+
+
+
+
+
+
+Linux kernel supports various hardware architectures, providing a common platform for software (including possibly proprietary).
+
+
+The Linux kernel is a monolithic kernel, supporting true preemptive multitasking (both in user mode and, since the 2.6 series, in kernel mode[58][59]), virtual memory, shared libraries, demand loading, shared copy-on-write executables (via KSM), memory management, the Internet protocol suite, and threading.
+Device drivers and kernel extensions run in kernel space (ring 0 in many CPU architectures), with full access to the hardware, although some exceptions run in user space, for example filesystems based on FUSE/CUSE, and parts of UIO.[60][61] The graphics system most people use with Linux does not run within the kernel. Unlike standard monolithic kernels, device drivers are easily configured as modules, and loaded or unloaded while the system is running. Also, unlike standard monolithic kernels, device drivers can be pre-empted under certain conditions; this feature was added to handle hardware interrupts correctly, and to better support symmetric multiprocessing.[59] By choice, the Linux kernel has no binary kernel interface.[62]
+The hardware is also incorporated into the file hierarchy. Device drivers interface to user applications via an entry in the /dev or /sys directories.[63] Process information as well is mapped to the file system through the /proc directory.[63]
+
+Various layers within Linux, also showing separation between the userland and kernel space
+
+User mode
+User applications
+For example, bash, LibreOffice, GIMP, Blender, 0 A.D., Mozilla Firefox, etc.
+
+
+Low-level system components:
+System daemons:
+systemd, runit, logind, networkd, PulseAudio, ...
+Windowing system:
+X11, Wayland, SurfaceFlinger (Android)
+Other libraries:
+GTK+, Qt, EFL, SDL, SFML, FLTK, GNUstep, etc.
+Graphics:
+Mesa, AMD Catalyst, ...
+
+
+C standard library
+open(), exec(), sbrk(), socket(), fopen(), calloc(), ... (up to 2000 subroutines)
+glibc aims to be POSIX/SUS-compatible, uClibc targets embedded systems, bionic written for Android, etc.
+
+
+Kernel mode
+Linux kernel
+stat, splice, dup, read, open, ioctl, write, mmap, close, exit, etc. (about 380 system calls)
+The Linux kernel System Call Interface (SCI, aims to be POSIX/SUS-compatible)
+
+
+Process scheduling
+subsystem
+IPC
+subsystem
+Memory management
+subsystem
+Virtual files
+subsystem
+Network
+subsystem
+
+
+Other components: ALSA, DRI, evdev, LVM, device mapper, Linux Network Scheduler, Netfilter
+Linux Security Modules: SELinux, TOMOYO, AppArmor, Smack
+
+
+Hardware (CPU, main memory, data storage devices, etc.)
+
+
+Programming language[edit]
+The Linux kernel is written in the version of the C programming language supported by GCC (which has introduced a number of extensions and changes to standard C), together with a number of short sections of code written in the assembly language (in GCC's "AT&T-style" syntax) of the target architecture. Because of the extensions to C it supports, GCC was for a long time the only compiler capable of correctly building the Linux kernel.
+Compiler compatibility[edit]
+GCC is the default compiler for the Linux kernel source. In 2004, Intel claimed to have modified the kernel so that its C compiler was also capable of compiling it.[64] There was another such reported success in 2009, with a modified 2.6.22 version of the kernel.[65][66]
+Since 2010, effort has been underway to build the Linux kernel with Clang, an alternative compiler for the C language;[67] as of 12 April 2014, the official kernel could almost be compiled by Clang.[68][69] The project dedicated to this effort is named LLVMLinux after the LLVM compiler infrastructure upon which Clang is built.[70] LLVMLinux does not aim to fork either the Linux kernel or the LLVM, therefore it is a meta-project composed of patches that are eventually submitted to the upstream projects. By enabling the Linux kernel to be compiled by Clang that, among other advantages, is known for faster compilation compared with GCC, kernel developers may benefit from a faster workflow due to shorter compilation times.[71]
+Interfaces[edit]
+Main articles: Linux kernel interfaces and Interfaces of the Linux kernel (Category)
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (January 2015) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+Four interfaces are distinguished: two internal to the kernel, and two between the kernel and userspace.
+
+
+
+
+
+
+At XDC2014, Alex Deucher from AMD announced the unified kernel-mode driver.[72] The proprietary Linux graphic driver, libGL-fglrx-glx, will share the same DRM infrastructure with Mesa 3D. As there is no stable in-kernel ABI, AMD had to constantly adapt the former binary blob used by Catalyst.
+
+
+Conformance to standards is a general policy for the Linux kernel's internals. Another rule is that a kernel component is not accepted into the Linux kernel mainline if there is only proprietary user-space software using that component.[citation needed]
+Kernel-to-userspace API[edit]
+Main articles: POSIX and Single UNIX Specification
+Source code portability ensures that a C program written by conforming to a standard can be successfully compiled and run on any system that also conforms to the same standard. The relevant standards, aiming to achieve source code portability of programs, that the development of the Linux kernel, the GNU C Library, and associated utilities tries to adhere to, are POSIX and the Single UNIX Specification. Inspur K-UX is distribution by chinese Inspur based on Red Hat Enterprise Linux and is a certified "UNIX" by The Open Group.[73]
+The Linux kernel API of the Linux kernel, representing the kernel's system call interface, is composed of the available system calls.
+Kernel-to-userspace ABI[edit]
+
+
+
+
+
+
+This section's factual accuracy is disputed. Relevant discussion may be found on Talk:Linux kernel. Please help to ensure that disputed statements are reliably sourced. (November 2017) (Learn how and when to remove this template message)
+
+
+
+Main article: Linux Standard Base
+Binary portability shall guarantee that any program once compiled for a given hardware platform, can be run in its compiled form on any other hardware platform that conforms to the standard. Binary portability is an essential requirement for the commercial viability of independent software vendor (ISV) applications built for the operating systems based on the Linux kernel. Binary compatibility is much more demanding than source code portability; as of February 2014, the only standard concerning itself with binary compatibility is the Linux Standard Base (LSB).
+In-kernel API[edit]
+There are a couple of kernel internal APIs utilized between the different subsystems and subsystems of subsystems. Some of them have been kept stable over several releases, others have not. There are no guarantees regarding the in-kernel APIs. Maintainers and contributors are free to augment or change them at any time.[74]
+Examples of in-kernel APIs include software frameworks/APIs for the following classes of device drivers:
+
+Video4Linux –  for video capture hardware
+Advanced Linux Sound Architecture (ALSA) –  for sound cards
+New API –  for network interface controllers
+Direct Rendering Manager –  for graphics accelerators
+KMS driver –  for display controllers
+mac80211 –  for wireless network interface controllers[75]
+WEXT –  for wireless network interface controllers (obsolete).
+
+In-kernel ABI[edit]
+Some organizations have strongly supported defining and maintaining of a stable in-kernel ABI over several releases.[citation needed] For example, it would benefit hardware manufacturers which release proprietary kernel modules and distribute binary-only software (e.g. device drivers).[citation needed] However, the Linux kernel developers choose not to maintain a stable in-kernel ABI.[76] This allows Linux kernel development to happen much more quickly.[citation needed]
+Technical features[edit]
+Preemption[edit]
+See also: Kernel preemption
+
+
+
+
+The position of I/O schedulers within various layers of the Linux kernel's storage stack.[77]
+
+
+The Linux kernel provides preemptive scheduling under certain conditions. Until kernel version 2.4, only user processes were preemptive, i.e., in addition to time quantum expiration, an execution of current process in user mode would be interrupted if higher dynamic priority processes entered TASK_RUNNING state.[78] Toward 2.6 series of the Linux kernel, an ability to interrupt a task executing kernel code was added, although with that not all sections of the kernel code can be preempted.[79]
+The Linux kernel contains different scheduler classes.[80] By default the kernel uses a scheduler mechanism called the Completely Fair Scheduler introduced in the 2.6.23 version of the kernel.[81] Internally this default-scheduler class is also known as SCHED_OTHER, but the kernel also contains two POSIX-compliant[82] real-time scheduling classes named SCHED_FIFO (realtime first-in-first-out) and SCHED_RR (realtime round-robin), both of which take precedence over the default class.[80]
+Through the use of the real-time Linux kernel patch PREEMPT_RT, support for full preemption of critical sections, interrupt handlers, and "interrupt disable" code sequences can be supported.[83] Partial mainline integration of the real-time Linux kernel patch already brought some functionality to the kernel mainline.[84] Preemption improves latency, increases responsiveness, and makes Linux more suitable for desktop and real-time applications. Older versions of the kernel had a so-called big kernel lock for synchronization across the entire kernel, which was finally removed by Arnd Bergmann in 2011.[85]
+Additional scheduling policy known as SCHED_DEADLINE, implementing the earliest deadline first algorithm (EDF), was added in kernel version 3.14, released on 30 March 2014.[86][87]
+Portability[edit]
+See also: List of Linux supported architectures and Linux-powered device
+
+
+
+
+An iPod booting iPodLinux
+
+
+While not originally designed to be portable,[18][88] Linux is now one of the most widely ported operating system kernels, running on a diverse range of systems from the ARM architecture to IBM z/Architecture mainframe computers. The first port beyond Linux's original 386 architecture was performed on the Motorola 68000 platform by Amiga users, who accomplished this by replacing major parts of the kernel. The modifications to the kernel were so fundamental that Torvalds viewed the Motorola version as a fork and a "Linux-like operating system"[88] rather than as an actual port. It was, however, the impetus that Torvalds needed to lead a major restructure of the kernel code to facilitate porting to competing computing architectures. The first Linux endorsed port was to the DEC Alpha AXP 64-bit platform which was demonstrated at DECUS in May, 1995m[89] supporting both 386 and Alpha in a single source tree.[88] DEC was responsible for supplying the hardware necessary to Torvalds to enable a port of Linux to 64 bits[90] that same year.
+Linux runs as the main operating system on IBM's Blue Gene and other fastest supercomputers, including the top Chinese one. As of November 2017[update], all of the world's 500 fastest supercomputers run some variant of Linux.[10] Linux has also been ported to various handheld devices such as Apple's iPod and iPhone.[91] Some operating systems developed for mobile phones use modified versions of the Linux kernel, including Google Android, Firefox OS, HP webOS, Nokia Maemo and Jolla Sailfish OS.[92][93][94]
+Kernel panic and oopses[edit]
+
+
+
+
+An example of Linux kernel panic
+
+
+Main articles: Kernel panic and Linux kernel oops
+In Linux, a "panic" is an unrecoverable system error detected by the kernel, as opposed to similar errors detected by user space code. It is possible for kernel code to indicate such a condition by calling the panic function located in the header file sys/system.h. However, most panics are the result of unhandled processor exceptions in kernel code, such as references to invalid memory addresses. These are typically indicative of a bug somewhere in the call chain leading to the panic. They can also indicate a failure of hardware, such as a failed RAM cell or errors in arithmetic functions in the processor caused by a processor bug, overheating/damaged processor, or a soft error.
+A report of a non-fatal bug in the kernel is called an "oops"; such deviations from correct behavior of the Linux kernel may allow continued operation with compromised reliability.[95] These crash reports are automatically collected and can be sent upstream by various software, such as kerneloops,[96] ABRT (Fedora)[97] and apport (Ubuntu). KernelOops.org collects these reports and publishes statistics on their website.[98]
+The kernel panic message might not be printed visibly in some conditions, such as when using a graphical desktop. To debug such conditions, other methods such as attaching a serial port console can be used.
+Live patching[edit]
+Rebootless updates can even be applied to the kernel by using live patching technologies such as Ksplice, kpatch and kGraft. Minimalistic foundations for live kernel patching were merged into the Linux kernel mainline in kernel version 4.0, which was released on 12 April 2015. Those foundations, known as livepatch and based primarily on the kernel's ftrace functionality, form a common core capable of supporting hot patching by both kGraft and kpatch, by providing an application programming interface (API) for kernel modules that contain hot patches and an application binary interface (ABI) for the userspace management utilities. However, the common core included into Linux kernel 4.0 supports only the x86 architecture and does not provide any mechanisms for ensuring function-level consistency while the hot patches are applied. As of April 2015[update], there is ongoing work on porting kpatch and kGraft to the common live patching core provided by the Linux kernel mainline.[99][100][101]
+Security[edit]
+Computer security is a much-publicized topic in relation to the Linux kernel because a large portion of the kernel bugs present potential security flaws. For example, they may allow for privilege escalation or create denial-of-service attack vectors. Over the years, numerous such flaws were found and fixed in the Linux kernel.[102] New security features are frequently implemented to improve the Linux kernel's security.[103][104]
+Critics have accused kernel developers of covering up security flaws or at least not announcing them; in 2008, Linus Torvalds responded to this with the following:[105][106]
+
+I personally consider security bugs to be just "normal bugs". I don't cover them up, but I also don't have any reason what-so-ever to think it's a good idea to track them and announce them as something special...one reason I refuse to bother with the whole security circus is that I think it glorifies—and thus encourages—the wrong behavior. It makes "heroes" out of security people, as if the people who don't just fix normal bugs aren't as important. In fact, all the boring normal bugs are way more important, just because there's a lot more of them. I don't think some spectacular security hole should be glorified or cared about as being any more "special" than a random spectacular crash due to bad locking.
+
+Linux distributions typically release security updates to fix vulnerabilities in the Linux kernel. Many offer long-term support releases that receive security updates for a certain Linux kernel version for an extended period of time.
+Feature history[edit]
+Version 1.0 of the Linux kernel was released on 14 March 1994.[107] This release of the Linux kernel only supported single-processor i386-based computer systems. Portability became a concern, and so version 1.2 (released 7 March 1995)[108] gained support for computer systems using processors based on the Alpha, SPARC, and MIPS architectures.
+Version 2.0 was released on 9 June 1996.[109] The series included 41 releases. The major feature of 2.0 was support for symmetric multiprocessing (SMP) and support for more types of processors.
+Version 2.2, released on 20 January 1999,[110] removed the global spinlock and provided improved SMP support, added support for the m68k and PowerPC architectures, and added new file systems (including read-only support for Microsoft's NTFS).[111]
+Version 2.4.0, released on 4 January 2001,[112] contained support for ISA Plug and Play, USB, and PC Cards.[113] It also included support for the PA-RISC processor from Hewlett-Packard. Development for 2.4.x changed a bit in that more features were made available throughout the duration of the series, including: support for Bluetooth, Logical Volume Manager (LVM) version 1, RAID support, InterMezzo and ext3 file systems.
+Version 2.6.0 was released on 17 December 2003.[114] The development for 2.6.x changed further towards including new features throughout the duration of the series. Among the changes that have been made in the 2.6 series are: integration of µClinux into the mainline kernel sources, PAE support, support for several new lines of CPUs, integration of Advanced Linux Sound Architecture (ALSA) into the mainline kernel sources, support for up to 232 users (up from 216), support for up to 229 process IDs (64-bit only, 32-bit arches still limited to 215),[115] substantially increased the number of device types and the number of devices of each type, improved 64-bit support, support for file systems which support file sizes of up to 16 terabytes, in-kernel preemption, support for the Native POSIX Thread Library (NPTL), User-mode Linux integration into the mainline kernel sources, SELinux integration into the mainline kernel sources, InfiniBand support, and considerably more. Also notable are the addition of several file systems throughout the 2.6.x releases: FUSE, JFS, XFS, ext4 and more. Details on the history of the 2.6 kernel series can be found in the ChangeLog files on the 2.6 kernel series source code release area of kernel.org.[116]
+Version 3.0 was released on 22 July 2011.[23] On 30 May 2011, Torvalds announced that the big change was "NOTHING. Absolutely nothing." and asked "...let's make sure we really make the next release not just an all new shiny number, but a good kernel too."[117] After the expected 6–7 weeks of the development process, it would be released near the 20th anniversary of Linux.
+In December 2012, Torvalds decided to reduce kernel complexity by removing support for i386 processors, making the 3.7 kernel series the last one still supporting the original processor.[118][119] The same series unified support for the ARM processor.[120]
+Version 3.11, released on 2 September 2013,[121] adds many new features such as new O_TMPFILE flag for open(2) to reduce temporary file vulnerabilities, experimental AMD Radeon dynamic power management, low-latency network polling, and zswap (compressed swap cache).[122]
+The numbering change from 2.6.39 to 3.0, and from 3.19 to 4.0, involved no meaningful technical differentiation. The major version number was increased to avoid large minor numbers.[23][123]
+Development[edit]
+
+Developer community[edit]
+As of 2007, the development of the kernel had shifted from the top 20 most active developers writing 80% of the code to the top 30 writing 30% of the code, with top developers spending more time reviewing changes.[124] Developers can also be categorized by affiliation; in 2007, the top category was unknown while the top corporation was Red Hat with 12% of contributions, and known amateurs at 3.9%.[124] The kernel changes made in year 2007 have been submitted by over 1900 developers, which may be a significant underestimate because developers working in teams usually count as one.[citation needed] It is generally assumed that the community of Linux kernel developers comprises 5000 or 6000 members.
+Update from the 2016 Linux Kernel Development Report, issued by the Linux Foundation, covering the period from 3.18 (December 2014) to 4.7 (July 2016): About 1500 developers are contributing to each release from about 200-250 companies on average per release. The top 30 developers contributed a little more than 16% of the code. As of companies, the top contributors are Intel (12.9%) and Red Hat (8.0%), the third and fourth places are held by the 'none' (7.7%) and 'unknown' (6.8%) categories.
+Codebase[edit]
+As of 2013[update], the 3.10 release of the Linux kernel had 15,803,499 lines of code. As of 2007, roughly 5% of the code is part of the "core" while 52% is drivers.[124]
+
+Instead of a roadmap, there are technical guidelines. Instead of a central resource allocation, there are persons and companies who all have a stake in the further development of the Linux kernel, quite independently from one another: People like Linus Torvalds and I don’t plan the kernel evolution. We don’t sit there and think up the roadmap for the next two years, then assign resources to the various new features. That's because we don’t have any resources. The resources are all owned by the various corporations who use and contribute to Linux, as well as by the various independent contributors out there. It's those people who own the resources who decide...
+— Andrew Morton, 2005
+
+
+Linux is evolution, not intelligent design!
+— Linus Torvalds, 2005[125][126][127]
+
+By this statement it is meant that evolution often does odd (and "sub-optimal") things exactly because it does incremental changes which do not break at any point. As a result, any released version of the Linux kernel is fully usable, even if, for example, device drivers do not support all features of the hardware they are written for.
+The conceptual architecture of the Linux kernel has proved its success, while essential factors for this success were the provision for the organization of developers, and the provision for system extensibility. The Linux kernel's architecture was required to support many independent volunteer developers, which suggested that the system portions that require the most development‍—‌hardware device drivers, file systems and network protocols‍—‌be implemented in an extensible fashion. The Linux kernel's architecture chose to make these systems extensible using a data abstraction technique –  each hardware device driver is implemented as a separate module that supports a common interface. In this way, a single developer can add a new device driver, with minimal interaction required with other developers of the Linux kernel.
+Another important extension to the Linux kernel is the addition of more supported hardware platforms. The architecture of the system supports this extensibility by separating all hardware-specific code into distinct modules within each subsystem. In this way, a small group of developers can implement a port of the Linux kernel to a new hardware architecture by re-implementing only the machine-specific portions of the kernel.
+Estimated cost to redevelop[edit]
+
+
+
+
+Redevelopment costs of Linux kernel
+
+
+The cost to redevelop the Linux kernel version 2.6.0 in a traditional proprietary development setting has been estimated to be US$612 million (€467M, £394M) in 2004 prices using the COCOMO man-month estimation model.[128] In 2006, a study funded by the European Union put the redevelopment cost of kernel version 2.6.8 higher, at €882M ($1.14bn, £744M).[129]
+This topic was revisited in October 2008 by Amanda McPherson, Brian Proffitt and Ron Hale-Evans. Using David A. Wheeler's methodology, they estimated redevelopment of the 2.6.25 kernel now costs $1.3bn (part of a total $10.8bn to redevelop Fedora 9).[130] Again, Garcia-Garcia and Alonso de Magdaleno from University of Oviedo (Spain) estimate that the value annually added to kernel was about €100M between 2005 and 2007 and €225M in 2008, it would cost also more than €1bn (about $1.4bn as of February 2010) to develop in the European Union.[131]
+As of 7 March 2011[update], using then-current LOC (lines of code) of a 2.6.x Linux kernel and wage numbers with David A. Wheeler's calculations it would cost approximately $3bn (about €2.2bn) to redevelop the Linux kernel as it keeps getting bigger.[132]
+Development model[edit]
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (March 2011) (Learn how and when to remove this template message)
+
+
+
+As of 2015[update], in the current development scheme, the main branch of development is not a traditional "stable" branch; instead, it incorporates all kinds of changes, including both the latest features, and security and bug fixes. For users who do not want to risk updating to new versions containing code that may not be well tested, a separate set of "stable" branches exist, one for each released version, which are meant for people who just want the security and bug fixes, but not a whole new version. These branches are maintained by the stable team (Greg Kroah-Hartman, Chris Wright, and others).
+The development model for the 2.6 kernel series was significantly different compared to the 2.5 series. Before the 2.6 series, there was a stable branch (2.4) where only relatively minor and safe changes were merged, and an unstable branch (2.5), where bigger changes and cleanups were allowed. Both of these branches had been maintained by the same set of people, led by Torvalds. This meant that users would always have a well-tested 2.4 version with the latest security and bug fixes to use, though they would have to wait for the features which went into the 2.5 branch. The downside of this was that the "stable" kernel ended up so far behind that it no longer supported recent hardware and lacked needed features. In the late 2.5 kernel series, some maintainers elected to try backporting of their changes to the stable kernel series, which resulted in bugs being introduced into the 2.4 kernel series. The 2.5 branch was then eventually declared stable and renamed to 2.6. But instead of opening an unstable 2.7 branch, the kernel developers decided to continue putting major changes into the 2.6 branch, which would then be released at a pace faster than 2.4.x but slower than 2.5.x. This had the desirable effect of making new features more quickly available and getting more testing of the new code, which was added in smaller batches and easier to test.
+As a response to the lack of a stable kernel tree where people could coordinate the collection of bug fixes as such, in December 2005 Adrian Bunk announced that he would keep releasing 2.6.16.y kernels when the stable team moved on to 2.6.17.[133][134] He also included some driver updates, making the maintenance of the 2.6.16 series very similar to the old rules for maintenance of a stable series such as 2.4.[135] Since then, the "stable team" had been formed, and it would keep updating kernel versions with bug fixes. In October 2008 Adrian Bunk announced that he will maintain 2.6.27 for a few years as a replacement of 2.6.16.[136] The stable team picked up on the idea and as of 2010[update] they continue to maintain that version and release bug fixes for it, in addition to others.[137]
+After the change of the development model with 2.6.x, developers continued to want what one might call an unstable kernel tree, one that changes as rapidly as new patches come in. Andrew Morton decided to repurpose his -mm tree from memory management to serve as the destination for all new and experimental code. In September 2007, Morton decided to stop maintaining this tree.[138] In February 2008, Stephen Rothwell created the linux-next tree to serve as a place where patches aimed to be merged during the next development cycle are gathered.[139][140] Several subsystem maintainers also adopted the suffix -next for trees containing code which is meant to be submitted for inclusion in the next release cycle.
+As of January 2014[update], the in-development version of the Linux kernel is held in an unstable branch named linux-next.[141]
+Relation with Linux distributions[edit]
+Most Linux users run a kernel supplied by their Linux distribution. Some distributions ship the "vanilla" or "stable" kernels. However, several Linux distribution vendors (such as Red Hat and Debian) maintain another set of Linux kernel branches which are integrated into their products. These are usually updated at a slower pace compared to the "vanilla" branch, and they usually include all fixes from the relevant "stable" branch, but at the same time they can also add support for drivers or features which had not been released in the "vanilla" version the distribution vendor started basing their branch from.
+Maintenance[edit]
+While Linus Torvalds supervises code changes and releases to the latest kernel versions, he has delegated the maintenance of older versions to other programmers.[142] Major releases as old as 2.0 (officially made obsolete with the kernel 2.2.0 release in January 1999) are maintained as needed, although at a very slow pace.
+Linux kernel 4.14 has been released and with it long-term support (LTS) increased to 6 year,[143] intending to provide longer support period for Android devices.
+Releases before 2.6.0[edit]
+
+
+Version
+Original release date
+Current version
+Maintainer
+Support model
+
+
+Old version, no longer supported: 0.01
+000000001991-09-17-000017 September 1991
+0.03
+Linus Torvalds
+EOL
+
+
+Old version, no longer supported: 0.10
+000000001991-11-01-0000November 1991
+0.12
+Linus Torvalds
+EOL
+
+
+Old version, no longer supported: 0.95
+000000001992-03-08-00008 March 1992
+0.99.15
+Linus Torvalds
+EOL
+
+
+Old version, no longer supported: 1.0
+000000001994-03-14-000014 March 1994
+1.0.9
+Linus Torvalds
+EOL
+
+
+Old version, no longer supported: 1.1
+000000001994-04-06-00006 April 1994
+1.1.95
+Linus Torvalds
+EOL
+
+
+Old version, no longer supported: 1.2
+000000001995-03-07-00007 March 1995
+1.2.13
+Linus Torvalds
+EOL
+
+
+Old version, no longer supported: 1.3
+000000001995-06-12-000012 June 1995
+1.3.100[144]
+Linus Torvalds
+EOL
+
+
+Old version, no longer supported: pre2.0
+000000001996-05-12-000012 May 1996
+pre2.0.14
+Linus Torvalds
+EOL
+
+
+Old version, no longer supported: 2.0
+000000001996-06-09-00009 June 1996[109]
+2.0.40[145]
+David Weinehall
+EOL (officially made obsolete with the kernel 2.2.0 release)[146]
+
+
+Old version, no longer supported: 2.2
+000000001999-01-26-000026 January 1999[110]
+2.2.26[147]
+Marc-Christian Petersen (formerly Alan Cox)
+EOL (unofficially obsolete with the 2.2.27-rc2)[148][149]
+
+
+Old version, no longer supported: 2.4
+000000002001-01-04-00004 January 2001[112]
+2.4.37.11[150]
+Willy Tarreau (formerly Marcelo Tosatti)
+EOL (maintained from December 2008 to December 2011), last stable release of the 2.4 kernel series.[150]
+
+
+
+
+Legend:
+Old version
+Older version, still supported
+Latest version
+Latest preview version
+Future release
+
+
+
+
+
+2.6.x.y releases[edit]
+Versions 2.6.16 and 2.6.27 of the Linux kernel were unofficially supported in a long-term support (LTS) fashion,[151] before a 2011 working group in the Linux Foundation started a formal long-term support initiative.[152][153]
+
+
+Version
+Original release date
+Current version
+Maintainer
+Support model
+
+
+Old version, no longer supported: 2.6
+000000002003-12-17-000017 December 2003[114]
+2.6.10[154]
+Linus Torvalds
+EOL (maintained from December 2003 to December 2004)[154]
+
+
+Old version, no longer supported: 2.6.11
+000000002005-03-02-00002 March 2005[155]
+2.6.11.12[156]
+Greg Kroah-Hartman
+EOL (maintained from March 2005 to June 2005)[156]
+
+
+Old version, no longer supported: 2.6.12
+000000002005-06-18-000018 June 2005[157]
+2.6.12.6[158]
+Greg Kroah-Hartman
+EOL (maintained from June 2005 to August 2005)[158]
+
+
+Old version, no longer supported: 2.6.13
+000000002005-08-28-000028 August 2005[159]
+2.6.13.5[160]
+Greg Kroah-Hartman
+EOL (maintained from August 2005 to December 2005)[160]
+
+
+Old version, no longer supported: 2.6.14
+000000002005-10-27-000027 October 2005[161]
+2.6.14.7[162]
+Greg Kroah-Hartman
+EOL (maintained from October 2005 to January 2006)[162]
+
+
+Old version, no longer supported: 2.6.15
+000000002006-01-02-00002 January 2006[163]
+2.6.15.7[164]
+Greg Kroah-Hartman
+EOL (maintained from January 2006 to May 2006)[164]
+
+
+Old version, no longer supported: 2.6.16
+000000002006-03-20-000020 March 2006[165]
+2.6.16.62[166]
+Adrian Bunk[167] (formerly Greg Kroah-Hartman)[168]
+EOL (first LTS release, maintained from March 2006 to July 2008)[134][166]
+
+
+Old version, no longer supported: 2.6.17
+000000002006-06-17-000017 June 2006[169]
+2.6.17.14[170]
+Greg Kroah-Hartman
+EOL (maintained from September 2006 to October 2006)[170]
+
+
+Old version, no longer supported: 2.6.18
+000000002006-09-20-000020 September 2006[171]
+2.6.18.8[172]
+Greg Kroah-Hartman
+EOL (maintained from September 2006 to February 2007)[172]
+
+
+Old version, no longer supported: 2.6.19
+000000002006-11-26-000026 November 2006[173]
+2.6.19.7[174]
+Greg Kroah-Hartman
+EOL (maintained from November 2006 to March 2007)[174]
+
+
+Old version, no longer supported: 2.6.20
+000000002007-02-04-00004 February 2007[175]
+2.6.20.21[176]
+Greg Kroah-Hartman
+EOL (maintained from February 2007 to October 2007)[176]
+
+
+Old version, no longer supported: 2.6.21
+000000002007-04-25-000025 April 2007[177]
+2.6.21.7[178]
+Greg Kroah-Hartman
+EOL (maintained from April 2007 to August 2007)[178]
+
+
+Old version, no longer supported: 2.6.22
+000000002007-07-08-00008 July 2007[179]
+2.6.22.19[180]
+Greg Kroah-Hartman
+EOL (maintained from July 2007 to February 2008)[180]
+
+
+Old version, no longer supported: 2.6.23
+000000002007-10-09-00009 October 2007[181]
+2.6.23.17[182]
+Greg Kroah-Hartman
+EOL (maintained from October 2007 to February 2008)[182]
+
+
+Old version, no longer supported: 2.6.24
+000000002008-01-24-000024 January 2008[183]
+2.6.24.7[184]
+Greg Kroah-Hartman
+EOL (maintained from January 2008 to May 2008)[184]
+
+
+Old version, no longer supported: 2.6.25
+000000002008-04-16-000016 April 2008[185]
+2.6.25.20[186]
+Greg Kroah-Hartman
+EOL (maintained from April 2008 to November 2008)[186]
+
+
+Old version, no longer supported: 2.6.26
+000000002008-07-13-000013 July 2008[187]
+2.6.26.8[188]
+Greg Kroah-Hartman
+EOL (maintained from July 2008 to November 2008)[188]
+
+
+Old version, no longer supported: 2.6.27
+000000002008-10-09-00009 October 2008[189]
+2.6.27.62[190]
+Willy Tarreau[191] (formerly Adrian Bunk,[192] and formerly Greg Kroah-Hartman)
+EOL (second LTS release, maintained from October 2008 to March 2012)[192]
+
+
+Old version, no longer supported: 2.6.28
+000000002008-12-24-000024 December 2008[193]
+2.6.28.10[194]
+Greg Kroah-Hartman
+EOL (maintained from December 2008 to May 2009)[194]
+
+
+Old version, no longer supported: 2.6.29
+000000002009-03-23-000023 March 2009[195]
+2.6.29.6[196]
+Greg Kroah-Hartman
+EOL (maintained from March 2009 to July 2009)[196]
+
+
+Old version, no longer supported: 2.6.30
+000000002009-06-09-00009 June 2009[197]
+2.6.30.9[198]
+Greg Kroah-Hartman
+EOL (maintained from June 2009 to October 2009)[198]
+
+
+Old version, no longer supported: 2.6.31
+000000002009-09-09-00009 September 2009[199]
+2.6.31.14[200]
+Greg Kroah-Hartman
+EOL (maintained from September 2009 to July 2010)[200]
+
+
+Old version, no longer supported: 2.6.32
+000000002009-12-02-00002 December 2009[201]
+2.6.32.71[202]
+Willy Tarreau[203][204] (formerly Greg Kroah-Hartman)[168][205]
+EOL (third LTS release, maintained from December 2009 to March 2016,[203] used in Debian 6 Squeeze.[206] Canonical also provided support until April 2015.[207]
+
+
+Old version, no longer supported: 2.6.33
+000000002010-02-24-000024 February 2010[208]
+2.6.33.20[209]
+Greg Kroah-Hartman[210]
+EOL (fourth LTS release, maintained from March 2011 to November 2011). It was the base for real-time-tree, replaced by 3.0.x.[209][210]
+
+
+Old version, no longer supported: 2.6.34
+000000002010-05-16-000016 May 2010[211]
+2.6.34.15[212]
+Paul Gortmaker[213]
+EOL (fifth LTS release, maintained from January 2011 to February 2014)[212][213]
+
+
+Old version, no longer supported: 2.6.35
+000000002010-08-01-00001 August 2010[214]
+2.6.35.14[215]
+Andi Kleen[216]
+EOL (sixth LTS release, maintained from December 2010 to March 2012)[216]
+
+
+Old version, no longer supported: 2.6.36
+000000002010-10-20-000020 October 2010[217]
+2.6.36.4[218]
+Greg Kroah-Hartman
+EOL (maintained from October 2010 to February 2011)[218]
+
+
+Old version, no longer supported: 2.6.37
+000000002011-01-04-00004 January 2011[219]
+2.6.37.6[220]
+Greg Kroah-Hartman
+EOL (maintained from January 2011 to March 2011)[220]
+
+
+Old version, no longer supported: 2.6.38
+000000002011-03-14-000014 March 2011[221]
+2.6.38.8[222]
+Greg Kroah-Hartman
+EOL (maintained from March 2011 to June 2011)[222]
+
+
+Old version, no longer supported: 2.6.39
+000000002011-05-18-000018 May 2011[223]
+2.6.39.4[224]
+Greg Kroah-Hartman
+EOL (maintained from May 2011 to August 2011), last stable release of the 2.6 kernel series.[224]
+
+
+
+
+Legend:
+Old version
+Older version, still supported
+Latest version
+Latest preview version
+Future release
+
+
+
+
+
+3.x.y releases[edit]
+
+
+Version[a]
+Original release date
+Current version
+Maintainer
+Support model
+
+
+Old version, no longer supported: 3.0
+000000002011-07-21-000021 July 2011[23]
+3.0.101[225]
+Greg Kroah-Hartman[226]
+EOL (seventh LTS release, maintained from July 2011 to October 2013, providing the base for real-time tree)[225][226]
+
+
+Old version, no longer supported: 3.1
+000000002011-10-24-000024 October 2011[227]
+3.1.10[228]
+Greg Kroah-Hartman
+EOL (maintained from October 2011 to January 2012)[228]
+
+
+Older version, yet still supported: 3.2
+000000002012-01-04-00004 January 2012[229]
+3.2.97[230]
+Ben Hutchings[203][231]
+Eighth LTS release, maintained from March 2012 to May 2018, used in Ubuntu 12.04 LTS[232] and optionally in 12.04 ESM,[233] Debian 7 "Wheezy" and Slackware 14.0.[203][231] Canonical promised to (at least) provide long-term support until April 2017;[207] Support has continued for months after.
+
+
+Old version, no longer supported: 3.3
+000000002012-03-18-000018 March 2012[234]
+3.3.8[235]
+Greg Kroah-Hartman
+EOL (maintained from March 2012 to June 2012)[235]
+
+
+Old version, no longer supported: 3.4
+000000002012-05-20-000020 May 2012[236][237]
+3.4.113[238]
+Li Zefan[203][239] (formerly Greg Kroah-Hartman)
+EOL (Ninth LTS release, maintained from May 2012 to October 2016).[240]
+
+
+Old version, no longer supported: 3.5
+000000002012-07-21-000021 July 2012[241]
+3.5.7[242]
+Greg Kroah-Hartman
+EOL (maintained from July 2012 to October 2012);[242] Canonical provided extended support until April 2014.[207][243]
+
+
+Old version, no longer supported: 3.6
+000000002012-09-30-000030 September 2012[244]
+3.6.11[245]
+Greg Kroah-Hartman
+EOL (maintained from October 2012 to December 2012)[245]
+
+
+Old version, no longer supported: 3.7
+000000002012-12-10-000010 December 2012[246]
+3.7.10[247]
+Greg Kroah-Hartman
+EOL (maintained from December 2012 to March 2013)[247][248]
+
+
+Old version, no longer supported: 3.8
+000000002013-02-18-000018 February 2013[249]
+3.8.13[250]
+Greg Kroah-Hartman
+EOL (maintained from February 2013 to May 2013);[250] Canonical provided extended support until August 2014.[207][251]
+
+
+Old version, no longer supported: 3.9
+000000002013-04-28-000028 April 2013[252]
+3.9.11[253]
+Greg Kroah-Hartman
+EOL (maintained from April 2013 to July 2013)[253]
+
+
+Old version, no longer supported: 3.10
+000000002013-06-30-000030 June 2013[254]
+3.10.108[255]
+Willy Tarreau[203][256] (formerly Greg Kroah-Hartman)
+EOL (tenth LTS release, maintained from August 2013 to November 2017)[255]
+
+
+Old version, no longer supported: 3.11
+000000002013-09-02-00002 September 2013[121]
+3.11.10[257]
+Greg Kroah-Hartman
+EOL (maintained from September 2013 to November 2013);[257] Canonical provided extended support until August 2014.[207] The codename chosen for version 3.11 is "Linux for Workgroups".
+
+
+Old version, no longer supported: 3.12
+000000002013-11-03-00003 November 2013[258]
+3.12.74[259]
+Jiří Slabý[203][260] (formerly Greg Kroah-Hartman)
+EOL (eleventh LTS release, maintained from November 2013 to May 2017.)[260][259]
+
+
+Old version, no longer supported: 3.13
+000000002014-01-19-000019 January 2014[261]
+3.13.11[262]
+Greg Kroah-Hartman
+EOL (maintained from January 2014 to April 2014);[262] Canonical provided extended support until April 2016.[207][263]
+
+
+Old version, no longer supported: 3.14
+000000002014-03-30-000030 March 2014[264]
+3.14.79[265]
+Greg Kroah-Hartman[203]
+EOL (twelfth LTS release, maintained from March 2014 to August 2016)[265]
+
+
+Old version, no longer supported: 3.15
+000000002014-06-08-00008 June 2014[266]
+3.15.10[267]
+Greg Kroah-Hartman
+EOL (maintained from June 2014 to August 2014)[267]
+
+
+Older version, yet still supported: 3.16
+000000002014-08-03-00003 August 2014[268]
+3.16.52[269]
+Ben Hutchings[203][270] (formerly Greg Kroah-Hartman)
+Sixteenth LTS release, maintained from August 2014 to October 2014, May 2016 to April 2020.[203][271] Used in Debian 8 "Jessie".[272] Canonical provided extended support until April 2016.[207][273]
+
+
+Old version, no longer supported: 3.17
+000000002014-10-05-00005 October 2014[274]
+3.17.8[275]
+Greg Kroah-Hartman
+EOL (maintained from October 2014 to January 2015)[275]
+
+
+Older version, yet still supported: 3.18
+000000002014-12-07-00007 December 2014[276]
+3.18.91[277]
+Greg Kroah-Hartman[278] (formerly Sasha Levin[279]) (formerly Greg Kroah-Hartman)
+EOL (thirteenth LTS release, maintained from December 2014 to January 2017).[280] However Greg stated that he will release irregular updates to the 3.18 tree.[281]
+
+
+Old version, no longer supported: 3.19
+000000002015-02-08-00008 February 2015[282]
+3.19.8[283]
+Greg Kroah-Hartman
+EOL (maintained from February 2015 to May 2015);[283] last stable release of the 3.x.y kernel series;[284] Canonical provided extended support until July 2016.[207][285]
+
+
+
+
+Legend:
+Old version
+Older version, still supported
+Latest version
+Latest preview version
+Future release
+
+
+
+
+
+4.x.y releases[edit]
+
+
+Version[a][b]
+Original release date
+Current version
+Maintainer
+Support model
+
+
+Old version, no longer supported: 4.0
+000000002015-04-12-000012 April 2015[123]
+4.0.9[287]
+Greg Kroah-Hartman
+EOL (maintained from April 2015 to July 2015)[288]
+
+
+Older version, yet still supported: 4.1
+000000002015-06-22-000022 June 2015[289]
+4.1.48[290]
+Sasha Levin[203][291] (formerly Greg Kroah-Hartman)[292]
+Fourteenth LTS release, maintained from July 2015 to May 2018.[203][289]
+
+
+Old version, no longer supported: 4.2
+000000002015-08-30-000030 August 2015[293]
+4.2.8[294]
+Greg Kroah-Hartman
+EOL (maintained from August 2015 to December 2015);[294] Canonical provided extended support until July 2016.[207][295]
+
+
+Old version, no longer supported: 4.3
+000000002015-11-01-00001 November 2015[296]
+4.3.6[297]
+Greg Kroah-Hartman
+EOL (maintained from November 2015 to February 2016)[298]
+
+
+Older version, yet still supported: 4.4
+000000002016-01-10-000010 January 2016[299]
+4.4.109[300]
+Greg Kroah-Hartman[203]
+Fifteenth LTS release, maintained from January 2016 to February 2022.[203][301] Canonical will provide extended support until April 2021.[302]
+
+
+Old version, no longer supported: 4.5
+000000002016-03-13-000013 March 2016[303]
+4.5.7[304]
+Greg Kroah-Hartman
+EOL (maintained from March 2016 to June 2016)[305]
+
+
+Old version, no longer supported: 4.6
+000000002016-05-15-000015 May 2016[306]
+4.6.7[307]
+Greg Kroah-Hartman
+EOL (maintained from May 2016 to August 2016)[307]
+
+
+Old version, no longer supported: 4.7
+000000002016-07-24-000024 July 2016[308]
+4.7.10[309]
+Greg Kroah-Hartman
+EOL (maintained from July 2016 to October 2016)[309]
+
+
+Old version, no longer supported: 4.8
+000000002016-09-25-000025 September 2016[310]
+4.8.17[311]
+Greg Kroah-Hartman
+EOL (maintained from September 2016 to January 2017)[311]
+
+
+Older version, yet still supported: 4.9
+000000002016-12-11-000011 December 2016[312]
+4.9.74[313]
+Greg Kroah-Hartman[203]
+Seventeenth LTS release, maintained from December 2016 to January 2019.[203][314] Used in Debian 9 "Stretch".[315]
+
+
+Old version, no longer supported: 4.10
+000000002017-02-19-000019 February 2017[316]
+4.10.17[317]
+Greg Kroah-Hartman
+EOL (maintained from February 2017 to May 2017)[317]
+
+
+Old version, no longer supported: 4.11
+000000002017-04-30-000030 April 2017[318]
+4.11.12[319]
+Greg Kroah-Hartman
+EOL (maintained from April 2017 to July 2017)[319]
+
+
+Old version, no longer supported: 4.12
+000000002017-07-02-00002 July 2017[320]
+4.12.14[321]
+Greg Kroah-Hartman
+EOL (maintained from July 2017 to September 2017)[321]
+
+
+Old version, no longer supported: 4.13
+000000002017-09-03-00003 September 2017[322]
+4.13.16[323]
+Greg Kroah-Hartman
+EOL (maintained from September 2017 to November 2017)[323]
+
+
+Current stable version: 4.14
+000000002017-11-12-000012 November 2017[324]
+4.14.11[3]
+Greg Kroah-Hartman
+Latest mainline release, and slated to be the eighteenth LTS release[325]
+
+
+Latest preview version of a future release: 4.15
+000000002017-12-31-000031 December 2017[4]
+4.15-rc6[4]
+Linus Torvalds
+Latest unstable release
+
+
+
+
+Legend:
+Old version
+Older version, still supported
+Latest version
+Latest preview version
+Future release
+
+
+
+
+
+Revision control[edit]
+The Linux kernel source code used to be maintained without the help of an automated source code management system, mostly because of Linus Torvalds' dislike of centralized SCM systems.
+In 2002, Linux kernel development switched to BitKeeper, an SCM system which satisfied Torvalds' technical requirements. BitKeeper was made available to Linus and several others free of charge, but was not free software, which was a source of controversy. The system did provide some interoperability with free SCM systems such as CVS and Subversion.
+In April 2005 efforts to reverse-engineer the BitKeeper system by Andrew Tridgell led BitMover, the company which maintained BitKeeper, to stop supporting the Linux development community. In response, Torvalds and others wrote a new source code control system for the purpose, called Git. The new system was written within weeks, and in two months the first official kernel release was made using Git.[326] Git soon developed into a separate project in its own right and gained widespread adoption.
+Version numbering[edit]
+The Linux kernel has had three different numbering schemes.
+The first scheme was used in the run-up to "1.0". The first version of the kernel was 0.01. This was followed by 0.02, 0.03, 0.10, 0.11, 0.12 (the first GPL version), 0.95, 0.96, 0.97, 0.98, 0.99 and then 1.0.[327] From 0.95 on there were many patch releases between versions.
+After the 1.0 release and prior to version 2.6, the number was composed as "a.b.c", where the number "a" denoted the kernel version, the number "b" denoted the major revision of the kernel, and the number "c" indicated the minor revision of the kernel. The kernel version was changed only when major changes in the code and the concept of the kernel occurred, twice in the history of the kernel: in 1994 (version 1.0) and in 1996 (version 2.0). Version 3.0 was released in 2011, but it was not a major change in kernel concept. The major revision was assigned according to the even–odd version numbering scheme. The minor revision had been changed whenever security patches, bug fixes, new features or drivers were implemented in the kernel.
+In 2004, after version 2.6.0 was released, the kernel developers held several discussions regarding the release and version scheme[328][329] and ultimately Linus Torvalds and others decided that a much shorter "time-based" release cycle would be beneficial. For about seven years, the first two numbers remained "2.6", and the third number was incremented with each new release, which rolled out after two to three months. A fourth number was sometimes added to account for bug and security fixes (only) to the kernel version. The even-odd system of alternation between stable and unstable was gone. Instead, development pre-releases are titled release candidates, which is indicated by appending the suffix '-rc' to the kernel version, followed by an ordinal number.
+The first use of the fourth number occurred when a grave error, which required immediate fixing, was encountered in 2.6.8's NFS code. However, there were not enough other changes to legitimize the release of a new minor revision (which would have been 2.6.9). So, 2.6.8.1 was released, with the only change being the fix of that error. With 2.6.11, this was adopted as the new official versioning policy. Later it became customary to continuously back-port major bug-fixes and security patches to released kernels and indicate that by updating the fourth number.
+On 29 May 2011, Linus Torvalds announced[330] that the kernel version would be bumped to 3.0 for the release following 2.6.39, due to the minor version number getting too large and to commemorate the 20th anniversary of Linux. It continued the time-based release practice introduced with 2.6.0, but using the second number; for example, 3.1 would follow 3.0 after a few months. An additional number (now the third number) would be added on when necessary to designate security and bug fixes, as for example with 3.0.18; the Linux community refers to this as "x.y.z" versioning. The major version number was also later raised to 4, for the release following version 3.19.[331][b]
+In addition to Linus's "-rc" development releases, sometimes the version will have a suffix such as "tip", indicating another development branch, usually (but not always) the initials of a person who made it. For example, "ck" stands for Con Kolivas, "ac" stands for Alan Cox, etc. Sometimes, the letters are related to the primary development area of the branch the kernel is built from, for example, "wl" indicates a wireless networking test build. Also, distributors may have their own suffixes with different numbering systems and for back-ports to their "enterprise" (i.e. stable but older) distribution versions.
+Timeline[edit]
+
+Variants[edit]
+There are certain variants of the Linux kernel that provide additional functionality, but do not belong to the Linux kernel mainline. Such variants of the Linux kernel include Linux-libre, Compute Node Linux, Cooperative Linux, Longene, grsecurity, INK, L4Linux, MkLinux, RTLinux, and User-mode Linux. Some of these variants have been partially merged into the mainline.[332]
+See also[edit]
+
+
+Information technology portal
+Linux portal
+Open-source software portal
+Free and open-source software portal
+
+
+
+Comparison of operating system kernels
+
+Notes[edit]
+
+
+
+^ a b The numbering change from 2.6.39 to 3.0, and from 3.19 to 4.0, involved no meaningful technical differentiation. The major version number was increased to avoid large minor numbers.[23][123].
+^ a b The decision for renumbering to 4.0 rather than 3.20 was conducted with a poll.[286]
+
+
+
+References[edit]
+
+
+^ "Linux Logos and Mascots". Linux Online. 2008. Archived from the original on 15 August 2010. Retrieved 11 August 2009. 
+^ Balsa, Andrew D. "The linux-kernel mailing list FAQ". Tux.Org. Archived from the original on 1 July 2016. CS1 maint: BOT: original-url status unknown (link)
+^ a b Kroah-Hartman, Greg (3 January 2018). "Linux 4.14.11". LKML (Mailing list). Retrieved 3 January 2018. 
+^ a b c Torvalds, Linus (31 December 2017). "Linux 4.15-rc6". LKML (Mailing list). Retrieved 3 January 2018. 
+^ Martens, China (28 July 2006). "Linux creator Torvalds still no fan of GPLv3". InfoWorld. IDG. Retrieved 15 February 2015. 
+^ a b c "Linux Kernel Copying". Retrieved 25 September 2013. Also note that the only valid version of the GPL as far as the kernel is concerned is _this_ particular version of the license (ie v2, not v2.2 or v3.x or whatever), unless explicitly otherwise stated. 
+^ a b Stallman, Richard (2002). "Linux, GNU, and freedom". Free Software Foundation. Retrieved 21 February 2007. 
+^ a b c "kernel/git/stable/linux-stable.git". git.kernel.org. 16 October 2002. Retrieved 21 August 2012. path: root/firmware/WHENCE [permanent dead link]
+^ "README". git.kernel.org. Retrieved 12 November 2010. [permanent dead link]
+^ a b "TOP500 Supercomputer Sites: Operating system Family / Linux". Top500.org. Retrieved 13 November 2017. 
+^ Richardson, Marjorie (1 November 1999). "Interview: Linus Torvalds". Linux Journal. Retrieved 20 August 2009. 
+^ Williams, Sam (March 2002). "Chapter 9: The GNU General Public License". Free as in Freedom: Richard Stallman's Crusade for Free Software. O'Reilly. ISBN 0-596-00287-4. Retrieved 12 November 2010. 
+^ "The Linux Foundation Releases Linux Development Report". Linux Foundation. 18 February 2015. Archived from the original on 19 July 2016. Retrieved 20 February 2015. 
+^ Kroah-Hartman, Greg (April 2008). "Linux Kernel Development: How Fast it is Going, Who is Doing It, What They are Doing, and Who is Sponsoring It". Since 2005, over 3700 individual developers from over 200 different companies have contributed to the kernel. 
+^ Kroah-Hartman, Greg. "The Linux Kernel Driver Interface". Linux Kernel Documentation. Archived from the original on 21 December 2016. Retrieved 20 January 2016. This is being written to try to explain why Linux does not have a binary kernel interface, nor does it have a stable kernel interface. 
+^ Torvalds, Linus (25 September 2006). "Re: GPLv3 Position Statement". LKML (Mailing list). 
+^ Torvalds, Linus (8 September 2000). "Linux-2.4.0-test8". LKML (Mailing list). lkml.iu.edu. Retrieved 21 November 2015. The only one of any note that I'd like to point out directly is the clarification in the COPYING file, making it clear that it's only _that_particular version of the GPL that is valid for the kernel. This should not come as any surprise, as that's the same license that has been there since 0.12 or so, but I thought I'd make that explicit 
+^ a b Torvalds, Linus Benedict (26 August 1991). "What would you like to see most in minix?". Newsgroup: comp.os.minix. Usenet: 1991Aug25.205708.9541@klaava.Helsinki.FI. 
+^ Torvalds, Linus Benedict (5 October 1991). "Free minix-like kernel sources for 386-AT". Newsgroup: comp.os.minix. Usenet: 1991Oct5.054106.4647@klaava.Helsinki.FI. 
+^ a b Torvalds, Linus. "Release Notes for Linux v0.12". The Linux Kernel Archives. Retrieved 21 February 2007. 
+^ Summers, David W. (19 January 1992). "Troubles with Partitions". Newsgroup: alt.os.linux. Usenet: 1992Jan19.085628.18752@cseg01.uark.edu. Retrieved 7 January 2007. 
+^ Clegg, Alan B. (31 March 1992). "It's here!". Newsgroup: comp.os.linux. Usenet: 1992Mar31.131811.19832@rock.concert.net. Retrieved 7 January 2007. 
+^ a b c d e Torvalds, Linus (21 July 2011). "Linux 3.0 release". Linux kernel mailing list. Retrieved 16 May 2013. 
+^ Leemhuis, Thorsten (19 May 2011). "Linux Kernel Data". The H. Heinz Heise. Retrieved 22 July 2011. 
+^ Hachman, Mark (22 July 2011). "Linux 3.0 Released; Linus Torvalds Explains Why You Shouldn't Care". PC Magazine. Ziff Davis. Retrieved 11 November 2014. 
+^ Leemhuis, Thorsten (1 July 2013). "What's new in Linux 3.10". The H. Heinz Heise. Retrieved 15 July 2013. 
+^ "Linux Kernel At 19.5 Million Lines Of Code, Continues Rising". Phoronix. 23 June 2014. Retrieved 23 June 2015. 
+^ "Appendix A: The Tanenbaum-Torvalds Debate". Open Sources: Voices from the Open Source Revolution. O'Reilly. 1999. ISBN 1-56592-582-3. Retrieved 22 November 2006. 
+^ Tanenbaum, Andy (29 January 1992). "LINUX is obsolete". Newsgroup: comp.os.minix. Usenet: 12595@star.cs.vu.nl. Retrieved 10 May 2006. 
+^ Torvalds, Linus (9 May 2006). "Hybrid kernel, not NT". Retrieved 6 January 2007. 
+^ Tanenbaum, Andy (12 May 2006). "Tanenbaum-Torvalds Debate: Part II". VU University Amsterdam. Retrieved 6 January 2007. 
+^ "Gartner Says Sales of Tablets Will Represent Less Than 10 Percent of All Devices in 2014" (Press release). Egham, UK: Gartner. 15 October 2014. Retrieved 19 October 2014. 
+^ Lunden, Ingrid (15 October 2014). "Tablet Sales Growth Plummets In 2014 As Android Smartphones Continue To Soar: Gartner". TechCrunch. AOL. Retrieved 23 October 2014. 
+^ "Global PC Shipments Exceed Forecast with Mild Improvement in Consumer Demand, While Apple Moves to #5 Spot, According to IDC" (Press release). Framingham, MA: IDC. 8 October 2014. Archived from the original on 11 October 2014. Retrieved 19 October 2014. 
+^ Anthony, Sebastian (29 September 2014). "Shellshock: A deadly new vulnerability that could lay waste to the internet (updated)". ExtremeTech. Ziff Davis. Retrieved 23 October 2014. most consumer routers run an embedded version of Linux 
+^ a b Yamagata, Hiroo (3 August 1997). "The Pragmatist of Free Software". HotWired. Archived from the original on 10 February 2007. Retrieved 21 February 2007. 
+^ Corbet, Jonathan (31 January 2006). "GPLv3 and the kernel". LWN.net. Retrieved 21 February 2007. 
+^ Torvalds, Linus (8 September 2000). "Linux-2.4.0-test8". LKML (Mailing list). Retrieved 21 February 2007. 
+^ "gnu.org". www.gnu.org. Retrieved 2017-10-18. 
+^ Cox, Alan (20 January 2006). "Re: GPL V3 and Linux". LKML (Mailing list). Retrieved 21 February 2007. 
+^ Shankland, Stephen (25 September 2006). "Top Linux programmers pan GPL 3". News.com. CNET. Retrieved 21 February 2007. 
+^ a b James E.J. Bottomley, Mauro Carvalho Chehab, Thomas Gleixner, Christoph Hellwig, Dave Jones, Greg Kroah-Hartman, Tony Luck, Andrew Morton, Trond Myklebust, David Woodhouse (15 September 2006). "Kernel developers' position on GPLv3: The Dangers and Problems with GPLv3". LWN.net. Retrieved 11 March 2015. The current version (Discussion Draft 2) of GPLv3 on first reading fails the necessity test of section 1 on the grounds that there's no substantial and identified problem with GPLv2 that it is trying to solve. However, a deeper reading reveals several other problems with the current FSF draft: 5.1 DRM Clauses [...] 5.2 Additional Restrictions Clause [...] 5.3 Patents Provisions [...] since the FSF is proposing to shift all of its projects to GPLv3 and apply pressure to every other GPL licensed project to move, we foresee the release of GPLv3 portends the Balkanisation of the entire Open Source Universe upon which we rely. CS1 maint: Uses authors parameter (link)
+^ Petreley, Nicholas (27 September 2006). "A fight against evil or a fight for attention?". linuxjournal.com. Retrieved 11 March 2015. Second, the war between Linus Torvalds and other Kernel developers and the Free Software Foundation over GPLv3 is continuing, with Torvalds saying he's fed up with the FSF. 
+^ Linus Torvalds says GPL v3 violates everything that GPLv2 stood for Debconf 2014, Portland, Oregon (accessed 11 March 2015)
+^ Clark, Rob; Semwal, Sumit (1 November 2012). "DMA Buffer Sharing Framework: An Introduction" (PDF). Embedded Linux Conference. Retrieved 2 August 2014. 
+^ Cox, Alan (10 October 2012). "[PATCH] dma-buf: Use EXPORT_SYMBOL". Direct Rendering Infrastructure (Mailing list). Retrieved 3 September 2013. 
+^ Torvalds, Linus (10 December 2003). "RE: Linux GPL and binary module exception clause?". LKML (Mailing list). Retrieved 31 December 2010. 
+^ Torvalds, Linus (3 December 2003). "Re: Linux GPL and binary module exception clause?". LKML (Mailing list). Retrieved 12 November 2010. 
+^ "::[FSFLA]:: GNU Linux-libre project". fsfla.org. 
+^ "Debian 6.0 "Squeeze" to be released with completely free Linux Kernel". Debian. 15 December 2010. Retrieved 8 January 2011. 
+^ Hughes, Phil (1 August 1997). "Linux Trademark Dispute". Linux Journal. Belltown Media, Inc. Retrieved 8 December 2010. 
+^ Hughes, Phil (1 March 1997). "Action Taken on Linux Trademark". Linux Journal. Belltown Media, Inc. Retrieved 8 December 2010. 
+^ Gisselberg, Tonya (2010). "The Trademark History of Linux, the Operating System" (PDF). Gisselberg Law Firm, Inc. Retrieved 8 December 2010. 
+^ Jones, Pamela (8 March 2007). "Report from the Courthouse March 7 - Part 1 (IBM's Motion for DJ on 10th CC)". Groklaw. Retrieved 24 March 2007. 
+^ Jones, Pamela (10 August 2007). "Court Rules: Novell owns the UNIX and UnixWare copyrights! Novell has right to waive!". Groklaw. Retrieved 12 August 2007. 
+^ Ryan, Justin (26 August 2009). "SCO Will Try Again". Linux Journal. Belltown Media, Inc. Retrieved 30 August 2009. 
+^ Harvey, Tom (30 March 2010). "Jury says Novell owns Unix copyrights". The Salt Lake Tribune. MediaNews Group. Retrieved 30 March 2010. 
+^ "FAQ: Preemption". kernelnewbies.org. 22 August 2009. Retrieved 7 May 2015. 
+^ a b Jonathan Corbet (24 February 2003). "Driver porting: the preemptible kernel". LWN.net. Retrieved 7 May 2015. 
+^ Jake Edge (25 November 2008). "Character devices in user space". LWN.net. Retrieved 7 May 2015. 
+^ Jonathan Corbet (2 May 2007). "UIO: user-space drivers". LWN.net. Retrieved 7 May 2015. 
+^ Kroah-Hartman, Greg. "The Linux Kernel Driver Interface". Archived from the original on 4 November 2013. 
+^ a b Nguyen, Binh (30 July 2004). "Linux Filesystem Hierarchy: Chapter 1. Linux Filesystem Hierarchy". The Linux Documentation Project. Retrieved 28 November 2012. 
+^ Kubbilun, Ingo A. (2 June 2004). "Linux kernel patch for Intel Compiler" (in German). Pyrillion.org. Archived from the original on 22 July 2011. Retrieved 12 November 2010. 
+^ timothy (26 February 2009). "High Performance Linux Kernel Project — LinuxDNA". Slashdot Linux. Dice Holdings. Retrieved 30 October 2010. 
+^ Ryan, Justin (25 February 2009). "LinuxDNA Supercharges Linux with the Intel C/C++ Compiler". Linux Journal. Belltown Media, Inc. Retrieved 30 October 2010. 
+^ Lelbach, Bryce (25 October 2010). "Clang builds a working Linux Kernel (Boots to RL5 with SMP, networking and X, self hosts)". cfe-dev (Mailing list). Archived from the original on 7 September 2015. 
+^ Larabel, Michael (12 April 2014). "Linux 3.15 Can Almost Be Compiled Under LLVM's Clang". Phoronix. Retrieved 10 June 2014. 
+^ Larabel, Michael. "Patch By Patch, LLVM Clang Gets Better At Building The Linux Kernel". Phoronix. Retrieved 20 November 2014. 
+^ Edge, Jake (7 May 2013). "LFCS: The LLVMLinux project". LWN.net. Retrieved 3 March 2015. 
+^ Möller, Jan-Simon (2 February 2014). "LLVMLinux: The Linux Kernel with Dragon Wings" (PDF). LLVM Project. Retrieved 3 March 2015. 
+^ Deucher, Alex (7 October 2014). "AMD's New Unified Open Source Driver". X.Org Foundation. Retrieved 21 January 2015. 
+^ "UNIX 03". Open Group. 2016-02-03. Retrieved 2017-08-30. 
+^ Greg Kroah-Hartman. "The Linux Kernel Driver Interface". Archived from the original on 4 November 2013. Retrieved 10 April 2015. 
+^ "About mac80211". Linux Kernel Organization, Inc. Retrieved 8 June 2014. 
+^ "Report on ABI changes in the Linux kernel". Andrey Ponomarenko's ABI laboratory. 17 March 2016. 
+^ Werner Fischer; Georg Schönberger (1 June 2015). "Linux Storage Stack Diagram". Thomas-Krenn AG. Retrieved 8 June 2015. 
+^ Bovet, Daniel P.; Cesati, Marco (October 2000). "Chapter 10: Process Scheduling". Understanding the Linux Kernel. O'Reilly. ISBN 0-596-00002-2. Archived from the original on 21 September 2014. Retrieved 15 October 2011. 
+^ Santhanam, Anand (23 September 2003). "Towards Linux 2.6, A look into the workings of the next new kernel". IBM Global Services. Archived from the original on 27 September 2013. Retrieved 15 October 2011. 
+^ a b Bar, Moshe (1 April 2000). "The Linux Scheduler". Linux Journal. Belltown Media, Inc. Retrieved 14 April 2012. 
+^ Molnár, Ingo (13 April 2007). "[patch] Modular Scheduler Core and Completely Fair Scheduler [CFS]". LKML (Mailing list). Retrieved 14 April 2012. 
+^ "IEEE Standard for Information Technology – Portable Operating System Interface, POSIX.1b, Real-time extensions (IEEE Std 1003.1b-1993)". 
+^ McKenney, Paul (10 August 2005). "A realtime preemption overview". LWN.net. Retrieved 5 February 2012. 
+^ "OSADL Project: Realtime Linux". OSADL. Retrieved 5 February 2012. 
+^ Bergmann, Arnd (5 March 2011). "BKL: That's all, folks". Linux Kernel Organization, Inc. Retrieved 20 February 2012. [permanent dead link]
+^ Larabel, Michael (24 January 2014). "The Linux 3.14 Kernel Already Has Many Exciting Features". Phoronix. Retrieved 3 February 2014. 
+^ "Linux kernel 3.14, Section 1.1. Deadline scheduling class for better real-time scheduling". kernelnewbies.org. 30 March 2014. Retrieved 2 April 2014. 
+^ a b c Torvalds, Linus (January 1999). "The Linux Edge". Open Sources: Voices from the Open Source Revolution. O'Reilly. ISBN 1-56592-582-3. Retrieved 13 October 2013. 
+^ "Porting Linux to the DEC Alpha: The Kernel and Shell". 
+^ "Linux on Alpha: A Strategic Choice". 
+^ Wang, David (6 May 2010). "Android Now Running On iPhone 3G". TechHive. IDG. Retrieved 11 July 2010. 
+^ Kroah-Hartman, Greg (2 February 2010). "Android and the Linux kernel community". Retrieved 3 February 2010. This means that any drivers written for Android hardware platforms, can not get merged into the main kernel tree because they have dependencies on code that only lives in Google's kernel tree, causing it to fail to build in the kernel.org tree. Because of this, Google has now prevented a large chunk of hardware drivers and platform code from ever getting merged into the main kernel tree. Effectively creating a kernel branch that a number of different vendors are now relying on. 
+^ Meyer, David (3 February 2010). "Linux developer explains Android kernel code removal". ZDNet. CBS Interactive. Retrieved 3 February 2010. 
+^ "Chapter 03: maemo Platform Overview". maemo Technology Overview. Nokia. 2008. Archived from the original on 16 June 2008. Retrieved 9 April 2010. 
+^ Bradford, John (8 March 2003). "Re: what's an OOPS". LKML (Mailing list). Retrieved 30 October 2010. 
+^ "kerneloops(8) - Linux man page". Linux.die.net. Retrieved 30 October 2010. 
+^ "Features/ABRTF12". FedoraProject. 3 August 2009. Retrieved 30 October 2010. 
+^ "Kerneloops.org". Kerneloops.org. Retrieved 5 March 2014. 
+^ "Linux kernel 4.0, Section 1.2. Live patching". kernelnewbies.org. 26 April 2015. Retrieved 27 April 2015. 
+^ Jonathan Corbet (25 February 2015). "A rough patch for live patching". LWN.net. Retrieved 27 April 2015. 
+^ "kernel/git/torvalds/linux.git: Pull live patching infrastructure from Jiri Kosina (Linux kernel source tree)". kernel.org. 11 February 2015. Retrieved 27 April 2015. 
+^ Mookhey, K. K.; Burghate, Nilesh (1 July 2005). Linux: Security, Audit and Control Features. USA: ISACA. p. 14. ISBN 1-893209-78-4. Retrieved 31 December 2010. 
+^ Hatch, Brian (15 July 2008). Hacking Exposed Linux: Linux Security Secrets and Solutions. McGraw-Hill Osborne Media. p. 524. ISBN 0-07-226257-5. Retrieved 31 December 2010. 
+^ Jaeger, Trent (7 October 2008). Operating System Security. Morgan and Claypool Publishers. p. 122. ISBN 1-59829-212-9. Retrieved 31 December 2010. 
+^ Andrews, Jeremy (16 July 2008). "Security Bugs and Full Disclosure". KernelTrap. Archived from the original on 19 July 2008. Retrieved 31 December 2010. 
+^ Spengler, Brad (16 July 2008). "Linux's unofficial security-through-coverup policy". Full Disclosure (Mailing list). Retrieved 31 December 2010. 
+^ "Kernel 1.0 Source Code Release". Retrieved 7 October 2008. 
+^ "Kernel 1.2 Source Code Release". Retrieved 27 October 2008. 
+^ a b Torvalds, Linus (9 June 1996). "Linux 2.0 really _is_ released." LKML (Mailing list). Retrieved 8 March 2015. 
+^ a b Torvalds, Linus (20 January 1999). "2.2.0-final". LKML (Mailing list). Retrieved 8 March 2015. 
+^ "The Wonderful World of Linux 2.2". 26 January 1999. Retrieved 27 October 2008. 
+^ a b Torvalds, Linus (4 January 2001). "And oh, btw." LKML (Mailing list). Retrieved 8 March 2015. 
+^ "The Wonderful World of Linux 2.4". Retrieved 27 October 2008. 
+^ a b Torvalds, Linus (17 December 2003). "Linux 2.6.0". LKML (Mailing list). Retrieved 28 February 2015. 
+^ "proc(5) - Linux manual page" (see /proc/sys/kernel/pid_max). 
+^ "Index of /pub/linux/kernel/v2.6". Kernel.org. Retrieved 2 March 2014. 
+^ Torvalds, Linus (30 May 2011). "Linux 3.0-rc1". LKML (Mailing list). Retrieved 1 July 2013. 
+^ Vaughan-Nichols, Steven J. (13 December 2012). "Good-Bye 386: Linux to drop support for i386 chips with next major release". ZDNet. CBS Interactive. Retrieved 6 February 2013. 
+^ Fingas, Jon (15 December 2012). "Linux to drop i386 support in the 3.8 kernel, make us upgrade our Doom rig". Engadget. AOL. Retrieved 22 March 2015. 
+^ Vaughan-Nichols, Steven J. (11 December 2012). "Linux 3.7 arrives, ARM developers rejoice". ZDNet. CBS Interactive. Retrieved 6 February 2013. 
+^ a b Torvalds, Linus (2 September 2013). "Linux 3.11". LKML (Mailing list). Retrieved 3 September 2013. 
+^ "Linux 3.11". kernelnewbies.org. 2 September 2013. Retrieved 21 January 2014. 
+^ a b c Torvalds, Linus (12 April 2015). "Linux 4.0 released". LKML (Mailing list). Retrieved 12 April 2015. 
+^ a b c Marti, Don. "Are top Linux developers losing the will to code?". ComputerworldUK. Retrieved 2016-10-24. 
+^ "Linux Evolution" (PDF). 26 March 2008. 
+^ "Perpetual Development: A Model of the Linux Kernel Life Cycle" (PDF). 25 October 2011. 
+^ Kroah-Hartman, Greg (12 February 2008). "Re: Announce: Linux-next (Or Andrew's dream :-))". Linux Kernel Mailing List (Mailing list). Retrieved 30 January 2017. 
+^ Wheeler, David A. "Linux Kernel 2.6: It's Worth More!". 
+^ "Economic impact of FLOSS on innovation and competitiveness of the EU ICT sector" (PDF) (Table 3 on page 50). 
+^ "Estimating Total Development Cost Of a Linux Distribution" (PDF) (Table on page 6). Archived from the original (PDF) on 11 July 2010. 
+^ "The Billion Dollar Kernel". Linux.slashdot.org. 24 February 2010. Retrieved 12 November 2010. 
+^ Wheeler, David. "The Linux Kernel: It's Worth More!". Retrieved 17 September 2012. 
+^ Jeremy (4 August 2006). "Linux: 2.6.16.y Lives On". KernelTrap. Archived from the original on 14 September 2010. Retrieved 30 October 2010. 
+^ a b Kroah-Hartman, Greg (3 August 2006). "Adrian Bunk is now taking over the 2.6.16-stable branch". LKML (Mailing list). Retrieved 21 February 2015. 
+^ Jeremy (23 March 2006). "Linux: Maintaining A 2.6.16.y Tree". KernelTrap. Archived from the original on 20 June 2010. Retrieved 30 October 2010. 
+^ Bunk, Adrian (11 October 2008). "Linux 2.6.27 will be a longtime supported kernel". LKML (Mailing list). Retrieved 30 October 2010. 
+^ Kroah-Hartman, Greg (8 September 2009). "Re: 2.6.27 maintenance plans after 2.6.32 is released". LKML (Mailing list). 
+^ "This Just Isn't Working Any More". kerneltrap.org. 18 September 2007. Archived from the original on 27 January 2008. 
+^ Rothwell, Stephen (12 February 2008). "Announce: Linux-next (Or Andrew's dream :-))". LKML (Mailing list). Retrieved 30 October 2010. 
+^ Corbet, Jonathan (21 October 2010). "linux-next and patch management process". LWN.net. Eklektix, Inc. Retrieved 30 October 2010. 
+^ "The Linux Kernel Archives". Kernel.org. Retrieved 22 January 2014. 
+^ "Linux MAINTAINERS file". [permanent dead link]
+^ "Linux 4.14 arrives and Linus says it should have fewer 0-days". Retrieved 2017-11-14. 
+^ Torvalds, Linus (10 May 1996). "Century Linux!". LKML (Mailing list). Retrieved 29 April 2016. 
+^ "LATEST-IS-2.0.40". Archived from the original on 13 July 2012. 
+^ Weinehall, David (8 February 2004). "[ANNOUNCE] Linux-kernel 2.0.40 aka 'The Moss-covered Tortoise'". Archived from the original on 16 November 2006. 
+^ "LATEST-IS-2.2.26". Archived from the original on 13 July 2012. 
+^ Petersen, Marc-Christian (13 January 2005). "Linux 2.2.27-rc2". Archived from the original on 30 June 2007. 
+^ Petersen, Marc-Christian (25 February 2004). "Linux 2.2.26 aka "2.2 is not dead" released". LKML (Mailing list). 
+^ a b Tarreau, Willy (18 December 2010). "Linux 2.4.37.11". LKML (Mailing list). Retrieved 14 September 2011. 
+^ Bunk, Adrian (11 October 2008). "Linux 2.6.27 will be a longtime supported kernel". LKML (Mailing list). Retrieved 12 January 2016. 
+^ Larabel, Michael (26 October 2011). "Linux Foundation Backs Long-Term Support Kernels". Phoronix. Phoronix Media. Retrieved 12 January 2016. 
+^ "What is LTSI?". linuxfoundation.org. The Linux Foundation. Retrieved 12 January 2016. 
+^ a b Torvalds, Linus (24 December 2004). "Ho ho ho - Linux v2.6.10". LKML (Mailing list). Retrieved 28 February 2015. 
+^ Torvalds, Linus (2 March 2005). "Linux 2.6.11". LKML (Mailing list). Retrieved 28 February 2015. 
+^ a b Wright, Chris (12 June 2005). "Linux 2.6.11.12". LKML (Mailing list). Retrieved 28 February 2015. 
+^ Torvalds, Linus (18 June 2005). "Linux 2.6.12". LKML (Mailing list). Archived from the original on 28 February 2015. Retrieved 28 February 2015. 
+^ a b Wright, Chris (29 August 2005). "Linux 2.6.12.6". LKML (Mailing list). Retrieved 28 February 2015. 
+^ Torvalds, Linus (28 August 2005). "Linux 2.6.13". LKML (Mailing list). Retrieved 28 February 2015. 
+^ a b Kroah-Hartman, Greg (15 December 2005). "Linux 2.6.13.5". LKML (Mailing list). Retrieved 28 February 2015. 
+^ Torvalds, Linus (27 October 2005). "Linux 2.6.14". LKML (Mailing list). Retrieved 28 February 2015. 
+^ a b Kroah-Hartman, Greg (31 January 2006). "Linux 2.6.14.7". LKML (Mailing list). Retrieved 28 February 2015. 
+^ Torvalds, Linus (2 January 2006). "Linux 2.6.15". LKML (Mailing list). Retrieved 28 February 2015. 
+^ a b Kroah-Hartman, Greg (28 May 2006). "Linux 2.6.15.7". LKML (Mailing list). Retrieved 28 February 2015. 
+^ Torvalds, Linus (20 March 2006). "Linux v2.6.16". LKML (Mailing list). Retrieved 22 February 2015. 
+^ a b Bunk, Adrian (21 July 2008). "Linux 2.6.16.62". LKML (Mailing list). Retrieved 22 February 2015. 
+^ Kroah-Hartman, Greg (3 August 2006). "Adrian Bunk is now taking over the 2.6.16-stable branch". LKML (Mailing list). Retrieved 12 February 2014. 
+^ a b Kroah-Hartman, Greg (8 March 2012). "The 2.6.32 Linux kernel". Retrieved 1 June 2013. 
+^ Torvalds, Linus (17 June 2006). "Linux v2.6.17". LKML (Mailing list). Retrieved 22 February 2015. 
+^ a b Kroah-Hartman, Greg (16 October 2006). "Linux 2.6.17.14". LKML (Mailing list). Retrieved 22 February 2015. 
+^ Torvalds, Linus (20 September 2006). "Arrr! Linux 2.6.18". LKML (Mailing list). Retrieved 22 February 2015. 
+^ a b Kroah-Hartman, Greg (23 February 2007). "Linux 2.6.18.8". LKML (Mailing list). Retrieved 22 February 2015. 
+^ Torvalds, Linus (26 November 2006). "Linux 2.6.19". LKML (Mailing list). Retrieved 22 February 2015. 
+^ a b Kroah-Hartman, Greg (3 March 2007). "Linux 2.6.19.7". LKML (Mailing list). Retrieved 22 February 2015. 
+^ Torvalds, Linus (4 February 2007). "Super Kernel Sunday!". LKML (Mailing list). Retrieved 22 February 2015. 
+^ a b Tarreau, Willy (17 October 2007). "Linux 2.6.20.21". LKML (Mailing list). Retrieved 22 February 2015. 
+^ Torvalds, Linus (25 April 2007). "Linux 2.6.21". LKML (Mailing list). Retrieved 22 February 2015. 
+^ a b Kroah-Hartman, Greg (4 August 2007). "Linux 2.6.21.7". LKML (Mailing list). Retrieved 22 February 2015. 
+^ Torvalds, Linus (8 July 2007). "Linux 2.6.22 released". LKML (Mailing list). Retrieved 22 February 2015. 
+^ a b Kroah-Hartman, Greg (25 February 2008). "Linux 2.6.22.19". LKML (Mailing list). Retrieved 22 February 2015. 
+^ Torvalds, Linus (9 October 2007). "Linux 2.6.23". LKML (Mailing list). Retrieved 22 February 2015. 
+^ a b Kroah-Hartman, Greg (25 February 2008). "Linux 2.6.23.17". LKML (Mailing list). Retrieved 22 February 2015. 
+^ Torvalds, Linus (24 January 2008). "Linux 2.6.24". LKML (Mailing list). Retrieved 21 February 2015. 
+^ a b Kroah-Hartman, Greg (6 May 2008). "Linux 2.6.25.20". LKML (Mailing list). Retrieved 21 February 2015. 
+^ Torvalds, Linus (16 April 2008). "Linux 2.6.25". LKML (Mailing list). Retrieved 21 February 2015. 
+^ a b Kroah-Hartman, Greg (10 November 2008). "Linux 2.6.25.20". LKML (Mailing list). Retrieved 21 February 2015. 
+^ Torvalds, Linus (13 July 2008). "Linux 2.6.26". LKML (Mailing list). Retrieved 21 February 2015. 
+^ a b Kroah-Hartman, Greg (10 November 2008). "Linux 2.6.26.8". LKML (Mailing list). Retrieved 21 February 2015. 
+^ Torvalds, Linus (9 October 2008). "Linux 2.6.27". LKML (Mailing list). Retrieved 21 February 2015. 
+^ Tarreau, Willy (17 March 2012). "Linux 2.6.27.62". LKML (Mailing list). Retrieved 12 February 2014. 
+^ Kroah-Hartman, Greg (12 December 2010). "Willy Tarreau is taking over the 2.6.27-longterm kernel release". LKML (Mailing list). Retrieved 12 February 2014. 
+^ a b Bunk, Adrian (11 October 2008). "Linux 2.6.27 will be a longtime supported kernel". LKML (Mailing list). Retrieved 21 February 2015. 
+^ Torvalds, Linus (24 December 2008). "Happy v2.6.28". LKML (Mailing list). Retrieved 15 February 2015. 
+^ a b Kroah-Hartman, Greg (2 May 2009). "Linux 2.6.28.10". LKML (Mailing list). Retrieved 15 February 2015. 
+^ Torvalds, Linus (23 March 2009). "Linux 2.6.29". LKML (Mailing list). Retrieved 15 February 2015. 
+^ a b Kroah-Hartman, Greg (2 July 2009). "Linux 2.6.29.6". LKML (Mailing list). Retrieved 15 February 2015. 
+^ Torvalds, Linus (9 June 2009). "Linux 2.6.30". LKML (Mailing list). Retrieved 15 February 2015. 
+^ a b Kroah-Hartman, Greg (5 October 2009). "Linux 2.6.30.9". LKML (Mailing list). Retrieved 15 February 2015. 
+^ Torvalds, Linus (9 September 2009). "Linux 2.6.31". LKML (Mailing list). Retrieved 15 February 2015. 
+^ a b Kroah-Hartman, Greg (5 July 2010). "Linux 2.6.31.14". LKML (Mailing list). Retrieved 15 February 2015. 
+^ Torvalds, Linus (2 December 2009). "Linux 2.6.32". LKML (Mailing list). Retrieved 17 May 2013. 
+^ Tarreau, Willy (12 May 2017). "Linux 2.6.32.71 (EOL)". LKML (Mailing list). Retrieved 23 June 2017. 
+^ a b c d e f g h i j k l m n o p "Active kernel releases". Kernel.org. 6 August 2013. Retrieved 3 July 2014. 
+^ Tarreau, Willy (5 March 2012). "Re: Linux 2.6.32.58". LKML (Mailing list). Retrieved 12 February 2014. 
+^ Walker-Morgan, Dj (5 March 2012). "Maintenance of Linux kernel 2.6.32 is slowing down". The H Open. Heinz Heise. Retrieved 17 May 2013. 
+^ "Package: linux-image-2.6-686 (2.6.32+29)". Debian.org. Retrieved 9 July 2014. 
+^ a b c d e f g h i "Ubuntu Kernel Team Extended Support". Ubuntu wiki. Canonical Ltd. Retrieved 30 August 2013. 
+^ Torvalds, Linus (24 February 2010). "Linux 2.6.33 released". LKML (Mailing list). Retrieved 17 May 2013. 
+^ a b Kroah-Hartman, Greg (7 November 2011). "Linux 2.6.33.20". LKML (Mailing list). Retrieved 17 May 2013. 
+^ a b Leemhuis, Thorsten (23 March 2011). "Kernel Log: Development of 2.6.39 under way, series 33 revived". The H Open. Heinz Heise. Retrieved 17 May 2013. 
+^ Torvalds, Linus (16 May 2010). "Linux 2.6.34". LKML (Mailing list). Retrieved 17 May 2013. 
+^ a b Gortmaker, Paul (11 February 2014). "Linux 2.6.34.15". LKML (Mailing list). Retrieved 12 February 2014. 
+^ a b Gortmaker, Paul (3 December 2010). "Announcement: Plans for v2.6.34-longterm". LKML (Mailing list). Retrieved 17 May 2013. 
+^ Torvalds, Linus (1 August 2010). "Linux 2.6.35". LKML (Mailing list). Retrieved 17 May 2013. 
+^ Kleen, Andi (1 August 2011). "[ANNOUNCE] The longterm Linux 2.6.35.14 kernel is released". LKML (Mailing list). Retrieved 17 May 2013. 
+^ a b Kleen, Andi (3 December 2010). "Plans for 2.6.35-longterm was Re: Linux stable kernel release procedure changes". LKML (Mailing list). Retrieved 17 May 2013. 
+^ Torvalds, Linus (20 October 2010). "Linux 2.6.36". LKML (Mailing list). Retrieved 15 February 2015. 
+^ a b Kroah-Hartman, Greg (17 February 2011). "Linux 2.6.36.4". LKML (Mailing list). Retrieved 15 February 2015. 
+^ Torvalds, Linus (4 January 2011). "Linux 2.6.37". LKML (Mailing list). Retrieved 15 February 2015. 
+^ a b Kroah-Hartman, Greg (27 March 2011). "Linux 2.6.37.6". LKML (Mailing list). Retrieved 15 February 2015. 
+^ Torvalds, Linus (14 March 2011). "Linux 2.6.38". LKML (Mailing list). Retrieved 15 February 2015. 
+^ a b Kroah-Hartman, Greg (2 June 2011). "Linux 2.6.38.8". LKML (Mailing list). Retrieved 15 February 2015. 
+^ Torvalds, Linus (18 May 2011). "Linux 2.6.39". LKML (Mailing list). Retrieved 17 May 2013. 
+^ a b Kroah-Hartman, Greg (3 August 2011). "Linux 2.6.39.4". LKML (Mailing list). Retrieved 17 May 2013. 
+^ a b Kroah-Hartman, Greg (22 October 2013). "Linux 3.0.101". LKML (Mailing list). Retrieved 6 November 2013. 
+^ a b Leemhuis, Thorsten (12 January 2012). "Kernel Log: 15,000,000 lines, 3.0 promoted to long-term kernel". The H Open. Heinz Heise. Retrieved 27 March 2012. 
+^ Torvalds, Linus (24 October 2011). "Linux 3.1". LKML (Mailing list). Retrieved 16 May 2013. 
+^ a b Kroah-Hartman, Greg (18 January 2012). "Linux 3.1.10". LKML (Mailing list). Retrieved 16 May 2013. 
+^ Torvalds, Linus (4 January 2012). "Linux 3.2". LKML (Mailing list). Retrieved 14 May 2013. 
+^ Hutchings, Ben (2 January 2018). "Linux 3.2.97". LKML (Mailing list). Retrieved 3 January 2018. 
+^ a b von Eitzen, Chris (23 April 2012). "Long-term maintenance for Linux 3.2". The H Open. Heinz Heise. Retrieved 14 May 2013. 
+^ "LTS Enablement Stacks". Retrieved 10 February 2014. 
+^ "SecurityTeam/ESM/12.04 - Ubuntu Wiki". wiki.ubuntu.com. Retrieved 2017-10-24. 
+^ Torvalds, Linus (18 March 2012). "Linux 3.3 release". LKML (Mailing list). Retrieved 14 May 2013. 
+^ a b Kroah-Hartman, Greg (4 June 2012). "Linux 3.3.8". LKML (Mailing list). Retrieved 14 May 2013. 
+^ Torvalds, Linus (20 May 2012). "Linux 3.4 released". LKML (Mailing list). Retrieved 14 May 2013. 
+^ Larabel, Michael (21 May 2012). "Linux 3.4 Kernel Released With Many New Features". Phoronix. Retrieved 1 July 2013. 
+^ "Linux kernel 3.4.113 released". Linux stable (Mailing list). 26 October 2016. Retrieved 5 December 2016. 
+^ Kroah-Hartman, Greg (26 August 2014). "Li Zefan is now the 3.4 stable maintainer". LKML (Mailing list). Retrieved 14 October 2014. 
+^ "[Kernel 3.4.113][CAF][Monthly] Lambda Kernel ~ Infinito [All variants][N/M/L][01/29]". The 3.4.113 version of the Linux kernel has been finished in Oct 26, 2016 and it's currently marked as EOL (End of Life) version. 
+^ Torvalds, Linus (21 July 2012). "Linux 3.5 released". LKML (Mailing list). Retrieved 14 May 2013. 
+^ a b Kroah-Hartman, Greg (12 October 2013). "Linux 3.5.7". LKML (Mailing list). Retrieved 14 May 2013. 
+^ Krzesinski, Herton Ronaldo (9 November 2012). "Linux 3.6.11". LKML (Mailing list). Retrieved 14 May 2013. 
+^ Torvalds, Linus (30 September 2012). "Linux 3.6". LKML (Mailing list). Retrieved 14 May 2013. 
+^ a b Kroah-Hartman, Greg (17 December 2012). "Linux 3.6.11". LKML (Mailing list). Retrieved 18 December 2012. 
+^ Torvalds, Linus (10 December 2012). "Linux 3.7". LKML (Mailing list). Retrieved 14 May 2013. 
+^ a b Kroah-Hartman, Greg (27 February 2013). "Linux 3.7.10". LKML (Mailing list). Retrieved 14 May 2013. 
+^ Stahie, Silviu (1 March 2013). "Linux Kernel 3.7.10 Officially Reaches End of Life, Kernel.org Website Updated". Softpedia. Retrieved 1 March 2013. 
+^ Torvalds, Linus (18 February 2013). "Linux 3.8". LKML (Mailing list). Retrieved 12 May 2013. 
+^ a b Kroah-Hartman, Greg (11 May 2013). "Linux 3.8.13". LKML (Mailing list). Retrieved 12 May 2013. 
+^ Walker-Morgan, DJ (15 May 2013). "Canonical to maintain Linux 3.8 until August 2014". The H Open. Heinz Heise. Retrieved 17 May 2013. 
+^ Torvalds, Linus (28 April 2013). "Linux 3.9 released". LKML (Mailing list). Retrieved 12 May 2013. 
+^ a b Kroah-Hartman, Greg (21 July 2013). "Linux 3.9.11". LKML (Mailing list). Retrieved 22 July 2013. 
+^ Torvalds, Linus (30 June 2013). "Linux 3.10". LKML (Mailing list). Retrieved 1 July 2013. 
+^ a b Tarreau, Willy (5 November 2017). "Linux 3.10.108 (EOL)". LKML (Mailing list). Retrieved 5 November 2017. 
+^ Tarreau, Willy (14 June 2016). "[PATCH kernel.org] change 3.10 EOL and maintainer". LKML (Mailing list). Retrieved 14 June 2016. 
+^ a b Kroah-Hartman, Greg (29 November 2013). "Linux 3.11.10". LKML (Mailing list). Retrieved 6 December 2013. 
+^ Torvalds, Linus (3 November 2013). "Linux 3.12 released .. and no merge window yet .. and 4.0 plans?". LKML (Mailing list). Retrieved 3 November 2013. 
+^ a b Slabý, Jiří (10 May 2017). "Linux 3.12.74". LKML (Mailing list). Retrieved 10 May 2017. 
+^ a b Kroah-Hartman, Greg (26 February 2014). "3.12-stable kernel tree being taken over by Jiří Slabý". LKML (Mailing list). Retrieved 3 February 2015. 
+^ Torvalds, Linus (19 January 2014). "Linux 3.13". LKML (Mailing list). Retrieved 20 January 2014. 
+^ a b Kroah-Hartman, Greg (23 April 2014). "Linux 3.13.11". LKML (Mailing list). Retrieved 23 April 2014. 
+^ Mostafa, Kamal (24 April 2014). "[ANNOUNCE] Linux 3.13.y.z extended stable support". LKML (Mailing list). Retrieved 15 February 2015. 
+^ Torvalds, Linus (30 March 2014). "Linux 3.14". LKML (Mailing list). Retrieved 30 March 2014. 
+^ a b Kroah-Hartman, Greg (11 September 2016). "Linux 3.14.79". LKML (Mailing list). Retrieved 12 September 2016. 
+^ Torvalds, Linus (9 July 2014). "Linux 3.15". LKML (Mailing list). Retrieved 8 June 2014. 
+^ a b Kroah-Hartman, Greg (14 August 2014). "Linux 3.15.10". LKML (Mailing list). Retrieved 14 August 2014. 
+^ Torvalds, Linus (3 August 2014). "Linux 3.16". Linux kernel mailing list (Mailing list). Retrieved 5 August 2014. 
+^ Hutchings, Ben (2 January 2018). "Linux 3.16.52". LKML (Mailing list). Retrieved 3 January 2018. 
+^ Hutchings, Ben (2 May 2016). "Add 3.16 as a longterm release". LKML (Mailing list). Retrieved 9 May 2016. 
+^ Kroah-Hartman, Greg (30 October 2014). "Linux 3.16.7". LKML (Mailing list). Retrieved 30 October 2014. 
+^ Guerrero Lopez, Ana. "Jessie will ship Linux 3.16". Bits from Debian. Retrieved 27 May 2016. 
+^ Henriques, Luis (30 October 2014). "Linux 3.16.y.z extended stable support". LKML (Mailing list). Retrieved 3 November 2014. 
+^ Torvalds, Linus (5 October 2014). "Linux 3.17". LKML (Mailing list). Retrieved 6 October 2014. 
+^ a b Kroah-Hartman, Greg (8 January 2015). "Linux 3.17.8". LKML (Mailing list). Retrieved 9 January 2015. 
+^ Torvalds, Linus (7 December 2014). "Linux 3.18". LKML (Mailing list). Retrieved 8 December 2014. 
+^ Kroah-Hartman, Greg (3 January 2018). "Linux 3.18.91". LKML (Mailing list). Retrieved 4 January 2018. 
+^ Kroah-Hartman, Greg (8 February 2017). "Linux 3.18.48". LKML (Mailing list). Retrieved 18 April 2017. 
+^ Kroah-Hartman, Greg (11 March 2015). "3.18 is now maintained by Sasha Levin". LKML (Mailing list). Retrieved 11 March 2015. 
+^ Kroah-Hartman, Greg (8 February 2017). "Linux 3.18.48". LKML (Mailing list). Retrieved 18 April 2017. 
+^ Kroah-Hartman, Greg (16 April 2017). "[PATCH 3.18 000/145] 3.18.49-stable review". LKML (Mailing list). Retrieved 18 April 2017. 
+^ Torvalds, Linus (8 February 2015). "Linux 3.19 - and merge window now open". LKML (Mailing list). Retrieved 10 February 2015. 
+^ a b Kroah-Hartman, Greg (11 May 2015). "Linux 3.19.8". LKML (Mailing list). Retrieved 11 May 2015. 
+^ Torvalds, Linus (22 February 2015). "Linux 4.0-rc1 out." LKML (Mailing list). Retrieved 26 February 2015. 
+^ Mostafa, Kamal (13 May 2015). "Linux 3.19.y-ckt extended stable support". LKML (Mailing list). Retrieved 20 January 2016. 
+^ Torvalds, Linus (12 February 2015). "So, I made noises some time ago.." Google+. Retrieved 23 February 2015. But let's see what people think.
+
+So - continue with v3.20, because bigger numbers are sexy, or just move to v4.0 and reset the numbers to something smaller?
+• I like big versions and I cannot lie
+• v4.0, cause I get confused easily 
+^ Kroah-Hartman, Greg (21 July 2015). "Linux 4.0.9". LKML (Mailing list). Retrieved 22 July 2015. 
+^ Nestor, Marius (13 July 2015). "Linux Kernel 4.0 to Reach End of Life Soon, Users Urged to Move to Linux Kernel 4.1". Softpedia. SoftNews NET SRL. Retrieved 30 September 2015. 
+^ a b Torvalds, Linus (22 June 2015). "Linux 4.1". LKML (Mailing list). Retrieved 22 June 2015. 
+^ "Linux kernel 4.1.48 released". LKML (Mailing list). 15 December 2017. Retrieved 18 December 2017. 
+^ Kroah-Hartman, Greg (31 January 2016). "4.1 is now maintained by Sasha Levin". LKML (Mailing list). Retrieved 22 February 2016. 
+^ Kroah-Hartman, Greg (23 September 2015). "4.1 is a longterm kernel". LKML (Mailing list). Retrieved 27 September 2015. 
+^ Torvalds, Linus (30 August 2015). "Linux 4.2 is out". LKML (Mailing list). Retrieved 2 November 2015. 
+^ a b Kroah-Hartman, Greg (15 December 2015). "Linux 4.2.8". LKML (Mailing list). Retrieved 15 December 2015. 
+^ Mostafa, Kamal (15 December 2015). "Linux 4.2.y.z extended stable support". LKML (Mailing list). Retrieved 15 December 2015. 
+^ Torvalds, Linus (1 November 2015). "Linux 4.3 is out". LKML (Mailing list). Retrieved 2 November 2015. 
+^ Kroah-Hartman, Greg (19 February 2016). "Linux 4.3.6". LKML (Mailing list). Retrieved 21 February 2016. 
+^ Nestor, Marius (20 February 2016). "Linux Kernel 4.3.6 Is the Last in the Series, Users Urged to Move to Linux 4.4". Softpedia. SoftNews NET SRL. Retrieved 21 February 2016. 
+^ Torvalds, Linus (10 January 2016). "Linux 4.4". LKML (Mailing list). Retrieved 10 June 2016. 
+^ Kroah-Hartman, Greg (3 January 2018). "Linux 4.4.109". LKML (Mailing list). Retrieved 4 January 2018. 
+^ Corbet, Jonathan (4 November 2015). "The stable kernel process". LWN.net. Retrieved 17 December 2015. 
+^ "Ubuntu Kernel Support". Ubuntu Wiki. 
+^ Torvalds, Linus (13 March 2016). "Linux 4.5". LKML (Mailing list). Retrieved 14 March 2016. 
+^ Kroah-Hartman, Greg (7 June 2016). "Linux 4.5.7". LKML (Mailing list). Retrieved 8 June 2016. 
+^ Nestor, Marius (9 June 2016). "Linux Kernel 4.5.7 Is The Last In The Series, Users Urged To Move To Linux 4.6". Softpedia. SoftNews NET SRL. Retrieved 28 June 2016. 
+^ Torvalds, Linus (15 May 2016). "Linux 4.6 is out". LKML (Mailing list). Retrieved 17 May 2016. 
+^ a b Kroah-Hartman, Greg (16 August 2016). "Linux 4.6.7". LKML (Mailing list). Retrieved 22 August 2016. 
+^ Linus, Torvalds (24 July 2016). "Linux 4.7". LKML (Mailing list). Retrieved 25 July 2016. 
+^ a b Kroah-Hartman, Greg (22 October 2016). "Linux 4.7.10". LKML (Mailing list). Retrieved 24 October 2016. 
+^ Linus, Torvalds (2 October 2016). "Linux 4.9". LKML (Mailing list). Retrieved 3 October 2016. 
+^ a b Kroah-Hartman, Greg (9 January 2017). "Linux 4.8.17". LKML (Mailing list). Retrieved 11 January 2017. 
+^ Linus, Torvalds (11 December 2016). "Linux 4.9". LKML (Mailing list). Retrieved 11 December 2016. 
+^ Kroah-Hartman, Greg (3 January 2018). "Linux 4.9.74". LKML (Mailing list). Retrieved 4 January 2018. 
+^ Kroah-Hartman, Greg (19 January 2017). "[PATCH] 4.9 is a longterm kernel". LKML (Mailing list). Retrieved 23 January 2017. 
+^ "Stretch kernel will be Linux 4.9 LTS". Debian Wiki. 
+^ Linus, Torvalds (19 February 2017). "Linux 4.10". LKML (Mailing list). Retrieved 20 February 2017. 
+^ a b Kroah-Hartman, Greg (20 May 2017). "Linux 4.10.17". LKML (Mailing list). Retrieved 22 May 2017. 
+^ Linus, Torvalds (30 April 2017). "Linux 4.11". LKML (Mailing list). Retrieved 2 May 2017. 
+^ a b Kroah-Hartman, Greg (21 July 2017). "Linux 4.11.12". LKML (Mailing list). Retrieved 21 July 2017. 
+^ Torvalds, Linus (2 July 2017). "Linux 4.12". LKML (Mailing list). Retrieved 3 July 2017. 
+^ a b Kroah-Hartman, Greg (20 September 2017). "Linux 4.12.14". LKML (Mailing list). Retrieved 20 September 2017. 
+^ Torvalds, Linus (3 September 2017). "Linux 4.13". LKML (Mailing list). Retrieved 4 September 2017. 
+^ a b Kroah-Hartman, Greg (24 November 2017). "Linux 4.13.16". LKML (Mailing list). Retrieved 27 November 2017. 
+^ Torvalds, Linus (12 November 2017). "Linux 4.14". LKML (Mailing list). Retrieved 22 November 2017. 
+^ "Linux 4.14 Will Be The Next LTS Kernel Branch (Confirmed)". Fossbytes. 
+^ Linux Kernel Mailing List (17 June 2005). "Linux 2.6.12". git-commits-head (Mailing list). 
+^ Williams, Riley. "Linux Kernel Archives - Volume 1". Archived from the original on 11 May 2005. 
+^ Offline, Jeremy (13 October 2001). "Kernel Release Numbering Redux". KernelTrap. Archived from the original on 24 November 2010. Retrieved 30 October 2010. 
+^ Torvalds, Linus. "RFD: Kernel release numbering". LKML (Mailing list). LKML. Retrieved 30 October 2010. 
+^ Torvalds, Linus (29 May 2011). "Linux 3.0-rc1". Retrieved 16 August 2011. 
+^ Torvalds, Linus. "Linux 3.12 released .. and no merge window yet .. and 4.0 plans?". LKML (Mailing list). LKML. Retrieved 22 January 2014. 
+^ "The state of preempt-rt". linuxplumbersconf.org. Retrieved 14 June 2016. 
+
+
+Further reading[edit]
+
+
+Torvalds, Linus; Diamond, David (2001). Just for Fun: The Story of an Accidental Revolutionary. HarperBusiness. ISBN 978-0066620732. 
+Bezroukov, Nikolai. "Ch 4: A benevolent dictator". Portraits of Open Source Pioneers (e-book). Softpanorama. 
+"LinkSys and binary modules". LWN.net Weekly Edition. 16 October 2003. 
+"FreeBSD/Linux kernel source code cross-reference" (Browsable Linux (and other operating system) kernel source cross-reference). 
+"LXR: The Linux Cross-Reference project" (Browsable Linux kernel source). 
+"KernelHQ" (a browsable kernel source tree – with all versions present, and with browsable diffs). Archived from the original on 2016-07-29. 
+"The LWN 2001 Linux Timeline". 
+"Everyone's Favorite Linux Mascot". 
+"Linux Timeline". 
+"History of Linux". 
+"Upgrade to 2.6 kernel". 
+Pranevich, Joseph (December 2003). "The Wonderful World of Linux 2.6". [permanent dead link]
+Aas, Josh (17 February 2005). "Understanding the Linux 2.6.8.1 CPU Scheduler". Archived from the original on 29 September 2007. 
+"LinuxChanges". 
+"Seminar Paper on Linux Kernel 2.6". 
+"Linux Device Drivers" (3rd ed.). 
+"Understanding the Linux Kernel" (Book) (3rd ed.). 
+"Linux Kernel Networking, by Rami Rosen, 2014" (Book). 
+"Linux: The GPL And Binary Modules". Archived from the original on 23 July 2005. 
+"Anatomy of the Linux kernel". 
+
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to Linux kernel.
+
+
+
+
+
+Wikibooks has more on the topic of: Linux kernel
+
+
+
+Official website
+
+Linux kernel documentation index
+Linux kernel man pages
+Kernel bugzilla, and regressions for each recent kernel version
+
+
+Kernel Newbies, a source of various kernel-related information
+LinGrok, a Linux kernel source code cross-reference
+Greg Kroah Hartman on the Linux kernel on YouTube
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Linux kernel
+
+
+
+Organization
+
+
+
+
+Kernel
+
+
+
+Linux Foundation
+Linux Mark Institute
+Linus's Law
+Tanenbaum–Torvalds debate
+Tux
+SCO issues
+Linaro
+GNU GPL v2
+menuconfig
+Supported computer architectures
+Kernel names
+Criticism
+
+
+
+
+
+Support
+
+
+
+Developers
+
+The Linux Programming Interface
+kernel.org
+LKML
+Linux conferences
+
+
+Users
+
+Linux User Group (LUG)
+
+
+
+
+
+
+
+
+
+
+Technical
+
+
+
+
+Debugging
+
+
+
+CRIU
+ftrace
+kdump
+Linux kernel oops
+SystemTap
+BPF
+
+
+
+
+
+Startup
+
+
+
+vmlinux
+System.map
+dracut
+initrd
+initramfs
+
+
+
+
+
+ABIs
+
+
+
+Linux Standard Base
+x32 ABI
+
+
+
+
+
+APIs
+
+
+
+
+Of
+userspace
+
+
+
+
+FS,
+daemons
+
+
+
+devfs
+devpts
+debugfs
+procfs
+sysfs
+systemd
+
+udev
+
+
+Kmscon
+
+
+
+
+
+Wrapper
+libraries
+
+
+
+C standard library
+
+glibc
+uClibc
+Bionic
+
+libhybris
+
+
+dietlibc
+EGLIBC
+klibc
+musl
+Newlib
+
+
+libcgroup
+libdrm
+libalsa
+libevdev
+libusb
+
+
+
+
+
+
+
+
+Of
+kernel
+
+
+
+
+System Call
+Interface
+
+
+
+POSIX
+
+ioctl
+select
+open
+read
+close
+sync
+…
+
+
+Linux-only
+
+futex
+epoll
+splice
+dnotify
+inotify
+readahead
+…
+
+
+
+
+
+
+
+In-kernel
+
+
+
+ALSA
+Crypto API
+DRM
+kernfs
+New API
+Video4Linux
+
+
+
+
+
+
+
+
+
+
+
+Components
+
+
+
+Kernel modules
+BlueZ
+cgroups
+Console
+bcache
+Device mapper
+dm-cache
+dm-crypt
+DRM
+EDAC
+evdev
+Kernel same-page merging (KSM)
+LIO
+Framebuffer
+LVM
+KMS driver
+Netfilter
+Netlink
+nftables
+Network scheduler
+perf
+SLUB
+zram
+zswap
+
+
+Process and I/O schedulers:
+O(n) scheduler
+O(1) scheduler
+Completely Fair Scheduler (CFQ)
+Brain Fuck Scheduler
+Noop scheduler
+SCHED_DEADLINE
+
+
+Security Modules: AppArmor
+Exec Shield
+grsecurity
+
+PaX
+
+
+seccomp
+SELinux
+Smack
+Tomoyo Linux
+Linux PAM
+
+
+Device drivers
+
+802.11
+graphics
+
+
+Raw device
+
+
+initramfs
+KernelCare
+kexec
+kGraft
+kpatch
+Ksplice
+
+
+
+
+
+Variants
+
+
+
+Mainline
+
+Linux kernel
+Linux-libre
+
+
+High-performance computing
+
+INK
+Compute Node Linux
+SLURM
+
+
+Real-time computing
+
+RTLinux
+RTAI
+Xenomai
+Carrier Grade Linux
+
+
+MMU-less
+
+μClinux
+PSXLinux
+DSLinux
+
+
+
+
+
+
+Virtualization
+
+
+
+Hypervisor
+
+KVM
+Xen
+
+
+OS-level virtualization
+
+Linux-VServer
+Lguest
+LXC
+OpenVZ
+
+
+Other
+
+L4Linux
+ELinOS
+User-mode Linux
+MkLinux
+coLinux
+
+
+
+
+
+
+
+
+
+
+
+
+
+Adoption
+
+
+
+
+Range
+of use
+
+
+
+Desktop
+Embedded
+Gaming
+Thin client:
+
+LTSP
+Thinstation
+
+
+Server:
+
+LAMP
+LYME-LYCE
+
+
+Devices
+
+
+
+
+
+Adopters
+
+
+
+List of Linux adopters
+GENIVI Alliance
+Proprietary software for Linux
+
+
+
+
+
+
+
+
+
+
+
+ Category
+ Commons
+ Book
+ Wikiversity
+ Portal
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Linux
+
+
+
+Linux kernel
+
+
+
+History
+Kernel
+Linus's Law
+Linux-libre
+Linux startup process
+Linux kernel oops
+Tux
+more…
+
+
+
+
+
+Controversies
+
+
+
+Criticism of Linux
+Criticism of desktop Linux
+GNU/Linux naming controversy
+Tanenbaum–Torvalds debate
+SCO and Linux
+
+
+
+
+
+Distributions
+
+
+
+General comparison
+Distributions list
+Netbook-specific comparison
+Distributions that run from RAM
+Lightweight
+Security-focused operating system
+Proprietary software for Linux
+Package manager
+
+Package format
+List of software package managers
+
+
+
+
+
+
+
+Organizations
+
+
+
+Linux Foundation
+Linux Mark Institute
+Linux User Group (LUG)
+Linux Documentation Project
+LinuxChix
+Linux Counter
+
+
+
+
+
+Adoption
+
+
+
+Desktop
+Embedded
+Gaming
+Linux range of use
+List of Linux adopters
+
+
+
+
+
+Media
+
+
+
+DistroWatch
+Free Software Magazine
+Full Circle
+Linux.com
+Linux Format
+Linux Gazette
+Linux Journal
+Linux Magazine
+LinuxUser
+
+Ubuntu User
+
+
+Linux Outlaws
+Linux Voice
+LugRadio
+LWN.net
+OMG! Ubuntu!
+Open Source For You
+Phoronix
+Revolution OS
+The Code
+
+
+
+
+
+
+
+
+ Linux
+ Linux kernel features
+ Portal:Linux
+ WikiProject Linux
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Linux_kernel&oldid=818566263"					Categories: Linux kernel1991 softwareFinnish inventionsFree software programmed in CFree system softwareLinus TorvaldsMonolithic kernelsUnix variantsHidden categories: CS1 maint: BOT: original-url status unknownAll articles with dead external linksArticles with dead external links from December 2017Articles with permanently dead external linksCS1 maint: Uses authors parameterCS1 German-language sources (de)Use dmy dates from June 2016Pages using deprecated image syntaxArticles containing potentially dated statements from November 2017All articles containing potentially dated statementsAll articles with unsourced statementsArticles with unsourced statements from July 2013Articles needing additional references from January 2015All articles needing additional referencesArticles with unsourced statements from January 2015Accuracy disputes from November 2017All accuracy disputesArticles with unsourced statements from June 2016Articles with unsourced statements from October 2016Articles containing potentially dated statements from April 2015Articles containing potentially dated statements from 2013Articles containing potentially dated statements from March 2011Articles needing additional references from March 2011Articles containing potentially dated statements from 2015Articles containing potentially dated statements from 2010Articles containing potentially dated statements from January 2014Official website different in Wikidata and WikipediaPages with graphs

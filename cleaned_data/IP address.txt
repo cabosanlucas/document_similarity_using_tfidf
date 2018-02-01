@@ -1,0 +1,268 @@
+wikipedia user access level wikipediauser access levelsunregistered users
+
+
+
+
+address configuration dialog microsoft windows
+
+
+internet protocol address address numerical label assigned device connected computer network uses internet protocol communication1 address serves principal functions host network interface identification location addressing
+internet protocol version ipv4 defines address 32bit number1 however growth internet depletion available ipv4 addresses version ipv6 using bits address developed 19952 standardized 2460 19983 ipv6 deployment ongoing since mid2000s
+addresses usually written displayed humanreadable notations 172162541 ipv4 2001db801234056781 ipv6 size routing prefix address designated cidr notation suffixing address number significant bits 19216811524 equivalent historically used subnet mask 2552552550
+address space managed globally internet assigned numbers authority iana five regional internet registries responsible designated territories assignment users local internet registries internet service providers ipv4 addresses distributed iana rirs blocks approximately million addresses private network administrator assigns address device connected network assignments static fixed permanent dynamic basis depending software practices
+
+
+
+contents
+
+
+function
+versions
+ipv4 addresses
+
+subnetting
+private addresses
+
+
+ipv6 addresses
+
+private addresses
+
+
+subnetworks
+address assignment
+
+sticky dynamic address
+address autoconfiguration
+addressing conflicts
+
+
+routing
+
+unicast addressing
+broadcast addressing
+multicast addressing
+anycast addressing
+
+
+public address
+firewalling
+address translation
+diagnostic tools
+also
+references
+external links
+
+
+
+function
+address serves principal functions identifies host specifically network interface provides location host network thus capability addressing host role characterized follows name indicates seek address indicates route indicates there4
+header packet contains address sending host destination host host geolocation software deduce geolocation communicating peer56
+versions
+versions internet protocol common internet today original version internet protocol internet internet protocol version ipv4 first installed 1983
+rapid exhaustion ipv4 address space available assignment internet service providers user organizations early 1990s prompted internet engineering task force ietf explore technologies expand addressing capability internet result redesign internet protocol became eventually known internet protocol version ipv6 199523 ipv6 technology various testing stages mid2000s commercial production deployment commenced
+ianas primary ipv4 address pool exhausted february 2011 last five blocks allocated five rirs78 apnic first exhaust regional pool april 2011 except small amount address space reserved transition ipv6 intended allocated restricted process9 individual isps still unassigned pools addresses could recycle addresses longer needed subscribers
+today versions internet protocol simultaneous among technical changes version defines format addresses differently historical prevalence ipv4 generic term address typically still refers addresses defined ipv4 version sequence ipv4 ipv6 resulted assignment version experimental internet stream protocol 1979 however never referred ipv5
+ipv4 addresses
+main article ipv4 addressing
+
+
+
+
+decomposition ipv4 address dotdecimal notation binary value
+
+
+address ipv4 32bits size limits address space 4294967296 addresses number ipv4 reserves addresses special purposes private networks million addresses multicast addresses million addresses
+ipv4 addresses usually represented dotdecimal notation consisting four decimal numbers ranging separated dots 172162541 part represents group bits octet address cases technical writing ipv4 addresses presented various hexadecimal octal binary representations
+subnetting
+early stages development internet protocol1 network administrators interpreted address parts network number portion host number portion highest order octet significant eight bits address designated network number remaining bits called rest field host identifier used host numbering within network
+early method soon proved inadequate additional networks developed independent existing networks already designated network number 1981 internet addressing specification revised introduction classful network architecture4
+classful network design allowed larger number individual network assignments finegrained subnetwork design first three bits significant octet address defined class address three classes defined universal unicast addressing depending class derived network identification based octet boundary segments entire address class used successively additional octets network identifier thus reducing possible number hosts higher order classes following table gives overview obsolete system
+
+historical classful network architecture
+
+class
+leading
+bits
+size network
+number field
+size rest
+field
+number
+networks
+addresses
+network
+start address
+address
+
+
+
+
+
+
+
+16777216
+0000
+127255255255
+
+
+
+
+
+
+16384
+65536
+128000
+191255255255
+
+
+
+
+
+
+2097152
+
+192000
+223255255255
+
+
+classful network design served purpose startup stage internet lacked scalability face rapid expansion network 1990s class system address space replaced classless interdomain routing cidr 1993 cidr based variablelength subnet masking vlsm allow allocation routing based arbitrarylength prefixes
+today remnants classful network concepts function limited scope default configuration parameters network software hardware components netmask technical jargon used network administrators discussions
+private addresses
+early network design global endtoend connectivity envisioned communications internet hosts intended addresses uniquely assigned particular computer device however found always necessary private networks developed public address space needed conserved
+computers connected internet factory machines communicate tcpip need globally unique addresses three nonoverlapping ranges ipv4 addresses private networks reserved 1918 addresses routed internet thus need coordinated address registry
+today needed private networks typically connect internet network address translation
+
+reserved private ipv4 network ranges10
+
+start
+
+number addresses
+
+
+10000
+10255255255
+16777216
+
+
+1721600
+17231255255
+1048576
+
+
+19216800
+192168255255
+65536
+
+
+user reserved blocks typically network administrator divide block subnets example many home routers automatically default address range 19216800 1921680255 1921680024
+ipv6 addresses
+main article ipv6 address
+
+
+
+
+decomposition ipv6 address hexadecimal representation binary value
+
+
+ipv6 address size increased bits ipv4 bits octets thus providing 2128 approximately 7038340299999999999♠3403×1038 addresses deemed sufficient foreseeable future
+intent design provide sufficient quantity addresses also redesign routing internet efficient aggregation subnetwork routing prefixes resulted slower growth routing tables routers smallest possible individual allocation subnet hosts square size entire ipv4 internet levels actual address utilization ratios small ipv6 network segment design also provides opportunity separate addressing infrastructure network segment local administration segments available space addressing prefix used route traffic external networks ipv6 facilities automatically change routing prefix entire networks global connectivity routing policy change without requiring internal redesign manual renumbering
+large number ipv6 addresses allows large blocks assigned specific purposes appropriate aggregated efficient routing large address space need complex address conservation methods used cidr
+modern desktop enterprise server operating systems include native support ipv6 protocol widely deployed devices residential networking routers voice voip multimedia equipment network peripherals
+private addresses
+ipv4 reserves addresses private networks blocks addresses aside ipv6 ipv6 referred unique local addresses 4193 reserves routing prefix fc007 block divided blocks different implied policies addresses include 40bit pseudorandom number minimizes risk address collisions sites merge packets misrouted11
+early practices used different block purpose fec0 dubbed sitelocal addresses12 however definition constituted sites remained unclear poorly defined addressing policy created ambiguities routing address type abandoned must used systems13
+addresses starting fe80 called linklocal addresses assigned interfaces communication attached link addresses automatically generated operating system network interface provides instant automatic communication ipv6 host link feature required lower layers ipv6 network administration neighbor discovery protocol
+private address prefixes routed public internet
+subnetworks
+networks divided subnetworks ipv4 ipv6 purpose address logically recognized consisting parts network prefix host identifier interface identifier ipv6 subnet mask cidr prefix determines address divided network host parts
+term subnet mask used within ipv4 versions however cidr concept notation address followed slash number decimal bits used network part also called routing prefix example ipv4 address subnet mask 192021 2552552550 respectively cidr notation address subnet 19202124 first bits address indicate network subnet
+address assignment
+addresses assigned host either dynamically time booting permanently fixed configuration host hardware software persistent configuration also known using static address contrast computers address assigned newly time restarts known using dynamic address
+configuration static address depends detail software hardware installed computer computers used network infrastructure routers mail servers typically configured static addressing static addresses also sometimes convenient locating servers inside enterprisecitation needed
+dynamic addresses assigned using methods zeroconf selfconfiguration dynamic host configuration protocol dhcp network server address assigned dhcp usually expiration period address assigned another device originally associated host still powered network administrator implement dhcp method host always receives specific address
+dhcp frequently used technology assigning addresses avoids administrative burden assigning specific static addresses device network also allows devices share limited address space network online particular time typically dynamic configuration enabled default modern desk operating systems dhcp technology used assign addresses dynamically dialup broadband networks dynamic address features pointtopoint protocol
+absence failure static stateful dhcp address configurations operating system assign address network interface using stateless autoconfiguration methods zeroconf
+sticky dynamic address
+sticky dynamic address informal term used cable internet access subscribers describe dynamically assigned address seldom changes addresses usually assigned dhcp since modems usually powered extended periods time address leases usually long periods simply renewed modem turned powered next expiration address lease often receives address
+address autoconfiguration
+3330 defines address block 1692540016 special linklocal addressing ipv4 networks ipv6 every interface whether using static dynamic address assignments also receives locallink address automatically block fe8010
+addresses valid link local network segment pointtopoint connection host connected addresses routable like private addresses cannot source destination packets traversing internet
+linklocal ipv4 address block reserved standards existed mechanisms address autoconfiguration filling void microsoft created implementation called automatic private addressing apipa apipa deployed millions machines thus become facto standard industry 3927 ietf defined formal standard functionality entitled dynamic configuration ipv4 linklocal addresses
+addressing conflicts
+address conflict occurs devices local physical wireless network claim address second assignment address generally stops functionality devices many modern operating systems notify administrator address conflicts1415 devices gateway network crippled addresses assigned multiple people systems differing methods fault1617181920
+routing
+addresses classified several classes operational characteristics unicast multicast anycast broadcast addressing
+unicast addressing
+common concept address unicast addressing available ipv4 ipv6 normally refers single sender single receiver used sending receiving usually unicast address associated single device host device host unicast address individual several distinct unicast addresses distinct purpose sending data multiple unicast addresses requires sender send data many times recipient
+broadcast addressing
+main article broadcasting computing
+ipv4 possible send data possible destinations allhosts broadcast permits sender send data receivers receive copy ipv4 protocol address 255255255255 used local broadcast addition directed limited broadcast made combining network prefix host suffix composed entirely binary example destination address used directed broadcast devices 19202024 network 19202255 ipv6 implement broadcast addressing replaces multicast speciallydefined allnodes multicast address
+multicast addressing
+multicast address associated group interested receivers ipv4 addresses 224000 239255255255 former class addresses designated multicast addresses21 ipv6 uses address block prefix ff008 multicast applications either case sender sends single datagram unicast address multicast group address intermediary routers take care making copies sending receivers joined corresponding multicast group
+anycast addressing
+like broadcast multicast anycast onetomany routing topology however data stream transmitted receivers router decides logically closest network anycast address inherent feature ipv6 ipv4 anycast addressing implementations typically operate using shortestpath metric routing take account congestion attributes path anycast methods useful global load balancing commonly used distributed systems
+public address
+public address common parlance globally routable unicast address meaning address address reserved private networks reserved 1918 various ipv6 address formats local scope sitelocal scope example linklocal addressing public addresses used communication hosts global internet
+firewalling
+security privacy considerations network administrators often desire restrict public internet traffic within private networks source destination addresses contained headers packet convenient means discriminate traffic address blocking selectively tailoring responses external requests internal servers achieved firewall software running networks gateway router database addresses permissible traffic maintained blacklists whitelists
+address translation
+multiple client devices appear share address either part shared hosting server environment ipv4 network address translator proxy server acts intermediary agent behalf client case real originating address might masked server receiving request common practice mask large number devices private network outside interfaces needs internetroutable address22
+commonly device maps port numbers side larger public network individual private addresses masqueraded network
+residential networks functions usually implemented residential gateway scenario computers connected router private addresses router public address external interface communicate internet internal computers appear share public address
+diagnostic tools
+computer operating systems provide various diagnostic tools examine network interface address configuration windows provides commandline interface tools ipconfig netsh users unixlike systems ifconfig netstat route lanstat fstat iproute2 utilities accomplish task
+also
+
+
+hostname
+address spoofing
+aliasing
+multicast
+ipv4 subnetting reference
+ipv6 subnetting reference
+list assigned ipv4 address blocks
+address
+regional internet registry
+reverse lookup
+virtual address
+whois
+
+
+references
+
+
+standard internet protocol january 1980
+1883 internet protocol version ipv6 specification deering hinden december 1995
+2460 internet protocol version ipv6 specification deering hinden internet society december 1998
+internet protocol darpa internet program protocol specification september 1981
+information 20130411 retrieved 20130411
+netacuity edge offers hyperlocal targeting 20090728 retrieved 20111210
+smith lucie lipner february 2011 free pool ipv4 address space depleted number resource organization retrieved february 2011
+icannnanog mailing list five allocated rirs unallocated ipv4 unicast remain
+asiapacific network information centre april 2011 apnic ipv4 address pool reaches final archived original august 2011 retrieved april 2011
+address allocation private internets ietf february 1996 1918 httpstoolsietforghtmlrfc1918page4
+4193 section
+3513
+3879
+event 4198 tcpip network interface configuration microsoft january 2009 retrieved june 2013 updated january 2009
+event 4199 tcpip network interface configuration microsoft january 2009 retrieved june 2013 updated january 2009
+mitchell bradley address conflicts address conflict aboutcom retrieved november 2013
+kishore aseem august 2009 address conflict online tech tips onlinetechtipscom retrieved november 2013
+help address conflict message microsoft november 2013 retrieved november 2013
+duplicate address conflicts dhcp network microsoft retrieved november 2013 article 133490 last review october 2013 revision
+moran joseph september 2010 understanding resolving address conflicts webopediacom webopediacom retrieved november 2013
+5771
+comer douglas 2000 internetworking tcpipprinciples protocols architectures upper saddle river prentice hall isbn 0130183806
+
+
+external links
+
+curlie based dmoz
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleipaddressoldid814625432 categories addresseshidden categories pages using magic linkswikipedia indefinitely semiprotected pageswikipedia indefinitely moveprotected pagesuse dates december 2015all articles unsourced statementsarticles unsourced statements july 2017articles dmoz links

@@ -1,0 +1,4136 @@
+
+
+part series statistics
+
+
+regression analysis
+
+
+
+
+
+models
+
+
+
+
+linear regression
+simple regression
+ordinary least squares
+polynomial regression
+general linear model
+
+
+
+
+
+
+generalized linear model
+discrete choice
+logistic regression
+multinomial logit
+mixed logit
+probit
+multinomial probit
+ordered logit
+ordered probit
+poisson
+
+
+
+
+
+
+multilevel model
+fixed effects
+random effects
+mixed model
+
+
+
+
+
+
+nonlinear regression
+nonparametric
+semiparametric
+robust
+quantile
+isotonic
+principal components
+least angle
+local
+segmented
+
+
+
+
+
+
+errorsinvariables
+
+
+
+
+estimation
+
+
+
+
+least squares
+ordinary least squares
+linear math
+partial
+total
+generalized
+weighted
+nonlinear
+nonnegative
+iteratively reweighted
+ridge regression
+
+
+
+
+
+
+least absolute deviations
+bayesian
+bayesian multivariate
+
+
+
+
+background
+
+
+
+
+regression model validation
+mean predicted response
+errors residuals
+goodness
+studentized residual
+gauss–markov theorem
+
+
+
+
+
+
+statistics portal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+statistical modeling regression analysis statistical processes estimating relationships among variables includes many techniques modeling analyzing several variables focus relationship dependent variable independent variables predictors specifically regression analysis helps understand typical value dependent variable criterion variable changes independent variables varied independent variables held fixed
+commonly regression analysis estimates conditional expectation dependent variable given independent variables average value dependent variable independent variables fixed less commonly focus quantile location parameter conditional distribution dependent variable given independent variables cases function independent variables called regression function estimated regression analysis also interest characterize variation dependent variable around prediction regression function using probability distribution related distinct approach necessary condition analysis1 estimates maximum rather average value dependent variable given value independent variable ceiling line rather central line order identify value independent variable necessary sufficient given value dependent variable
+regression analysis widely used prediction forecasting substantial overlap field machine learning regression analysis also used understand among independent variables related dependent variable explore forms relationships restricted circumstances regression analysis used infer causal relationships independent dependent variables however lead illusions false relationships caution advisable2 example correlation prove causation
+many techniques carrying regression analysis developed familiar methods linear regression ordinary least squares regression parametric regression function defined terms finite number unknown parameters estimated data nonparametric regression refers techniques allow regression function specified functions infinitedimensional
+performance regression analysis methods practice depends form data generating process relates regression approach used since true form datagenerating process generally known regression analysis often depends extent making assumptions process assumptions sometimes testable sufficient quantity data available regression models prediction often useful even assumptions moderately violated although perform optimally however many applications especially small effects questions causality based observational data regression methods give misleading results34
+narrower sense regression refer specifically estimation continuous response dependent variables opposed discrete response variables used classification5 case continuous dependent variable specifically referred metric regression distinguish related problems6
+
+
+
+contents
+
+
+history
+regression models
+
+necessary number independent measurements
+
+
+underlying assumptions
+linear regression
+
+general linear model
+diagnostics
+limited dependent variables
+
+
+interpolation extrapolation
+nonlinear regression
+power sample size calculations
+methods
+software
+also
+references
+reading
+external links
+
+
+
+historyedit
+earliest form regression method least squares published legendre 18057 gauss 18098 legendre gauss applied method problem determining astronomical observations orbits bodies mostly comets also later newly discovered minor planets gauss published development theory least squares 18219 including version gauss–markov theorem
+term regression coined francis galton nineteenth century describe biological phenomenon phenomenon heights descendants tall ancestors tend regress towards normal average phenomenon also known regression toward mean1011 galton regression biological meaning1213 work later extended udny yule karl pearson general statistical context1415 work yule pearson joint distribution response explanatory variables assumed gaussian assumption weakened fisher works 1922 1925161718 fisher assumed conditional distribution response variable gaussian joint distribution need respect fishers assumption closer gausss formulation 1821
+1950s 1960s economists used electromechanical desk calculators calculate regressions 1970 sometimes took hours receive result regression19
+regression methods continue area active research recent decades methods developed robust regression regression involving correlated responses time series growth curves regression predictor independent variable response variables curves images graphs complex data objects regression methods accommodating various types missing data nonparametric regression bayesian methods regression regression predictor variables measured error regression predictor variables observations causal inference regression
+regression modelsedit
+regression models involve following parameters variables
+
+unknown parameters denoted
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+represent scalar vector
+independent variables
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+
+dependent variable
+
+
+
+
+
+
+displaystyle
+
+
+
+various fields application different terminologies used place dependent independent variables
+regression model relates
+
+
+
+
+
+
+displaystyle
+
+function
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle yapprox fmathbf boldsymbol beta
+
+
+
+approximation usually formalized
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle eymathbf fmathbf boldsymbol beta
+
+carry regression analysis form function
+
+
+
+
+
+
+displaystyle
+
+must specified sometimes form function based knowledge relationship
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+rely data knowledge available flexible convenient form
+
+
+
+
+
+
+displaystyle
+
+chosen
+assume vector unknown parameters
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+length
+
+
+
+
+
+
+displaystyle
+
+order perform regression analysis user must provide information dependent variable
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+data points form
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle ymathbf
+
+observed
+
+
+
+
+
+
+
+
+displaystyle
+
+classical approaches regression analysis cannot performed since system equations defining regression model underdetermined enough data recover
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+
+exactly
+
+
+
+
+
+
+
+
+displaystyle
+
+data points observed function
+
+
+
+
+
+
+displaystyle
+
+linear equations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle yfmathbf boldsymbol beta
+
+solved exactly rather approximately reduces solving
+
+
+
+
+
+
+displaystyle
+
+equations
+
+
+
+
+
+
+displaystyle
+
+unknowns elements
+
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+unique solution long
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+linearly independent
+
+
+
+
+
+
+displaystyle
+
+nonlinear solution exist many solutions exist
+common situation
+
+
+
+
+
+
+
+
+displaystyle
+
+data points observed case enough information data estimate unique value
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+best fits data sense regression model applied data viewed overdetermined system
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+
+
+last case regression analysis provides tools
+
+finding solution unknown parameters
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+example minimize distance measured predicted values dependent variable
+
+
+
+
+
+
+displaystyle
+
+also known method least squares
+certain statistical assumptions regression analysis uses surplus information provide statistical information unknown parameters
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+predicted values dependent variable
+
+
+
+
+
+
+displaystyle
+
+
+
+necessary number independent measurementsedit
+consider regression model three unknown parameters
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+suppose experimenter performs measurements exactly value independent variable vector
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+contains independent variables
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+case regression analysis fails give unique estimated values three unknown parameters experimenter provide enough information best estimate average value standard deviation dependent variable
+
+
+
+
+
+
+displaystyle
+
+similarly measuring different values
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+would give enough data regression unknowns three unknowns
+experimenter performed measurements three different values independent variable vector
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+regression analysis would provide unique estimates three unknown parameters
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+
+case general linear regression statement equivalent requirement matrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathbf mathbf
+
+invertible
+number measurements
+
+
+
+
+
+
+displaystyle
+
+larger number unknown parameters
+
+
+
+
+
+
+displaystyle
+
+measurement errors
+
+
+
+
+
+
+
+
+
+
+
+displaystyle epsilon
+
+normally distributed excess information contained
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+measurements used make statistical predictions unknown parameters excess information referred degrees freedom regression
+underlying assumptionsedit
+classical assumptions regression analysis include
+
+sample representative population inference prediction
+error random variable mean zero conditional explanatory variables
+independent variables measured error note modeling done instead using errorsinvariables model techniques
+independent variables predictors linearly independent possible express predictor linear combination others
+errors uncorrelated variance–covariance matrix errors diagonal nonzero element variance error
+variance error constant across observations homoscedasticity weighted least squares methods might instead used
+
+sufficient conditions leastsquares estimator possess desirable properties particular assumptions imply parameter estimates unbiased consistent efficient class linear unbiased estimators important note actual data rarely satisfies assumptions method used even though assumptions true variation assumptions sometimes used measure model useful many assumptions relaxed advanced treatments reports statistical analyses usually include analyses tests sample data methodology usefulness model
+independent dependent variables often refer values measured point locations spatial trends spatial autocorrelation variables violate statistical assumptions regression geographic weighted regression technique deal data20 also variables include values aggregated areas aggregated data modifiable areal unit problem cause extreme variation regression parameters21 analyzing data aggregated political boundaries postal codes census areas results distinct different choice units
+linear regressionedit
+main article linear regression
+simple linear regression derivation formulas numerical example
+linear regression model specification dependent variable
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+linear combination parameters need linear independent variables example simple linear regression modeling
+
+
+
+
+
+
+displaystyle
+
+data points independent variable
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+parameters
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+
+
+straight line
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle yibeta 0beta 1xivarepsilon iquad i1dots
+
+
+
+multiple linear regression several independent variables functions independent variables
+adding term
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+preceding regression gives
+
+parabola
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle yibeta 0beta 1xibeta 2xi2varepsilon i1dots
+
+
+
+still linear regression although expression right hand side quadratic independent variable
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+linear parameters
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+
+cases
+
+
+
+
+
+
+
+
+
+
+
+displaystyle varepsilon
+
+error term subscript
+
+
+
+
+
+
+displaystyle
+
+indexes particular observation
+returning attention straight line case given random sample population estimate population parameters obtain sample linear regression model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle widehat yiwidehat beta 0widehat beta
+
+
+
+residual
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle eiyiwidehat
+
+difference value dependent variable predicted model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle widehat
+
+true value dependent variable
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+method estimation ordinary least squares method obtains parameter estimates minimize squared residuals sse2223 also sometimes denoted
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle ssesum i1nei2
+
+
+
+minimization function results normal equations simultaneous linear equations parameters solved yield parameter estimators
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle widehat beta 0widehat beta
+
+
+
+
+
+
+illustration linear regression data
+
+
+case simple regression formulas least squares estimates
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle widehat beta 1frac xibar xyibar ysum xibar x2text widehat beta 0bar ywidehat beta 1bar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+mean average
+
+
+
+
+
+
+displaystyle
+
+values
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+mean
+
+
+
+
+
+
+displaystyle
+
+values
+assumption population error term constant variance estimate variance given
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle sigma varepsilon 2frac ssen2
+
+
+
+called mean square error regression denominator sample size reduced number model parameters estimated data
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+displaystyle
+
+regressors
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+intercept used24 case
+
+
+
+
+
+
+
+
+displaystyle
+
+denominator
+
+
+
+
+
+
+
+
+displaystyle
+
+
+standard errors parameter estimates given
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle sigma beta 1hat sigma varepsilon sqrt frac 1sum xibar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle sigma beta 0hat sigma varepsilon sqrt frac 1nfrac x2sum xibar x2hat sigma beta 1sqrt frac xi2n
+
+
+
+assumption population error term normally distributed researcher estimated standard errors create confidence intervals conduct hypothesis tests population parameters
+general linear modeledit
+derivation linear least squares
+numerical example linear regression
+general multiple regression model
+
+
+
+
+
+
+displaystyle
+
+independent variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle yibeta 1xi1beta 2xi2cdots beta pxipvarepsilon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+displaystyle
+
+observation
+
+
+
+
+
+
+displaystyle
+
+independent variable first independent variable takes value
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle xi11
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+called regression intercept
+least squares parameter estimates obtained
+
+
+
+
+
+
+displaystyle
+
+normal equations residual written
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle varepsilon iyihat beta 1xi1cdots beta pxip
+
+
+
+normal equations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle i1nsum k1pxijxikhat beta ksum i1nxijyi j1dots
+
+
+
+matrix notation normal equations written
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathbf xtop xhat boldsymbol beta xtop
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+element
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+displaystyle
+
+element column vector
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+displaystyle
+
+element
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle beta
+
+thus
+
+
+
+
+
+
+
+
+displaystyle mathbf
+
+
+
+
+
+
+
+
+
+
+displaystyle ntimes
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+displaystyle ntimes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle boldsymbol beta
+
+
+
+
+
+
+
+
+
+
+displaystyle ptimes
+
+solution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathbf boldsymbol beta xtop x1xtop
+
+
+
+diagnosticsedit
+main article regression diagnostics
+also categoryregression diagnostics
+regression model constructed important confirm goodness model statistical significance estimated parameters commonly used checks goodness include rsquared analyses pattern residuals hypothesis testing statistical significance checked ftest overall followed ttests individual parameters
+interpretations diagnostic tests rest heavily model assumptions although examination residuals used invalidate model results ttest ftest sometimes difficult interpret models assumptions violated example error term normal distribution small samples estimated parameters follow normal distributions complicate inference relatively large samples however central limit theorem invoked hypothesis testing proceed using asymptotic approximations
+limited dependent variablesedit
+limited dependent variables response variables categorical variables variables constrained fall certain range often arise econometrics
+response variable noncontinuous limited subset real line binary zero variables analysis proceeds leastsquares linear regression model called linear probability model nonlinear models binary dependent variables include probit logit model multivariate probit model standard method estimating joint relationship several binary dependent variables independent variables categorical variables values multinomial logit ordinal variables values ordered logit ordered probit models censored regression models used dependent variable sometimes observed heckman correction type models used sample randomly selected population interest alternative procedures linear regression based polychoric correlation polyserial correlations categorical variables procedures differ assumptions made distribution variables population variable positive values represents repetition occurrence event count models like poisson regression negative binomial model used
+interpolation extrapolationedit
+
+
+
+
+middle interpolated straight line represents best balance points line dotted lines represent extreme lines first curves represent estimated values outer curves represent prediction measurement25
+
+
+regression models predict value variable given known values variables prediction within range values dataset used modelfitting known informally interpolation prediction outside range data known extrapolation performing extrapolation relies strongly regression assumptions extrapolation goes outside data room model fail differences assumptions sample data true values
+generally advisedcitation needed performing extrapolation accompany estimated value dependent variable prediction interval represents uncertainty intervals tend expand rapidly values independent variables moved outside range covered observed data
+reasons others tend might unwise undertake extrapolation26
+however cover full modeling errors made particular assumption particular form relation properly conducted regression analysis include assessment well assumed form matched observed data within range values independent variables actually available means extrapolation particularly reliant assumptions made structural form regression relationship bestpractice advice herecitation needed linearinvariables linearinparameters relationship chosen simply computational convenience available knowledge deployed constructing regression model knowledge includes fact dependent variable cannot outside certain range values made selecting model even observed dataset values particularly near bounds implications step choosing appropriate functional form regression great extrapolation considered minimum ensure extrapolation arising fitted model realistic accord known
+nonlinear regressionedit
+main article nonlinear regression
+model function linear parameters squares must minimized iterative procedure introduces many complications summarized differences linear nonlinear least squares
+power sample size calculationsedit
+generally agreed methods relating number observations versus number independent variables model rule thumb suggested good hardin
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+displaystyle
+
+sample size
+
+
+
+
+
+
+displaystyle
+
+number independent variables
+
+
+
+
+
+
+displaystyle
+
+number observations needed reach desired precision model independent variable27 example researcher building linear regression model using dataset contains 1000 patients
+
+
+
+
+
+
+displaystyle
+
+researcher decides five observations needed precisely define straight line
+
+
+
+
+
+
+displaystyle
+
+maximum number independent variables model support
+
+
+
+
+
+
+
+
+
+
+1000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle frac 1000log 5429
+
+
+methodsedit
+although parameters regression model usually estimated using method least squares methods used include
+
+bayesian methods bayesian linear regression
+percentage regression situations reducing percentage errors deemed appropriate28
+least absolute deviations robust presence outliers leading quantile regression
+nonparametric regression requires large number observations computationally intensive
+distance metric learning learned search meaningful distance metric given input space29
+
+softwareedit
+main article list statistical packages
+major statistical software packages perform least squares regression analysis inference simple linear regression multiple regression using least squares done spreadsheet applications calculators many statistical software packages perform various types nonparametric robust regression methods less standardized different software packages implement different methods method given name implemented differently different packages specialized regression software developed fields survey analysis neuroimaging
+alsoedit
+
+
+statistics portal
+
+
+
+
+curve fitting
+estimation theory
+forecasting
+fraction variance unexplained
+function approximation
+generalized linear models
+kriging linear least squares estimation algorithm
+local regression
+modifiable areal unit problem
+multivariate adaptive regression splines
+multivariate normal distribution
+pearson productmoment correlation coefficient
+quasivariance
+prediction interval
+regression validation
+robust regression
+segmented regression
+signal processing
+stepwise regression
+trend estimation
+
+
+referencesedit
+
+
+necessary condition analysis
+armstrong scott 2012 illusions regression analysis international journal forecasting forthcoming doi101016jijforecast201202001
+david freedman statistical models theory practice cambridge university press 2005
+dennis cook sanford weisberg criticism influence analysis regression sociological methodology 1982 313–361
+christopher bishop 2006 pattern recognition machine learning springer cases assign input vector finite number discrete categories called classification problems desired output consists continuous dependent variables task called regression
+waegeman willem baets bernard boullart 2008 analysis ordinal regression learning pattern recognition letters doi101016jpatrec200707019
+legendre nouvelles méthodes pour détermination orbites comètes firmin didot paris 1805 “sur méthode moindres quarrés” appears appendix
+gauss theoria motus corporum coelestium sectionibus conicis solem ambientum 1809
+gauss theoria combinationis observationum erroribus minimis obnoxiae 18211823
+mogull robert 2004 secondsemester applied statistics kendallhunt publishing company isbn 0757511813
+galton francis 1989 kinship correlation reprinted 1989 statistical science institute mathematical statistics 80–86 doi101214ss1177012581 jstor 2245330
+francis galton typical laws heredity nature 1877 492–495 512–514 532–533 galton uses term reversion paper discusses size peas
+francis galton presidential address section anthropology 1885 galton uses term regression paper discusses height humans
+yule udny 1897 theory correlation journal royal statistical society blackwell publishing 812–54 doi1023072979746 jstor 2979746
+pearson karl yule blanchard norman leealice 1903 ancestral heredity biometrika biometrika trust 211–236 doi101093biomet22211 jstor 2331683
+fisher 1922 goodness regression formulae distribution regression coefficients journal royal statistical society blackwell publishing 597–612 doi1023072341124 jstor 2341124
+ronald fisher 1954 statistical methods research workers twelfth edinburgh oliver boyd isbn 0050021702
+aldrich john 2005 fisher regression statistical science 401–417 doi101214088342305000000331 jstor 20061201
+rodney ramcharan regressions economists obessessed march 2006 accessed 20111203
+fotheringham stewart brunsdon chris charlton martin 2002 geographically weighted regression analysis spatially varying relationships reprint chichester england john wiley isbn 9780471496168
+fotheringham wong january 1991 modifiable areal unit problem multivariate statistical analysis environment planning 1025–1044 doi101068a231025
+kutner nachtsheim neter 2004 applied linear regression models mcgrawhillirwin boston
+ravishankar 2002 first course linear model theory chapman hallcrc boca raton
+steel torrie principles procedures statistics special reference biological sciences mcgraw hill 1960 page
+rouaud mathieu 2013 probability statistics estimation
+chiang 2003 statistical methods analysis world scientific isbn 9812383107 page section interpolation extrapolation
+good hardin 2009 common errors statistics avoid hoboken jersey wiley isbn 9780470457986
+tofallis 2009 least squares percentage regression journal modern applied statistical methods 526–534 doi102139ssrn1406472 ssrn 1406472
+yangjing long 2009 human estimation metric learning regression problems proc international conference computer analysis images patterns 74–82
+
+
+readingedit
+
+william kruskal judith tanur 1978 linear hypotheses international encyclopedia statistics free press
+
+
+evan williams regression 523–41
+julian stanley analysis variance 541–554
+
+
+lindley 1987 regression correlation analysis palgrave dictionary economics 120–23
+birkes david dodge alternative methods regression isbn 0471568813
+chatfield 1993 calculating interval forecasts journal business economic statistics 121–135
+draper smith 1998 applied regression analysis john wiley isbn 0471170828
+1997 applied regression analysis linear models related methods sage
+hardle applied nonparametric regression 1990 isbn 0521429501
+meade islam 1995 prediction intervals growth curve forecasts journal forecasting 413–430
+srivastava regression analysis theory methods applications springerverlag berlin 2011 printing
+strutz data fitting uncertainty practical introduction weighted least squares beyond viewegteubner isbn 9783834810229
+malakooti 2013 operations production systems multiple objectives john wiley sons
+
+external linksedit
+
+
+
+wikimedia commons media related regression analysis
+
+
+
+hazewinkel michiel 2001 1994 regression analysis encyclopedia mathematics springer sciencebusiness media kluwer academic publishers isbn 9781556080104
+earliest uses regression basic history references
+regression weakly correlated data linear regression mistakes appear yrange much smaller xrange
+
+
+
+
+
+
+
+
+
+
+
+
+least squares regression analysis
+
+
+
+computational statistics
+
+
+
+least squares
+linear least squares
+nonlinear least squares
+iteratively reweighted least squares
+
+
+
+
+
+correlation dependence
+
+
+
+pearson productmoment correlation
+rank correlation spearmans
+kendalls
+partial correlation
+confounding variable
+
+
+
+
+
+regression analysis
+
+
+
+ordinary least squares
+partial least squares
+total least squares
+ridge regression
+
+
+
+
+
+regression
+statistical model
+
+
+
+
+linear regression
+
+
+
+simple linear regression
+ordinary least squares
+generalized least squares
+weighted least squares
+general linear model
+
+
+
+
+
+predictor structure
+
+
+
+polynomial regression
+growth curve statistics
+segmented regression
+local regression
+
+
+
+
+
+nonstandard
+
+
+
+nonlinear regression
+nonparametric
+semiparametric
+robust
+quantile
+isotonic
+
+
+
+
+
+nonnormal errors
+
+
+
+generalized linear model
+binomial
+poisson
+logistic
+
+
+
+
+
+
+
+
+decomposition variance
+
+
+
+analysis variance
+analysis covariance
+multivariate
+
+
+
+
+
+model exploration
+
+
+
+mallowss
+stepwise regression
+model selection
+regression model validation
+
+
+
+
+
+background
+
+
+
+mean predicted response
+gauss–markov theorem
+errors residuals
+goodness
+studentized residual
+minimum meansquare error
+
+
+
+
+
+design experiments
+
+
+
+response surface methodology
+optimal design
+bayesian design
+
+
+
+
+
+numerical approximation
+
+
+
+numerical analysis
+approximation theory
+numerical integration
+gaussian quadrature
+orthogonal polynomials
+chebyshev polynomials
+chebyshev nodes
+
+
+
+
+
+applications
+
+
+
+curve fitting
+calibration curve
+numerical smoothing differentiation
+system identification
+moving least squares
+
+
+
+
+
+
+
+
+regression analysis category
+statistics category
+statistics portal
+statistics outline
+statistics topics
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+statistics
+
+
+
+
+
+
+outline
+index
+
+
+
+
+
+
+
+
+
+
+descriptive statistics
+
+
+
+
+
+
+
+continuous data
+
+
+
+
+center
+
+
+
+mean
+
+arithmetic
+geometric
+harmonic
+
+
+median
+mode
+
+
+
+
+
+dispersion
+
+
+
+variance
+standard deviation
+coefficient variation
+percentile
+range
+interquartile range
+
+
+
+
+
+shape
+
+
+
+central limit theorem
+moments
+
+skewness
+kurtosis
+lmoments
+
+
+
+
+
+
+
+
+
+
+count data
+
+
+
+index dispersion
+
+
+
+
+
+summary tables
+
+
+
+grouped data
+frequency distribution
+contingency table
+
+
+
+
+
+dependence
+
+
+
+pearson productmoment correlation
+rank correlation
+
+spearmans
+kendalls
+
+
+partial correlation
+scatter plot
+
+
+
+
+
+graphics
+
+
+
+chart
+biplot
+plot
+control chart
+correlogram
+chart
+forest plot
+histogram
+chart
+plot
+chart
+scatter plot
+stemandleaf display
+radar chart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data collection
+
+
+
+
+
+
+
+study design
+
+
+
+population
+statistic
+effect size
+statistical power
+sample size determination
+missing data
+
+
+
+
+
+survey methodology
+
+
+
+sampling
+
+stratified
+cluster
+
+
+standard error
+opinion poll
+questionnaire
+
+
+
+
+
+controlled experiments
+
+
+
+design
+
+control
+optimal
+
+
+controlled trial
+randomized
+random assignment
+replication
+blocking
+interaction
+factorial experiment
+
+
+
+
+
+uncontrolled studies
+
+
+
+observational study
+natural experiment
+quasiexperiment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+statistical inference
+
+
+
+
+
+
+
+statistical theory
+
+
+
+population
+statistic
+probability distribution
+sampling distribution
+
+order statistic
+
+
+empirical distribution
+
+density estimation
+
+
+statistical model
+
+space
+
+
+parameter
+
+location
+scale
+shape
+
+
+parametric family
+
+likelihood monotone
+location–scale family
+exponential family
+
+
+completeness
+sufficiency
+statistical functional
+
+bootstrap
+
+
+
+
+optimal decision
+
+loss function
+
+
+efficiency
+statistical distance
+
+divergence
+
+
+asymptotics
+robustness
+
+
+
+
+
+frequentist inference
+
+
+
+
+point estimation
+
+
+
+estimating equations
+
+maximum likelihood
+method moments
+mestimator
+minimum distance
+
+
+unbiased estimators
+
+meanunbiased minimumvariance
+
+rao–blackwellization
+lehmann–scheffé theorem
+
+
+median unbiased
+
+
+plugin
+
+
+
+
+
+interval estimation
+
+
+
+confidence interval
+pivot
+likelihood interval
+prediction interval
+tolerance interval
+resampling
+
+bootstrap
+jackknife
+
+
+
+
+
+
+
+testing hypotheses
+
+
+
+2tails
+power
+
+uniformly powerful test
+
+
+permutation test
+
+randomization test
+
+
+multiple comparisons
+
+
+
+
+
+parametric tests
+
+
+
+likelihoodratio
+wald
+score
+
+
+
+
+
+
+
+
+specific tests
+
+
+
+
+
+
+
+normal
+students ttest
+
+
+
+
+
+
+goodness
+
+
+
+chisquared
+kolmogorov–smirnov
+anderson–darling
+lilliefors
+jarque–bera
+normality shapiro–wilk
+likelihoodratio test
+model selection
+
+cross validation
+
+
+
+
+
+
+
+
+
+rank statistics
+
+
+
+sign
+
+sample median
+
+
+signed rank wilcoxon
+
+hodges–lehmann estimator
+
+
+rank mann–whitney
+nonparametric anova
+
+1way kruskal–wallis
+2way friedman
+ordered alternative jonckheere–terpstra
+
+
+
+
+
+
+
+
+
+
+bayesian inference
+
+
+
+bayesian probability
+
+prior
+posterior
+
+
+credible interval
+bayes factor
+bayesian estimator
+
+maximum posterior estimator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+correlation
+regression analysis
+
+
+
+
+
+
+
+
+
+
+correlation
+
+
+
+pearson productmoment
+partial correlation
+confounding variable
+coefficient determination
+
+
+
+
+
+regression analysis
+
+
+
+errors residuals
+regression model validation
+mixed effects models
+simultaneous equations models
+multivariate adaptive regression splines mars
+
+
+
+
+
+linear regression
+
+
+
+simple linear regression
+ordinary least squares
+general linear model
+bayesian regression
+
+
+
+
+
+nonstandard predictors
+
+
+
+nonlinear regression
+nonparametric
+semiparametric
+isotonic
+robust
+heteroscedasticity
+homoscedasticity
+
+
+
+
+
+generalized linear model
+
+
+
+exponential families
+logistic bernoulli binomial poisson regressions
+
+
+
+
+
+partition variance
+
+
+
+analysis variance anova anova
+analysis covariance
+multivariate anova
+degrees freedom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+categorical multivariate timeseries survival analysis
+
+
+
+
+
+
+
+categorical
+
+
+
+cohens kappa
+contingency table
+graphical model
+loglinear model
+mcnemars test
+
+
+
+
+
+multivariate
+
+
+
+regression
+manova
+principal components
+canonical correlation
+discriminant analysis
+cluster analysis
+classification
+structural equation model
+
+factor analysis
+
+
+multivariate distributions
+
+elliptical distributions
+
+normal
+
+
+
+
+
+
+
+
+
+timeseries
+
+
+
+
+general
+
+
+
+decomposition
+trend
+stationarity
+seasonal adjustment
+exponential smoothing
+cointegration
+structural break
+granger causality
+
+
+
+
+
+specific tests
+
+
+
+dickey–fuller
+johansen
+qstatistic ljung–box
+durbin–watson
+breusch–godfrey
+
+
+
+
+
+time domain
+
+
+
+autocorrelation
+
+partial pacf
+
+
+crosscorrelation
+arma model
+arima model box–jenkins
+autoregressive conditional heteroskedasticity arch
+vector autoregression
+
+
+
+
+
+frequency domain
+
+
+
+spectral density estimation
+fourier analysis
+wavelet
+
+
+
+
+
+
+
+
+survival
+
+
+
+
+survival function
+
+
+
+kaplan–meier estimator product limit
+proportional hazards models
+accelerated failure time model
+first hitting time
+
+
+
+
+
+hazard function
+
+
+
+nelson–aalen estimator
+
+
+
+
+
+test
+
+
+
+logrank test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+applications
+
+
+
+
+
+
+
+biostatistics
+
+
+
+bioinformatics
+clinical trials studies
+epidemiology
+medical statistics
+
+
+
+
+
+engineering statistics
+
+
+
+chemometrics
+methods engineering
+probabilistic design
+process quality control
+reliability
+system identification
+
+
+
+
+
+social statistics
+
+
+
+actuarial science
+census
+crime statistics
+demography
+econometrics
+national accounts
+official statistics
+population statistics
+psychometrics
+
+
+
+
+
+spatial statistics
+
+
+
+cartography
+environmental statistics
+geographic information system
+geostatistics
+kriging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+portal
+commons
+wikiproject
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+quantitative forecasting methods
+
+
+
+
+historical data forecasts
+
+moving average
+exponential smoothing
+trend analysis
+decomposition time series
+naïve approach
+
+
+
+
+
+
+associative causal forecasts
+
+moving average
+simple linear regression
+regression analysis
+econometric model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public health
+
+
+
+general
+
+
+
+auxology
+biological hazard
+chief medical officer
+cultural competence
+deviance
+environmental health
+euthenics
+genomics
+globalization disease
+health economics
+health literacy
+health policy
+
+health system
+health care reform
+public health
+
+
+maternal health
+medical anthropology
+medical sociology
+mental health
+pharmaceutical policy
+public health laboratory
+reproductive health
+social psychology
+sociology health illness
+
+
+
+
+
+preventive healthcare
+
+
+
+behavior change
+
+theories
+
+
+family planning
+health promotion
+human nutrition
+preventive nutrition
+hygiene
+
+food safety
+hand washing
+infection control
+oral hygiene
+
+
+occupational safety health
+
+human factors ergonomics
+hygiene
+injury prevention
+medicine
+nursing
+
+
+patient safety
+
+organization
+
+
+pharmacovigilance
+safe
+sanitation
+
+emergency
+fecal–oral transmission
+open defecation
+sanitary sewer
+waterborne diseases
+
+
+smoking cessation
+vaccination
+vector control
+
+
+
+
+
+population health
+
+
+
+biostatistics
+child mortality
+community health
+epidemiology
+global health
+health impact assessment
+health system
+infant mortality
+opensource healthcare software
+public health informatics
+social determinants health
+
+health equity
+race health
+
+
+social medicine
+
+
+
+
+
+biological
+epidemiological statistics
+
+
+
+casecontrol study
+randomized controlled trial
+relative risk
+statistical hypothesis testing
+
+analysis variance anova
+regression analysis
+curve
+students ttest
+ztest
+
+
+statistical software
+
+
+
+
+
+infectious epidemic
+disease prevention
+
+
+
+asymptomatic carrier
+epidemics
+
+list
+
+
+notifiable diseases
+
+list
+
+
+public health surveillance
+
+disease surveillance
+
+
+quarantine
+sexually transmitted infection
+tropical disease
+vaccine trial
+
+
+
+
+
+food hygiene
+safety management
+
+
+
+food
+
+additive
+chemistry
+engineering
+microbiology
+processing
+safety
+safety scandals
+
+
+genetically modified food
+good agricultural practice
+good manufacturing practice
+
+haccp
+22000
+
+
+
+
+
+
+
+health behavioral
+sciences
+
+
+
+diffusion innovations
+health belief model
+health communication
+health psychology
+positive deviance
+precedeproceed model
+social cognitive theory
+social norms approach
+theory planned behavior
+transtheoretical model
+
+
+
+
+
+organizations
+education
+history
+
+
+
+
+organizations
+
+
+
+europe
+
+centre disease prevention control
+committee environment public health food safety
+
+
+india
+
+ministry health family welfare
+
+
+
+
+centers disease control prevention
+city county health departments
+council education public health
+public health service
+
+
+world health organization
+world toilet organization
+
+
+
+
+
+education
+
+
+
+health education
+higher education
+
+bachelor science public health
+doctor public health
+professional degrees public health
+schools public health
+
+
+
+
+
+
+
+history
+
+
+
+sara josephine baker
+samuel crumbine
+carl rogers darnall
+joseph lister
+margaret sanger
+john snow
+typhoid mary
+germ theory disease
+social hygiene movement
+
+
+
+
+
+
+
+
+
+
+
+category
+commons
+wikiproject
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+41299036
+00564579
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleregressionanalysisoldid813438940 categories forecastingstatistical forecastingsupply chain analyticssupply chain management termstime seriesregression analysisestimation theoryactuarial sciencehidden categories articles unsourced statementsarticles unsourced statements february 2010articles unsourced statements march 2011wikipedia articles identifiers

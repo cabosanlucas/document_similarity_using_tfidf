@@ -1,0 +1,1343 @@
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (February 2010) (Learn how and when to remove this template message)
+
+
+
+
+
+Optical discs
+
+
+
+
+General
+
+
+Optical disc
+Optical disc drive
+Optical disc authoring
+Authoring software
+Recording technologies
+
+Recording modes
+Packet writing
+
+
+
+
+
+
+
+
+
+
+Optical media types
+
+
+Compact disc (CD): CD-DA, CD-ROM, CD-R, CD-RW, 5.1 Music Disc, Super Audio CD (SACD), Photo CD, CD Video (CDV), Video CD (VCD), Super Video CD (SVCD), CD+G, CD-Text, CD-ROM XA, CD-i
+DVD: DVD-R, DVD+R, DVD-R DL, DVD+R DL, DVD-R DS, DVD+R DS, DVD-RW, DVD+RW, DVD-RAM, DVD-D, DVD-A, HVD, EcoDisc
+Blu-ray Disc (BD): BD-R & BD-RE, Ultra HD Blu-ray
+Blu-ray 3D
+Universal Media Disc (UMD)
+Enhanced Versatile Disc (EVD)
+Forward Versatile Disc (FVD)
+Holographic Versatile Disc (HVD)
+China Blue High-definition Disc (CBHD)
+HD DVD: HD DVD-R, HD DVD-RW, HD DVD-RAM
+High-Definition Versatile Multilayer Disc (HD VMD)
+VCDHD
+GD-ROM
+Personal Video Disc (PVD)
+MiniDisc (MD), Hi-MD
+LaserDisc (LD), LD-ROM, LV-ROM
+Video Single Disc (VSD)
+Ultra Density Optical (UDO)
+Stacked Volumetric Optical Disk (SVOD)
+Five dimensional disc (5D DVD)
+Nintendo optical disc (NOD)
+Archival Disc
+Professional Disc
+
+
+
+
+
+
+
+
+Standards
+
+
+SFF ATAPI/MMC
+
+Mount Rainier (packet writing)
+Mount Fuji (layer jump recording)
+
+
+Rainbow Books
+File systems
+
+ISO 9660
+
+Joliet
+Romeo
+Rock Ridge / SUSP
+El Torito
+Apple ISO 9660 Extensions
+
+
+Universal Disk Format (UDF)
+ISO 13490
+
+
+
+
+
+
+
+
+
+
+See also
+
+
+History of optical storage media
+High-definition optical disc format war
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+ISO 9660 is a file system for optical disc media.
+Being published by the International Organization for Standardization (ISO) the file system is considered an international technical standard.
+Since the specification is available for anybody to purchase,[1] implementations have been written for many operating systems.
+
+
+
+Contents
+
+
+1 History
+2 Specifications
+
+2.1 Overall structure
+2.2 Volume descriptor set
+
+2.2.1 Volume descriptor
+
+
+2.3 Directories and files
+2.4 Path tables
+
+
+3 Limitations
+
+3.1 Directory depth limit
+3.2 The 2/4 GiB file size limit
+3.3 Limit on number of directories
+
+
+4 Extensions and improvements
+5 Disc images
+6 Operating system support
+7 See also
+8 References
+9 External links
+
+
+
+History[edit]
+ISO 9660 traces its roots to the High Sierra Format file system.[2] High Sierra arranged file information in a dense, sequential layout to minimize nonsequential access by using a hierarchical (eight levels of directories deep) tree file system arrangement, similar to UNIX and FAT. To facilitate cross platform compatibility, it defined a minimal set of common file attributes (directory or ordinary file and time of recording) and name attributes (name, extension, and version), and used a separate system use area where future optional extensions for each file may be specified.
+High Sierra was adopted in December 1986 (with changes) as an international standard by Ecma International as ECMA-119[3] and submitted for fast tracking to the ISO, where it was eventually accepted as ISO 9660:1988.[4]
+In 2013, ISO published Amendment 1 to the ISO 9660 standard, introducing new data structures and relaxed file name rules intended to "bring harmonization between ISO 9660 and widely used 'Joliet Specification'."[5]
+Specifications[edit]
+Overall structure[edit]
+The following is the rough overall structure of the ISO 9660 file system:
+
+
+ISO 9660 File System
+
+
+System Area (32,768 B)
+Unused by ISO 9660
+
+
+Data Area
+
+
+Volume Descriptor Set
+
+
+Path tables, Directories and Files
+
+
+The System Area, the first 32,768 data bytes of the disk (16 sectors of 2,048 bytes each), is unused by ISO 9660 and therefore available for other uses. For example, a CD-ROM may contain an alternative file system descriptor in this area, as it is often used by hybrid CDs to offer classic Mac OS-specific and macOS-specific content.
+All multi-byte values are stored twice, in little-endian and big-endian format, either one-after-another in what the specification calls "both-byte orders", or in duplicated data structures such as the path table. As the structures have been designed with unaligned members, this "both endian" encoding does however not help implementors as the data structures need to be read byte-wise to convert them to properly aligned data.
+Volume descriptor set[edit]
+The data area begins with a set of one or more volume descriptors, terminated with a volume descriptor set terminator. Collectively the volume descriptor set acts as a header for the data area, describing its content (similar to the BIOS parameter block used by FAT, HPFS and NTFS formatted disks).
+
+
+Volume Descriptor Set
+
+
+Volume Descriptor #1
+
+
+...
+
+
+Volume Descriptor #N
+
+
+Volume Descriptor Set Terminator
+
+
+The volume descriptor set terminator is simply a particular type of volume descriptor with the purpose of marking the end of this set of structures.
+Volume descriptor[edit]
+Each volume descriptor is 2048 bytes in size, fitting perfectly into a single Mode 1 or Mode 2 Form 1 sector. They have the following structure:
+
+
+
+← 2,048 bytes →
+
+
+Parts
+Type
+Identifier (always 'CD001')
+Version (always 0x01)
+Data
+
+
+Sizes
+1 byte
+5 bytes
+1 byte
+2,041 bytes
+
+
+The data field of a volume descriptor may be subdivided into several fields, with the exact content depending on the type.
+Standard volume descriptor types are the following:
+
+
+Basic Volume Descriptor Types
+
+
+Type field value
+Type
+
+
+0
+Boot Record Volume Descriptor
+
+
+1
+Primary Volume Descriptor
+
+
+2
+Supplementary Volume Descriptor, or
+Enhanced Volume Descriptor
+
+
+
+3
+Volume Partition Descriptor
+
+
+255
+Volume Descriptor Set Terminator
+
+
+An ISO 9660 compliant disk contains at least one Primary Volume Descriptor describing the file system and a Volume Descriptor Set Terminator for indicating the end of the descriptor sequence.
+The Primary Volume Descriptor provides information about the volume, characteristics and metadata, including a root directory record that indicates in which sector the root directory is located. Other fields contain the description or name of the volume, and information about who created it and with which application. The size of the logical blocks which the file system uses to segment the volume is also stored in a field inside the primary volume descriptor, as well as the amount of space occupied by the volume (measured in number of logical blocks).
+In addition to the Primary Volume Descriptor(s), Supplementary Volume Descriptors or Enhanced Volume Descriptors may be present.
+Supplementary Volume Descriptors describe the same volume as the Primary Volume Descriptor does, and are normally used for providing additional code page support when the standard code tables are insufficient. The standard specifies that ISO 2022 is used for managing code sets that are wider than 8 bytes, and that ISO 2375 escape sequences are used to identify each particular code page used. Consequently, ISO 9660 supports international single-byte and multi-byte character sets, provided they fit into the framework of the referenced standards. However, ISO 9660 does not specify any code pages that are guaranteed to be supported: all use of code tables other than those defined in the standard itself are subject to agreement between the originator and the recipient of the volume.
+Enhanced Volume Descriptors were introduced in ISO 9660, Amendment 1. They relax some of the requirements of the other volume descriptors and the directory records referenced by them: for example, the directory depth can exceed eight, file identifiers need not contain '.' or file version number, the length of a file and directory identifier is maximized to 207.
+Redundant copies of each volume descriptor can also be included in case the first copy of the descriptor becomes corrupt.
+Directories and files[edit]
+
+
+
+
+Overview of the ISO 9660 directory structure
+
+
+Directory entries are stored following the location of the root directory entry, where evaluation of filenames is begun. Both directories and files are stored as extents, which are sequential series of sectors.
+Files and directories are differentiated only by a file attribute that indicates its nature (similar to Unix). The attributes of a file are stored in the directory entry that describes the file, and optionally in the extended attribute record.
+To locate a file, the directory names in the file's path can be checked sequentially, going to the location of each directory to obtain the location of the subsequent subdirectory. However, a file can also be located through the path table provided by the file system. This path table stores information about each directory, its parent and its location on disk. Since the path table is stored in a contiguous region, it can be searched much faster than jumping to the particular locations of each directory in the file's path, thus reducing seek time.
+The standard specifies three nested levels of interchange (paraphrased from section 10):
+
+Level 1: File names are limited to eight characters with a three-character extension. Directory names are limited to eight characters. Files may contain one single file section.
+Level 2: Files may contain one single file section.
+Level 3: No additional restrictions than those stipulated in the main body of the standard. That is, directory identifiers may not exceed 31 characters in length, and file name + '.' + file name extension may not exceed 30 characters in length (sections 7.5 and 7.6). Files are also allowed to consist of multiple non-contiguous sections (with some restrictions as to order).
+
+Additional restrictions in the body of the standard: The depth of the directory hierarchy must not exceed 8 (root directory being at level 1), and the path length of any file must not exceed 255. (section 6.8.2.1).
+The standard also specifies the following name restrictions (sections 7.5 and 7.6):[4]
+
+All levels restrict file names in the mandatory file hierarchy to upper case letters, digits, underscores ("_"), and a dot. (see also section 7.4.4 and Annex A),
+If no characters are specified for the File Name then the File Name Extension shall consist of at least one character.
+If no characters are specified for the File Name Extension then the File Name shall consist of at least one character.
+File names shall not have more than one dot.
+Directory names shall not use dots at all.
+
+Some CD authoring applications allow the user to use almost any character. While, strictly speaking, this does not conform to the ISO 9660 standard, most operating systems which can read ISO 9660 file systems have no problem with out-of-spec names. However, the names could appear wrong to the user.
+Path tables[edit]
+Path tables summarize the directory structure of the relevant directory hierarchy, providing only the directory identifier, the location of the extent in which the directory is recorded, the length of any extended attributes associated with the directory, and the index of its parent directory path table entry.
+Limitations[edit]
+Directory depth limit[edit]
+The restrictions on filename length (8 characters plus 3 character extension for interchange level 1) and directory depth (8 levels, including the root directory[6]) are a more serious limitation of the ISO 9660 file system.
+The Rock Ridge extension works around the eight-directory depth limit by folding paths. In practice, however, few drivers and OSes care about the directory depth, so this rule is often ignored.
+In addition to the restrictions mentioned above, a CD-ROM producer may choose one of the lower Levels of Interchange specified in chapter 10 of the standard, and further restrict file name length from 30 characters to only 8+3 in file identifiers, and 8 in directory identifiers in order to promote interchangeability with implementations that do not implement the full standard. (This is sometimes mistakenly interpreted as a restriction in the ISO 9660 standard itself.)
+The 2/4 GiB file size limit[edit]
+All numbers in ISO 9660 file systems except the single byte value used for the GMT offset are unsigned numbers. As the length of a file's extent on disk is stored in a 32 bit value,[7] it allows for a maximum length of just over 4.2 GB (more precisely, one byte less than 4 GiB). (Note: Some older operating systems may handle such values incorrectly (i.e., signed instead of unsigned), which would make it impossible to access files larger than 2 GB in size. The latter holds true also for operating systems without large file support.)
+Based on this, it is often assumed that a file on an ISO 9660 formatted disc cannot be larger than 232-1 in size, as the file's size is stored in an unsigned 32 bit value, for which 232-1 is the maximum.
+It is, however, possible to circumvent this limitation by using the multi-extent (fragmentation) feature of ISO 9660 Level 3 to create ISO 9660 filesystems and single files up to 8 TB. With this, files larger than 4 GB can be split up into multiple extents (sequential series of sectors), each not exceeding the 4 GB limit. For example, the free software such as InfraRecorder, ImgBurn and mkisofs as well as Roxio Toast are able to create ISO 9660 filesystems that use multi-extent files to store files larger than 4 GB on appropriate media such as recordable DVDs.
+Empirical tests with a 4.2 GB fragmented file on a DVD media have shown that Microsoft Windows XP supports this, while Mac OS X (as of 10.4.8) does not handle this case properly. In the case of Mac OS X, the driver appears not to support file fragmentation at all (i.e. it only supports ISO 9660 Level 2 but not Level 3). Linux supports multiple extents.[8] FreeBSD only shows and reads the last extent of a multi-extent file.[citation needed][original research?]
+Limit on number of directories[edit]
+Another limitation, less well known, is the number of directories. The ISO image has a structure called "path table". For each directory in the image, the path table provides the number of its parent directory entry. The problem is that the parent directory number is a 16-bit number, limiting its range from 1 to 65,535.[9] The content of each directory is written also in a different place, making the path table redundant, and suitable only for fast searching.
+Some operating systems (e.g., Windows) use the path table, while others (e.g., Linux) do not. If an ISO image or disk consists of more than 65,535 directories, it will be readable in Linux, while in early Windows versions all files from the additional directories will be visible, but show up as empty (zero length). Current Windows[when?] versions appear to handle this correctly.
+Some software tools can have problems managing the path table if the directory limit is exceeded. A popular application using ISO format, mkisofs, aborts if there is a path table overflow. Nero Burning ROM (for Windows) and Pinnacle Instant CD/DVD do not check whether the problem occurs, and will produce an invalid ISO file or disk without warning. The tool isovfy cannot easily report this problem.
+Extensions and improvements[edit]
+There are several extensions to ISO 9660 that relax some of its limitations.
+
+Rock Ridge supports the preservation of POSIX (Unix-style) permissions and longer names.
+Joliet supports Unicode names stored in UCS-2, thus allowing almost any character to be used, even from non-Latin scripts.
+El Torito enables CDs to be bootable on PCs.
+Apple ISO 9660 Extensions adds support for classic Mac OS-specific and macOS-specific file characteristics such as resource forks, file backup date and more.
+
+For operating systems which do not support any extensions, a name translation file TRANS.TBL must be used. It should be located in every directory, including the root directory. This is now obsolete, since few such operating systems are in use today.
+The ISO 13490 standard is an extension to the ISO 9660 format that adds support for multiple sessions on a disc. Since ISO 9660 is by design a read-only, pre-mastered file system, all the data has to be written in one go or "session" to the medium. Once written, there is no provision for altering the stored content. ISO 13490 was created to allow adding more files to a writeable disc such as CD-R in multiple sessions.
+The ISO 13346/ECMA-167[10] standard was designed in conjunction to the ISO 13490 standard to address most of the shortcomings of ISO 9660,[11] and a subset of it evolved into the UDF format, which was adopted for DVDs.
+JIS X 0606:1998, also known as ISO 9660:1999, is a Japanese Industrial Standard draft created by the Japanese National Body (JTC1 N4222) in order to make some improvements and remove some limitations from the original ISO 9660 standard.[12] This draft was submitted in 1998, but it has not been ratified as an ISO standard yet. Some of its changes includes the removal of some restrictions imposed by the original standard by extending the maximum file name length to 207 characters, removing the eight-level maximum directory nesting limit, and removing the special meaning of the dot character in filenames. Some operating systems allow these relaxations as well when reading optical discs. Several disc authoring tools (such as Nero Burning ROM, mkisofs and ImgBurn) support a so-called "ISO 9660:1999" mode (sometimes called "ISO 9660 v2" or "ISO 9660 Level 4" mode) that removes restrictions following the guidelines in the ISO 9660:1999 draft.
+Disc images[edit]
+Main articles: ISO image and Optical disc image
+ISO 9660 file system images (ISO images) are a common way to electronically transfer the contents of CD-ROMs. They often have the filename extension .iso (.iso9660 is less common, but also in use) and are commonly referred to as "ISOs".
+Operating system support[edit]
+Most operating systems support reading of ISO 9660 formatted discs, and most new versions support the extensions such as Rock Ridge and Joliet. Operating systems that do not support the extensions usually show the basic (non-extended) features of a plain ISO 9660 disc.
+Operating systems that support ISO 9660 and its extensions include the following:
+
+DOS: access with extensions, such as MSCDEX.EXE (Microsoft CDROM Extension), NWCDEX.EXE or CORELCDX.EXE
+Microsoft Windows 95, Windows 98, Windows ME: can read ISO 9660 Level 1, 2, 3, and Joliet
+Microsoft Windows NT 4.0, Windows 2000, Windows XP, and newer Windows versions, can read ISO 9660 Level 1, 2, 3, Joliet, and ISO 9660:1999. Windows 7 may also mistake UDF format for CDFS. for more information see UDF.
+Linux and BSD: ISO 9660 Level 1, 2, 3, Joliet, Rock Ridge, and ISO 9660:1999
+Apple GS/OS: ISO Level 1 and 2 support via the HS.FST File System Translator.[13]
+Classic Mac OS 7 to 9: ISO Level 1, 2. Optional free software supports Rock Ridge and Joliet (including ISO Level 3): Joke Ridge and Joliet Volume Access.
+macOS (all versions): ISO Level 1, 2, Joliet and Rock Ridge Extensions. Level 3 is not currently supported, although users have been able to mount these disks[14]
+AmigaOS supports the "AS" extensions (which preserve the Amiga protection bits and file comments)
+QNX
+ULTRIX
+OS/2 and eComStation
+BeOS, Zeta and Haiku
+OpenVMS supports only ISO 9660 Interchange levels 1-3, with no extensions[15]
+RISC OS support for optical media written on a PC is patchy. Most CD-Rs/RWs work perfectly, however DVD+-Rs/RWs/RAMs are entirely hit and miss running RISC OS 4.02, RISC OS 4.39 and RISC OS 6.20[citation needed]
+
+See also[edit]
+
+List of International Organization for Standardization standards
+Hybrid CD
+Disk image emulator
+Comparison of iso image software
+
+References[edit]
+
+
+^ "ISO 9660:1988(en), Information processing — Volume and file structure of CD-ROM for information interchange". ISO (International Organization for Standardization). ISO. 1988. Retrieved 2017-12-17. 
+^ "Working Paper for Information Processing: Volume and File Structure of CD-ROM for Information Interchange". Optical Information Systems. 7 (1): 29–49. January 1987. 
+^ "Volume and File Structure of CDROM for Information Interchange". Ecma International. December 1987. 
+^ a b Volume and file structure of CD-ROM for information interchange (corrected ed.). Geneva: International Organisation for Standardization (ISO). 1988-09-01. 
+^ ISO 9660, Amendment 1 (ISO 9660:1988/Amd.1:2013(E))
+^ ISO 9660, section 6.8.2.1
+^ ISO 9660 section 9.1.4
+^ kern/95222: File sections on ISO9660 {{sic}} level 3 CDs ignored
+^ ISO9660 sections 6.9 and 9.4.4
+^ ECMA-167 - Volume and File Structure for Write-Once and Rewritable Media using Non-Sequential Recording for Information Interchange
+^ Birth Announcement: ISO/IEC 13346 and ISO/IEC 13490
+^ JIS X 0606:1998 / ISO 9660:1999 Draft Specification
+^ "The Virtual GS: Using ISO disk images in Apple II emulators" (PDF). Juiced.GS Volume 9, Issue 2. May 2004. 
+^ "Work with PC-created Joliet Level 3 CDs". Apr 16, 2004. 
+^ "The OpenVMS Frequently Asked Questions (FAQs)". Hoffman Labs. Retrieved 1 September 2011. 
+
+
+External links[edit]
+
+ISO 9660
+ECMA-119 This is the ECMA release of the ISO 9660:1988 standard, available as a free download.
+Summary of the ISO 9660 Specifications
+Description of data structures in ISO-9660
+"ISO 9660 Analyzer Tool (iat)". Freecode. 
+
+
+
+
+
+
+
+v
+t
+e
+
+
+File systems
+
+
+
+
+
+
+Comparison of file systems
+
+distributed
+
+
+Unix filesystem
+
+
+
+
+
+Disk
+
+
+
+
+
+
+
+ADFS
+AdvFS
+Amiga FFS
+Amiga OFS
+APFS
+AthFS
+BFS
+
+Be File System
+Boot File System
+
+
+Btrfs
+CVFS
+CXFS
+DFS
+EFS
+
+Encrypting File System
+Extent File System
+
+
+Episode
+ext
+
+ext2
+ext3
+ext3cow
+ext4
+
+
+FAT
+
+exFAT
+
+
+Files-11
+Fossil
+HAMMER
+HFS
+HFS+
+HPFS
+HTFS
+IBM General Parallel File System
+JFS
+LFS
+MFS
+
+Macintosh File System
+TiVo Media File System
+
+
+MINIX
+NetWare File System
+Next3
+NILFS
+
+NILFS2
+
+
+NSS
+NTFS
+OneFS
+PFS
+QFS
+QNX4FS
+ReFS
+ReiserFS
+
+Reiser4
+
+
+Reliance
+Reliance Nitro
+RFS
+SFS
+SNFS
+Soup (Apple)
+Tux3
+UBIFS
+UFS
+VxFS
+WAFL
+Xiafs
+XFS
+Xsan
+zFS
+ZFS
+
+
+
+
+
+Optical disc
+
+
+
+HSF
+ISO 9660
+ISO 13490
+UDF
+
+
+
+
+
+Flash memory and SSD
+
+
+
+APFS
+FAT
+exFAT
+CHFS
+TFAT
+FFS2
+F2FS
+HPFS
+JFFS
+JFFS2
+JFS
+LogFS
+NILFS
+
+NILFS2
+
+
+NVFS
+YAFFS
+UBIFS
+
+
+
+
+
+Distributed
+
+
+
+CXFS
+GFS2
+Google File System
+OCFS2
+OrangeFS
+PVFS
+QFS
+Xsan
+more...
+
+
+
+
+
+
+
+
+NAS
+
+
+
+AFS (OpenAFS)
+AFP
+Coda
+DFS
+GPFS
+Google File System
+Lustre
+NCP
+NFS
+POHMELFS
+Hadoop
+SMB (CIFS)
+SSHFS
+more...
+
+
+
+
+
+Specialized
+
+
+
+
+
+
+
+Aufs
+AXFS
+Boot File System
+CDfs
+Compact Disc File System
+cramfs
+Davfs2
+FTPFS
+FUSE
+GmailFS
+Lnfs
+LTFS
+NOVA
+MVFS
+SquashFS
+UMSDOS
+OverlayFS
+UnionFS
+WBFS
+
+
+
+
+
+Pseudo and virtual
+
+
+
+configfs
+devfs
+debugfs
+kernfs
+procfs
+specfs
+sysfs
+tmpfs
+WinFS
+
+
+
+
+
+Encrypted
+
+
+
+eCryptfs
+EncFS
+EFS
+Rubberhose
+SSHFS
+ZFS
+
+
+
+
+
+
+
+
+Types
+
+
+
+Clustered
+
+Global
+Grid
+Self-certifying
+
+
+Flash
+Journaling
+Log-structured
+Object
+Record-oriented
+Semantic
+Steganographic
+Synthetic
+Versioning
+
+
+
+
+
+Features
+
+
+
+
+
+
+
+Case preservation
+Copy-on-write
+Data deduplication
+Data scrubbing
+Execute in place
+Extent
+File attribute
+
+Extended file attributes
+
+
+File change log
+Fork
+Links
+
+Hard
+Symbolic
+
+
+
+
+
+
+
+Access control
+
+
+
+Access control list
+Filesystem-level encryption
+Permissions
+
+Modes
+Sticky bit
+
+
+
+
+
+
+
+
+
+
+Interfaces
+
+
+
+File manager
+File system API
+
+Installable File System
+
+
+Virtual file system
+
+
+
+
+
+Lists
+
+
+
+Cryptographic
+Default
+Log-structured
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Standards of Ecma International
+
+
+
+Application interfaces
+
+
+
+ANSI escape code
+Common Language Infrastructure
+Office Open XML
+OpenXPS
+
+
+
+
+
+File systems (tape)
+
+
+
+Advanced Intelligent Tape
+DDS
+DLT
+Super DLT
+Holographic Versatile Disc
+Linear Tape-Open (Ultrium-1)
+VXA
+
+
+
+
+
+File systems (disk)
+
+
+
+CD-ROM
+CD File System (CDFS)
+FAT
+
+FAT12
+FAT16
+FAT16B
+
+
+FD
+UDF
+Ultra Density Optical
+Universal Media Disc
+
+
+
+
+
+Graphics
+
+
+
+Universal 3D
+
+
+
+
+
+Programming languages
+
+
+
+C++/CLI
+C#
+Eiffel
+JavaScript (E4X, ECMAScript)
+
+
+
+
+
+Radio link interfaces
+
+
+
+NFC
+UWB
+
+
+
+
+
+Other
+
+
+
+ECMA-35
+
+
+
+
+
+
+List of Ecma standards (1961 - Present)
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_9660&oldid=816993815"					Categories: Disk file systemsISO standardsEcma standardsOptical computer storageHidden categories: Use dmy dates from July 2012Articles needing additional references from February 2010All articles needing additional referencesAll articles with unsourced statementsArticles with unsourced statements from August 2008All articles that may contain original researchArticles that may contain original research from May 2014All articles with vague or ambiguous timeVague or ambiguous time from January 2017Articles with unsourced statements from December 2017

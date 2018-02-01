@@ -1,0 +1,703 @@
+redirects uses disambiguation
+
+compiler collection
+
+
+
+
+developers
+project
+
+
+initial release
+1987 years 198705231
+
+
+
+
+
+stable release
+
+also supported august 2017 months 20170814
+
+
+
+preview release
+
+april 2017 months 20170420
+
+
+
+
+
+
+repository
+gccgnuorgviewcvsgcc
+
+
+written
+originally
+
+
+operating system
+crossplatform
+
+
+platform
+
+
+
+type
+compiler
+
+
+license
+runtime library exception4
+
+
+website
+gccgnuorg
+
+
+compiler collection compiler system produced project supporting various programming languages component toolchain standard compiler unixlike operating systems free software foundation distributes general public license played important role growth free software tool example
+originally named compiler handled programming language released 19871 extended compile december year front ends later developed objectivec objectivec fortran java among others5
+version openmp specification supported compilers6 much improved implementation openacc specification7 also supported default current version supports gnu14 superset gnu11 superset strict standard support also available also provides experimental support later
+ported wide variety instruction architectures widely deployed tool development free proprietary software also available embedded systemscitation needed including armbased amcc freescale power architecturebased chips8 compiler target wide variety platforms
+well official compiler operating system adopted standard compiler many modern unixlike computer operating systems including linux family although freebsd macos moved llvm system9 versions also available microsoft windows operating systems compile code android
+
+
+
+contents
+
+
+history
+design
+
+front ends
+generic gimple
+optimization
+back
+features
+
+
+languages
+architectures
+development
+license
+uses
+also
+references
+reading
+external links
+
+official
+
+
+
+
+
+
+historyedit
+effort bootstrap operating system richard stallman asked andrew tanenbaum author amsterdam compiler also known free university compiler could software tanenbaum told free university free compiler stallman decided write own10 stallmans initial plan11 rewrite existing compiler lawrence livermore laboratory pastel help tower others12 stallman wrote front livermore compiler realized required megabytes stack space impossibility 68000 unix system concluded would write compiler scratch11 none pastel compiler code ended though stallman front written11
+first released march 1987 available mit13 stallman listed author cited others contributions including jack davidson christopher fraser idea using intermediate language paul rubin writing preprocessor leonard tower parts parser generator definitions machine description14 described first free software salus compiler arrived time microsystems unbundling development tools operating system selling separately higher combined price previous bundle many suns users download instead vendors tools15 1990 supported thirteen computer architectures outperforming several vendor compilers shipped data general next workstations used lotus development corporation16
+licensed programmers wanting work directions—particularly writing interfaces languages c—were free develop fork compiler provided meet gpls terms including requirements distribute source code multiple forks proved inefficient unwieldy however difficulty getting work accepted official project greatly frustrating many17 kept close control added official version used example cathedral development model eric raymonds essay cathedral bazaar
+1997 group developers formed experimentalenhanced compiler system egcs merge several experimental forks single project1718 basis merger development snapshot taken releases projects merged included fortran pgcc pentiumoptimized many improvements many architectures operating system variants19 egcs development proved considerably vigorous development much officially halted development compiler blessed egcs official version appointed egcs project maintainers april 1999 release july 1999 projects united
+since maintained varied group programmers around world direction steering committee20 ported kinds processors operating systems compiler21unreliable source
+ported wide variety instruction architectures widely deployed tool development free proprietary software also available embedded systemscitation needed including symbian called gcce22 armbased amcc freescale power architecturebased chips8 compiler target wide variety platforms including video game consoles playstation cell playstation dreamcast25
+designedit
+
+
+
+
+obtain stable like linux standard base aims procure compiler version important
+
+
+gccs external interface follows unix conventions users invoke languagespecific driver program interprets command arguments calls actual compiler runs assembler output optionally runs linker produce complete executable binary
+language compilers separate program reads source code outputs machine code common internal structure perlanguage front parses source code language produces abstract syntax tree tree short
+necessary converted middle ends input representation called generic form middle gradually transforms program towards final form compiler optimizations static code analysis techniques fortifysource26 compiler directive attempts discover buffer overflows applied code work multiple representations mostly architectureindependent gimple representation architecturedependent representation finally machine code produced using architecturespecific pattern matching originally based algorithm jack davidson chris fraser
+written primarily except parts front distribution includes standard libraries java whose code mostly written languages27 platforms distribution also includes lowlevel runtime library libgcc written combination machineindependent processorspecific machine code designed primarily handle arithmetic operations target processor cannot perform directly28
+2010 steering committee decided allow compiler compile gcc3 compiler intended written plus subset features particular decided gccs developers could destructors generics features
+august 2012 steering committee announced uses implementation language30 means build sources compiler required understands isoiec standard
+front endsedit
+front uses parser produce abstract syntax tree given source file syntax tree abstraction source files different supported languages processed back started using lalr parsers generated bison gradually switched handwritten recursivedescent parsers 200431 objectivec 200632 currently front ends handwritten recursivedescent parsers
+recently tree representation program fully independent processor targeted
+meaning tree somewhat different different language front ends front ends could provide tree codes simplified introduction generic gimple forms languageindependent trees introduced advent generic complex based java front ends intermediate representation gimple simplified generic various constructs lowered multiple gimple instructions java front ends produce generic directly front front ends instead different intermediate representations parsing convert generic
+either case socalled gimplifier converts complex form simpler ssabased gimple form common language large number powerful language architectureindependent global function scope optimizations
+generic gimpleedit
+generic intermediate representation language used middle compiling source code executable binaries subset called gimple targeted front ends
+middle stage code analysis optimization working independently compiled language target architecture starting generic33 representation expanding register transfer language generic representation contains subset imperative programming constructs optimized middle
+transforming source code gimple34 complex expressions split threeaddress code using temporary variables representation inspired simple representation proposed mccat compiler35 laurie hendren36 simplifying analysis optimization imperative programs
+optimizationedit
+optimization occur phase compilation however bulk optimizations performed syntax semantic analysis front code generation back thus common even though somewhat contradictory name part compiler middle
+exact optimizations varies release release develops includes standard algorithms loop optimization jump threading common subexpression elimination instruction scheduling forth optimizations less importance addition global ssabased optimizations gimple trees37 optimizations much limited scope less highlevel information
+optimizations performed level include dead code elimination partial redundancy elimination global value numbering sparse conditional constant propagation scalar replacement aggregates array dependence based optimizations automatic vectorization automatic parallelization also performed profileguided optimization also possible38
+back endedit
+behavior gccs back partly specified preprocessor macros functions specific target architecture instance define endianness word size calling conventions front part back uses help decide generation although gccs nominally processorindependent initial sequence abstract instructions already adapted target moment actual instructions forming program representation comply machine description target architecture
+machine description file contains patterns along operand constraints code snippets output final assembly constraints indicate particular pattern might apply example certain hardware registers example allow immediate operand offsets limited size offsets generation constraints given target architecture checked order issue given snippet must match patterns machine description file satisfy constraints pattern otherwise would impossible convert final machine code
+towards compilation valid reduced strict form instruction refers real machine registers pattern targets machine description file forming strict complicated task important step register allocation real hardware registers chosen replace initially assigned pseudoregisters followed reloading phase pseudoregisters assigned real hardware register spilled stack perform spilling generated likewise offsets large actual instruction must broken replaced sequences obey offset constraints
+final phase machine code built calling small snippet code associated pattern generate real instructions targets instruction using final registers offsets addresses chosen reload phase assemblygeneration snippet string case simple string substitution registers offsets andor addresses string performed assemblygeneration snippet also short block code performing additional work ultimately returning string containing valid assembly code
+featuresedit
+features include
+
+linktime optimization optimizes across object file boundaries directly improve linked binary linktime optimization relies intermediate file containing serialization gimple representation included object filecitation needed file generated alongside object file source compilation source compilation generates separate object file linktime helper file object files linked compiler executed uses helper files optimize code across separately compiled object files
+plugins extend compiler directly39 plugins allow stock compiler tailored specific needs external code loaded plugins example plugins replace even remove middleend passes operating gimple representations40 several plugins already published notably python plugin links libpython allows invoke arbitrary python scripts inside compiler allow plugins written python melt plugin provides highlevel lisplike language extend gcc41
+transactional memory compiling fgnutm642
+
+languagesedit
+standard compiler releases since include front ends objectivec objectivec fortran gfortran java gnat gccgo43 popular parallel language extension openmp also supported version added support cilk plus since version preliminary support openacc44
+fortran front version supports fortran newer versions dropped favor fortran front retaining g77s language extensions supports fortran large parts fortran 2003 fortran 2008 well4546 frontend chill dropped lack maintenance47
+thirdparty front ends exist pascal modula2 modula3 gdc48 vhdl ghdl
+experimental branches exist support additional languages compiler49 unified parallel
+architecturesedit
+target processor families version include
+
+
+alpha
+
+
+blackfin
+epiphany
+h8300
+hc12
+ia32
+ia64 intel itanium
+mips
+motorola 68000
+parisc
+pdp11
+powerpc
+m16c m32c
+sparc
+
+superh
+system390 zseries
+
+x8664
+
+
+lesserknown target processors supported standard release included
+
+
+68hc11
+a29k
+cr16
+
+d30v
+dsp16xx
+etrax cris
+fr30
+
+intel i960
+ip2000
+m32r
+mcore
+milstd1750a
+mmix
+mn10200
+mn10300
+motorola 88000
+ns32k
+romp
+rl78
+stormy16
+v850
+xtensa
+
+
+additional processors supported versions maintained separately version
+
+
+cortus aps3
+
+avr32
+c166 c167
+d10v
+eisc
+esirisc
+hexagon50
+latticemico32
+latticemico8
+
+microblaze
+motorola 6809
+msp430
+architecture51
+nios nios
+openrisc
+pdp10
+pic24dspic
+pic32
+propeller
+riscv
+saturn hp48xgcc
+system370
+tigcc m68k variant
+tricore
+z8000
+
+
+
+java compiler target either native machine language architecture java virtual machines java bytecode52 retargeting platform bootstrapping often used
+developmentedit
+current stable version released august 201753
+version implemented
+supports many objectivec features declared synthesized properties syntax fast enumeration optional protocol methods methodprotocolclass attributes class extensions objectivec runtime also supports programming language includes libquadmath library provides quadrupleprecision mathematical functions targets supporting float128 datatype library used provide real16 type fortran targets
+uses many standard tools build including perl flex bison common tools addition currently requires three additional libraries present order build mpfr
+trunk concentrates major part development efforts features implemented tested
+licenseedit
+
+
+
+
+section needs expansion help adding april 2016
+
+
+
+runtime exception permits compilation proprietary free software programs usage free software plugins55 availability exception imply general presumption thirdparty software unaffected copyleft requirements license
+usesedit
+
+
+
+
+section needs expansion help adding april 2016
+
+
+
+several companies make business supplying supporting ports various platforms56
+alsoedit
+
+
+free software portal
+computer programming portal
+
+
+
+list compilers
+mingw
+concepts extension standard extension supported exclusively
+
+referencesedit
+
+
+releases project retrieved 20061227
+releases project free software foundation
+allows degree june 2010
+runtime library exception retrieved 20130228
+programming languages supported project retrieved 20140623
+release series
+openacc
+linux board support packages retrieved 20080807
+httpllvmorgusershtml
+hagen william 2006 definitive guide definitive guides apress xxvii isbn 9781430202196 wrote vucks author asking could evidently vucks developer uncooperative responding university free compiler
+stallman richard september 2011 project project retrieved october 2011
+puzo jerome february 1986 gnus gnus bulletin free software foundation retrieved 20070811
+richard stallman forwarded leonard tower march 1987 compiler beta test release newsgroup complangc retrieved october 2011
+stallman richard june 2001 first published 1988 contributors using porting compiler collection free software foundation retrieved june 2015
+salus peter 2005 chapter daemon penguin groklaw
+garfinkel simson august 1990 ready software computerworld
+henkelwallace david august 1997 compiler project merge existing forks retrieved 2012
+pentium compiler
+short history development
+steering committee
+linux information project linfo retrieved 20100427 ported modified platforms compiler
+symbian improvement project retrieved 20071108
+setting crosscompiler ps2stuff 20020608 archived original december 2008 retrieved 20081212
+httpsgccgnuorgwikicompilefarm
+guide archived original 20021220 retrieved 20081212
+security features compile time buffer checks fortifysource fedoraprojectorg retrieved 20090311
+languages used make
+internals gccorg retrieved march 2010
+email richard stallman emacsdevel
+release series changes features fixes retrieved october 2013
+release series changes features fixes
+release series changes features fixes
+generic compiler collection internals
+gimple compiler collection internals
+mccat archived original august 2004 retrieved september 2017 maint originalurl status unknown link
+laurie hendren
+novillo diego december 2004 source binary inner workings magazine archived original april 2009
+profileguided optimization demonstrated
+plugins online documentation retrieved july 2013
+starynkevitch basile plugins thru melt example retrieved 20140410
+melt retrieved july 2013
+transactional memory
+front ends gnuorg retrieved november 2011
+release series
+chart fortran 2003 features supported fortran retrieved 20090625
+chart fortran 2008 features supported fortran retrieved 20090625
+patch remove chill gccgnuorg retrieved july 2010
+project bitbucket retrieved july 2010
+unified parallel wwwgccupcorg 20060220 retrieved 20090311 external link publisher help
+hexagon project wiki
+sxgcc port vector
+compiler java programming language archived original 2007 retrieved april 2010
+httpswwwgnuorgsoftwaregccreleaseshtml
+release series changes features fixes
+runtime exception retrieved 20140410
+service directory
+
+
+readingedit
+
+using compiler collection free software foundation 2008
+compiler collection internals free software foundation 2008
+introduction network theory 2004 revised august 2005 isbn 0954161793
+arthur griffith complete reference mcgrawhill osborne 2002 isbn 0072224053
+
+external linksedit
+
+
+
+wikimedia commons media related
+
+
+
+
+
+wikibooks book topic compiler internals
+
+
+officialedit
+
+official website
+release timeline
+development plan
+
+otheredit
+
+optimisations
+collection architecture internals documents bombay
+kerner sean michael march 2006 heavy optimization internetnewscom
+kerner sean michael april 2005 open source older faster internetnewscom
+source binary inner workings diego novillo magazine december 2004
+2003 paper generic gimple
+marketing cygnus support essay covering development 1990s monthly reports inside cygnus engineering section near
+egcs announcement
+egcs features list
+fear forking essay rick moen recording seven wellknown forks including gccegcs
+
+
+
+
+
+
+
+
+
+
+
+
+project
+
+
+
+history
+
+
+
+manifesto
+free software foundation
+
+europe
+india
+latin america
+
+
+history free software
+
+
+
+
+
+licenses
+
+
+
+general public license
+lesser general public license
+affero general public license
+free documentation license
+linking exception
+
+
+
+
+
+software
+
+
+
+variants
+hurd
+linuxlibre
+glibc
+bash
+coreutils
+findutils
+build system
+
+binutils
+
+grub
+gnome
+gnustep
+gimp
+ring
+emacs
+texmacs
+octave
+
+
+
+electric
+archimedes
+gnunet
+privacy guard
+gnuzilla icecat
+health
+gnumed
+lilypond
+
+chess
+gnash
+guix
+guix system distribution
+
+
+
+
+
+
+public
+speakers
+
+
+
+alexandre oliva
+benjamin mako hill
+bradley kuhn
+eben moglen
+federico heinz
+georg greve
+john sullivan
+loïc dachary
+matt
+nagarjuna
+ricardo galli
+richard stallman
+robert chassell
+
+
+
+
+
+topics
+
+
+
+gnulinux naming controversy
+revolution
+free software foundation antiwindows campaigns
+defective design
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+free opensource software
+
+
+
+general
+
+
+
+alternative terms free software
+comparison opensource closedsource software
+comparison source code hosting facilities
+free software
+free software project directories
+gratis versus libre
+longterm support
+opensource software
+opensource software development
+outline
+
+
+
+
+
+software
+packages
+
+
+
+audio
+bioinformatics
+codecs
+collaboration
+configuration management
+device drivers
+
+graphics
+wireless
+
+
+geophysics
+health
+mathematics
+operating systems
+programming languages
+routing
+statistics
+television
+video games
+applications
+
+content management systems
+ecommerce
+
+
+word processors
+android apps
+apps
+commercial
+trademarked
+formerly proprietary
+
+
+
+
+
+community
+
+
+
+free software movement
+history
+opensource software movement
+organizations
+events
+
+
+
+
+
+licenses
+
+
+
+
+apache
+apsl
+artistic
+beerware
+boost
+
+
+cddl
+
+
+lgpl
+
+
+
+msplrl
+python
+python software foundation
+sleepycat
+unlicense
+wtfpl
+zlib
+
+
+
+
+
+license types
+standards
+
+
+
+comparison free opensource software licenses
+contributor license agreement
+copyfree
+copyleft
+debian free software guidelines
+definition free cultural works
+free license
+free software definition
+open source definition
+opensource license
+permissive software licence
+public domain
+viral license
+
+
+
+
+
+challenges
+
+
+
+binary blob
+digital rights management
+hardware restrictions
+license proliferation
+mozilla software rebranding
+proprietary software
+scolinux controversies
+secure boot
+software patents
+software security
+trusted computing
+
+
+
+
+
+related topics
+
+
+
+cathedral bazaar
+forking
+microsoft open specification promise
+revolution
+
+
+
+
+
+
+
+
+book
+category
+commons
+portal
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlegnucompilercollectionoldid815522181 categories 1987 softwarec compilersc compilerscompilerscrossplatform free softwarefortran compilersfree compilers interpretersgnu project softwarejava development toolspascal compilerssoftware rewritten cfree software programmed csoftware using licenseunix programming toolshidden categories maint originalurl status unknowncs1 errors external linksuse dates march 2015pages using deprecated image syntaxall articles unsourced statementsarticles unsourced statements october 2015all articles lacking reliable referencesarticles lacking reliable references april 2013articles unsourced statements january 2016articles expanded april 2016all articles expandedarticles using small message boxes

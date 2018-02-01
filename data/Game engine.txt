@@ -1,0 +1,467 @@
+
+
+
+
+
+
+This article possibly contains original research. Please improve it by verifying the claims made and adding inline citations. Statements consisting only of original research should be removed. (August 2017) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (November 2013) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+Creating a racing game in Blender Game Engine
+
+
+
+
+
+
+Some game engines experience an evolution over time and develop a family tree, like for instance id's Quake engine which resulted in the id Tech family
+
+
+A game engine is a software framework designed for the creation and development of video games. Developers use them to create games for consoles, mobile devices and personal computers. The core functionality typically provided by a game engine includes a rendering engine ("renderer") for 2D or 3D graphics, a physics engine or collision detection (and collision response), sound, scripting, animation, artificial intelligence, networking, streaming, memory management, threading, localization support, scene graph, and may include video support for cinematics. The process of game development is often economized, in large part, by reusing/adapting the same game engine to create different games,[1] or to make it easier to port games to multiple platforms.[citation needed]
+
+
+
+Contents
+
+
+1 Purpose
+2 Components
+
+2.1 Main game program
+2.2 Rendering engine
+2.3 Audio engine
+2.4 Physics engine
+2.5 Artificial intelligence
+
+
+3 History
+4 Game middleware
+5 First-person shooter engines
+6 See also
+7 References
+
+
+
+Purpose[edit]
+In many cases game engines provide a suite of visual development tools in addition to reusable software components. These tools are generally provided in an integrated development environment to enable simplified, rapid development of games in a data-driven manner. Game engine developers attempt to "pre-invent the wheel" by developing robust software suites which include many elements a game developer may need to build a game. Most game engine suites provide facilities that ease development, such as graphics, sound, physics and AI functions. These game engines are sometimes called "middleware" because, as with the business sense of the term, they provide a flexible and reusable software platform which provides all the core functionality needed, right out of the box, to develop a game application while reducing costs, complexities, and time-to-market — all critical factors in the highly competitive video game industry.[2] Gamebryo, JMonkey Engine and RenderWare are such widely used middleware programs.[3]
+Like other types of middleware, game engines usually provide platform abstraction, allowing the same game to be run on various platforms including game consoles and personal computers with few, if any, changes made to the game source code. Often, game engines are designed with a component-based architecture that allows specific systems in the engine to be replaced or extended with more specialized (and often more expensive) game middleware components such as Havok for physics, Miles Sound System for sound, or Bink for video. Some game engines such as RenderWare are even designed as a series of loosely connected game middleware components that can be selectively combined to create a custom engine, instead of the more common approach of extending or customizing a flexible integrated product. However extensibility is achieved, it remains a high priority for game engines due to the wide variety of uses for which they are applied. Despite the specificity of the name, game engines are often used for other kinds of interactive applications with real-time graphical needs such as marketing demos, architectural visualizations, training simulations, and modeling environments.[4]
+Some game engines only provide real-time 3D rendering capabilities instead of the wide range of functionality needed by games. These engines rely upon the game developer to implement the rest of this functionality or assemble it from other game middleware components. These types of engines are generally referred to as a "graphics engine," "rendering engine," or "3D engine" instead of the more encompassing term "game engine." This terminology is inconsistently used as many full-featured 3D game engines are referred to simply as "3D engines." A few examples of graphics engines are: Crystal Space, Genesis3D, Irrlicht, OGRE, RealmForge, Truevision3D, and Vision Engine. Modern game or graphics engines generally provide a scene graph, which is an object-oriented representation of the 3D game world which often simplifies game design and can be used for more efficient rendering of vast virtual worlds.
+As technology ages, the components of an engine may become outdated or insufficient for the requirements of a given project. Since the complexity of programming an entirely new engine may result in unwanted delays (or necessitate that the project be completely restarted), a development team may elect to update their existing engine with newer functionality or components.[citation needed]
+Components[edit]
+Such a framework is composed of a multitude of very different components.
+Main game program[edit]
+The actual game logic has to be implemented by some algorithms. It is distinct from any rendering, sound or input work.
+Rendering engine[edit]
+The rendering engine generates 3D animated graphics by the chosen method (rasterization, ray-tracing or any different technique).
+Instead of being programmed and compiled to be executed on the CPU or GPU directly, most often rendering engines are built upon one or multiple rendering application programming interfaces (APIs), such as Direct3D or OpenGL which provide a software abstraction of the graphics processing unit (GPU).
+Low-level libraries such as DirectX, Simple DirectMedia Layer (SDL), and OpenGL are also commonly used in games as they provide hardware-independent access to other computer hardware such as input devices (mouse, keyboard, and joystick), network cards, and sound cards. Before hardware-accelerated 3D graphics, software renderers had been used. Software rendering is still used in some modeling tools or for still-rendered images when visual accuracy is valued over real-time performance (frames-per-second) or when the computer hardware does not meet needs such as shader support.
+With the advent of hardware accelerated physics processing, various physics APIs such as PAL and the physics extensions of COLLADA became available to provide a software abstraction of the physics processing unit of different middleware providers and console platforms.
+Game engines can be written in any programming language like C++, C or Java, though each language is structurally different and may provide different levels of access to specific functions.
+Audio engine[edit]
+The audio engine is the component which consists of algorithms related to sound. It can calculate things on the CPU, or on a dedicated ASIC. Abstraction APIs, such as OpenAL, SDL audio, XAudio 2, Web Audio, etc. are available.
+Physics engine[edit]
+Main article: Physics engine
+The physics engine is responsible for emulating the laws of physics realistically within the application.
+Artificial intelligence[edit]
+The AI is usually outsourced from the main game program into a special module to be designed and written by software engineers with specialist knowledge.
+History[edit]
+Before game engines, games were typically written as singular entities: a game for the Atari 2600, for example, had to be designed from the bottom up to make optimal use of the display hardware—this core display routine is today called the kernel by retro developers. Other platforms had more leeway, but even when the display was not a concern, memory constraints usually sabotaged attempts to create the data-heavy design that an engine needs. Even on more accommodating platforms, very little could be reused between games. The rapid advance of arcade hardware—which was the leading edge of the market at the time—meant that most of the code would have to be thrown out afterwards anyway, as later generations of games would use completely different game designs that took advantage of extra resources. Thus most game designs through the 1980s were designed through a hard-coded ruleset with a small number of levels and graphics data. Since the golden age of arcade video games, it became common for video game companies to develop in-house game engines for use with first party software.
+While third-party game engines were not common up until the rise of 3D computer graphics in the 1990s, there were several 2D game creation systems produced in the 1980s for independent video game development. These include Pinball Construction Set (1983), ASCII's War Game Construction Kit (1983),[5] Thunder Force Construction (1984),[6] Adventure Construction Set (1984), Garry Kitchen's GameMaker (1985), Wargame Construction Set (1986), Shoot'Em-Up Construction Kit (1987), Arcade Game Construction Kit (1988), and most popularly ASCII's RPG Maker engines from 1998 onwards. Klik & Play (1994) is another legacy offering that's still available.
+The term "game engine" arose in the mid-1990s, especially in connection with 3D games such as first-person shooters (FPS). (See also: first-person shooter engine.) Such was the popularity of Id Software's Doom and Quake games that, rather than work from scratch, other developers licensed the core portions of the software and designed their own graphics, characters, weapons and levels—the "game content" or "game assets." Separation of game-specific rules and data from basic concepts like collision detection and game entity meant that teams could grow and specialize.
+Later games, such as id Software's Quake III Arena and Epic Games's 1998 Unreal were designed with this approach in mind, with the engine and content developed separately. The practice of licensing such technology has proved to be a useful auxiliary revenue stream for some game developers, as a one license for a high-end commercial game engine can range from US$10,000 to millions of dollars, and the number of licensees can reach several dozen companies, as seen with the Unreal Engine. At the very least, reusable engines make developing game sequels faster and easier, which is a valuable advantage in the competitive video game industry. While there was a strong rivalry between Epic and id around 2000, since then Epic's Unreal Engine has been far more popular than id Tech 4 and its successor id Tech 5.[7]
+Modern game engines are some of the most complex applications written, often featuring dozens of finely tuned systems interacting to ensure a precisely controlled user experience. The continued evolution of game engines has created a strong separation between rendering, scripting, artwork, and level design. It is now common, for example, for a typical game development team to have several times as many artists as actual programmers.[8]
+First-person shooter games remain the predominant users of third-party game engines, but they are now also being used in other genres. For example, the role-playing video game The Elder Scrolls III: Morrowind and the MMORPG Dark Age of Camelot are based on the Gamebryo engine, and the MMORPG Lineage II is based on the Unreal Engine. Game engines are used for games originally developed for home consoles as well; for example, the RenderWare engine is used in the Grand Theft Auto and Burnout franchises.
+Threading is taking on more importance due to modern multi-core systems (e.g. Cell) and increased demands in realism. Typical threads involve rendering, streaming, audio, and physics. Racing games have typically been at the forefront of threading with the physics engine running in a separate thread long before other core subsystems were moved, partly because rendering and related tasks need updating at only 30–60 Hz. For example, on PlayStation 3, physics ran in Need For Speed at 100 Hz versus Forza Motorsport 2 at 360 Hz.
+Although the term was first used in the 1990s, there are a few earlier systems in the 1980s that are also considered to be game engines, such as Sierra's Adventure Game Interpreter (AGI) and SCI systems, LucasArts' SCUMM system and Incentive Software's Freescape engine. Unlike most modern game engines, these game engines were never used in any third-party products (except for the SCUMM system which was licensed to and used by Humongous Entertainment).
+As game engine technology matures and becomes more user-friendly, the application of game engines has broadened in scope. They are now being used for serious games: visualization, training, medical, and military simulation applications, with the CryEngine being one example.[9] To facilitate this accessibility, new hardware platforms are now being targeted by game engines, including mobile phones (e.g. Android phones, iPhone) and web browsers (e.g. WebGL, Shockwave, Flash, Trinigy's WebVision, Silverlight, Unity Web Player, O3D and pure DHTML).[10]
+Additionally, more game engines are being built upon higher level languages such as Java and C#/.NET (e.g. TorqueX, and Visual3D.NET), Python (Panda3D), or Lua Script (Leadwerks). As most 3D rich games are now mostly GPU-limited (i.e. limited by the power of the graphics card), the potential slowdown due to translation overheads of higher level languages becomes negligible, while the productivity gains offered by these languages work to the game engine developers' benefit.[11] These recent trends are being propelled by companies such as Microsoft to support Indie game development. Microsoft developed XNA as the SDK of choice for all video games released on Xbox and related products. This includes the Xbox Live Indie Games [12] channel designed specifically for smaller developers who don't have the extensive resources necessary to box games for sale on retail shelves. It is becoming easier and cheaper than ever to develop game engines for platforms that support managed frameworks.[13]
+Game middleware[edit]
+In the broader sense of the term, game engines themselves can be described as middleware. In the context of video games, however, the term "middleware" is often used to refer to subsystems of functionality within a game engine. Some game middleware does only one thing but does it more convincingly or more efficiently than general purpose middleware. For example, SpeedTree was used to render the realistic trees and vegetation in the role-playing video game The Elder Scrolls IV: Oblivion[14] and Fork Particle was used to simulate and render real time particle system visual effects or particle effects in Sid Meier's Civilization V.[15]
+The four most widely used middleware packages[16] that provide subsystems of functionality include RAD Game Tools' Bink, Firelight FMOD, Havok, and Scaleform GFx. RAD Game Tools develops Bink for basic video rendering, along with Miles audio, and Granny 3D rendering. Firelight FMOD is a low cost robust audio library and toolset. Havok provides a robust physics simulation system, along with a suite of animation and behavior applications. Scaleform provides GFx for high performance Flash UI and high-quality video playback, and an Input Method Editor (IME) add-on for in-game Asian chat support.
+Other middleware is used for performance optimisation - for example 'Simplygon' helps to optimise and generate level of detail meshes, and 'Umbra' adds occlusion culling optimisations to 3d graphics.
+Some middleware contains full source code, others just provide an API reference for a compiled binary library. Some middleware programs can be licensed either way, usually for a higher fee for full source code.
+First-person shooter engines[edit]
+
+
+
+
+
+
+This section does not cite any sources. Please help improve this section by adding citations to reliable sources. Unsourced material may be challenged and removed. (July 2017) (Learn how and when to remove this template message)
+
+
+
+Main article: First person shooter engine
+A subset of game engines are 3D first-person shooter (FPS) game engines. Groundbreaking development in terms of visual quality is done in FPS games on the human scale.[vague] While flight and driving simulators and real-time strategy (RTS) games increasingly provide realism on a large scale, first-person shooters are at the forefront of computer graphics on these smaller scales.
+The development of the FPS graphic engines that appear in games can be characterized by a steady increase in technologies, with some breakthroughs. Attempts at defining distinct generations lead to arbitrary choices of what constitutes a highly modified version of an "old engine" and what is a brand-new engine.
+The classification is complicated as game engines blend old and new technologies. Features that were considered advanced in a new game one year become the expected standard the next year. Games with a mix of older generation and newer feature are the norm. For example, Jurassic Park: Trespasser (1998) introduced physics to the FPS games, but it did not become common until around 2002. Red Faction (2001) featured destructible walls and ground, something still not common in engines years later (for example in Unreal Tournament 2004 there are still no destructible objects). Battlezone (1998) and Battlezone II: Combat Commander (1999) added vehicle based combat to the usual FPS mix, which did not hit the mainstream until later. Tribes 2, Battlefield 1942, Halo: Combat Evolved, and Unreal Tournament 2004 fully realized the potential for vehicular-combat and first person shooter integration.
+See also[edit]
+
+
+
+Wikimedia Commons has media related to Game engines.
+
+
+
+List of game engines
+List of first-person shooter engines
+3D computer graphics
+List of game middleware
+Authoring system
+
+References[edit]
+
+
+^ "What is a Game Engine?". GameCareerGuide.com. Retrieved 2013-11-24. 
+^ Cowan, Danny. "Joystiq". Gamedaily.com. Retrieved 2013-11-24. 
+^ "Rise of Middleware". Develop-online.net. 2007-07-06. Retrieved 2011-01-17. 
+^ Report on Use of Middleware in Games Archived October 17, 2013, at the Wayback Machine.
+^ "War Game Construction Kit". Oh!FM. Archived from the original on 3 September 2012. Retrieved 3 September 2012. 
+^ "Thunder Force Construction". Oh!FM. Archived from the original on 1 September 2012. Retrieved 1 September 2012. 
+^ Bramwell, Tom (2007-08-09). "id Tech 5 Interview • Page 1 • Interviews •". Eurogamer.net. Retrieved 2013-11-24. 
+^ "Game Development Team Composition Study - Changes over time". Retrieved 2011-01-17. 
+^ "Video Games Starting to Get Serious". Gazette.net. 2007-08-31. Retrieved 2011-01-17. 
+^ "Gaming: Mobile and Wireless Trends for 2008". M-trends.org. Archived from the original on 2011-01-08. Retrieved 2011-01-17. 
+^ 3D Game Engine Programming (book). Books.google.com. Retrieved 2011-01-17. 
+^ "xboxlivecommunitygames.org". xboxlivecommunitygames.org. Retrieved 2013-11-24. 
+^ "Microsoft to Enable User-Created XBox360 Games". Retrieved 2017-05-05. 
+^ "Gamusutra Product Review of Top Vegetation Middleware". Gamasutra.com. 2003-10-01. Retrieved 2011-01-17. 
+^ "Firaxis Using Fork Particle Toolset For Civ V's Visual Effects". Gamasutra. 2010-10-06. Retrieved 2013-11-24. 
+^ "Gamasutra Engine and Middleware Technology Survey". Gamasutra.com. 2009-05-08. Retrieved 2011-01-17. 
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Game engines (list)
+
+
+
+
+
+
+Source port
+First-person shooter engine
+
+list
+
+
+Game engine recreation
+
+list
+
+
+Game creation system
+
+
+
+
+
+Free and
+open-source
+
+
+
+
+2D
+
+
+
+Adventure Game Studio
+Beats of Rage
+Cocos2d
+Flixel
+KiriKiri
+Moai
+OHRRPGCE
+OpenFL
+ORX
+Pygame
+Ren'Py
+Stratagus
+Thousand Parsec
+VASSAL
+Xconq
+
+
+
+
+
+2.5D
+
+
+
+Aleph One
+Cube Engine
+id Tech 1
+
+
+
+
+
+3D
+
+
+
+Away3D
+Blender Game
+Cafu
+Crystal Space
+Cube 2 Engine
+Delta3D
+Dim3
+GamePlay
+GLScene
+Horde3D
+Irrlicht
+id Tech
+
+2
+3
+4
+
+
+JMonkey
+OGRE
+Open Wonderland
+Panda3D
+Papervision3D
+Platinum Arts Sandbox Free 3D Game Maker
+PlayCanvas
+PLIB
+Quake
+
+II
+
+
+Torque 3D
+
+
+
+
+
+Mix
+
+
+
+Allegro
+Construct Classic
+Godot
+libGDX
+Lightweight Java Game Library
+Spring
+Wintermute Engine
+
+
+
+
+
+
+
+
+Proprietary
+
+
+
+
+2D
+
+
+
+Construct 2
+Corona
+Clickteam Fusion
+GameMaker: Studio
+GameSalad
+M.U.G.E.N
+NScripter
+RPG Maker
+Southpaw
+Stencyl
+UbiArt Framework
+Vicious
+Virtual Theatre
+V-Play
+Zillions of Games
+
+
+
+
+
+3D
+
+
+
+4A
+Amazon Lumberyard
+Anvil
+Bork3D
+C4
+Chrome
+Clausewitz Engine
+Creation
+CryEngine
+Crystal Tools
+Decima
+Diesel
+EAGL
+EGO
+Elflight
+Enforce
+Enigma
+Essence
+Flare3D
+Fox
+Frostbite
+Geo-Mod
+GoldSrc
+HeroEngine
+HydroEngine
+id Tech
+
+5
+6
+
+
+Ignite
+IW
+Jade
+Kinetica
+LS3D
+LithTech
+Luminous Studio
+LyN
+Marmalade
+Mizuchi
+MT Framework
+Outerra
+Panta Rhei
+PhyreEngine
+Plasma
+Q
+Real Virtuality
+REDengine
+Riot
+RAGE
+SAGE
+Serious
+Shark 3D
+ShiVa
+Silent Storm
+Snowdrop
+Source
+Titan
+Stingray
+TOSHI
+Truevision3D
+Unigine
+Unity
+Unreal
+Vision
+Visual3D
+Xenko
+XnGine
+X-Ray
+Zero
+
+
+
+
+
+Mix
+
+
+
+Gamebryo
+Hybrid Graphics
+Kaneva Game Platform
+Metismo
+
+
+
+
+
+
+
+
+Historical
+
+
+
+BRender
+Build
+Dark
+Doom
+Game-Maker
+GameMaker
+Garry Kitchen's GameMaker
+Genesis3D
+Genie
+Gold Box
+Filmation
+Freescape
+INSANE
+Jedi
+MADE
+Pie in the Sky
+RenderWare
+Refractor
+SCUMM
+Sim RPG Maker
+Sith
+Voxel Space
+Wolfenstein 3D
+
+
+
+
+
+Proprietary
+middleware
+
+
+
+Euphoria
+Gameware
+GameWorks
+Havok
+iMUSE
+Kynapse
+SpeedTree
+Xaitment
+FaceGen
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Game_engine&oldid=818084284"					Categories: Video game developmentVideo game enginesHidden categories: Webarchive template wayback linksArticles that may contain original research from August 2017All articles that may contain original researchArticles needing additional references from November 2013All articles needing additional referencesAll articles with unsourced statementsArticles with unsourced statements from September 2013Articles with unsourced statements from April 2011Articles needing additional references from July 2017All Wikipedia articles needing clarificationWikipedia articles needing clarification from July 2017

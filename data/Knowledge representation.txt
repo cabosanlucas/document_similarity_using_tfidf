@@ -1,0 +1,564 @@
+Knowledge representation and reasoning (KR) is the field of artificial intelligence (AI) dedicated to representing information about the world in a form that a computer system can utilize to solve complex tasks such as diagnosing a medical condition or having a dialog in a natural language. Knowledge representation incorporates findings from psychology[citation needed] about how humans solve problems and represent knowledge in order to design formalisms that will make complex systems easier to design and build. Knowledge representation and reasoning also incorporates findings from logic to automate various kinds of reasoning, such as the application of rules or the relations of sets and subsets.
+Examples of knowledge representation formalisms include semantic nets, systems architecture, frames, rules, and ontologies. Examples of automated reasoning engines include inference engines, theorem provers, and classifiers.
+The KR conference series was established to share ideas and progress on this challenging field.[1]
+
+
+
+Contents
+
+
+1 History
+2 Overview
+3 Characteristics
+4 Ontology engineering
+5 See also
+6 References
+7 Further reading
+8 External links
+
+
+
+History[edit]
+The earliest work in computerized knowledge representation was focused on general problem solvers such as the General Problem Solver (GPS) system developed by Allen Newell and Herbert A. Simon in 1959. These systems featured data structures for planning and decomposition. The system would begin with a goal. It would then decompose that goal into sub-goals and then set out to construct strategies that could accomplish each subgoal.
+In these early days of AI, general search algorithms such as A* were also developed. However, the amorphous problem definitions for systems such as GPS meant that they worked only for very constrained toy domains (e.g. the "blocks world"). In order to tackle non-toy problems, AI researchers such as Ed Feigenbaum and Frederick Hayes-Roth realized that it was necessary to focus systems on more constrained problems.
+It was the failure of these efforts that led to the cognitive revolution in psychology and to the phase of AI focused on knowledge representation that resulted in expert systems in the 1970s and 80s, production systems, frame languages, etc. Rather than general problem solvers, AI changed its focus to expert systems that could match human competence on a specific task, such as medical diagnosis.
+Expert systems gave us the terminology still in use today where AI systems are divided into a Knowledge Base with facts about the world and rules and an inference engine that applies the rules to the knowledge base in order to answer questions and solve problems. In these early systems the knowledge base tended to be a fairly flat structure, essentially assertions about the values of variables used by the rules.[2]
+In addition to expert systems, other researchers developed the concept of frame based languages in the mid 1980s. A frame is similar to an object class: It is an abstract description of a category describing things in the world, problems, and potential solutions. Frames were originally used on systems geared toward human interaction, e.g. understanding natural language and the social settings in which various default expectations such as ordering food in a restaurant narrow the search space and allow the system to choose appropriate responses to dynamic situations.
+It wasn't long before the frame communities and the rule-based researchers realized that there was synergy between their approaches. Frames were good for representing the real world, described as classes, subclasses, slots (data values) with various constraints on possible values. Rules were good for representing and utilizing complex logic such as the process to make a medical diagnosis. Integrated systems were developed that combined Frames and Rules. One of the most powerful and well known was the 1983 Knowledge Engineering Environment (KEE) from Intellicorp. KEE had a complete rule engine with forward and backward chaining. It also had a complete frame based knowledge base with triggers, slots (data values), inheritance, and message passing. Although message passing originated in the object-oriented community rather than AI it was quickly embraced by AI researchers as well in environments such as KEE and in the operating systems for Lisp machines from Symbolics, Xerox, and Texas Instruments.[3]
+The integration of Frames, rules, and object-oriented programming was significantly driven by commercial ventures such as KEE and Symbolics spun off from various research projects. At the same time as this was occurring, there was another strain of research which was less commercially focused and was driven by mathematical logic and automated theorem proving. One of the most influential languages in this research was the KL-ONE language of the mid 80's. KL-ONE was a frame language that had a rigorous semantics, formal definitions for concepts such as an Is-A relation.[4] KL-ONE and languages that were influenced by it such as Loom had an automated reasoning engine that was based on formal logic rather than on IF-THEN rules. This reasoner is called the classifier. A classifier can analyze a set of declarations and infer new assertions, for example, redefine a class to be a subclass or superclass of some other class that wasn't formally specified. In this way the classifier can function as an inference engine, deducing new facts from an existing knowledge base. The classifier can also provide consistency checking on a knowledge base (which in the case of KL-ONE languages is also referred to as an Ontology).[5]
+Another area of knowledge representation research was the problem of common sense reasoning. One of the first realizations from trying to make software that can function with human natural language was that humans regularly draw on an extensive foundation of knowledge about the real world that we simply take for granted but that is not at all obvious to an artificial agent. Basic principles of common sense physics, causality, intentions, etc. An example is the frame problem, that in an event driven logic there need to be axioms that state things maintain position from one moment to the next unless they are moved by some external force. In order to make a true artificial intelligence agent that can converse with humans using natural language and can process basic statements and questions about the world it is essential to represent this kind of knowledge. One of the most ambitious programs to tackle this problem was Doug Lenat's Cyc project. Cyc established its own Frame language and had large numbers of analysts document various areas of common sense reasoning in that language. The knowledge recorded in Cyc included common sense models of time, causality, physics, intentions, and many others.[6]
+The starting point for knowledge representation is the knowledge representation hypothesis first formalized by Brian C. Smith in 1985:[7]
+
+Any mechanically embodied intelligent process will be comprised of structural ingredients that a) we as external observers naturally take to represent a propositional account of the knowledge that the overall process exhibits, and b) independent of such external semantic attribution, play a formal but causal and essential role in engendering the behavior that manifests that knowledge.
+
+Currently one of the most active areas of knowledge representation research are projects associated with the semantic web. The semantic web seeks to add a layer of semantics (meaning) on top of the current Internet. Rather than indexing web sites and pages via keywords, the semantic web creates large ontologies of concepts. Searching for a concept will be more effective than traditional text only searches. Frame languages and automatic classification play a big part in the vision for the future semantic web. The automatic classification gives developers technology to provide order on a constantly evolving network of knowledge. Defining ontologies that are static and incapable of evolving on the fly would be very limiting for Internet-based systems. The classifier technology provides the ability to deal with the dynamic environment of the Internet.
+Recent projects funded primarily by the Defense Advanced Research Projects Agency (DARPA) have integrated frame languages and classifiers with markup languages based on XML. The Resource Description Framework (RDF) provides the basic capability to define classes, subclasses, and properties of objects. The Web Ontology Language (OWL) provides additional levels of semantics and enables integration with classification engines.[8][9]
+Overview[edit]
+Knowledge-representation is the field of artificial intelligence that focuses on designing computer representations that capture information about the world that can be used to solve complex problems.
+The justification for knowledge representation is that conventional procedural code is not the best formalism to use to solve complex problems. Knowledge representation makes complex software easier to define and maintain than procedural code and can be used in expert systems.
+For example, talking to experts in terms of business rules rather than code lessens the semantic gap between users and developers and makes development of complex systems more practical.
+Knowledge representation goes hand in hand with automated reasoning because one of the main purposes of explicitly representing knowledge is to be able to reason about that knowledge, to make inferences, assert new knowledge, etc. Virtually all knowledge representation languages have a reasoning or inference engine as part of the system.[10]
+A key trade-off in the design of a knowledge representation formalism is that between expressivity and practicality. The ultimate knowledge representation formalism in terms of expressive power and compactness is First Order Logic (FOL). There is no more powerful formalism than that used by mathematicians to define general propositions about the world. However, FOL has two drawbacks as a knowledge representation formalism: ease of use and practicality of implementation. First order logic can be intimidating even for many software developers. Languages which do not have the complete formal power of FOL can still provide close to the same expressive power with a user interface that is more practical for the average developer to understand. The issue of practicality of implementation is that FOL in some ways is too expressive. With FOL it is possible to create statements (e.g. quantification over infinite sets) that would cause a system to never terminate if it attempted to verify them.
+Thus, a subset of FOL can be both easier to use and more practical to implement. This was a driving motivation behind rule-based expert systems. IF-THEN rules provide a subset of FOL but a very useful one that is also very intuitive. The history of most of the early AI knowledge representation formalisms; from databases to semantic nets to theorem provers and production systems can be viewed as various design decisions on whether to emphasize expressive power or computability and efficiency.[11]
+In a key 1993 paper on the topic, Randall Davis of MIT outlined five distinct roles to analyze a knowledge representation framework:[12]
+
+A knowledge representation (KR) is most fundamentally a surrogate, a substitute for the thing itself, used to enable an entity to determine consequences by thinking rather than acting, i.e., by reasoning about the world rather than taking action in it.
+It is a set of ontological commitments, i.e., an answer to the question: In what terms should I think about the world?
+It is a fragmentary theory of intelligent reasoning, expressed in terms of three components: (i) the representation's fundamental conception of intelligent reasoning; (ii) the set of inferences the representation sanctions; and (iii) the set of inferences it recommends.
+It is a medium for pragmatically efficient computation, i.e., the computational environment in which thinking is accomplished. One contribution to this pragmatic efficiency is supplied by the guidance a representation provides for organizing information so as to facilitate making the recommended inferences.
+It is a medium of human expression, i.e., a language in which we say things about the world.
+
+Knowledge representation and reasoning are a key enabling technology for the Semantic web. Languages based on the Frame model with automatic classification provide a layer of semantics on top of the existing Internet. Rather than searching via text strings as is typical today it will be possible to define logical queries and find pages that map to those queries.[13] The automated reasoning component in these systems is an engine known as the classifier. Classifiers focus on the subsumption relations in a knowledge base rather than rules. A classifier can infer new classes and dynamically change the ontology as new information becomes available. This capability is ideal for the ever-changing and evolving information space of the Internet.[14]
+The Semantic web integrates concepts from knowledge representation and reasoning with markup languages based on XML. The Resource Description Framework (RDF) provides the basic capabilities to define knowledge-based objects on the Internet with basic features such as Is-A relations and object properties. The Web Ontology Language (OWL) adds additional semantics and integrates with automatic classification reasoners.[15]
+Characteristics[edit]
+In 1985, Ron Brachman categorized the core issues for knowledge representation as follows:[16]
+
+Primitives. What is the underlying framework used to represent knowledge? Semantic networks were one of the first knowledge representation primitives. Also, data structures and algorithms for general fast search. In this area there is a strong overlap with research in data structures and algorithms in computer science. In early systems the Lisp programming language which was modeled after the lambda calculus was often used as a form of functional knowledge representation. Frames and Rules were the next kind of primitive. Frame languages had various mechanisms for expressing and enforcing constraints on frame data. All data in frames are stored in slots. Slots are analogous to relations in entity-relation modeling and to object properties in object-oriented modeling. Another technique for primitives is to define languages that are modeled after First Order Logic (FOL). The most well known example is Prolog but there are also many special purpose theorem proving environments. These environments can validate logical models and can deduce new theories from existing models. Essentially they automate the process a logician would go through in analyzing a model. Theorem proving technology had some specific practical applications in the areas of software engineering. For example, it is possible to prove that a software program rigidly adheres to a formal logical specification.
+Meta-representation. This is also known as the issue of reflection in computer science. It refers to the capability of a formalism to have access to information about its own state. An example would be the meta-object protocol in Smalltalk and CLOS that gives developers run time access to the class objects and enables them to dynamically redefine the structure of the knowledge base even at run time. Meta-representation means the knowledge representation language is itself expressed in that language. For example, in most Frame based environments all frames would be instances of a frame class. That class object can be inspected at run time so that the object can understand and even change its internal structure or the structure of other parts of the model. In rule-based environments the rules were also usually instances of rule classes. Part of the meta protocol for rules were the meta rules that prioritized rule firing.
+Incompleteness. Traditional logic requires additional axioms and constraints to deal with the real world as opposed to the world of mathematics. Also, it is often useful to associate degrees of confidence with a statement. I.e., not simply say "Socrates is Human" but rather "Socrates is Human with confidence 50%". This was one of the early innovations from expert systems research which migrated to some commercial tools, the ability to associate certainty factors with rules and conclusions. Later research in this area is known as Fuzzy Logic.[17]
+Definitions and universals vs. facts and defaults. Universals are general statements about the world such as "All humans are mortal". Facts are specific examples of universals such as "Socrates is a human and therefore mortal". In logical terms definitions and universals are about universal quantification while facts and defaults are about existential quantifications. All forms of knowledge representation must deal with this aspect and most do so with some variant of set theory, modeling universals as sets and subsets and definitions as elements in those sets.
+Non-monotonic reasoning. Non-monotonic reasoning allows various kinds of hypothetical reasoning. The system associates facts asserted with the rules and facts used to justify them and as those facts change updates the dependent knowledge as well. In rule based systems this capability is known as a truth maintenance system.[18]
+Expressive adequacy. The standard that Brachman and most AI researchers use to measure expressive adequacy is usually First Order Logic (FOL). Theoretical limitations mean that a full implementation of FOL is not practical. Researchers should be clear about how expressive (how much of full FOL expressive power) they intend their representation to be.[19]
+Reasoning efficiency. This refers to the run time efficiency of the system. The ability of the knowledge base to be updated and the reasoner to develop new inferences in a reasonable period of time. In some ways this is the flip side of expressive adequacy. In general the more powerful a representation, the more it has expressive adequacy, the less efficient its automated reasoning engine will be. Efficiency was often an issue, especially for early applications of knowledge representation technology. They were usually implemented in interpreted environments such as Lisp which were slow compared to more traditional platforms of the time.
+
+Ontology engineering[edit]
+Main articles: Ontology engineering and Ontology language
+In the early years of knowledge-based systems the knowledge-bases were fairly small. The knowledge-bases that were meant to actually solve real problems rather than do proof of concept demonstrations needed to focus on well defined problems. So for example, not just medical diagnosis as a whole topic but medical diagnosis of certain kinds of diseases.
+As knowledge-based technology scaled up the need for larger knowledge bases and for modular knowledge bases that could communicate and integrate with each other became apparent. This gave rise to the discipline of ontology engineering, designing and building large knowledge bases that could be used by multiple projects. One of the leading research projects in this area was the Cyc project. Cyc was an attempt to build a huge encyclopedic knowledge base that would contain not just expert knowledge but common sense knowledge. In designing an artificial intelligence agent it was soon realized that representing common sense knowledge, knowledge that humans simply take for granted, was essential to make an AI that could interact with humans using natural language. Cyc was meant to address this problem. The language they defined was known as CycL.
+After CycL, a number of ontology languages have been developed. Most are declarative languages, and are either frame languages, or are based on first-order logic. Modularity—the ability to define boundaries around specific domains and problem spaces—is essential for these languages because as stated by Tom Gruber, "Every ontology is a treaty- a social agreement among people with common motive in sharing." There are always many competing and differing views that make any general purpose ontology impossible. A general purpose ontology would have to be applicable in any domain and different areas of knowledge need to be unified.[20]
+There is a long history of work attempting to build ontologies for a variety of task domains, e.g., an ontology for liquids,[21] the lumped element model widely used in representing electronic circuits (e.g.,[22]), as well as ontologies for time, belief, and even programming itself. Each of these offers a way to see some part of the world. The lumped element model, for instance, suggests that we think of circuits in terms of components with connections between them, with signals flowing instantaneously along the connections. This is a useful view, but not the only possible one. A different ontology arises if we need to attend to the electrodynamics in the device: Here signals propagate at finite speed and an object (like a resistor) that was previously viewed as a single component with an I/O behavior may now have to be thought of as an extended medium through which an electromagnetic wave flows.
+Ontologies can of course be written down in a wide variety of languages and notations (e.g., logic, LISP, etc.); the essential information is not the form of that language but the content, i.e., the set of concepts offered as a way of thinking about the world. Simply put, the important part is notions like connections and components, not the choice between writing them as predicates or LISP constructs.
+The commitment made selecting one or another ontology can produce a sharply different view of the task at hand. Consider the difference that arises in selecting the lumped element view of a circuit rather than the electrodynamic view of the same device. As a second example, medical diagnosis viewed in terms of rules (e.g., MYCIN) looks substantially different from the same task viewed in terms of frames (e.g., INTERNIST). Where MYCIN sees the medical world as made up of empirical associations connecting symptom to disease, INTERNIST sees a set of prototypes, in particular prototypical diseases, to be matched against the case at hand.
+See also[edit]
+
+Belief revision
+Chunking (psychology)
+Commonsense knowledge base
+Conceptual graph
+Logico-linguistic modeling
+Personal knowledge base
+Valuation-based system
+
+References[edit]
+
+
+^ "Principles of Knowledge Representation and Reasoning". kr.org. KR Inc. Retrieved 22 November 2017. 
+^ Hayes-Roth, Frederick; Donald Waterman; Douglas Lenat (1983). Building Expert Systems. Addison-Wesley. ISBN 0-201-10686-8. 
+^ Mettrey, William (1987). "An Assessment of Tools for Building Large Knowledge-Based Systems". AI Magazine. 8 (4). 
+^ Brachman, Ron (1978). "A Structural Paradigm for Representing Knowledge". Bolt, Beranek, and Neumann Technical Report (3605). 
+^ MacGregor, Robert (June 1991). "Using a description classifier to enhance knowledge representation". IEEE Expert. 6 (3): 41–46. doi:10.1109/64.87683. Retrieved 10 November 2013. 
+^ Lenat, Doug; R. V. Guha (January 1990). Building Large Knowledge-Based Systems: Representation and Inference in the Cyc Project. Addison-Wesley. ISBN 978-0201517521. 
+^ Smith, Brian C. (1985). "Prologue to Reflections and Semantics in a Procedural Language". In Ronald Brachman and Hector J. Levesque. Readings in Knowledge Representation. Morgan Kaufmann. pp. 31–40. ISBN 0-934613-01-X. 
+^ Berners-Lee, Tim; James Hendler; Ora Lassila (May 17, 2001). "The Semantic Web A new form of Web content that is meaningful to computers will unleash a revolution of new possibilities". Scientific American. 284: 34–43. doi:10.1038/scientificamerican0501-34. Archived from the original on April 24, 2013. 
+^ Knublauch, Holger; Oberle, Daniel; Tetlow, Phil; Wallace, Evan (2006-03-09). "A Semantic Web Primer for Object-Oriented Software Developers". W3C. Retrieved 2008-07-30. 
+^ Hayes-Roth, Frederick; Donald Waterman; Douglas Lenat (1983). Building Expert Systems. Addison-Wesley. pp. 6–7. ISBN 0-201-10686-8. 
+^ Levesque, Hector; Ronald Brachman (1985). "A Fundamental Tradeoff in Knowledge Representation and Reasoning". In Ronald Brachman and Hector J. Levesque. Readings in Knowledge Representation. Morgan Kaufmann. p. 49. ISBN 0-934613-01-X. The good news in reducing KR service to theorem proving is that we now have a very clear, very specific notion of what the KR system should do; the bad new is that it is also clear that the services can not be provided... deciding whether or not a sentence in FOL is a theorem... is unsolvable. 
+^ Davis, Randall; Howard Shrobe; Peter Szolovits (Spring 1993). "What Is a Knowledge Representation?". AI Magazine. 14 (1): 17–33. 
+^ Berners-Lee, Tim; James Hendler; Ora Lassila (May 17, 2001). "The Semantic Web A new form of Web content that is meaningful to computers will unleash a revolution of new possibilities". Scientific American. 284: 34–43. doi:10.1038/scientificamerican0501-34. Archived from the original on April 24, 2013. 
+^ Macgregor, Robert (August 13, 1999). "Retrospective on Loom". isi.edu. Information Sciences Institute. Archived from the original on 25 October 2013. Retrieved 10 December 2013. 
+^ Knublauch, Holger; Oberle, Daniel; Tetlow, Phil; Wallace, Evan (2006-03-09). "A Semantic Web Primer for Object-Oriented Software Developers". W3C. Retrieved 2008-07-30. 
+^ Brachman, Ron (1985). "Introduction". In Ronald Brachman and Hector J. Levesque. Readings in Knowledge Representation. Morgan Kaufmann. pp. XVI–XVII. ISBN 0-934613-01-X. 
+^ Bih, Joseph (2006). "Paradigm Shift: An Introduction to Fuzzy Logic" (PDF). IEEE POTENTIALS. Retrieved 24 December 2013. 
+^ Zlatarva, Nellie (1992). "Truth Maintenance Systems and their Application for Verifying Expert System Knowledge Bases". Artificial Intelligence Review. 6: 67–110. doi:10.1007/bf00155580. Retrieved 25 December 2013. 
+^ Levesque, Hector; Ronald Brachman (1985). "A Fundamental Tradeoff in Knowledge Representation and Reasoning". In Ronald Brachman and Hector J. Levesque. Readings in Knowledge Representation. Morgan Kaufmann. pp. 41–70. ISBN 0-934613-01-X. 
+^ Russell, Stuart J.; Norvig, Peter (2010), Artificial Intelligence: A Modern Approach (3rd ed.), Upper Saddle River, New Jersey: Prentice Hall, ISBN 0-13-604259-7, p. 437-439
+^ Hayes P, Naive physics I: Ontology for liquids. University of Essex report, 1978, Essex, UK.
+^ Davis R, Shrobe H E, Representing Structure and Behavior of Digital Hardware, IEEE Computer, Special Issue on Knowledge Representation, 16(10):75-82.
+
+
+Further reading[edit]
+
+Ronald J. Brachman; What IS-A is and isn't. An Analysis of Taxonomic Links in Semantic Networks; IEEE Computer, 16 (10); October 1983
+Ronald J. Brachman, Hector J. Levesque Knowledge Representation and Reasoning, Morgan Kaufmann, 2004 ISBN 978-1-55860-932-7
+Ronald J. Brachman, Hector J. Levesque (eds) Readings in Knowledge Representation, Morgan Kaufmann, 1985, ISBN 0-934613-01-X
+Chein, M., Mugnier, M.-L. (2009),Graph-based Knowledge Representation: Computational Foundations of Conceptual Graphs, Springer, 2009,ISBN 978-1-84800-285-2.
+Randall Davis, Howard Shrobe, and Peter Szolovits; What Is a Knowledge Representation? AI Magazine, 14(1):17-33,1993
+Ronald Fagin, Joseph Y. Halpern, Yoram Moses, Moshe Y. Vardi Reasoning About Knowledge, MIT Press, 1995, ISBN 0-262-06162-7
+Jean-Luc Hainaut, Jean-Marc Hick, Vincent Englebert, Jean Henrard, Didier Roland: Understanding Implementations of IS-A Relations. ER 1996: 42-57
+Hermann Helbig: Knowledge Representation and the Semantics of Natural Language, Springer, Berlin, Heidelberg, New York 2006
+Frank van Harmelen, Vladimir Lifschitz and Bruce Porter: Handbook of Knowledge Representation 2007.
+Arthur B. Markman: Knowledge Representation Lawrence Erlbaum Associates, 1998
+John F. Sowa: Knowledge Representation: Logical, Philosophical, and Computational Foundations. Brooks/Cole: New York, 2000
+Adrian Walker, Michael McCord, John F. Sowa, and Walter G. Wilson: Knowledge Systems and Prolog, Second Edition, Addison-Wesley, 1990
+Mary-Anne Williams and Hans Rott: "Frontiers in Belief Revision, Kluwer", 2001.
+
+External links[edit]
+
+What is a Knowledge Representation? by Randall Davis and others
+Introduction to Knowledge Modeling by Pejman Makhfi
+Introduction to Description Logics course by Enrico Franconi, Faculty of Computer Science, Free University of Bolzano, Italy
+DATR Lexical knowledge representation language
+Loom Project Home Page
+Description Logic in Practice: A CLASSIC Application
+The Rule Markup Initiative
+Nelements KOS - a non-free 3d knowledge representation system
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Major fields of computer science
+
+
+
+
+Note: This template roughly follows the 2012 ACM Computing Classification System.
+
+
+
+Hardware
+
+
+
+Printed circuit board
+Peripheral
+Integrated circuit
+Very-large-scale integration
+Energy consumption
+Electronic design automation
+
+
+
+
+
+Computer systems
+organization
+
+
+
+Computer architecture
+Embedded system
+Real-time computing
+Dependability
+
+
+
+
+
+Networks
+
+
+
+Network architecture
+Network protocol
+Network components
+Network scheduler
+Network performance evaluation
+Network service
+
+
+
+
+
+Software organization
+
+
+
+Interpreter
+Middleware
+Virtual machine
+Operating system
+Software quality
+
+
+
+
+
+Software notations
+and tools
+
+
+
+Programming paradigm
+Programming language
+Compiler
+Domain-specific language
+Modeling language
+Software framework
+Integrated development environment
+Software configuration management
+Software library
+Software repository
+
+
+
+
+
+Software development
+
+
+
+Software development process
+Requirements analysis
+Software design
+Software construction
+Software deployment
+Software maintenance
+Programming team
+Open-source model
+
+
+
+
+
+Theory of computation
+
+
+
+Model of computation
+Formal language
+Automata theory
+Computational complexity theory
+Logic
+Semantics
+
+
+
+
+
+Algorithms
+
+
+
+Algorithm design
+Analysis of algorithms
+Randomized algorithm
+Computational geometry
+
+
+
+
+
+Mathematics
+of computing
+
+
+
+Discrete mathematics
+Probability
+Statistics
+Mathematical software
+Information theory
+Mathematical analysis
+Numerical analysis
+
+
+
+
+
+Information
+systems
+
+
+
+Database management system
+Information storage systems
+Enterprise information system
+Social information systems
+Geographic information system
+Decision support system
+Process control system
+Multimedia information system
+Data mining
+Digital library
+Computing platform
+Digital marketing
+World Wide Web
+Information retrieval
+
+
+
+
+
+Security
+
+
+
+Cryptography
+Formal methods
+Security services
+Intrusion detection system
+Hardware security
+Network security
+Information security
+Application security
+
+
+
+
+
+Human–computer
+interaction
+
+
+
+Interaction design
+Social computing
+Ubiquitous computing
+Visualization
+Accessibility
+
+
+
+
+
+Concurrency
+
+
+
+Concurrent computing
+Parallel computing
+Distributed computing
+Multithreading
+Multiprocessing
+
+
+
+
+
+Artificial
+intelligence
+
+
+
+Natural language processing
+Knowledge representation and reasoning
+Computer vision
+Automated planning and scheduling
+Search methodology
+Control method
+Philosophy of artificial intelligence
+Distributed artificial intelligence
+
+
+
+
+
+Machine learning
+
+
+
+Supervised learning
+Unsupervised learning
+Reinforcement learning
+Multi-task learning
+Cross-validation
+
+
+
+
+
+Graphics
+
+
+
+Animation
+Rendering
+Image manipulation
+Graphics processing unit
+Mixed reality
+Virtual reality
+Image compression
+Solid modeling
+
+
+
+
+
+Applied
+computing
+
+
+
+E-commerce
+Enterprise software
+Computational mathematics
+Computational physics
+Computational chemistry
+Computational biology
+Computational social science
+Computational engineering
+Computational healthcare
+Digital art
+Electronic publishing
+Cyberwarfare
+Electronic voting
+Video game
+Word processing
+Operations research
+Educational technology
+Document management
+
+
+
+
+
+
+
+
+ Book
+ Category
+ Portal
+WikiProject
+ Commons
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Computable knowledge
+
+
+
+Topics and
+concepts
+
+
+
+Alphabet of human thought
+Authority control
+Automated reasoning
+Commonsense knowledge
+Commonsense reasoning
+Computability
+Formal system
+Inference engine
+Knowledge base
+Knowledge-based systems
+Knowledge engineering
+Knowledge extraction
+Knowledge representation
+Knowledge retrieval
+Library classification
+Logic programming
+Ontology
+Personal knowledge base
+Question answering
+Semantic reasoner
+
+
+
+
+
+Proposals and
+implementations
+
+
+
+Zairja
+Ars Magna (1300)
+An Essay towards a Real Character and a Philosophical Language (1688)
+Calculus ratiocinator & Characteristica universalis (1700)
+Dewey Decimal Classification (1876)
+Begriffsschrift (1879)
+Mundaneum (1910)
+Logical atomism (1918)
+Tractatus Logico-Philosophicus (1921)
+Hilbert's program (1920s)
+Incompleteness theorem (1931)
+World Brain (1938)
+Memex (1945)
+General Problem Solver (1959)
+Prolog (1972)
+Cyc (1984)
+Semantic Web (2001)
+Evi (2007)
+Wolfram Alpha (2009)
+Watson (2011)
+Siri (2011)
+Knowledge Graph (2012)
+Wikidata (2012)
+Cortana (2014)
+Viv (2016)
+
+
+
+
+
+In fiction
+
+
+
+The Engine (Gulliver's Travels, 1726)
+Joe ("A Logic Named Joe", 1946)
+The Librarian (Snow Crash, 1992)
+Dr. Know (A.I. Artificial Intelligence, 2001)
+Waterhouse (The Baroque Cycle, 2003)
+
+See also: Logic machines in fiction and List of fictional computers
+
+
+
+
+
+
+
+
+Wikimedia Commons has media related to Knowledge representation.
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Knowledge_representation_and_reasoning&oldid=817003430"					Categories: Knowledge representationScientific modelingProgramming paradigmsReasoningHidden categories: All articles with unsourced statementsArticles with unsourced statements from February 2016

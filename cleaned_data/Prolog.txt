@@ -1,0 +1,1059 @@
+article programming language narrative device prologue uses prologue disambiguation
+
+prolog
+
+paradigm
+logic programming
+
+
+designed
+alain colmerauer
+
+
+first appeared
+1972
+
+
+filename extensions
+
+
+
+major implementations
+
+
+bprolog ciao eclipse prolog jekejeke prolog logic programming associates poplog prolog quintus sicstus strawberry swiprolog tuprolog yapprolog prolog
+
+
+dialects
+
+
+prolog edinburgh prolog
+
+
+influenced
+
+
+planner
+
+
+influenced
+
+
+visual prolog mercury erlang strand datalog
+
+
+
+
+prolog wikibooks
+
+
+
+
+prolog generalpurpose logic programming language associated artificial intelligence computational linguistics123
+prolog roots firstorder logic formal logic unlike many programming languages prolog intended primarily declarative programming language program logic expressed terms relations represented facts rules computation initiated running query relations4
+language first conceived group around alain colmerauer marseille france early 1970s first prolog system developed 1972 colmerauer philippe roussel56
+prolog first logic programming languages7 remains popular among languages today several free commercial implementations available language used theorem proving8 expert systems9 term rewriting10 type inference11 automated planning12 well original intended field natural language processing1314 modern prolog environments support creation graphical user interfaces well administrative networked applications
+prolog wellsuited specific tasks benefit rulebased logical queries searching databases voice control systems filling templates
+
+
+
+contents
+
+
+syntax semantics
+
+data types
+rules facts
+execution
+loops recursion
+negation
+
+
+programming prolog
+
+hello world
+compiler optimization
+quicksort
+
+
+design patterns
+higherorder programming
+modules
+parsing
+metainterpreters reflection
+turing completeness
+implementation
+
+prolog
+compilation
+tail recursion
+term indexing
+hashing
+tabling
+implementation hardware
+
+
+limitations
+extensions
+
+types
+modes
+constraints
+objectorientation
+graphics
+concurrency
+programming
+adobe flash
+
+
+
+interfaces languages
+history
+industry
+also
+
+related languages
+
+
+references
+reading
+external links
+
+
+
+syntax semanticsedit
+main article prolog syntax semantics
+prolog program logic expressed terms relations computation initiated running query relations relations queries constructed using prologs single data type term4 relations defined clauses given query prolog engine attempts find resolution refutation negated query negated query refuted instantiation free variables found makes union clauses singleton consisting negated query false follows original query found instantiation applied logical consequence program makes prolog logic programming languages particularly useful database symbolic mathematics language parsing applications prolog allows impure predicates checking truth value certain special predicates deliberate side effect printing value screen programmer permitted amount conventional imperative programming logical paradigm inconvenient purely logical subset called pure prolog well number extralogical features
+data typesedit
+prologs single data type term terms either atoms numbers variables compound terms
+
+atom generalpurpose name inherent meaning examples atoms include taco atom
+numbers floats integers standard compatible prolog systems check prolog flag bounded major prolog systems support arbitrary precision integer numbers
+variables denoted string consisting letters numbers underscore characters beginning uppercase letter underscore variables closely resemble variables logic placeholders arbitrary terms
+compound term composed atom called functor number arguments terms compound terms ordinarily written functor followed commaseparated list argument terms contained parentheses number arguments called terms arity atom regarded compound term arity zero examples compound terms truckyearmazda 1986 personfriendszeldatomjim
+
+special cases compound terms
+
+list ordered collection terms denoted square brackets terms separated commas case empty list example redgreenblue
+strings sequence characters surrounded quotes equivalent list numeric character codes generally local character encoding unicode system supports unicode example becitation needed
+
+prolog provides atom1 number1 integer1 float1 predicates typechecking15
+rules factsedit
+prolog programs describe relations defined means clauses pure prolog restricted horn clauses types clauses facts rules rule form
+
+
+head body
+
+read head true body true rules body consists calls predicates called rules goals builtin predicate meaning 2arity operator name denotes conjunction goals denotes disjunction conjunctions disjunctions appear body head rule
+clauses empty bodies called facts example fact
+
+
+cattom
+
+equivalent rule
+
+
+cattom true
+
+builtin predicate true0 always true
+given fact
+
+
+
+cattom
+
+
+things cats
+
+
+catx
+
+
+clauses bodies called rules example rule
+
+
+animalx catx
+
+rule things animals
+
+
+animalx
+
+
+relational nature many builtin predicates typically used several directions example length2 used determine length list lengthlist given list list well generate list skeleton given length lengthx also generate list skeletons lengths together lengthx similarly append3 used append lists appendlista listb given lists lista listb well split given list parts appendx list given list list reason comparatively small library predicates suffices many prolog programs
+general purpose language prolog also provides various builtin predicates perform routine activities like inputoutput using graphics otherwise communicating operating system predicates given relational meaning useful sideeffects exhibit system example predicate write1 displays term screen
+executionedit
+execution prolog program initiated users posting single goal called query logically prolog engine tries find resolution refutation negated query resolution method used prolog called resolution negated query refuted follows query appropriate variable bindings place logical consequence program case generated variable bindings reported user query said succeeded operationally prologs execution strategy thought generalization function calls languages difference multiple clause heads match given call case system creates choicepoint unifies goal clause head first alternative continues goals first alternative goal fails course executing program variable bindings made since recent choicepoint created undone execution continues next alternative choicepoint execution strategy called chronological backtracking example
+
+
+motherchildtrude sally
+
+fatherchildtom sally
+fatherchildtom erica
+fatherchildmike
+
+siblingx parentchildz parentchildz
+
+parentchildx fatherchildx
+parentchildx motherchildx
+
+results following query evaluated true
+
+
+siblingsally erica
+
+
+obtained follows initially matching clausehead query siblingsally erica first proving query equivalent proving body clause appropriate variable bindings place conjunction parentchildzsally parentchildzerica next goal proved leftmost conjunction parentchildz sally clause heads match goal system creates choicepoint tries first alternative whose body fatherchildz sally goal proved using fact fatherchildtom sally binding generated next goal proved second part conjunction parentchildtom erica proved corresponding fact since goals could proved query succeeds since query contained variables bindings reported user query variables like
+
+
+fatherchildfather child
+
+enumerates valid answers backtracking
+notice code stated query siblingsally sally also succeeds would insert additional goals describe relevant restrictions desired
+loops recursionedit
+iterative algorithms implemented means recursive predicates16
+negationedit
+builtin prolog predicate provides negation failure allows nonmonotonic reasoning goal illegalx rule
+
+
+legalx illegalx
+
+evaluated follows prolog attempts prove illegalx proof goal found original goal illegalx fails proof found original goal succeeds therefore prefix operator called provable operator since query goal succeeds goal provable kind negation sound argument ground contains variables soundness lost argument contains variables proof procedure complete particular query legalx used enumerate things legal
+programming prologedit
+prolog loading code referred consulting prolog used interactively entering queries prolog prompt solution prolog writes solution exists printed multiple solutions query requested entering semicolon guidelines good programming practice improve code efficiency readability maintainability17
+follow example programs written prolog
+hello worldedit
+example query
+
+
+writehello world
+hello world
+true
+
+
+
+compiler optimizationedit
+computation expressed declaratively sequence state transitions example optimizing compiler three optimization passes could implemented relation initial program optimized form
+
+
+programoptimizedprog0 prog
+optimizationpass1prog0 prog1
+optimizationpass2prog1 prog2
+optimizationpass3prog2 prog
+
+equivalently using notation
+
+
+programoptimized optimizationpass1 optimizationpass2 optimizationpass3
+
+quicksortedit
+quicksort sorting algorithm relating list sorted version
+
+
+partition
+partitionxxs pivot smalls bigs
+pivot
+smalls xrest
+partitionxs pivot rest bigs
+bigs xrest
+partitionxs pivot smalls rest
+
+
+quicksort
+quicksortxxs
+partitionxs smaller bigger
+quicksortsmaller quicksortbigger
+
+design patternsedit
+design pattern general reusable solution commonly occurring problem software design prolog design patterns various names skeletons techniques1819 cliches20 program schemata21 logic description schemata22 alternative design patterns higher order programming23
+higherorder programmingedit
+main articles higherorder logic higherorder programming
+higherorder predicate predicate takes predicates arguments although support higherorder programming takes prolog outside domain firstorder logic allow quantification predicates24 prolog builtin higherorder predicates call1 call2 call3 findall3 setof3 bagof325 furthermore since arbitrary prolog goals constructed evaluated runtime easy write higherorder predicates like maplist2 applies arbitrary predicate member given list sublist3 filters elements satisfy given predicate also allowing currying23
+convert solutions temporal representation answer substitutions backtracking spatial representation terms prolog various allsolutions predicates collect answer substitutions given query list used list comprehension example perfect numbers equal proper divisors
+
+
+perfectn
+between1
+findalld between1ud
+sumlistds
+
+used enumerate perfect numbers also check whether number perfect
+another example predicate maplist applies predicate corresponding positions pair lists
+
+
+maplist
+maplistp
+callp
+maplistp
+
+predicate unifies single unique value maplistp equivalent applying function functional programming mapfunction
+higherorder programming style prolog pioneered hilog λprolog
+modulesedit
+programming large prolog provides module system module system standardised iso26 however prolog compilers support modules compatibility problems module systems major prolog compilers27 consequently modules written prolog compiler necessarily work others
+parsingedit
+main articles prolog syntax semantics definite clause grammars definite clause grammar
+special notation called definite clause grammars dcgs rule defined instead expanded preprocessor expandterm2 facility analogous macros languages according straightforward rewriting rules resulting ordinary prolog clauses notably rewriting equips predicate additional arguments used implicitly thread state aroundclarification needed analogous monads languages dcgs often used write parsers list generators also provide convenient interface difference lists
+metainterpreters reflectionedit
+prolog homoiconic language provides many facilities reflection implicit execution strategy makes possible write concise metacircular evaluator also called metainterpreter pure prolog code
+
+
+solvetrue
+solvesubgoal1subgoal2
+solvesubgoal1
+solvesubgoal2
+solvehead
+clausehead body
+solvebody
+
+true represents empty conjunction clausehead body unifies clauses database form head body
+since prolog programs sequences prolog terms infix operator easily read inspected using builtin mechanisms like read1 possible write customized interpreters augment prolog domainspecific features example sterling shapiro present metainterpreter performs reasoning uncertainty reproduced slight modifications28330
+
+
+solvetrue
+solvesubgoal1subgoal2 certainty
+
+solvesubgoal1 certainty1
+solvesubgoal2 certainty2
+certainty mincertainty1 certainty2
+solvegoal
+builtingoal
+goal
+solvehead certainty
+clausecfhead body certainty1
+solvebody certainty2
+certainty certainty1 certainty2
+
+interpreter uses table builtin prolog predicates form28327
+
+
+builtina
+builtinreadx
+
+
+clauses represented clausecfhead body certainty given called solvegoal certainty execute goal obtain measure certainty result
+turing completenessedit
+pure prolog based subset firstorder predicate logic horn clauses turingcomplete turing completeness prolog shown using simulate turing machine
+
+
+turingtape0 tape
+performq0 tape0
+reversels
+appendls1 tape
+
+performqf
+performq0
+symbolrs0 rsrest
+onceruleq0 newsym action
+actionaction newsymrsrest
+performq1
+
+symbol
+symbolsymrs
+
+actionleft leftls0
+actionstay
+actionright symls0 symrs
+
+left brs0
+leftlls
+
+simple example turing machine specified facts
+
+
+ruleq0 right
+ruleq0 stay
+
+machine performs incrementation number unary encoding loops number cells appends additional example query result
+
+
+turing111
+
+
+illustrates computation expressed declaratively sequence state transitions implemented prolog relation successive states interest
+implementationedit
+information comparison prolog implementations
+prologedit
+prolog standard consists parts isoiec 1321112529 published 1995 aims standardize existing practices many implementations core elements prolog clarified aspects language previously ambiguous leads portable programs corrigenda cor1200730 cor2201231 isoiec 13211225 published 2000 adds support modules standard standard maintained isoiec jtc1sc22wg1732 working group ansi x3j17 technical advisory group standard33
+compilationedit
+efficiency prolog code typically compiled abstract machine code often influenced registerbased warren abstract machine instruction set34 implementations employ abstract interpretation derive type mode information predicates compile time compile real machine code high performance35 devising efficient implementation methods prolog code field active research logic programming community various execution methods employed implementations include clause binarization stackbased virtual machinescitation needed
+tail recursionedit
+prolog systems typically implement wellknown optimization method called tail call optimization deterministic predicates exhibiting tail recursion generally tail calls clauses stack frame discarded performing call tail position therefore deterministic tailrecursive predicates executed constant stack space like loops languages
+term indexingedit
+main article term indexing
+finding clauses unifiable term query linear number clauses term indexing uses data structure enables sublineartime lookups36 indexing affects program performance affect semantics prologs indexing first term indexing terms expensive techniques based fieldencoded words superimposed codewords provide fast indexing across full query head3738
+hashingedit
+prolog systems prolog swiprolog implement hashing help handle large datasets efficiently tends yield large performance gains working large corpora wordnet
+tablingedit
+prolog systems bprolog swiprolog bprolog ciao implement memoization method called tabling frees user manually storing intermediate results3940
+
+subgoals encountered query evaluation maintained table along answers subgoals subgoal reencountered evaluation reuses information table rather reperforming resolution program clauses41
+
+tabling space–time tradeoff execution time reduced using memory store intermediate results
+implementation hardwareedit
+fifth generation computer systems project attempts implement prolog hardware achieving faster execution dedicated architectures424344 furthermore prolog number properties allow speedup parallel execution45 recent approach compile restricted prolog programs field programmable gate array46 however rapid progress generalpurpose hardware consistently overtaken specialised architectures
+limitationsedit
+although prolog widely used research education prolog logic programming languages significant impact computer industry general47 applications small industrial standards exceeding 100000 lines code4748 programming large considered complicated prolog compilers support modules compatibility problems module systems major prolog compilers27 portability prolog code across implementations also problem developments since 2007 meant portability within family edinburghquintus derived prolog implementations good enough allow maintaining portable realworld applications49
+software developed prolog criticised high performance penalty compared conventional programming languages particular prologs nondeterministic evaluation strategy problematic programming deterministic computations even using dont care nondeterminism single choice made instead backtracking possibilities cuts language constructs used achieve desirable performance destroying prologs main attractions ability programs backwards forwards50
+prolog purely declarative constructs like operator procedural reading prolog program needed understand it51 order clauses prolog program significant execution strategy language depends it52 logic programming languages datalog truly declarative restrict language result many practical prolog programs written conform prologs depthfirst search order rather purely declarative logic programs50
+extensionsedit
+various implementations developed prolog extend logic programming capabilities numerous directions include types modes constraint logic programming objectoriented logic programming oolp concurrency linear logic functional higherorder logic programming capabilities plus interoperability knowledge bases
+typesedit
+prolog untyped language attempts introduce types date back 1980s5354 2008 still attempts extend prolog types55 type information useful type safety also reasoning prolog programs56
+modesedit
+
+
+mode specifier
+interpretation
+
+
+
+nonvar entry
+
+
+
+entry
+
+
+
+specified
+
+
+syntax prolog specify arguments predicate inputs outputs57 however information significant recommended included comments58 modes provide valuable information reasoning prolog programs56 also used accelerate execution59
+constraintsedit
+constraint logic programming extends prolog include concepts constraint satisfaction6061 constraint logic program allows constraints body clauses suited largescale combinatorial optimisation problems62 thus useful applications industrial settings automated timetabling production scheduling prolog systems ship least constraint solver finite domains often also solvers domains like rational numbers
+objectorientationedit
+flora2 objectoriented knowledge representation reasoning system based flogic incorporates hilog transaction logic defeasible reasoning
+logtalk objectoriented logic programming language prolog implementations backend compiler multiparadigm language includes support prototypes classes
+oblog small portable objectoriented extension prolog margaret mcdougall edcaad university edinburgh
+objlog framebased language combining objects prolog cnrs marseille france
+prolog developed logic programming associates first released 1989 msdos support platforms added second version released 1995 book prolog chris moss published addisonwesley 1994
+graphicsedit
+prolog systems provide graphics library swiprolog63 visualprolog prolog windows bprolog
+concurrencyedit
+prologmpi opensource swiprolog extension distributed computing message passing interface64 also various concurrent prolog programming languages65
+programmingedit
+prolog implementations notably swiprolog ciao support serverside programming support protocols html xml66 also extensions support semantic formats owl6768 prolog also suggested clientside language69
+adobe flashedit
+cedar free basic prolog interpreter version cedar flash cedar support provides platform programming prolog actionscript
+otheredit
+
+flogic extends prolog framesobjects knowledge representation
+transaction logic extends prolog logical theory statechanging update operators modeltheoretic procedural semantics
+prolog created order answer prologs lack graphics interface
+
+interfaces languagesedit
+frameworks exist bridge prolog languages
+
+intelligence server allows embedding prolog within java delphi python languages exploits dedicated string datatype prolog provides
+logic server allows extension embedding prolog java delphi languageenvironment call implemented amzi prolog amzi prolog logic server specification made available implementation
+bidirectional java prolog bridge ships swiprolog default allowing java prolog call recursively known good concurrency support active development
+interprolog programming library bridge java prolog implementing bidirectional predicatemethod calling languages java objects mapped prolog terms vice versa allows development guis functionality java leaving logic processing prolog layer supports support swiprolog planned 2013
+prova provides native syntax integration java agent messaging reaction rules prova positions rulebased scripting system middleware language breaks ground combining imperative declarative programming
+prol embeddable prolog engine java includes small libraries
+prolog java implementation prolog java library gnuprolog
+ciao provides interfaces java relational databases
+cprolog prolog interpreter written managed easily integrated programs characteristics reliable fairly fast interpreter command line interface windowsinterface builtin xmlpredicates sqlpredicates extendible complete source code available including parser generator used adding special purpose extensions
+jekejeke prolog provides tightly coupled concurrent callin callout facilities prolog java android marked possibility create individual knowledge base objects used embed prolog interpreter standalones applets servlets apks
+warren abstract machine prolog compiler interpreter library used standalone within symfony21 framework translated stephan buettchers work java found stefanbuettcherorgcswamindexhtml
+
+historyedit
+name prolog chosen philippe roussel abbreviation programmation logique french programming logic created around 1972 alain colmerauer philippe roussel based robert kowalskis procedural interpretation horn clauses motivated part desire reconcile logic declarative knowledge representation language procedural representation knowledge popular north america late 1960s early 1970s according robert kowalski first prolog system developed 1972 colmerauer phillipe roussel5 first implementations prolog interpreters however david warren created warren abstract machine early influential prolog compiler came define edinburgh prolog dialect served basis syntax modern implementations
+european researchers favored prolog americans favored lisp reportedly causing many nationalistic debates merits languages70 much modern development prolog came impetus fifth generation computer systems project fgcs developed variant prolog named kernel language first operating system
+pure prolog originally restricted resolution theorem prover horn clauses form
+
+
+
+application theoremprover treats clauses procedures
+
+showsolve showsolve
+
+pure prolog soon extended however include negation failure negative conditions form notbi shown trying failing solve corresponding positive conditions
+subsequent extensions prolog original team introduced constraint logic programming abilities implementations
+industryedit
+prolog used watson watson uses ibms deepqa software apache uima unstructured information management architecture framework system written various languages including java prolog runs suse linux enterprise server operating system using apache hadoop framework provide distributed computing prolog used pattern matching natural language parse trees developers stated required language could conveniently express pattern matching rules parse trees annotations named entity recognition results technology could execute rules efficiently found prolog ideal choice language simplicity expressiveness14
+alsoedit
+
+comparison prolog implementations
+logicolinguistic modeling method building knowledgebased system uses prolog
+answer programming fully declarative approach logic programming
+association logic programming
+
+related languagesedit
+
+gödel language strongly typed implementation concurrent constraint logic programming built sicstus prolog
+visual prolog formerly known prolog turbo prolog strongly typed objectoriented dialect prolog different standard prolog turbo prolog marketed borland developed marketed danish firm prolog development center originally produced
+datalog subset prolog limited relationships stratified allow compound terms contrast prolog datalog turingcomplete
+mercury offshoot prolog geared toward software engineering large static polymorphic type system well mode determinism system
+graphtalk proprietary implementation warrens abstract machine additional objectoriented properties
+wayswhich prolog subset planner ideas planner later developed scientific community metaphor
+agentspeak variant prolog programming agent behavior multiagent systems
+erlang began life prologbased implementation maintains much prologs unificationbased syntax
+
+referencesedit
+
+
+clocksin william mellish christopher 2003 programming prolog berlin york springerverlag isbn 9783540006787
+bratko ivan 2001 prolog programming artificial intelligence harlow england york addison wesley isbn 0201403757
+covington michael 1994 natural language processing prolog programmers englewood cliffs prentice hall isbn 9780136292135
+lloyd 1984 foundations logic programming berlin springerverlag isbn 3540132996
+kowalski 1988 early years logic programming communications doi1011453504335046
+colmerauer roussel 1993 birth prolog sigplan notices doi101145155360155362
+logic programming history
+stickel 1988 prolog technology theorem prover implementation extended prolog compiler journal automated reasoning 353–380 citeseerx 1011473057 doi101007bf00297245
+merritt dennis 1989 building expert systems prolog berlin springerverlag isbn 0387970169
+felty logic programming approach implementing higherorder term rewriting extensions logic programming 1992 135161
+kent january 2015 foundations programming languages springer 298– isbn 9783319133140
+schmid august 2003 inductive synthesis functional programs universal planning folding finite programs schema abstraction analogical reasoning springer science business media isbn 9783540401742
+fernando pereira stuart shieber 2005 prolog natural language analysis microtome
+adam lally paul fodor march 2011 natural language processing prolog watson system association logic programming also watson computer
+verify type term swiprolog
+carlsson mats 2014 sicstus prolog users manual core reference documentation books demand google books
+covington michael bagnara roberto okeefe richard wielemaker price simon 2011 coding guidelines prolog theory practice logic programming 889–927 arxiv09112899 doi101017s1471068411000391
+kirschenbaum sterling 1993 applying techniques skeletons constructing logic programs jacquet 27–140 citeseerx 1011567278
+sterling leon 2002 patterns prolog programming computational logic logic programming beyond lecture notes computer science lecture notes artificial intelligence 2407 17–26 doi101007354045628715 isbn 9783540439592
+barkerplummer cliche programming prolog bruynooghe editor proc second workshop metaprogramming logic pages 247256 dept comp katholieke univ leuven 1990
+geggharrison 1995 representing logic program schemata prolog procs twelfth international conference logic programming 467–481
+deville yves 1990 logic programming systematic program development wokingham england addisonwesley isbn 0201175762
+naish 1996 higherorder logic programming prolog report department computer science university melbourne citeseerx 1011354505 retrieved 20101102
+regard prolog variables variables head implicitly universally quantified body implicitly existentially quantified retrieved 20130504
+isoiec 13211 information technology programming languages prolog international organization standardization geneva
+isoiec 132112 modules
+moura paulo august 2004 logtalk association logic programming
+shapiro ehud sterling leon 1994 prolog advanced programming techniques cambridge mass press isbn 0262193388
+eddbali deransart pierre cervoni 1996 prolog standard reference manual berlin springer isbn 3540593047 maint multiple names authors list link
+isoiec 1321111995cor 12007
+isoiec 1321111995cor 22012
+isoiec jtc1sc22wg17
+x3j17 prolog standard
+david warren abstract prolog instruction technical note international menlo park october 1983
+despain 1992 highperformance logic programming aquarius prolog compiler computer doi1011092108055
+graf peter 1995 term indexing springer isbn 9783540610403
+wise michael powers david 1986 indexing prolog clauses superimposed code words field encoded words international symposium logic programming 203–210
+colomb robert 1991 enhancing unification prolog clause indexing journal logic programming doi1010160743106691900049
+swift 1999 tabling non‐monotonic programming annals mathematics artificial intelligence 201–240 doi101023a1018990308362
+zhou nengfa sato taisuke 2003 efficient fixpoint computation linear tabling proceedings sigplan international conference principles practice declarative programming 275–283
+swift warren 2011 extending prolog tabled logic programming theory practice logic programming doi101017s1471068411000500
+bandoh yamaguchi kurosawa kiriyama 1987 high performance integrated prolog processor proceedings 14th annual international symposium computer architecture isca doi1011453035030362 isbn 0818607769
+robinson 1986 prolog processor based pattern matching memory device third international conference logic programming lecture notes computer science springer 172–179 doi101007354016492873 isbn 9783540164920
+taki nakajima nakashima ikeda 1987 performance architectural evaluation machine sigplan notices doi1011453620536195
+gupta pontelli carlsson hermenegildo 2001 parallel execution prolog programs survey transactions programming languages systems doi101145504083504085
+statically allocated systems
+logic programming real world zoltan somogyi fergus henderson thomas conway richard okeefe proceedings ilps95 postconference workshop visions future logic programming
+prolog resource guide monthly posting section prolog 1000 database
+wielemaker vıtor santos costa portability prolog programs theory casestudies ciclopswlpe workshop 2010
+kiselyov oleg kameyama yukiyoshi 2014 rethinking prolog proc 31st meeting japan society software science technology
+franzen torkel 1994 declarative procedural association logic programming
+dantsin evgeny eiter thomas gottlob georg voronkov andrei 2001 complexity expressive power logic programming computing surveys 374–425 citeseerx 10116166372 doi101145502807502810
+mycroft okeefe 1984 polymorphic type system prolog artificial intelligence doi1010160004370284900171
+pfenning frank 1992 types logic programming cambridge mass press isbn 0262161311
+schrijvers santos costa vitor wielemaker demoen bart 2008 towards typed prolog maria garcia banda enrico pontelli logic programming 24th international conference iclp 2008 udine italy december 2008 proceedings lecture notes computer science 5366 693–697 doi101007978354089982259 isbn 9783540899822
+marchiori 1994 reasoning prolog programs modes types assertions formal aspects computing doi101007bf01213601
+okeefe richard 1990 craft prolog cambridge mass press isbn 0262150395
+michael covington roberto bagnara 2010 coding guidelines prolog arxiv09112899 cspl
+demoen willems 1987 improving execution speed compiled prolog modes clause selection determinism tapsoft lecture notes computer science doi101007bfb0014976 isbn 354017611x
+jaffar 1994 constraint logic programming survey journal logic programming 19–20 503–581 doi1010160743106694900337
+colmerauer alain 1987 opening prolog universe byte august
+wallace 2002 constraint logic programming computational logic logic programming beyond lecture notes computer science 2407 512–556 doi101007354045628719 isbn 3540456287
+xpce graphics library
+prologmpi appslumiilv retrieved 20100916
+ehud shapiro family concurrent logic programming languages computing surveys september 1989
+wielemaker huang meij 2008 swiprolog theory practice logic programming doi101017s1471068407003237
+wielemaker michiel hildebrand jacco ossenbruggen 2007 heymans polleres ruckhaus pearse gupta using prolog fundament applications semantic proceedings workshop applications logic programming semantic semantic services ceur workshop proceedings porto portugal ceurwsorg 84–98
+processing owl2 ontologies using thea application logic programming vangelis vassiliadis wielemaker chris mungall proceedings international workshop experiences directions owled 2009 chantilly united states october 23–24 2009
+loke davison 2001 secure prologbased mobile code theory practice logic programming citeseerx 1011586610 doi101017s1471068401001211
+pountain dick october 1984 snap byte retrieved october 2013
+
+
+readingedit
+
+
+blackburn patrick johan striegnitz kristina 2006 learn prolog isbn 1904987176
+ivan bratko prolog programming artificial intelligence 2000 isbn 0201403757
+william clocksin christopher mellish programming prolog using standard springer 2003 isbn 9783540006787 edition updated prolog previous editions described edinburgh prolog
+william clocksin clause effect prolog programming working programmer springer 2003 isbn 9783540629719
+michael covington donald nute andre vellino prolog programming depth 1996 isbn 013138645x
+michael covington natural language processing prolog programmers 1994 isbn 9780136292135
+dawe cmdawe prolog computer sciences springer verlag 1992
+isoiec 13211 information technology programming languages prolog international organization standardization geneva
+feliks kluźniak stanisław szpakowicz contribution janusz bień prolog programmers academic press london 1985 1987 available creative commons license sitesgooglecomsiteprologforprogrammers isbn 0124165214
+richard okeefe craft prolog isbn 0262150395
+robert smith john gibson aaron sloman poplogs twolevel virtual machine support interactive languages research directions cognitive science volume artificial intelligence sleeman bernsen lawrence erlbaum associates 203–231 1992
+leon sterling ehud shapiro prolog advanced programming techniques 1994 isbn 0262193388
+david warren luis pereira fernando pereira prolog language implementation compared lisp sigart bulletin archive issue proceedings 1977 symposium artificial intelligence programming languages
+
+
+external linksedit
+
+
+
+wikibooks topic prolog
+
+
+
+complangprolog
+prolog standard
+decsystem10 prolog user’s manual plain text describes typical edinburgh prolog
+prolog tutorial jrfisher
+runnable examples lloyd allison
+online guide prolog programming roman bartak
+prolog logic programming peter hancox
+adventure prolog online tutorial dennis merritt
+building expert systems prolog online book dennis merritt
+object oriented language prolog oolp extensions richard katz
+amzi prolog logic server™ dennis merritt
+prolog tutorial clive spenser
+prolog tutorial clive spenser
+jiprolog chirico
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleprologoldid817292119 categories 1972 computer sciencedeclarative programming languagesdynamically typed programming languageslogic programming languagespattern matching programming languagesprogramming languages created 1972programming languages standardprolog programming language familyhidden categories articles inconsistent citation formatscs1 maint multiple names authors listall articles unsourced statementsarticles unsourced statements december 2017wikipedia articles needing clarification october 2012articles unsourced statements november 2010articles containing frenchlanguage textall articles specifically marked weaselworded phrasesarticles specifically marked weaselworded phrases february 2010

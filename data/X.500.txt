@@ -1,0 +1,632 @@
+X.500 is a series of computer networking standards covering electronic directory services. The X.500 series was developed by ITU-T, formerly known as CCITT, and first approved in 1988.[1] The directory services were developed in order to support the requirements of X.400 electronic mail exchange and name lookup. ISO was a partner in developing the standards, incorporating them into the Open Systems Interconnection suite of protocols. ISO/IEC 9594 is the corresponding ISO identification.
+
+
+
+Contents
+
+
+1 X.500 protocols
+2 X.500 data models
+3 The relationship of the X.500 Directory and X.509v3 digital certificates
+4 List of X.500 series standards
+5 Criticism
+6 See also
+7 References
+8 External links
+
+
+
+X.500 protocols[edit]
+The protocols defined by X.500 include
+
+DAP (Directory Access Protocol)
+DSP (Directory System Protocol)
+DISP (Directory Information Shadowing Protocol)
+DOP (Directory Operational Bindings Management Protocol)
+
+Because these protocols used the OSI networking stack, a number of alternatives to DAP were developed to allow Internet clients to access the X.500 Directory using the TCP/IP networking stack. The most well-known alternative to DAP is Lightweight Directory Access Protocol (LDAP). While DAP and the other X.500 protocols can now use the TCP/IP networking stack, LDAP remains a popular directory access protocol.
+X.500 data models[edit]
+The primary concept of X.500 is that there is a single Directory Information Tree (DIT), a hierarchical organization of entries which are distributed across one or more servers, called Directory System Agents (DSA). An entry consists of a set of attributes, each attribute with one or more values. Each entry has a unique Distinguished Name, formed by combining its Relative Distinguished Name (RDN), one or more attributes of the entry itself, and the RDNs of each of the superior entries up to the root of the DIT. As LDAP implements a very similar data model to that of X.500, there is further description of the data model in the article on LDAP.
+X.520 and X.521 together provide a definition of a set of attributes and object classes to be used for representing people and organizations as entries in the DIT. They are one of the most widely deployed white pages schema.
+X.509, the portion of the standard providing for an authentication framework, is now also widely used outside of the X.500 directory protocols. It specifies a standard format for public-key certificates.
+The relationship of the X.500 Directory and X.509v3 digital certificates[edit]
+
+
+
+
+
+
+This section does not cite any sources. Please help improve this section by adding citations to reliable sources. Unsourced material may be challenged and removed. (February 2012) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This article is written like a personal reflection or opinion essay that states a Wikipedia editor's personal feelings about a topic. Please help improve it by rewriting it in an encyclopedic style. (February 2012) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This section possibly contains original research. Please improve it by verifying the claims made and adding inline citations. Statements consisting only of original research should be removed. (February 2012) (Learn how and when to remove this template message)
+
+
+
+The current use of X.509v3 certificates outside the Directory structure loaded directly into web browsers was necessary for e-commerce to develop by allowing for secure web based (SSL/TLS) communications which did not require the X.500 directory as a source of digital certificates as originally conceived in X.500 (1988). One should contrast the role of X.500 and X.509 to understand their relationship in that X.509 was designed to be the secure access method for updating X.500 before the WWW, but when web browsers became popular there needed to be a simple method of encrypting connections on the transport layer to web sites. Hence the trusted root certificates for supported certificate authorities were pre loaded into certificate storage areas on the personal computer or device.
+Added security is envisaged by the scheduled 2011-2014 implementation of the US National Strategy for Trusted Identities in Cyberspace, a two- to three-year project protecting digital identities in cyberspace.[2]
+The WWW e-commerce implementation of X.509v3 bypassed but did not replace the original ISO standard authentication mechanism of binding distinguished names in the X.500 Directory.
+These packages of certificates can be added or removed by the end user in their software, but are reviewed by Microsoft and Mozilla in terms of their continued trustworthiness. Should a problem arise, such as what occurred with DigiNotar, browser security experts can issue an update to mark a certificate authority as untrusted, but this is a serious removal effectively of that CA from "internet trust". X.500 offers a way to view which organization claims a specific root certificate, outside of that provided bundle. This can function as a "4 corner model of trust" adding another check to determine if a root certificate has been compromised. Rules governing the Federal Bridge policy for revoking compromised certificates are available at www.idmanagement.gov.
+The contrast of this browser bundled approach is that in X.500 or LDAP the attribute "caCertificate" can be "bound" to a directory entry and checked in addition to the default pre-loaded bundle of certificates of which end users typically have never noticed unless an SSL warning message has appeared.
+For example, a web site using SSL, typically the DNS site name "www.foobar.com" is verified in a browser by the software using libraries that would check to see if the certificate was signed by one of the trusted root certificates given to the user.
+Therefore, creating trust for users that they had reached the correct web site via HTTPS.
+However, stronger checks are also possible, to indicate that more than the domain name was verified. To contrast this with X.500, the certificate is one attribute of many for an entry, in which the entry could contain anything allowable by the specific Directory schema. Thus X.500 does store the digital certificate, but it is one of many attributes that could potentially verify the organization, such as physical address, a contact telephone number and an email contact.
+CA Certs or certificate authority certs are loaded into the browser automatically (in the case of Microsoft's update mechanism), or in new version updates of browsers, and the user is given further choices to import, delete, or develop an individual trust relationship with the loaded Certificate Authorities and determine how the browser will behave if OCSP revocation servers are unreachable.
+This is in contrast with the Directory model which associates the attribute caCertificate with a listed certificate authority.
+Thus the browser can verify the SSL cert of the website by means of the loaded group of accepted certificates or the root certificates can be looked up in an X.500 or LDAP Directory (or via HTTP/S) and imported into the list of trusted Certificate Authorities.
+The "bound" distinguished name is located in the subject fields of the certificate which matches the Directory entry. X.509v3 can contain other extensions depending on the community of interest other than international domain names. For broad Internet use, RFC-5280 PKIX describes a profile for fields that may be useful for applications such as encrypted email.
+An end user who relies on the authenticity of a certificate being presented to a browser or email has no simple way to compare a forged certificate presented (perhaps which triggers a browser warning) with a valid certificate, without also being given the opportunity to validate the DN or Distinguished Name which was designed to be looked up in an X.500 DIT.
+The certificate itself is public and considered to be unforgeable and can therefore be distributed in any manner, but an associated binding to an identity occurs in the Directory. Binding is what links the certificate to the identity who claims to be using that certificate. For example, the X.500 software that runs the Federal Bridge has cross certificates that enable trust between certificate authorities.
+Simple homographic matching of domain names has resulted in phishing attacks where a domain can appear to be legitimate, but is not.
+If a X.509v3 certificate is bound to a valid organization's distinguished name within the Directory, then a simple check can be made in regards to the authenticity of the certificate by a comparison with what is presented to the browser with what is present in the Directory.
+Some options do exist to check notaries to see if a certificate has only recently been seen, and therefore more likely to have been compromised. If the cert is likely to be trusted and is failing because the domain name is a slight mismatch, it will then initially fail in the browser, but then be subjected to the notary trust, which can then bypass the browser warning.
+A valid organizational entry. such as o=FoobarWidgets will also have an associated alphanumeric OID, and has been "identity proofed" by ANSI, providing another layer of assurance regarding binding the certificate to the identity.
+Recent events (2011) have indicated a threat from unknown actors in nation states who have forged certificates. This was done in order to create a MITM attack against political activists in Syria accessing Facebook over the web. This would have normally triggered a browser warning, but would not if the MITM certificate was issued by a valid certificate authority already trusted by a browser or other software. Similar attacks were used by Stuxnet which allowed software to impersonate trusted code. The point of certificate transparency is to allow an end user to determine, using a simple procedure if a certificate is in fact valid. Checking against the default bundle of certificates may not be enough to do this, and therefore an additional check is desired. Other suggestions for certificate transparency have also been advanced.[3]
+A different attack was used against Comodo, a certificate authority, that resulted in forged certificates that were directed at high-profile communications websites. This necessitated an emergency patch to major browsers. These certificates were actually issued from a trusted Certificate Authority, and therefore a user would have had no warning if they had gone to a faked website, in contrast with the Syria incident, where the certificate was crudely forged, including substituting Alto Palo, for Palo Alto. and incorrect serial numbers.
+Some projects designed to exchange PHI, protected Health Information (which is considered to be highly HIPAA sensitive) may obtain X.509v3 certs via a CERT DNS resource record, or via LDAP to a X.500[2008] Directory. The issue of an authoritative bind then is detailed in RFCs related to the accuracy of the DNS information secured by signing from the root using DNSSEC.
+The concept of root name servers has been a source of major contention in the Internet community, but for DNS is largely resolved. The name space associated with X.500 has traditionally been thought to start with a national naming authority, which mirrors the ISO/ITU approach to global systems with national representation. Thus different countries will create their own unique X.500 services. The U.S. X.500 was privatized in 1998, when the U.S. Government no longer offered X.500 or DNS registration outside of known government agencies.
+The X.500 pilot project has been in development in the commercial space, and the technology continues to be present in major installations of millions of users within corporate data centers, and within the U.S. Government for credentialing.
+List of X.500 series standards[edit]
+
+
+ITU-T number
+ISO/IEC number
+Title of Standard
+
+
+X.500
+ISO/IEC 9594-1
+The Directory: Overview of concepts, models and services
+
+
+X.501
+ISO/IEC 9594-2
+The Directory: Models
+
+
+X.509
+ISO/IEC 9594-8
+The Directory: Public-key and attribute certificate frameworks
+
+
+X.511
+ISO/IEC 9594-3
+The Directory: Abstract service definition
+
+
+X.518
+ISO/IEC 9594-4
+The Directory: Procedures for distributed operation
+
+
+X.519
+ISO/IEC 9594-5
+The Directory: Protocol specifications
+
+
+X.520
+ISO/IEC 9594-6
+The Directory: Selected attribute types
+
+
+X.521
+ISO/IEC 9594-7
+The Directory: Selected object classes
+
+
+X.525
+ISO/IEC 9594-9
+The Directory: Replication
+
+
+X.530
+ISO/IEC 9594-10
+The Directory: Use of systems management for administration of the Directory
+
+
+Criticism[edit]
+The authors of RFC 2693 (concerning SPKI) note that "The original X.500 plan is unlikely ever to come to fruition. Collections of directory entries... are considered valuable or even confidential by those owning the lists and are not likely to be released to the world in the form of an X.500 directory sub-tree." and that "The X.500 idea of a distinguished name (a single, globally unique name that everyone could use when referring to an entity) is also not likely to occur."
+"X.500 is too complex to support on desktops and over the Internet, so LDAP was created to provide this service 'for the rest of us'."[4]
+See also[edit]
+
+ISO/IEC JTC 1/SC 6
+
+References[edit]
+
+
+
+^ http://www.collectionscanada.gc.ca/iso/ill/document/ill_directory/X_500andLDAP.pdf
+^ "National Strategy for Trusted Identities in Cyberspace". 
+^ [1]
+^ What is LDAP?. Gracion.com. Retrieved on 2013-07-17.
+
+
+
+External links[edit]
+
+Chadwick, D W (1994). "Understanding X.500 - The Directory". Retrieved 2017-12-06. 
+X500Standard.com The X.500 community site that is both a guide to the X.500 Standard and a repository for existing and new work being carried out on the standard.
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+GND: 4239992-0
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=X.500&oldid=814080340"					Categories: OSI protocolsISO standardsITU-T recommendationsApplication layer protocolsDirectory servicesHidden categories: Articles needing additional references from February 2012All articles needing additional referencesWikipedia articles needing style editing from February 2012All articles needing style editingArticles that may contain original research from February 2012All articles that may contain original researchWikipedia articles with GND identifiersPages using RFC magic links

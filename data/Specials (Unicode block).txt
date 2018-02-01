@@ -1,0 +1,720 @@
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (April 2010) (Learn how and when to remove this template message)
+
+
+
+
+
+Specials
+
+
+Range
+U+FFF0..U+FFFF
+(16 code points)
+
+
+Plane
+BMP
+
+
+Scripts
+Common
+
+
+Assigned
+5 code points
+
+
+Unused
+9 reserved code points
+2 non-characters
+
+
+Unicode version history
+
+
+
+
+
+1.0.0
+1 (+1)
+
+
+2.1
+2 (+1)
+
+
+3.0
+5 (+3)
+
+
+
+
+
+Note: [1][2]
+
+
+Specials is a short Unicode block allocated at the very end of the Basic Multilingual Plane, at U+FFF0–FFFF. Of these 16 code points, five are assigned as of Unicode 10.0:
+
+U+FFF9 INTERLINEAR ANNOTATION ANCHOR, marks start of annotated text
+U+FFFA INTERLINEAR ANNOTATION SEPARATOR, marks start of annotating character(s)
+U+FFFB INTERLINEAR ANNOTATION TERMINATOR, marks end of annotation block
+U+FFFC ￼ OBJECT REPLACEMENT CHARACTER, placeholder in the text for another unspecified object, for example in a compound document.
+U+FFFD � REPLACEMENT CHARACTER used to replace an unknown, unrecognized or unrepresentable character
+U+FFFE <noncharacter-FFFE> not a character.
+U+FFFF <noncharacter-FFFF> not a character.
+
+FFFE and FFFF are not unassigned in the usual sense, but guaranteed not to be a Unicode character at all. They can be used to guess a text's encoding scheme, since any text containing these is by definition not a correctly encoded Unicode text. Unicode's U+FEFF Byte order mark character can be inserted at the beginning of a Unicode text to signal its endianness: a program reading such a text and encountering 0xFFFE would then know that it should switch the byte order for all the following characters.
+
+
+
+Contents
+
+
+1 Replacement character
+2 Unicode chart
+3 History
+4 See also
+5 References
+6 External links
+
+
+
+Replacement character[edit]
+
+
+
+
+Replacement character
+
+
+The replacement character � (often a black diamond with a white question mark or an empty square box) is a symbol found in the Unicode standard at codepoint U+FFFD in the Specials table. It is used to indicate problems when a system is unable to render a stream of data to a correct symbol. It is usually seen when the data is invalid and does not match any character:
+Consider a text file containing the German word "für" in the ISO-8859-1 encoding (0x66 0xFC 0x72). This file is now opened with a text editor that assumes the input is UTF-8. The first and last byte are valid UTF-8 encodings of ASCII, but the middle byte (0xFC) is not a valid byte in UTF-8. Therefore, a text editor could replace this byte with the replacement character symbol to produce a valid string of Unicode code points. The whole string now displays like this: "f�r".
+A poorly implemented text editor might save the replacement in UTF-8 form; the text file data will then look like this: 0x66 0xEF 0xBF 0xBD 0x72, which will be displayed in ISO-8859-1 as "fï¿½r" (see mojibake). Since the replacement is the same for all errors this makes it impossible to recover the original character. A better (but harder to implement) design is to preserve the original bytes, including the error, and only convert to the replacement when displaying the text. This will allow the text editor to save the original byte sequence, while still showing the error indicator to the user.
+It has become increasingly common for software to interpret invalid UTF-8 by guessing the bytes are in another byte-based encoding such as ISO-8859-1. This allows correct display of both valid and invalid UTF-8 pasted together. If a web page uses ISO-8859-1 (or Windows-1252) but specifies the encoding as UTF-8, most web browsers used to display all non-ASCII characters as �, but newer browsers translate the erroneous bytes individually to characters in Windows-1252, so the replacement character is less frequently seen.
+Unicode chart[edit]
+
+
+Specials[1][2][3]
+Official Unicode Consortium code chart (PDF)
+
+
+ 
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+
+
+U+FFFx
+
+
+
+
+
+
+
+
+
+ IA 
+A
+ IA 
+S
+ IA 
+T
+ OBJ 
+�
+
+
+
+
+Notes
+
+1.^ As of Unicode version 10.0
+2.^ Grey areas indicate non-assigned code points
+3.^ Black areas indicate noncharacters - Unicode will never use these codepoints for encoding characters
+
+
+
+
+History[edit]
+The following Unicode-related documents record the purpose and process of defining specific characters in the Specials block:
+
+
+Version
+Final code points[a]
+Count
+UTC ID
+L2 ID
+WG2 ID
+Document
+
+
+1.0.0
+U+FFFD
+1
+
+
+
+(to be determined)
+
+
+2.1
+U+FFFC
+1
+
+
+
+(to be determined)
+
+
+3.0
+U+FFF9..FFFB
+3
+
+L2/98-055
+
+Freytag, Asmus (1998-02-22), Support for Implementing Inline and Interlinear Annotations 
+
+
+
+L2/98-099
+N1727
+Freytag, Asmus (1998-03-18), Support for Implementing Interlinear Annotations as used in East Asian Typography 
+
+
+
+L2/98-158
+
+Aliprand, Joan; Winkler, Arnold (1998-05-26), "Inline and Interlinear Annotations", Draft Minutes - UTC #76 & NCITS Subgroup L2 #173 joint meeting, Tredyffrin, Pennsylvania, April 20-22, 1998 
+
+
+
+L2/98-270
+
+Hiura, Hideki; Kobayashi, Tatsuo (1998-07-29), Suggestion to the inline and interlinear annotation proposal 
+
+
+
+L2/98-281R
+
+Aliprand, Joan (1998-07-31), "In-Line and Interlinear Annotation", Unconfirmed Minutes - UTC #77 & NCITS Subgroup L2 # 174 JOINT MEETING, Redmond, WA -- July 29-31, 1998 
+
+
+
+L2/98-363
+N1861
+Sato, T. K. (1998-09-01), Ruby markers 
+
+
+
+L2/98-416
+N1882
+Support for Implementing Interlinear Annotations, 1998-09-23 
+
+
+
+L2/98-312
+
+Whistler, Ken (1998-09-29), "8", Resolutions from SC2/WG2 meeting in London with comments from Ken Whistler 
+
+
+
+L2/98-421R
+
+Suignard, Michel; Hiura, Hideki (1998-12-04), Notes concerning the PDAM 30 interlinear annotation characters 
+
+
+
+L2/98-419
+
+Aliprand, Joan (1999-02-05), "nterlinear Annotation Characters", Approved Minutes -- UTC #78 & NCITS Subgroup L2 # 175 Joint Meeting, San Jose, CA -- December 1-4, 1998 
+
+
+UTC/1999-021
+
+
+Duerst, Martin; Bosak, Jon (1999-06-08), W3C XML CG statement on annotation characters 
+
+
+
+L2/01-301
+
+Whistler, Ken (2001-08-01), "E. Indicated as "strongly discouraged" for plain text interchange", Analysis of Character Deprecation in the Unicode Standard 
+
+
+
+
+
+
+^ Proposed code points and characters names may differ from final code points and names
+
+
+
+
+
+
+See also[edit]
+
+Unicode control characters
+UTF-8
+Mojibake
+
+References[edit]
+
+
+
+^ "Unicode character database". The Unicode Standard. Retrieved 2016-07-09. 
+^ "Enumerated Versions of The Unicode Standard". The Unicode Standard. Retrieved 2016-07-09. 
+
+
+
+External links[edit]
+
+Unicode's Specials table
+Decodeunicode's entry for the replacement character
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Unicode
+
+
+
+Unicode
+
+
+
+Unicode Consortium
+ISO/IEC 10646 (Universal Character Set)
+Versions
+
+
+
+
+
+Code points
+
+
+
+Blocks
+Universal Character Set
+Character charts
+Character property
+Planes
+Private Use Areas
+
+
+
+
+
+Characters
+
+
+
+
+Special purpose
+
+
+
+BOM
+Combining Grapheme Joiner
+Left-to-right mark / Right-to-left mark
+Soft hyphen
+Word joiner
+Zero-width joiner
+Zero-width non-joiner
+Zero-width space
+
+
+
+
+
+Lists
+
+
+
+Characters
+CJK Unified Ideographs
+Combining character
+Duplicate characters
+Numerals
+Scripts
+Spaces
+Symbols
+Halfwidth and fullwidth
+
+
+
+
+
+
+
+
+Processing
+
+
+
+
+Algorithms
+
+
+
+Bi-directional text
+Collation
+
+ISO 14651
+
+
+Equivalence
+Variation sequences
+International Ideographs Core
+
+
+
+
+
+Comparison
+
+
+
+BOCU-1
+CESU-8
+Punycode
+SCSU
+UTF-1
+UTF-7
+UTF-8
+UTF-9/UTF-18
+UTF-16/UCS-2
+UTF-32/UCS-4
+UTF-EBCDIC
+
+
+
+
+
+
+
+
+On pairs of
+code points
+
+
+
+Combining character
+Compatibility characters
+Duplicate characters
+Equivalence
+Homoglyph
+Precomposed character
+
+list
+
+
+Z-variant
+Variation sequences
+Regional Indicator Symbol
+Fitzpatrick modifiers
+
+
+
+
+
+Usage
+
+
+
+Domain names (IDN)
+Email
+Fonts
+HTML
+
+entity references
+numeric references
+
+
+Input
+International Ideographs Core
+
+
+
+
+
+Related standards
+
+
+
+Common Locale Data Repository (CLDR)
+GB 18030
+ISO/IEC 8859
+ISO 15924
+
+
+
+
+
+Related topics
+
+
+
+Anomalies
+ConScript Unicode Registry
+Ideographic Rapporteur Group
+International Components for Unicode
+People involved with Unicode
+Han unification
+
+
+
+
+
+
+
+
+
+
+Scripts and symbols in Unicode
+
+
+
+Common and
+inherited scripts
+
+
+
+Combining marks
+Diacritics
+Punctuation
+Space
+Numbers
+
+
+
+
+
+Modern scripts
+
+
+
+Adlam
+Arabic
+
+diacritics
+
+
+Armenian
+Balinese
+Bamum
+Batak
+Bengali
+Bopomofo
+Braille
+Buhid
+Burmese
+Canadian Aboriginal
+Chakma
+Cham
+Cherokee
+CJK Unified Ideographs (Han)
+Cyrillic
+Deseret
+Devanagari
+Ge'ez
+Georgian
+Greek
+Gujarati
+Gurmukhī
+Hangul
+Hanja
+Hanunó'o
+Hebrew
+
+diacritics
+
+
+Hiragana
+Javanese
+Kanji
+Kannada
+Katakana
+Kayah Li
+Khmer
+Khudawadi
+Lao
+Latin
+Lepcha
+Limbu
+Lisu (Fraser)
+Lontara
+Malayalam
+Mandaic
+Masaram Gondi
+Meetei Mayek
+Mende Kikakui
+Miao (Pollard)
+Mongolian
+Mro
+N'Ko
+New Tai Lue
+Newa
+Nushu
+Ol Chiki
+Oriya
+Osage
+Osmanya
+Pahawh Hmong
+Pau Cin Hau
+Rejang
+Samaritan
+Śāradā
+Saurashtra
+Shavian
+Sinhala
+Sorang Sompeng
+Sundanese
+Sylheti Nagari
+Syriac
+Tagalog (Baybayin)
+Tagbanwa
+Tai Le
+Tai Tham
+Tai Viet
+Takri
+Tamil
+Telugu
+Thaana
+Thai
+Tibetan
+Tifinagh
+Tirhuta
+Vai
+Warang Citi
+Yi
+
+
+
+
+
+Ancient and
+historic scripts
+
+
+
+Ahom
+Anatolian hieroglyphs
+Ancient North Arabian
+Avestan
+Bassa Vah
+Bhaiksuki
+Brāhmī
+Carian
+Caucasian Albanian
+Coptic
+Cuneiform
+Cypriot
+Egyptian hieroglyphs
+Elbasan
+Glagolitic
+Gothic
+Grantha
+Hatran
+Imperial Aramaic
+Inscriptional Pahlavi
+Inscriptional Parthian
+Kaithi
+Kharosthi
+Khojki
+Linear A
+Linear B
+Lycian
+Lydian
+Mahajani
+Manichaean
+Marchen
+Meroitic
+Modi
+Multani
+Nabataean
+Ogham
+Old Hungarian
+Old Italic
+Old Permic
+Old Persian cuneiform
+Old Turkic
+Palmyrene
+'Phags-pa
+Phoenician
+Psalter Pahlavi
+Runic
+Siddham
+South Arabian
+Soyombo
+Tangut
+Ugaritic
+Zanabazar Square
+
+
+
+
+
+Notational scripts
+
+
+
+Duployan
+SignWriting
+
+
+
+
+
+Symbols
+
+
+
+Cultural, political, and religious symbols
+Currency
+Mathematical operators and symbols
+Phonetic symbols (including IPA)
+Emoji
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Specials_(Unicode_block)&oldid=817564748"					Categories: Unicode blocksHidden categories: Articles needing additional references from April 2010All articles needing additional references

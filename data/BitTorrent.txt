@@ -1,0 +1,1028 @@
+This article is about the file sharing protocol. For other uses, see BitTorrent (disambiguation).
+
+
+Part of a series on
+
+
+File sharing
+
+
+
+
+
+
+
+
+
+Technologies
+
+
+
+
+Peer to peer
+File hosting services
+Web hosting
+
+
+
+
+Networks and protocols
+
+
+
+
+BitTorrent
+Direct Connect
+eDonkey
+Freenet
+GNUnet
+Gnutella / (2)
+IPFS
+RetroShare
+ZeroNet
+
+
+
+
+Development and societal aspects
+
+
+
+
+Timeline
+Legality
+BitTorrent issues
+
+
+
+
+Non-public file sharing
+
+
+
+
+Anonymous P2P
+Friend-to-friend
+Darknet
+Private P2P
+
+
+
+
+Websites and services
+
+
+
+
+1337x
+ExtraTorrent
+isoHunt
+KickassTorrents
+Nyaa Torrents
+OpenBitTorrent
+Rarbg
+The Pirate Bay
+Torrent Project
+
+
+
+
+Clients
+
+
+
+
+uTorrent
+Transmission
+qBittorrent
+
+Streaming
+
+Popcorn Time
+Torrents-Time
+Butter Project
+
+
+
+
+Academic/scholarly
+
+
+
+
+Sci-Hub
+Library Genesis
+ICanHazPDF
+
+
+
+
+By country or region
+
+
+
+
+Canada
+Japan
+Singapore
+UK
+
+
+
+
+Related
+
+
+
+
+PeerBlock
+Comparison of BitTorrent sites
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+BitTorrent is a communication protocol for peer-to-peer file sharing ("P2P") which is used to distribute data and electronic files over the Internet.
+BitTorrent is one of the most common protocols for transferring large files, such as digital video files containing TV shows or video clips or digital audio files containing songs. Peer-to-peer networks have been estimated to collectively account for approximately 43% to 70% of all Internet traffic (depending on location) as of February 2009[update].[1] In November 2004, BitTorrent was responsible for 25% of all Internet traffic.[2] As of February 2013, BitTorrent was responsible for 3.35% of all worldwide bandwidth, more than half of the 6% of total bandwidth dedicated to file sharing.[3]
+To send or receive files, a person uses a BitTorrent client on their Internet-connected computer. A BitTorrent client is a computer program that implements the BitTorrent protocol. Popular clients include μTorrent, Xunlei, Transmission, qBittorrent, Vuze, Deluge, BitComet and Tixati. BitTorrent trackers provide a list of files available for transfer, and allow the client to find peer users known as seeds who may transfer the files.
+Programmer Bram Cohen, a former University at Buffalo student,[4] designed the protocol in April 2001 and released the first available version on 2 July 2001,[5] and the most recent version in 2013.[6] BitTorrent clients are available for a variety of computing platforms and operating systems including an official client released by BitTorrent, Inc.
+As of 2013[update], BitTorrent has 15–27 million concurrent users at any time.[7] As of January 2012[update], BitTorrent is utilized by 150 million active users. Based on this figure, the total number of monthly BitTorrent users may be estimated to more than a quarter of a billion.[8]
+
+
+
+
+Animation of protocol use: The colored dots beneath each computer in the animation represent different parts of the file being shared. By the time a copy to a destination computer of each of those parts completes, a copy to another destination computer of that part (or other parts) is already taking place between users. The tracker (server) provides only a single copy of the file, and all the users clone its parts from one another.
+
+
+
+
+
+Contents
+
+
+1 Description
+2 Operation
+
+2.1 Creating and publishing torrents
+2.2 Downloading torrents and sharing files
+2.3 Concerns
+2.4 Bridging between i2p and the clearnet
+
+
+3 Adoption
+
+3.1 Film, video, and music
+3.2 Broadcasters
+3.3 Personal works
+3.4 Software
+3.5 Government
+3.6 Education
+3.7 Others
+
+
+4 Indexing
+5 Technologies built on BitTorrent
+
+5.1 Distributed trackers
+5.2 Web seeding
+
+5.2.1 Hash web seeding
+5.2.2 HTTP web seeding
+5.2.3 Other
+
+
+5.3 RSS feeds
+5.4 Throttling and encryption
+5.5 Multitracker
+5.6 Decentralized keyword search
+
+
+6 Implementations
+7 Development
+8 Legal issues
+9 Security problems
+10 Challenges
+11 Malware
+
+11.1 BitErrant attack
+
+11.1.1 Criticism of BitErrant attack
+
+
+
+
+12 See also
+13 References
+14 Further reading
+15 External links
+
+
+
+Description[edit]
+
+
+
+
+The middle computer is acting as a "seed" to provide a file to the other computers which act as peers.
+
+
+The BitTorrent protocol can be used to reduce the server and network impact of distributing large files. Rather than downloading a file from a single source server, the BitTorrent protocol allows users to join a "swarm" of hosts to upload to/download from each other simultaneously. The protocol is an alternative to the older single source, multiple mirror sources technique for distributing data, and can work effectively over networks with lower bandwidth. Using the BitTorrent protocol, several basic computers, such as home computers, can replace large servers while efficiently distributing files to many recipients. This lower bandwidth usage also helps prevent large spikes in internet traffic in a given area, keeping internet speeds higher for all users in general, regardless of whether or not they use the BitTorrent protocol. A user who wants to upload a file first creates a small torrent descriptor file that they distribute by conventional means (web, email, etc.). They then make the file itself available through a BitTorrent node acting as a seed. Those with the torrent descriptor file can give it to their own BitTorrent nodes, which—acting as peers or leechers—download it by connecting to the seed and/or other peers (see diagram on the right).
+The file being distributed is divided into segments called pieces. As each peer receives a new piece of the file, it becomes a source (of that piece) for other peers, relieving the original seed from having to send that piece to every computer or user wishing a copy. With BitTorrent, the task of distributing the file is shared by those who want it; it is entirely possible for the seed to send only a single copy of the file itself and eventually distribute to an unlimited number of peers. Each piece is protected by a cryptographic hash contained in the torrent descriptor.[6] This ensures that any modification of the piece can be reliably detected, and thus prevents both accidental and malicious modifications of any of the pieces received at other nodes. If a node starts with an authentic copy of the torrent descriptor, it can verify the authenticity of the entire file it receives.
+Pieces are typically downloaded non-sequentially and are rearranged into the correct order by the BitTorrent client, which monitors which pieces it needs, and which pieces it has and can upload to other peers. Pieces are of the same size throughout a single download (for example a 10 MB file may be transmitted as ten 1 MB pieces or as forty 256 KB pieces). Due to the nature of this approach, the download of any file can be halted at any time and be resumed at a later date, without the loss of previously downloaded information, which in turn makes BitTorrent particularly useful in the transfer of larger files. This also enables the client to seek out readily available pieces and download them immediately, rather than halting the download and waiting for the next (and possibly unavailable) piece in line, which typically reduces the overall time of the download. Once a peer has downloaded a file completely, it becomes an additional seed. This eventual transition from peers to seeders determines the overall "health" of the file (as determined by the number of times a file is available in its complete form).
+The distributed nature of BitTorrent can lead to a flood-like spreading of a file throughout many peer computer nodes. As more peers join the swarm, the likelihood of a completely successful download by any particular node increases. Relative to traditional Internet distribution schemes, this permits a significant reduction in the original distributor's hardware and bandwidth resource costs. Distributed downloading protocols in general provide redundancy against system problems, reduce dependence on the original distributor[9] and provide sources for the file which are generally transient and therefore harder to trace by those who would block distribution compared to the situation provided by limiting availability of the file to a fixed host machine (or even several).
+One such example of BitTorrent being used to reduce the distribution cost of file transmission is in the BOINC client-server system. If a BOINC distributed computing application needs to be updated (or merely sent to a user), it can do so with little impact on the BOINC server.[10]
+Operation[edit]
+A BitTorrent client is any program that implements the BitTorrent protocol. Each client is capable of preparing, requesting, and transmitting any type of computer file over a network, using the protocol. A peer is any computer running an instance of a client. To share a file or group of files, a peer first creates a small file called a "torrent" (e.g. MyFile.torrent). This file contains metadata about the files to be shared and about the tracker, the computer that coordinates the file distribution. Peers that want to download the file must first obtain a torrent file for it and connect to the specified tracker, which tells them from which other peers to download the pieces of the file.
+Though both ultimately transfer files over a network, a BitTorrent download differs from a classic download (as is typical with an HTTP or FTP request, for example) in several fundamental ways:
+
+BitTorrent makes many small data requests over different IP connections to different machines, while classic downloading is typically made via a single TCP connection to a single machine.
+BitTorrent downloads in a random or in a "rarest-first"[11] approach that ensures high availability, while classic downloads are sequential.
+
+Taken together, these differences allow BitTorrent to achieve much lower cost to the content provider, much higher redundancy, and much greater resistance to abuse or to "flash crowds" than regular server software. However, this protection, theoretically, comes at a cost: downloads can take time to rise to full speed because it may take time for enough peer connections to be established, and it may take time for a node to receive sufficient data to become an effective uploader. This contrasts with regular downloads (such as from an HTTP server, for example) that, while more vulnerable to overload and abuse, rise to full speed very quickly and maintain this speed throughout. In general, BitTorrent's non-contiguous download methods have prevented it from supporting progressive download or "streaming playback". However, comments made by Bram Cohen in January 2007[12] suggest that streaming torrent downloads will soon be commonplace and ad supported streaming[13] appears to be the result of those comments. In January 2011 Cohen demonstrated an early version of BitTorrent streaming, saying the feature was projected to be available by summer 2011.[14] As of 2013[update], this new BitTorrent streaming protocol is available for beta testing.[15]
+Creating and publishing torrents[edit]
+The peer distributing a data file treats the file as a number of identically sized pieces, usually with byte sizes of a power of 2, and typically between 32 kB and 16 MB each. The peer creates a hash for each piece, using the SHA-1 hash function, and records it in the torrent file. Pieces with sizes greater than 512 kB will reduce the size of a torrent file for a very large payload, but is claimed to reduce the efficiency of the protocol.[16] When another peer later receives a particular piece, the hash of the piece is compared to the recorded hash to test that the piece is error-free.[6] Peers that provide a complete file are called seeders, and the peer providing the initial copy is called the initial seeder. The exact information contained in the torrent file depends on the version of the BitTorrent protocol. By convention, the name of a torrent file has the suffix .torrent. Torrent files have an "announce" section, which specifies the URL of the tracker, and an "info" section, containing (suggested) names for the files, their lengths, the piece length used, and a SHA-1 hash code for each piece, all of which are used by clients to verify the integrity of the data they receive. Though SHA-1 has shown signs of cryptographic weakness, Bram Cohen does not consider the risk big enough for a backward incompatible change to, for example, SHA-3.[17]
+Torrent files are typically published on websites or elsewhere, and registered with at least one tracker. The tracker maintains lists of the clients currently participating in the torrent.[6] Alternatively, in a trackerless system (decentralized tracking) every peer acts as a tracker. Azureus was the first[18] BitTorrent client to implement such a system through the distributed hash table (DHT) method. An alternative and incompatible DHT system, known as Mainline DHT, was released in the Mainline BitTorrent client three weeks later (though it had been in development since 2002)[18] and subsequently adopted by the µTorrent, Transmission, rTorrent, KTorrent, BitComet, and Deluge clients.
+After the DHT was adopted, a "private" flag – analogous to the broadcast flag – was unofficially introduced, telling clients to restrict the use of decentralized tracking regardless of the user's desires.[19] The flag is intentionally placed in the info section of the torrent so that it cannot be disabled or removed without changing the identity of the torrent. The purpose of the flag is to prevent torrents from being shared with clients that do not have access to the tracker. The flag was requested for inclusion in the official specification in August 2008, but has not been accepted yet.[20] Clients that have ignored the private flag were banned by many trackers, discouraging the practice.[21]
+Downloading torrents and sharing files[edit]
+Users find a torrent of interest, by browsing the web or by other means, download it, and open it with a BitTorrent client. The client connects to the tracker(s) specified in the torrent file, from which it receives a list of peers currently transferring pieces of the file(s) specified in the torrent. The client connects to those peers to obtain the various pieces. If the swarm contains only the initial seeder, the client connects directly to it and begins to request pieces. Clients incorporate mechanisms to optimize their download and upload rates; for example they download pieces in a random order to increase the opportunity to exchange data, which is only possible if two peers have different pieces of the file.
+The effectiveness of this data exchange depends largely on the policies that clients use to determine to whom to send data. Clients may prefer to send data to peers that send data back to them (a "tit for tat" exchange scheme), which encourages fair trading. But strict policies often result in suboptimal situations, such as when newly joined peers are unable to receive any data because they don't have any pieces yet to trade themselves or when two peers with a good connection between them do not exchange data simply because neither of them takes the initiative. To counter these effects, the official BitTorrent client program uses a mechanism called "optimistic unchoking", whereby the client reserves a portion of its available bandwidth for sending pieces to random peers (not necessarily known good partners, so called preferred peers) in hopes of discovering even better partners and to ensure that newcomers get a chance to join the swarm.[22]
+Although "swarming" scales well to tolerate "flash crowds" for popular content, it is less useful for unpopular or niche market content. Peers arriving after the initial rush might find the content unavailable and need to wait for the arrival of a "seed" in order to complete their downloads. The seed arrival, in turn, may take long to happen (this is termed the "seeder promotion problem"). Since maintaining seeds for unpopular content entails high bandwidth and administrative costs, this runs counter to the goals of publishers that value BitTorrent as a cheap alternative to a client-server approach. This occurs on a huge scale; measurements have shown that 38% of all new torrents become unavailable within the first month.[23] A strategy adopted by many publishers which significantly increases availability of unpopular content consists of bundling multiple files in a single swarm.[24] More sophisticated solutions have also been proposed; generally, these use cross-torrent mechanisms through which multiple torrents can cooperate to better share content.[25]
+Concerns[edit]
+BitTorrent does not, on its own, offer its users anonymity nor security. It is possible to obtain the IP addresses of all current and possibly previous participants in a swarm from the tracker. This may expose users with insecure systems to attacks.[22] It may also, in rare cases, expose users to the risk of being sued, if they are distributing files without permission from the copyright holder(s). However, there are ways to promote anonymity; for example, the OneSwarm project layers privacy-preserving sharing mechanisms on top of the original BitTorrent protocol. A moderate degree of anonymity, enough to keep ISPs from giving the user trouble at least, can be achieved with seedboxes such as Bitport,[26] put.io,[27] or Seedr,[28] which download the torrent files first to the companies' servers, followed by a direct download to the user.[29][30] Torrents can be downloaded with a high degree of anonymity by using services such as i2p. Tor does not provide anonymity on BitTorrent,[31] and its use is also discouraged (by blocking this type of connections) for performance reasons.[32] Unlike Tor, i2p is designed to work with BitTorrent[33] However, with i2p, torrents can only be downloaded from within the i2p network. This can be useful for users trying to avoid copyright complaints from their ISPs, maintaining privacy, or avoiding censorship.
+Private trackers offer users a greater degree of privacy, compared to public trackers, but have the downside of a single centralized point of failure.
+Bridging between i2p and the clearnet[edit]
+Vuze is the only client that makes clearnet torrents available on i2p and vice versa. It has a plugin that connects to the i2p network. If the user adds a torrent from i2p, it will be seeded on both i2p and the clearnet, and if a user adds a torrent from the clearnet, it will be seeded on both the clearnet and i2p. For this reason, torrents previously published only on i2p are made available to the entire Internet, and users of i2p can download any torrent on the Internet while maintaining the anonymity of i2p.[34][35]
+Adoption[edit]
+A growing number of individuals and organizations are using BitTorrent to distribute their own or licensed works (e.g. indie bands distributing digital files of their new songs). Independent adopters report that without using BitTorrent technology, and its dramatically reduced demands on their private networking hardware and bandwidth, they could not afford to distribute their files.[36]
+Some uses of BitTorrent for file sharing may violate laws in some jurisdictions (see legal issues section).
+Film, video, and music[edit]
+
+BitTorrent Inc. has obtained a number of licenses from Hollywood studios for distributing popular content from their websites.
+Sub Pop Records releases tracks and videos via BitTorrent Inc.[37] to distribute its 1000+ albums. Babyshambles and The Libertines (both bands associated with Pete Doherty) have extensively used torrents to distribute hundreds of demos and live videos. US industrial rock band Nine Inch Nails frequently distributes albums via BitTorrent.
+Podcasting software is starting to integrate BitTorrent to help podcasters deal with the download demands of their MP3 "radio" programs. Specifically, Juice and Miro (formerly known as Democracy Player) support automatic processing of .torrent files from RSS feeds. Similarly, some BitTorrent clients, such as µTorrent, are able to process web feeds and automatically download content found within them.
+DGM Live purchases are provided via BitTorrent.[38]
+VODO, a service which distributes "free-to-share" movies and TV shows via BitTorrent.[39][40][41]
+
+Broadcasters[edit]
+
+In 2008, the CBC became the first public broadcaster in North America to make a full show (Canada's Next Great Prime Minister) available for download using BitTorrent.[42]
+The Norwegian Broadcasting Corporation (NRK) has since March 2008 experimented with bittorrent distribution, available online.[43] Only selected works in which NRK owns all royalties are published. Responses have been very positive, and NRK is planning to offer more content.
+The Dutch VPRO broadcasting organization released four documentaries in 2009 and 2010 under a Creative Commons license using the content distribution feature of the Mininova tracker.[44][45][46]
+
+Personal works[edit]
+
+The Amazon S3 "Simple Storage Service" is a scalable Internet-based storage service with a simple web service interface, equipped with built-in BitTorrent support.[47]
+Blog Torrent offers a simplified BitTorrent tracker to enable bloggers and non-technical users to host a tracker on their site. Blog Torrent also allows visitors to download a "stub" loader, which acts as a BitTorrent client to download the desired file, allowing users without BitTorrent software to use the protocol.[48] This is similar to the concept of a self-extracting archive.
+
+Software[edit]
+
+Blizzard Entertainment uses BitTorrent (via a proprietary client called the "Blizzard Downloader", associated with the Blizzard "BattleNet" network) to distribute content and patches for Diablo III, StarCraft II and World of Warcraft, including the games themselves.[49]
+Wargaming uses BitTorrent in their popular titles World of Tanks, World of Warships and World of Warplanes to distribute game updates.[50]
+CCP Games, maker of the space Simulation MMORPG Eve Online, has announced that a new launcher will be released that is based on BitTorrent.[51][52]
+Many software games, especially those whose large size makes them difficult to host due to bandwidth limits, extremely frequent downloads, and unpredictable changes in network traffic, will distribute instead a specialized, stripped down bittorrent client with enough functionality to download the game from the other running clients and the primary server (which is maintained in case not enough peers are available).
+Many major open source and free software projects encourage BitTorrent as well as conventional downloads of their products (via HTTP, FTP etc.) to increase availability and to reduce load on their own servers, especially when dealing with larger files.[53]
+
+Government[edit]
+
+The UK government used BitTorrent to distribute details about how the tax money of UK citizens was spent.[54][55]
+
+Education[edit]
+
+Florida State University uses BitTorrent to distribute large scientific data sets to its researchers.[56]
+Many universities that have BOINC distributed computing projects have used the BitTorrent functionality of the client-server system to reduce the bandwidth costs of distributing the client-side applications used to process the scientific data.
+The developing Human Connectome Project uses BitTorrent to share their open dataset
+
+Others[edit]
+
+Facebook uses BitTorrent to distribute updates to Facebook servers.[57]
+Twitter uses BitTorrent to distribute updates to Twitter servers.[58][59]
+The Internet Archive added BitTorrent to its file download options for over 1.3 million existing files, and all newly uploaded files, in August 2012.[60][61] This method is the fastest means of downloading media from the Archive.[60][62]
+
+As of 2011[update], BitTorrent had 100 million users and a greater share of network bandwidth than Netflix and Hulu combined.[63][64] In early 2015, AT&T estimates that BitTorrent represents 20% of all broadband traffic.[65]
+Routers that use network address translation (NAT) must maintain tables of source and destination IP addresses and ports. Typical home routers are limited to about 2000 table entries[citation needed] while some more expensive routers have larger table capacities. BitTorrent frequently contacts 20–30 servers per second, rapidly filling the NAT tables. This is a known cause of some home routers ceasing to work correctly.[66][67]
+Indexing[edit]
+The BitTorrent protocol provides no way to index torrent files. As a result, a comparatively small number of websites have hosted a large majority of torrents, many linking to copyrighted works without the authorization of copyright holders, rendering those sites especially vulnerable to lawsuits.[68] A BitTorrent index is a "list of .torrent files, which typically includes descriptions" and information about the torrent's content.[69] Several types of websites support the discovery and distribution of data on the BitTorrent network. Public torrent-hosting sites such as The Pirate Bay allow users to search and download from their collection of torrent files. Users can typically also upload torrent files for content they wish to distribute. Often, these sites also run BitTorrent trackers for their hosted torrent files, but these two functions are not mutually dependent: a torrent file could be hosted on one site and tracked by another unrelated site. Private host/tracker sites operate like public ones except that they may restrict access to registered users and may also keep track of the amount of data each user uploads and downloads, in an attempt to reduce "leeching".
+Web search engines allow the discovery of torrent files that are hosted and tracked on other sites; examples include Mininova, BTDigg, BTJunkie, Torrentz, Torrentus, The Pirate Bay and isoHunt. These sites allow the user to ask for content meeting specific criteria (such as containing a given word or phrase) and retrieve a list of links to torrent files matching those criteria. This list can often be sorted with respect to several criteria, relevance (seeders-leechers ratio) being one of the most popular and useful (due to the way the protocol behaves, the download bandwidth achievable is very sensitive to this value). Bram Cohen launched a BitTorrent search engine on www.bittorrent.com/search that co-mingles licensed content with search results.[70] Metasearch engines allow one to search several BitTorrent indices and search engines at once. DHT search engines monitors the DHT network and indexes torrents via metadata exchange from peers. In the 2010s, some P2P, decentralized alternatives to Torrent search engines have emerged, see decentralized keyword search below.
+Technologies built on BitTorrent[edit]
+The BitTorrent protocol is still under development and may therefore still acquire new features and other enhancements such as improved efficiency.
+Distributed trackers[edit]
+On 2 May 2005, Azureus 2.3.0.0 (now known as Vuze) was released,[71] introducing support for "trackerless" torrents through a system called the "distributed database." This system is a Distributed hash table implementation which allows the client to use torrents that do not have a working BitTorrent tracker. The following month, BitTorrent, Inc. released version 4.2.0 of the Mainline BitTorrent client, which supported an alternative DHT implementation (popularly known as "Mainline DHT", outlined in a draft on their website) that is incompatible with that of Azureus. Recent measurement shows users of Mainline DHT is from 10 million to 25 million, with a daily churn of at least 10 million.[72] Mainline DHT is arguably the largest realistic DHT in the world.
+Current versions of the official BitTorrent client, µTorrent, BitComet, Transmission and BitSpirit all share compatibility with Mainline DHT. Both DHT implementations are based on Kademlia.[73] As of version 3.0.5.0, Azureus also supports Mainline DHT in addition to its own distributed database through use of an optional application plugin.[74] This potentially allows the Azureus/Vuze client to reach a bigger swarm.
+Another idea that has surfaced in Vuze is that of virtual torrents. This idea is based on the distributed tracker approach and is used to describe some web resource. Currently, it is used for instant messaging. It is implemented using a special messaging protocol and requires an appropriate plugin. Anatomic P2P is another approach, which uses a decentralized network of nodes that route traffic to dynamic trackers. Most BitTorrent clients also use Peer exchange (PEX) to gather peers in addition to trackers and DHT. Peer exchange checks with known peers to see if they know of any other peers. With the 3.0.5.0 release of Vuze, all major BitTorrent clients now have compatible peer exchange.
+Web seeding[edit]
+Web "seeding" was implemented in 2006 as the ability of BitTorrent clients to download torrent pieces from an HTTP source in addition to the "swarm". The advantage of this feature is that a website may distribute a torrent for a particular file or batch of files and make those files available for download from that same web server; this can simplify long-term seeding and load balancing through the use of existing, cheap, web hosting setups. In theory, this would make using BitTorrent almost as easy for a web publisher as creating a direct HTTP download. In addition, it would allow the "web seed" to be disabled if the swarm becomes too popular while still allowing the file to be readily available. This feature has two distinct specifications, both of which are supported by Libtorrent and the 26+ clients that use it.
+Hash web seeding[edit]
+The first was created by John "TheSHAD0W" Hoffman, who created BitTornado.[75][76] This first specification requires running a web service that serves content by info-hash and piece number, rather than filename.
+HTTP web seeding[edit]
+The other specification is created by GetRight authors and can rely on a basic HTTP download space (using byte serving).[77][78]
+Other[edit]
+In September 2010, a new service named Burnbit was launched which generates a torrent from any URL using webseeding.[79] There are server-side solutions that provide initial seeding of the file from the webserver via standard BitTorrent protocol and when the number of external seeders reach a limit, they stop serving the file from the original source.[80]
+RSS feeds[edit]
+Main article: Broadcatching
+A technique called broadcatching combines RSS feeds with the BitTorrent protocol to create a content delivery system, further simplifying and automating content distribution. Steve Gillmor explained the concept in a column for Ziff-Davis in December 2003.[81] The discussion spread quickly among bloggers (Ernest Miller,[82] Chris Pirillo, etc.). In an article entitled Broadcatching with BitTorrent, Scott Raymond explained:
+
+I want RSS feeds of BitTorrent files. A script would periodically check the feed for new items, and use them to start the download. Then, I could find a trusted publisher of an Alias RSS feed, and "subscribe" to all new episodes of the show, which would then start downloading automatically – like the "season pass" feature of the TiVo.
+— Scott Raymond, scottraymond.net[83]
+
+The RSS feed will track the content, while BitTorrent ensures content integrity with cryptographic hashing of all data, so feed subscribers will receive uncorrupted content. One of the first and popular software clients (free and open source) for broadcatching is Miro. Other free software clients such as PenguinTV and KatchTV are also now supporting broadcatching. The BitTorrent web-service MoveDigital added the ability to make torrents available to any web application capable of parsing XML through its standard REST-based interface in 2006,[84] though this has since been discontinued. Additionally, Torrenthut is developing a similar torrent API that will provide the same features, and help bring the torrent community to Web 2.0 standards. Alongside this release is a first PHP application built using the API called PEP, which will parse any Really Simple Syndication (RSS 2.0) feed and automatically create and seed a torrent for each enclosure found in that feed.[85]
+Throttling and encryption[edit]
+Main article: BitTorrent protocol encryption
+Since BitTorrent makes up a large proportion of total traffic, some ISPs have chosen to "throttle" (slow down) BitTorrent transfers. For this reason, methods have been developed to disguise BitTorrent traffic in an attempt to thwart these efforts.[86] Protocol header encrypt (PHE) and Message stream encryption/Protocol encryption (MSE/PE) are features of some BitTorrent clients that attempt to make BitTorrent hard to detect and throttle. As of November 2015, Vuze, Bitcomet, KTorrent, Transmission, Deluge, µTorrent, MooPolice, Halite, qBittorrent, rTorrent, and the latest official BitTorrent client (v6) support MSE/PE encryption. In September 2006 it was reported that some software could detect and throttle BitTorrent traffic masquerading as HTTP traffic.[87]
+Reports in August 2007 indicated that Comcast was preventing BitTorrent seeding by monitoring and interfering with the communication between peers. Protection against these efforts is provided by proxying the client-tracker traffic via an encrypted tunnel to a point outside of the Comcast network.[88] Comcast has more recently called a "truce" with BitTorrent, Inc. with the intention of shaping traffic in a protocol-agnostic manner.[89] Questions about the ethics and legality of Comcast's behavior have led to renewed debate about net neutrality in the United States.[90] In general, although encryption can make it difficult to determine what is being shared, BitTorrent is vulnerable to traffic analysis. Thus, even with MSE/PE, it may be possible for an ISP to recognize BitTorrent and also to determine that a system is no longer downloading but only uploading data, and terminate its connection by injecting TCP RST (reset flag) packets.
+Multitracker[edit]
+Another unofficial feature is an extension to the BitTorrent metadata format proposed by John Hoffman[91] and implemented by several indexing websites. It allows the use of multiple trackers per file, so if one tracker fails, others can continue to support file transfer. It is implemented in several clients, such as BitComet, BitTornado, BitTorrent, KTorrent, Transmission, Deluge, µTorrent, rtorrent, Vuze, and Frostwire. Trackers are placed in groups, or tiers, with a tracker randomly chosen from the top tier and tried, moving to the next tier if all the trackers in the top tier fail.
+Torrents with multiple trackers can decrease the time it takes to download a file, but also have a few consequences:
+
+Poorly implemented[92] clients may contact multiple trackers, leading to more overhead-traffic.
+Torrents from closed trackers suddenly become downloadable by non-members, as they can connect to a seed via an open tracker.
+
+Decentralized keyword search[edit]
+Even with distributed trackers, a third party is still required to find a specific torrent. This is usually done in the form of a hyperlink from the website of the content owner or through indexing websites like isoHunt, Torrentz, BTDigg, Torrentus or The Pirate Bay. The Tribler BitTorrent client is the first to incorporate decentralized search capabilities.
+With Tribler, users can find .torrent files that are hosted among other peers, instead of on a centralized index sites. It adds such an ability to the BitTorrent protocol using a gossip protocol, somewhat similar to the eXeem network which was shut down in 2005. The software includes the ability to recommend content as well. After a dozen downloads the Tribler software can roughly estimate the download taste of the user and recommend additional content.[93]
+In May 2007 Cornell University published a paper proposing a new approach to searching a peer-to-peer network for inexact strings,[94] which could replace the functionality of a central indexing site. A year later, the same team implemented the system as a plugin for Vuze called Cubit[95] and published a follow-up paper reporting its success.[96]
+A somewhat similar facility but with a slightly different approach is provided by the BitComet client through its "Torrent Exchange"[97] feature. Whenever two peers using BitComet (with Torrent Exchange enabled) connect to each other they exchange lists of all the torrents (name and info-hash) they have in the Torrent Share storage (torrent files which were previously downloaded and for which the user chose to enable sharing by Torrent Exchange). Thus each client builds up a list of all the torrents shared by the peers it connected to in the current session (or it can even maintain the list between sessions if instructed). At any time the user can search into that Torrent Collection list for a certain torrent and sort the list by categories. When the user chooses to download a torrent from that list, the .torrent file is automatically searched for (by info-hash value) in the DHT Network and when found it is downloaded by the querying client which can after that create and initiate a downloading task.
+Implementations[edit]
+Main article: Comparison of BitTorrent clients
+The BitTorrent specification is free to use and many clients are open source, so BitTorrent clients have been created for all common operating systems using a variety of programming languages. The official BitTorrent client, µTorrent, qBittorrent, Transmission, Vuze, and BitComet are some of the most popular clients.[98][99][100][101]
+Some BitTorrent implementations such as MLDonkey and Torrentflux are designed to run as servers. For example, this can be used to centralize file sharing on a single dedicated server which users share access to on the network.[102] Server-oriented BitTorrent implementations can also be hosted by hosting providers at co-located facilities with high bandwidth Internet connectivity (e.g., a datacenter) which can provide dramatic speed benefits over using BitTorrent from a regular home broadband connection. Services such as ImageShack can download files on BitTorrent for the user, allowing them to download the entire file by HTTP once it is finished. The Opera web browser supports BitTorrent,[103] as does Wyzo. BitLet allows users to download Torrents directly from their browser using a Java applet. An increasing number of hardware devices are being made to support BitTorrent. These include routers and NAS devices containing BitTorrent-capable firmware like OpenWrt. Proprietary versions of the protocol which implement DRM, encryption, and authentication are found within managed clients such as Pando.
+Development[edit]
+An unimplemented (as of February 2008[update]) unofficial feature is Similarity Enhanced Transfer (SET), a technique for improving the speed at which peer-to-peer file sharing and content distribution systems can share data. SET, proposed by researchers Pucha, Andersen, and Kaminsky, works by spotting chunks of identical data in files that are an exact or near match to the one needed and transferring these data to the client if the "exact" data are not present. Their experiments suggested that SET will help greatly with less popular files, but not as much for popular data, where many peers are already downloading it.[104] Andersen believes that this technique could be immediately used by developers with the BitTorrent file sharing system.[105]
+As of December 2008[update], BitTorrent, Inc. is working with Oversi on new Policy Discover Protocols that query the ISP for capabilities and network architecture information. Oversi's ISP hosted NetEnhancer box is designed to "improve peer selection" by helping peers find local nodes, improving download speeds while reducing the loads into and out of the ISP's network.[106]
+Legal issues[edit]
+Main article: Legal issues with BitTorrent
+Although the protocol itself is perfectly legal, problems stem from using the protocol to traffic copyright infringing works. There has been much controversy over the use of BitTorrent trackers. BitTorrent metafiles themselves do not store file contents. Whether the publishers of BitTorrent metafiles violate copyrights by linking to copyrighted works without the authorization of copyright holders is controversial. Various jurisdictions have pursued legal action against websites that host BitTorrent trackers. High-profile examples include the closing of Suprnova.org, TorrentSpy, LokiTorrent, BTJunkie, Mininova, Demonoid and Oink's Pink Palace. The Pirate Bay torrent website, formed by a Swedish group, is noted for the "legal" section of its website in which letters and replies on the subject of alleged copyright infringements are publicly displayed. On 31 May 2006, The Pirate Bay's servers in Sweden were raided by Swedish police on allegations by the MPAA of copyright infringement;[107] however, the tracker was up and running again three days later. In the study used to value NBC Universal in its merger with Comcast, Envisional examined the 10,000 torrent swarms managed by PublicBT which had the most active downloaders. After excluding pornographic and unidentifiable content, it was found that only one swarm offered legitimate content.[108]
+In the United States, more than 200,000 people have been sued for filesharing on BitTorrent since 2010.[109] On 30 April 2012, the UK High Court ordered five ISPs to block BitTorrent search engine The Pirate Bay.[110]
+Security problems[edit]
+BitTorrent implementations often use µTP for their communication. To achieve high bandwidths, the underlying protocol used is UDP, which allows spoofing of source addresses of internet traffic. This can be used for Denial-of-service attacks, where users running BitTorrent clients act as amplifiers for an attack at another service.[111]
+Challenges[edit]
+There are many challenges, however, some people believe free riders are a serious issue. Free riders, often referred to as "leeches", are those users who download in plenty but share much less. BitTorrent, being a collaborative distributed platform for content sharing, some believe it's very important to develop a solution to detect such "free riders" and punish them so that such a trend is discouraged.[112] However, others[who?] believe that it is important to avoid free rider detection and punitive actions in order to protect open access to the information or resources shared via the BitTorrent protocol. Or, in other words, ensure that individuals who lack the resources, knowledge, or security measures necessary to share their—often limited—bandwidth still retain equal access to information.
+Malware[edit]
+Several studies on BitTorrent have indicated that there exist files, containing malware, available for download via BitTorrent. In particular, one small sample[113] indicated that 18% of all executable programs available for download contained malware. Another study[114] claims that as much as 14.5% of BitTorrent downloads contain zero-day malware, and that BitTorrent was used as the distribution mechanism for 47% of all zero-day malware they have found.
+BitErrant attack[edit]
+Due to SHA1 collisions, an attacker can alter the execution path of the executable by serving altered chunks when the victim is downloading the executable using the BitTorrent protocol.[115]
+Criticism of BitErrant attack[edit]
+Despite the fact that a proof of concept exists, the attack may succeed in very limited cases: such as small chunk size (32kB). By selecting larger chunks (i.e. >256kB) the amount of resources required to find SHA1 collision is tremendous, which makes the attack virtually impossible.
+See also[edit]
+
+
+Free software portal
+
+
+
+
+Anonymous P2P
+Napster
+Gnutella
+Anti-Counterfeiting Trade Agreement
+Bencode
+Cache Discovery Protocol
+Comparison of BitTorrent clients
+Comparison of BitTorrent sites
+Comparison of BitTorrent tracker software
+FastTrack
+Glossary of BitTorrent terms
+Magnet URI scheme
+µTP (Micro Transport Protocol)
+Peer-to-peer file sharing
+Segmented file transfer
+Simple file verification
+Super-seeding
+Torrent file
+Torrent poisoning
+VPN
+
+
+References[edit]
+
+
+^ Schulze, Hendrik; Klaus Mochalski (2009). "Internet Study 2008/2009" (PDF). Leipzig, Germany: ipoque. Archived from the original (PDF) on 1 April 2014. Retrieved 3 October 2011. Peer-to-peer file sharing (P2P) still generates by far the most traffic in all monitored regions – ranging from 43% in Northern Africa to 70% Eastern Europe. 
+^ "BitTorrent: The "one third of all Internet traffic" Myth". TorrentFreak. 24 January 2007. Archived from the original on 26 March 2014. Retrieved 7 April 2013. 
+^ "Application Usage & Threat Report". Palo Alto Networks. 2013. Archived from the original on 31 October 2013. Retrieved 7 April 2013. 
+^ "UB Engineering Tweeter". University at Buffalo's School of Engineering and Applied Sciences. Archived from the original on 11 November 2013. 
+^ Cohen, Bram (2 July 2001). "BitTorrent – a new P2P app". Yahoo eGroups. Archived from the original on 2 July 2011. Retrieved 15 April 2007. 
+^ a b c d Cohen, Bram (October 2002). "BitTorrent Protocol 1.0". BitTorrent.org. Archived from the original on 8 February 2014. Retrieved 19 April 2013. 
+^ Wang, Liang; Kangasharju, J. (1 September 2013). "Measuring large-scale distributed systems: Case of Bit Torrent Mainline DHT". IEEE P2P 2013 Proceedings. pp. 1–10. doi:10.1109/P2P.2013.6688697. ISBN 978-1-4799-0515-7. Retrieved 7 January 2016. 
+^ "BitTorrent and µTorrent Software Surpass 150 Million User Milestone". Bittorrent.com. 9 January 2012. Archived from the original on 26 March 2014. Retrieved 9 July 2012. 
+^ Menasche, Daniel S.; Rocha, Antonio A. A.; de Souza e Silva, Edmundo A.; Leao, Rosa M.; Towsley, Don; Venkataramani, Arun (2010). "Estimating Self-Sustainability in Peer-to-Peer Swarming Systems". arXiv:1004.0395  [cs.NI].  by D. Menasche, A. Rocha, E. de Souza e Silva, R. M. Leao, D. Towsley, A. Venkataramani.
+^ Costa, Fernando; Silva, Luis; Fedak, Gilles; Kelley, Ian (2008). "Optimizing the data distribution layer of BOINC with Bit Torrent". 2008 IEEE International Symposium on Parallel and Distributed Processing (PDF). IEEE International Symposium on Parallel and Distributed Processing, 2008. IPDPS 2008. IEEE. p. 1. doi:10.1109/IPDPS.2008.4536446. ISBN 978-1-4244-1693-6. Retrieved 7 April 2013. CS1 maint: Uses authors parameter (link) (registration required)
+^ Urvoy-Keller (December 2006). "Rarest First and Choke Algorithms Are Enough" (PDF). SIGCOMM. Retrieved 9 March 2012. 
+^ Ernesto (17 January 2007). "Interview with Bram Cohen, the inventor of BitTorrent". TorrentFreak. Archived from the original on 15 July 2013. Retrieved 7 April 2013. 
+^ Ernesto (18 December 2007). "BitTorrent Launches Ad Supported Streaming". TorrentFreak. Archived from the original on 19 June 2013. Retrieved 7 April 2013. 
+^ Cohen, Bram (January 2011). "BitTorrent Inventor Demos New P2P Live Streaming Protocol". torrentfreak.com. Archived from the original on 27 October 2013. Retrieved 19 January 2011. 
+^ "BitTorrent Live". Bittorrent.com. Archived from the original on 25 October 2013. Retrieved 4 March 2013. 
+^ "BitTorrent Specification". Wiki.theory.org. Archived from the original on 26 June 2013. Retrieved 9 July 2012. [dubious – discuss]
+^ "Does bittorrent support SHA-2 256/512 or future SHA-3? - Quora". 
+^ a b Jones, Ben (7 June 2015). "BitTorrent's DHT Turns 10 Years Old". TorrentFreak. Retrieved 5 July 2015. 
+^ "Unofficial BitTorrent Protocol Specification v1.0". Archived from the original on 14 December 2006. Retrieved 4 October 2009. [dubious – discuss]
+^ Harrison, David (3 August 2008). "Private Torrents". Bittorrent.org. Archived from the original on 24 March 2013. Retrieved 4 October 2009. 
+^ "BitComet Banned From Growing Number of Private Trackers". Archived from the original on 26 March 2014. Retrieved 4 October 2009. 
+^ a b Tamilmani, Karthik (25 October 2003). "Studying and enhancing the BitTorrent protocol". Stony Brook University. Archived from the original (DOC) on 19 November 2004. Retrieved 6 May 2006. 
+^ Kaune, Sebastian; et al. "Unraveling BitTorrent's File Unavailability: Measurements and Analysis" (PDF). arXiv. Archived from the original (PDF) on 29 April 2011. Retrieved 20 July 2017. 
+^ D. Menasche; et al. (December 1–4, 2009). Content Availability and Bundling in Swarming Systems (PDF). CoNEXT'09. Rome, Italy: ACM via sigcomm.org. ISBN 978-1-60558-636-6. 
+^ Kaune, Sebastian; et al. "The Seeder Promotion Problem: Measurements, Analysis and Solution Space" (PDF). Queen Mary's University London. Retrieved 20 July 2017. 
+^ bitport.io
+^ put.io
+^ seedr.cc
+^ "This Website Could Be The Ultimate All-In-One Torrent Machine". 8 April 2016. Archived from the original on 8 April 2016. 
+^ "Torrent From the Cloud With Seedr - TorrentFreak". 17 January 2016. 
+^ "Bittorrent over Tor isn't a good idea - The Tor Blog". 
+^ Inc., The Tor Project,. "Tor Project: FAQ". 
+^ "I2P Compared to Tor - I2P". 
+^ "Vuze Speeds Up Torrent Downloads Through "Swarm Merging" - TorrentFreak". 20 March 2015. 
+^ "I2PHelper HowTo - VuzeWiki". 
+^ See, for example, "Why Bit Torrent". Archived from the original on 28 January 2013. . tasvideos.org.
+^ "Sub Pop page on BitTorrent.com". Archived from the original on 14 January 2007. Retrieved 13 December 2006. 
+^ "DGMlive.com". DGMlive.com. Archived from the original on 11 November 2013. Retrieved 9 July 2012. 
+^ "VODO – About...". Retrieved 15 April 2012. (WebCite).
+^ Cory Doctorow (15 October 2009). "Vodo: a filesharing service for film-makers". Boing Boing. Happy Mutants LLC. Retrieved 15 April 2012. (WebCite)
+^ Ernesto. "Pioneer One, The BitTorrent Exclusive TV-Series Continues". TorrentFreak. Retrieved 15 April 2012. (WebCite)
+^ "CBC to BitTorrent Canada's Next Great Prime Minister:". CBC News. 19 March 2008. Archived from the original on 14 June 2010. Retrieved 19 March 2008. 
+^ "Bittorrent" (in Norwegian). Nrkbeta.no. 2008. Archived from the original on 24 October 2013. Retrieved 7 April 2013. 
+^ "Torrents uploaded by EeuwvandeStad". MiniNova. 2009. Archived from the original on 4 November 2013. Retrieved 7 April 2013. 
+^ Denters, M. (11 August 2010). "Tegenlicht – Download California Dreaming". VPRO.nl. Archived from the original on 26 March 2014. Retrieved 7 April 2013. 
+^ Bol, M. (1 October 2009). "Tegenlicht – VPRO gemeengoed" (in Dutch). VPRO.nl. Archived from the original on 26 March 2014. Retrieved 7 April 2013. 
+^ "Using BitTorrent with Amazon S3". Archived from the original on 26 March 2014. 
+^ Rustad, Roger E. (26 August 2004). "Blog Torrent and Participatory Culture". Grep Law. Archived from the original on 12 June 2006. Retrieved 9 May 2006. 
+^ "Blizzard Downloader". Curse Inc. 4 November 2010. Archived from the original on 26 March 2014. Retrieved 4 November 2010. 
+^ "World of Tanks FAQ". Wargaming Public Co Ltd. 15 December 2014. 
+^ MJ Guthrie (11 March 2013). "EVE Online reconfiguring launcher to use BitTorrent". Massively.joystiq.com. Archived from the original on 13 February 2014. Retrieved 7 April 2013. 
+^ CCP Games (20 July 2010). "All quiet on the EVE Launcher front? – EVE Community". Community.eveonline.com. Archived from the original on 13 March 2013. Retrieved 7 April 2013. 
+^ "Complete Download Options List – BitTorrent". Ubuntu.com. Archived from the original on 24 April 2010. Retrieved 7 May 2009. 
+^ HM Government (4 September 2012). "Combined Online Information System". Data.Gov.Uk Beta. Controller of Her Majesty's Stationery Office. Archived from the original on 26 March 2014. Retrieved 7 September 2012. 
+^ Ernesto (4 June 2010). "UK Government Uses BitTorrent to Share Public Spending Data". TorrentFreak. Archived from the original on 27 October 2013. Retrieved 7 September 2012. 
+^ "HPC Data Repository". Florida State University. Retrieved 7 April 2013. 
+^ Ernesto (25 June 2010). "Facebook Uses BitTorrent, and They Love It". Torrent Freak. Torrent Freak. Archived from the original on 19 April 2014. Retrieved 7 September 2012. 
+^ Ernesto (10 February 2010). "Twitter Uses BitTorrent For Server Deployment". Torrent Freak. Torrent Freak. Archived from the original on 26 March 2014. Retrieved 7 September 2012. 
+^ Ernesto (16 July 2010). "BitTorrent Makes Twitter's Server Deployment 75x Faster". Torrent Freak. Torrent Freak. Archived from the original on 26 March 2014. Retrieved 7 September 2012. 
+^ a b Ernesto (7 August 2012). "Internet Archive Starts Seeding 1,398,875 Torrents". TorrentFreak. Archived from the original on 8 August 2012. Retrieved 7 August 2012. 
+^ "Hot List for bt1.us.archive.org (Updated August 7, 2012, 7:31 pm PDT)". . Archive.org.
+^ "Welcome to Archive torrents". . Archive.org. 2012.
+^ Carr, Austin (4 January 2011). "BitTorrent Has More Users Than Netflix and Hulu Combined—and Doubled". fastcompany.com. Archived from the original on 10 January 2011. Retrieved 9 July 2012. 
+^ Hartley, Matt (1 July 2011). "BitTorrent turns ten". Financialpost.com. Archived from the original on 4 November 2013. Retrieved 9 July 2012. 
+^ "AT&T patents system to 'fast-lane' BitTorrent traffic". Thestack.com. 8 May 2006. Retrieved 5 March 2015. 
+^ "FAQ:Modems/routers that are known to have problems with P2P apps". uTorrent.com. Archived from the original on 13 September 2008. Retrieved 7 April 2013. 
+^ Halkes, Gertjan; Pouwelse, Johan (2011). Jordi Domingo-Pascual et al., eds. UDP NAT and Firewall Puncturing in the Wild. NETWORKING 2011:10th International IFIP TC 6 Networking Conference, Valencia, Spain, May 9–13, 2011, Proceedings. Springer. p. 7. Retrieved 7 April 2013. CS1 maint: Uses authors parameter (link) CS1 maint: Uses editors parameter (link)
+^ Ernesto (12 July 2009). "PublicBT Tracker Set To Patch BitTorrent' Achilles' Heel". Torrentfreak. Archived from the original on 26 March 2014. Retrieved 14 July 2009. 
+^ Chwan-Hwa (John) Wu, J. David Irwin. Introduction to Computer Networks and Cybersecurity. Chapter 5.4.: Partially Centralized Architectures. CRC Press. February 4, 2013. ISBN 9781466572133
+^ Worthington, David; Nate Mook (25 May 2005). "BitTorrent Creator Opens Online Search". BetaNews. Archived from the original on 24 February 2009. Retrieved 9 May 2006. 
+^ "Vuze Changelog". Azureus.sourceforge.net. Archived from the original on 1 December 2006. 
+^ Wang, Liang; Kangasharju, Jussi. (2013). "Measuring Large-Scale Distributed Systems: Case of BitTorrent Mainline DHT" (PDF). IEEE Peer-to-Peer. Retrieved 15 May 2014. 
+^ "Khashmir.Sourceforge.net". Khashmir.Sourceforge.net. Archived from the original on 2 July 2012. Retrieved 9 July 2012. 
+^ "Azureus.sourceforge.net". Azureus.sourceforge.net. Archived from the original on 1 August 2012. Retrieved 9 July 2012. 
+^ "HTTP-Based Seeding Specification". BitTornado.com. Archived from the original (TXT) on 22 August 2011. Retrieved 9 May 2006. 
+^ John Hoffman, DeHackEd (25 February 2008). "HTTP Seeding – BitTorrent Enhancement Proposal № 17". Archived from the original on 13 December 2013. Retrieved 17 February 2012. 
+^ "HTTP/FTP Seeding for BitTorrent". GetRight.com. Archived from the original on 28 December 2009. Retrieved 18 March 2010. 
+^ Michael Burford (25 February 2008). "WebSeed – HTTP/FTP Seeding (GetRight style) – BitTorrent Enhancement Proposal № 19". Bittorrent.org. Archived from the original on 13 December 2013. Retrieved 17 February 2012. 
+^ "Burn Any Web-Hosted File into a Torrent With Burnbit". TorrentFreak. 13 September 2010. Archived from the original on 9 August 2011. Retrieved 9 July 2012. 
+^ "PHP based torrent file creator, tracker and seed server". PHPTracker. Archived from the original on 19 December 2013. Retrieved 9 July 2012. 
+^ Gillmor, Steve (13 December 2003). "BitTorrent and RSS Create Disruptive Revolution". EWeek.com. Retrieved 22 April 2007. 
+^ Miller, Ernest (2 March 2004). "BitTorrent + RSS = The New Broadcast". Archived from the original on 23 October 2013. . The Importance of... Corante.com.
+^ Raymond, Scott (16 December 2003). "Broadcatching with BitTorrent". scottraymond.net. Archived from the original on 13 February 2004. 
+^ "MoveDigital API REST functions". Move Digital. 2006. Archived from the original on 11 August 2006. Retrieved 9 May 2006.  Documentation.
+^ "Prodigem Enclosure Puller(pep.txt)". Prodigem.com. Archived from the original (TXT) on 26 May 2006. Retrieved 9 May 2006.  via Internet Wayback Machine.
+^ "Encrypting Bittorrent to take out traffic shapers". Torrentfreak.com. 5 February 2006. Archived from the original on 26 March 2014. Retrieved 9 May 2006. 
+^ Sales, Ben (27 September 2006). "ResTech solves network issues". studlife.com. Archived from the original on 26 March 2014. 
+^ "Comcast Throttles BitTorrent Traffic, Seeding Impossible". Archived from the original on 11 October 2013. , TorrentFreak, 17 August 2007.
+^ Broache, Anne (27 March 2008). "Comcast and BitTorrent Agree to Collaborate". News.com. Archived from the original on 9 May 2008. Retrieved 9 July 2012. 
+^ Soghoian, Chris (4 September 2007). "Is Comcast's BitTorrent filtering violating the law?". Cnet.com. Archived from the original on 15 July 2010. Retrieved 9 July 2012. 
+^ "BEP12: Multitracker Metadata Extension". BitTorrent Inc. Archived from the original on 27 December 2012. Retrieved 28 March 2013. 
+^ "P2P:Protocol:Specifications:Multitracker". wiki.depthstrike.com. Archived from the original on 26 March 2014. Retrieved 13 November 2009. [dubious – discuss]
+^ "DecentralizedRecommendation –". Tribler.org. Archived from the original on 2 December 2008. Retrieved 9 July 2012. 
+^ Wong, Bernard; Vigfusson, Ymir; Gun Sirer, Emin (2 May 2007). "Hyperspaces for Object Clustering and Approximate Matching in Peer-to-Peer Overlays" (PDF). Cornell University. Retrieved 7 April 2013. CS1 maint: Uses authors parameter (link)
+^ Wong, Bernard (2008). "Cubit: Approximate Matching for Peer-to-Peer Overlays". Cornell University. Archived from the original on 31 December 2012. Retrieved 26 May 2008. 
+^ Wong, Bernard. "Approximate Matching for Peer-to-Peer Overlays with Cubit" (PDF). Cornell University. Retrieved 26 May 2008. 
+^ "Torrent Exchange". Archived from the original on 5 October 2013. Retrieved 31 January 2010. The torrent sharing feature of BitComet. Bitcomet.com. 
+^ Van Der Sar, Ernesto (4 December 2009). "Thunder Blasts uTorrent's Market Share Away". TorrentFreak. Archived from the original on 15 September 2011. Retrieved 15 September 2011. 
+^ "uTorrent Dominates BitTorrent Client Market Share". TorrentFreak. 24 June 2009. Archived from the original on 3 April 2014. Retrieved 25 June 2013. 
+^ "Windows Public File Sharing Market Share 2015". opswat. Retrieved 1 April 2016. 
+^ Henry, Alan. "Most Popular BitTorrent Client 2015". lifehacker. Retrieved 1 April 2016. 
+^ "Torrent Server combines a file server with P2P file sharing". Turnkeylinux.org. Retrieved 9 July 2012. 
+^ Anderson, Nate (1 February 2007). "Does network neutrality mean an end to BitTorrent throttling?". Ars Technica, LLC. Archived from the original on 16 December 2008. Retrieved 9 February 2007. 
+^ Himabindu Pucha; David G. Andersen; Michael Kaminsky (April 2007). "Exploiting Similarity for Multi-Source Downloads Using File Handprints". Purdue University, Carnegie Mellon University, Intel Research Pittsburgh. Archived from the original on 18 June 2013. Retrieved 15 April 2007. 
+^ "Speed boost plan for file-sharing". BBC News. 12 April 2007. Archived from the original on 7 December 2008. Retrieved 21 April 2007. 
+^ Johnston, Casey (9 December 2008). "Arstechnica.com". Arstechnica.com. Archived from the original on 12 December 2008. Retrieved 9 July 2012. 
+^ "The Piratebay is Down: Raided by the Swedish Police". TorrentFreak. 31 May 2006. Archived from the original on 16 April 2014. Retrieved 20 May 2007. 
+^ "Technical report: An Estimate of Infringing Use of the Internet" (PDF). Envisional. 1 January 2011. Retrieved 6 May 2012. 
+^ "BitTorrent: Copyright lawyers' favourite target reaches 200,000 lawsuits". The Guardian. 9 August 2011. Archived from the original on 4 December 2013. Retrieved 10 January 2014. 
+^ Albanesius, Chloe (30 April 2012). "U.K. High Court Orders ISPs to Block The Pirate Bay". PC Magazine. Archived from the original on 25 May 2013. Retrieved 6 May 2012. 
+^ Adamsky, Florian (2015). "P2P File-Sharing in Hell: Exploiting BitTorrent Vulnerabilities to Launch Distributed Reflective DoS Attacks". 
+^ Bhakuni, A; Sharma, P; Kaushal, R (2014). "Free-rider detection and punishment in Bit Torrent based P2P networks". 2014 IEEE International Advance Computing Conference (IACC). International Advanced Computing Conference. p. 155. doi:10.1109/IAdCC.2014.6779311. ISBN 978-1-4799-2572-8. 
+^ Berns, Andrew D.; Jung, Eunjin (EJ) (24 April 2008). "Searching for Malware in Bit Torrent". University of Iowa, via TechRepublic. Archived from the original on 1 May 2013. Retrieved 7 April 2013. (registration required)
+^ Vegge, Håvard; Halvorsen, Finn Michael; Nergård, Rune Walsø (2009), "Where Only Fools Dare to Tread: An Empirical Study on the Prevalence of Zero-Day Malware", 2009 Fourth International Conference on Internet Monitoring and Protection (PDF), IEEE Computer Society, p. 66, doi:10.1109/ICIMP.2009.19, ISBN 978-1-4244-3839-6, archived from the original (PDF (orig. work + pub. paper)) on 2013-06-17 
+^ "BitErrant". biterrant.io. Retrieved 23 April 2017. 
+
+
+Further reading[edit]
+
+Pouwelse, Johan; et al. (2005). "The Bittorrent P2P File-Sharing System: Measurements and Analysis". Peer-to-Peer Systems IV. Berlin: Springer. pp. 205–216. doi:10.1007/11558989_19. ISBN 978-3-540-29068-1. Retrieved 4 September 2011. 
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to BitTorrent.
+
+
+
+Official website
+Specification
+BitTorrent at Curlie (based on DMOZ)
+Interview with chief executive Ashwin Navin
+Unofficial BitTorrent Protocol Specification v1.0 at wiki.theory.org
+Unofficial BitTorrent Location-aware Protocol 1.0 Specification at wiki.theory.org
+Czerniawski, Michal (20 December 2009). "Responsibility of Bittorrent Search Engines for Copyright Infringements". SSRN. doi:10.2139/ssrn.1540913. SSRN 1540913 .  Missing or empty |url= (help)
+Cohen, Bram (16 February 2005). "Under the hood of BitTorrent". Computer Systems Colloquium (EE380). Stanford University. 
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Cloud computing
+
+
+
+Applications
+
+
+
+Box
+Google
+
+G Suite
+Docs, Sheets and Slides
+
+
+HP Cloud (closed)
+Microsoft Online
+Rackspace
+Salesforce
+Zoho
+
+
+
+
+
+Platforms
+
+
+
+Alpha7
+Amazon
+AppScale
+Box
+Bluemix
+Cloud Foundry
+Cocaine (PaaS)
+Engine Yard
+eXo Platform
+Helion
+GE Predix
+Google App Engine
+GreenQloud
+Heroku
+Inktank
+Jelastic
+Mendix
+Microsoft Azure
+OutSystems
+openQRM
+OpenShift
+PythonAnywhere
+RightScale
+Force.com
+SAP Cloud Platform
+VMware vCloud Air
+WaveMaker
+
+
+
+
+
+Infrastructure
+
+
+
+Amazon
+Abiquo Enterprise Edition
+CloudStack
+CtrlS
+DigitalOcean
+EMC Atmos
+Eucalyptus
+Fujitsu
+GoGrid
+Google Cloud Platform
+GreenButton
+GreenQloud
+IBM cloud computing
+iland
+Joyent
+Lunacloud
+Nimbula
+Nimbus
+OpenNebula
+OpenStack
+OrionVM
+Rackspace Cloud
+SoftLayer
+Zadara Storage
+libvirt
+libguestfs
+OVirt
+Virtual Machine Manager
+Wakame-vdc
+Virtual Private Cloud OnDemand
+
+
+
+
+
+Technologies
+
+
+
+Cloud database
+Data centers
+Distributed file system for cloud
+Hardware virtualization
+Internet
+Networking
+Security
+Structured storage
+Virtual appliance
+Web APIs
+Virtual private cloud
+
+
+
+
+
+
+
+
+ Category
+ Commons
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+BitTorrent
+
+
+
+Companies
+
+
+
+BitTorrent, Inc.
+Vuze, Inc.
+
+
+
+
+
+People
+
+
+
+Bram Cohen
+Ross Cohen
+Eric Klinker
+Ashwin Navin
+
+
+
+
+
+Technology
+
+
+
+Broadcatching
+Distributed hash tables
+DNA
+index
+Peer exchange
+Local Peer Discovery
+Protocol encryption
+Super-seeding
+Tracker
+Torrent file
+µTP
+I2P
+Glossary
+
+
+
+
+
+Clients
+(comparison,
+usage share)
+
+
+
+BitTorrent (original client)
+BitComet
+BitLord
+BitTornado
+Deluge
+FrostWire
+KTorrent
+libtorrent (library)
+LimeWire
+Miro
+MLDonkey
+qBittorrent
+rTorrent
+Shareaza
+Tixati
+Transmission
+Tribler
+µTorrent
+Vuze (formerly Azureus)
+Xunlei
+
+
+
+
+
+Tracker software
+(comparison)
+
+
+
+opentracker
+PeerTracker
+TorrentPier
+XBT Tracker
+
+
+
+
+
+Search engines
+(comparison)
+
+
+
+1337x
+BTDigg
+Burnbit
+Demonoid
+isoHunt
+Rarbg
+The Pirate Bay
+yourBittorrent
+
+
+
+
+
+Defunct websites
+
+
+
+BTJunkie
+d2
+EZTV
+KickassTorrents
+LokiTorrent
+Mininova
+Oink's Pink Palace
+OpenBitTorrent
+Suprnova.org
+t411
+TorrentSpy
+Torrentz
+What.CD
+YouTorrent
+ExtraTorrent
+
+
+
+
+
+Related topics
+
+
+
+aXXo
+BitTorrent Open Source License
+Glossary of BitTorrent terms
+Popcorn Time
+Slyck.com
+TorrentFreak
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Peer-to-peer file sharing
+
+
+
+Networks,
+protocols
+
+
+
+
+Centralized
+
+
+
+Advanced Direct Connect
+Audiogalaxy
+CuteMX
+OpenNap
+Soribada
+Soulseek
+
+
+
+
+
+Decentralized
+
+
+
+Advanced Direct Connect
+Ares
+BitTorrent
+DAT
+eDonkey
+FastTrack
+Freenet
+GNUnet
+Gnutella
+Gnutella2
+I2P
+Kad
+OpenFT
+RetroShare
+Share (P2P)
+Tribler
+Winny
+Zeronet
+
+
+
+
+
+Historic
+
+
+
+Direct Connect
+Entropy
+Kazaa
+Morpheus
+Overnet
+Napster
+WASTE
+WinMX
+
+
+
+
+
+
+
+
+Comparisons
+of clients
+
+
+
+Advanced Direct Connect
+BitTorrent
+Direct Connect
+eDonkey
+Gnutella
+Gnutella2
+
+
+
+
+
+Hyperlinks
+
+
+
+eD2k
+Magnet
+Metalink
+
+
+
+
+
+Uses
+
+
+
+Broadcatching
+Segmented file transfer
+Music download
+Image sharing
+Disk sharing
+Peercasting
+Web hosting (freesite)
+Legal aspects
+
+
+
+
+
+Concepts
+
+
+
+
+Privacy
+
+
+
+Friend-to-friend
+Darknet
+Open Music Model
+Anonymous P2P
+Private P2P
+
+
+
+
+
+
+
+
+Internal
+technologies
+
+
+
+DHT
+NAT traversal
+PEX
+Protocol Encryption
+SHA-1
+Super-seeding
+Merkle tree
+Tracker
+µTP
+UDP hole punching
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=BitTorrent&oldid=815790877"					Categories: Computer-related introductions in 2001Application layer protocolsBitTorrentWeb 2.0File sharingHidden categories: CS1 maint: Uses authors parameterPages with login required references or sourcesAll accuracy disputesArticles with disputed statements from April 2013CS1 Norwegian-language sources (no)CS1 Dutch-language sources (nl)CS1 maint: Uses editors parameterUse dmy dates from July 2016Articles containing potentially dated statements from February 2009All articles containing potentially dated statementsArticles containing potentially dated statements from 2013Articles containing potentially dated statements from January 2012Articles containing potentially dated statements from 2011All articles with unsourced statementsArticles with unsourced statements from November 2011Articles containing potentially dated statements from February 2008Articles containing potentially dated statements from December 2008All articles with specifically marked weasel-worded phrasesArticles with specifically marked weasel-worded phrases from July 2016Official website different in Wikidata and WikipediaArticles with DMOZ linksPages using web citations with no URL

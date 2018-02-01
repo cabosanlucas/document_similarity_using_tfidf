@@ -1,0 +1,2116 @@
+article control theory engineering control theory linguistics control linguistics control theory psychology sociology control theory sociology perceptual control theory
+control theory control systems engineering deals control continuously operating dynamical systems engineered processes machines objective develop control model controlling systems using control action optimum manner without delay overshoot ensuring control stability
+controller requisite corrective behaviour required controller monitors controlled process variable compares reference point difference actual desired value process variable called error signal sppv error applied feedback generate control action bring controlled process variable value point aspects also studied controllability observability based advanced type automation revolutionized manufacturing aircraft communications industries feedback control usually continuous involves taking measurements using sensor making calculated adjustments keep measured variable within range means final control element control valve1
+extensive usually made diagrammatic style known block diagram transfer function also known system function network function mathematical model relation input output based differential equations describing system
+control theory dates 19th century theoretical basis operation governors first described james clerk maxwell2 control theory advanced edward routh 1874 charles sturm 1895 adolf hurwitz contributed establishment control stability criteria 1922 onwards development control theory nicolas minorsky3 although major application control theory control systems engineering deals design process control systems industry applications range beyond general theory feedback systems control theory useful wherever feedback occurs examples physiology electronics climate modeling machine design ecosystems navigation neural networks predator–prey interaction gene expression production theory4
+
+
+
+contents
+
+
+openloop closedloop feedback control
+
+examples
+
+
+classical control theory
+closedloop transfer function
+feedback control
+linear nonlinear control theory
+analysis techniques frequency domain time domain
+system interfacing siso mimo
+topics control theory
+
+stability
+controllability observability
+control specification
+model identification robustness
+
+
+system classifications
+
+linear systems control
+nonlinear systems control
+decentralized systems control
+deterministic stochastic systems control
+
+
+main control strategies
+history
+people systems control
+also
+references
+reading
+external links
+
+
+
+openloop closedloop feedback controledit
+
+
+
+
+block diagram negative feedback control system using feedback loop control process variable comparing desired value applying difference error signal generate control output reduce eliminate error
+
+
+
+
+
+
+example single industrial control loop showing continuously modulated control process flow
+
+
+fundamentally types control loops open loop control closed loop feedback control control theory concerned closed loop control
+open loop control control action controller independent process output controlled process variable good example central heating boiler controlled timer heat applied constant time regardless temperature building control action timed switching onoff boiler process variable building temperature neither linked
+closed loop control control action controller dependent feed back process form value process variable case boiler analogy closed loop would include thermostat compare building temperature temperature thermostat point generates controller output maintain building desired temperature switching boiler closed loop controller therefore feedback loop ensures controller exerts control action manipulate process variable reference input point reason closed loop controllers also called feedback controllers5
+definition closed loop control system according british standard institution control system possessing monitoring feedback deviation signal formed result feedback used control action final control element tend reduce deviation zero
+likewise feedback control system system tends maintain prescribed relationship system variable another comparing functions variables using difference means control7
+examplesedit
+example control system cars cruise control device designed maintain vehicle speed constant desired reference speed provided driver controller cruise control plant system cruise control system output cars speed control engines throttle position determines much power engine delivers
+primitive implement cruise control simply lock throttle position driver engages cruise control however cruise control engaged stretch flat road travel slower going uphill faster going downhill type controller called openloop controller feedback measurement system output cars speed used alter control throttle position result controller cannot compensate changes acting like change slope road
+closedloop control system data sensor monitoring cars speed system output enters controller continuously compares quantity representing speed reference quantity representing desired speed difference called error determines throttle position control result match cars speed reference speed maintain desired system output goes uphill difference input sensed speed reference continuously determines throttle position sensed speed drops reference difference increases throttle opens engine power increases speeding vehicle controller dynamically counteracts changes cars speed central idea control systems feedback loop controller affects system output turn measured back controller
+classical control theoryedit
+main article classical control theory
+overcome limitations openloop controller control theory introduces feedback closedloop controller uses feedback control states outputs dynamical system name comes information path system process inputs voltage applied electric motor effect process outputs speed torque motor measured sensors processed controller result control signal back input process closing loop
+closedloop controllers following advantages openloop controllers
+
+disturbance rejection hills cruise control example
+guaranteed performance even model uncertainties model structure match perfectly real process model parameters exact
+unstable processes stabilized
+reduced sensitivity parameter variations
+improved reference tracking performance
+
+systems closedloop openloop control used simultaneously systems openloop control termed feedforward serves improve reference tracking performance
+common closedloop controller architecture controller
+closedloop transfer functionedit
+details topic closedloop transfer function
+output system back sensor measurement comparison reference value controller takes error difference reference output change inputs system control shown figure kind controller closedloop controller feedback controller
+called singleinputsingleoutput siso control system mimo multiinputmultioutput systems inputoutput common cases variables represented vectors instead simple scalar values distributed parameter systems vectors infinitedimensional typically functions
+
+
+
+assume controller plant sensor linear timeinvariant elements transfer function depend time systems analysed using laplace transform variables gives following relations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle yspsus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle uscses
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle esrsfsys
+
+
+
+solving terms gives
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle ysleftfrac pscs1fspscsrightrshsrs
+
+
+
+expression
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle hsfrac pscs1fspscs
+
+referred closedloop transfer function system numerator forward openloop gain denominator plus gain going around feedback loop socalled loop gain
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle pscsgg
+
+large norm value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle fsapprox
+
+approximately equal output closely tracks reference input
+feedback controledit
+main article controller
+
+
+
+
+block diagram controller feedback loop desired process value point measured process value
+
+
+proportional–integral–derivative controller controller control loop feedback mechanism control technique widely used control systems
+controller continuously calculates error value
+
+
+
+
+
+
+
+
+
+displaystyle
+
+difference desired setpoint measured process variable applies correction based proportional integral derivative terms initialism proportionalintegralderivative referring three terms operating error signal produce control signal
+theoretical understanding application dates 1920s implemented nearly analogue control systems originally mechanical controllers using discrete electronics latterly industrial process computers controller probably mostused feedback control design
+control signal sent system measured output desired output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle etrtyt
+
+tracking error controller general form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle utkpetkiint etau textdtau kdfrac textdettextdt
+
+
+
+desired closed loop dynamics obtained adjusting three parameters
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+often iteratively tuning without specific knowledge plant model stability often ensured using proportional term integral term permits rejection step disturbance often striking specification process control derivative term used provide damping shaping response controllers wellestablished class control systems however cannot used several complicated cases especially mimo systems considered
+applying laplace transformation results transformed controller equation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle uskpeskifrac 1seskdses
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle usleftkpkifrac 1skdsrightes
+
+
+
+controller transfer function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle csleftkpkifrac 1skdsright
+
+
+
+example tuning controller closedloop system
+
+
+
+
+
+
+
+
+
+displaystyle
+
+consider order plant given
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle psfrac a1stp
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+constants plant output back
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle fsfrac 11stf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+also constant
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle kpkleft1frac tdtiright
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle kdktd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle kifrac
+
+express controller transfer function series form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle cskleft1frac 1stiright1std
+
+
+
+plugging
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+closedloop transfer function
+
+
+
+
+
+
+
+
+
+displaystyle
+
+find setting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle kfrac 1atitftdtp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+tuning example system output follows reference input exactly
+however practice pure differentiator neither physically realizable desirable8 amplification noise resonant modes system therefore phaselead compensator type approach differentiator lowpass rolloff used instead
+linear nonlinear control theoryedit
+field control theory divided branches
+
+linear control theory applies systems made devices obey superposition principle means roughly output proportional input governed linear differential equations major subclass systems addition parameters change time called linear time invariant systems systems amenable powerful frequency domain mathematical techniques great generality laplace transform fourier transform transform bode plot root locus nyquist stability criterion lead description system using terms like bandwidth frequency response eigenvalues gain resonant frequencies poles zeros give solutions system response design techniques systems interest
+nonlinear control theory covers wider class systems obey superposition principle applies realworld systems real control systems nonlinear systems often governed nonlinear differential equations mathematical techniques developed handle difficult much less general often applying narrow categories systems include limit cycle theory poincaré maps lyapunov stability theorem describing functions nonlinear systems often analyzed using numerical methods computers example simulating operation using simulation language solutions near stable point interest nonlinear systems often linearized approximating linear system using perturbation theory linear techniques used9
+
+analysis techniques frequency domain time domainedit
+mathematical techniques analyzing designing control systems fall different categories
+
+frequency domain type values state variables mathematical variables representing systems input output feedback represented functions frequency input signal systems transfer function converted time functions functions frequency transform fourier transform laplace transform transform advantage technique results simplification mathematics differential equations represent system replaced algebraic equations frequency domain much simpler solve however frequency domain techniques used linear systems mentioned
+timedomain state space representation type values state variables represented functions time model system analyzed represented differential equations since frequency domain techniques limited linear systems time domain widely used analyze realworld nonlinear systems although difficult solve modern computer simulation techniques simulation languages made analysis routine
+
+contrast frequency domain analysis classical control theory modern control theory utilizes timedomain state space representation mathematical model physical system input output state variables related firstorder differential equations abstract number inputs outputs states variables expressed vectors differential algebraic equations written matrix form latter possible dynamical system linear state space representation also known timedomain approach provides convenient compact model analyze systems multiple inputs outputs inputs outputs would otherwise write laplace transforms encode information system unlike frequency domain approach statespace representation limited systems linear components zero initial conditions state space refers space whose axes state variables state system represented point within space1011
+system interfacing siso mimoedit
+control systems divided different categories depending number inputs outputs
+
+singleinput singleoutput siso simplest common type output controlled control signal examples cruise control example audio system control input input audio signal output sound waves speaker
+multipleinput multipleoutput mimo found complicated systems example modern large telescopes keck mirrors composed many separate segments controlled actuator shape entire mirror constantly adjusted mimo active optics control system using input multiple sensors focal plane compensate changes mirror shape thermal expansion contraction stresses rotated distortion wavefront turbulence atmosphere complicated systems nuclear reactors human cells simulated computer large mimo control systems
+
+topics control theoryedit
+stabilityedit
+stability general dynamical system input described lyapunov stability criteria
+
+linear system called boundedinput boundedoutput bibo stable output stay bounded bounded input
+stability nonlinear systems take input inputtostate stability combines lyapunov stability notion similar bibo stability
+
+simplicity following descriptions focus continuoustime discretetime linear systems
+mathematically means causal linear system stable poles transfer function must negativereal values real part pole must less zero practically speaking stability requires transfer function complex poles reside
+
+open left half complex plane continuous time laplace transform used obtain transfer function
+inside unit circle discrete time ztransform used
+
+difference cases simply traditional method plotting continuous time versus discrete time transfer functions continuous laplace transform cartesian coordinates
+
+
+
+
+
+
+displaystyle
+
+axis real axis discrete ztransform circular coordinates
+
+
+
+
+
+
+displaystyle
+
+axis real axis
+appropriate conditions satisfied system said asymptotically stable variables asymptotically stable control system always decrease initial value show permanent oscillations permanent oscillations occur pole real part exactly equal zero continuous time case modulus equal discrete time case simply stable system response neither decays grows time oscillations marginally stable case system transfer function nonrepeated poles complex plane origin real complex component zero continuous time case oscillations present poles real part equal zero imaginary part equal zero
+system question impulse response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle xn05nun
+
+
+
+ztransform example given
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle xzfrac 1105z1
+
+
+
+pole
+
+
+
+
+
+
+
+
+displaystyle
+
+zero imaginary part system bibo asymptotically stable since pole inside unit circle
+however impulse response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle xn15nun
+
+
+
+ztransform
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle xzfrac 1115z1
+
+
+
+pole
+
+
+
+
+
+
+
+
+displaystyle
+
+bibo stable since pole modulus strictly greater
+numerous tools exist analysis poles system include graphical systems like root locus bode plots nyquist plots
+mechanical changes make equipment control systems stable sailors ballast improve stability ships cruise ships antiroll fins extend transversely side ship perhaps feet continuously rotated axes develop forces oppose roll
+controllability observabilityedit
+main articles controllability observability
+controllability observability main issues analysis system deciding best control strategy applied whether even possible control stabilize system controllability related possibility forcing system particular state using appropriate control signal state controllable signal ever able control state state controllable dynamics stable state termed stabilizable observability instead related possibility observing output measurements state system state observable controller never able determine behavior unobservable state hence cannot stabilize system however similar stabilizability condition state cannot observed might still detectable
+geometrical point view looking states variable system controlled every state variables must controllable observable ensure good behavior closedloop system eigenvalues system controllable observable part dynamics remain untouched closedloop system eigenvalue stable dynamics eigenvalue present closedloop system therefore unstable unobservable poles present transfer function realization statespace representation sometimes latter preferred dynamical systems analysis
+solutions problems uncontrollable unobservable system include adding actuators sensors
+control specificationedit
+several different control strategies devised past years vary extremely general ones controller others devoted particular classes systems especially robotics aircraft cruise control
+control problem several specifications stability course always present controller must ensure closedloop system stable regardless openloop stability poor choice controller even worsen stability openloop system must normally avoided sometimes would desired obtain particular dynamics closed loop poles
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle relambda overline lambda
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle overline lambda
+
+fixed value strictly greater zero instead simply asking
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle relambda
+
+
+another typical specification rejection step disturbance including integrator openloop chain directly system control easily achieves classes disturbances need different types subsystems included
+classical control theory specifications regard timeresponse closedloop system include rise time time needed control system reach desired value perturbation peak overshoot highest value reached response reaching desired value others settling time quarterdecay frequency domain specifications usually related robustness
+modern performance assessments variation integrated tracking error iaeisacqi
+model identification robustnessedit
+control system must always robustness property robust controller properties change much applied system slightly different mathematical used synthesis specification important real physical system truly behaves like series differential equations used represent mathematically typically simpler mathematical model chosen order simplify calculations otherwise true system dynamics complicated complete model impossible
+
+system identification
+
+details topic system identification
+process determining equations govern models dynamics called system identification done offline example executing series measures calculate approximated mathematical model typically transfer function matrix identification output however cannot take account unobservable dynamics sometimes model built directly starting known physical equations example case massspringdamper system know
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mddot xtkxtmathrm
+
+even assuming complete model used designing controller parameters included equations called nominal parameters never known absolute precision control system behave correctly even connected physical system true parameter values away nominal
+advanced control techniques include online identification process later parameters model calculated identified controller running drastic variation parameters ensues example robots releases weight controller adjust consequently order ensure correct performance
+
+analysis
+
+analysis robustness siso single input single output control system performed frequency domain considering systems transfer function using nyquist bode diagrams topics include gain phase margin amplitude margin mimo multiinput multi output general complicated control systems must consider theoretical results devised control technique next section particular robustness qualities needed engineer must shift attention control technique including properties
+
+constraints
+
+particular robustness issue requirement control system perform properly presence input state constraints physical world every signal limited could happen controller send control signals cannot followed physical system example trying rotate valve excessive speed produce undesired behavior closedloop system even damage break actuators subsystems specific control techniques available solve problem model predictive control later antiwind systems latter consists additional control block ensures control signal never exceeds given threshold
+system classificationsedit
+linear systems controledit
+main article state space controls
+mimo systems pole placement performed mathematically using state space representation openloop system calculating feedback matrix assigning poles desired positions complicated systems require computerassisted calculation capabilities cannot always ensure robustness furthermore system states general measured observers must included incorporated pole placement design
+nonlinear systems controledit
+main article nonlinear control
+processes industries like robotics aerospace industry typically strong nonlinear dynamics control theory sometimes possible linearize classes systems apply linear techniques many cases necessary devise scratch theories permitting control nonlinear systems feedback linearization backstepping sliding mode control trajectory linearization control normally take advantage results based lyapunovs theory differential geometry widely used tool generalizing wellknown linear control concepts nonlinear case well showing subtleties make challenging problem control theory also used decipher neural mechanism directs cognitive states12
+decentralized systems controledit
+main article distributed control system
+system controlled multiple controllers problem decentralized control decentralization helpful many ways instance helps control systems operate larger geographical area agents decentralized control systems interact using communication channels coordinate actions
+deterministic stochastic systems controledit
+main article stochastic control
+stochastic control problem evolution state variables subjected random shocks outside system deterministic control problem subject external random shocks
+main control strategiesedit
+every control system must guarantee first stability closedloop behavior linear systems obtained directly placing poles nonlinear control systems specific theories normally based aleksandr lyapunovs theory ensure stability without regard inner dynamics system possibility fulfill different specifications varies model considered control strategy chosen
+
+list main control techniques
+
+
+adaptive control uses online identification process parameters modification controller gains thereby obtaining strong robustness properties adaptive controls applied first time aerospace industry 1950s found particular success field
+hierarchical control system type control system devices governing software arranged hierarchical tree links tree implemented computer network hierarchical control system also form networked control system
+intelligent control uses various computing approaches like neural networks bayesian probability fuzzy logic13 machine learning evolutionary computation genetic algorithms control dynamic system
+optimal control particular control technique control signal optimizes certain cost index example case satellite thrusts needed bring desired trajectory consume least amount fuel optimal control design methods widely used industrial applications shown guarantee closedloop stability model predictive control linearquadraticgaussian control first explicitly take account constraints signals system important feature many industrial processes however optimal control structure means achieve result optimize true performance index closedloop control system together controllers systems widely used control technique process control
+robust control deals explicitly uncertainty approach controller design controllers designed using robust control methods tend able cope small differences true system nominal model used design14 early methods bode others fairly robust statespace methods invented 1960s 1970s sometimes found lack robustness examples modern robust control techniques include hinfinity loopshaping developed duncan mcfarlane keith glover cambridge university united kingdom sliding mode control developed vadim utkin robust methods achieve robust performance andor stability presence small modeling errors
+stochastic control deals control design uncertainty model typical stochastic control problems assumed exist random noise disturbances model controller control design must take account random deviations
+energyshaping control view plant controller energytransformation devices control strategy formulated terms interconnection powerpreserving manner order achieve desired behavior
+selforganized criticality control defined attempts interfere processes selforganized system dissipates energy
+
+historyedit
+
+
+
+
+centrifugal governor boulton watt engine 1788
+
+
+although control systems various types date back antiquity formal analysis field began dynamics analysis centrifugal governor conducted physicist james clerk maxwell 1868 entitled governors15 described analyzed phenomenon selfoscillation lags system lead overcompensation unstable behavior generated flurry interest topic maxwells classmate edward john routh abstracted maxwells results general class linear systems16 independently adolf hurwitz analyzed system stability using differential equations 1877 resulting known routh–hurwitz theorem1718
+notable application dynamic control area manned flight wright brothers made first successful test flights december 1903 distinguished ability control flights substantial periods ability produce lift airfoil known continuous reliable control airplane necessary flights lasting longer seconds
+world control theory becoming important area research irmgard flüggelotz developed theory discontinuous automatic control systems applied bangbang principle development automatic flight control equipment aircraft1920 areas application discontinuous controls included firecontrol systems guidance systems electronics
+centrifugal governor used regulate windmill velocity21
+sometimes mechanical methods used improve stability systems example ship stabilizers fins mounted beneath waterline emerging laterally contemporary vessels gyroscopically controlled active fins capacity change angle attack counteract roll caused wind waves acting ship
+space race also depended accurate spacecraft control control theory also seen increasing fields economics
+people systems controledit
+main article people systems control
+many active historical figures made significant contribution control theory including
+
+pierresimon laplace invented ztransform work probability theory used solve discretetime control theory problems ztransform discretetime equivalent laplace transform named
+irmgard fluggelotz developed theory discontinuous automatic control applied automatic aircraft control systems
+alexander lyapunov 1890s marks beginning stability theory
+harold black invented concept negative feedback amplifiers 1927 managed develop stable negative feedback amplifiers 1930s
+harry nyquist developed nyquist stability criterion feedback systems 1930s
+richard bellman developed dynamic programming since 1940s22
+andrey kolmogorov codeveloped wiener–kolmogorov filter 1941
+norbert wiener codeveloped wiener–kolmogorov filter coined term cybernetics 1940s
+john ragazzini introduced digital control ztransform control theory invented laplace 1950s
+pontryagin introduced maximum principle bangbang principle
+pierrelouis lions developed viscosity solutions stochastic control optimal control methods
+rudolf kalman pioneered statespace approach systems control introduced notions controllability observability developed kalman filter linear estimation
+nayfeh main contributors nonlinear control theory published many books perturbation methods
+willems introduced concept dissipativity generalization lyapunov function inputstateoutput systemsthe construction storage function analogue lyapunov function called study linear matrix inequality control theory pioneered behavioral approach mathematical systems theory
+
+alsoedit
+
+
+systems science portal
+
+
+
+examples control systems
+
+
+
+automation
+deadbeat controller
+distributed parameter systems
+fractionalorder control
+hinfinity loopshaping
+hierarchical control system
+model predictive control
+controller
+process control
+robust control
+servomechanism
+state space controls
+vector control
+
+
+
+topics control theory
+
+
+
+coefficient diagram method
+control reconfiguration
+cutinsertion theorem
+feedback
+infinity
+hankel singular value
+kreners theorem
+leadlag compensator
+minor loop feedback
+multiloop feedback
+positive systems
+radial basis function
+root locus
+signalflow graphs
+stable polynomial
+state space representation
+underactuation
+youla–kucera parametrization
+markov chain approximation method
+
+
+
+related topics
+
+
+
+automation remote control
+bond graph
+control engineering
+control–feedback–abort loop
+controller control theory
+cybernetics
+intelligent control
+mathematical system theory
+negative feedback amplifier
+people systems control
+perceptual control theory
+systems theory
+time scale calculus
+
+
+referencesedit
+
+
+
+bennett stuart 1992 history control engineering 19301955 isbn 9780863412998
+maxwell 1868 governors proceedings royal society
+minorsky nicolas 1922 directional stability automatically steered bodies journal american society naval engineers 280–309 doi101111j155935841922tb04958x
+antunes ricardo gonzalez vicente march 2015 production model construction theoretical framework buildings 209–228 doi103390buildings5010209
+feedback control systems steffano stubberud williams schaums outline series mcgrawhill 1967
+mayr otto 1970 origins feedback control clinton colonial press
+mayr otto 1969 origins feedback control clinton colonial press
+chong 2005 control system analysis design technology ieee transactions control systems technology 559–576
+trim point
+donald wiberg state space linear systems schaums outline series mcgraw hill isbn 0070700966
+terrell william 1999 fundamental control theory controllability observability duality —and— fundamental control theory feedback linearization single input nonlinear systems american mathematical monthly 705–719 812–828 doi1023072589614
+2015 controllability structural brain networks article number 8414 nature communications doi101038ncomms9414 summary tools control network theories offer mechanistic explanation brain moves cognitive states drawn network organization white matter microstructure
+wilson wang farid golnaraghi eric kubica 2010 novel fuzzy framework nonlinear system control fuzzy sets systems 2746–2759 doi101016jfss201004009
+melby paul 2002 robustness adaptation controlled selfadjusting chaotic systems fluctuation noise letters doi101142s0219477502000919
+maxwell 1868 governors proceedings royal society london 270–283 doi101098rspl18670055 jstor 112510
+routh fuller 1975 stability motion taylor francis
+routh 1877 treatise stability given state motion particularly steady motion particularly steady motion macmillan
+hurwitz 1964 conditions equation roots negative real parts selected papers mathematical trends control theory
+fluggelotz irmgard titus harold october 1962 optimum quasioptimum control third fourthorder systems stanford university technical report 8–12
+hallion richard 1980 sicherman barbara green carol hurd kantrov ilene walker harriette notable american women modern period biographical dictionary cambridge mass belknap press harvard university press 241–242 isbn 9781849722704
+control theory history mathematical achievements perspectives fernandezcara1 zuazua
+richard bellman 1964 control theory scientific american 186–200
+
+
+
+readingedit
+
+levine william 1996 control handbook york press isbn 9780849385704
+karl åström richard murray 2008 feedback systems introduction scientists engineers princeton university press isbn 0691135762
+christopher kilian 2005 modern control technology thompson delmar learning isbn 1401858066
+vannevar bush 1929 operational circuit analysis john wiley sons
+robert stengel 1994 optimal control estimation dover publications isbn 0486682005
+franklin 2002 feedback control dynamic systems jersey prentice hall isbn 0130323934
+joseph hellerstein dawn tilbury sujay parekh 2004 feedback control computing systems john wiley sons isbn 047126637x
+diederich hinrichsen anthony pritchard 2005 mathematical systems theory modelling state space analysis stability robustness springer isbn 3540441255
+andrei neculai 2005 modern control theory historical perspective retrieved 20071010
+sontag eduardo 1998 mathematical control theory deterministic finite dimensional systems second edition springer isbn 0387984895
+goodwin graham 2001 control system design prentice hall isbn 0139586539
+christophe basso 2012 designing control loops linear switching power supplies tutorial guide artech house isbn 9781608075577
+
+chemical engineering
+
+luyben william 1989 process modeling simulation control chemical engineers graw hill isbn 0070391599
+
+external linksedit
+
+
+
+wikibooks book topic control systems
+
+
+
+
+
+wikimedia commons media related control theory
+
+
+
+control tutorials matlab workedthrough control examples solved several different methods
+control tuning best practices
+advanced control structures free online simulators explaining control theory
+applying control theory manage flash erasureslifespandead link
+dark side loop control theory professional seminar taught apec 2012 orlando
+
+
+
+
+
+
+
+
+
+
+
+
+control theory
+
+
+
+branches
+
+
+
+adaptive control
+control theory
+digital control
+energyshaping control
+fuzzy control
+hybrid control
+intelligent control
+model predictive control
+multivariable control
+neural control
+nonlinear control
+optimal control
+realtime control
+robust control
+stochastic control
+
+
+
+
+
+system properties
+
+
+
+bode plot
+block diagram
+closedloop transfer function
+controllability
+fourier transform
+frequency response
+laplace transform
+negative feedback
+observability
+performance
+positive feedback
+root locus method
+servomechanism
+signalflow graph
+state space representation
+stability theory
+steady state analysis design
+system dynamics
+transfer function
+
+
+
+
+
+digital control
+
+
+
+discretetime signal
+digital signal processing
+quantization
+real time software
+sampled data
+system identification
+transform
+
+
+
+
+
+advanced techniques
+
+
+
+artificial neural networks
+coefficient diagram method
+control reconfiguration
+distributed parameter systems
+fractionalorder control
+fuzzy logic
+hinfinity loopshaping
+hankel singular value
+kalman filter
+kreners theorem
+least squares
+lyapunov stability
+minor loop feedback
+perceptual control theory
+state observer
+vector control
+
+
+
+
+
+controllers
+
+
+
+embedded controller
+closedloop controller
+leadlag compensator
+numerical control
+controller
+programmable logic controller
+
+
+
+
+
+control applications
+
+
+
+automation remote control
+distributed control system
+electric motors
+industrial control systems
+mechatronics
+motion control
+process control
+robotics
+supervisory control scada
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+subfields scientists involved cybernetics
+
+
+
+subfields
+
+
+
+polycontexturality
+secondorder cybernetics
+catastrophe theory
+connectionism
+control theory
+decision theory
+information theory
+semiotics
+synergetics
+biological cybernetics
+biosemiotics
+biomedical cybernetics
+biorobotics
+computational neuroscience
+homeostasis
+management cybernetics
+medical cybernetics
+neurocybernetics
+sociocybernetics
+emergence
+artificial intelligence
+
+
+
+
+
+cyberneticists
+
+
+
+maleyka abbaszadeh
+igor aleksander
+william ross ashby
+gregory bateson
+anthony stafford beer
+natalia bekhtereva
+claude bernard
+ludwig bertalanffy
+valentin braitenberg
+gordon brown
+walter bradford cannon
+manfred clynes
+heinz foerster
+charles françois
+wright forrester
+jacque fresco
+buckminster fuller
+ranulph glanville
+ernst glasersfeld
+pyotr grigorenko
+katherine hayles
+francis heylighen
+erich holst
+jason jixuan
+cliff joslyn
+stuart kauffman
+sergei kurdyumov
+allenna leonard
+niklas luhmann
+warren mcculloch
+humberto maturana
+margaret mead
+ulla mitzdorf
+talcott parsons
+gordon pask
+walter pitts
+alfred radcliffebrown
+robert trappl
+valentin turchin
+jakob uexküll
+francisco varela
+frederic vester
+charles geoffrey vickers
+stuart umpleby
+john warfield
+william grey walter
+kevin warwick
+norbert wiener
+jennifer wilby
+anthony wilden
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+systems science
+
+
+
+systems
+types
+
+
+
+anatomical
+
+biological
+complex
+complex adaptive
+conceptual
+coupled human–environment
+database
+dynamical
+ecological
+economic
+energy
+formal
+holarchic
+information
+legal
+measurement
+metric
+multiagent
+nervous
+nonlinear
+operating
+physical
+planetary
+political
+sensory
+social
+star
+writing
+
+
+
+
+
+theoretical
+fields
+
+
+
+
+
+
+
+chaos theory
+complex systems
+control theory
+cybernetics
+earth system science
+living systems
+sociotechnical system
+systemics
+urban metabolism
+worldsystems theory
+
+
+
+
+
+
+
+
+analysis
+biology
+dynamics
+ecology
+engineering
+neuroscience
+pharmacology
+psychology
+theory
+thinking
+
+
+
+
+
+
+
+
+systems
+scientists
+
+
+
+alexander bogdanov
+russell ackoff
+william ross ashby
+ruzena bajcsy
+béla bánáthy
+gregory bateson
+anthony stafford beer
+richard bellman
+ludwig bertalanffy
+margaret boden
+kenneth boulding
+murray bowen
+kathleen carley
+mary cartwright
+west churchman
+manfred clynes
+george dantzig
+edsger dijkstra
+heinz foerster
+stephanie forrest
+wright forrester
+barbara grosz
+charles hall
+lydia kavraki
+james
+faina kirillova
+george klir
+allenna leonard
+edward norton lorenz
+niklas luhmann
+humberto maturana
+margaret mead
+donella meadows
+mihajlo mesarovic
+james grier miller
+radhika nagpal
+howard odum
+talcott parsons
+ilya prigogine
+qian xuesen
+anatol rapoport
+peter senge
+claude shannon
+katia sycara
+francisco varela
+manuela veloso
+kevin warwick
+norbert wiener
+jennifer wilby
+anthony wilden
+
+
+
+
+
+applications
+
+
+
+systems theory anthropology
+systems theory archaeology
+systems theory political science
+
+
+
+
+
+organizations
+
+
+
+list
+principia cybernetica
+
+
+
+
+
+
+
+
+systems science portal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+areas mathematics
+
+
+
+
+
+
+outline
+topic lists
+
+
+
+
+
+branches
+
+
+
+
+arithmetic
+
+
+
+history mathematics
+philosophy mathematics
+philosophy mathematics education
+information theory
+theory
+order theory
+representation theory
+theory
+category theory
+control theory
+graph theory
+computation
+
+
+
+
+
+algebra
+
+
+
+number theory
+elementary
+linear
+multilinear
+abstract
+combinatorics
+group theory
+
+
+
+
+
+calculus
+
+
+
+analysis
+differential equations dynamical systems
+numerical analysis
+optimization
+functional analysis
+
+
+
+
+
+geometry
+
+
+
+discrete
+algebraic
+analytic
+differential
+finite
+topology
+trigonometry
+
+
+
+
+
+applied
+
+
+
+probability
+mathematical physics
+mathematical statistics
+statistics
+computer
+game theory
+recreational mathematics
+mathematics
+mathematics education
+mathematical logic
+
+
+
+
+
+
+
+
+divisions
+
+
+
+pure
+applied
+discrete
+computational
+
+
+
+
+
+
+
+
+category
+portal
+commons
+wikiproject
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+40323171
+00570298
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlecontroltheoryoldid813752195 categories control theorycyberneticscontrol engineeringcomputational mathematicshidden categories dates july 2016all articles dead external linksarticles dead external links january 2016wikipedia articles identifiers

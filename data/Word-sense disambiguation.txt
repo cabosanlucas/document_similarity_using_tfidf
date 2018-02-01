@@ -1,0 +1,472 @@
+"Disambiguation" redirects here. For other uses, see Disambiguation (disambiguation).
+For disambiguation on Wikipedia, see Wikipedia:Disambiguation.
+In computational linguistics, word-sense disambiguation (WSD) is an open problem of natural language processing and ontology. WSD is identifying which sense of a word (i.e. meaning) is used in a sentence, when the word has multiple meanings. The solution to this problem impacts other computer-related writing, such as discourse, improving relevance of search engines, anaphora resolution, coherence, inference, et cetera.
+The human brain is quite proficient at word-sense disambiguation. That natural language is formed in a way that requires so much of it is a reflection of that neurologic reality. In other words, human language developed in a way that reflects (and also has helped to shape) the innate ability provided by the brain's neural networks. In computer science and the information technology that it enables, it has been a long-term challenge to develop the ability in computers to do natural language processing and machine learning.
+A rich variety of techniques have been researched, from dictionary-based methods that use the knowledge encoded in lexical resources, to supervised machine learning methods in which a classifier is trained for each distinct word on a corpus of manually sense-annotated examples, to completely unsupervised methods that cluster occurrences of words, thereby inducing word senses. Among these, supervised learning approaches have been the most successful algorithms to date.
+Accuracy of current algorithms is difficult to state without a host of caveats. In English, accuracy at the coarse-grained (homograph) level is routinely above 90%, with some methods on particular homographs achieving over 96%. On finer-grained sense distinctions, top accuracies from 59.1% to 69.0% have been reported in evaluation exercises (SemEval-2007, Senseval-2), where the baseline accuracy of the simplest possible algorithm of always choosing the most frequent sense was 51.4% and 57%, respectively.
+
+
+
+Contents
+
+
+1 About
+2 History
+3 Difficulties
+
+3.1 Differences between dictionaries
+3.2 Part-of-speech tagging
+3.3 Inter-judge variance
+3.4 Pragmatics
+3.5 Sense inventory and algorithms' task-dependency
+3.6 Discreteness of senses
+
+
+4 Approaches and methods
+
+4.1 Dictionary- and knowledge-based methods
+4.2 Supervised methods
+4.3 Semi-supervised methods
+4.4 Unsupervised methods
+4.5 Other approaches
+4.6 Other languages
+4.7 Local impediments and summary
+
+
+5 External knowledge sources
+6 Evaluation
+
+6.1 Task design choices
+
+
+7 Software
+8 See also
+9 Notes
+10 Works cited
+11 External links and suggested reading
+
+
+
+About[edit]
+Disambiguation requires two strict inputs: a dictionary to specify the senses which are to be disambiguated and a corpus of language data to be disambiguated (in some methods, a training corpus of language examples is also required). WSD task has two variants: "lexical sample" and "all words" task. The former comprises disambiguating the occurrences of a small sample of target words which were previously selected, while in the latter all the words in a piece of running text need to be disambiguated. The latter is deemed a more realistic form of evaluation, but the corpus is more expensive to produce because human annotators have to read the definitions for each word in the sequence every time they need to make a tagging judgement, rather than once for a block of instances for the same target word.
+To give a hint how all this works, consider three examples of the distinct senses that exist for the (written) word "bass":
+
+a type of fish
+tones of low frequency
+a type of instrument
+
+and the sentences:
+
+I went fishing for some sea bass.
+The bass line of the song is too weak.
+
+To a human, it is obvious that the first sentence is using the word "bass (fish)", as in the former sense above and in the second sentence, the word "bass (instrument)" is being used as in the latter sense below. Developing algorithms to replicate this human ability can often be a difficult task, as is further exemplified by the implicit equivocation between "bass (sound)" and "bass (instrument)".
+History[edit]
+WSD was first formulated into as a distinct computational task during the early days of machine translation in the 1940s, making it one of the oldest problems in computational linguistics. Warren Weaver, in his famous 1949 memorandum on translation,[1] first introduced the problem in a computational context. Early researchers understood the significance and difficulty of WSD well. In fact, Bar-Hillel (1960) used the above example to argue[2] that WSD could not be solved by "electronic computer" because of the need in general to model all world knowledge.
+In the 1970s, WSD was a subtask of semantic interpretation systems developed within the field of artificial intelligence, starting with Wilks' preference semantics. However, since WSD systems were at the time largely rule-based and hand-coded they were prone to a knowledge acquisition bottleneck.
+By the 1980s large-scale lexical resources, such as the Oxford Advanced Learner's Dictionary of Current English (OALD), became available: hand-coding was replaced with knowledge automatically extracted from these resources, but disambiguation was still knowledge-based or dictionary-based.
+In the 1990s, the statistical revolution swept through computational linguistics, and WSD became a paradigm problem on which to apply supervised machine learning techniques.
+The 2000s saw supervised techniques reach a plateau in accuracy, and so attention has shifted to coarser-grained senses, domain adaptation, semi-supervised and unsupervised corpus-based systems, combinations of different methods, and the return of knowledge-based systems via graph-based methods. Still, supervised systems continue to perform best.
+Difficulties[edit]
+Differences between dictionaries[edit]
+One problem with word sense disambiguation is deciding what the senses are. In cases like the word bass above, at least some senses are obviously different. In other cases, however, the different senses can be closely related (one meaning being a metaphorical or metonymic extension of another), and in such cases division of words into senses becomes much more difficult. Different dictionaries and thesauruses will provide different divisions of words into senses. One solution some researchers have used is to choose a particular dictionary, and just use its set of senses. Generally, however, research results using broad distinctions in senses have been much better than those using narrow ones.[3][4] However, given the lack of a full-fledged coarse-grained sense inventory, most researchers continue to work on fine-grained WSD.
+Most research in the field of WSD is performed by using WordNet as a reference sense inventory for English. WordNet is a computational lexicon that encodes concepts as synonym sets (e.g. the concept of car is encoded as { car, auto, automobile, machine, motorcar }). Other resources used for disambiguation purposes include Roget's Thesaurus[5] and Wikipedia.[6] More recently, BabelNet, a multilingual encyclopedic dictionary, has been used for multilingual WSD.[7]
+Part-of-speech tagging[edit]
+In any real test, part-of-speech tagging and sense tagging are very closely related with each potentially making constraints to the other. And the question whether these tasks should be kept together or decoupled is still not unanimously resolved, but recently scientists incline to test these things separately (e.g. in the Senseval/SemEval competitions parts of speech are provided as input for the text to disambiguate).
+It is instructive to compare the word sense disambiguation problem with the problem of part-of-speech tagging. Both involve disambiguating or tagging with words, be it with senses or parts of speech. However, algorithms used for one do not tend to work well for the other, mainly because the part of speech of a word is primarily determined by the immediately adjacent one to three words, whereas the sense of a word may be determined by words further away. The success rate for part-of-speech tagging algorithms is at present much higher than that for WSD, state-of-the art being around 95%[citation needed] accuracy or better, as compared to less than 75%[citation needed] accuracy in word sense disambiguation with supervised learning. These figures are typical for English, and may be very different from those for other languages.
+Inter-judge variance[edit]
+Another problem is inter-judge variance. WSD systems are normally tested by having their results on a task compared against those of a human. However, while it is relatively easy to assign parts of speech to text, training people to tag senses is far more difficult.[8] While users can memorize all of the possible parts of speech a word can take, it is often impossible for individuals to memorize all of the senses a word can take. Moreover, humans do not agree on the task at hand – give a list of senses and sentences, and humans will not always agree on which word belongs in which sense.[9]
+As human performance serves as the standard, it is an upper bound for computer performance. Human performance, however, is much better on coarse-grained than fine-grained distinctions, so this again is why research on coarse-grained distinctions[10][11] has been put to test in recent WSD evaluation exercises.[3][4]
+Pragmatics[edit]
+Some AI researchers like Douglas Lenat argue that one cannot parse meanings from words without some form of common sense ontology. This linguistic issue is called pragmatics. For example, comparing these two sentences:
+
+"Jill and Mary are mothers." – (each is independently a mother).
+"Jill and Mary are sisters." – (they are sisters of each other).
+
+To properly identify senses of words one must know common sense facts.[12] Moreover, sometimes the common sense is needed to disambiguate such words like pronouns in case of having anaphoras or cataphoras in the text.
+Sense inventory and algorithms' task-dependency[edit]
+A task-independent sense inventory is not a coherent concept:[13] each task requires its own division of word meaning into senses relevant to the task. For example, the ambiguity of 'mouse' (animal or device) is not relevant in English-French machine translation, but is relevant in information retrieval. The opposite is true of 'river', which requires a choice in French (fleuve 'flows into the sea', or rivière 'flows into a river').
+Also, completely different algorithms might be required by different applications. In machine translation, the problem takes the form of target word selection. Here, the "senses" are words in the target language, which often correspond to significant meaning distinctions in the source language ("bank" could translate to the French "banque"—that is, 'financial bank' or "rive"—that is, 'edge of river'). In information retrieval, a sense inventory is not necessarily required, because it is enough to know that a word is used in the same sense in the query and a retrieved document; what sense that is, is unimportant.
+Discreteness of senses[edit]
+Finally, the very notion of "word sense" is slippery and controversial. Most people can agree in distinctions at the coarse-grained homograph level (e.g., pen as writing instrument or enclosure), but go down one level to fine-grained polysemy, and disagreements arise. For example, in Senseval-2, which used fine-grained sense distinctions, human annotators agreed in only 85% of word occurrences.[14] Word meaning is in principle infinitely variable and context sensitive. It does not divide up easily into distinct or discrete sub-meanings.[15] Lexicographers frequently discover in corpora loose and overlapping word meanings, and standard or conventional meanings extended, modulated, and exploited in a bewildering variety of ways. The art of lexicography is to generalize from the corpus to definitions that evoke and explain the full range of meaning of a word, making it seem like words are well-behaved semantically. However, it is not at all clear if these same meaning distinctions are applicable in computational applications, as the decisions of lexicographers are usually driven by other considerations. Recently, a task – named lexical substitution – has been proposed as a possible solution to the sense discreteness problem.[16] The task consists of providing a substitute for a word in context that preserves the meaning of the original word (potentially, substitutes can be chosen from the full lexicon of the target language, thus overcoming discreteness).
+Approaches and methods[edit]
+As in all natural language processing, there are two main approaches to WSD – deep approaches and shallow approaches.
+Deep approaches presume access to a comprehensive body of world knowledge. Knowledge, such as "you can go fishing for a type of fish, but not for low frequency sounds" and "songs have low frequency sounds as parts, but not types of fish", is then used to determine in which sense the word bass is used. These approaches are not very successful in practice, mainly because such a body of knowledge does not exist in a computer-readable format, outside very limited domains.[17] However, if such knowledge did exist, then deep approaches would be much more accurate than the shallow approaches.[citation needed] Also, there is a long tradition in computational linguistics, of trying such approaches in terms of coded knowledge and in some cases, it is hard to say clearly whether the knowledge involved is linguistic or world knowledge. The first attempt was that by Margaret Masterman and her colleagues, at the Cambridge Language Research Unit in England, in the 1950s. This attempt used as data a punched-card version of Roget's Thesaurus and its numbered "heads", as an indicator of topics and looked for repetitions in text, using a set intersection algorithm. It was not very successful,[18] but had strong relationships to later work, especially Yarowsky's machine learning optimisation of a thesaurus method in the 1990s.
+Shallow approaches don't try to understand the text. They just consider the surrounding words, using information such as "if bass has words sea or fishing nearby, it probably is in the fish sense; if bass has the words music or song nearby, it is probably in the music sense." These rules can be automatically derived by the computer, using a training corpus of words tagged with their word senses. This approach, while theoretically not as powerful as deep approaches, gives superior results in practice, due to the computer's limited world knowledge. However, it can be confused by sentences like The dogs bark at the tree which contains the word bark near both tree and dogs.
+There are four conventional approaches to WSD:
+
+Dictionary- and knowledge-based methods: These rely primarily on dictionaries, thesauri, and lexical knowledge bases, without using any corpus evidence.
+Semi-supervised or minimally supervised methods: These make use of a secondary source of knowledge such as a small annotated corpus as seed data in a bootstrapping process, or a word-aligned bilingual corpus.
+Supervised methods: These make use of sense-annotated corpora to train from.
+Unsupervised methods: These eschew (almost) completely external information and work directly from raw unannotated corpora. These methods are also known under the name of word sense discrimination.
+
+Almost all these approaches normally work by defining a window of n content words around each word to be disambiguated in the corpus, and statistically analyzing those n surrounding words. Two shallow approaches used to train and then disambiguate are Naïve Bayes classifiers and decision trees. In recent research, kernel-based methods such as support vector machines have shown superior performance in supervised learning. Graph-based approaches have also gained much attention from the research community, and currently achieve performance close to the state of the art.
+Dictionary- and knowledge-based methods[edit]
+The Lesk algorithm[19] is the seminal dictionary-based method. It is based on the hypothesis that words used together in text are related to each other and that the relation can be observed in the definitions of the words and their senses. Two (or more) words are disambiguated by finding the pair of dictionary senses with the greatest word overlap in their dictionary definitions. For example, when disambiguating the words in "pine cone", the definitions of the appropriate senses both include the words evergreen and tree (at least in one dictionary). A similar approach[20] searches for the shortest path between two words: the second word is iteratively searched among the definitions of every semantic variant of the first word, then among the definitions of every semantic variant of each word in the previous definitions and so on. Finally, the first word is disambiguated by selecting the semantic variant which minimizes the distance from the first to the second word.
+An alternative to the use of the definitions is to consider general word-sense relatedness and to compute the semantic similarity of each pair of word senses based on a given lexical knowledge base such as WordNet. Graph-based methods reminiscent of spreading activation research of the early days of AI research have been applied with some success. More complex graph-based approaches have been shown to perform almost as well as supervised methods[21] or even outperforming them on specific domains.[3][22] Recently, it has been reported that simple graph connectivity measures, such as degree, perform state-of-the-art WSD in the presence of a sufficiently rich lexical knowledge base.[23] Also, automatically transferring knowledge in the form of semantic relations from Wikipedia to WordNet has been shown to boost simple knowledge-based methods, enabling them to rival the best supervised systems and even outperform them in a domain-specific setting.[24]
+The use of selectional preferences (or selectional restrictions) is also useful, for example, knowing that one typically cooks food, one can disambiguate the word bass in "I am cooking basses" (i.e., it's not a musical instrument).
+Supervised methods[edit]
+Supervised methods are based on the assumption that the context can provide enough evidence on its own to disambiguate words (hence, common sense and reasoning are deemed unnecessary). Probably every machine learning algorithm going has been applied to WSD, including associated techniques such as feature selection, parameter optimization, and ensemble learning. Support Vector Machines and memory-based learning have been shown to be the most successful approaches, to date, probably because they can cope with the high-dimensionality of the feature space. However, these supervised methods are subject to a new knowledge acquisition bottleneck since they rely on substantial amounts of manually sense-tagged corpora for training, which are laborious and expensive to create.
+Semi-supervised methods[edit]
+Because of the lack of training data, many word sense disambiguation algorithms use semi-supervised learning, which allows both labeled and unlabeled data. The Yarowsky algorithm was an early example of such an algorithm.[25] It uses the ‘One sense per collocation’ and the ‘One sense per discourse’ properties of human languages for word sense disambiguation. From observation, words tend to exhibit only one sense in most given discourse and in a given collocation.
+The bootstrapping approach starts from a small amount of seed data for each word: either manually tagged training examples or a small number of surefire decision rules (e.g., 'play' in the context of 'bass' almost always indicates the musical instrument). The seeds are used to train an initial classifier, using any supervised method. This classifier is then used on the untagged portion of the corpus to extract a larger training set, in which only the most confident classifications are included. The process repeats, each new classifier being trained on a successively larger training corpus, until the whole corpus is consumed, or until a given maximum number of iterations is reached.
+Other semi-supervised techniques use large quantities of untagged corpora to provide co-occurrence information that supplements the tagged corpora. These techniques have the potential to help in the adaptation of supervised models to different domains.
+Also, an ambiguous word in one language is often translated into different words in a second language depending on the sense of the word. Word-aligned bilingual corpora have been used to infer cross-lingual sense distinctions, a kind of semi-supervised system.
+Unsupervised methods[edit]
+Main article: Word sense induction
+Unsupervised learning is the greatest challenge for WSD researchers. The underlying assumption is that similar senses occur in similar contexts, and thus senses can be induced from text by clustering word occurrences using some measure of similarity of context,[26] a task referred to as word sense induction or discrimination. Then, new occurrences of the word can be classified into the closest induced clusters/senses. Performance has been lower than for the other methods described above, but comparisons are difficult since senses induced must be mapped to a known dictionary of word senses. If a mapping to a set of dictionary senses is not desired, cluster-based evaluations (including measures of entropy and purity) can be performed. Alternatively, word sense induction methods can be tested and compared within an application. For instance, it has been shown that word sense induction improves Web search result clustering by increasing the quality of result clusters and the degree diversification of result lists.[27][28] It is hoped that unsupervised learning will overcome the knowledge acquisition bottleneck because they are not dependent on manual effort.
+Other approaches[edit]
+Other approaches may vary differently in their methods:
+
+Disambiguation based on operational semantics of default logic.[29]
+Domain-driven disambiguation;[30][31]
+Identification of dominant word senses;[32][33][34]
+WSD using Cross-Lingual Evidence.[35][36]
+WSD solution by multi-lingual NLU - Patom theory and RRG (Role and Reference Grammar) combined
+
+Other languages[edit]
+
+Hindi : Lack of lexical resources in Hindi have hindered the performance of supervised models of WSD, while the unsupervised models suffer due to extensive morphology. A possible solution to this problem is the design of a WSD model by means of parallel corpora.[37][38] The creation of the Hindi WordNet has paved way for several Supervised methods which have been proven to produce a higher accuracy in disambiguating nouns.[39]
+
+Local impediments and summary[edit]
+The knowledge acquisition bottleneck is perhaps the major impediment to solving the WSD problem. Unsupervised methods rely on knowledge about word senses, which is barely formulated in dictionaries and lexical databases. Supervised methods depend crucially on the existence of manually annotated examples for every word sense, a requisite that can so far be met only for a handful of words for testing purposes, as it is done in the Senseval exercises.
+Therefore, one of the most promising trends in WSD research is using the largest corpus ever accessible, the World Wide Web, to acquire lexical information automatically.[40] WSD has been traditionally understood as an intermediate language engineering technology which could improve applications such as information retrieval (IR). In this case, however, the reverse is also true: Web search engines implement simple and robust IR techniques that can be successfully used when mining the Web for information to be employed in WSD. Therefore, the lack of training data provoked appearing some new algorithms and techniques described here:
+Main article: Automatic Acquisition of Sense-Tagged Corpora
+External knowledge sources[edit]
+Knowledge is a fundamental component of WSD. Knowledge sources provide data which are essential to associate senses with words. They can vary from corpora of texts, either unlabeled or annotated with word senses, to machine-readable dictionaries, thesauri, glossaries, ontologies, etc. They can be[41][42] classified as follows:
+Structured:
+
+Machine-readable dictionaries (MRDs)
+Ontologies
+Thesauri
+
+Unstructured:
+
+Collocation resources
+Other resources (such as word frequency lists, stoplists, domain labels,[43] etc.)
+Corpora: raw corpora and sense-annotated corpora
+
+Evaluation[edit]
+Comparing and evaluating different WSD systems is extremely difficult, because of the different test sets, sense inventories, and knowledge resources adopted. Before the organization of specific evaluation campaigns most systems were assessed on in-house, often small-scale, data sets. In order to test one's algorithm, developers should spend their time to annotate all word occurrences. And comparing methods even on the same corpus is not eligible if there is different sense inventories.
+In order to define common evaluation datasets and procedures, public evaluation campaigns have been organized. Senseval (now renamed SemEval) is an international word sense disambiguation competition, held every three years since 1998: Senseval-1 (1998), Senseval-2 (2001), Senseval-3 (2004), and its successor, SemEval (2007). The objective of the competition is to organize different lectures, preparing and hand-annotating corpus for testing systems, perform a comparative evaluation of WSD systems in several kinds of tasks, including all-words and lexical sample WSD for different languages, and, more recently, new tasks such as semantic role labeling, gloss WSD, lexical substitution, etc. The systems submitted for evaluation to these competitions usually integrate different techniques and often combine supervised and knowledge-based methods (especially for avoiding bad performance in lack of training examples).
+In recent years 2007-2012, the WSD evaluation task choices had grown and the criterion for evaluating WSD has changed drastically depending on the variant of the WSD evaluation task. Below enumerates the variety of WSD tasks:
+Task design choices[edit]
+As technology evolves, the Word Sense Disambiguation (WSD) tasks grows in different flavors towards various research directions and for more languages:
+
+Classic monolingual WSD evaluation tasks use WordNet as the sense inventory and are largely based on supervised/semi-supervised classification with the manually sense annotated corpora:[44]
+
+Classic English WSD uses the Princeton WordNet as it sense inventory and the primary classification input is normally based on the SemCor corpus.
+Classical WSD for other languages uses their respective WordNet as sense inventories and sense annotated corpora tagged in their respective languages. Often researchers will also tapped on the SemCor corpus and aligned bitexts with English as its source language
+
+
+Cross-lingual WSD evaluation task is also focused on WSD across 2 or more languages simultaneously. Unlike the Multilingual WSD tasks, instead of providing manually sense-annotated examples for each sense of a polysemous noun, the sense inventory is built up on the basis of parallel corpora, e.g. Europarl corpus.[45]
+Multilingual WSD evaluation tasks focused on WSD across 2 or more languages simultaneously, using their respective WordNets as its sense inventories or BabelNet as multilingual sense inventory.[46] It evolved from the Translation WSD evaluation tasks that took place in Senseval-2. A popular approach is to carry out monolingual WSD and then map the source language senses into the corresponding target word translations.[47]
+Word Sense Induction and Disambiguation task is a combined task evaluation where the sense inventory is first induced from a fixed training set data, consisting of polysemous words and the sentence that they occurred in, then WSD is performed on a different testing data set.[48]
+
+Software[edit]
+
+Babelfy,[49] a unified state-of-the-art system for multilingual Word Sense Disambiguation and Entity Linking
+BabelNet API,[50] a Java API for knowledge-based multilingual Word Sense Disambiguation in 6 different languages using the BabelNet semantic network
+WordNet::SenseRelate,[51] a project that includes free, open source systems for word sense disambiguation and lexical sample sense disambiguation
+UKB: Graph Base WSD,[52] a collection of programs for performing graph-based Word Sense Disambiguation and lexical similarity/relatedness using a pre-existing Lexical Knowledge Base[53]
+pyWSD,[54] python implementations of Word Sense Disambiguation (WSD) technologies
+
+See also[edit]
+
+Ambiguity
+Controlled natural language
+Entity linking
+Lesk algorithm
+Lexical substitution
+Part-of-speech tagging
+Polysemy
+Semeval
+Semantic unification
+Judicial interpretation
+Sentence boundary disambiguation
+Syntactic ambiguity
+Word sense
+Word sense induction
+
+Notes[edit]
+
+
+^ Weaver 1949.
+^ Bar-Hillel 1964, pp. 174–179.
+^ a b c Navigli, Litkowski & Hargraves 2007, pp. 30–35.
+^ a b Pradhan et al. 2007, pp. 87–92.
+^ Yarowsky 1992, pp. 454–460.
+^ Mihalcea 2007.
+^ A. Moro, A. Raganato, R. Navigli. Entity Linking meets Word Sense Disambiguation: a Unified Approach. Transactions of the Association for Computational Linguistics (TACL), 2, pp. 231-244, 2014.
+^ Fellbaum 1997.
+^ Snyder & Palmer 2004, pp. 41–43.
+^ Navigli 2006, pp. 105–112.
+^ Snow et al. 2007, pp. 1005–1014.
+^ Lenat.
+^ Palmer, Babko-Malaya & Dang 2004, pp. 49–56.
+^ Edmonds 2000.
+^ Kilgarrif 1997, pp. 91–113.
+^ McCarthy & Navigli 2009, pp. 139–159.
+^ Lenat & Guha 1989.
+^ Wilks, Slator & Guthrie 1996.
+^ Lesk 1986, pp. 24–26.
+^ Diamantini, C.; Mircoli, A.; Potena, D.; Storti, E. (2015-06-01). "Semantic disambiguation in a social information discovery system". 2015 International Conference on Collaboration Technologies and Systems (CTS): 326–333. doi:10.1109/CTS.2015.7210442. 
+^ Navigli & Velardi 2005, pp. 1063–1074.
+^ Agirre, Lopez de Lacalle & Soroa 2009, pp. 1501–1506.
+^ Navigli & Lapata 2010, pp. 678–692.
+^ Ponzetto & Navigli 2010, pp. 1522–1531.
+^ Yarowsky 1995, pp. 189–196.
+^ Schütze 1998, pp. 97–123.
+^ Navigli & Crisafulli 2010.
+^ DiMarco & Navigli 2013.
+^ Galitsky, Boris Disambiguation via default rules under answering complex questions Intl J. AI Tools v14 N1-2 pp 157-175 (2003)
+^ Gliozzo, Magnini & Strapparava 2004, pp. 380–387.
+^ Buitelaar et al. 2006, pp. 275–298.
+^ McCarthy et al. 2007, pp. 553–590.
+^ Mohammad & Hirst 2006, pp. 121–128.
+^ Lapata & Keller 2007, pp. 348–355.
+^ Ide, Erjavec & Tufis 2002, pp. 54–60.
+^ Chan & Ng 2005, pp. 1037–1042.
+^ Bhattacharya, Indrajit, Lise Getoor, and Yoshua Bengio. Unsupervised sense disambiguation using bilingual probabilistic models. Proceedings of the 42nd Annual Meeting on Association for Computational Linguistics. Association for Computational Linguistics, 2004.
+^ Diab, Mona, and Philip Resnik. An unsupervised method for word sense tagging using parallel corpora. Proceedings of the 40th Annual Meeting on Association for Computational Linguistics. Association for Computational Linguistics, 2002.
+^ Manish Sinha, Mahesh Kumar, Prabhakar Pande, Laxmi Kashyap, and Pushpak Bhattacharyya. Hindi word sense disambiguation. In International Symposium on Machine Translation, Natural Language Processing and Translation Support Systems, Delhi, India, 2004.
+^ Kilgarrif & Grefenstette 2003, pp. 333–347.
+^ Litkowski 2005, pp. 753–761.
+^ Agirre & Stevenson 2006, pp. 217–251.
+^ Magnini & Cavaglià 2000, pp. 1413–1418.
+^ Lucia Specia, Maria das Gracas Volpe Nunes, Gabriela Castelo Branco Ribeiro, and Mark Stevenson. Multilingual versus monolingual WSD. In EACL-2006 Workshop on Making Sense of Sense: Bringing Psycholinguistics and Computational Linguistics Together, pages 33–40, Trento, Italy, April 2006.
+^ Els Lefever and Veronique Hoste. SemEval-2010 task 3: cross-lingual word sense disambiguation. Proceedings of the Workshop on Semantic Evaluations: Recent Achievements and Future Directions. June 04-04, 2009, Boulder, Colorado
+^ R. Navigli, D. A. Jurgens, D. Vannella. SemEval-2013 Task 12: Multilingual Word Sense Disambiguation. Proc. of 7th International Workshop on Semantic Evaluation (SemEval), in the Second Joint Conference on Lexical and Computational Semantics (*SEM 2013), Atlanta, USA, June 14-15th, 2013, pp. 222-231.
+^ Lucia Specia, Maria das Gracas Volpe Nunes, Gabriela Castelo Branco Ribeiro, and Mark Stevenson. Multilingual versus monolingual WSD. In EACL-2006 Workshop on Making Sense of Sense: Bringing Psycholinguistics and Computational Linguistics Together, pages 33–40, Trento, Italy, April 2006
+^ Eneko Agirre and Aitor Soroa. Semeval-2007 task 02: evaluating word sense induction and discrimination systems. Proceedings of the 4th International Workshop on Semantic Evaluations, p.7-12, June 23–24, 2007, Prague, Czech Republic
+^ Babelfy
+^ BabelNet API
+^ WordNet::SenseRelate
+^ UKB: Graph Base WSD
+^ Lexical Knowledge Base (LKB)
+^ pyWSD
+
+
+Works cited[edit]
+
+Agirre, E.; Lopez de Lacalle, A.; Soroa, A. (2009). "Knowledge-based WSD on Specific Domains: Performing better than Generic Supervised WSD" (PDF). Proc. of IJCAI. 
+Agirre, E.; M. Stevenson. 2006. Knowledge sources for WSD. In Word Sense Disambiguation: Algorithms and Applications, E. Agirre and P. Edmonds, Eds. Springer, New York, NY.
+Bar-Hillel, Y. (1964). Language and information. Reading, MA: Addison-Wesley. 
+Buitelaar, P.; B. Magnini, C. Strapparava and P. Vossen. 2006. Domain-specific WSD. In Word Sense Disambiguation: Algorithms and Applications, E. Agirre and P. Edmonds, Eds. Springer, New York, NY.
+Chan, Y. S.; H. T. Ng. 2005. Scaling up word sense disambiguation via parallel texts. In Proceedings of the 20th National Conference on Artificial Intelligence (AAAI, Pittsburgh, PA).
+Edmonds, P. 2000. Designing a task for SENSEVAL-2. Tech. note. University of Brighton, Brighton. U.K.
+Fellbaum, Christiane (1997). "Analysis of a handwriting task". Proc. of ANLP-97 Workshop on Tagging Text with Lexical Semantics: Why, What, and How? Washington D.C., USA. 
+Gliozzo, A.; B. Magnini and C. Strapparava. 2004. Unsupervised domain relevance estimation for word sense disambiguation. In Proceedings of the 2004 Conference on Empirical Methods in Natural Language Processing (EMNLP, Barcelona, Spain).
+Ide, N.; T. Erjavec, D. Tufis. 2002. Sense discrimination with parallel corpora. In Proceedings of ACL Workshop on Word Sense Disambiguation: Recent Successes and Future Directions (Philadelphia, PA).
+Kilgarriff, A. 1997. I don't believe in word senses. Comput. Human. 31(2), pp. 91–113.
+Kilgarriff, A.; G. Grefenstette. 2003. Introduction to the special issue on the Web as corpus. Computational Linguistics 29(3), pp. 333–347
+Kilgarriff, Adam; Joseph Rosenzweig, English Senseval: Report and Results May–June, 2000, University of Brighton
+Lapata, M.; and F. Keller. 2007. An information retrieval approach to sense ranking. In Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL, Rochester, NY).
+Lenat, D. "Computers versus Common Sense". Retrieved 2008-12-10.  (GoogleTachTalks on YouTube)
+Lenat, D.; R. V. Guha. 1989. Building Large Knowledge-Based Systems, Addison-Wesley
+Lesk; M. 1986. Automatic sense disambiguation using machine readable dictionaries: How to tell a pine cone from an ice cream cone. In Proc. of SIGDOC-86: 5th International Conference on Systems Documentation, Toronto, Canada.
+Litkowski, K. C. 2005. Computational lexicons and dictionaries. In Encyclopaedia of Language and Linguistics (2nd ed.), K. R. Brown, Ed. Elsevier Publishers, Oxford, U.K.
+Magnini, B; G. Cavaglià. 2000. Integrating subject field codes into WordNet. In Proceedings of the 2nd Conference on Language Resources and Evaluation (LREC, Athens, Greece).
+McCarthy, D.; R. Koeling, J. Weeds, J. Carroll. 2007. Unsupervised acquisition of predominant word senses. Computational Linguistics 33(4): 553–590.
+McCarthy, D.; R. Navigli. 2009. The English Lexical Substitution Task, Language Resources and Evaluation, 43(2), Springer.
+Mihalcea, R. 2007. Using Wikipedia for Automatic Word Sense Disambiguation. In Proc. of the North American Chapter of the Association for Computational Linguistics (NAACL 2007), Rochester, April 2007.
+Mohammad, S; G. Hirst. 2006. Determining word sense dominance using a thesaurus. In Proceedings of the 11th Conference on European chapter of the Association for Computational Linguistics (EACL, Trento, Italy).
+Navigli, R. 2006. Meaningful Clustering of Senses Helps Boost Word Sense Disambiguation Performance. Proc. of the 44th Annual Meeting of the Association for Computational Linguistics joint with the 21st International Conference on Computational Linguistics (COLING-ACL 2006), Sydney, Australia.
+Navigli, R.; A. Di Marco. Clustering and Diversifying Web Search Results with Graph-Based Word Sense Induction. Computational Linguistics, 39(3), MIT Press, 2013, pp. 709–754.
+Navigli, R.; G. Crisafulli. Inducing Word Senses to Improve Web Search Result Clustering. Proc. of the 2010 Conference on Empirical Methods in Natural Language Processing (EMNLP 2010), MIT Stata Center, Massachusetts, USA.
+Navigli, R.; M. Lapata. An Experimental Study of Graph Connectivity for Unsupervised Word Sense Disambiguation. IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), 32(4), IEEE Press, 2010.
+Navigli, R.; K. Litkowski, O. Hargraves. 2007. SemEval-2007 Task 07: Coarse-Grained English All-Words Task. Proc. of Semeval-2007 Workshop (SemEval), in the 45th Annual Meeting of the Association for Computational Linguistics (ACL 2007), Prague, Czech Republic.
+Navigli, R.;P. Velardi. 2005. Structural Semantic Interconnections: a Knowledge-Based Approach to Word Sense Disambiguation. IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), 27(7).
+Palmer, M.; O. Babko-Malaya and H. T. Dang. 2004. Different sense granularities for different applications. In Proceedings of the 2nd Workshop on Scalable Natural Language Understanding Systems in HLT/NAACL (Boston, MA).
+Ponzetto, S. P.; R. Navigli. Knowledge-rich Word Sense Disambiguation rivaling supervised systems. In Proc. of the 48th Annual Meeting of the Association for Computational Linguistics (ACL), 2010.
+Pradhan, S.; E. Loper, D. Dligach, M. Palmer. 2007. SemEval-2007 Task 17: English lexical sample, SRL and all words. Proc. of Semeval-2007 Workshop (SEMEVAL), in the 45th Annual Meeting of the Association for Computational Linguistics (ACL 2007), Prague, Czech Republic.
+Schütze, H. 1998. Automatic word sense discrimination. Computational Linguistics, 24(1): 97–123.
+Snow, R.; S. Prakash, D. Jurafsky, A. Y. Ng. 2007. Learning to Merge Word Senses, Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL).
+Snyder, B.; M. Palmer. 2004. The English all-words task. In Proc. of the 3rd International Workshop on the Evaluation of Systems for the Semantic Analysis of Text (Senseval-3), Barcelona, Spain.
+Weaver, Warren (1949). "Translation" (PDF). In Locke, W.N.; Booth, A.D. Machine Translation of Languages: Fourteen Essays. Cambridge, MA: MIT Press. 
+Wilks, Y.; B. Slator, L. Guthrie. 1996. Electric Words: dictionaries, computers and meanings. Cambridge, MA: MIT Press.
+Yarowsky, D. Word-sense disambiguation using statistical models of Roget's categories trained on large corpora. In Proc. of the 14th conference on Computational linguistics (COLING), 1992.
+Yarowsky, D. 1995. Unsupervised word sense disambiguation rivaling supervised methods. In Proc. of the 33rd Annual Meeting of the Association for Computational Linguistics.
+
+External links and suggested reading[edit]
+
+
+
+Look up disambiguation in Wiktionary, the free dictionary.
+
+
+
+Computational Linguistics Special Issue on Word Sense Disambiguation (1998)
+Evaluation Exercises for Word Sense Disambiguation The de facto standard benchmarks for WSD systems.
+Roberto Navigli. Word Sense Disambiguation: A Survey, ACM Computing Surveys, 41(2), 2009, pp. 1–69. An up-to-date state of the art of the field.
+Word Sense Disambiguation as defined in Scholarpedia
+Word Sense Disambiguation: The State of the Art (PDF) A comprehensive overview By Prof. Nancy Ide & Jean Véronis (1998).
+Word Sense Disambiguation Tutorial, by Rada Mihalcea and Ted Pedersen (2005).
+Well, well, well ... Word Sense Disambiguation with Google n-Grams, by Craig Trim (2013).
+Word Sense Disambiguation: Algorithms and Applications, edited by Eneko Agirre and Philip Edmonds (2006), Springer. Covers the entire field with chapters contributed by leading researchers. www.wsdbook.org site of the book
+Bar-Hillel, Yehoshua. 1964. Language and Information. New York: Addison-Wesley.
+Edmonds, Philip & Adam Kilgarriff. 2002. Introduction to the special issue on evaluating word sense disambiguation systems. Journal of Natural Language Engineering, 8(4):279-291.
+Edmonds, Philip. 2005. Lexical disambiguation. The Elsevier Encyclopedia of Language and Linguistics, 2nd Ed., ed. by Keith Brown, 607-23. Oxford: Elsevier.
+Ide, Nancy & Jean Véronis. 1998. Word sense disambiguation: The state of the art. Computational Linguistics, 24(1):1-40.
+Jurafsky, Daniel & James H. Martin. 2000. Speech and Language Processing. New Jersey, USA: Prentice Hall.
+Litkowski, K. C. 2005. Computational lexicons and dictionaries. In Encyclopaedia of Language and Linguistics (2nd ed.), K. R. Brown, Ed. Elsevier Publishers, Oxford, U.K., 753–761.
+Manning, Christopher D. & Hinrich Schütze. 1999. Foundations of Statistical Natural Language Processing. Cambridge, MA: MIT Press. http://nlp.stanford.edu/fsnlp/
+Mihalcea, Rada. 2007. Word sense disambiguation. Encyclopedia of Machine Learning. Springer-Verlag.
+Resnik, Philip and David Yarowsky. 2000. Distinguishing systems and distinguishing senses: New evaluation methods for word sense disambiguation, Natural Language Engineering, 5(2):113-133. http://www.cs.jhu.edu/~yarowsky/pubs/nle00.ps
+Yarowsky, David. 2001. Word sense disambiguation. Handbook of Natural Language Processing, ed. by Dale et al., 629-654. New York: Marcel Dekker.
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Natural language processing
+
+
+
+General terms
+
+
+
+Text corpus
+Speech corpus
+Stopwords
+Bag-of-words
+AI-complete
+n-gram (Bigram, Trigram)
+
+
+
+
+
+Text analysis
+
+
+
+Text segmentation
+Part-of-speech tagging
+Text chunking
+Compound term processing
+Collocation extraction
+Stemming
+Lemmatisation
+Named-entity recognition
+Coreference resolution
+Sentiment analysis
+Concept mining
+Parsing
+Word-sense disambiguation
+Terminology extraction
+Truecasing
+
+
+
+
+
+Automatic summarization
+
+
+
+Multi-document summarization
+Sentence extraction
+Text simplification
+
+
+
+
+
+Machine translation
+
+
+
+Computer-assisted
+Example-based
+Rule-based
+
+
+
+
+
+Automatic identification
+and data capture
+
+
+
+Speech recognition
+Speech synthesis
+Optical character recognition
+Natural language generation
+
+
+
+
+
+Topic model
+
+
+
+Pachinko allocation
+Latent Dirichlet allocation
+Latent semantic analysis
+
+
+
+
+
+Computer-assisted
+reviewing
+
+
+
+Automated essay scoring
+Concordancer
+Grammar checker
+Predictive text
+Spell checker
+Syntax guessing
+
+
+
+
+
+Natural language
+user interface
+
+
+
+Automated online assistant
+Chatbot
+Interactive fiction
+Question answering
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+GND: 4233548-6
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Word-sense_disambiguation&oldid=815744989"					Categories: Natural language processingComputational linguisticsSemanticsLexical semanticsWord-sense disambiguationHidden categories: All articles with unsourced statementsArticles with unsourced statements from March 2014Articles with unsourced statements from March 2012Wikipedia articles with GND identifiers

@@ -1,0 +1,469 @@
+article protocols make internet architecture network protocol internet protocol
+
+
+internet protocol suite
+
+
+application layer
+
+
+
+
+
+dhcp
+
+
+http
+imap
+ldap
+mgcp
+mqtt
+nntp
+
+
+oncrpc
+
+rtsp
+
+
+smtp
+snmp
+
+telnet
+tlsssl
+xmpp
+
+
+
+
+
+transport layer
+
+
+
+
+
+
+dccp
+sctp
+rsvp
+
+
+
+
+
+internet layer
+
+
+
+
+
+
+ipv4
+ipv6
+
+
+icmp
+icmpv6
+
+igmp
+ipsec
+
+
+
+
+
+link layer
+
+
+
+
+
+
+ospf
+tunnels
+
+l2tp
+
+
+
+
+
+ethernet
+
+isdn
+fddi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+internet protocol suite conceptual model communications protocols used internet similar computer networks commonly known tcpip foundational protocols suite transmission control protocol internet protocol occasionally known department defense model development networking method funded united states department defense darpa
+internet protocol suite provides endtoend data communication specifying data packetized addressed transmitted routed received functionality organized four abstraction layers classify related protocols according scope networking involved12 lowest highest layers link layer containing communication methods data remains within single network segment link internet layer providing internetworking independent networks transport layer handling hosttohost communication application layer provides processtoprocess data exchange applications
+technical standards specifying internet protocol suite many constituent protocols maintained internet engineering task force ietf internet protocol suite predates model comprehensive reference framework general networking systems
+
+
+
+contents
+
+
+history
+
+early research
+specification
+adoption
+
+
+architectural principles
+abstraction layers
+
+link layer
+internet layer
+transport layer
+application layer
+
+
+layer names number layers literature
+comparison tcpip layering
+implementations
+also
+bibliography
+references
+external links
+
+
+
+historyedit
+early researchedit
+
+
+
+
+diagram first internetworked connection
+
+
+
+
+
+
+stanford research institute packet radio used first threeway internetworked transmission
+
+
+internet protocol suite resulted research development conducted defense advanced research projects agency darpa late 1960s3 initiating pioneering arpanet 1969 darpa started work number data transmission technologies 1972 robert kahn joined darpa information processing technology office worked satellite packet networks groundbased radio packet networks recognized value able communicate across spring 1973 vinton cerf developer existing arpanet network control program protocol joined kahn work openarchitecture interconnection models goal designing next protocol generation arpanet
+summer 1973 kahn cerf worked fundamental reformulation differences local network protocols hidden using common internetwork protocol instead network responsible reliability arpanet function delegated hosts cerf credits hubert zimmermann louis pouzin designer cyclades network important influences design protocol implemented transmission control program first published 19744
+initially managed datagram transmissions routing protocol grew researchers recommended division functionality protocol layers advocates included jonathan postel university southern californias information sciences institute edited request comments rfcs technical strategic document series documented catalyzed internet development5 postel stated screwing design internet protocols violating principle layering6 encapsulation different mechanisms intended create environment upper layers could access needed lower layers monolithic design would inflexible lead scalability issues transmission control program split distinct protocols transmission control protocol internet protocol
+design network included recognition provide functions efficiently transmitting routing traffic nodes intelligence located edge network nodes design known endtoend principle using design became possible connect almost network arpanet irrespective local characteristics thereby solving kahns initial internetworking problem popular expression tcpip eventual product cerf kahns work cans stringcitation needed years later joke avian carriers formal protocol specification created successfully tested
+computer called router provided interface network forwards network packets back forth them7 originally router called gateway term changed avoid confusion types gatewayscitation needed
+specificationedit
+1973 1974 cerfs networking research group stanford worked details idea resulting first specification8 significant technical influence early networking work xerox parc produced parc universal packet protocol suite much existed around time
+darpa contracted technologies stanford university university college london develop operational versions protocol different hardware platforms four versions developed tcpip last protocol still today 1975 twonetwork tcpip communications test performed stanford university college london november 1977 threenetwork tcpip test conducted sites norway several tcpip prototypes developed multiple research centers 1978 1983 migration arpanet tcpip officially completed flag january 1983 protocols permanently activated9
+adoptionedit
+march 1982 department defense declared tcpip standard military computer networking10 1985 internet advisory board later renamed internet architecture board held threeday workshop tcpip computer industry attended vendor representatives promoting protocol leading increasing commercial
+1985 first interop conference focused network interoperability broader adoption tcpip conference founded lynch early internet activist beginning large corporations attended meeting interoperability conferences held every year since every year 1985 1993 number attendees tripledcitation needed
+first major corporations adopt tcpip despite competing internal protocols decnet 1984 barry appelmans group tcpip development appelman later moved head development efforts navigated corporate politics stream tcpip products various systems including time several smaller companies began offering tcpip stacks windows company software wollongong group11 first vmcms tcpip stack came university wisconsin12
+tcpip stacks written singlehandedly programmers elinsky oleg vishnepolsky research wrote tcpip stacks vmcms respectively13 1984 donald gillies wrote ntcp multiconnection atop ippacketdriver layer maintained john romkey 19834 romkey leveraged 1986 software founded1415 phil karn created ka9q multiconnection radio applications starting 198516
+spread tcpip fueled june 1989 agreed place tcpip code developed unix public domain various vendors including included code tcpip stacks many companies sold tcpip stacks windows microsoft released native tcpip stack windows event little late evolution internet cemented tcpips dominance protocols began lose ground protocols included systems network architecture digital equipment corporations decnet open systems interconnection xerox network systems
+architectural principlesedit
+early architectural document 1122 emphasizes architectural principles layering17
+endtoend principle evolved time original expression maintenance state overall intelligence edges assumed internet connected edges retained state concentrated speed simplicity realworld needs firewalls network address translators content caches like forced changes principle18
+robustness principle states general implementation must conservative sending behavior liberal receiving behavior must careful send wellformed datagrams must accept datagram interpret object technical errors meaning still clear19 second part principle almost important software hosts contain deficiencies make unwise exploit legal obscure protocol features20 postel famously summarized principle conservative liberal accept others—a saying came known postels
+abstraction layersedit
+
+
+
+
+
+
+
+internet hosts connected routers corresponding layers used application host executes read write operations processes directly connected kind data pipe every detail communication hidden process underlying mechanisms transmit data host computers located lower protocol layers
+
+
+
+
+
+
+
+
+
+
+encapsulation application data descending layers described 1122
+
+
+
+
+
+encapsulation used provide abstraction protocols services encapsulation usually aligned division protocol suite layers general functionality general application highest level model uses protocols send data layers encapsulated level
+layers protocol suite near logically closer user application near bottom logically closer physical transmission data viewing layers providing consuming service method abstraction isolate upper layer protocols details transmitting bits example ethernet collision detection lower layers avoid know details every application protocol
+even layers examined assorted architectural documents—there single architectural model 7498 open systems interconnection model—have fewer less rigidly defined layers model thus provide easier realworld protocols frequently referenced document 1958 contain stack layers lack emphasis layering major difference ietf approaches refers existence internetworking layer generally upper layers document intended 1996 snapshot architecture internet architecture grown evolutionary fashion modest beginnings rather grand plan process evolution main reasons technologys success nevertheless seems useful record snapshot current principles internet architecture
+1122 entitled host requirements structured paragraphs referring layers document refers many architectural principles emphasizing layering loosely defines fourlayer model layers names numbers follows
+
+application layer scope within applications create user data communicate data applications another host applications processes make services provided underlying lower layers especially transport layer provides reliable unreliable pipes processes communications partners characterized application architecture clientserver model peertopeer networking layer higher level protocols smtp http operate processes addressed ports essentially represent services
+transport layer performs hosttohost communications either different hosts either local network remote networks separated routers provides channel communication needs applications basic transport layer protocol providing unreliable datagram service transmission control protocol provides flowcontrol connection establishment reliable transmission data
+internet layer task exchanging datagrams across network boundaries provides uniform networking interface hides actual topology layout underlying network connections therefore also referred layer establishes internetworking indeed defines establishes internet layer defines addressing routing structures used tcpip protocol suite primary protocol scope internet protocol defines addresses function routing transport datagrams next router connectivity network closer final data destination
+link layer defines networking methods within scope local network link hosts communicate without intervening routers layer includes protocols used describe local network topology interfaces needed effect transmission internet layer datagrams nextneighbor hosts
+
+internet protocol suite layered protocol stack design model established since tcpip model compared model books classrooms often results confusion models different assumptions goals including relative importance strict layering
+abstraction also allows upper layers provide services lower layers provide original model extended include connectionless services osirm cl21 designed reliable best effort delivery protocol means transport layer implementations must choose whether provide reliability provides data integrity checksum guarantee delivery provides data integrity delivery guarantee retransmitting receiver acknowledges reception packet
+model lacks formalism model associated documents ietf formal model consider limitation illustrated comment david clark reject kings presidents voting believe rough consensus running code criticisms model made respect model often consider isos later extensions model
+multiaccess links addressing systems ethernet address mapping protocol needed protocols considered existing link system ietf terminology subnetwork dependent convergence facility according extension model internal organization network layer ionl22
+icmp igmp operate transport data like functionality exists layer management extensions model management framework osirm mf23
+ssltls library operates transport layer uses application protocols intention part designers protocols comply architecture
+link treated black ietf explicitly intend discuss transmission systems less academiccitation needed practical alternative model
+following description layer tcpip networking model starting lowest level
+link layeredit
+link layer networking scope local network connection host attached regime called link tcpip literature lowest component layer internet protocols tcpip designed hardware independent result tcpip implemented virtually hardware networking technology
+link layer used move packets internet layer interfaces different hosts link processes transmitting receiving packets given link controlled software device driver network card well firmware specialized chipsets perform data link functions adding packet header prepare transmission actually transmit frame physical medium tcpip model includes specifications translating network addressing methods used internet protocol link layer addresses media access control addresses aspects level however implicitly assumed exist link layer explicitly defined
+also layer packets selected sent virtual private network networking tunnel scenario link layer data considered application data traverses another instantiation stack transmission reception another connection connection virtual link established transport protocol even application scope protocol serves tunnel link layer protocol stack thus tcpip model dictate strict hierarchical encapsulation sequence
+tcpip models link layer corresponds open systems interconnection model physical data link layers layers model
+internet layeredit
+internet layer responsibility sending packets across potentially multiple networks internetworking requires sending data source network destination network process called routing
+internet protocol performs basic functions
+
+host addressing identification accomplished hierarchical addressing system
+packet routing basic task sending packets data datagrams source destination forwarding next network router closer final destination
+
+internet layer agnostic data structures transport layer also distinguish operation various transport layer protocols carries data variety different upper layer protocols protocols identified unique protocol number example internet control message protocol icmp internet group management protocol igmp protocols respectively
+protocols carried icmp used transmit diagnostic information igmp used manage multicast data layered perform internetworking functions illustrates differences architecture tcpip stack internet model tcpip models internet layer corresponds layer three open systems interconnection model referred network layer
+internet layer provides unreliable datagram transmission facility hosts located potentially different networks forwarding transport layer datagrams appropriate nexthop router relaying destination functionality internet layer makes possible internetworking interworking different networks essentially establishes internet internet protocol principal component internet layer defines addressing systems identify network hosts computers locate network original address system arpanet successor internet internet protocol version ipv4 uses 32bit address therefore capable identifying approximately four billion hosts limitation eliminated 1998 standardization internet protocol version ipv6 uses 128bit addresses ipv6 production implementations emerged approximately 2006
+transport layeredit
+transport layer establishes basic data channels applications taskspecific data exchange layer establishes processtoprocess connectivity meaning provides endtoend services independent structure user data logistics exchanging information particular specific purpose responsibility includes endtoend message transfer independent underlying network along error control segmentation flow control congestion control application addressing port numbers endtoend message transmission connecting applications transport layer categorized either connectionoriented implemented connectionless implemented
+purpose providing processspecific transmission channels applications layer establishes concept port numbered logical construct allocated specifically communication channels application needs many types services port numbers standardized client computers address specific services server computer without involvement service announcements directory services
+provides best effort delivery transport layer protocols offer reliability however reliable data link protocol highlevel data link control hdlc
+example connectionoriented protocol addresses numerous reliability issues providing reliable byte stream
+
+data arrives inorder
+data minimal error correctness
+duplicate data discarded
+lost discarded packets resent
+includes traffic congestion control
+
+newer stream control transmission protocol sctp also reliable connectionoriented transport mechanism messagestreamoriented—not bytestreamoriented like tcp—and provides multiple streams multiplexed single connection also provides multihoming support connection represented multiple addresses representing multiple physical interfaces fails connection interrupted developed initially telephony applications transport also used applications
+user datagram protocol connectionless datagram protocol like best effort unreliable protocol reliability addressed error detection using weak checksum algorithm typically used applications streaming media audio video voice ontime arrival important reliability simple queryresponse applications like lookups overhead setting reliable connection disproportionately large realtime transport protocol datagram protocol designed realtime data streaming audio video
+applications given network address distinguished port convention certain well known ports associated specific applications
+tcpip models transport hosttohost layer corresponds fourth layer open systems interconnection model also called transport layer
+application layeredit
+application layer includes protocols used applications providing user services exchanging application data network connections established lower level protocols include basic network support services protocols routing host configuration examples application layer protocols include hypertext transfer protocol http file transfer protocol simple mail transfer protocol smtp dynamic host configuration protocol dhcp24 data coded according application layer protocols encapsulated transport layer protocol units messages turn lower layer protocols effect actual data transfer
+tcpip model consider specifics formatting presenting data define additional layers application transport layers model presentation session layers functions realm libraries application programming interfaces
+application layer protocols generally treat transport layer lower protocols black boxes provide stable network connection across communicate although applications usually aware qualities transport layer connection point addresses port numbers application layer protocols often associated particular clientserver applications common services wellknown port numbers reserved internet assigned numbers authority iana example hypertext transfer protocol uses server port telnet uses server port clients connecting service usually ephemeral ports port numbers assigned duration transaction random specific range configured application
+transport layer lowerlevel layers unconcerned specifics application layer protocols routers switches typically examine encapsulated traffic rather provide conduit however firewall bandwidth throttling applications must interpret application data example resource reservation protocol rsvp also sometimes necessary network address translator traversal consider application payload
+application layer tcpip model often compared equivalent combination fifth session sixth presentation seventh application layers open systems interconnection model
+furthermore tcpip reference model distinguishes user protocols support protocols25 support protocols provide services system user protocols used actual user applications example user protocol support protocol
+layer names number layers literatureedit
+following table shows various networking models number layers varies three seven
+
+
+1122 internet 1989
+cisco academy26
+kurose27 forouzan28
+comer29 kozierok30
+stallings31
+tanenbaum32
+arpanet reference model
+model
+
+
+four layers
+four layers
+five layers
+fourone layers
+five layers
+five layers
+three layers
+seven layers
+
+
+internet model
+internet model
+fivelayer internet model tcpip protocol suite
+tcpip 5layer reference model
+tcpip model
+tcpip 5layer reference model
+arpanet reference model
+model
+
+
+application
+application
+application
+application
+application
+application
+applicationprocess
+application
+
+
+presentation
+
+
+session
+
+
+transport
+transport
+transport
+transport
+hosttohost transport
+transport
+hosttohost
+transport
+
+
+internet
+internetwork
+network
+internet
+internet
+internet
+network
+
+
+link
+network interface
+data link
+data link network interface
+network access
+data link
+network interface
+data link
+
+
+
+
+physical
+hardware
+physical
+physical
+
+physical
+
+
+networking models textbooks secondary sources conflict intent 1122 ietf primary sources33
+comparison tcpip layeringedit
+three layers model application layer presentation layer session layer distinguished separately tcpip model application layer transport layer pure protocol applications x400 also combined requirement tcpip protocol stack must impose monolithic architecture transport layer example application protocol runs external data representation presentation protocol turn runs protocol called remote procedure call provides reliable record transmission safely besteffort transport
+different authors interpreted tcpip model differently disagree whether link layer entire tcpip model covers layer physical layer issues whether hardware layer assumed link layer
+several authors attempted incorporate models layers tcpip model since commonly referred modern standards example ieee often results model five layers link layer network access layer split models layers
+ietf protocol development effort concerned strict layering protocols cleanly model although rfcs sometimes refer often layer numbers ietf repeatedly statedcitation needed internet protocol architecture development intended osicompliant 3439 addressing internet architecture contains section entitled layering considered harmful33
+example session presentation layers suite considered included application layer tcpip suite functionality session layer found protocols like http smtp evident protocols like telnet session initiation protocol session layer functionality also realized port numbering protocols cover transport layer tcpip suite functions presentation layer realized tcpip applications mime standard data exchange
+conflicts apparent also original model 7498 considering annexes model 74984 management framework 8648 internal organization network layer ionl ionl management framework documents considered icmp igmp defined layer management protocols network layer like manner ionl provides structure subnetwork dependent convergence facilities rarp
+ietf protocols encapsulated recursively demonstrated tunneling protocols generic routing encapsulation uses mechanism uses tunneling network layer
+implementationsedit
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed march 2014 learn remove template message
+
+
+
+internet protocol suite presume specific hardware software environment requires hardware software layer exists capable sending receiving packets computer network result suite implemented essentially every computing platform minimal implementation tcpip includes following internet protocol address resolution protocol internet control message protocol icmp transmission control protocol user datagram protocol internet group management protocol igmp addition icmp internet protocol version requires neighbor discovery protocol icmpv6 igmpv6 often accompanied integrated ipsec security layer
+application programmers typically concerned interfaces application layer often also transport layer layers services provided tcpip stack operating system implementations accessible programmers sockets apis
+unique implementations include lightweight tcpip open source stack designed embedded systems ka9q stack associated protocols amateur packet radio systems personal computers connected serial lines
+microcontroller firmware network adapter typically handles link issues supported driver software operating system nonprogrammable analog digital electronics normally charge physical components link layer typically using applicationspecific integrated circuit asic chipset network interface physical standard highperformance routers large extent based fast nonprogrammable digital electronics carrying link level switching
+alsoedit
+
+
+computer networking portal
+computer science portal
+
+
+
+report 1822
+flip protocol fast local internet protocol stack
+list automation protocols
+list information technology acronyms
+list network protocols
+list port numbers
+
+bibliographyedit
+
+douglas comer internetworking tcpip principles protocols architecture isbn 8679911429
+joseph davies thomas microsoft windows server 2003 tcpip protocols services isbn 0735612919
+forouzan behrouz 2003 tcpip protocol suite mcgrawhill isbn 0072460601
+craig hunt tcpip network administration oreilly 1998 isbn 1565923227
+maufer thomas 1999 fundamentals prentice hall isbn 0139754830
+mclean windowsr 2000 tcpip black book isbn 157610687x
+ajit mungale network programming isbn 1590593456
+richard stevens tcpip illustrated volume protocols isbn 0201633469
+richard stevens gary wright tcpip illustrated volume implementation isbn 020163354x
+richard stevens tcpip illustrated volume transactions http nntp unix domain protocols isbn 0201634953
+andrew tanenbaum computer networks isbn 0130661023
+clark 1988 design philosophy darpa internet protocols sigcomm symposium proceedings communications architectures protocols 106–114 doi1011455232452336 isbn 0897912799 retrieved 20111016
+
+referencesedit
+
+
+1122 requirements internet hosts communication layers braden october 1989
+1123 requirements internet hosts application support braden october 1989
+cerf vinton cain edward 1983 internet architecture model computer networks northholland 307–318
+cerf vinton kahn robert 1974 protocol packet network intercommunication
+internet hall fame
+postel 1977 section 3332 comments internet protocol
+1812 requirements version routers baker june 1995
+specification internet transmission control protocol cerf december 1974
+tcpip internet protocol retrieved 20171231
+ronda hauben arpanet internet digest uucp retrieved 20070705
+wollongong
+short history internet protocols cern retrieved september 2016
+barry appelman
+baker steven gillies donald desktop tcpip middle
+romkey john february 2011 retrieved september 2016
+karn phil ka9q download website missing empty help
+1958 architectural principles internet carpenter june 1996
+rethinking design internet endtoend arguments brave world marjory blumenthal david clark august 2001
+internet protocol darpa internet program protocol specification september 1981 postel editor
+requirements internet hosts communication layers october 1989 braden editor
+reference model addendum connectionlessmode transmission iso7498ad1 iso7498ad1 1986
+information processing systems open systems interconnection internal organization network layer 86481988
+information processing systems open systems interconnection basic reference model part management framework 749841989
+tcpip illustrated protocols isbn 0201633469 richard stevens february 1994
+1122 requirements internet hosts communication layers internet protocol suite 1989
+mark mcdonald rick rufi antoon october 2007 network fundamentals ccna exploration companion guide cisco press isbn 9780132877435 retrieved september 2016 google books
+james kurose keith ross computer networking topdown approach 2008 isbn 0321497708
+forouzan behrouz fegan sophia chung august 2003 data communications networking mcgrawhill higher education isbn 9780072923544 retrieved september 2016 google books
+comer douglas january 2006 internetworking tcpip principles protocols architecture prentice hall isbn 0131876716 retrieved september 2016 google books
+kozierok charles january 2005 tcpip guide comprehensive illustrated internet protocols reference starch press isbn 9781593270476 retrieved september 2016 google books
+stallings william january 2007 data computer communications prentice hall isbn 0132433109 retrieved september 2016 google books
+tanenbaum andrew january 2003 computer networks prentice hall isbn 0130661023 retrieved september 2016 google books
+bush meyer december 2002 internet architectural guidelines philosophy internet engineering task force
+
+
+external linksedit
+
+
+
+wikiversity learning resources internet protocol suite
+
+
+
+internet history pages robert kahn vinton cerf tcpip reviewed cerf kahn
+specification internet transmission control program december 1974 version
+1180 tcpip tutorial internet engineering task force january 1991
+tcpip
+tcpip guide comprehensive look protocols proceduresprocesses involved
+study arpanet tcpip digest
+tcpip sequence diagrams
+daryls tcpip primer intro tcpip administration conversational style
+introduction tcpip
+protocol packet network intercommunication cerf kahn ieee trans comms com22 1974
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleinternetprotocolsuiteoldid817962803 categories internet protocolshistory internetnetwork architecturereference modelshidden categories pages using citations urlpages using magic linksall articles unsourced statementsarticles unsourced statements november 2017kvng rtharticles unsourced statements january 2012articles unsourced statements 2013articles unsourced statements april 2009articles needing additional references march 2014all articles needing additional references

@@ -1,0 +1,233 @@
+
+
+Internet protocol suite
+
+
+Application layer
+
+
+
+
+BGP
+DHCP
+DNS
+FTP
+HTTP
+IMAP
+LDAP
+MGCP
+MQTT
+NNTP
+NTP
+POP
+ONC/RPC
+RTP
+RTSP
+RIP
+SIP
+SMTP
+SNMP
+SSH
+Telnet
+TLS/SSL
+XMPP
+more...
+
+
+
+
+Transport layer
+
+
+
+
+TCP
+UDP
+DCCP
+SCTP
+RSVP
+more...
+
+
+
+
+Internet layer
+
+
+
+
+IP
+
+IPv4
+IPv6
+
+
+ICMP
+ICMPv6
+ECN
+IGMP
+IPsec
+more...
+
+
+
+
+Link layer
+
+
+
+
+ARP
+NDP
+OSPF
+Tunnels
+
+L2TP
+
+
+PPP
+MAC
+
+Ethernet
+DSL
+ISDN
+FDDI
+
+
+more...
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+The Internet Protocol (IP) is the principal communications protocol in the Internet protocol suite for relaying datagrams across network boundaries. Its routing function enables internetworking, and essentially establishes the Internet.
+IP has the task of delivering packets from the source host to the destination host solely based on the IP addresses in the packet headers. For this purpose, IP defines packet structures that encapsulate the data to be delivered. It also defines addressing methods that are used to label the datagram with source and destination information.
+Historically, IP was the connectionless datagram service in the original Transmission Control Program introduced by Vint Cerf and Bob Kahn in 1974; the other being the connection-oriented Transmission Control Protocol (TCP). The Internet protocol suite is therefore often referred to as TCP/IP.
+The first major version of IP, Internet Protocol Version 4 (IPv4), is the dominant protocol of the Internet. Its successor is Internet Protocol Version 6 (IPv6).
+
+
+
+Contents
+
+
+1 Function
+2 Version history
+3 Reliability
+4 Link capacity and capability
+5 Security
+6 See also
+7 References
+8 External links
+
+
+
+Function[edit]
+
+
+
+
+Sample encapsulation of application data from UDP to a Link protocol frame
+
+
+The Internet Protocol is responsible for addressing hosts, encapsulating data into datagrams (including fragmentation and reassembly) and routing datagrams from a source host to a destination host across one or more IP networks.[1] For these purposes, the Internet Protocol defines the format of packets and provides an addressing system.
+Each datagram has two components: a header and a payload. The IP header includes source IP address, destination IP address, and other metadata needed to route and deliver the datagram. The payload is the data that is transported. This method of nesting the data payload in a packet with a header is called encapsulation.
+IP addressing entails the assignment of IP addresses and associated parameters to host interfaces. The address space is divided into subnetworks, involving the designation of network prefixes. IP routing is performed by all hosts, as well as routers, whose main function is to transport packets across network boundaries. Routers communicate with one another via specially designed routing protocols, either interior gateway protocols or exterior gateway protocols, as needed for the topology of the network.
+Version history[edit]
+In May 1974, the Institute of Electrical and Electronic Engineers (IEEE) published a paper entitled "A Protocol for Packet Network Intercommunication".[2] The paper's authors, Vint Cerf and Bob Kahn, described an internetworking protocol for sharing resources using packet switching among network nodes. A central control component of this model was the "Transmission Control Program" that incorporated both connection-oriented links and datagram services between hosts. The monolithic Transmission Control Program was later divided into a modular architecture consisting of the Transmission Control Protocol and User Datagram Protocol at the transport layer and the Internet Protocol at the network layer. The model became known as the Department of Defense (DoD) Internet Model and Internet protocol suite, and informally as TCP/IP.
+IP versions 0 to 3 were experimental versions, used between 1977 and 1979. The following Internet Experiment Note (IEN) documents describe versions of the Internet Protocol prior to the modern version of IPv4:
+
+IEN 2 (Comments on Internet Protocol and TCP), dated August 1977 describes the need to separate the TCP and Internet Protocol functionalities (which were previously combined.) It proposes the first version of the IP header, using 0 for the version field.
+IEN 26 (A Proposed New Internet Header Format), dated February 1978 describes a version of the IP header that uses a 1-bit version field.
+IEN 28 (Draft Internetwork Protocol Description Version 2), dated February 1978 describes IPv2.
+IEN 41 (Internetwork Protocol Specification Version 4), dated June 1978 describes the first protocol to be called IPv4. The IP header is different from the modern IPv4 header.
+IEN 44 (Latest Header Formats), dated June 1978 describes another version of IPv4, also with a header different from the modern IPv4 header.
+IEN 54 (Internetwork Protocol Specification Version 4), dated September 1978 is the first description of IPv4 using the header that would be standardized in RFC 760.
+
+The dominant internetworking protocol in the Internet Layer in use today is IPv4; the number 4 is the protocol version number carried in every IP datagram. IPv4 is described in RFC 791 (1981).
+Version 5 was used by the Internet Stream Protocol, an experimental streaming protocol.
+The successor to IPv4 is IPv6. IPv6 was a result of several years of experimentation and dialog during which various protocol models were proposed, such as TP/IX (RFC 1475), PIP (RFC 1621) and TUBA (TCP and UDP with Bigger Addresses, RFC 1347). Its most prominent difference from version 4 is the size of the addresses. While IPv4 uses 32 bits for addressing, yielding c. 4.3 billion (7009430000000000000♠4.3×109) addresses, IPv6 uses 128-bit addresses providing ca. 340 undecillion, or 7038340000000000000♠3.4×1038 addresses. Although adoption of IPv6 has been slow, as of June 2008[update], all United States government systems have demonstrated basic infrastructure support for IPv6.[3]
+The assignment of the new protocol as IPv6 was uncertain until due diligence revealed that IPv6 had not yet been used previously.[4] Other protocol proposals named IPv9 and IPv8 briefly surfaced, but had no affiliation with any international standards body, and have had no support.[5] However, on April 1, 1994, the IETF published an April Fools' Day joke about IPv9.[6]
+Reliability[edit]
+The design of the Internet protocol suite adheres to the end-to-end principle, a concept adapted from the CYCLADES project. Under the end-to-end principle, the network infrastructure is considered inherently unreliable at any single network element or transmission medium and is dynamic in terms of availability of links and nodes. No central monitoring or performance measurement facility exists that tracks or maintains the state of the network. For the benefit of reducing network complexity, the intelligence in the network is purposely located in the end nodes.
+As a consequence of this design, the Internet Protocol only provides best-effort delivery and its service is characterized as unreliable. In network architectural language, it is a connectionless protocol, in contrast to connection-oriented communication. Various error conditions may occur, such as data corruption, packet loss and duplication. Because routing is dynamic, meaning every packet is treated independently, and because the network maintains no state based on the path of prior packets, different packets may be routed to the same destination via different paths, resulting in out-of-order delivery to the receiver.
+All error conditions in the network must be detected and compensated by the participating end nodes. The upper layer protocols of the Internet protocol suite are responsible for resolving reliability issues. For example, a host may buffer network data to ensure correct ordering before the data is delivered to an application.
+IPv4 provides safeguards to ensure that the IP packet header is error-free. A routing node calculates a checksum for a packet. If the checksum is bad, the routing node discards the packet. Although the Internet Control Message Protocol (ICMP) allows such notification, the routing node is not required to notify either end node of these errors. By contrast, in order to increase performance, and since current link layer technology is assumed to provide sufficient error detection,[7] the IPv6 header has no checksum to protect it.[8]
+Link capacity and capability[edit]
+The dynamic nature of the Internet and the diversity of its components provide no guarantee that any particular path is actually capable of, or suitable for, performing the data transmission requested. One of the technical constraints is the size of data packets allowed on a given link. Facilities exist to examine the maximum transmission unit (MTU) size of the local link and Path MTU Discovery can be used for the entire intended path to the destination.
+The IPv4 internetworking layer has the ability to automatically fragment the original datagram into smaller units for transmission. In this case, IP provides re-ordering of fragments delivered out of order.[9] An IPv6 network does not perform fragmentation or reassembly, and as per the end-to-end principle, requires end stations and higher-layer protocols to avoid exceeding the network's MTU.[10]
+The Transmission Control Protocol (TCP) is an example of a protocol that adjusts its segment size to be smaller than the MTU. The User Datagram Protocol (UDP) and ICMP disregard MTU size, thereby forcing IP to fragment oversized datagrams.[11]
+Security[edit]
+During the design phase of the ARPANET and the early Internet, the security aspects and needs of a public, international network could not be adequately anticipated. Consequently, many Internet protocols exhibited vulnerabilities highlighted by network attacks and later security assessments. In 2008, a thorough security assessment and proposed mitigation of problems was published.[12] The Internet Engineering Task Force (IETF) has been pursuing further studies.[13]
+See also[edit]
+
+
+Information technology portal
+Internet portal
+
+
+
+List of IP protocol numbers
+Next-generation network
+IP forwarding algorithm
+
+References[edit]
+
+
+^ Charles M. Kozierok, The TCP/IP Guide 
+^ Vinton G. Cerf, Robert E. Kahn, "A Protocol for Packet Network Intercommunication", IEEE Transactions on Communications, Vol. 22, No. 5, May 1974 pp. 637–648
+^ CIO council adds to IPv6 transition primer Archived 2006-07-01 at the Wayback Machine., gcn.com
+^ Mulligan, Geoff. "It was almost IPv7". O'Reilly. O'Reilly Media. Retrieved 4 July 2015. 
+^ Leyden, John (6 July 2004). "China disowns IPv9 hype". theregister.co.uk. The Register. Retrieved 4 May 2014. 
+^ RFC 1606: A Historical Perspective On The Usage Of IP Version 9. April 1, 1994.
+^ RFC 1726 section 6.2
+^ RFC 2460
+^ Siyan, Karanjit. Inside TCP/IP, New Riders Publishing, 1997. ISBN 1-56205-714-6
+^ Bill Cerveny (2011-07-25). "IPv6 Fragmentation". Arbor Networks. Retrieved 2016-09-10. 
+^ Parker, Don (2 November 2010). "Basic Journey of a Packet". symantec.com. Symantec. Retrieved 4 May 2014. 
+^ Security Assessment of the Internet Protocol (IP)(archived version)
+^ Security Assessment of the Internet Protocol version 4 (IPv4)
+
+
+External links[edit]
+
+
+
+Look up internet protocol in Wiktionary, the free dictionary.
+
+
+
+Internet Protocol at Curlie (based on DMOZ)
+RFC 791
+Data Communication Lectures of Manfred Lindner – Part IP Technology Fundamentals
+Data Communication Lectures of Manfred Lindner – Part IP Routing Fundamentals
+
+
+
+
+Authority control
+
+
+
+GND: 4482590-0
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Internet_Protocol&oldid=815417905"					Categories: Internet layer protocolsHidden categories: Webarchive template wayback linksPages using RFC magic linksArticles containing potentially dated statements from June 2008All articles containing potentially dated statementsKvng RTHArticles with DMOZ linksWikipedia articles with GND identifiers

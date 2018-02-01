@@ -1,0 +1,1968 @@
+
+
+Part of a series on Statistics
+
+
+Probability theory
+
+
+
+
+
+
+
+Probability axioms
+
+
+
+
+
+
+Probability space
+Sample space
+Elementary event
+Event
+Random variable
+Probability measure
+
+
+
+
+
+
+Complementary event
+Joint probability
+Marginal probability
+Conditional probability
+
+
+
+
+
+
+Independence
+Conditional independence
+Law of total probability
+Law of large numbers
+Bayes' theorem
+Boole's inequality
+
+
+
+
+
+
+Venn diagram
+Tree diagram
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+Probability theory is the branch of mathematics concerned with probability. Although there are several different probability interpretations, probability theory treats the concept in a rigorous mathematical manner by expressing it through a set of axioms. Typically these axioms formalise probability in terms of a probability space, which assigns a measure taking values between 0 and 1, termed the probability measure, to a set of outcomes called the sample space. Any specified subset of these outcomes is called an event.
+Central subjects in probability theory include discrete and continuous random variables, probability distributions, and stochastic processes, which provide mathematical abstractions of non-deterministic or uncertain processes or measured quantities that may either be single occurrences or evolve over time in a random fashion.
+Although it is not possible to perfectly predict random events, much can be said about their behaviour. Two major results in probability theory describing such behaviour are the law of large numbers and the central limit theorem.
+As a mathematical foundation for statistics, probability theory is essential to many human activities that involve quantitative analysis of data.[1] Methods of probability theory also apply to descriptions of complex systems given only partial knowledge of their state, as in statistical mechanics. A great discovery of twentieth-century physics was the probabilistic nature of physical phenomena at atomic scales, described in quantum mechanics.[2]
+
+
+
+Contents
+
+
+1 History
+2 Treatment
+
+2.1 Motivation
+2.2 Discrete probability distributions
+2.3 Continuous probability distributions
+2.4 Measure-theoretic probability theory
+
+
+3 Classical probability distributions
+4 Convergence of random variables
+
+4.1 Law of large numbers
+4.2 Central limit theorem
+
+
+5 See also
+6 Notes
+7 References
+8 External links
+
+
+
+History[edit]
+Main article: History of probability
+The mathematical theory of probability has its roots in attempts to analyze games of chance by Gerolamo Cardano in the sixteenth century, and by Pierre de Fermat and Blaise Pascal in the seventeenth century (for example the "problem of points"). Christiaan Huygens published a book on the subject in 1657[3] and in the 19th century, Pierre Laplace completed what is today considered the classic interpretation.[4]
+Initially, probability theory mainly considered discrete events, and its methods were mainly combinatorial. Eventually, analytical considerations compelled the incorporation of continuous variables into the theory.
+This culminated in modern probability theory, on foundations laid by Andrey Nikolaevich Kolmogorov. Kolmogorov combined the notion of sample space, introduced by Richard von Mises, and measure theory and presented his axiom system for probability theory in 1933. This became the mostly undisputed axiomatic basis for modern probability theory; but, alternatives exist, such as the adoption of finite rather than countable additivity by Bruno de Finetti.[5]
+Treatment[edit]
+Most introductions to probability theory treat discrete probability distributions and continuous probability distributions separately. The more mathematically advanced measure theory-based treatment of probability covers the discrete, continuous, a mix of the two, and more.
+Motivation[edit]
+Consider an experiment that can produce a number of outcomes. The set of all outcomes is called the sample space of the experiment. The power set of the sample space (or equivalently, the event space) is formed by considering all different collections of possible results. For example, rolling an honest die produces one of six possible results. One collection of possible results corresponds to getting an odd number. Thus, the subset {1,3,5} is an element of the power set of the sample space of die rolls. These collections are called events. In this case, {1,3,5} is the event that the die falls on some odd number. If the results that actually occur fall in a given event, that event is said to have occurred.
+Probability is a way of assigning every "event" a value between zero and one, with the requirement that the event made up of all possible results (in our example, the event {1,2,3,4,5,6}) be assigned a value of one. To qualify as a probability distribution, the assignment of values must satisfy the requirement that if you look at a collection of mutually exclusive events (events that contain no common results, e.g., the events {1,6}, {3}, and {2,4} are all mutually exclusive), the probability that any of these events occurs is given by the sum of the probabilities of the events.[6]
+The probability that any one of the events {1,6}, {3}, or {2,4} will occur is 5/6. This is the same as saying that the probability of event {1,2,3,4,6} is 5/6. This event encompasses the possibility of any number except five being rolled. The mutually exclusive event {5} has a probability of 1/6, and the event {1,2,3,4,5,6} has a probability of 1, that is, absolute certainty.
+Discrete probability distributions[edit]
+Main article: Discrete probability distribution
+
+
+
+
+The Poisson distribution, a discrete probability distribution.
+
+
+Discrete probability theory deals with events that occur in countable sample spaces.
+Examples: Throwing dice, experiments with decks of cards, random walk, and tossing coins
+Classical definition: Initially the probability of an event to occur was defined as the number of cases favorable for the event, over the number of total outcomes possible in an equiprobable sample space: see Classical definition of probability.
+For example, if the event is "occurrence of an even number when a die is rolled", the probability is given by 
+
+
+
+
+
+
+3
+6
+
+
+
+=
+
+
+
+1
+2
+
+
+
+
+
+{\displaystyle {\tfrac {3}{6}}={\tfrac {1}{2}}}
+
+, since 3 faces out of the 6 have even numbers and each face has the same probability of appearing.
+Modern definition: The modern definition starts with a finite or countable set called the sample space, which relates to the set of all possible outcomes in classical sense, denoted by 
+
+
+
+Ω
+
+
+{\displaystyle \Omega }
+
+. It is then assumed that for each element 
+
+
+
+x
+∈
+Ω
+
+
+
+{\displaystyle x\in \Omega \,}
+
+, an intrinsic "probability" value 
+
+
+
+f
+(
+x
+)
+
+
+
+{\displaystyle f(x)\,}
+
+ is attached, which satisfies the following properties:
+
+
+
+
+
+f
+(
+x
+)
+∈
+[
+0
+,
+1
+]
+
+ for all 
+
+x
+∈
+Ω
+
+;
+
+
+{\displaystyle f(x)\in [0,1]{\mbox{ for all }}x\in \Omega \,;}
+
+
+
+
+
+
+
+∑
+
+x
+∈
+Ω
+
+
+f
+(
+x
+)
+=
+1
+
+.
+
+
+{\displaystyle \sum _{x\in \Omega }f(x)=1\,.}
+
+
+
+That is, the probability function f(x) lies between zero and one for every value of x in the sample space Ω, and the sum of f(x) over all values x in the sample space Ω is equal to 1. An event is defined as any subset 
+
+
+
+E
+
+
+
+{\displaystyle E\,}
+
+ of the sample space 
+
+
+
+Ω
+
+
+
+{\displaystyle \Omega \,}
+
+. The probability of the event 
+
+
+
+E
+
+
+
+{\displaystyle E\,}
+
+ is defined as
+
+
+
+
+
+P
+(
+E
+)
+=
+
+∑
+
+x
+∈
+E
+
+
+f
+(
+x
+)
+
+.
+
+
+{\displaystyle P(E)=\sum _{x\in E}f(x)\,.}
+
+
+
+So, the probability of the entire sample space is 1, and the probability of the null event is 0.
+The function 
+
+
+
+f
+(
+x
+)
+
+
+
+{\displaystyle f(x)\,}
+
+ mapping a point in the sample space to the "probability" value is called a probability mass function abbreviated as pmf. The modern definition does not try to answer how probability mass functions are obtained; instead, it builds a theory that assumes their existence[citation needed].
+Continuous probability distributions[edit]
+Main article: Continuous probability distribution
+
+
+
+
+The normal distribution, a continuous probability distribution.
+
+
+Continuous probability theory deals with events that occur in a continuous sample space.
+Classical definition: The classical definition breaks down when confronted with the continuous case. See Bertrand's paradox.
+Modern definition: If the outcome space of a random variable X is the set of real numbers (
+
+
+
+
+R
+
+
+
+{\displaystyle \mathbb {R} }
+
+) or a subset thereof, then a function called the cumulative distribution function (or cdf) 
+
+
+
+F
+
+
+
+{\displaystyle F\,}
+
+ exists, defined by 
+
+
+
+F
+(
+x
+)
+=
+P
+(
+X
+≤
+x
+)
+
+
+
+{\displaystyle F(x)=P(X\leq x)\,}
+
+. That is, F(x) returns the probability that X will be less than or equal to x.
+The cdf necessarily satisfies the following properties.
+
+
+
+
+
+F
+
+
+
+{\displaystyle F\,}
+
+ is a monotonically non-decreasing, right-continuous function;
+
+
+
+
+
+lim
+
+x
+→
+−
+∞
+
+
+F
+(
+x
+)
+=
+0
+
+;
+
+
+{\displaystyle \lim _{x\rightarrow -\infty }F(x)=0\,;}
+
+
+
+
+
+
+
+lim
+
+x
+→
+∞
+
+
+F
+(
+x
+)
+=
+1
+
+.
+
+
+{\displaystyle \lim _{x\rightarrow \infty }F(x)=1\,.}
+
+
+
+If 
+
+
+
+F
+
+
+
+{\displaystyle F\,}
+
+ is absolutely continuous, i.e., its derivative exists and integrating the derivative gives us the cdf back again, then the random variable X is said to have a probability density function or pdf or simply density 
+
+
+
+f
+(
+x
+)
+=
+
+
+
+d
+F
+(
+x
+)
+
+
+d
+x
+
+
+
+
+.
+
+
+{\displaystyle f(x)={\frac {dF(x)}{dx}}\,.}
+
+
+For a set 
+
+
+
+E
+⊆
+
+R
+
+
+
+{\displaystyle E\subseteq \mathbb {R} }
+
+, the probability of the random variable X being in 
+
+
+
+E
+
+
+
+{\displaystyle E\,}
+
+ is
+
+
+
+
+
+P
+(
+X
+∈
+E
+)
+=
+
+∫
+
+x
+∈
+E
+
+
+d
+F
+(
+x
+)
+
+.
+
+
+{\displaystyle P(X\in E)=\int _{x\in E}dF(x)\,.}
+
+
+
+In case the probability density function exists, this can be written as
+
+
+
+
+
+P
+(
+X
+∈
+E
+)
+=
+
+∫
+
+x
+∈
+E
+
+
+f
+(
+x
+)
+
+d
+x
+
+.
+
+
+{\displaystyle P(X\in E)=\int _{x\in E}f(x)\,dx\,.}
+
+
+
+Whereas the pdf exists only for continuous random variables, the cdf exists for all random variables (including discrete random variables) that take values in 
+
+
+
+
+R
+
+
+.
+
+
+{\displaystyle \mathbb {R} \,.}
+
+
+These concepts can be generalized for multidimensional cases on 
+
+
+
+
+
+R
+
+
+n
+
+
+
+
+{\displaystyle \mathbb {R} ^{n}}
+
+ and other continuous sample spaces.
+Measure-theoretic probability theory[edit]
+The raison d'être of the measure-theoretic treatment of probability is that it unifies the discrete and the continuous cases, and makes the difference a question of which measure is used. Furthermore, it covers distributions that are neither discrete nor continuous nor mixtures of the two.
+An example of such distributions could be a mix of discrete and continuous distributions—for example, a random variable that is 0 with probability 1/2, and takes a random value from a normal distribution with probability 1/2. It can still be studied to some extent by considering it to have a pdf of 
+
+
+
+(
+δ
+[
+x
+]
++
+φ
+(
+x
+)
+)
+
+/
+
+2
+
+
+{\displaystyle (\delta [x]+\varphi (x))/2}
+
+, where 
+
+
+
+δ
+[
+x
+]
+
+
+{\displaystyle \delta [x]}
+
+ is the Dirac delta function.
+Other distributions may not even be a mix, for example, the Cantor distribution has no positive probability for any single point, neither does it have a density. The modern approach to probability theory solves these problems using measure theory to define the probability space:
+Given any set 
+
+
+
+Ω
+
+
+
+{\displaystyle \Omega \,}
+
+ (also called sample space) and a σ-algebra 
+
+
+
+
+
+F
+
+
+
+
+
+{\displaystyle {\mathcal {F}}\,}
+
+ on it, a measure 
+
+
+
+P
+
+
+
+{\displaystyle P\,}
+
+ defined on 
+
+
+
+
+
+F
+
+
+
+
+
+{\displaystyle {\mathcal {F}}\,}
+
+ is called a probability measure if 
+
+
+
+P
+(
+Ω
+)
+=
+1.
+
+
+
+{\displaystyle P(\Omega )=1.\,}
+
+
+If 
+
+
+
+
+
+F
+
+
+
+
+
+{\displaystyle {\mathcal {F}}\,}
+
+ is the Borel σ-algebra on the set of real numbers, then there is a unique probability measure on 
+
+
+
+
+
+F
+
+
+
+
+
+{\displaystyle {\mathcal {F}}\,}
+
+ for any cdf, and vice versa. The measure corresponding to a cdf is said to be induced by the cdf. This measure coincides with the pmf for discrete variables and pdf for continuous variables, making the measure-theoretic approach free of fallacies.
+The probability of a set 
+
+
+
+E
+
+
+
+{\displaystyle E\,}
+
+ in the σ-algebra 
+
+
+
+
+
+F
+
+
+
+
+
+{\displaystyle {\mathcal {F}}\,}
+
+ is defined as
+
+
+
+
+
+P
+(
+E
+)
+=
+
+∫
+
+ω
+∈
+E
+
+
+
+μ
+
+F
+
+
+(
+d
+ω
+)
+
+
+
+{\displaystyle P(E)=\int _{\omega \in E}\mu _{F}(d\omega )\,}
+
+
+
+where the integration is with respect to the measure 
+
+
+
+
+μ
+
+F
+
+
+
+
+
+{\displaystyle \mu _{F}\,}
+
+ induced by 
+
+
+
+F
+
+.
+
+
+{\displaystyle F\,.}
+
+
+Along with providing better understanding and unification of discrete and continuous probabilities, measure-theoretic treatment also allows us to work on probabilities outside 
+
+
+
+
+
+R
+
+
+n
+
+
+
+
+{\displaystyle \mathbb {R} ^{n}}
+
+, as in the theory of stochastic processes. For example, to study Brownian motion, probability is defined on a space of functions.
+When it's convenient to work with a dominating measure, the Radon-Nikodym theorem is used to define a density as the Radon-Nikodym derivative of the probability distribution of interest with respect to this dominating measure. Discrete densities are usually defined as this derivative with respect to a counting measure over the set of all possible outcomes. Densities for absolutely continuous distributions are usually defined as this derivative with respect to the Lebesgue measure. If a theorem can be proved in this general setting, it holds for both discrete and continuous distributions as well as others; separate proofs are not required for discrete and continuous distributions.
+Classical probability distributions[edit]
+Main article: Probability distributions
+Certain random variables occur very often in probability theory because they well describe many natural or physical processes. Their distributions, therefore, have gained special importance in probability theory. Some fundamental discrete distributions are the discrete uniform, Bernoulli, binomial, negative binomial, Poisson and geometric distributions. Important continuous distributions include the continuous uniform, normal, exponential, gamma and beta distributions.
+Convergence of random variables[edit]
+Main article: Convergence of random variables
+In probability theory, there are several notions of convergence for random variables. They are listed below in the order of strength, i.e., any subsequent notion of convergence in the list implies convergence according to all of the preceding notions.
+
+Weak convergence
+A sequence of random variables 
+
+
+
+
+X
+
+1
+
+
+,
+
+X
+
+2
+
+
+,
+…
+,
+
+
+
+{\displaystyle X_{1},X_{2},\dots ,\,}
+
+ converges weakly to the random variable 
+
+
+
+X
+
+
+
+{\displaystyle X\,}
+
+ if their respective cumulative distribution functions 
+
+
+
+
+F
+
+1
+
+
+,
+
+F
+
+2
+
+
+,
+…
+
+
+
+{\displaystyle F_{1},F_{2},\dots \,}
+
+ converge to the cumulative distribution function 
+
+
+
+F
+
+
+
+{\displaystyle F\,}
+
+ of 
+
+
+
+X
+
+
+
+{\displaystyle X\,}
+
+, wherever 
+
+
+
+F
+
+
+
+{\displaystyle F\,}
+
+ is continuous. Weak convergence is also called convergence in distribution.
+
+
+Most common shorthand notation: 
+
+
+
+
+
+X
+
+n
+
+
+
+
+
+→
+
+
+D
+
+
+
+
+
+X
+
+
+
+{\displaystyle \displaystyle X_{n}\,{\xrightarrow {\mathcal {D}}}\,X}
+
+
+
+
+Convergence in probability
+The sequence of random variables 
+
+
+
+
+X
+
+1
+
+
+,
+
+X
+
+2
+
+
+,
+…
+
+
+
+{\displaystyle X_{1},X_{2},\dots \,}
+
+ is said to converge towards the random variable 
+
+
+
+X
+
+
+
+{\displaystyle X\,}
+
+ in probability if 
+
+
+
+
+lim
+
+n
+→
+∞
+
+
+P
+
+(
+
+|
+
+X
+
+n
+
+
+−
+X
+|
+
+≥
+ε
+)
+
+=
+0
+
+
+{\displaystyle \lim _{n\rightarrow \infty }P\left(\left|X_{n}-X\right|\geq \varepsilon \right)=0}
+
+ for every ε > 0.
+
+
+Most common shorthand notation: 
+
+
+
+
+
+X
+
+n
+
+
+
+
+
+→
+
+P
+
+
+
+
+X
+
+
+
+{\displaystyle \displaystyle X_{n}\,{\xrightarrow {P}}\,X}
+
+
+
+
+Strong convergence
+The sequence of random variables 
+
+
+
+
+X
+
+1
+
+
+,
+
+X
+
+2
+
+
+,
+…
+
+
+
+{\displaystyle X_{1},X_{2},\dots \,}
+
+ is said to converge towards the random variable 
+
+
+
+X
+
+
+
+{\displaystyle X\,}
+
+ strongly if 
+
+
+
+P
+(
+
+lim
+
+n
+→
+∞
+
+
+
+X
+
+n
+
+
+=
+X
+)
+=
+1
+
+
+{\displaystyle P(\lim _{n\rightarrow \infty }X_{n}=X)=1}
+
+. Strong convergence is also known as almost sure convergence.
+
+
+Most common shorthand notation: 
+
+
+
+
+
+X
+
+n
+
+
+
+
+
+→
+
+
+a
+.
+s
+.
+
+
+
+
+
+X
+
+
+
+{\displaystyle \displaystyle X_{n}\,{\xrightarrow {\mathrm {a.s.} }}\,X}
+
+
+
+As the names indicate, weak convergence is weaker than strong convergence. In fact, strong convergence implies convergence in probability, and convergence in probability implies weak convergence. The reverse statements are not always true.
+Law of large numbers[edit]
+Main article: Law of large numbers
+Common intuition suggests that if a fair coin is tossed many times, then roughly half of the time it will turn up heads, and the other half it will turn up tails. Furthermore, the more often the coin is tossed, the more likely it should be that the ratio of the number of heads to the number of tails will approach unity. Modern probability theory provides a formal version of this intuitive idea, known as the law of large numbers. This law is remarkable because it is not assumed in the foundations of probability theory, but instead emerges from these foundations as a theorem. Since it links theoretically derived probabilities to their actual frequency of occurrence in the real world, the law of large numbers is considered as a pillar in the history of statistical theory and has had widespread influence.[7]
+The law of large numbers (LLN) states that the sample average
+
+
+
+
+
+
+
+
+X
+¯
+
+
+
+n
+
+
+=
+
+
+1
+n
+
+
+
+
+∑
+
+k
+=
+1
+
+
+n
+
+
+
+X
+
+k
+
+
+
+
+
+{\displaystyle {\overline {X}}_{n}={\frac {1}{n}}{\sum _{k=1}^{n}X_{k}}}
+
+
+
+of a sequence of independent and identically distributed random variables 
+
+
+
+
+X
+
+k
+
+
+
+
+{\displaystyle X_{k}}
+
+ converges towards their common expectation 
+
+
+
+μ
+
+
+{\displaystyle \mu }
+
+, provided that the expectation of 
+
+
+
+
+|
+
+
+X
+
+k
+
+
+
+|
+
+
+
+{\displaystyle |X_{k}|}
+
+ is finite.
+It is in the different forms of convergence of random variables that separates the weak and the strong law of large numbers
+
+Weak law: 
+
+
+
+
+
+
+
+X
+¯
+
+
+
+n
+
+
+
+
+
+→
+
+P
+
+
+
+
+μ
+
+
+
+{\displaystyle \displaystyle {\overline {X}}_{n}\,{\xrightarrow {P}}\,\mu }
+
+ for 
+
+
+
+n
+→
+∞
+
+
+{\displaystyle n\to \infty }
+
+
+
+
+Strong law: 
+
+
+
+
+
+
+
+X
+¯
+
+
+
+n
+
+
+
+
+
+→
+
+
+a
+.
+
+s
+.
+
+
+
+
+
+μ
+
+
+
+{\displaystyle \displaystyle {\overline {X}}_{n}\,{\xrightarrow {\mathrm {a.\,s.} }}\,\mu }
+
+ for 
+
+
+
+n
+→
+∞
+.
+
+
+{\displaystyle n\to \infty .}
+
+
+
+It follows from the LLN that if an event of probability p is observed repeatedly during independent experiments, the ratio of the observed frequency of that event to the total number of repetitions converges towards p.
+For example, if 
+
+
+
+
+Y
+
+1
+
+
+,
+
+Y
+
+2
+
+
+,
+.
+.
+.
+
+
+
+{\displaystyle Y_{1},Y_{2},...\,}
+
+ are independent Bernoulli random variables taking values 1 with probability p and 0 with probability 1-p, then 
+
+
+
+
+
+E
+
+
+(
+
+Y
+
+i
+
+
+)
+=
+p
+
+
+{\displaystyle {\textrm {E}}(Y_{i})=p}
+
+ for all i, so that 
+
+
+
+
+
+
+
+Y
+¯
+
+
+
+
+n
+
+
+
+
+{\displaystyle {\bar {Y}}_{n}}
+
+ converges to p almost surely.
+Central limit theorem[edit]
+Main article: Central limit theorem
+"The central limit theorem (CLT) is one of the great results of mathematics." (Chapter 18 in[8]) It explains the ubiquitous occurrence of the normal distribution in nature.
+The theorem states that the average of many independent and identically distributed random variables with finite variance tends towards a normal distribution irrespective of the distribution followed by the original random variables. Formally, let 
+
+
+
+
+X
+
+1
+
+
+,
+
+X
+
+2
+
+
+,
+…
+
+
+
+{\displaystyle X_{1},X_{2},\dots \,}
+
+ be independent random variables with mean 
+
+
+
+μ
+
+
+{\displaystyle \mu }
+
+ and variance 
+
+
+
+
+σ
+
+2
+
+
+>
+0.
+
+
+
+{\displaystyle \sigma ^{2}>0.\,}
+
+ Then the sequence of random variables
+
+
+
+
+
+
+Z
+
+n
+
+
+=
+
+
+
+
+∑
+
+i
+=
+1
+
+
+n
+
+
+(
+
+X
+
+i
+
+
+−
+μ
+)
+
+
+σ
+
+
+n
+
+
+
+
+
+
+
+
+{\displaystyle Z_{n}={\frac {\sum _{i=1}^{n}(X_{i}-\mu )}{\sigma {\sqrt {n}}}}\,}
+
+
+
+converges in distribution to a standard normal random variable.
+For some classes of random variables the classic central limit theorem works rather fast (see Berry–Esseen theorem), for example the distributions with finite first, second, and third moment from the exponential family; on the other hand, for some random variables of the heavy tail and fat tail variety, it works very slowly or may not work at all: in such cases one may use the Generalized Central Limit Theorem (GCLT).
+See also[edit]
+
+
+Mathematics portal
+
+
+
+
+Catalog of articles in probability theory
+Expected value and Variance
+Fuzzy logic and Fuzzy measure theory
+Glossary of probability and statistics
+Likelihood function
+List of probability topics
+List of publications in statistics
+List of statistical topics
+Notation in probability
+Predictive modelling
+Probabilistic logic – A combination of probability theory and logic
+Probabilistic proofs of non-probabilistic theorems
+Probability distribution
+Probability axioms
+Probability interpretations
+Probability space
+Statistical independence
+Subjective logic
+
+
+Notes[edit]
+
+
+
+^ Inferring From Data
+^ "Why is quantum mechanics based on probability theory?". StackExchange. July 1, 2014. [unreliable source?]
+^ Grinstead, Charles Miller; James Laurie Snell. "Introduction". Introduction to Probability. pp. vii. 
+^ Hájek, Alan. "Interpretations of Probability". Retrieved 2012-06-20. 
+^ ""The origins and legacy of Kolmogorov's Grundbegriffe", by Glenn Shafer and Vladimir Vovk" (PDF). Retrieved 2012-02-12. 
+^ Ross, Sheldon (2010). A First Course in Probability (8th ed.). Pearson Prentice Hall. pp. 26–27. ISBN 978-0-13-603313-4. Retrieved 2016-02-28. 
+^ "Leithner & Co Pty Ltd - Value Investing, Risk and Risk Management - Part I". Leithner.com.au. 2000-09-15. Archived from the original on 2014-01-26. Retrieved 2012-02-12. 
+^ David Williams, "Probability with martingales", Cambridge 1991/2008
+
+
+
+References[edit]
+
+
+
+
+
+
+This article includes a list of references, but its sources remain unclear because it has insufficient inline citations. Please help to improve this article by introducing more precise citations. (September 2009) (Learn how and when to remove this template message)
+
+
+
+
+Pierre Simon de Laplace (1812). Analytical Theory of Probability. 
+
+
+
+
+The first major treatise blending calculus with probability theory, originally in French: Théorie Analytique des Probabilités.
+
+
+
+
+A. Kolmogoroff (1933). Grundbegriffe der Wahrscheinlichkeitsrechnung. doi:10.1007/978-3-642-49888-6. ISBN 978-3-642-49888-6. 
+
+
+
+
+An English translation by Nathan Morrison appeared under the title Foundations of the Theory of Probability (Chelsea, New York) in 1950, with a second edition in 1956.
+
+
+
+
+Patrick Billingsley (1979). Probability and Measure. New York, Toronto, London: John Wiley and Sons. 
+Olav Kallenberg; Foundations of Modern Probability, 2nd ed. Springer Series in Statistics. (2002). 650 pp. ISBN 0-387-95313-2
+Henk Tijms (2004). Understanding Probability. Cambridge Univ. Press. 
+
+
+
+
+A lively introduction to probability theory for the beginner.
+
+
+
+
+Olav Kallenberg; Probabilistic Symmetries and Invariance Principles. Springer -Verlag, New York (2005). 510 pp. ISBN 0-387-25115-4
+Gut, Allan (2005). Probability: A Graduate Course. Springer-Verlag. ISBN 0-387-22833-0. 
+
+External links[edit]
+
+Animation on YouTube on the probability space of dice.
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Areas of mathematics
+
+
+
+
+
+
+outline
+topic lists
+
+
+
+
+
+Branches
+
+
+
+
+Arithmetic
+
+
+
+History of mathematics
+Philosophy of mathematics
+Philosophy of mathematics education
+Information theory
+Lie theory
+Order theory
+Representation theory
+Set theory
+Category theory
+Control theory
+Graph theory
+Computation
+
+
+
+
+
+Algebra
+
+
+
+Number theory
+Elementary
+Linear
+Multilinear
+Abstract
+Combinatorics
+Group theory
+
+
+
+
+
+Calculus
+
+
+
+Analysis
+Differential equations / Dynamical systems
+Numerical analysis
+Optimization
+Functional analysis
+
+
+
+
+
+Geometry
+
+
+
+Discrete
+Algebraic
+Analytic
+Differential
+Finite
+Topology
+Trigonometry
+
+
+
+
+
+Applied
+
+
+
+Probability
+Mathematical physics
+Mathematical statistics
+Statistics
+Computer
+Game theory
+Recreational mathematics
+Mathematics and art
+Mathematics education
+Mathematical logic
+
+
+
+
+
+
+
+
+Divisions
+
+
+
+Pure
+Applied
+Discrete
+Computational
+
+
+
+
+
+
+
+
+ Category
+ Portal
+Commons
+WikiProject
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Industrial and applied mathematics
+
+
+
+Computational
+
+
+
+Computational logic
+Algorithms
+
+design
+analysis
+
+
+Information theory
+Coding theory
+Cryptography
+
+
+
+
+
+Discrete
+
+
+
+Computer algebra
+Computational number theory
+Combinatorics
+Graph theory
+Discrete geometry
+
+
+
+
+
+Mathematical
+physics
+
+
+
+
+Algebraic
+
+
+
+Operator algebra
+Representation theory
+Renormalization group
+Feynman integral
+M-theory
+
+
+
+
+
+Analytic
+
+
+
+Differential geometry
+Fourier analysis
+Harmonic analysis
+Functional analysis
+Operator theory
+
+
+
+
+
+
+
+
+Analysis
+
+
+
+Approximation theory
+Numerical analysis
+Differential equations
+Dynamical systems
+Control theory
+Variational calculus
+
+
+
+
+
+Probability theory
+
+
+
+Distributions (random variables)
+Stochastic processes / analysis
+Path integral
+Stochastic variational calculus
+
+
+
+
+
+Decision sciences
+
+
+
+Statistics
+Operations research
+Optimization
+Game theory
+Mathematical economics
+Mathematical finance
+
+
+
+
+
+Other applications
+
+
+
+Biology
+Chemistry
+Psychology
+Sociology
+"The Unreasonable Effectiveness of Mathematics in the Natural Sciences"
+
+
+
+
+
+
+
+
+Category
+Mathematics portal / outline / topics list
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+GND: 4079013-7
+NDL: 00564753
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Probability_theory&oldid=814762407"					Categories: Probability theoryHidden categories: All articles lacking reliable referencesArticles lacking reliable references from February 2016All articles with unsourced statementsArticles with unsourced statements from December 2015Articles lacking in-text citations from September 2009All articles lacking in-text citationsWikipedia articles with GND identifiers

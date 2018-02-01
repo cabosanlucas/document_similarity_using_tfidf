@@ -1,0 +1,1372 @@
+article audio compression encoding scheme ncaa division conference american athletic conference uses
+
+advanced audio coding
+
+filename extension
+
+mpeg3gpp container
+
+
+
+apple container
+
+
+
+stream
+
+
+
+
+
+
+internet media type
+audioaac audioaacp audio3gpp audio3gpp2 audiomp4 audiomp4alatm audiompeg4generic
+
+
+developed
+bell labs fraunhofer institute dolby labs sony nokia
+
+
+initial release
+1997 years 19971
+
+
+type format
+audio compression format lossy compression
+
+
+contained
+mpeg4 part base media file format audio data interchange format adif
+
+
+standard
+isoiec 138187
+isoiec 144963
+
+
+advanced audio coding proprietary audio coding standard lossy digital audio compression designed successor format generally achieves better sound quality rate2 confusingly named heaac rates less high ones
+standardized part mpeg2 mpeg4 specifications34 part heaac part mpeg4 audio also adopted digital radio standards digital radio mondiale well mobile television standards dvbh atscmh
+supports inclusion fullbandwidth audio channels stream plus frequency effects limited channels coupling dialog channels data streams quality stereo satisfactory modest requirements kbits joint stereo mode however hifi transparency demands data rates least kbits tests mpeg4 audio shown meets requirements referred transparent kbits stereo kbits audiocitation needed
+default standard audio format youtube iphone ipod ipad nintendo nintendo itunes divx plus player playstation various nokia series phones supported playstation vita photo channel update installed sony walkman series later android blackberry also supported manufacturers indash audio systemswhenvague
+
+
+
+contents
+
+
+history
+
+standardization
+aacs improvements
+
+
+works
+
+modular encoding
+error protection toolkit
+error resilient
+delay
+
+
+licensing patents
+extensions improvements
+container formats
+products support
+
+hdtv standards
+
+japanese isdbt
+international isdbtb
+
+
+
+hardware
+
+itunes ipod
+portable players
+mobile phones
+devices
+
+
+software
+
+nero digital audio
+faac faad2
+fraunhofer
+ffmpeg libav
+
+
+
+
+also
+references
+external links
+
+
+
+historyedit
+developed cooperation contributions companies including bell laboratories fraunhofer dolby laboratories sony corporation nokia officially declared international standard moving picture experts group april 1997 specified part mpeg2 standard subpart part mpeg4 standard5
+standardizationedit
+1997 first introduced mpeg2 part formally known isoiec 1381871997 part mpeg2 part since mpeg2 already included mpeg2 part formally known isoiec 138183 mpeg2 backwards compatible67 therefore mpeg2 part also known mpeg2 nonbackward compatible compatible mpeg1 audio formats mp368910
+mpeg2 part defined three profiles lowcomplexity profile aaclc lcaac main profile main scalable sampling rate profile aacssr aaclc profile consists base format much like atts perceptual audio coding coding format111213 addition temporal noise shaping tns14 dolby kaiser window described nonuniform quantizer reworking bitstream format handle stereo channels mono channels lowfrequency effect channels commentary channels bitstream main profile adds recursive predictors calculated filterbank uses 4band pqmf filterbank four shorter filterbanks following order allow scalable sampling rates
+1999 mpeg2 part updated included mpeg4 family standards became known mpeg4 part mpeg4 audio isoiec 1449631999 update included several improvements improvements addition audio object types used allow interoperability diverse range audio formats twinvq celp hvxc texttospeech interface mpeg4 structured audio another notable addition version standard perceptual noise substitution regard profiles aaclc main aacssr profiles combined perceptual noise substitution defined mpeg4 audio standard audio object types15 mpeg4 audio object types combined four mpeg4 audio profiles main includes mpeg4 audio object types scalable celp hvxc twinvq wavetable synthesis ttsi speech celp hvxc ttsi rate synthesis wavetable synthesis ttsi1617
+reference software mpeg4 part specified mpeg4 part conformance bitstreams specified mpeg4 part mpeg4 audio remains backwardcompatible mpeg2 part
+mpeg4 audio version isoiec 1449631999amd 12000 defined audio object types delay aacld object type bitsliced arithmetic coding bsac object type parametric audio coding using harmonic individual line plus noise error resilient versions object types192021 also defined four audio profiles high quality audio profile delay audio profile natural audio profile mobile audio internetworking profile22
+heaac profile profile first standardized isoiec 1449632001amd 1200323 heaac profile parametric stereo first specified isoiec 1449632005amd 22006242526 parametric stereo audio object type used heaac first defined isoiec 1449632001amd 22004272829
+current version standard defined isoiec 144963200930
+also standardized etsi european telecommunications standards institute 10200527
+mpeg4 part standard also contains ways compressing sound include lossless compression formats synthetic audio bitrate compression formats generally used speech
+aacs improvements mp3edit
+advanced audio coding designed successor mpeg1 audio layer known format specified isoiec 111723 mpeg1 audio 138183 mpeg2 audio
+blind tests late 1990s showed demonstrated greater sound quality transparency files coded rate2 since time numerous codec listening tests shown best encoders format often similar quality statistically tiedcitation needed quality often dependent encoder used even within format approximation using best encoders aacs advantage tends evident around kbits certain encoders good best encoder take optimal advantage additional encoding tools makes available
+improvements include
+
+sample frequencies
+channels supports channels mpeg1 mode channels mpeg2 mode
+arbitrary bitrates variable frame length standardized constant rate reservoir
+higher efficiency simpler filter bank rather mp3s hybrid coding uses pure mdct
+higher coding efficiency stationary signals uses blocksize 1024 samples allowing efficient coding mp3s sample blocks
+higher coding accuracy transient signals uses blocksize samples allowing accurate coding mp3s sample blocks
+kaiserbessel derived window function eliminate spectral leakage expense widening main lobe
+much better handling audio frequencies
+flexible joint stereo different methods used different frequency ranges
+adds additional modules tools increase compression efficiency backwards prediction modules combined constitute different encoding profiles
+
+overall format allows developers flexibility design codecs corrects many design choices made original mpeg1 audio specification increased flexibility often leads concurrent encoding strategies result efficient compression however terms whether better advantages entirely decisive specification although antiquated proven surprisingly robust spite considerable flaws heaac better rates typically less kilobits secondcitation needed especially true rates superior stereo coding pure mdct better transform window sizes leave unable compete
+format nearuniversal hardware software support primarily format choice crucial first years widespread music filesharingdistribution internet strong contender unwavering industry support31
+worksedit
+wideband audio coding algorithm exploits primary coding strategies dramatically reduce amount data needed represent highquality digital audio
+
+signal components perceptually irrelevant discarded
+redundancies coded audio signal eliminated
+
+actual encoding process consists following steps
+
+signal converted timedomain frequencydomain using forward modified discrete cosine transform mdct done using filter banks take appropriate number time samples convert frequency samples
+frequency domain signal quantized based psychoacoustic model encoded
+internal error correction codes added
+signal stored transmitted
+order prevent corrupt samples modern implementation luhn algorithm applied frame32
+
+mpeg4 audio standard define single small highly efficient compression schemes rather complex toolbox perform wide range operations rate speech coding highquality audio coding music synthesis
+
+mpeg4 audio coding algorithm family spans range rate speech encoding kbits highquality audio coding kbits channel higher
+offers sampling frequencies number channels
+contrast mp3s hybrid filter bank uses modified discrete cosine transform mdct together increased window lengths 1024 points
+
+encoders switch dynamically single mdct block length 1024 points blocks points points points respectively
+
+signal change transient occurs shorter windows 128120 points chosen better temporal resolution
+default longer 1024point960point window otherwise used increased frequency resolution allows sophisticated psychoacoustic model resulting improved coding efficiency
+
+modular encodingedit
+takes modular approach encoding depending complexity bitstream encoded desired performance acceptable output implementers create profiles define specific tools want particular application
+mpeg2 part standard advanced audio coding first published 1997 offers three default profiles133
+
+complexity simplest widely used supported
+main profile main like profile addition backwards prediction
+scalable sample rate samplerate scalable
+
+mpeg4 part standard mpeg4 audio defined various compression tools audio object types usage brand profiles used mpeg4 audio profiles mpeg2 part profile main profile profile combined perceptual noise substitution defined mpeg4 audio standard audio object types name main combined object types mpeg4 audio profiles15 list audio profiles defined mpeg4 standard2434
+main article mpeg4 part audio profiles
+
+main audio profile defined 1999 uses mpeg4 audio object types main aaclc aacssr aacltp scalable twinvq celp hvxc ttsi main synthesis
+scalable audio profile defined 1999 uses aaclc aacltp scalable twinvq celp hvxc ttsi
+speech audio profile defined 1999 uses celp hvxc ttsi
+synthetic audio profile defined 1999 ttsi main synthesis
+high quality audio profile defined 2000 uses aaclc aacltp scalable celp eraaclc eraacltp eraac scalable ercelp
+delay audio profile defined 2000 uses celp hvxc ttsi eraacld ercelp erhvxc
+delay defined 2012 uses aacld aaceld aaceldv235
+mobile audio internetworking profile defined 2000 uses eraaclc eraacscalable ertwinvq erbsac eraacld
+profile defined 2003 uses aaclc
+high efficiency profile defined 2003 uses aaclc
+high efficiency profile defined 2006 uses aaclc
+
+many improvements mpeg4 audio object type called long term prediction improvement main profile using forward predictor lower computational complexity18
+error protection toolkitedit
+applying error protection enables error correction certain extent error correcting codes usually applied equally whole payload however since different parts payload show different sensitivity transmission errors would efficient approach
+payload subdivided parts different error sensitivities
+
+independent error correcting codes applied parts using error protection tool defined mpeg4 audio standard
+toolkit provides error correcting capability sensitive parts payload order keep additional overhead
+toolkit backwardly compatible simpler preexisting decoders great deal toolkits error correction functions based around spreading information audio signal evenly datastream
+
+error resilient aacedit
+error resilience techniques used make coding scheme robust errors
+three customtailored methods developed defined mpeg4 audio
+
+huffman codeword reordering avoid error propagation within spectral data
+virtual codebooks vcb11 detect serious errors within spectral data
+reversible variable length code rvlc reduce error propagation within scale factor data
+
+delayedit
+main article aacld
+audio coding standards mpeg4 delay enhanced delay enhanced delay aacld aaceld aaceldv2 defined isoiec 1449632009 isoiec 1449632009amd designed combine advantages perceptual audio coding delay necessary twoway communication closely derived mpeg2 advanced audio coding format363738 aaceld recommended gsma superwideband voice codec profile high definition video conference hdvc service39
+licensing patentsedit
+licenses payments required user stream distribute content format40 reason alone make much attractive format distribute content predecessor particularly streaming content internet radio depending case
+however patent license required manufacturers developers codecs41 reason free open source software implementations ffmpeg faac distributed source form order avoid patent infringement products support software
+extensions improvementsedit
+extensions added first standard defined mpeg2 part 1997
+
+perceptual noise substitution added mpeg4 1999 allows coding noise pseudorandom data
+long term predictor added mpeg4 1999 forward predictor lower computational complexity18
+error resilience added mpeg4 audio version 2000 used transport error prone channels42
+aacld delay defined 2000 used realtime conversation applications
+high efficiency heaac aacplus combination spectral band replication used bitrates defined 2003
+heaac aacplus eaac combination parametric stereo heaac used even lower bitrates defined 2004 2006
+mpeg4 scalable lossless defined 2006 supplement stream provide lossless decoding option fraunhofer iiss hdaac product
+
+container formatsedit
+main article mpeg4 part audio storage transport
+addition container formats based base media file format file storage audio data first packaged file mpeg2 standard using audio data interchange format adif43 consisting single header followed audio data blocks44 however data streamed within mpeg2 transport stream selfsynchronizing format called audio data transport stream adts used consisting series frames frame header followed audio data43 file streamingbased format defined mpeg2 part considered informative mpeg4 mpeg4 decoder need support either format43 containers well stream bear file extension mpeg4 part also defines selfsynchronizing format called overhead audio stream loas encapsulates mpeg4 audio compression scheme twinvq format defined transport streams encoders either parametric stereo extensions however restricted single nonmultiplexed stream format also referred overhead audio transport multiplex latm interleaved multiple stream version loas43
+products support aacedit
+
+
+
+
+
+
+section needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed september 2017 learn remove template message
+
+
+
+hdtv standardsedit
+japanese isdbtedit
+december 2003 japan started broadcasting terrestrial isdbt standard implements mpeg2 video mpeg2 audio april 2006 japan started broadcasting isdbt mobile subprogram called 1seg first implementation video h264avc audio heaac terrestrial hdtv broadcasting service planet
+international isdbtbedit
+december 2007 brazil started broadcasting terrestrial standard called international isdbtb implements video coding h264avc audio aaclc main program single multi video h264avc audio heaacv2 1seg mobile subprogram
+dvbedit
+etsi standards governing body suite supports heaac heaac audio coding applications since least 200445 broadcasts h264 compression video normally heaac audiocitation needed
+hardwareedit
+itunes ipodedit
+april 2003 apple brought mainstream attention announcing itunes ipod products would support songs mpeg4 format firmware update older ipods customers could download music closedsource digital rights management drmrestricted form fairplay itunes store create files without using itunes later years apple began offering music videos movies also audio encoding
+2007 apple began selling songs music videos free participating record labels files mostly adhere standard playable many nonapple products include custom itunes information album artwork purchase receipt identify customer case file leaked onto peertopeer networks possible however remove custom tags restore interoperability players conform strictly specificationcitation needed january 2009 nearly music regioned itunes store became drmfree remainder becoming drmfree march 200946
+itunes supports variable rate encoding option encodes tracks average rate schemecitation needed september 2009 apple added support heaac fully part standard radio streams file playback itunes still lacks support true encoding underlying quicktime offer true encoding profile however
+portable playersedit
+
+archos
+cowon unofficially supported models
+creative portable
+nintendo
+nintendo
+philips gogear muse
+playstation portable firmware greater
+samsung yepp
+sandisk sansa models
+walkman
+zune
+portable player fully supports rockbox third party firmware
+
+mobile phonesedit
+number years many mobile phones manufacturers nokia motorola samsung sony ericsson benqsiemens philips supported playback first phone nokia 5510 released 2002 also plays mp3s however phone commercial failurecitation needed phones integrated music players gain mainstream popularity 2005 trend well support continued smartphones musicthemed phones support playback formats
+
+sony ericsson phones support various formats container aaclc supported phones beginning k700 phones beginning w550 support heaac latest devices p990 k610 w890i later support heaac
+nokia xpressmusic generation nokia multimedia phones like eseries also support format hev2 profiles
+blackberry phones running blackberry operating system support playback natively select previous generation blackberry devices also support
+bada
+apples iphone supports fairplay protected files formerly used default encoding format itunes store removal restrictions march 2009
+android 2347 later supports aaclc heaac heaac containers along several audio formats android later supports adts files android encode aac48
+webos hppalm supports eaac containers native music player well several thirdparty players however support apples fairplay files downloaded itunes49
+windows phones silverlight runtime supports aaclc heaac heaac decoding
+
+devicesedit
+
+apples ipad supports fairplay protected files used default encoding format itunes store
+palm pdas many palm based pdas smartphones play heaac party software pocket tunes version released december 2006 added support native heaac files codec tcpmp popular video player withdrawn version patent issues still downloaded sites corecodecorg coreplayer commercial followon tcpmp includes support palm programs supporting include kinoma player aeroplayer
+windows mobile supports either native windows media player thirdparty products tcpmp coreplayercitation needed
+epson supports playback p2000 p4000 multimediaphoto storage viewers
+sony reader plays files containing displays metadata created itunes sony products including series network walkmans support firmware updates released 2006 series supports
+sonos digital media player supports playback files
+barnes noble nook color supports playback encoded files
+roku soundbridge network audio player supports playback encoded files
+squeezebox network audio player made slim devices logitech company supports playback files
+playstation supports encoding decoding files
+xbox supports streaming zune software supported ipods connected port
+supports files version photo channel december 2007 profiles bitrates supported long file extension update removed compatibility users installed freely downgrade version wish50
+livescribe pulse echo smartpens record store audio format audio files replayed using pens integrated speaker attached headphones computer using livescribe desktop software files stored users documents folder windows distributed played without specialized hardware software livescribe
+google chromecast supports playback lcaac heaac audio51
+
+softwareedit
+almost current computer media players include builtin decoders utilize library decode microsoft windows directshow used corresponding filters enable playback directshow based player supports quicktime libraries
+adobe flash player since version update also play back streams5253 since flash player also browser plugin play files browser well
+rockbox open source firmware available multiple portable players also offers support varying degrees depending model player profile
+optional ipod support playback unprotected files xbox available free download xbox live54
+following noncomprehensive list software player applications
+
+3ivx mpeg4 suite directshow quicktime plugins support encoding heaac decoding directshow application
+coreplayer also supports
+ffdshow free open source directshow filter microsoft windows uses faad2 support decoding
+foobar2000 freeware audio player windows supports
+kmplayer
+mediamonkey
+aimp
+media player classic home cinema
+mplayer xine often used decoders linux macintosh
+musicbee advanced music manager player also supports encoding ripping plugin
+realplayer includes realnetworks realaudio encoder
+songbird supports windows linux including rights management encoding used purchased music itunes store plugin
+sony sonicstage
+media player supports playback encoding files
+winamp windows includes encoder supports
+windows media player released windows supports playback files natively
+another real rhapsody supports realaudio codec addition offering subscription tracks encoded
+xbmc supports
+xmms supports playback using plugin provided faad2 library
+
+players foobar2000 winamp also support decoding adts audio data transport stream using shoutcast protocol plugins winamp foobar2000 enable creation streams
+nero digital audioedit
+2006 nero released encoding tool free charge nero digital audio codec portion become nero codec55 capable encoding lcaac heaac heaac streams tool command line interface tool separate utility also included decode
+various tools including foobar2000 audio player mediacoder provide encoder
+faac faad2edit
+main article faac
+faac faad2 stand freeware advanced audio coder decoder respectively faac supports audio object types main ltp56 faad2 supports audio object types main ps57 although faad2 free software faac free software
+fraunhofer aacedit
+main article fraunhofer
+fraunhoferauthored opensource encoderdecoder included android ported platforms recommended encoder ffmpeg
+ffmpeg libavedit
+also faac alternatives encoding unixlike operating systems
+native encoder created ffmpegs libavcodec forked libav considered experimental poor significant amount work done release ffmpeg february 2016 make version usable competitive rest encoders58 libav merged work continues older version encoder encoders lgpllicensed opensource built platform ffmpeg libav frameworks built
+ffmpeg libav fraunhofer library libfdkaac ffmpeg native encoder become stable good enough common still considered highest quality encoder available ffmpeg59 libav also recommends using available60
+alsoedit
+
+comparison audio coding formats
+aacld
+mpeg4 part container format
+alac apples lossless codec
+vorbis main open royaltyfree competitor
+opus open royaltyfree codec preencoded interactive standardized 2012
+
+referencesedit
+
+
+1997 isoiec 1381871997 information technology generic coding moving pictures associated audio information part advanced audio coding retrieved 20100718
+brandenburg karlheinz 1999 explained
+2006 isoiec 1381872006 information technology generic coding moving pictures associated audio information part advanced audio coding retrieved 20090806
+2006 isoiec 1449632005 information technology coding audiovisual objects part audio retrieved 20090806
+isoiec 1449632009 information technology coding audiovisual objects part audio isoiec september 2009 retrieved 20091007
+mpegorg archived original october 2009 retrieved 20091028
+isoiec 138187 fourth edition part advanced audio coding january 2006 retrieved 20091028
+bouvigne gabriel 2003 mpeg2mpeg4 mp3tech retrieved 20091028
+mpeg audio version mpeg1 mpeg2 october 1998 retrieved 20091028
+florence press release march 1996 archived original 20100408 retrieved 20091028
+johnston ferreira sumdifference stereo transform coding icassp march 1992 ii569572
+sinha johnston audio compression rates using signal adaptive switched filterbank ieee assp 1996 10531057
+johnston sinha dorward quackenbush perceptual audio coder collected papers digital audio bitrate reduction gilchrist grewin audio engineering society 1996
+herre johnston enhancing performance perceptual audio coders using temporal noise shaping 101st convention preprint 4384 1996
+brandenburg karlheinz kunz oliver sugiyama akihiko mpeg4 natural audio coding audio profiles levels chiariglioneorg archived original 20100717 retrieved 20091006
+isoiec 144963 subpart draft n2203 isoiec 29wg 1998 retrieved 20091007
+brandenburg karlheinz kunz oliver sugiyama akihiko 1998 mpeg4 natural audio coding audio profiles levels chiariglioneorg archived original 20100717 retrieved 20091007
+brandenburg karlheinz kunz oliver sugiyama akihiko 1999 mpeg4 natural audio coding general audio coding based chiariglioneorg archived original 20100219 retrieved 20091006
+isoiec 1449631999amd 12000 audio extensions 2000 retrieved 20091007
+isoiec 144963amd1 final committee draft mpeg4 audio version isoiec 29wg july 1999 retrieved 20091007
+purnhagen heiko february 2000 108th convention mpeg4 version audio retrieved 20091007 dead link
+pereira fernando october 2001 levels audio profiles mpeg industry forum archived original 20100108 retrieved 20091015
+isoiec 1449632001amd 12003 bandwidth extension 2003 retrieved 20091007
+text isoiec 1449632001fpdam audio lossless coding audio profiles bsac extensions isoiec jtc1sc29wg11n7016 january 2005 archived original 2014 retrieved 20091009
+audio lossless coding audio profiles bsac extensions isoiec 1449632005amd 22006 2006 retrieved 20091013
+mody mihir june 2005 audio compression gets better complex embeddedcom retrieved 20091013
+archived copy archived original 20061026 retrieved 20070129
+parametric coding highquality audio isoiec 1449632001amd 22004 2004 retrieved 20091013
+3gpp 26401 v600 200409 general audio codec audio processing functions enhanced aacplus general audio codec general description release 3gpp september 2004 retrieved 20091013
+isoiec 1449632009 information technology coding audiovisual objects part audio 2009 retrieved 20091007
+hydrogenaudio retrieved 20110124
+patent application 20070297624 digital audio encoding
+isoiec 138187 third edition part advanced audio coding october 2004 archived original july 2011 retrieved 20091019
+grill bernhard geyersberger stefan hilpert johannes teichmann bodo july 2004 implementation mpeg4 audio components various platforms fraunhofer gesellschaft archived original 20070610 retrieved 20091009
+isoiec 1449632009amd 32012 transport unified speech audio coding usac retrieved 20160803
+isoiec 1449632009 information technology coding audiovisual objects part audio retrieved 20160802
+isoiec 1449632009amd 32012 transport unified speech audio coding usac retrieved 20160802
+aaceld family high quality communication services mpeg mpegchiariglioneorg retrieved 20160802
+profile high definition video conference hdvc service gsma 2016
+licensing licensing
+license fees licensing
+thom purnhagen october 1998 mpeg audio version mpeg4 chiariglioneorg mpeg audio subgroup retrieved 20091006
+wolters martin kjorling kristofer homm daniel purnhagen heiko closer look mpeg4 high efficiency archived original 20080807 retrieved 20080731 presented 115th convention audio engineering society 10–13 october 2003
+advanced audio coding mpeg2 audio data interchange format library congress national digital information infrastructure preservation program march 2007 archived original july 2008 retrieved 20080731
+etsi v151 specification video audio coding broadcasting applications based mpeg transport stream
+cohen peter 20100527 itunes store goes drmfree macworld publishing archived original february 2009 retrieved 20090210
+httpdeveloperandroidcomaboutversionsandroid23highlightshtml
+httpdeveloperandroidcomguideappendixmediaformatshtml
+httpwwwpalmcomusproductsphonespretechspecs
+nintendo customer service photo channel
+httpsdevelopersgooglecomcastdocsmedia supported media google cast
+httpswwwadobecomproductsplayercensusflashplayerversionpenetrationhtml
+httpswwwadobecomaboutadobepressroompressreleases200712120407adobemoviestarhtml
+xboxcom system apple ipod xbox archived april 2007 wayback machine
+httpwwwnerocomengdownloadsnerodigitalneroaaccodecphp
+faac audiocodingcom retrieved 20091103
+faad2 audiocodingcom retrieved 20091103
+december 2015 native ffmpeg encoder stable ffmpegorg retrieved june 2016
+ffmpeg encoding guide retrieved april 2016 encoder provides best quality likely answer libfdkaac
+libav wiki encoding retrieved april 2016
+
+
+external linksedit
+
+fraunhofer audio codecs
+audiocodingcom home faac faad2
+official mpeg site
+improvements extensions 2004
+3016 payload format mpeg4 audiovisual streams
+3640 payload format transport mpeg4 elementary streams
+4281 codecs parameter bucket media types
+4337 mime type registration mpeg4
+
+
+
+
+
+
+
+
+
+
+
+
+multimedia compression container formats
+
+
+
+video
+compression
+
+
+
+
+isoiec
+
+
+
+mjpeg
+motion jpeg 2000
+mpeg1
+mpeg2
+
+part
+
+
+mpeg4
+
+part 2asp
+part 10avc
+
+
+mpegh
+
+part 2hevc
+
+
+
+
+
+
+
+itut
+
+
+
+h120
+h261
+h262
+h263
+h264
+h265
+
+
+
+
+
+smpte
+
+
+
+
+
+
+
+
+
+
+
+
+alliance open media
+
+
+
+
+
+
+
+
+
+others
+
+
+
+apple video
+
+bink
+cinepak
+daala
+dirac
+
+
+ffv1
+huffyuv
+indeo
+lagarith
+microsoft video
+lossless
+video
+pixlet
+prores
+prores 4444
+quicktime
+
+animation
+graphics
+
+
+realvideo
+rtvideo
+sheervideo
+smacker
+sorenson video spark
+theora
+thor
+
+
+
+
+
+
+
+yuls
+
+
+
+
+
+
+
+
+audio
+compression
+
+
+
+
+isoiec
+
+
+
+mpeg1 layer
+mpeg1 layer
+
+multichannel
+
+
+mpeg1 layer
+
+
+heaac
+aacld
+
+
+mpeg surround
+mpeg4
+mpeg4
+mpeg4
+mpeg4 hvxc
+mpeg4 celp
+mpegd usac
+mpegh audio
+
+
+
+
+
+itut
+
+
+
+g711 alaw µlaw
+g718
+g719
+g722
+g7221
+g7222
+g723
+g7231
+g726
+g728
+g729
+g7291
+
+
+
+
+
+ietf
+
+
+
+opus
+ilbc
+
+
+
+
+
+3gpp
+
+
+
+
+amrwb
+amrwb
+evrc
+evrcb
+
+gsmhr
+gsmfr
+gsmefr
+
+
+
+
+
+others
+
+
+
+acelp
+
+
+alac
+asao
+atrac
+celt
+codec2
+
+
+flac
+isac
+monkeys audio
+
+
+true audio
+
+
+
+musepack
+optimfrog
+
+qcelp
+rcelp
+realaudio
+rtaudio
+
+
+silk
+siren
+
+speex
+svopc
+twinvq
+vmrwb
+vorbis
+vselp
+wavpack
+
+
+aptx
+
+
+
+
+
+
+
+
+image
+compression
+
+
+
+
+
+itut ietf
+
+
+
+ccitt group
+
+heif
+hevc
+jbig
+jbig2
+jpeg
+jpeg 2000
+jpeg
+lossless jpeg
+
+tiff
+tiffep
+tiffit
+
+
+
+
+
+others
+
+
+
+apng
+
+djvu
+
+flif
+icer
+
+
+qtvr
+wbmp
+webp
+
+
+
+
+
+
+
+
+containers
+
+
+
+
+isoiec
+
+
+
+mpeges
+
+mpegpes
+
+
+mpegps
+mpegts
+base media file format
+mpeg4 part
+motion jpeg 2000
+mpeg21 part
+mpeg media transport
+
+
+
+
+
+itut
+
+
+
+h2220
+t802
+
+
+
+
+
+ietf
+
+
+
+
+
+
+
+
+
+others
+
+
+
+
+
+
+aiff
+
+
+
+bink
+
+smacker
+
+
+
+divx media format
+
+flash video
+
+
+m2ts
+matroska
+
+webm
+
+
+
+
+quicktime file format
+ratdvd
+realmedia
+riff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+collaborations
+
+
+
+netvc
+mpegla
+
+
+
+
+
+
+compression methods methods compression software codecs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mpeg moving picture experts group
+
+
+
+
+
+
+mpeg1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mpeg1 parts
+
+
+
+part systems
+
+program stream
+
+
+part video
+
+based h261
+
+
+part audio
+
+layer
+layer
+layer
+
+
+
+
+
+
+
+mpeg2 parts
+
+
+
+part systems h2220
+
+transport stream
+program stream
+
+
+part video h262
+part audio
+
+layer
+layer
+layer
+mpeg multichannel
+
+
+part
+part advanced audio coding
+
+
+
+
+
+mpeg4 parts
+
+
+
+part video
+
+based h263
+
+
+part audio
+part dmif
+part advanced video coding h264
+part scene description
+part base media file format
+part file format
+part streaming text format
+part laser
+part open font format
+
+
+
+
+
+mpeg7 parts
+
+
+
+part description definition language
+
+
+
+
+
+mpeg21 parts
+
+
+
+parts digital item
+part rights expression language
+
+
+
+
+
+mpegd parts
+
+
+
+part mpeg surround
+part unified speech audio coding
+
+
+
+
+
+mpegh parts
+
+
+
+part mpeg media transport
+part high efficiency video coding
+part mpegh audio
+part high efficiency image file format
+
+
+
+
+
+
+
+mpegdash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+highdefinition
+
+
+
+concepts
+
+
+
+highdefinition television
+highdefinition video
+ultrahighdefinition television
+
+
+
+
+
+analog broadcast
+defunct
+
+
+
+line system
+
+muse hivision
+
+
+
+
+
+digital broadcast
+
+
+
+atsc
+dmbth
+
+isdb
+sbtvd
+
+
+
+
+
+audio
+
+
+
+dolby digital
+surround sound
+
+
+
+
+
+
+
+
+filming storage
+
+
+
+
+
+
+
+
+
+
+media
+compression
+
+
+
+bluray
+cbhd
+dvhs
+dvdaudio
+h264
+h265
+
+
+mpeg2
+
+super audio
+ultra bluray
+uncompressed
+
+
+
+
+
+
+connectors
+
+
+
+component
+displayport
+
+hdmi
+
+
+
+
+
+
+deployments
+
+
+
+list digital television deployments country
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+analog digital audio broadcasting
+
+
+
+terrestrial
+
+
+
+
+radio modulation
+
+
+
+
+
+cofdm
+
+
+
+
+
+frequency allocations
+
+
+
+
+
+
+high
+band
+
+
+
+
+
+digital systems
+
+
+
+camd
+dabdab
+drmdrm
+fmextra
+radio
+
+dvbt2 lite
+
+
+
+
+
+
+
+
+satellite
+
+
+
+
+frequency allocations
+
+
+
+band
+band
+band
+band
+
+
+
+
+
+digital systems
+
+
+
+
+dabs
+dvbsh
+sdmb
+
+
+
+
+
+
+commercial radio providers
+
+
+
+1worldspace
+sirius holdings
+siriusxm canada
+
+
+
+
+
+
+
+
+codecs
+
+
+
+
+amrwb
+
+heaac
+mpeg1 audio layer
+
+
+
+
+
+subcarrier signals
+
+
+
+amss
+directband
+
+rdsrbds
+scascmo
+darc
+
+
+
+
+
+
+
+
+
+
+related topics
+
+
+
+technical audio
+
+
+
+audio data compression
+audio signal processing
+
+
+
+
+
+technical stereo formats
+
+
+
+belar
+cquam
+harris
+kahnhazeltine
+magnavox
+
+
+
+
+
+technical emission
+
+
+
+broadcasting
+expanded band
+cable radio
+digital radio
+error detection correction
+broadcast band
+broadcasting
+multipath propagation
+shortwave relay station
+
+
+
+
+
+cultural
+
+
+
+history radio
+international broadcasting
+
+
+
+
+
+
+
+
+comparison radio systems
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleadvancedaudiocodingoldid818015436 categories audio codecslossy compression algorithmsmpegopen standards covered patentshidden categories articles dead external linksarticles dead external links september 2010webarchive template wayback linksall articles unsourced statementsarticles unsourced statements august 2017all articles vague ambiguous timevague ambiguous time december 2014all wikipedia articles needing clarificationwikipedia articles needing clarification december 2014articles unsourced statements november 2014articles unsourced statements march 2011articles needing additional references september 2017all articles needing additional referencesarticles unsourced statements january 2010articles unsourced statements 2011articles unsourced statements august 2012articles unsourced statements september 2014

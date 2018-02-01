@@ -1,0 +1,756 @@
+
+
+Geodesy
+
+
+
+
+
+Fundamentals
+
+
+
+
+
+Geodesy
+Geodynamics
+Geomatics
+Cartography
+History
+
+
+
+
+
+Concepts
+
+
+
+
+
+Geographical distance
+Geoid
+Figure of the Earth
+Geodetic datum
+Geodesic
+Geographic coordinate system
+Horizontal position representation
+Latitude / Longitude
+Map projection
+Reference ellipsoid
+Satellite geodesy
+Spatial reference system
+
+
+
+
+
+Technologies
+
+
+
+
+Global Navigation Satellite System (GNSS)
+Global Positioning System (GPS)
+GLONASS (Russian)
+BeiDou (BDS) (Chinese)
+Galileo (European)
+
+Indian Regional Navigation
+Satellite System (IRNSS) (India)
+
+Quasi-Zenith Satellite System (QZSS) (Japan)
+Legenda (satellite system)
+
+
+
+
+Standards (History)
+
+
+
+
+
+NGVD 29
+Sea Level Datum 1929
+
+
+OSGB36
+Ordnance Survey Great Britain 1936
+
+
+SK-42
+Systema Koordinat 1942 goda
+
+
+ED50
+European Datum 1950
+
+
+SAD69
+South American Datum 1969
+
+
+GRS 80
+Geodetic Reference System 1980
+
+
+NAD 83
+North American Datum 1983
+
+
+WGS 84
+World Geodetic System 1984
+
+
+NAVD 88
+N. American Vertical Datum 1988
+
+
+ETRS89
+European Terrestrial Reference
+System 1989
+
+
+GCJ-02
+Chinese obfuscated datum 2002
+
+
+
+International Terrestrial Reference System
+Spatial Reference System Identifier (SRID)
+Universal Transverse Mercator (UTM)
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+A spatial reference system (SRS) or coordinate reference system (CRS) is a coordinate-based local, regional or global system used to locate geographical entities. A spatial reference system defines a specific map projection, as well as transformations between different spatial reference systems. Spatial reference systems are defined by the OGC's Simple feature access using well-known text, and support has been implemented by several standards-based geographic information systems. Spatial reference systems can be referred to using a SRID integer, including EPSG codes defined by the International Association of Oil and Gas Producers. It is specified in ISO 19111:2007 Geographic information—Spatial referencing by coordinates, also published as OGC Abstract Specification, Topic 2: Spatial referencing by coordinate.[1]
+
+
+
+Contents
+
+
+1 Examples
+2 Identifiers
+3 See also
+4 References
+5 External links
+
+
+
+Examples[edit]
+Some systems are:
+
+Universal Transverse Mercator coordinate system
+British national grid reference system
+Hellenic Geodetic Reference System 1987
+Irish grid reference system
+Irish Transverse Mercator
+Israeli Transverse Mercator
+Israeli Cassini Soldner
+Jordan Transverse Mercator
+Lambert conformal conic projection
+International mapcode system
+Military Grid Reference System
+United States National Grid
+
+Identifiers[edit]
+A Spatial Reference System Identifier (SRID) is a unique value used to unambiguously identify projected, unprojected, and local spatial coordinate system definitions. These coordinate systems form the heart of all GIS applications.
+Virtually all major spatial vendors have created their own SRID implementation or refer to those of an authority, such as the European Petroleum Survey Group (EPSG). (NOTE: As of 2005 the EPSG SRID values are now maintained by the International Association of Oil & Gas Producers (OGP) Surveying & Positioning Committee).
+SRIDs are the primary key for the Open Geospatial Consortium (OGC) spatial_ref_sys metadata table for the Simple Features for SQL Specification, Versions 1.1 and 1.2, which is defined as follows:
+
+
+CREATE TABLE SPATIAL_REF_SYS
+(
+    SRID      INTEGER   NOT NULL PRIMARY KEY,
+    AUTH_NAME CHARACTER VARYING(256),
+    AUTH_SRID INTEGER,
+    SRTEXT    CHARACTER VARYING(2048)
+)
+
+In spatially enabled databases (such as IBM DB2, IBM Informix, Microsoft SQL Server, MySQL, Oracle RDBMS, Teradata, PostGIS and SQL Anywhere), SRIDs are used to uniquely identify the coordinate systems used to define columns of spatial data or individual spatial objects in a spatial column (depending on the spatial implementation). SRIDs are typically associated with a well known text (WKT) string definition of the coordinate system (SRTEXT, above). From the Well Known Text Wikipedia page, “A WKT string for a spatial reference system describes the datum, geoid, coordinate system, and map projection of the spatial objects”. Here are two common coordinate systems with their EPSG SRID value followed by their well known text:
+UTM, Zone 17N, NAD27 — SRID 2029:
+
+
+PROJCS["NAD27(76) / UTM zone 17N",
+    GEOGCS["NAD27(76)",
+        DATUM["North_American_Datum_1927_1976",
+            SPHEROID["Clarke 1866",6378206.4,294.9786982138982,
+                AUTHORITY["EPSG","7008"]],
+            AUTHORITY["EPSG","6608"]],
+        PRIMEM["Greenwich",0,
+            AUTHORITY["EPSG","8901"]],
+        UNIT["degree",0.01745329251994328,
+            AUTHORITY["EPSG","9122"]],
+        AUTHORITY["EPSG","4608"]],
+    UNIT["metre",1,
+        AUTHORITY["EPSG","9001"]],
+    PROJECTION["Transverse_Mercator"],
+    PARAMETER["latitude_of_origin",0],
+    PARAMETER["central_meridian",-81],
+    PARAMETER["scale_factor",0.9996],
+    PARAMETER["false_easting",500000],
+    PARAMETER["false_northing",0],
+    AUTHORITY["EPSG","2029"],
+    AXIS["Easting",EAST],
+    AXIS["Northing",NORTH]]
+
+WGS84 — SRID 4326
+
+
+GEOGCS["WGS 84",
+    DATUM["WGS_1984",
+        SPHEROID["WGS 84",6378137,298.257223563,
+            AUTHORITY["EPSG","7030"]],
+        AUTHORITY["EPSG","6326"]],
+    PRIMEM["Greenwich",0,
+        AUTHORITY["EPSG","8901"]],
+    UNIT["degree",0.01745329251994328,
+        AUTHORITY["EPSG","9122"]],
+    AUTHORITY["EPSG","4326"]]
+
+SRID values associated with spatial data can be used to constrain spatial operations — for instance, spatial operations cannot be performed between spatial objects with differing SRIDs in some systems, or trigger coordinate system transformations between spatial objects in others.
+See also[edit]
+
+Engineering datum
+Geodesy
+Georeferencing
+Geographic coordinate systems
+Geographic information system (GIS).
+List of National Coordinate Reference Systems
+
+References[edit]
+
+
+
+^ [1]
+
+
+
+External links[edit]
+
+
+
+Wikidata has the property: spatial reference system (P3037) (see uses)
+
+
+
+spatialreference.org – A website that defines spatial reference systems, in a variety of formats.
+OpenGIS Specifications (Standards)
+OpenGIS Simple Features Specification for CORBA (99-054)
+OpenGIS Simple Features Specification for OLE/COM (99-050)
+OpenGIS Simple Features Specification for SQL (99-054, 05-134, 06-104r3)
+OGR — library implementing relevant OGC standards
+EPSG Geodetic Parameter Registry, search engine for EPSG defined reference systems
+Galdos Systems INdicio CRS Registry
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Standards of the Open Geospatial Consortium (OGC)
+
+
+
+
+
+
+CSW
+GeoPackage
+GeoRSS
+GeoSPARQL
+GML
+KML
+O&M
+OGC Reference Model
+SensorML
+SOS
+SFA
+SLD
+SRID
+TransducerML
+TMS
+WaterML
+WCS
+WFS
+WMS
+WMTS
+WPS
+WRS
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Spatial_reference_system&oldid=767168033#Identifier"					Categories: CartographyGeographic coordinate systemsGeographic information systemsGeodesyISO/TC 211Open Geospatial ConsortiumGIS file formats

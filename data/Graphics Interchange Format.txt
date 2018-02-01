@@ -1,0 +1,1420 @@
+For other uses, see GIF (disambiguation).
+
+GIF
+
+
+A rotating globe in GIF.
+
+
+
+Filename extension
+.gif
+
+
+Internet media type
+image/gif
+
+
+Type code
+
+GIFf
+
+
+Uniform Type Identifier (UTI)
+com.compuserve.gif
+
+
+Magic number
+GIF87a/GIF89a
+
+
+Developed by
+CompuServe
+
+
+Initial release
+1987; 30 years ago (1987)[1]
+
+
+Latest release
+
+89a
+(1989; 28 years ago (1989)[2])
+
+
+
+Type of format
+lossless bitmap image format
+
+
+Website
+www.w3.org/Graphics/GIF/spec-gif89a.txt
+
+
+The Graphics Interchange Format (better known by its acronym GIF /dʒɪf/ JIF or /ɡɪf/ GHIF) is a bitmap image format that was developed by a team at the bulletin board service (BBS) provider CompuServe led by American computer scientist Steve Wilhite on June 15, 1987.[1] It has since come into widespread usage on the World Wide Web due to its wide support and portability.
+The format supports up to 8 bits per pixel for each image, allowing a single image to reference its own palette of up to 256 different colors chosen from the 24-bit RGB color space. It also supports animations and allows a separate palette of up to 256 colors for each frame. These palette limitations make GIF less suitable for reproducing color photographs and other images with color gradients, but it is well-suited for simpler images such as graphics or logos with solid areas of color.
+GIF images are compressed using the Lempel–Ziv–Welch (LZW) lossless data compression technique to reduce the file size without degrading the visual quality. This compression technique was patented in 1985. Controversy over the licensing agreement between the software patent holder, Unisys, and CompuServe in 1994 spurred the development of the Portable Network Graphics (PNG) standard. By 2004 all the relevant patents had expired.
+
+
+
+Contents
+
+
+1 History
+2 Linguistic characteristics
+
+2.1 Pronunciation of GIF
+
+
+3 Usage
+4 File format
+5 Palettes
+
+5.1 True color
+
+
+6 Example GIF file
+
+6.1 Image coding
+6.2 Image decoding
+6.3 LZW code lengths
+6.4 Uncompressed GIF
+
+
+7 Compression example
+8 Interlacing
+9 Animated GIF
+10 Unisys and LZW patent enforcement
+11 Alternatives
+
+11.1 PNG
+11.2 Animation formats
+
+
+12 See also
+13 References
+14 External links
+
+
+
+History[edit]
+CompuServe introduced GIF on June 15, 1987 to provide a color image format for their file downloading areas, replacing their earlier run-length encoding (RLE) format, which was black and white only. GIF became popular because it used LZW data compression, which was more efficient than the run-length encoding that formats such as PCX and MacPaint used, and fairly large images could therefore be downloaded in a reasonably short time, even with very slow modems.
+The original version of GIF was called 87a.[1] In 1989, CompuServe released an enhanced version, called 89a,[2] which added support for animation delays (multiple images in a stream were already supported in 87a), transparent background colors, and storage of application-specific metadata. The 89a specification also supports incorporating text labels as text (not embedding them in the graphical data), but as there is little control over display fonts, this feature is not widely used. The two versions can be distinguished by looking at the first six bytes of the file (the "magic number" or signature), which, when interpreted as ASCII, read "GIF87a" and "GIF89a", respectively.
+CompuServe encouraged the adoption of GIF by providing downloadable conversion utilities for many computers. By December 1987, for example, an Apple IIGS user could view pictures created on an Atari ST or Commodore 64.[3] GIF was one of the first two image formats commonly used on Web sites, the other being the black-and-white XBM.[4]
+In September 1995 Netscape Navigator 2.0 added the ability for animated GIFs to loop.
+The feature of storing multiple images in one file, accompanied by control data, is used extensively on the Web to produce simple animations. The optional interlacing feature, which stores image scan lines out of order in such a fashion that even a partially downloaded image was somewhat recognizable, also helped GIF's popularity,[5] as a user could abort the download if it was not what was required.
+In May 2015 Facebook added GIF support, even though they originally did not support them on their site.[6][7]
+Linguistic characteristics[edit]
+As a noun, the word GIF is found in the newer editions of many dictionaries. In 2012, the American wing of the Oxford University Press recognized GIF as a verb as well, meaning "to create a GIF file", as in "GIFing was perfect medium for sharing scenes from the Summer Olympics". The press's lexicographers voted it their word of the year, saying that GIFs have evolved into "a tool with serious applications including research and journalism".[8][9]
+Pronunciation of GIF[edit]
+See also: hard and soft g and Description and prescription
+
+
+
+
+A humorous image announcing the launch of a White House Tumblr suggests pronouncing GIF with the hard "G" sound.
+
+
+The creators of the format pronounced the word as "jif" with a soft "G" /dʒɪf/ as in "gin". Steve Wilhite says that the intended pronunciation deliberately echoes the American peanut butter brand Jif, and CompuServe employees would often say "Choosy developers choose GIF", spoofing this brand's television commercials.[10] The word is now also widely pronounced with a hard "G" /ɡɪf/ as in "gift".[11]
+The American Heritage Dictionary[12] cites both, indicating "jif" as the primary pronunciation, while Cambridge Dictionary of American English[13] offers only the hard-"G" pronunciation. Merriam-Webster's Collegiate Dictionary[14] and the OED[15] cite both pronunciations, but place "gif" in the default position ("\ˈgif, ˈjif\"). The New Oxford American Dictionary gave only "jif" in its 2nd edition[16] but updated it to "jif, gif" in its 3rd edition.[17]
+The disagreement over the pronunciation led to heated Internet debate. On the occasion of receiving a lifetime achievement award at the 2013 Webby Award ceremony, Wilhite rejected the hard-"G" pronunciation,[11][18][19] and his speech led to 17,000 posts on Twitter and 50 news articles.[20] The White House[11] and TV program Jeopardy![19] also waded into the debate during 2013.
+Usage[edit]
+
+GIFs are suitable for sharp-edged line art (such as logos) with a limited number of colors. This takes advantage of the format's lossless compression, which favors flat areas of uniform color with well defined edges.[21]
+GIFs may be used to store low-color sprite data for games.[22]
+GIFs can be used for small animations and low-resolution video clips.[22]
+
+File format[edit]
+
+
+
+
+File:Empty.gif in a hex editor
+
+
+Conceptually, a GIF file describes a fixed-sized graphical area (the "logical screen") populated with zero or more "images". Many GIF files have a single image that fills the entire logical screen. Others divide the logical screen into separate sub-images. The images may also function as animation frames in an animated GIF file, but again these need not fill the entire logical screen.
+GIF files start with a fixed-length header ("GIF87a" or "GIF89a") giving the version, followed by a fixed-length Logical Screen Descriptor giving the size and other characteristics of the logical screen. The screen descriptor may also specify the presence and size of a Global Color Table, which follows next if present.
+Thereafter, the file is divided into segments, each introduced by a 1-byte sentinel:
+
+An image (introduced by 0x2C, a comma ',')
+An extension block (introduced by 0x21, an exclamation point '!')
+The trailer (a single byte of value 0x3B, a semi-colon ';'), which should be the last byte of the file.
+
+An image starts with a fixed-length Image Descriptor, which may specify the presence and size of a Local Color Table (which follows next if present). The image data follows: one byte giving the bit width of the unencoded symbols (which must be at least 2 bits wide, even for bi-color images), followed by a linked list of sub-blocks containing the LZW-encoded data.
+Extension blocks (blocks that "extend" the 87a definition via a mechanism already defined in the 87a spec) consist of the sentinel, an additional byte specifying the type of extension, and a linked list of sub-blocks with the extension data. Extension blocks that modify an image (like the Graphic Control Extension that specifies the optional animation delay time and optional transparent background color) must immediately precede the segment with the image they refer to.
+The linked lists used by the image data and the extension blocks consist of series of sub-blocks, each sub-block beginning with a byte giving the number of subsequent data bytes in the sub-block (1 to 255). The series of sub-blocks is terminated by an empty sub-block (a 0 byte).
+This structure allows the file to be parsed even if not all parts are understood. A GIF marked 87a may contain extension blocks; the intent is that a decoder can read and display the file without the features covered in extensions it does not understand.
+The full detail of the file format is covered in the GIF specification.[2]
+Palettes[edit]
+
+
+
+
+An example of a GIF image saved with a web-safe palette and dithered using the Floyd–Steinberg method. Due to the reduced number of colors in the image, there are display issues.
+
+
+GIF is palette-based: the colors used in an image (a frame) in the file have their RGB values defined in a palette table that can hold up to 256 entries, and the data for the image refer to the colors by their indices (0–255) in the palette table. The color definitions in the palette can be drawn from a color space of millions of shades (224 shades, 8 bits for each primary), but the maximum number of colors a frame can use is 256. This limitation seemed reasonable when GIF was developed because few people could afford the hardware to display more colors simultaneously. Simple graphics, line drawings, cartoons, and grey-scale photographs typically need fewer than 256 colors.
+Each frame can designate one index as a "transparent background color": any pixel assigned this index takes on the color of the pixel in the same position from the background, which may have been determined by a previous frame of animation.
+Many techniques, collectively called dithering, have been developed to approximate a wider range of colors with a small color palette by using pixels of two or more colors to approximate in-between colors. These techniques sacrifice spatial resolution to approximate deeper color resolution. While not part of the GIF specification, dithering can of course be used in images subsequently encoded as GIF images. This is often not an ideal solution for GIF images, both because the loss of spatial resolution typically makes an image look fuzzy on the screen, and because the dithering patterns often interfere with the compressibility of the image data, working against GIF's main purpose.
+In the early days of graphical web browsers[when?], graphics cards with 8-bit buffers (allowing only 256 colors) were common and it was fairly common to make GIF images using the websafe palette.[according to whom?] This ensured predictable display, but severely limited the choice of colors. When 24-bit color became the norm palettes could instead be populated with the optimum colors for individual images.
+A small color table may suffice for small images, and keeping the color table small allows the file to be downloaded faster. Both the 87a and 89a specifications allow color tables of 2n colors for any n from 1 through 8. Most graphics applications will read and display GIF images with any of these table sizes; but some do not support all sizes when creating images. Tables of 2, 16, and 256 colors are widely supported.
+True color[edit]
+
+
+
+
+An animated GIF illustrating a technique for displaying more than the typical limit of 256 colors
+
+
+Although GIF is almost never used for true color images, it is possible to do so.[23][24] A GIF image can include multiple image blocks, each of which can have its own 256-color palette, and the blocks can be tiled to create a complete image. Alternatively, the GIF89a specification introduced the idea of a "transparent" color where each image block can include its own palette of 255 visible colors plus one transparent color. A complete image can be created by layering image blocks with the visible portion of each layer showing through the transparent portions of the layers above.
+To render a full-color image as a GIF, the original image must be broken down into smaller regions having no more than 255 or 256 different colors. Each of these regions is then stored as a separate image block with its own local palette and when the image blocks are displayed together (either by tiling or by layering partially transparent image blocks) the complete, full-color image appears. For example, breaking an image into tiles of 16 by 16 pixels (256 pixels in total) ensures that no tile has more than the local palette limit of 256 colors, although larger tiles may be used and similar colors merged resulting in some loss of color information.[23]
+Since each image block requires its own local color table, a GIF file having lots of image blocks can be very large, limiting the usefulness of full-color GIFs.[24] Additionally, not all GIF rendering programs handle tiled or layered images correctly. Many rendering programs interpret tiles or layers as animation frames and display them in sequence as an endless animation[23] with most web browsers automatically displaying the frames with a delay time of 0.1 seconds or more.[25][26][better source needed]
+Example GIF file[edit]
+
+
+
+
+Sample image (enlarged), actual size 3 pixels wide by 5 high
+
+
+
+
+
+
+Bytes Dh to 30Ch in the example define a palette of 256 colors.
+
+
+
+Microsoft Paint saves a small black-and-white image as the following GIF file. Paint does not make optimal use of GIF; due to the unnecessarily large color table (storing a full 256 colors instead of the used 2) and symbol width, this GIF file is not an efficient representation of the 15-pixel image (illustrated enlarged above).
+Although the Graphics Control Extension block declares color index 16 (hexadecimal 10) to be transparent, that index is not used in the image. The only color indexes appearing in the image data are decimal 40 and 255, which the Global Color Table maps to black and white, respectively.
+Note that the hex numbers in the following tables are in little-endian byte order, as the format specification prescribes.
+
+
+byte#  hexadecimal  text or
+(hex)               value       Meaning
+0:     47 49 46
+       38 39 61     GIF89a      Header
+                                Logical Screen Descriptor
+6:     03 00        3            - logical screen width in pixels
+8:     05 00        5            - logical screen height in pixels
+A:     F7                        - GCT follows for 256 colors with resolution 3 x 8 bits/primary; the lowest 3 bits represent the bit depth minus 1, the highest true bit means that the GCT is present
+B:     00           0            - background color #0
+C:     00                        - default pixel aspect ratio
+                   R    G    B  Global Color Table
+D:     00 00 00    0    0    0   - color #0 black
+10:    80 00 00  128    0    0   - color #1
+ :                                       :
+85:    00 00 00    0    0    0   - color #40 black
+ :                                       :
+30A:   FF FF FF  255  255  255   - color #255 white
+30D:   21 F9                    Graphic Control Extension (comment fields precede this in most files)
+30F:   04           4            - 4 bytes of GCE data follow
+310:   01                        - there is a transparent background color (bit field; the lowest bit signifies transparency)
+311:   00 00                     - delay for animation in hundredths of a second: not used
+313:   10          16            - color #16 is transparent
+314:   00                        - end of GCE block
+315:   2C                       Image Descriptor
+316:   00 00 00 00 (0,0)         - NW corner position of image in logical screen
+31A:   03 00 05 00 (3,5)         - image width and height in pixels
+31E:   00                        - no local color table
+31F:   08           8           Start of image - LZW minimum code size
+320:   0B          11            - 11 bytes of LZW encoded image data follow
+321:   00 51 FC 1B 28 70 A0 C1 83 01 01
+32C:   00                        - end of image data
+32D:   3B                       GIF file terminator
+
+Image coding[edit]
+The image pixel data, scanned horizontally from top left, are converted by LZW encoding to codes that are then mapped into bytes for storing in the file. The pixel codes typically don't match the 8-bit size of the bytes, so the codes are packed into bytes by a "little-Endian" scheme: the least significant bit of the first code is stored in the least significant bit of the first byte, higher order bits of the code into higher order bits of the byte, spilling over into the low order bits of the next byte as necessary. Each subsequent code is stored starting at the least significant bit not already used.
+This byte stream is stored in the file as a series of "sub-blocks". Each sub-block has a maximum length 255 bytes and is prefixed with a byte indicating the number of data bytes in the sub-block. The series of sub-blocks is terminated by an empty sub-block (a single 0 byte, indicating a sub-block with 0 data bytes).
+For the sample image above the reversible mapping between 9-bit codes and bytes is shown below.
+
+
+9-bit code
+(hex)
+Binary
+Bytes
+(hex)
+
+
+
+00000000
+00
+
+
+100
+
+
+
+
+
+0101000|1
+51
+
+
+028
+
+
+
+
+
+111111|00
+FC
+
+
+0FF
+
+
+
+
+
+00011|011
+1B
+
+
+103
+
+
+
+
+
+0010|1000
+28
+
+
+102
+
+
+
+
+
+011|10000
+70
+
+
+103
+
+
+
+
+
+10|100000
+A0
+
+
+106
+
+
+
+
+
+1|1000001
+C1
+
+
+107
+
+
+
+
+
+10000011
+83
+
+
+
+00000001
+01
+
+
+101
+
+
+
+
+
+0000000|1
+01
+
+
+A slight compression is evident: pixel colors defined initially by 15 bytes are exactly represented by 12 code bytes including control codes. The encoding process that produces the 9-bit codes is shown below. A local string accumulates pixel color numbers from the palette, with no output action as long as the local string can be found in a code table. There is special treatment of the first two pixels that arrive before the table grows from its initial size by additions of strings. After each output code, the local string is initialized to the latest pixel color (that could not be included in the output code).
+
+                          Table           9-bit
+                     string --> code      code    Action
+                          #0 | 000h               Initialize root table of 9-bit codes
+                    palette  |  :
+                     colors  |  :
+                        #255 | 0FFh
+                         clr | 100h
+                         end | 101h
+                             |            100h     Clear
+Pixel          Local         |
+color Palette  string        |
+BLACK  #40     28            |            028h     1st pixel always to output
+WHITE  #255    FF            |                     String found in table
+                  28 FF      | 102h                Always add 1st string to table
+               FF            |                     Initialize local string
+WHITE  #255    FF FF         |                     String not found in table
+                             |            0FFh     - output code for previous string
+                  FF FF      | 103h                - add latest string to table
+               FF            |                     - initialize local string
+WHITE  #255    FF FF         |                     String found in table
+BLACK  #40     FF FF 28      |                     String not found in table
+                             |            103h     - output code for previous string
+                  FF FF 28   | 104h                - add latest string to table
+               28            |                     - initialize local string
+WHITE  #255    28 FF         |                     String found in table
+WHITE  #255    28 FF FF      |                     String not found in table
+                             |            102h     - output code for previous string
+                  28 FF FF   | 105h                - add latest string to table
+               FF            |                     - initialize local string
+WHITE  #255    FF FF         |                     String found in table
+WHITE  #255    FF FF FF      |                     String not found in table
+                             |            103h     - output code for previous string
+                  FF FF FF   | 106h                - add latest string to table
+               FF            |                     - initialize local string
+WHITE  #255    FF FF         |                     String found in table
+WHITE  #255    FF FF FF      |                     String found in table
+WHITE  #255    FF FF FF FF   |                     String not found in table
+                             |            106h     - output code for previous string
+                  FF FF FF FF| 107h                - add latest string to table
+               FF            |                     - initialize local string
+WHITE  #255    FF FF         |                     String found in table
+WHITE  #255    FF FF FF      |                     String found in table
+WHITE  #255    FF FF FF FF   |                     String found in table
+                                                   No more pixels
+                                          107h     - output code for last string
+                                          101h     End
+
+For clarity the table is shown above as being built of strings of increasing length. That scheme can function but the table consumes an unpredictable amount of memory. Memory can be saved in practice by noting that each new string to be stored consists of a previously stored string augmented by one character. It is economical to store at each address only two words: an existing address and one character.
+The LZW algorithm requires a search of the table for each pixel. A linear search through up to 4096 addresses would make the coding slow. In practice the codes can be stored in order of numerical value; this allows each search to be done by a SAR (Successive Approximation Register, as used in some ADCs), with only 12 magnitude comparisons. For this efficiency an extra table is needed to convert between codes and actual memory addresses; the extra table upkeeping is needed only when a new code is stored which happens at much less than pixel rate.
+Image decoding[edit]
+Decoding begins by mapping the stored bytes back to 9-bit codes. These are decoded to recover the pixel colors as shown below. A table identical to the one used in the encoder is built by adding strings by this rule:
+
+Is incoming code found in table?
+ YES: add string for local code followed by first byte of string for incoming code
+ NO: add string for local code followed by copy of its own first byte
+
+
+      shift
+9-bit ----> Local      Table                 Pixel
+code        code   code --> string   Palette color  Action
+100h               000h  | #0                       Initialize root table of 9-bit codes
+                    :    | palette
+                    :    | colors
+                   0FFh  | #255
+                   100h  | clr
+                   101h  | end
+028h                     |             #40    BLACK Decode 1st pixel
+0FFh        028h         |                           Incoming code found in table
+                         |             #255   WHITE  - output string from table
+                   102h  | 28 FF                     - add to table
+103h        0FFh         |                           Incoming code not found in table
+                   103h  | FF FF                     - add to table
+                         |                           - output string from table
+                         |             #255   WHITE
+                         |             #255   WHITE
+102h        103h         |                           Incoming code found in table
+                         |                           - output string from table
+                         |             #40    BLACK
+                         |             #255   WHITE
+                   104h  | FF FF 28                  - add to table
+103h        102h         |                           Incoming code found in table
+                         |                           - output string from table
+                         |             #255   WHITE
+                         |             #255   WHITE
+                   105h  | 28 FF FF                  - add to table
+106h        103h         |                           Incoming code not found in table
+                   106h  | FF FF FF                  - add to table
+                         |                           - output string from table
+                         |             #255   WHITE
+                         |             #255   WHITE
+                         |             #255   WHITE
+107h        106h         |                           Incoming code not found in table
+                   107h  | FF FF FF FF               - add to table
+                         |                           - output string from table
+                         |             #255   WHITE
+                         |             #255   WHITE
+                         |             #255   WHITE
+                         |             #255   WHITE
+101h                     |                           End
+
+
+LZW code lengths[edit]
+Shorter code lengths can be used for palettes smaller than the 256 colors in the example. If the palette is only 64 colors (so color indexes are 6 bits wide), the symbols can range from 0 to 63, and the symbol width can be taken to be 6 bits, with codes starting at 7 bits. In fact, the symbol width need not match the palette size: as long as the values decoded are always less than the number of colors in the palette, the symbols can be any width from 2 to 8, and the palette size any power of 2 from 2 to 256. For example, if only the first four colors (values 0 to 3) of the palette are used, the symbols can be taken to be 2 bits wide with codes starting at 3 bits.
+Conversely, the symbol width could be set at 8, even if only values 0 and 1 are used; these data would only require a 2-color table. Although there would be no point in encoding the file that way, something similar typically happens for bi-color images: the minimum symbol width is 2, even if only values 0 and 1 are used.
+The code table initially contains codes that are one bit longer than the symbol size in order to accommodate the two special codes clr and end and codes for strings that are added during the process. When the table is full the code length increases to give space for more strings, up to a maximum code 4095 = FFF(hex). As the decoder builds its table it tracks these increases in code length and it is able to unpack incoming bytes accordingly.
+Uncompressed GIF[edit]
+
+
+
+
+A 46 x 46 uncompressed GIF with 7-bit symbols (128 colors, 8-bit codes). Click on the image for an explanation of the code.
+
+
+The GIF encoding process can be modified to create a file without LZW compression that is still viewable as a GIF image. This technique was introduced originally as a way to avoid patent infringement. Uncompressed GIF can also be a useful intermediate format for a graphics programmer because individual pixels are accessible for reading or painting. An uncompressed GIF file can be converted to an ordinary GIF file simply by passing it through an image editor.
+The modified encoding method ignores building the LZW table and emits only the root palette codes and the codes for CLEAR and STOP. This yields a simpler encoding (a 1-to-1 correspondence between code values and palette codes) but sacrifices all of the compression: each pixel in the image generates an output code indicating its color index. When processing an uncompressed GIF, a standard GIF decoder will not be prevented from writing strings to its dictionary table, but the code width must never increase since that triggers a different packing of bits to bytes.
+If the symbol width is n, the codes of width n+1 fall naturally into two blocks: the lower block of 2n codes for coding single symbols, and the upper block of 2n codes that will be used by the decoder for sequences of length greater than one. Of that upper block, the first two codes are already taken: 2n for CLEAR and 2n + 1 for STOP. The decoder must also be prevented from using the last code in the upper block, 2n+1 − 1, because when the decoder fills that slot, it will increase the code width. Thus in the upper block there are 2n − 3 codes available to the decoder that won't trigger an increase in code width. Because the decoder is always one step behind in maintaining the table, it does not generate a table entry upon receiving the first code from the encoder, but will generate one for each succeeding code. Thus the encoder can generate 2n − 2 codes without triggering an increase in code width. Therefore the encoder must emit extra CLEAR codes at intervals of 2n − 2 codes or less to make the decoder reset the coding dictionary. The GIF standard allows such extra CLEAR codes to be inserted in the image data at any time. The composite data stream is partitioned into sub-blocks that each carry from 1 to 255 bytes.
+For the sample 3x5 image above, the following 9-bit codes represent "clear" (100) followed by image pixels in scan order and "stop" (101).
+
+9-bit codes: 100 028 0FF 0FF 0FF 028 0FF 0FF 0FF 0FF 0FF 0FF 0FF 0FF 0FF 0FF 101
+
+After the above codes are mapped to bytes, the uncompressed file differs from the compressed file thus:
+
+ :
+320: 14            20            20 bytes uncompressed image data follow
+321: 00 51 FC FB F7 0F C5 BF 7F FF FE FD FB F7 EF DF BF 7F 01 01
+335: 00                          - end
+ :
+
+Compression example[edit]
+The trivial example of a large image of solid color demonstrates the variable-length LZW compression used in GIF files.
+
+
+Code
+Pixels
+Notes
+
+
+No.
+Ni
+Value
+Ni + 256
+Length
+(bits)
+This code
+Ni
+Accumulated
+Ni(Ni + 1)/2
+Relations using Ni only apply to same-
+color pixels until coding table is full.
+
+
+0
+100h
+9
+
+
+Clear code table
+
+
+1
+FFh
+1
+1
+Top left pixel color chosen as the
+highest index of a 256-color palette
+
+
+2
+102h
+2
+3
+
+
+
+3
+⋮
+255
+103h
+⋮
+1FFh
+3
+⋮
+255
+6
+⋮
+32640
+
+
+Last 9-bit code
+
+
+256
+⋮
+767
+200h
+⋮
+3FFh
+10
+256
+⋮
+767
+32896
+⋮
+294528
+
+
+Last 10-bit code
+
+
+768
+⋮
+1791
+400h
+⋮
+7FFh
+11
+768
+⋮
+1791
+295296
+⋮
+1604736
+
+
+Last 11-bit code
+
+
+1792
+⋮
+3839
+800h
+⋮
+FFFh
+12
+1792
+⋮
+3839
+1606528
+⋮
+7370880
+
+
+Code table full
+
+
+⋮
+FFFh
+3839
+The maximum code may repeat for more same-color pixels.
+Overall data compression asymptotically approaches
+3839 × 8 / 12 = 2559 1/3
+
+
+
+101h
+
+
+End of image data
+
+
+The code values shown are packed into bytes which are then packed into blocks of up to 255 bytes. A block of image data begins with a byte that declares the number of bytes to follow. The last block of data for an image is marked by a zero block-length byte.
+Interlacing[edit]
+The GIF Specification allows each image within the logical screen of a GIF file to specify that it is interlaced; i.e., that the order of the raster lines in its data block is not sequential. This allows a partial display of the image that can be recognized before the full image is painted.
+An interlaced image is divided from top to bottom into strips 8 pixels high, and the rows of the image are presented in the following order:
+
+Pass 1: Line 0 (the top-most line) from each strip.
+Pass 2: Line 4 from each strip.
+Pass 3: Lines 2 and 6 from each strip.
+Pass 4: Lines 1, 3, 5, and 7 from each strip.
+
+The pixels within each line are not interlaced, but presented consecutively from left to right. As with non-interlaced images, there is no break between the data for one line and the data for the next. The indicator that an image is interlaced is a bit set in the image's header block.
+Animated GIF[edit]
+
+
+
+
+
+
+This section is missing information about the accessibility problems, why most browsers enable animated GIFs, and how users can block animated GIFs. Please expand the section to include this information. Further details may exist on the talk page. (May 2015)
+
+
+
+
+
+
+
+GIF can be used to display animation, as in this image of Newton's Cradle.
+
+
+
+
+
+
+A GIF animation made of two photos, one morphing into the other
+
+
+
+
+
+
+An animation of an oil pumpjack made by looping part of a video
+
+
+Basic animation was added to the GIF89a spec via the Graphics Control Extension (GCE), which allows various images (frames) in the file to be painted with time delays, forming a video clip. An animated GIF file comprises a number of frames that are displayed in succession, each introduced by its own GCE, which gives the time delay to wait after the frame is drawn. Global information at the start of the file applies by default to all frames. The data is stream-oriented, so the file-offset of the start of each GCE depends on the length of preceding data. Within each frame the LZW-coded image data is arranged in sub-blocks of up to 255 bytes; the size of each sub-block is declared by the byte that precedes it.
+By default, however, an animation displays the sequence of frames only once, stopping when the last frame is displayed. Since GIF is designed to allow users to define new blocks, Netscape in the 1990s used the Application Extension block (intended to allow vendors to add application-specific information to the GIF file) to implement the Netscape Application Block (NAB).[27] This block, placed immediately before all the animation frames, specifies the number of times the sequence of frames should be played. (The value 0 signifies continuous display.) Support for these repeating animations first appeared in Netscape Navigator version 2.0, and then spread to other browsers.[28] Most browsers now recognize and support NAB, though it is not strictly part of the GIF89a specification.
+The following example shows the structure of the animation file Rotating earth (large).gif shown (as a thumbnail) at the top of the article.
+
+
+byte#  hexadecimal  text or
+(hex)               value     Meaning
+0:     47 49 46
+       38 39 61     GIF89a    Header
+                              Logical Screen Descriptor
+6:     90 01        400        - width in pixels
+8:     90 01        400        - height in pixels
+A:     F7                      - GCT follows for 256 colors with resolution 3 x 8bits/primary
+B:     00           0          - background color #0
+C:     00                      - default pixel aspect ratio
+D:                            Global Color Table
+:
+30D:   21 FF                  Application Extension block
+30F:   0B           11         - eleven bytes of data follow
+310:   4E 45 54
+       53 43 41
+       50 45        NETSCAPE   - 8-character application name
+       32 2E 30     2.0        - application "authentication code"
+31B:   03           3          - three more bytes of data
+31C:   01           1          - data sub-block index (always 1)
+31D:   FF FF        65535      - unsigned number of repetitions
+31F:   00                      - end of App Extension block
+320:   21 F9                  Graphic Control Extension for frame #1
+322:   04           4          - four bytes of data follow
+323:   08                      - bit-fields 3x:3:1:1, 000|010|0|0 -> Restore to bg color
+324:   09 00                   - 0.09 sec delay before painting next frame
+326:   00                      - no transparent color
+327:   00                      - end of GCE block
+328:   2C                     Image Descriptor
+329:   00 00 00 00  (0,0)      - NW corner of frame at 0, 0
+32D:   90 01 90 01  (400,400)  - Frame width and height: 400 x 400
+331:   00                      - no local color table; no interlace
+332:   08           8         LZW min code size
+333:   FF           255       - 255 bytes of LZW encoded image data follow
+334:                data
+433:   FF           255       - 255 bytes of LZW encoded image data follow
+                    data
+                     :
+92BA:  00                    - end of LZW data for this frame
+92BB:  21 F9                 Graphic Control Extension for frame #2
+ :                                                            :
+153B7B:21 F9                 Graphic Control Extension for frame #44
+ :
+15CF35:3B                    File terminator
+
+The animation delay for each frame is specified in the GCE in hundredths of a second. Some economy of data is possible where a frame need only rewrite a portion of the pixels of the display, because the Image Descriptor can define a smaller rectangle to be rescanned instead of the whole image. Browsers or other displays that do not support animated GIFs typically show only the first frame.
+The size and color quality of animated GIF files can vary significantly depending on the application used to create them. Strategies for minimizing file size include using a common global color table for all frames (rather than a complete local color table for each frame) and minimizing the number of pixels covered in successive frames (so that only the pixels that change from one frame to the next are included in the latter frame). Simply packing a series of independent frame images into a composite animation tends to yield large file sizes.
+Internet Explorer slows down GIFs if the frame-rate is 20 frames per second or higher and Microsoft reports that Google Chrome and Safari also slow down some GIF animations.[29]
+Starting in early 1995 the University of Ulm used animated GIF as live video streaming format to show a controllable model railroad.
+Unisys and LZW patent enforcement[edit]
+In 1977 and 1978, Jacob Ziv and Abraham Lempel published a pair of papers on a new class of lossless data-compression algorithms, now collectively referred to as LZ77 and LZ78. In 1983, Terry Welch developed a fast variant of LZ78 which was named Lempel–Ziv–Welch (LZW).[30][31]
+Welch filed a patent application for the LZW method in June 1983. The resulting patent, US 4558302 , granted in December 1985, was assigned to Sperry Corporation who subsequently merged with Burroughs Corporation in 1986 and formed Unisys.[30] Further patents were obtained in the United Kingdom, France, Germany, Italy, Japan and Canada.
+In June 1984, an article by Welch was published in the IEEE magazine which publicly described the LZW technique for the first time.[32] LZW became a popular data compression technique and, when the patent was granted, Unisys entered into licensing agreements with over a hundred companies.[30][33]
+The popularity of LZW led CompuServe to choose it as the compression technique for their version of GIF, developed in 1987. At the time, CompuServe was not aware of the patent.[30] Unisys became aware that the version of GIF used the LZW compression technique and entered into licensing negotiations with CompuServe in January 1993. The subsequent agreement was announced on 24 December 1994.[31] Unisys stated that they expected all major commercial on-line information services companies employing the LZW patent to license the technology from Unisys at a reasonable rate, but that they would not require licensing, or fees to be paid, for non-commercial, non-profit GIF-based applications, including those for use on the on-line services.[33]
+Following this announcement, there was widespread condemnation of CompuServe and Unisys, and many software developers threatened to stop using GIF. The PNG format (see below) was developed in 1995 as an intended replacement.[30][31][32] However, obtaining support from the makers of Web browsers and other software for the PNG format proved difficult and it was not possible to replace GIF, although PNG has gradually increased in popularity.[30] Therefore, GIF variations without LZW compression were developed. For instance the libungif library, based on Eric S. Raymond's giflib, allows creation of GIFs that followed the data format but avoided the compression features, thus avoiding use of the Unisys LZW patent.[34] A 2001 Dr. Dobb's article described another alternative to LZW compression, based on square roots.[35]
+In August 1999, Unisys changed the details of their licensing practice, announcing the option for owners of certain non-commercial and private websites to obtain licenses on payment of a one-time license fee of $5000 or $7500.[36] Such licenses were not required for website owners or other GIF users who had used licensed software to generate GIFs. Nevertheless, Unisys was subjected to thousands of online attacks and abusive emails from users believing that they were going to be charged $5000 or sued for using GIFs on their websites.[37] Despite giving free licenses to hundreds of non-profit organizations, schools and governments, Unisys was completely unable to generate any good publicity and continued to be condemned by individuals and organizations such as the League for Programming Freedom who started the "Burn All GIFs" campaign in 1999.[38][39]
+The United States LZW patent expired on 20 June 2003.[40] The counterpart patents in the United Kingdom, France, Germany and Italy expired on 18 June 2004, the Japanese patents expired on 20 June 2004, and the Canadian patent expired on 7 July 2004.[40] Consequently, while Unisys has further patents and patent applications relating to improvements to the LZW technique,[40] GIF may now be used freely.[41]
+Alternatives[edit]
+PNG[edit]
+Portable Network Graphics (PNG) was designed as a replacement for GIF in order to avoid infringement of Unisys' patent on the LZW compression technique.[30] PNG offers better compression and more features than GIF,[42] animation being the only significant exception. PNG is more suitable than GIF in instances where true-color imaging and alpha transparency are required.
+Although support for PNG format came slowly, new web browsers generally support PNG. Older versions of Internet Explorer do not support all features of PNG. Versions 6 and earlier do not support alpha channel transparency without using Microsoft-specific HTML extensions.[43] Gamma correction of PNG images was not supported before version 8, and the display of these images in earlier versions may have the wrong tint.[44]
+For identical 8-bit (or lower) image data, PNG files are typically smaller than the equivalent GIFs, due to the more efficient compression techniques used in PNG encoding.[45] Complete support GIF is complicated chiefly by the complex canvas structure it allows, though this is what enables the compact animation features.
+Animation formats[edit]
+MNG was originally developed as a PNG-based solution for animations. MNG reached version 1.0 in 2001, but few applications support it.
+In 2006, an extension to the PNG format called APNG was proposed as alternative to the MNG format by Mozilla. APNG provide the ability to animate PNG files, while retaining backwards compatibility in decoders that cannot understand the animation chunk (unlike MNG). Older decoders will simply render the first frame of the animation. The PNG group officially rejected APNG as an official extension on April 20, 2007.[46] There have been several subsequent proposals for a simple animated graphics format based on PNG using several different approaches.[47] Nevertheless, Animated Portable Network Graphics is still under development by Mozilla and is supported in Firefox 3[48][49] while MNG support was dropped.[50][51]
+Embedded Adobe Flash objects and MPEGs are used on some websites to display simple video, but require the use of an additional browser plugin. WebM and WebP are in development and are supported by some web browsers.[52] Other options for web animation include serving individual frames using AJAX, or animating SVG images using JavaScript or SMIL.[citation needed]
+With the introduction of widespread support of the HTML5 <video> tag in most web browsers, some websites use a looped version of the video tag generated by JavaScript functions. This gives the appearance of a GIF, but with the size and speed advantages of compressed video. Notable examples are Gfycat and Imgur and their GIFV metaformat, which is really a video tag playing a looped MP4 or WebM compressed video.[53]
+See also[edit]
+
+
+Computer graphics portal
+Internet portal
+Animation portal
+
+
+
+Cinemagraph, a partially animated photograph often in GIF
+Comparison of graphics file formats
+Comparison of layout engines (graphics)
+GIF art, a form of digital art associated with GIF
+GNU plotutils (supports pseudo-GIF, which uses run-length encoding rather than LZW)
+Microsoft GIF Animator, a free program to create simple animated GIFs
+Software patent
+
+References[edit]
+
+
+^ a b c "Graphics Interchange Format, Version 87a". W3C. 15 June 1987. Retrieved 13 October 2012. 
+^ a b c "Graphics Interchange Format, Version 89a". W3C. 31 July 1990. Retrieved 6 March 2009. 
+^ "Online Art". Compute!'s Apple Applications. December 1987. p. 10. Retrieved 14 September 2016. 
+^ Holdener III, Anthony (2008). Ajax: The Definitive Guide: Interactive Applications for the Web. O'Reilly Media. ISBN 0596528388. 
+^ Furht, Borko (2008). Encyclopedia of Multimedia. Springer. ISBN 0387747249. 
+^ McHugh, Molly (2015-05-29). "You Can Finally, Actually, Really, Truly Post GIFs on Facebook". wired.com. Retrieved 2015-05-29. 
+^ Perez, Sarah (2015-05-29). "Facebook Confirms It Will Officially Support GIFs". techcrunch.com. Retrieved 2015-05-29. 
+^ "Oxford Dictionaries USA Word of the Year 2012". OxfordWords blog. Oxford American Dictionaries. 2012-11-13. Retrieved 2013-05-01. 
+^ Flood, Alison (2013-04-27). "Gif is America's word of the year? Now that's what I call an omnishambles". Books blog. London: Guardian.co.uk. Retrieved 2013-05-01. 
+^ Olsen, Steve. "The GIF Pronunciation Page". Retrieved 6 March 2009. 
+^ a b c "Gif's inventor says ignore dictionaries and say 'Jif'". BBC News. 2013-05-22. Retrieved 2013-05-22. 
+^ "GIF". The American Heritage Abbreviations Dictionary, Third Edition. Houghton Mifflin Company. 2005. Retrieved 2007-04-15. 
+^ "GIF". The Cambridge Dictionary of American English. Cambridge University Press. Retrieved 2014-02-19. 
+^ "Gif - Definition from the Merriam-Webster Dictionary". Merriam-Webster Dictionary. Merriam-Webster, Incorporated. Retrieved 6 June 2013. 
+^ "GIF". Oxford Dictionaries Online. Oxford University Press. Retrieved 7 October 2014. 
+^ The New Oxford American Dictionary (2nd ed.). Oxford University Press. 2005. p. 711. 
+^ The New Oxford American Dictionary (3rd ed.). 2012.  (part of the Macintosh built-in dictionaries).
+^ O'Leary, Amy (21 May 2013). "An Honor for the Creator of the GIF". New York Times. Retrieved 22 May 2013. 
+^ a b Rothberg, Daniel (4 December 2013). "'Jeopardy' wades into 'GIF' pronunciation battle". Los Angeles Times. Los Angeles Times. Retrieved 2013-12-04. 
+^ O'Leary, Amy (23 May 2013). "Battle Over 'GIF' Pronunciation Erupts". The New York Times. 
+^ Marur, D.R.; Bhaskar, V. (March 2012). "Comparison of platform independent electronic document distribution techniques". Devices, Circuits and Systems (ICDCS). International Conference on Devices, Circuits and Systems (ICDCS). Karunya University; Coimbatore, India: IEEE. pp. 297–301. doi:10.1109/ICDCSyst.2012.6188724. ISBN 9781457715457. Retrieved 2015-03-10. 
+^ a b S. Chin; D. Iverson; O. Campesato; P. Trani (2011). Pro Android Flash (PDF). New York: Apress. p. 350. ISBN 9781430232315. Retrieved 11 March 2015. 
+^ a b c Andreas Kleinert (2007). "GIF 24 Bit (truecolor) extensions". Archived from the original on 16 March 2012. Retrieved 23 March 2012. 
+^ a b Philip Howard. "True-Color GIF Example". Archived from the original on 22 February 2015. Retrieved 23 March 2012. 
+^ "Nullsleep - Jeremiah Johnson - Animated GIF Minimum Frame Delay Browser Compatibility Study". Retrieved 26 May 2015. 
+^ "They're different! How to match the animation rate of gif files accross [sic] browsers". Developer's Blog. 14 Feb 2012. Archived from the original on 1 February 2017. Retrieved 15 June 2017. 
+^ Royal Frazier. "All About GIF89a". Retrieved 7 January 2013. 
+^ Scott Walter (1996). Web Scripting Secret Weapons. Que Publishing. ISBN 0-7897-0947-3. 
+^ "MSDN Blogs". Microsoft. Retrieved 26 May 2015. 
+^ a b c d e f g Greg Roelofs. "History of the Portable Network Graphics (PNG) Format". Retrieved 23 March 2012. 
+^ a b c Stuart Caie. "Sad day... GIF patent dead at 20". Retrieved 23 March 2012. 
+^ a b "The GIF Controversy: A Software Developer's Perspective". Retrieved 26 May 2015. 
+^ a b Unisys Clarifies Policy Regarding Patent Use in On-Line Service Offerings Archived 7 February 2007 at the Wayback Machine. – archived by League for Programming Freedom
+^ "Libungif". Retrieved 26 May 2015. 
+^ Cargill, Tom (2001-10-01). "Replacing a Dictionary with a Square Root". Dr. Dobb's Journal. Retrieved 2017-01-20. 
+^ "LZW Software and Patent Information". Archived from the original on 8 June 2009. Retrieved 2007-01-31. CS1 maint: BOT: original-url status unknown (link) – clarification of 2 September 1999
+^ Unisys Not Suing (most) Webmasters for Using GIFs – Slashdot investigation into the controversy
+^ http://burnallgifs.org/ Original version (archived in the Webarchive in 1999)
+^ Burn All GIFs – A project of the League for Programming Freedom (latest version)
+^ a b c "License Information on GIF and Other LZW-based Technologies". Archived from the original on 2 June 2009. Retrieved 2005-04-26. 
+^ "Why There Are No GIF Files on GNU Web Pages". Free Software Foundation. Retrieved 19 May 2012. 
+^ "PNG versus GIF Compression". Retrieved 8 June 2009. 
+^ "AlphaImageLoader Filter". Microsoft. Retrieved 26 May 2015. 
+^ "What's New in Internet Explorer 7". MSDN. Retrieved 6 March 2009. 
+^ "PNG Image File Format". Retrieved 8 June 2009. 
+^ "VOTE FAILED: APNG 20070405a". SourceForge mailing list. 2007-04-20. 
+^ "Discussion for a simple "animated" PNG format". Archived from the original on 2009-02-26. Retrieved 2011-07-12. 
+^ "APNG Specification". Retrieved 26 May 2015. 
+^ Mozilla Labs » Blog Archive » Better animations in Firefox 3
+^ "195280 – Removal of MNG/JNG support". Retrieved 26 May 2015. 
+^ "18574 – (mng) restore support for MNG animation format and JNG image format". Retrieved 26 May 2015. 
+^ "Chromium Blog: Chrome 32 Beta: Animated WebP images and faster Chrome for Android touch input". Blog.chromium.org. 2013-11-21. Retrieved 2014-02-01. 
+^ "Introducing GIFV - Imgur Blog". imgur.com. 2014-10-09. Retrieved 2014-12-14. 
+
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to GIF file format.
+
+
+
+The GIFLIB project
+spec-gif89a.txt GIF 89a specification on w3.org
+GIF 89a specification reformatted into HTML
+LZW and GIF explained
+Animated GIFs: a 6-minute documentary produced by Off Book (web series)
+GifCities (The GeoCities Animated GIF Search Engine)
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Graphics file formats
+
+
+
+Raster
+
+
+
+ANI
+ANIM
+APNG
+ART
+BMP
+BPG
+BSAVE
+CAL
+CIN
+CPC
+CPT
+DDS
+DPX
+ECW
+EXR
+FITS
+FLIC
+FLIF
+FPX
+GIF
+HDRi
+HEVC
+ICER
+ICNS
+ICO / CUR
+ICS
+ILBM
+JBIG
+JBIG2
+JNG
+JPEG
+JPEG 2000
+JPEG-LS
+JPEG XR
+KRA
+MNG
+MIFF
+NRRD
+ORA
+PAM
+PBM / PGM / PPM / PNM
+PCX
+PGF
+PICtor
+PNG
+PSD / PSB
+PSP
+QTVR
+RAS
+RBE
+
+JPEG-HDR
+Logluv TIFF
+
+
+SGI
+TGA
+TIFF
+
+TIFF/EP
+TIFF/IT
+
+
+UFO/ UFP
+WBMP
+WebP
+XBM
+XCF
+XPM
+XWD
+
+
+
+
+
+Raw
+
+
+
+CIFF
+DNG
+
+
+
+
+
+Vector
+
+
+
+AI
+CDR
+CGM
+DXF
+EVA
+EMF
+Gerber
+HVIF
+IGES
+PGML
+SVG
+VML
+WMF
+Xar
+
+
+
+
+
+Compound
+
+
+
+CDF
+DjVu
+EPS
+PDF
+PICT
+PS
+SWF
+XAML
+
+
+
+
+
+Related
+
+
+
+Exchangeable image file format (Exif)
+Extensible Metadata Platform (XMP)
+
+
+
+
+
+
+
+
+ Category
+ Comparison
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Multimedia compression and container formats
+
+
+
+Video
+compression
+
+
+
+
+ISO/IEC
+
+
+
+MJPEG
+Motion JPEG 2000
+MPEG-1
+MPEG-2
+
+Part 2
+
+
+MPEG-4
+
+Part 2/ASP
+Part 10/AVC
+
+
+MPEG-H
+
+Part 2/HEVC
+
+
+
+
+
+
+
+ITU-T
+
+
+
+H.120
+H.261
+H.262
+H.263
+H.264
+H.265
+
+
+
+
+
+SMPTE
+
+
+
+VC-1
+VC-2
+VC-3
+VC-5
+
+
+
+
+
+Alliance for Open Media
+
+
+
+AV1
+
+
+
+
+
+Others
+
+
+
+Apple Video
+AVS
+Bink
+Cinepak
+Daala
+Dirac
+DV
+DVI
+FFV1
+Huffyuv
+Indeo
+Lagarith
+Microsoft Video 1
+MSU Lossless
+OMS Video
+Pixlet
+ProRes 422
+ProRes 4444
+QuickTime
+
+Animation
+Graphics
+
+
+RealVideo
+RTVideo
+SheerVideo
+Smacker
+Sorenson Video, Spark
+Theora
+Thor
+VP3
+VP6
+VP7
+VP8
+VP9
+WMV
+XEB
+YULS
+
+
+
+
+
+
+
+
+Audio
+compression
+
+
+
+
+ISO/IEC
+
+
+
+MPEG-1 Layer III (MP3)
+MPEG-1 Layer II
+
+Multichannel
+
+
+MPEG-1 Layer I
+AAC
+
+HE-AAC
+AAC-LD
+
+
+MPEG Surround
+MPEG-4 ALS
+MPEG-4 SLS
+MPEG-4 DST
+MPEG-4 HVXC
+MPEG-4 CELP
+MPEG-D USAC
+MPEG-H 3D Audio
+
+
+
+
+
+ITU-T
+
+
+
+G.711 (A-law, µ-law)
+G.718
+G.719
+G.722
+G.722.1
+G.722.2
+G.723
+G.723.1
+G.726
+G.728
+G.729
+G.729.1
+
+
+
+
+
+IETF
+
+
+
+Opus
+iLBC
+
+
+
+
+
+3GPP
+
+
+
+AMR
+AMR-WB
+AMR-WB+
+EVRC
+EVRC-B
+EVS
+GSM-HR
+GSM-FR
+GSM-EFR
+
+
+
+
+
+Others
+
+
+
+ACELP
+AC-3
+AC-4
+ALAC
+Asao
+ATRAC
+CELT
+Codec2
+DRA
+DTS
+FLAC
+iSAC
+Monkey's Audio
+TTA
+
+True Audio
+
+
+MT9
+Musepack
+OptimFROG
+OSQ
+QCELP
+RCELP
+RealAudio
+RTAudio
+SD2
+SHN
+SILK
+Siren
+SMV
+Speex
+SVOPC
+TwinVQ
+VMR-WB
+Vorbis
+VSELP
+WavPack
+WMA
+MQA
+aptX
+
+
+
+
+
+
+
+
+Image
+compression
+
+
+
+
+IEC, ISO,
+ITU-T, W3C, IETF
+
+
+
+CCITT Group 4
+GIF
+HEIF
+HEVC
+JBIG
+JBIG2
+JPEG
+JPEG 2000
+JPEG XR
+Lossless JPEG
+PNG
+TIFF
+TIFF/EP
+TIFF/IT
+
+
+
+
+
+Others
+
+
+
+APNG
+BPG
+DjVu
+EXR
+FLIF
+ICER
+MNG
+PGF
+QTVR
+WBMP
+WebP
+
+
+
+
+
+
+
+
+Containers
+
+
+
+
+ISO/IEC
+
+
+
+MPEG-ES
+
+MPEG-PES
+
+
+MPEG-PS
+MPEG-TS
+ISO base media file format
+MPEG-4 Part 14 (MP4)
+Motion JPEG 2000
+MPEG-21 Part 9
+MPEG media transport
+
+
+
+
+
+ITU-T
+
+
+
+H.222.0
+T.802
+
+
+
+
+
+IETF
+
+
+
+RTP
+
+
+
+
+
+Others
+
+
+
+3GP and 3G2
+AMV
+ASF
+AIFF
+AVI
+AU
+BPG
+Bink
+
+Smacker
+
+
+BMP
+DivX Media Format
+EVO
+Flash Video
+GXF
+IFF
+M2TS
+Matroska
+
+WebM
+
+
+MXF
+Ogg
+QuickTime File Format
+RatDVD
+RealMedia
+RIFF
+
+WAV
+
+
+MOD and TOD
+VOB, IFO and BUP
+
+
+
+
+
+
+
+
+Collaborations
+
+
+
+NETVC
+MPEG-LA
+
+
+
+
+
+
+See Compression methods for methods and Compression software for codecs
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=GIF&oldid=816717381"					Categories: Graphics file formatsCompuServeOpen formatsComputer-related introductions in 1987Hidden categories: Webarchive template wayback linksCS1 maint: BOT: original-url status unknownUse dmy dates from August 2012All articles with vague or ambiguous timeVague or ambiguous time from March 2015All articles with specifically marked weasel-worded phrasesArticles with specifically marked weasel-worded phrases from March 2015All articles lacking reliable referencesArticles lacking reliable references from March 2015Articles to be expanded from May 2015All articles with unsourced statementsArticles with unsourced statements from December 2013Commons category with local link different than on Wikidata

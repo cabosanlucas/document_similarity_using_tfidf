@@ -1,0 +1,643 @@
+redirects uses disambiguation
+information technology uniform resource identifier string characters used identify resource
+identification enables interaction representations resource network typically world wide using specific protocols schemes specifying concrete syntax associated protocols define common form uniform resource locator frequently referred informally address rarely seen usage uniform resource name designed complement urls providing mechanism identification resources particular namespaces
+
+
+
+contents
+
+
+relationship
+
+conceptual distinctions
+
+
+syntax
+
+examples
+
+
+references
+
+examples markup languages
+examples absolute uris
+examples references
+
+
+resolution
+history
+
+naming addressing identifying resources
+refinement specifications
+
+
+relation namespaces
+also
+notes
+references
+
+citations
+cited works
+
+
+external links
+
+
+
+relationship urnedit
+uniform resource name compared persons name uniform resource locator compared street address words identifies item provides method finding
+addition identifying resource specifies means acting upon obtaining representation specifying primary access mechanism network location example httpexampleorgwikimainpage refers resource identified wikimainpage whose representation form html related code obtainable hypertext transfer protocol http network host whose domain name exampleorg
+identifies resource name particular namespace used talk resource without implying location access example international standard book number isbn system isbn 0486275574 identifies specific edition shakespeares play romeo juliet edition would urnisbn0486275574 gain access book location needed would specified
+conceptual distinctionsedit
+technical publications especially standards produced ietf normally reflect view outlined recommendation 2001 acknowledges precedence term rather endorsing formal subdivision
+
+
+
+useful informal concept type identifies resource representation primary access mechanism network location rather attributes have1
+
+
+
+simply happens point resource networka2
+however nontechnical contexts software world wide term remains widely used additionally term address formal definition often occurs nontechnical publications synonym uses scheme http https assumptions lead confusion example case namespaces visual similarity resolvable uris
+schemes originally designed used particular protocol often name semantically different protocols example scheme http generally used interacting resources using http scheme file protocol
+syntaxedit
+syntax generic uris absolute references first defined request comments 2396 published august 19983 finalized 3986 published january 20054
+generic form
+
+schemeuserpasswordhostportpathqueryfragment
+
+comprises
+
+scheme consisting sequence characters beginning letter followed combination letters digits plus period hyphen although schemes caseinsensitive canonical form lowercase documents specify schemes must lowercase letters followed colon examples popular schemes include https mailto file data schemes registered internet assigned numbers authority iana although nonregistered schemes used practiceb
+slashes required schemes required others authority component explained absent path component cannot begin slashes6
+authority part comprising
+
+optional authentication section user name password separated colon followed symbol
+host consisting either registered name including limited hostname address ipv4 addresses must dotdecimal notation ipv6 addresses must enclosed brackets
+optional port number separated hostname colon
+
+
+path contains data usually organized hierarchical form appears sequence segments separated slashes sequence resemble exactly file system path always imply relation one9 path must begin single slash authority part present also must begin double slash path always defined though defined path empty zero length therefore trailing slash
+
+
+
+query delimiter
+example
+
+
+ampersand
+key1value1key2value2
+
+
+semicolon dincomplete short citation
+key1value1key2value2
+
+
+
+optional query separated preceding part question mark containing query string nonhierarchical data syntax well defined convention often sequence attribute–value pairs separated delimiter
+optional fragment separated preceding part hash fragment contains fragment identifier providing direction secondary resource section heading article identified remainder primary resource html document fragment often attribute specific element browsers scroll element view
+
+strings data octets within represented characters permitted characters within ascii characters lowercase uppercase letters modern english alphabet arabic numerals hyphen period underscore tilde11 octets represented character must percentencoded
+ascii character characters reserved delimiters generic components must percentencoded example question mark12 characters permitted generic syntax used unencoded user information host path delimiters713 additionally appear unencoded within path query fragment appear unencoded data within query fragment1314
+examplesedit
+following figure displays example uris component parts
+
+hierarchical part
+┌───────────────────┴─────────────────────┐
+authority path
+┌───────────────┴───────────────┐┌───┴────┐
+abcusernamepasswordexamplecom123pathdatakeyvaluefragid1
+└───────┬───────┘ └────┬────┘ └───┬───┘ └──┬──┘
+scheme user information host port query fragment
+
+urnexamplemammalmonotremeechidna
+└──────────────┬───────────────┘
+scheme path
+
+referencesedit
+reference take form full schemespecific portion full trailing component full empty string15 optional fragment identifier preceded present reference part reference indirectly identifies resource fragment identifier identifies portion resource16
+derive reference software converts reference absolute form merging base according fixed algorithm17 system treats reference relative base although case absolute reference base relevance base includes fragment identifier ignored merging process17 fragment identifier present reference preserved merging process18
+document markup languages frequently references point resources external documents specific portions logical document19
+examples markup languagesedit
+
+html value attribute element provides reference value href attribute link element
+system identifier appearing system keyword fragmentless reference
+xslt value href attribute xslimport elementinstruction reference likewise first argument document function
+
+examples absolute urisedit
+
+httpsexampleorgabsoluteuriwithabsolutepathtoresourcetxt
+httpsexampleorgabsoluteuriwithabsolutepathtoresource
+ftpexampleorgresourcetxt
+urnissn15353613
+
+examples referencesedit
+
+httpsexampleorgabsoluteuriwithabsolutepathtoresourcetxt
+exampleorgschemerelativeuriwithabsolutepathtoresourcetxt
+exampleorgschemerelativeuriwithabsolutepathtoresource
+relativeuriwithabsolutepathtoresourcetxt
+relativepathtoresourcetxt
+resourcetxt
+resourcetxtfrag01
+resourcetxt
+frag01
+
+resolutionedit
+resolve means either convert relative reference absolute form dereference reference attempting obtain representation resource identifies
+samedocument reference reference document containing reference reference defined samedocument reference resolved absolute form equates exactly base effect reference19 encountering samedocument reference document processing software example browser efficiently current representation document satisfy resolution reference document without fetching representation equivalence defined reference identical base still represents resource19
+historyedit
+naming addressing identifying resourcesedit
+uris urls shared history 1994 bernerslees proposals hypertext20 implicitly introduced idea short string representing resource target hyperlink time people referred hypertext name21 document name
+next three half years world wide webs core technologies html http browsers developed need distinguish string provided address resource string merely named resource emerged although formally defined term uniform resource locator came represent former contentious uniform resource name came represent latter
+debate defining urls urns became evident concepts embodied terms merely aspects fundamental overarching notion resource identification june 1994 ietf published bernerslees 1630 first request comments acknowledged existence urls urns importantly defined formal syntax universal resource identifiers urllike strings whose precise syntaxes semantics depended schemes addition attempted summarize syntaxes schemes time also acknowledged standardize existence relative urls fragment identifiers
+refinement specificationsedit
+december 1994 1738 formally defined relative absolute urls refined general syntax defined resolve relative urls absolute form better enumerated schemes agreed definition syntax urns wait publication 2141 1997
+publication 2396 august 1998 syntax become separate specification3 parts rfcs 1630 1738 relating uris urls general revised expanded ietf changed meaning uniform universal
+december 1999 2732 provided minor update 2396 allowing uris accommodate ipv6 addresses number shortcomings discovered specifications community effort coordinated 2396 coauthor fielding culminated publication 3986 january 2005 obsoleting prior standard render details existing schemes obsolete 1738 continues govern schemes except otherwise superseded 2616 example refines http scheme simultaneously ietf published content 3986 full standard reflecting establishment generic syntax official internet protocol
+2001 w3cs technical architecture group published guide best practices canonical uris publishing multiple versions given resource22 example content might differ language size adjust capacity settings device used access content
+august 2002 3305 pointed term despite widespread public faded near obsolescence serves reminder uris addresses schemes implying network accessibility regardless actual uribased standards resource description framework make evident resource identification need suggest retrieval resource representations internet need imply networkbased resources
+semantic uses http scheme identify documents concepts real world distinction caused confusion distinguish published email 2005 solve problem became known httprange14 resolution23 subsequently published interest group note titled cool uris semantic web24 explained content negotiation http response code redirections detail
+relation namespacesedit
+namespace abstract domain collection element attribute names assigned namespace name character string must adhere generic syntax25 however name generally considered uri26 specification bases decision lexical components also intended namespace name necessarily imply semantics schemes example namespace name beginning http connotation http
+originally namespace name could match syntax nonempty reference relative references deprecated w3c27 separate specification namespaces permits internationalized resource identifier references serve basis namespace names addition references28
+alsoedit
+
+curie defines generic abbreviated syntax expressing uris
+dereferenceable uniform resource identifier resource retrieval mechanism uses internet protocols http obtain copy representation resource identifies
+extensible resource identifier scheme resolution protocol abstract identifiers compatible uris
+internationalized resource identifier generalization uris allowing unicode
+persistent uniform resource locator used redirect location requested resource
+uniform naming convention common syntax used microsoft describe location network resource shared file directory printer
+resource directory description language descriptive language provide machine humanreadable information particular namespace documents
+uuid
+
+notesedit
+
+
+
+report published 2002 joint w3cietf working group aimed normalize divergent views held within ietf relationship various terms standards published full standard either organization become basis common understanding informed many standards since
+procedures registering schemes originally defined 1999 2717 defined 7595 published june 20155
+uris relating resources world wide browsers allow portions dotdecimal notation dropped integer addresses used8
+historic 1866 obsoleted 2854 encourages authors support addition
+
+
+
+referencesedit
+citationsedit
+
+
+joint w3cietf planning interest group 2001
+joint w3cietf planning interest group 2002
+2396 1998
+3986 2005
+ietf 2015
+3986 2005
+3986 2005 §322
+lawrence 2014
+2396 1998
+1866 1995 §821
+3986 2005
+3986 2005
+3986 2005
+3986 2005
+3986 2005
+3986 2005
+3986 2005
+3986 2005 §522
+3986 2005
+palmer 2001
+1992
+2001
+fielding 2005
+2008
+morrison 2006
+harold 2004
+2009
+2006
+
+
+cited worksedit
+
+
+fielding june 2005 httprange14 resolved retrieved july 2009
+harold elliotte rusty 2004 bible third wiley publishing isbn 0764549863
+joint w3cietf planning interest group september 2001 uris urls urns clarifications recommendations retrieved 20090727
+mealling denenberg august 2002 report joint w3cietf planning interest group uniform resource identifiers uris urls uniform resource names urns clarifications recommendations world wide consortium retrieved september 2015
+hansen hardie june 2015 thaler guidelines registration procedures schemes internet engineering task force issn 20701721
+morrison michael 2006 hour putting namespaces sams teach sams publishing
+palmer sean 2001 early history html retrieved 20090430
+planning interest group w3cietf september 2001 uris urls urns clarifications recommendations retrieved 20090727
+naming schemes world wide consortium 1992 retrieved 20090724
+linking alternative representations enable discovery publishing world wide consortium 2006 2001 retrieved 20120403
+bray hollander dave layman andrew tobin richard august 2006 namespaces second edition world wide consortium uris namespace names retrieved august 2015
+ayers danny völkel december 2008 sauermann cyganiak richard cool uris semantic world wide consortium retrieved 20120403
+bray hollander dave layman andrew tobin richard thompson henry december 2009 namespaces third edition world wide consortium uris namespace names retrieved august 2015
+bernerslee connolly november 1995 hypertext markup language internet engineering task force retrieved september 2015
+bernerslee fielding masinter larry august 1998 uniform resource identifiers generic syntax internet engineering task force retrieved august 2015
+bernerslee fielding masinter larry january 2005 uniform resource identifiers generic syntax internet engineering task force retrieved august 2015
+lawrence eric march 2014 browser arcana literals urls ieinternals microsoft retrieved 20160425
+
+
+external linksedit
+
+schemes ianamaintained registry schemes
+schemes wiki
+architecture world wide volume identification
+clarification
+
+
+
+
+
+
+
+
+
+
+
+
+semantic
+
+
+
+background
+
+
+
+databases
+hypertext
+internet
+ontologies
+semantic networks
+world wide
+
+
+
+
+
+subtopics
+
+
+
+data
+dataspaces
+hyperdata
+linked data
+rulebased systems
+
+
+
+
+
+applications
+
+
+
+semantic analytics
+semantic broker
+semantic computing
+semantic mapper
+semantic matching
+semantic publishing
+semantic reasoner
+semantic search
+semantic serviceoriented architecture
+semantic wiki
+
+
+
+
+
+related topics
+
+
+
+collective intelligence
+description logic
+folksonomy
+geotagging
+information architecture
+knowledge extraction
+knowledge management
+knowledge representation
+library
+metadata
+mind mapping
+odbc
+references
+topic maps
+
+engineering
+science trust
+
+
+
+
+
+standards
+
+
+
+
+syntax supporting technologies
+
+
+
+http
+
+
+
+
+
+
+
+triples
+rdfxml
+jsonld
+turtle
+trig
+notation3
+ntriples
+trix standard
+
+
+rrid
+sparql
+
+
+
+
+
+
+schemas ontologies rules
+
+
+
+common logic
+
+rdfs
+rule interchange format
+semantic rule language
+alps
+
+
+
+
+
+semantic annotation
+
+
+
+erdf
+grddl
+microdata
+microformats
+rdfa
+sawsdl
+facebook platform
+
+
+
+
+
+common vocabularies
+
+
+
+doap
+dublin core
+foaf
+schemaorg
+sioc
+skos
+
+
+
+
+
+microformat vocabularies
+
+
+
+hatom
+hcalendar
+hcard
+hproduct
+hrecipe
+hresume
+hreview
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+uniform resource identifier schemes
+
+
+
+official
+
+
+
+
+acct
+crid
+data
+file
+
+gopher
+http
+https
+info
+ldap
+mailto
+sips
+
+
+
+viewsource
+wais
+
+
+
+
+
+
+unofficial
+
+
+
+coffee
+ed2k
+feed
+irc6 ircs
+ldaps
+magnet
+ymsgr
+
+
+
+
+
+
+protocol list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hypermedia
+
+
+
+basics
+
+
+
+hypertext
+hyperlink
+hypertext fiction
+hypervideo
+adaptive hypermedia
+
+educational
+authoring
+
+
+hyperlinks virtual worlds
+
+
+
+
+
+resource identifiers
+
+
+
+uniform resource identifier
+internationalized resource identifier
+uniform resource name
+uniform resource locator
+extensible resource identifier
+persistent uniform resource locator
+semantic
+
+
+
+
+
+concepts
+
+
+
+anchor text
+click path
+domain name
+click
+copyright aspects hyperlinking framing
+deep linking
+link
+fragment identifier
+hostname
+hypertext
+inline linking
+inbound linkbacklink
+http referer
+image
+internal link
+internet bookmark
+linkback
+link relation
+link
+object hyperlinking
+path
+screen hotspot
+source tracking
+transclusion
+scheme
+normalization
+redirection
+website
+page
+namespace
+
+
+
+
+
+technology
+
+
+
+curie
+hypertext transfer protocol
+xlink
+
+
+
+
+
+also
+
+
+
+digital poetry
+history hypertext
+interactive novel
+interactive fiction
+timeline hypertext technology
+copyright aspects hyperlinking framing
+world wide
+domain application protocol
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh2002000192
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleuniformresourceidentifieroldid816389052 categories application layer protocolsinternet protocolsinternet standardssemantic webuniform resource locatorhidden categories good articlesarticles needing detailed referenceswikipedia articles lccn identifiers

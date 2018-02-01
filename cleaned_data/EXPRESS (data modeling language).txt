@@ -1,0 +1,648 @@
+
+
+
+
+requirements database audio compact disc collection presented expressg notation
+
+
+express standard data modeling language product data express formalized standard exchange product model step 10303 standardized 10303111
+
+
+
+contents
+
+
+overview
+
+expressg
+
+
+simple example
+express building blocks
+
+datatypes
+entityattribute
+supertypes subtypes
+algorithmic constraints
+
+
+also
+references
+reading
+
+
+
+overviewedit
+data models formally define data objects relationships among data objects domain interest typical applications data models include supporting development databases enabling exchange data particular area interest data models specified data modeling language2 express data modeling language defined 1030311 express language reference manual3
+express data model defined ways textually graphically formal verification input tools sdai textual representation within ascii file important graphical representation hand often suitable human explanation tutorials graphical representation called expressg able represent details formulated textual form
+express similar programming languages pascal within schema various datatypes defined together structural constraints algorithmic rules main feature express possibility formally validate population datatypes check structural algorithmic rules
+expressgedit
+expressg standard graphical notation information models4 useful companion express language displaying entity type definitions relationships cardinality5 graphical notation supports subset express language advantages using expressg express structure data model presented understandable manner disadvantage expressg complex constraints cannot formally specified figure example data model presented figure could used specify requirements database audio compact disc collection2
+simple exampleedit
+
+
+
+
+expressg diagram family schema
+
+
+simple express data model looks like code like
+
+schema family
+
+entity person
+abstract supertype oneof male female
+name string
+mother optional female
+father optional male
+endentity
+
+entity female
+subtype person
+endentity
+
+entity male
+subtype person
+endentity
+
+endschema
+
+data model enclosed within express schema family contains supertype entity person subtypes male female since person declared abstract occurrences either oneof subtype male female exist every occurrence person mandatory name attribute optionally attributes mother father fixed style reading attributes entity type
+
+female play role mother person
+male play role father person
+
+express building blocksedit
+datatypesedit
+express offers series datatypes specific data type symbols expressg notation2
+
+
+
+
+entity data type important datatype express covered detail entity datatypes related ways subsupertype tree andor attributes
+enumeration data type enumeration values simple strings green blue rgbenumeration case enumeration type declared extensible extended schemas
+defined data type specializes datatypes—eg define datatype positive type integer value
+select data type selects define choice alternative different options commonly used selects different entitytypes rare selects include defined types case enumeration type declared extensible extended schemas
+simple data type
+
+string often used simple type express strings length contain character 10646unicode
+binary data type rarely used covers number bits bytes implementations size limited
+logical similar boolean datatype logical possible values true false addition unknown
+boolean boolean values true false
+number number data type supertype integer real implementations take uses double type represent realtype even actual value integer
+integer express integers principle length implementations restricted signed value
+real ideally express real value unlimited accuracy size practise real value represented floating point value type double
+
+
+aggregation data type possible kinds aggregationtypes list array unordered list array ordered contain particular value allowed array aggregate contain unset members possible list members aggregate data type
+
+general things mentioned datatypes
+
+constructed datatypes defined within express schema mainly used define entities specify type entity attributes aggregate members
+datatypes used recursive build complex data types possible define list array select either entities datatypes makes sense define datatypes different question
+express defines couple rules datatype specialized important redeclared attributes entities
+generic data types used procedures functions abstract entities
+
+entityattributeedit
+entity attributes allow properties entities relate entity another specific role name attribute specifies role datatypes directly serve type attribute includes aggregation well
+three different kinds attributes explicit derived inverse attributes redeclared subtype addition explicit attribute redeclared derived subtype change kind attributes possible
+
+explicit attributes direct values visible stepfile
+derived attributes values expression cases expression refers attributes instance expression also express functions
+inverse attributes information entity name constrain explicit attribute entity
+
+specific attribute symbols expressg notation2
+
+
+
+supertypes subtypesedit
+entity defined subtype several entities multiple inheritance allowed supertype number subtypes common practice step build complex subsupertype graphs graphs relate entities
+entity instance constructed either single entity abstract complex combination entities subsupertype graph graphs number possible combinations likely grow astronomic ranges restrict possible combinations special supertype constraints introduced oneof totalover furthermore entity declared abstract enforce instance constructed entity contains nonabstract subtype
+algorithmic constraintsedit
+entities defined data types constrained rules rules also part global rules rule expression must evaluate true otherwise population express schema valid like derived attributes expression invoke express functions invoke express procedures functions procedures allow formulating complex statements local variables parameters constants similar programming language
+express language describe local global rules example
+
+entity areaunit
+subtype namedunit
+
+selfnamedunitdimensionslengthexponent
+selfnamedunitdimensionsmassexponent
+selfnamedunitdimensionstimeexponent
+selfnamedunitdimensionselectriccurrentexponent
+selfnamedunitdimensions
+thermodynamictemperatureexponent
+selfnamedunitdimensionsamountofsubstanceexponent
+selfnamedunitdimensionsluminousintensityexponent
+endentity areaunit
+
+example describes areaunit entity must square value length attribute dimensionslengthexponent must equal exponents basic units must
+another example
+
+type dayinweeknumber integer
+
+self self
+endtype dayinweeknumber
+
+means week value cannot exceed
+describe rules entities details given examples found 1030341
+alsoedit
+
+
+
+wikimedia commons media related express
+
+
+
+related subjects
+
+
+10303 standard computerinterpretable representation exchange industrial product data
+1030321 data exchange form step ascii structure
+1030322 standard data access interface part implementation methods step
+1030328 stepxml specifies extensible markup language represent express schema
+1358424 logical model plib specified express
+13399 standard cutting tool data representation exchange
+isopas 16739 industry foundation classes specified express
+list step 10303 parts
+
+
+related subjects
+
+
+data exchange
+edif electronic design interchange format
+diagram
+generalpurpose modeling
+modeling language
+wirth syntax notation
+
+referencesedit
+article incorporates public domain material national institute standards technology website httpwwwnistgov
+
+
+
+10303112004 industrial automation systems integration product data representation exchange part description methods express language reference manual
+michael mccaleb 1999 conceptual data model datum systems national institute standards technology august 1999
+international standard 10303111994 industrial automation systems integration product data representation andexchange part description methods express language reference manual international organization standardization geneva switzerland 1994
+expressg language overview accessed 2008
+information expressg notation consult annex express language reference manual 1030311
+
+
+
+readingedit
+
+10303 main page step standard exchange product model data
+douglas schenck peter wilson information modeling express oxford university press 1993 isbn 9780195087147
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleexpressdatamodelinglanguageoldid784491517 categories data modelingdata modeling languagesiso 10303hidden categories wikipedia articles incorporating text national institute standards technology

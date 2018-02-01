@@ -1,0 +1,800 @@
+
+
+
+
+stepnc interface showing product shape colorcoded tolerance state
+
+
+stepnc machine tool control language extends 10303 step standards machining model 146491 adding geometric dimension tolerance data inspection step model integration wider enterprise combined result standardized 103032382 also known ap238
+stepnc designed replace 6983rs274d gcodes modern associative communications protocol connects computer numerical controlled process data product description part machined
+stepnc program full range geometric constructs3 step standard communicate deviceindependent toolpaths provide operational descriptions step geometry workpieces stock fixtures cutting tool shapes visualized analyzed context toolpaths step information also added enable quality measurement control camindependent volume removal features4 added facilitate regeneration modification toolpaths machining closed loop manufacturing
+
+
+
+contents
+
+
+motivation
+capabilities
+history
+future work
+references
+external links
+
+
+
+motivationedit
+
+
+
+
+impeller machined using stepnc
+
+
+input 6983rs274d gcode control language often machinespecific limited axis motion commands machine tool given little information desired result machining
+stepnc allows information machining process sent machine control adds information product machined5 smart data smart machining6 enables applications following
+
+toolpath descriptions portable independent machine geometry7
+visual process show toolpaths context machine workpiece eliminate drawings8
+onmachine simulation check gouges machine interference undesired behavior
+simplified inspection linked tolerances onmachine probes inspection workplans tied part tolerances
+feed speed optimization using tolerances9 cross section information sensor data
+
+
+associativity feedback sent manufacturing back design
+
+capabilitiesedit
+
+
+
+
+overview stepnc process model
+
+
+stepnc communicate complete machining process description machine tool control manufacturing software applications information handled stepnc divided following general categories standard handles technologyspecific parameters milling turning extensions technologies development future work
+
+product description
+
+workpiece product geometry
+manufacturing features
+dimensions tolerances
+measures part properties
+
+
+general process description10
+
+project
+executable
+operation
+toolpath
+
+
+technologyspecific process description
+
+operations cutting tools milling11
+operations cutting tools turning12
+operations devices inspection10
+
+
+
+stepnc exchange explicit toolpath descriptions today part stock fixture geometry description tools geometric dimensions tolerances information stepnc file difficult edit hand contains geometry descriptions large programs file size smaller stepnc uses compressed format instead ascii codes
+historyedit
+stepnc first attempt providing better quality information basic control language bcl13 defined control language portable toolpaths independent machine geometry contain product model information found stepnc14
+core stepnc 14649 model control developed european esprit ims15 stepnc projects begun 1999 siemens contributions rwth aachen university university stuttgart germany komatsu fanuc japan heidenhain switzerland pohang university science technology korea16 models control milling11 turning machines12 published 2005 draft models exist contour cutting
+integration model step17 produce 10303238 done united states nist model driven intelligent control manufacturing project step tools industrial review board consisting fortune companies software developers machine tool manufacturers shops industry experts18 stepnc ap238 published 20072
+
+
+
+
+stepnc crown wheel
+
+
+2005 omac stepnc working group hosted ap238 testing forum orlando demonstrate 5axis parts machined using ap238 machine independent toolpaths four cadcam systems produced ap238 machining programs milling 5axis test part circlediamondsquare inverted cone test center pair cncs configured completely different machine geometries tool tilt table tilt19 addition boeing parts variety machines tulsa facility machine nist gaithersburg20
+june 2006 live 5axis stepnc machining demonstration hosted airbus université paul sabatier laboratoire génie mécanique toulouse21 machining measurement demonstrations conducted ibusuki japan 200722
+march 10–12 2008 step manufacturing team tc184 sandviken stockholm sweden demonstrate stepnc feed speed optimization highspeed machining tolerancedriven tool compensation traceability participants demonstrations included airbusuniv bordeaux boeing eurostep royal institute technology nist sandvik coromant scania step tools univ vigo23
+october 2008 step manufacturing team connecticut center advanced technology hartford connecticut demonstrate closedloop machining feed optimization measurement using stepnc highlight meeting live 5axis machining titanium impeller participants machining demonstration activities included boeing connecticut center advanced technology concepts nrec royal institute technology mitutoyo nist sandvik coromant scania siemens step tools24
+participants others continue hold stepnc international implementation testing events roughly sixmonth cycle demonstrations 2009 focused machining mold part multiple sites ap238 data including part machined fanucdeveloped stepnc control meeting seattle parts measured accuracy using probe laser scanner25
+
+
+
+
+stepnc machining okuma imts 2014
+
+
+first half 2010 testing activity focused tool wear management machining part multiple setups multiple alternate machining plans 5axis machining test part gear must machined sides tool wear consequent machine loads predicted stepnc data verified using dynamometer26 second half 2010 testing forum applied stepnc compensation onmachine measurement part fixture datums using faroarm portable measurement device27
+2012 testing focused machine tool accuracy calculations culminating demonstration june production engineering labs stockholm test case milled forged blank crown wheel gear older mazak accuracy data machine combined tool engagement information stepnc predict deflections tested actual machining results28
+2014 data exchange using stepnc shown imts 2014 daily machining demonstrations hosted okuma base machining process mold part created boeing sent sandvik iscar optimization producing stepnc description containing three process options machining done titanium range software used results captured stepnc2930
+future workedit
+
+
+
+
+stepnc plasma cutting
+
+
+work continues within standard committees extend stepnc technologies incorporate refinements discovered process models technologies usually produced tc184sc1wg7 committee models wire sink edm31 contour cutting wood stone investigation
+work extending integrating stepnc manufacturing enterprise takes place tc184sc4wg3t24 step manufacturing team32 group also works extensions refinements discovered testing series traceability extensions proposed linking stepnc machining programs sensor feedback machine state information execution33
+national shipbuilding research program nsrp also hosted work implement prototype connects shipyard design system plate cutting using stepnc34 work involved extending stepnc steel plate cutting marking using lasers plasma torches
+referencesedit
+
+
+146491 2003 industrial automation systems integration physical device control data model computerized numerical controllers part overview fundamental principles geneva international organization standardization retrieved 20081027
+10303238 2007 industrial automation systems integration product data representation exchange part application protocol application interpreted model computerized numerical controllers geneva international organization standardization retrieved 20081027
+1030342 2003 industrial automation systems integration product data representation exchange part integrated generic resource geometric topological representation geneva international organization standardization retrieved 20081027
+callen john 20020501 enabling manufacturings future without limits modern machine shop retrieved 20081028
+klemm proctor september 2006 step compliant process planning manufacturing international journal computer integrated manufacturing 491–494 doi10108009511920600669776
+hardwick loffredo march 2007 stepnc smart data smart machining proceedings intl conf smart machining systems intl conf smart machining systems nist gaithersburg
+kennedy bill july 2007 together stepnc cutting tool engineering retrieved 20081027
+woods susan april 2006 stepin cutting tool engineering retrieved 20081027
+boeingfanuc tolerance study retrieved 20081027
+1464910 2004 industrial automation systems integration physical device control data model computerized numerical controllers part part general process data geneva international organization standardization retrieved 20081027
+1464911 2004 industrial automation systems integration physical device control data model computerized numerical controllers part process data milling geneva international organization standardization retrieved 20081027
+1464912 2005 industrial automation systems integration physical device control data model computerized numerical controllers part process data turning geneva international organization standardization retrieved 20081027
+ansieia494b1992 1992 32bit binary 7bit ascii exchange input format numerically controlled machines washington electronic industries association
+hardwick loffredo september 2007 challenges choices specification implementation stepnc ap238 standard journal computing information science engineering 283–291 doi10111512768090
+intelligent manufacturing systems retrieved 20081027
+hong january 2002 architecture intelligent stepcompliant international journal computer integrated manufacturing 168–177 doi10108009511920110056541
+loffredo 20060714 validation report isois 10303238 n2098 tc184sc4 retrieved 20081028
+stepnc industrial review board retrieved 20081028
+hardwick loffredo september 2006 lessons learned implementing stepnc ap238 international journal computer integrated manufacturing 523–532 doi10108009511920600627170
+venkatesh odendahl michaloski proctor kramer 20070201 boeing nist help take stepnc heights tooling production archived original 20101012 retrieved 20101012
+international stepnc testing toulouse retrieved 20081027
+stepnc machining measurement ibusuki retrieved 20081027
+international stepnc demonstration feed optimization highspeed machining tolerancedriven tool compensation traceability retrieved 20081027
+international stepnc demonstration closedloop machining feed optimization measurement retrieved 20081027
+international stepnc demonstration renton 2009 retrieved 20100325
+international stepnc demonstration national institute standards technology nist gaithersburg june 2010 retrieved 20100325
+international stepnc demonstration boeing renton plant renton october 1213 2010 retrieved 20110323
+stepnc machining accuracy demonstration stockholm june 2012 retrieved 20150320
+okuma boeing stepnc presentation tram2014 describing exchange demonstration retrieved 20150320
+lorincz september 2015 optimize process best performance advanced manufacturing aerospace defense manufacturing 2015 retrieved 20151117
+sokolov richard nguyen stroud maeder xirouchakis september 2006 algorithms extended stepnccompliant data model wire electro discharge machining based representations international journal computer integrated manufacturing 603–613 doi10108009511920600634903
+archives step manufacturing team tc184sc4wg3t24
+garrido campos hardwick 2006 traceability information model manufacturing computeraided design 540–551 doi101016jcad200601011
+ap238 plate cutting marking nsrp panel project retrieved 20120815
+
+
+external linksedit
+
+video stepnc impeller machining demo 20081001
+video stepnc tolerancedriven tool compensation demo 20080312
+stepnc
+toolkit 14649 parts
+
+
+
+
+
+
+
+
+
+
+
+
+metalworking
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+machining computing
+
+
+
+computeraided
+engineering
+
+
+
+
+
+
+gcode
+numerical control
+stewart platform
+
+
+
+
+
+drilling
+threading
+
+
+
+head
+drill
+drill
+drill shank
+drill sizes
+drilling
+list drill sizes
+
+wrench
+threading
+
+
+
+
+
+grinding
+lapping
+
+
+
+abrasive
+angle grinder
+bench grinder
+coated abrasives
+cylindrical grinder
+diamond plate
+flick grinder
+grinding
+grinding dresser
+grinding machine
+grinding wheel
+grinder
+lapping
+sanding
+sharpening stone
+spark testing
+surface grinder
+tool cutter grinder
+
+
+
+
+
+machining
+
+
+
+boring
+broaching
+electrical discharge machining
+electrochemical machining
+electron beam machining
+endmill
+engraving
+facing
+hobbing
+borer
+machine tool
+machining
+metal lathe
+milling cutter
+milling machine
+pantograph
+photochemical machining
+planer
+reamer
+rotary transfer machine
+shaper
+turning
+ultrasonic machining
+
+
+
+
+
+machine tooling
+
+
+
+angle plate
+chuck
+collet
+fixture
+indexing head
+
+lathe center
+machine taper
+magnetic base
+mandrel
+rotary table
+wiggler
+
+
+
+
+
+terminology
+
+
+
+cutting fluid
+machining vibrations
+speeds feeds
+swarf
+tolerance
+tool making
+tramp
+
+
+
+
+
+
+
+
+
+
+
+casting
+fabrication
+forming
+jewellery
+machining
+metallurgy
+smithing
+tools terminology
+welding
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlestepncoldid809480041 categories automationcomputeraided engineeringmachine toolsproduction manufacturingiso 10303

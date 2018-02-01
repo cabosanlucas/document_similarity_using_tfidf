@@ -1,0 +1,1398 @@
+
+
+model
+layer
+
+
+
+
+application layer
+
+
+nntp
+
+
+
+
+gopher
+http
+
+
+smpp
+smtp
+snmp
+telnet
+dhcp
+netconf
+
+
+
+
+
+
+
+
+
+presentation layer
+
+
+mime
+
+
+
+
+
+
+
+
+
+session layer
+
+
+named pipe
+netbios
+
+pptp
+
+socks
+spdy
+
+
+
+
+
+
+
+
+transport layer
+
+
+
+
+sctp
+dccp
+
+
+
+
+
+
+
+
+
+network layer
+
+
+
+
+ipv4
+ipv6
+
+
+icmp
+ipsec
+igmp
+
+appletalk
+
+
+
+
+
+
+
+
+
+data link layer
+
+
+
+
+isis
+sdlc
+hdlc
+cslip
+slip
+
+plip
+ieee 8022
+
+
+l2tp
+ieee 8023
+frame relay
+itut
+
+lapb
+q921 lapd
+q922 lapf
+
+
+
+
+
+
+
+
+physical layer
+
+
+eiatia232
+eiatia449
+itut vseries
+i430
+i431
+
+sonetsdh
+
+
+
+ieee 8023
+ieee 80211
+ieee 80215
+ieee 80216
+ieee 1394
+itut
+
+bluetooth
+rs232
+rs449
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+open systems interconnection model model conceptual model characterizes standardizes communication functions telecommunication computing system without regard underlying internal structure technology goal interoperability diverse communication systems standard protocols model partitions communication system abstraction layers original version model defined seven layers
+layer serves layer served layer example layer provides errorfree communications across network provides path needed applications calls next lower layer send receive packets comprise contents path instances layer visualized connected horizontal connection layer
+model product open systems interconnection project international organization standardization maintained identification isoiec 74981
+
+
+
+
+communication osimodel example layers
+
+
+
+
+
+contents
+
+
+history
+description layers
+
+layer physical layer
+layer data link layer
+layer network layer
+layer transport layer
+layer session layer
+layer presentation layer
+layer application layer
+
+
+crosslayer functions
+interfaces
+examples
+comparison tcpip model
+also
+references
+external links
+
+
+
+historyedit
+late 1970s project administered international organization standardization another undertaken international telegraph telephone consultative committee ccitt french comité consultatif international téléphonique télégraphique international standards bodies developed document defined similar networking models
+1983 documents merged form standard called basic reference model open systems interconnection standard usually referred open systems interconnection reference model reference model simply model published 1984 standard 7498 renamed ccitt called telecommunications standardization sector international telecommunication union itut standard x200
+major components abstract model networking called basic reference model sevenlayer model specific protocols
+concept sevenlayer model provided work charles bachman honeywell information services various aspects design evolved experiences arpanet nplnet cyclades network work ifip wg61 design documented 7498 various addenda model networking system divided layers within layer entities implement functionality entity interacted directly layer immediately beneath provided facilities layer
+protocols enable entity host interact corresponding entity layer another host service definitions abstractly described functionality provided nlayer layer seven layers protocols operating local host
+standards documents available itut x200series recommendations1 protocol specifications also available part itut series equivalent isoiec standards model available free charge2
+description layersedit
+recommendation x200 describes seven layers labeled layer lowest layer model
+
+
+model
+
+
+layer
+protocol data unit
+function3
+
+
+host
+layers
+application
+data
+highlevel apis including resource sharing remote file access
+
+
+presentation
+translation data networking service application including character encoding data compression encryptiondecryption
+
+
+session
+managing communication sessions continuous exchange information form multiple backandforth transmissions nodes
+
+
+transport
+segment datagram
+reliable transmission data segments points network including segmentation acknowledgement multiplexing
+
+
+media
+layers
+network
+packet
+structuring managing multinode network including addressing routing traffic control
+
+
+data link
+frame
+reliable transmission data frames nodes connected physical layer
+
+
+physical
+
+transmission reception streams physical medium
+
+
+level entities communicating devices layer peers exchange protocol data units pdus means layer protocol contains payload called service data unit along protocolrelated headers footers
+data processing communicating osicompatible devices done
+
+data transmitted composed topmost layer transmitting device layer protocol data unit
+passed layer known service data unit
+layer concatenated header footer producing layer passed layer
+process continues reaching lowermost level data transmitted receiving device
+receiving device data passed lowest highest layer series sdus successively stripped layers header footer reaching topmost layer last data consumed
+
+orthogonal aspects management security involve layers itut x800 recommendation4 services aimed improving triad confidentiality integrity availability transmitted data practice availability communication service determined interaction network design network management protocols appropriate choices needed protect denial servicecitation needed
+layer physical layeredit
+
+
+
+
+
+
+section need rewritten entirely comply wikipedias quality standards help discussion page contain suggestions august 2017
+
+
+
+physical layer defines electrical physical specifications data connection defines relationship device physical transmission medium example electrical cable optical fiber cable radio frequency link includes layout pins voltages line impedance cable specifications signal timing similar characteristics connected devices frequency wireless devices responsible transmission reception unstructured data physical medium rate control done physical layer define transmission mode simplex half duplex full duplex defines network topology mesh ring common
+physical layer layer lowlevel networking equipment hubs cabling repeaters physical layer never concerned protocols higherlayer items examples hardware layer network adapters repeaters network hubs modems fiber media converters
+layer data link layeredit
+data link layer provides nodetonode data transfer—a link directly connected nodes detects possibly corrects errors occur physical layer defines protocol establish terminate connection physically connected devices also defines protocol flow control
+ieee divides data link layer sublayers5
+
+medium access control layer responsible controlling devices network gain access medium permission transmit data
+logical link control layer responsible identifying encapsulating network layer protocols controls error checking frame synchronization
+
+layers ieee networks 8023 ethernet 80211 wifi 802154 zigbee operate data link layer
+pointtopoint protocol data link layer protocol operate several different physical layers synchronous asynchronous serial lines
+itut standard provides highspeed local area networking existing wires power lines phone lines coaxial cables includes complete data link layer provides error correction flow control means selectiverepeat slidingwindow protocol
+layer network layeredit
+network layer provides functional procedural means transferring variable length data sequences called datagrams node another connected different networks network medium many nodes connected every node address permits nodes connected transfer messages nodes connected merely providing content message address destination node letting network find deliver message destination node possibly routing intermediate nodes message large transmitted node another data link layer nodes network implement message delivery splitting message several fragments node sending fragments independently reassembling fragments another node need report delivery errors
+message delivery network layer necessarily guaranteed reliable network layer protocol provide reliable message delivery need
+number layermanagement protocols function defined management annex 74984 belong network layer include routing protocols multicast group management networklayer information error networklayer address assignment function payload makes belong network layer protocol carries them6
+layer transport layeredit
+transport layer provides functional procedural means transferring variablelength data sequences source destination host networks maintaining quality service functions
+example transportlayer protocol standard internet stack transmission control protocol usually built internet protocol
+transport layer controls reliability given link flow control segmentationdesegmentation error control protocols state connectionoriented means transport layer keep track segments retransmit fail transport layer also provides acknowledgement successful data transmission sends next data errors occurred transport layer creates packets message received application layer packetizing process dividing long message smaller messages
+defines five classes connectionmode transport protocols ranging class also known provides fewest features class designed less reliable networks similar internet class contains error recovery designed network layers provide errorfree connections class closest although contains functions graceful close assigns session layer also connectionmode protocol classes provide expedited data preservation record boundaries detailed characteristics tp04 classes shown following table7
+
+
+feature name
+
+
+
+
+
+
+
+connectionoriented network
+
+
+
+
+
+
+
+connectionless network
+
+
+
+
+
+
+
+concatenation separation
+
+
+
+
+
+
+
+segmentation reassembly
+
+
+
+
+
+
+
+error recovery
+
+
+
+
+
+
+
+reinitiate connectiona
+
+
+
+
+
+
+
+multiplexing demultiplexing single virtual circuit
+
+
+
+
+
+
+
+explicit flow control
+
+
+
+
+
+
+
+retransmission timeout
+
+
+
+
+
+
+
+reliable transport service
+
+
+
+
+
+
+
+excessive number pdus unacknowledged
+
+
+easy visualize transport layer compare post office deals dispatch classification mail parcels sent remember however post office manages outer envelope mail higher layers equivalent double envelopes cryptographic presentation services read addressee roughly speaking tunneling protocols operate transport layer carrying nonip protocols ibms novells network endtoend encryption ipsec generic routing encapsulation might seem networklayer protocol encapsulation payload takes place endpoint becomes closer transport protocol uses headers contains complete frames packets deliver endpoint l2tp carries frames inside transport packet
+although developed reference model strictly conforming definition transport layer transmission control protocol user datagram protocol internet protocol suite commonly categorized layer4 protocols within
+layer session layeredit
+session layer controls dialogues connections computers establishes manages terminates connections local remote application provides fullduplex halfduplex simplex operation establishes checkpointing adjournment termination restart procedures model made layer responsible graceful close sessions property transmission control protocol also session checkpointing recovery usually used internet protocol suite session layer commonly implemented explicitly application environments remote procedure calls
+layer presentation layeredit
+presentation layer establishes context applicationlayer entities applicationlayer entities different syntax semantics presentation service provides mapping mapping available presentation service data units encapsulated session protocol data units passed protocol stack
+layer provides independence data representation translating application network formats presentation layer transforms data form application accepts layer formats data sent across network sometimes called syntax layer8 presentation layer include compression functions9 presentation layer negotiates transfer syntax
+original presentation structure used basic encoding rules abstract syntax notation asn1 capabilities converting ebcdiccoded text file asciicoded file serialization objects data structures asn1 effectively makes application protocol invariant respect syntax
+layer application layeredit
+application layer layer closest user means application layer user interact directly software application layer interacts software applications implement communicating component application programs fall outside scope model applicationlayer functions typically include identifying communication partners determining resource availability synchronizing communication identifying communication partners application layer determines identity availability communication partners application data transmit important distinction application layer distinction applicationentity application example reservation website might applicationentities using http communicate users remote database protocol record reservations neither protocols anything reservations logic application application layer means determine availability resources network
+crosslayer functionsedit
+crosslayer functions services tied given layer affect layer examples include following
+
+security service telecommunication4 defined itut x800 recommendation
+management functions functions permit configure instantiate monitor terminate communications entities specific applicationlayer protocol common management information protocol cmip corresponding service common management information service cmis need interact every layer order deal instances
+multiprotocol label switching mpls mpls protocols divides network layer roles subnetwork access subnetwork dependent convergence subnetwork independent convergence designed provide unified datacarrying service circuitbased clients packetswitching clients provide datagrambased service model used carry many different kinds traffic including packets well native sonet ethernet frames sometimes sees reference layer fiction create unfamiliar model 8648 internal organization network layer particular
+determines mapping ipv4 address underlying address translation function ipv4 address would layer implementation protocol decodes delivers userdata iplayer ethernet multiaccess media device sending ethernet segment needs know address maps address
+dhcp dhcp assigns ipv4 addresses systems joining network means derive obtain ipv4 address ethernet address
+domain name service application layer service used look address given domain name reply received server possible form layer connection flow desired host connections layer
+cross scheduling essential wireless networks time varying nature wireless channels scheduling packet transmission favorable channel conditions requires layer obtain channel state information layer network throughput significantly improved energy waste avoided10
+
+interfacesedit
+neither reference model protocols specify programming interfaces deliberately abstract service specifications protocol specifications precisely define interfaces different computers software interfaces inside computers known network sockets implementationspecific
+example microsoft windows winsock unixs berkeley sockets system transport layer interface interfaces applications layer transport layer ndis interfaces media layer network protocol layer
+interface standards except physical layer media approximate implementations service specifications
+examplesedit
+
+
+layer
+protocols
+tcpip protocols
+signaling
+system
+appletalk
+
+
+umts
+miscellaneous examples
+
+
+
+name
+
+
+
+application
+
+
+
+ftam
+x400
+x500
+
+rose
+rtse
+acse12
+cmip13
+
+
+
+
+
+
+
+inap
+
+tcap
+isup
+
+
+
+
+
+
+
+
+
+rtmp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+appc
+
+
+
+
+
+
+
+
+modbus
+
+
+
+
+
+
+presentation
+
+
+
+isoiec 8823
+x226
+
+isoiec 95761
+x236
+
+
+
+
+
+
+mime
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ascii
+ebcdic
+midi
+mpeg
+
+
+
+
+
+
+session
+
+
+
+isoiec 8327
+x225
+
+isoiec 95481
+x235
+
+
+
+sockets session establishment pptp
+
+
+
+
+
+adsp
+
+
+
+
+
+
+
+nwlink
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+named pipes
+netbios
+
+half duplex
+full duplex
+simplex
+
+socks
+
+
+
+
+
+
+transport
+
+
+
+isoiec 8073
+
+
+
+
+x224
+isoiec 8602
+x234
+
+
+
+
+
+
+
+
+sctp
+dccp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+network
+
+
+
+isoiec 8208
+
+
+isoiec 8878
+x223
+isoiec 84731
+clnp x233
+isoiec 10589
+isis
+
+
+
+
+
+
+
+ipsec
+icmp
+igmp
+ospf
+
+
+
+
+
+
+
+sccp
+
+
+
+
+tokentalk ethertalk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+q931
+
+isis
+
+
+
+
+
+
+data link
+
+
+
+isoiec 7666
+lapb
+
+token
+x222
+isoiec 88022
+type
+
+
+
+
+
+
+
+sbtv
+slip
+
+
+
+
+
+
+
+q710
+
+
+
+
+
+
+localtalk
+
+
+
+
+
+ieee 8023 framing
+ethernet framing
+
+
+
+sdlc
+
+
+
+
+
+
+pdcp15
+
+
+
+
+
+
+
+
+
+
+
+stuffing
+
+
+docsis
+fddi
+
+fibre channel
+frame relay
+
+hdlc
+ieee 8023 ethernet
+ieee 80211abgn ethernet
+ieee 8021q vlan
+
+itut
+linux interface bonding
+
+q921
+token ring
+
+
+
+
+
+
+physical
+
+
+
+x21bis
+eiatia232
+eiatia449
+eia530
+g70314
+
+
+
+
+
+
+
+
+q710
+
+
+
+
+
+
+rs232
+rs422
+phonenet
+
+
+
+
+
+
+
+twinax
+
+
+
+umts interfaces
+
+
+
+rs232
+full duplex
+rj45 8p8c
+
+
+i430
+i431
+
+
+10baset
+100basetx
+1000baset
+pots
+sonet
+
+
+80211abgn
+itut
+
+docsis
+dwdm
+
+
+
+
+
+
+comparison tcpip modeledit
+design protocols tcpip model internet concern strict hierarchical encapsulation layering16 3439 contains section entitled layering considered harmful17 tcpip recognize four broad layers functionality derived operating scope contained protocols scope software application endtoend transport connection internetworking range scope direct links nodes local network18
+despite using different concept layering model layers often compared layering scheme following
+
+internet application layer includes application layer presentation layer session layer
+endtoend transport layer includes graceful close function session layer well transport layer
+internetworking layer internet layer subset network layer
+link layer includes data link layer sometimes physical layers well protocols osis network layer
+
+comparisons based original sevenlayer protocol model defined 7498 rather refinements things internal organization network layer documentcitation needed
+presumably strict layering model usually described present contradictions tcpip permissible protocol usage follow hierarchy implied layered model examples exist routing protocols example ospf description tunneling protocols provide link layer application although tunnel host protocol might well transport even applicationlayer protocol rightcitation needed
+alsoedit
+
+hierarchical internetworking model
+management plane
+layer
+protocol stack
+service layer
+protocol suite
+list information technology acronyms
+systems network architecture
+internet protocol suite
+
+referencesedit
+
+
+itut xseries recommendations
+publicly available standards standardsisoorg 20100730 retrieved 20100911
+models seven layers defined functions explained microsoft support retrieved 20141228
+itut recommendataion x800 0391 security architecture open systems interconnection ccitt applications retrieved august 2015
+description stations ieee 8022014 ieee standard local metropolitan area networks overview architecture ieee
+international organization standardization 19891115 isoiec 749841989 information technology open systems interconnection basic reference model naming addressing standards maintenance portal central secretariat retrieved 20150817
+itut recommendation x224 111995 isoiec 8073 open systems interconnection protocol providing connectionmode transport service
+grigonis richard 2000 computer telephony encyclopaedia isbn 9781578200450
+itut x200 information technology open systems interconnection basic reference model basic model
+miao guowang song guocong 2014 energy spectrum efficient wireless network design cambridge university press isbn 1107039886
+itut recommendation q1400 031993 architecture framework development signaling protocols using concepts
+x227 8650 x217 8649
+x700 series recommendations itut particular x711 9596
+internetworking technology handbook internetworking basics internetworking cisco january 2014 retrieved august 2015
+3gpp specification 36300 3gpporg retrieved august 2015
+3439
+3439 internet architectural guidelines philosophy ietforg retrieved august 2015
+walter goralski illustrated network tcpip works modern network morgan kaufmann isbn 9780123745415
+
+
+external linksedit
+
+
+
+wikimedia commons media related model
+
+
+
+microsoft knowledge base models seven layers defined functions explained
+isoiec standard 749811994 document inside archive requires http cookies order accept licence agreement
+itut x200 contents
+information change architectures flow charts powered google engine infchgappspotcom reference model beluga graph data units groups layers archived original 20120526
+zimmermann hubert april 1980 reference model model architecture open systems interconnection ieee transactions communications 425–432 citeseerx 10111369497 doi101109tcom19801094702
+cisco systems internetworking technology handbook
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleosimodeloldid817932098 categories modeliso standardsitut recommendationsreference modelscomputerrelated introductions 1979hidden categories pages using magic linksall articles unsourced statementsarticles unsourced statements april 2013wikipedia articles needing rewrite august 2017all articles needing rewritearticles unsourced statements november 2013

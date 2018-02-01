@@ -1,0 +1,1087 @@
+
+
+internet protocol suite
+
+
+application layer
+
+
+
+
+
+dhcp
+
+
+http
+imap
+ldap
+mgcp
+mqtt
+nntp
+
+
+oncrpc
+
+rtsp
+
+
+smtp
+snmp
+
+telnet
+tlsssl
+xmpp
+
+
+
+
+
+transport layer
+
+
+
+
+
+
+dccp
+sctp
+rsvp
+
+
+
+
+
+internet layer
+
+
+
+
+
+
+ipv4
+ipv6
+
+
+icmp
+icmpv6
+
+igmp
+ipsec
+
+
+
+
+
+link layer
+
+
+
+
+
+
+ospf
+tunnels
+
+l2tp
+
+
+
+
+
+ethernet
+
+isdn
+fddi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hypertext transfer protocol http application protocol distributed collaborative hypermedia information systems1 http foundation data communication world wide
+hypertext structured text uses logical links hyperlinks nodes containing text http protocol exchange transfer hypertext
+development http initiated bernerslee cern 1989 standards development http coordinated internet engineering task force ietf world wide consortium culminating publication series requests comments rfcs first definition http11 version http common occurred 2068 1997 although obsoleted 2616 1999 7230 family rfcs 2014
+later version successor http2 standardized 2015 supported major servers browsers using alpn extension2 newer required3
+
+
+
+contents
+
+
+technical overview
+history
+http session
+http authentication
+
+authentication realms
+
+
+request methods
+
+safe methods
+idempotent methods applications
+security
+summary table
+
+
+status codes
+persistent connections
+http session state
+encrypted connections
+message format
+
+request message
+response message
+example session
+
+1031 client request
+1032 server response
+
+
+
+
+similar protocols
+also
+notes
+references
+external links
+
+
+
+technical overviewedit
+
+
+
+
+beginning http scheme domain name label
+
+
+http functions request–response protocol client–server computing model browser example client application running computer hosting website server client submits http request message server server provides resources html files content performs functions behalf client returns response message client response contains completion status information request also contain requested content message body
+browser example user agent types user agent include indexing software used search providers crawlers voice browsers mobile apps software accesses consumes displays content
+http designed permit intermediate network elements improve enable communications clients servers hightraffic websites often benefit cache servers deliver content behalf upstream servers improve response time browsers cache previously accessed resources reuse possible reduce network traffic http proxy servers private network boundaries facilitate communication clients without globally routable address relaying messages external servers
+http application layer protocol designed within framework internet protocol suite definition presumes underlying reliable transport layer protocol4 transmission control protocol commonly used however http adapted unreliable protocols user datagram protocol example httpu simple service discovery protocol ssdp
+http resources identified located network uniform resource locators urls using uniform resource identifiers uris schemes http https uris hyperlinks html documents form interlinked hypertext documents
+http11 revision original http http10 http10 separate connection server made every resource request http11 reuse connection multiple times download images scripts stylesheets page delivered http11 communications therefore experience less latency establishment connections presents considerable overhead
+historyedit
+
+
+
+
+bernerslee
+
+
+term hypertext coined nelson 1965 xanadu project turn inspired vannevar bushs 1930s vision microfilmbased information retrieval management memex system described 1945 essay think bernerslee team cern credited inventing original http along html associated technology server textbased browser bernerslee first proposed worldwideweb project 1989—now known world wide first version protocol method namely would request page server5 response server always html page6
+first documented version http http 1991 dave raggett http working group http 1995 wanted expand protocol extended operations extended negotiation richer metainformation tied security protocol became efficient adding additional methods header fields78 1945 officially introduced recognized http 1996
+http planned publish standards december 19959 support prestandard http11 based developing 2068 called httpng rapidly adopted major browser developers early 1996 march 1996 prestandard http11 supported arena10 netscape 2010 netscape navigator gold 20110 mosaic 27citation needed lynx 25citation needed internet explorer 20citation needed enduser adoption browsers rapid march 1996 hosting company reported browsers internet http compliantcitation needed hosting company reported june 1996 browsers accessing servers http11 compliant11 http11 standard defined 2068 officially released january 1997 improvements updates http11 standard released 2616 june 1999
+2007 httpbis working group formed part revise clarify http11 specification june 2014 released updated sixpart specification obsoleting 2616
+
+7230 http11 message syntax routing
+7231 http11 semantics content
+7232 http11 conditional requests
+7233 http11 range requests
+7234 http11 caching
+7235 http11 authentication
+
+http2 published 7540 2015
+
+
+year
+http version
+
+
+1991
+
+
+
+1996
+
+
+
+1997
+
+
+
+2015
+
+
+
+http sessionedit
+http session sequence network requestresponse transactions http client initiates request establishing transmission control protocol connection particular port server typically port occasionally port 8080 list port numbers http server listening port waits clients request message upon receiving request server sends back status line http11 message body message typically requested resource although error message information also returned1
+http authenticationedit
+http provides multiple authentication schemes basic access authentication digest access authentication operate challengeresponse mechanism whereby server identifies issues challenge serving requested content
+http provides general framework access control authentication extensible challengeresponse authentication schemes used server challenge client request client provide authentication information12
+authentication realmsedit
+http authentication specification also provides arbitrary implementation specific construct dividing resources common given root realm value string present combined canonical root form protection space component challenge effect allows server define separate authentication scopes root uri12
+request methodsedit
+
+
+
+
+http request made using telnet request message response header section response body highlighted
+
+
+http defines methods sometimes referred verbs indicate desired action performed identified resource resource represents whether preexisting data data generated dynamically depends implementation server often resource corresponds file output executable residing server http10 specification13 defined post head methods http11 specification14 added methods options delete trace connect specified documents semantics well known depended client method server configured support combination methods method unknown intermediate treated unsafe nonidempotent method limit number methods defined allows future methods specified without breaking existing infrastructure example webdav defined methods 5789 specified patch method
+main article list http header fields
+
+
+method requests representation specified resource requests using retrieve data effect also true http methods1 published guidance principles distinction saying application design informed principles also relevant limitations15 safe methods
+head
+head method asks response identical request without response body useful retrieving metainformation written response headers without transport entire content
+post
+post method requests server accept entity enclosed request subordinate resource identified data posted might example annotation existing resources message bulletin board newsgroup mailing list comment thread block data result submitting form datahandling process item database16
+
+method requests enclosed entity stored supplied refers already existing resource modified point existing resource server create resource uri17
+delete
+delete method deletes specified resource
+trace
+trace method echoes received request client changes additions made intermediate servers
+options
+options method returns http methods server supports specified used check functionality server requesting instead specific resource
+connect
+connect method converts request connection transparent tcpip tunnel usually facilitate sslencrypted communication https unencrypted http proxy1920 http connect tunneling
+patch
+patch method applies partial modifications resource21
+
+generalpurpose http servers required implement least head methods22 whenever possible also options methodcitation needed
+safe methodsedit
+methods example head options trace convention defined safe means intended information retrieval change state server words side effects beyond relatively harmless effects logging caching serving banner advertisements incrementing counter making arbitrary requests without regard context applications state therefore considered safe however mandated standard explicitly acknowledged cannot guaranteed
+contrast methods post delete patch intended actions cause side effects either server external side effects financial transactions transmission email methods therefore usually used conforming robots crawlers conform tend make requests without regard context consequences
+despite prescribed safety requests practice handling server technically limited therefore careless deliberate programming cause nontrivial changes server discouraged cause problems caching search engines automated agents make unintended changes server example website might allow deletion resource httpexamplecomarticle1234delete arbitrarily fetched even using would simply delete article23
+example occurring practice shortlived google accelerator beta prefetched arbitrary urls page user viewing causing records automatically altered deleted masse beta suspended weeks first release following widespread criticism2423
+idempotent methods applicationsedit
+methods delete defined idempotent meaning multiple identical requests effect single request note idempotence refers state system request completed action server takes deleting record response code returns different subsequent requests system state every timecitation needed methods head options trace prescribed safe also idempotent http stateless protocol1
+contrast post method necessarily idempotent therefore sending identical post request multiple times affect state cause side effects financial transactions cases desirable cases could accident user realize action result sending another request receive adequate feedback first request successful browsers show alert dialog boxes warn users cases reloading page resubmit post request generally application handle cases post request submitted
+note whether method idempotent enforced protocol server perfectly possible write application example database insert nonidempotent action triggered request ignoring recommendation however result undesirable consequences user agent assumes repeating request safe isnt
+securityedit
+trace method used part class attacks known crosssite tracing reason common security advice disabled server configuration25 microsoft supports proprietary track method behaves similarly likewise recommended disabled25
+summary tableedit
+
+
+http method
+
+request body
+response body
+safe
+idempotent
+cacheable
+
+
+
+7231
+optional
+
+
+
+
+
+
+head
+7231
+
+
+
+
+
+
+
+post
+7231
+
+
+
+
+
+
+
+
+7231
+
+
+
+
+
+
+
+delete
+7231
+
+
+
+
+
+
+
+connect
+7231
+
+
+
+
+
+
+
+options
+7231
+optional
+
+
+
+
+
+
+trace
+7231
+
+
+
+
+
+
+
+patch
+5789
+
+
+
+
+
+
+
+status codesedit
+also list http status codes
+http10 since first line http response called status line includes numeric status code textual reason phrase found user agent handles response primarily depends code secondarily response header fields custom status codes used since user agent encounters code recognize first digit code determine general class response26
+standard reason phrases recommendations replaced local equivalents developers discretion status code indicated problem user agent might display reason phrase user provide information nature problem standard also allows user agent attempt interpret reason phrase though might unwise since standard explicitly specifies status codes machinereadable reason phrases humanreadable http status code primarily divided five groups better explanation request responses client server named informational successful redirection client error server error
+persistent connectionsedit
+main article http persistent connection
+http09 connection closed single requestresponse pair http11 keepalivemechanism introduced connection could reused request persistent connections reduce request latency perceptibly client need renegotiate 3wayhandshake connection first request sent another positive side effect general connection becomes faster time tcps slowstartmechanism
+version protocol also made bandwidth optimization improvements http10 example http11 introduced chunked transfer encoding allow content persistent connections streamed rather buffered http pipelining reduces time allowing clients send multiple requests waiting response another addition protocol byte serving server transmits portion resource explicitly requested client
+http session stateedit
+http stateless protocol stateless protocol require http server retain information status user duration multiple requests however applications implement states server side sessions using instance http cookies hidden variables within forms
+encrypted connectionsedit
+popular establishing encrypted http connection http secure27 methods establishing encrypted http connection also exist secure hypertext transfer protocol using http11 upgrade header specify upgrade browser support however nearly nonexistent282930
+message formatedit
+client server communicate sending plaintext ascii messages client sends requests server server sends responses
+request messageedit
+request message consists following
+
+request line imageslogopng http11 requests resource called imageslogopng server
+request header fields acceptlanguage
+empty line
+optional message body
+
+request line header fields must crlf carriage return character followed line feed character empty line must consist crlf whitespace31 http11 protocol header fields except host optional
+request line containing path name accepted servers maintain compatibility http clients http10 specification 194532
+response messageedit
+response message consists following
+
+status line includes status code reason message http11 indicates clients request succeeded
+response header fields contenttype texthtml
+empty line
+optional message body
+
+status line header fields must crlf empty line must consist crlf whitespace31 strict requirement crlf relaxed somewhat within message bodies consistent system linebreaks alone33
+example sessionedit
+sample conversation http client http server running wwwexamplecom port mentioned previous sections data sent plaintext ascii encoding using twobyte line ending line
+client requestedit
+
+
+indexhtml http11
+host wwwexamplecom
+
+client request consisting case request line header field followed blank line request ends double newline form carriage return followed line feed host field distinguishes various names sharing single address allowing namebased virtual hosting optional http10 mandatory http11
+server responseedit
+
+
+http11
+date 2005 223834
+contenttype texthtml charsetutf8
+contentencoding utf8
+contentlength
+lastmodified 2003 231155
+server apache1337 unix redhatlinux
+etag 3f80f1b63e1cb03b
+acceptranges bytes
+connection close
+
+html
+head
+titlean example pagetitle
+head
+body
+hello world simple html document
+body
+html
+
+etag entity header field used determine cached version requested resource identical current version resource server contenttype specifies internet media type data conveyed http message contentlength indicates length bytes http11 webserver publishes ability respond requests certain byte ranges document setting field acceptranges bytes useful client needs certain portions34 resource sent server called byte serving connection close sent means server close connection immediately transfer response
+header lines optional contentlength missing length determined ways chunked transfer encoding uses chunk size mark content identity encoding without contentlength reads content socket closed
+contentencoding like gzip used compress transmitted data
+similar protocolsedit
+gopher protocol content delivery protocol displaced http early 1990s spdy protocol alternative http developed google superseded http protocol http2
+alsoedit
+
+
+http
+
+
+
+
+persistence
+compression
+https
+
+
+
+
+request methods
+
+
+
+
+options
+
+head
+post
+
+delete
+trace
+connect
+patch
+
+
+
+
+header fields
+
+
+
+
+cookie
+etag
+location
+http referer
+
+xforwardedfor
+
+
+
+
+status codes
+
+
+
+
+moved permanently
+found
+
+forbidden
+found
+unavailable legal reasons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+basic access authentication
+constrained application protocol semantically similar protocol http used udplike messages targeted devices limited processing capability reuses http internet concepts like internet media type linking 598835
+content negotiation
+curlloader https loading testing opensource software
+digest access authentication
+fiddler software
+http compression
+http2 developed ietfs hypertext transfer protocol httpbis working group36
+httpmplex backwards compatible enhancement http improve page object retrieval time congested networks proposed robert mattson
+https
+list file transfer protocols
+list http header fields
+list http status codes
+representational state transfer rest
+variant object
+waka protocol http replacement proposed fielding
+cache
+websocket
+wireshark
+yxorp reverse proxy http protocol
+
+notesedit
+
+
+fielding gettys james mogul jeffrey nielsen henrik frystyk masinter larry leach paul bernerslee june 1999 hypertext transfer protocol http11 ietf 2616 httpstoolsietforghtmlrfc2616
+7301 transport layer security applicationlayer protocol negotiation extension ietf july 2014
+belshe peon thomson hypertext transfer protocol version features retrieved 20150210
+overall operation 2616 httpstoolsietforghtmlrfc2616section14
+bernerslee hypertext transfer protocol world wide consortium retrieved august 2010
+bernerslee original http defined 1991 world wide consortium retrieved july 2010
+raggett dave dave raggetts world wide consortium retrieved june 2010
+raggett dave bernerslee hypertext transfer protocol working group world wide consortium retrieved september 2010
+raggett dave http plans world wide consortium retrieved september 2010
+simon spero progress httpng world wide consortium retrieved june 2010
+http11 webcomcom glossary entry archived original 20011121 retrieved 20090529
+fielding reschke julian june 2014 hypertext transfer protocol http11 authentication ietf 7235 httpstoolsietforghtmlrfc7235
+bernerslee fielding nielsen henrik frystyk method definitions hypertext transfer protocol http10 ietf 30–32 1945 httpstoolsietforghtmlrfc1945section8
+method definitions 51–57 2616 httpstoolsietforghtmlrfc2616section9
+jacobs 2004 uris addressability http post technical architecture group finding retrieved september 2010
+post 2616 httpstoolsietforghtmlrfc2616section95
+2616 httpstoolsietforghtmlrfc2616section96
+connect hypertext transfer protocol http11 ietf june 1999 2616 httpstoolsietforghtmlrfc2616section99 retrieved february 2014
+khare rohit lawrence scott 2000 upgrading within http11 ietf 2817 httpstoolsietforghtmlrfc2817
+vulnerability note vu150227 http proxy default configurations allow arbitrary connections uscert 20020517 retrieved 20070510
+dusseault lisa snell james march 2010 patch method http ietf 5789 httpstoolsietforghtmlrfc5789
+method 2616 httpstoolsietforghtmlrfc2616section511
+ediger brad 20071221 advanced rails building industrialstrength apps record time oreilly media isbn 0596519729 common mistake action updates resource problem came rails public 2005 google accelerator released
+cantrell christian 20050601 learned google accelerator adobe blogs adobe retrieved 20170718
+cross site tracing owasp retrieved 20160622
+statusline 2616 httpstoolsietforghtmlrfc2616section61
+canavan john 2001 fundamentals networking security norwood artech house 82–83 isbn 9781580531764
+zalewski michal browser security handbook retrieved april 2015
+chromium issue 4527 implement 2817 upgrading within http11 retrieved april 2015
+mozilla 276813 support 2817 upgrade http retrieved april 2015
+http message 2616 httpstoolsietforghtmlrfc2616section4
+apache week http11 090502 apacheweekcom
+canonicalization text defaults 2616 httpstoolsietforghtmlrfc2616section371
+luotonen franks john february 1996 byte range retrieval extension http ietf draftietfhttprangeretrieval00 httpstoolsietforghtmldraftietfhttprangeretrieval00
+nottingham mark october 2010 linking ietf 5988 httpstoolsietforghtmlrfc5988
+hypertext transfer protocol httpbis charter ietf 2012
+
+
+referencesedit
+
+http implemented 1991
+
+external linksedit
+
+
+
+wikimedia commons media related http
+
+
+
+change history http w3org retrieved 20100801 detailed technical history http
+design issues http w3org retrieved 20100801 design issues bernerslee designing protocol
+classic http documents w3org 19980514 retrieved 20100801 list classic documents recounting early protocol history
+http2 website online tester
+
+
+
+
+
+
+
+
+
+
+
+
+semantic
+
+
+
+background
+
+
+
+databases
+hypertext
+internet
+ontologies
+semantic networks
+world wide
+
+
+
+
+
+subtopics
+
+
+
+data
+dataspaces
+hyperdata
+linked data
+rulebased systems
+
+
+
+
+
+applications
+
+
+
+semantic analytics
+semantic broker
+semantic computing
+semantic mapper
+semantic matching
+semantic publishing
+semantic reasoner
+semantic search
+semantic serviceoriented architecture
+semantic wiki
+
+
+
+
+
+related topics
+
+
+
+collective intelligence
+description logic
+folksonomy
+geotagging
+information architecture
+knowledge extraction
+knowledge management
+knowledge representation
+library
+metadata
+mind mapping
+odbc
+references
+topic maps
+
+engineering
+science trust
+
+
+
+
+
+standards
+
+
+
+
+syntax supporting technologies
+
+
+
+http
+
+
+
+
+
+
+
+triples
+rdfxml
+jsonld
+turtle
+trig
+notation3
+ntriples
+trix standard
+
+
+rrid
+sparql
+
+
+
+
+
+
+schemas ontologies rules
+
+
+
+common logic
+
+rdfs
+rule interchange format
+semantic rule language
+alps
+
+
+
+
+
+semantic annotation
+
+
+
+erdf
+grddl
+microdata
+microformats
+rdfa
+sawsdl
+facebook platform
+
+
+
+
+
+common vocabularies
+
+
+
+doap
+dublin core
+foaf
+schemaorg
+sioc
+skos
+
+
+
+
+
+microformat vocabularies
+
+
+
+hatom
+hcalendar
+hcard
+hproduct
+hrecipe
+hresume
+hreview
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+uniform resource identifier schemes
+
+
+
+official
+
+
+
+
+acct
+crid
+data
+file
+
+gopher
+http
+https
+info
+ldap
+mailto
+sips
+
+
+
+viewsource
+wais
+
+
+
+
+
+
+unofficial
+
+
+
+coffee
+ed2k
+feed
+irc6 ircs
+ldaps
+magnet
+ymsgr
+
+
+
+
+
+
+protocol list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+interfaces
+
+
+
+serverside
+
+
+
+
+protocols
+
+
+
+http
+
+scgi
+fcgi
+
+wsrp
+websocket
+
+
+
+
+
+server apis
+
+
+
+nsapi
+asapi
+isapi
+
+java servlet
+
+container
+
+
+owin
+aspnet handler
+python wsgi
+ruby rack
+javascript jsgi
+perl psgi
+wsapi
+portlet
+
+container
+
+
+
+
+
+
+
+apache modules
+
+
+
+modjk
+modlisp
+modmono
+modparrot
+modperl
+modphp
+modproxy
+modpython
+modwsgi
+modruby
+phusion passenger
+
+
+
+
+
+topics
+
+
+
+resource service
+open
+webhook
+application server
+
+comparison
+
+
+scripting
+
+
+
+
+
+
+
+
+clientside
+
+
+
+
+browser apis
+
+
+
+npapi
+
+liveconnect
+xpconnect
+
+
+npruntime
+ppapi
+
+nacl
+
+
+activex
+
+xbap
+webassembly
+
+
+
+
+
+apis
+
+
+
+
+
+
+
+
+audio
+canvas
+cors
+
+events
+
+file
+geolocation
+indexeddb
+
+
+
+video
+webrtc
+websocket
+messaging
+storage
+worker
+xmlhttprequest
+
+
+
+
+
+khronos
+
+
+
+webcl
+webgl
+
+
+
+
+
+others
+
+
+
+gears
+database formerly
+
+
+
+
+
+
+
+
+topics
+
+
+
+ajax dhtml
+mashup
+
+scripting
+
+
+
+
+
+
+
+
+topics
+
+
+
+dynamic page
+open platform
+rich internet application
+application
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh97000529
+44799822
+cb12556450f data
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlehypertexttransferprotocololdid818129359 categories hypertext transfer protocolapplication layer protocolsinternet protocolsnetwork protocolsworld wide webworld wide consortium standardscomputerrelated introductions 1991hidden categories wikipedia pending changes protected pages level 1all articles unsourced statementsarticles unsourced statements september 2010articles unsourced statements august 2010articles unsourced statements august 2008articles unsourced statements october 2016wikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifierspages using magic links

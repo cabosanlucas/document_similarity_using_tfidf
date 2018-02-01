@@ -1,0 +1,795 @@
+
+Amazon Simple Storage Service
+
+
+Type of site
+
+Cloud storage
+
+
+Available in
+English
+
+
+Owner
+Amazon.com
+
+
+Website
+aws.amazon.com/s3/
+
+
+IPv6 support
+Yes
+
+
+Commercial
+Yes
+
+
+Registration
+Required
+
+
+Launched
+March 14, 2006; 11 years ago (2006-03-14)
+
+
+Current status
+Active
+
+
+Amazon S3 (Simple Storage Service) is a web service offered by Amazon Web Services. Amazon S3 provides storage through web services interfaces (REST, SOAP, and BitTorrent).[1] Amazon launched S3 on its fifth publicly available web service[citation needed], in the United States in March 2006[2] and in Europe in November 2007.[3]
+Amazon says that S3 uses the same scalable storage infrastructure that Amazon.com uses to run its own global e-commerce network.[4]
+Amazon S3 is reported to store more than 2 trillion objects as of April 2013[update].[5] This is up from 10 billion as of October 2007,[6] 14 billion in January 2008, 29 billion in October 2008,[7] 52 billion in March 2009,[8] 64 billion objects in August 2009,[9] and 102 billion objects in March 2010.[10] S3 uses include web hosting, image hosting, and storage for backup systems. S3 guarantees 99.9% monthly uptime service-level agreement (SLA),[11] that is, not more than 43 minutes of downtime per month.[12]
+
+
+
+Contents
+
+
+1 Design
+2 Pricing
+3 Hosting entire websites
+4 Notable users
+5 Amazon S3 logs
+6 S3 API and competing services
+7 Amazon S3 tools
+8 Notes
+9 References
+10 External links
+
+
+
+Design[edit]
+
+
+
+
+At AWS Summit 2013 NYC, CTO Werner Vogels announces 2 trillion objects stored in S3.
+
+
+Amazon does not make details of S3's design public, though it clearly manages data with an object storage architecture. According to Amazon, S3's design aims to provide scalability, high availability, and low latency at commodity costs.[citation needed]
+S3 is designed to provide 99.999999999% durability and 99.99% availability of objects over a given year,[13] though there is no service-level agreement for durability.
+S3 stores arbitrary objects (computer files) up to 5 terabytes in size, each accompanied by up to 2 kilobytes of metadata. Objects are organized into buckets (each owned by an Amazon Web Services account), and identified within each bucket by a unique, user-assigned key. Amazon Machine Images (AMIs) which are used in the Elastic Compute Cloud (EC2) can be exported to S3 as bundles.[14]
+Buckets and objects can be created, listed, and retrieved using either a REST-style HTTP interface or a SOAP interface. Additionally, objects can be downloaded using the HTTP GET interface and the BitTorrent protocol.
+Requests are authorized using an access control list associated with each bucket and object.
+Bucket names and keys are chosen so that objects are addressable using HTTP URLs:
+
+http://s3.amazonaws.com/bucket/key
+http://bucket.s3.amazonaws.com/key
+http://bucket/key (where bucket is a DNS CNAME record pointing to bucket.s3.amazonaws.com)
+
+Because objects are accessible by unmodified HTTP clients, S3 can be used to replace significant existing (static) web hosting infrastructure.[15] The Amazon AWS Authentication mechanism allows the bucket owner to create an authenticated URL with time-bounded validity. That is, someone can construct a URL that can be handed off to a third-party for access for a period such as the next 30 minutes, or the next 24 hours.
+Every item in a bucket can also be served up as a BitTorrent feed. The S3 store can act as a seed host for a torrent and any BitTorrent client can retrieve the file. This drastically reduces the bandwidth costs for the download of popular objects. While the use of BitTorrent does reduce bandwidth, AWS does not provide native bandwidth limiting and as such users have no access to automated cost control. This can lead to users on the "free-tier" S3 or small hobby users amassing dramatic bills. AWS representatives have previously stated that such a feature was on the design table from 2006 to 2010[16] but have recently stated the feature is no longer in development.[17]
+A bucket can be configured to save HTTP log information to a sibling bucket; this can be used in later data mining operations.[18]
+Pricing[edit]
+At its inception, Amazon charged end users US$0.15 per gigabyte-month, with additional charges for bandwidth used in sending and receiving data, and a per-request (get or put) charge.[19] On November 1, 2008, pricing moved to tiers where end users storing more than 50 terabytes receive discounted pricing.[7]
+Hosting entire websites[edit]
+Amazon S3 provides options to host static websites with Index document support and error document support.[20] This support was added as a result of user requests dating at least to 2006.[21] For example, suppose that Amazon S3 was configured with CNAME records to host http://subdomain.example.com/. In the past, a visitor to this URL would find only an XML-formatted list of objects instead of a general landing page (e.g., index.html) to accommodate casual visitors. Now, however, websites hosted on S3 may designate a default page to display, and another page to display in the event of a partially invalid URL.
+Notable users[edit]
+Photo hosting service SmugMug has used S3 since April 2006. They experienced a number of initial outages and slowdowns, but after one year they described it as being "considerably more reliable than our own internal storage" and claimed to have saved almost $1 million in storage costs.[22]
+There are various User Mode File System (FUSE)-based file systems for Unix-like operating systems (Linux, etc.) that can be used to mount an S3 bucket as a file system. Note that as the semantics of the S3 file system are not that of a Posix file system, the file system may not behave entirely as expected.[23]
+Apache Hadoop file systems can be hosted on S3, as its requirements of a file system are partially met by S3.[24] As a result, Hadoop can be used to run MapReduce algorithms on EC2 servers, reading data and writing results back to S3.
+Netflix uses Amazon Web Services for their storage and compute operations with S3 being their system of record. Netflix implemented a tool, S3mper,[25] to address the limitations of eventual consistency that Amazon S3 provides.[26] S3mper stores the filesystem metadata: filenames, directory structure and permissions in Amazon DynamoDB.
+reddit is hosted on S3.[27]
+Dropbox,[28] Bitcasa,[29] and Tahoe-LAFS-on-S3,[30] among others, use S3 for online backup and synchronization services.
+Mojang hosts Minecraft game updates and player skins on S3.[31]
+Tumblr, Formspring, and Pinterest host images on S3.
+Swiftype's CEO has mentioned that the company uses S3.[32]
+S3 was used in the past by some enterprises as a long term archiving solution, until Amazon Glacier was released.[citation needed]
+The API has become a popular method for object storage.[33] As a result, more and more applications have been built to natively support the S3 API.[34] This includes applications that write data to AWS S3, as well as to S3-compatible object stores:[35]
+
+
+Type
+Company Name
+Product
+
+
+Client Backup
+Haystack Software LLC
+Arq backup[36]
+
+
+Client Backup
+CloudBerry Lab
+CloudBerry Backup[37]
+
+
+Client Backup
+open-source
+Duplicati[38]
+
+
+Client Backup
+Novosoft LLC
+Handy Backup[39]
+
+
+File Browser
+odrive
+odrive[40]
+
+
+MySQL Backup
+Oracle
+MySQL Enterprise Backup
+
+
+Oracle Database Backup
+Oracle
+Oracle Secure Backup Cloud Manager[41]
+
+
+Server Backup
+Commvault
+Commvault[42]
+
+
+Server Backup
+Veritas
+NetBackup[43]
+
+
+Server Backup
+Asigra
+Asigra Cloud Backup[44]
+
+
+Server Backup
+Rubrik
+Rubrik[45]
+
+
+Cloud Storage
+Wasabi
+Wasabi Hot Storage
+
+
+Cloud Storage Gateway
+CTERA Networks
+C00 Series[46]
+
+
+Cloud Storage Gateway
+Avere
+FXT Series[47]
+
+
+Cloud Storage Gateway
+EMC
+CloudArray[48]
+
+
+Cloud Storage Gateway
+Microsoft
+StorSimple[49]
+
+
+Cloud Storage Gateway
+Nasuni
+NF Series[50]
+
+
+Cloud Storage Gateway
+NetApp
+Altavault[51]
+
+
+Cloud Storage Gateway
+Panzura
+Global File System[52]
+
+
+Sync & Share
+Storage Made Easy
+SME
+
+
+Hybrid Storage
+Cloudian
+Cloudian HyperStore[53]
+
+
+Hybrid Storage
+NooBaa
+NooBaa Storage
+
+
+On-Premises Storage
+Pure Storage
+FlashBlade
+
+
+On-Premises Storage
+Scality
+RING Storage[54]
+
+
+Open Source
+Zenko.io
+Open Source S3 Server[55]
+
+
+Amazon S3 logs[edit]
+Amazon S3 allows users to enable or disable logging. If enabled, the logs are stored on Amazon S3 buckets which can then be analyzed. These logs contain useful information like,
+
+Date / time of access to the user's content
+Protocol used etc.
+HTTP Status
+Turn around time
+
+These logs can be analyzed and managed by using third-party tools such as S3Stat, Cloudlytics, Qloudstat, AWS Stats or Splunk.
+S3 API and competing services[edit]
+The broad adoption of Amazon S3 and related tooling has given rise to competing services based on the S3 API. These services use the standard programming interface; however, they are differentiated by their underlying technologies and supporting business models.[56] A cloud storage standard (like electrical and networking standards) enables competing service providers to design their services and clients using different parts in different ways yet still communicate and provide the following benefits:[57]
+
+Increase competition by providing a set of rules and a level playing field, encouraging market entry by smaller companies which might otherwise be precluded.
+Encourage innovation by cloud storage & tool vendors, and developers because they can focus on improving their own products and services instead of focusing on compatibility.
+Allow economies of scale in implementation (i.e., if a service provider encounters an outage or as clients outgrow their tools and need faster operating systems or tools, they can easily swap out solutions).
+Provide timely solutions for delivering functionality in response to demands of the marketplace (i.e., as business growth in new locations increases demand, clients can easily change or add service providers simply by subscribing to the new service).
+
+Examples of competing S3 compliant storage implementations include:
+
+Pure Storage's FlashBlade
+Minio Object Storage
+NooBaa Hybrid Storage
+Scality RING
+Google Cloud Storage
+Cloudian HyperStore
+IBM Bluemix object storage
+IBM CleverSafe for on-premise Clouds
+NetApp StorageGRID for on-premise Clouds
+Rackspace's Cloud Files
+Openstack Swift
+DDN Web Object Scaler (WOS) for on-premises Cloud storage
+Apache CloudStack
+Connectria's Cloud Storage[58][59]
+Eucalyptus
+Nimbula (acquired by Oracle)
+Riak CS,[60] which implements a subset of the S3 API including REST and ACLs on objects and buckets.
+Ceph with RADOS gateway.[61]
+DigitalOcean Spaces[62]
+
+Amazon S3 tools[edit]
+Amazon S3 provides an API for third-party developers. It describes various API operations, related request and response structures, and error codes.[63]
+Notes[edit]
+
+
+^ Amazon S3, Cloud Computing Storage for Files, Images, Videos. Aws.amazon.com (2006-03-01). Retrieved on 2013-08-09.
+^ "Amazon Web Services Launches "Amazon S3"" (Press release). Amazon.com. 2006-03-14. Retrieved 2015-09-22. 
+^ "Amazon Web Services Offers European Storage for Amazon S3" (Press release). Amazon.com. 2007-11-06. Retrieved 2015-09-22. 
+^ The same data storage infrastructure that Amazon uses to run its own global network of web sites
+^ - Amazon S3 - Two Trillion Objects, 1.1 Million Requests / Second
+^ Vogels, Werner (2008-03-19). "Happy Birthday, Amazon S3!". All Things Distributed. 
+^ a b "Amazon S3 - Busier Than Ever". Amazon.com. 2008-10-08. 
+^ Just a year ago, there were 18 billion objects in S3. As of today there are 52 billion
+^ S3 (Amazon's Simple Storage Service) alone has over 64 billion objects in it.
+^ Brian Lillie of Equinix said that Amazon now is hosting 102 billion objects in S3
+^ Amazon S3 SLA
+^ 60 min/hour * 24 hours in a day * 30 days * 0.1% = 43.2 min
+^ Amazon S3 Protecting Your Data
+^ Starting Websphere in Cloud and saving the data in S3
+^ How to use Amazon S3 for Web Hosting
+^ AWS Developer Forums: Limit my own bandwidth?. Forums.aws.amazon.com. Retrieved on 2013-08-09.
+^ AWS Developer Forums: What is the status on the bill capping. Forums.aws.amazon.com. Retrieved on 2013-08-09.
+^ http://docs.aws.amazon.com/AmazonS3/latest/dev/ServerLogs.html Server Access Logging
+^ "Amazon S3 Pricing". Amazon.com. 2009-02-05. Retrieved 2014-05-02. 
+^ Amazon Simple Storage Service. Docs.amazonwebservices.com. Retrieved on 2013-08-09.
+^ Garnaat, Mitch (19 Nov 2009). "Re: default key or 'default document' - is it possible to specify in S3?". Retrieved 21 Sep 2010. 
+^ "Amazon S3: Show Me the Money". SmugMug Blog. SmugMug. November 10, 2006. 
+^ "Comparison of S3QL and other S3 file systems". Retrieved 2012-06-29. 
+^ "Hadoop Filesystem Specification". 
+^ "S3mper: Consistency in the Cloud". 
+^ "Introduction to Amazon S3". Amazon. Retrieved 28 December 2017. 
+^ "AWS Case Study: reddit". aws.amazon.com. 2015. Retrieved March 18, 2015. 
+^ "Where are my files stored?". November 28, 2010. 
+^ "Bitcasa Legal". May 16, 2013. 
+^ "What is Tahoe-LAFS-on-S3?". August 21, 2012. 
+^ "Minecraft Beta 1.2_02". January 21, 2010. 
+^ "Swiftype Explains Their Cloud Stack". July 1, 2013. 
+^ Lelii, Sonia (23 September 2013). "Amazon S3 API for cloud storage leads pack, for now". TechTarget.com. Retrieved 31 May 2016. 
+^ Evans, Chris (12 January 2016). "Has S3 Become the De-Facto API Standard?". Architecting.it. Retrieved 31 May 2016. 
+^ Leopold, George (July 11, 2017). "Scality Targets Multi-Cloud Data Storage". Datanami news portal. 
+^ Sadun, Erica (6 November 2012). "Arq cloud backup adds low-cost Amazon Glacier support". www.engadget.com. Retrieved 31 May 2016. 
+^ Moran, Joe (1 December 2015). "Data Backup Software Review: CloudBerry Lab Backup 4.5". www.smallbusinesscomputing.com. Retrieved 31 May 2016. 
+^ Sanders, James (4 August 2014). "Securely back up personal files with Duplicati: Q&A with the open source client's creators". www.TechRepublic.com. Retrieved 31 May 2016. 
+^ Handy, Backup (17 April 2017). "Amazon S3 Backup Software for Cloud Backup". www.handybackup.net. Retrieved 12 September 2017. 
+^ Lohnash, Mike (19 June 2015). "Odrive Review: One Folder for All Your Clouds". www.BackupReview.com. Retrieved 31 May 2016. 
+^ "Oracle Database Backup To Cloud: Amazon Simple Storage Service (S3)" (PDF). Oracle.com. Retrieved 31 May 2016. 
+^ "Cloud Storage Support". Commvault.com. Retrieved 31 May 2016. 
+^ "Veritas launches NetBackup 7.7 with emphasis on cloud backup". SearchDataBackup. Retrieved 2016-05-31. 
+^ "Asigra, Veeam remain top users' choice for backup applications". SearchDataBackup. Retrieved 2016-05-31. 
+^ "Startup Rubrik Aiming to Erase Backup, Recovery Software". www.eweek.com. Retrieved 2016-05-31. 
+^ Ibm; Emc; Netapp; Seagate; Hp; Hill, Seagate rolls storage kit for manufacturers down Dot. "CTERA Networks offers up in-cloud server backup". Spectralogic CTO talks up hybrid flash-tape cartridge. Welcome tape robot overlords and backup, CTERA Networks offers up in-cloud server. Retrieved 2016-05-31. 
+^ Mellor, Chris (7 October 2015). "Like a wedding cake: Avere unveils three-tier AWS cloud NAS". TheRegister.com. Retrieved 8 June 2016. 
+^ Armstrong, Adam (28 January 2015). "EMC CloudArray 5.0 Launched". StorageReview.com. Retrieved 8 June 2016. 
+^ Mackie, Kurt (1 June 2015). "Microsoft StorSimple Extends Cloud Support to AWS, OpenStack". RedmondChannelPartner.com. Retrieved 8 June 2016. 
+^ Mellor, Chris (14 May 2015). "Azure gives AWS the blues again in Nasuni cloud storage poll". TheRegister.com. Retrieved 8 June 2016. 
+^ Ramel, David (28 May 2015). "NetApp Introduces AltaVault for Cloud Backup". AWSInsider.net. Retrieved 8 June 2016. 
+^ Knuth, Gabe (26 May 2015). "Panzura explains their Global File System and how they can help you deploy XenDesktop from AWS". Retrieved 7 June 2016 – via BrianMadden.com. 
+^ "Cloudian deploys Amazon S3-compatible on-premises object storage, sold and metered in AWS Marketplace | Cloudian". Cloudian. Retrieved 2016-11-21. 
+^ "Scality RING S3 Connector - Scality". Scality. Retrieved 2017-09-02. 
+^ Armstrong, Adam (11 July 2017). "Scality Releases Zenko A Multi-Cloud Controller". Storage Review. 
+^ Watters, Audrey. "Cloud Community Debates, Is Amazon S3's API the Standard? (And Should It Be?)". SAY Media, Inc. Retrieved 19 December 2012. 
+^ Committee on Standards Workshop Planning, Board on Telecommunications and Computer Applications, Commission on Engineering and Technical Systems, National Research Council (1990). Crossroads of Information Technology Standards. Washington, DC:: The National Academies Press, 1990. pp. 36–37. CS1 maint: Uses authors parameter (link)
+^ "Connectria Cloud Storage - Amazon S3® Compatible Cloud Storage Service". Connectria. Connectria. Retrieved 19 December 2012. 
+^ "Connectria Hosting Launches Cloud Storage Solution". Connectria Hosting. Retrieved 19 December 2012. 
+^ Riak CS. Basho (2013-01-18). Retrieved on 2013-08-09.
+^ Ceph Object Gateway S3 API — Ceph Documentation. Ceph.com. Retrieved on 2013-08-09.
+^ DigitalOcean Spaces API - DigitalOcean Documentation. developers.DigitalOcean.com. Retrieved on 2017-10-30.
+^ Amazon Simple Storage Service Documentation
+
+
+References[edit]
+
+
+"Server Access Logging". 
+"Amazon S3 Developer Guide". 2006-03-01. 
+"Amazon S3 Introduces Storage Pricing Tiers". 2008-10-08. 
+"RightScale Ruby library to access Amazon CloudFront, EC2, S3, SQS, and SDB". 2007-10-27. 
+
+
+External links[edit]
+
+Official website
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Cloud computing
+
+
+
+Applications
+
+
+
+Box
+Google
+
+G Suite
+Docs, Sheets and Slides
+
+
+HP Cloud (closed)
+Microsoft Online
+Rackspace
+Salesforce
+Zoho
+
+
+
+
+
+Platforms
+
+
+
+Alpha7
+Amazon
+AppScale
+Box
+Bluemix
+Cloud Foundry
+Cocaine (PaaS)
+Engine Yard
+eXo Platform
+Helion
+GE Predix
+Google App Engine
+GreenQloud
+Heroku
+Inktank
+Jelastic
+Mendix
+Microsoft Azure
+OutSystems
+openQRM
+OpenShift
+PythonAnywhere
+RightScale
+Force.com
+SAP Cloud Platform
+VMware vCloud Air
+WaveMaker
+
+
+
+
+
+Infrastructure
+
+
+
+Amazon
+Abiquo Enterprise Edition
+CloudStack
+CtrlS
+DigitalOcean
+EMC Atmos
+Eucalyptus
+Fujitsu
+GoGrid
+Google Cloud Platform
+GreenButton
+GreenQloud
+IBM cloud computing
+iland
+Joyent
+Lunacloud
+Nimbula
+Nimbus
+OpenNebula
+OpenStack
+OrionVM
+Rackspace Cloud
+SoftLayer
+Zadara Storage
+libvirt
+libguestfs
+OVirt
+Virtual Machine Manager
+Wakame-vdc
+Virtual Private Cloud OnDemand
+
+
+
+
+
+Technologies
+
+
+
+Cloud database
+Data centers
+Distributed file system for cloud
+Hardware virtualization
+Internet
+Networking
+Security
+Structured storage
+Virtual appliance
+Web APIs
+Virtual private cloud
+
+
+
+
+
+
+
+
+ Category
+ Commons
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Amazon
+
+
+
+People
+
+
+
+
+Current
+
+
+
+Jeff Bezos
+Tony Hsieh
+Werner Vogels
+Gregg Zehr
+
+
+
+
+
+Former
+
+
+
+Rick Dalzell
+Brian McBride
+Ram Shriram
+Tom Szkutak
+Brian Valentine
+Christopher North
+
+
+
+
+
+
+
+
+Facilities
+
+
+
+Doppler
+Day 1
+HQ2
+
+
+
+
+
+Products
+and services
+
+
+
+
+Websites
+
+
+
+A9.com
+AbeBooks
+Amazon.com
+Alexa Internet
+Book Depository
+BookFinder
+China
+Curse
+Digital Photography Review
+Fresh
+Goodreads
+IMDb
+
+Box Office Mojo
+Withoutabox
+
+
+Junglee.com
+Local
+Marketplace
+Payments
+Twitch.tv
+Wireless
+Woot.com
+Zappos
+Souq.com
+
+
+
+
+
+Web services
+
+
+
+AMI
+CloudFront
+DynamoDB
+EBS
+EC2
+MTurk
+Neptune
+Product Advertising API
+RDS
+S3
+SES
+SimpleDB
+SQS
+VPC
+Silk
+Glacier
+Storywriter
+
+
+
+
+
+Digital
+
+
+
+Alexa
+Appstore
+Audible
+ComiXology
+Amazon Drive
+Video
+Prime
+
+Key
+
+
+Kindle Store
+Music
+Reflexive Entertainment
+Fire OS
+Amazon Digital Game Store
+
+
+
+
+
+Devices
+
+
+
+Blink Home
+Cloud Cam
+Dash buttons
+Dash wand
+Echo
+
+Show
+
+
+Kindle
+Kindle Fire
+
+Fire HD
+Fire HDX
+
+
+Fire TV
+
+Stick
+
+
+Fire Phone
+
+
+
+
+
+Technology
+
+
+
+1-Click
+Amazon Game Studios
+Amazon Robotics
+Carbonado
+Dynamo
+Graphiq
+Gurupa
+Lab126
+Double Helix Games
+Obidos
+Liquavista
+
+
+
+
+
+Publishing
+
+
+
+Amazon Publishing
+Amazon Studios
+Breakthrough Novel Award
+Best Books of the Year
+Kindle Direct Publishing
+
+
+
+
+
+Retail
+
+
+
+Amazon Books
+Amazon Go
+Whole Foods Market
+
+
+
+
+
+Logistics
+
+
+
+Amazon Air
+Amazon Prime Air
+
+
+
+
+
+Former
+
+
+
+43 Things
+Askville
+Amapedia
+Amie Street (Songza)
+CDNow
+Diapers.com
+Endless.com
+Lexcycle
+LivingSocial
+LoveFilm
+Mobipocket
+PlanetAll
+Sellaband
+Shelfari
+
+
+
+
+
+
+
+
+Other
+
+
+
+Amazon Light
+ASIN
+Controversies (tax)
+Fishbowl
+Locker
+Perfect 10, Inc. v. Amazon.com, Inc.
+Statistically improbable phrase
+Vine
+List of Amazon brands
+List of Amazon locations
+List of mergers and acquisitions by Amazon
+List of Amazon products and services
+LibraryThing
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Amazon_S3&oldid=817494362"					Categories: Amazon Web ServicesCloud storageFile hostingNetwork file systemsHidden categories: CS1 maint: Uses authors parameterAll articles with unsourced statementsArticles with unsourced statements from June 2017Articles containing potentially dated statements from April 2013All articles containing potentially dated statementsArticles with unsourced statements from August 2016Articles with unsourced statements from June 2013

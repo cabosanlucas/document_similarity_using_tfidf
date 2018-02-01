@@ -1,0 +1,414 @@
+redirects uses disambiguation
+
+
+internet protocol suite
+
+
+application layer
+
+
+
+
+
+dhcp
+
+
+http
+imap
+ldap
+mgcp
+mqtt
+nntp
+
+
+oncrpc
+
+rtsp
+
+
+smtp
+snmp
+
+telnet
+tlsssl
+xmpp
+
+
+
+
+
+transport layer
+
+
+
+
+
+
+dccp
+sctp
+rsvp
+
+
+
+
+
+internet layer
+
+
+
+
+
+
+ipv4
+ipv6
+
+
+icmp
+icmpv6
+
+igmp
+ipsec
+
+
+
+
+
+link layer
+
+
+
+
+
+
+ospf
+tunnels
+
+l2tp
+
+
+
+
+
+ethernet
+
+isdn
+fddi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+file transfer protocol standard network protocol used transfer computer files client server computer network
+built clientserver model architecture uses separate control data connections client server1 users authenticate cleartext signin protocol normally form username password connect anonymously server configured allow secure transmission protects username password encrypts content often secured ssltls ftps file transfer protocol sftp sometimes also used instead technologically different
+first client applications commandline programs developed operating systems graphical user interfaces still shipped windows unix linux operating systems23 many clients automation utilities since developed desktops servers mobile devices hardware incorporated productivity applications page editors
+
+
+
+contents
+
+
+history server
+protocol overview
+
+communication data transfer
+login
+anonymous
+firewall traversal
+differences http
+
+
+browser support
+
+syntax
+
+
+security
+
+
+
+
+derivatives
+
+ftps
+file transfer protocol
+trivial file transfer protocol
+simple file transfer protocol
+
+
+commands
+reply codes
+servers
+also
+references
+reading
+external links
+
+
+
+history serveredit
+original specification file transfer protocol written abhay bhushan published april 1971 1980 predecessor tcpip2 protocol later replaced tcpip version june 1980 october 1985 current specification several proposed standards amend example 1579 february 1994 enables firewallfriendly passive mode 2228 june 1997 proposes security extensions 2428 september 1998 adds support ipv6 defines type passive mode4
+protocol overviewedit
+communication data transferedit
+
+
+
+
+illustration starting passive connection using port
+
+
+active passive mode determines data connection established5 cases client creates control connection random usually unprivileged port server command port
+
+active mode client starts listening incoming data connections server port sends command port inform server port listening server initiates data channel client port server data port
+situations client behind firewall unable accept incoming connections passive mode used mode client uses control connection send pasv command server receives server address server port number server56 client uses open data connection arbitrary client port server address server port number received7
+
+modes updated september 1998 support ipv6 changes introduced passive mode time updating extended passive mode8
+server responds control connection threedigit status codes ascii optional text message example means last command successful numbers represent code response optional text represents humanreadable explanation request need account storing file1 ongoing transfer file data data connection aborted using interrupt message sent control connection
+transferring data network four data representations used234
+
+ascii mode used text data converted needed sending hosts character representation 8bit ascii transmission necessary receiving hosts character representation consequence mode inappropriate files contain data plain text
+image mode commonly called binary mode sending machine sends file byte byte recipient stores bytestream receives image mode support recommended implementations
+ebcdic mode used plain text hosts using ebcdic character
+local mode allows computers identical setups send data proprietary format without need convert ascii
+
+text files different format control record structure options provided features designed facilitate files containing telnet
+data transfer done three modes12
+
+stream mode data sent continuous stream relieving processing rather processing left endoffile indicator needed unless data divided records
+block mode breaks data several blocks block header byte count data field passes tcp4
+compressed mode data compressed using simple algorithm usually runlength encoding
+
+software also implements deflatebased compressed mode sometimes called mode command enables mode described internet draft standardized9
+loginedit
+login uses normal username password scheme granting access2 username sent server using user command password sent using pass command2 sequence unencrypted wire vulnerable network sniffing attack10 information provided client accepted server server send greeting client session commence2 server supports users without providing login credentials server authorize limited access sessions2
+anonymous ftpedit
+host provides service provide anonymous access2 users typically service anonymous lowercase casesensitive servers account prompted user name although users commonly asked send email address instead password3 verification actually performed supplied data11 many hosts whose purpose provide software updates allow anonymous logins3
+firewall traversaledit
+normally transfers data server connect back client port command sent client problematic nats firewalls allow connections internet towards internal hosts12 nats additional complication representation addresses port number port command refer internal hosts address port rather public address port
+approaches solve problem client server pasv command causes data connection established client server12 widely used modern clients another approach alter values port command using applicationlevel gateway purpose12
+differences httpedit
+http essentially fixes bugs made inconvenient many small ephemeral transfers typical pages
+stateful control connection maintains current working directory flags transfer requires secondary connection data transferred passive mode secondary connection client server whereas default active mode connection server client apparent role reversal active mode random port numbers transfers firewalls gateways hard time http stateless multiplexes control data single connection client server wellknown port numbers trivially passes gateways simple firewalls manage
+setting control connection quite slow roundtrip delays sending required commands awaiting responses customary bring control connection hold open multiple file transfers rather drop reestablish session afresh time contrast http originally dropped connection transfer cheap http subsequently gained ability reuse connection multiple transfers conceptual model still independent requests rather session
+transferring data connection control connection idle transfer takes long firewall decide control connection dead stop tracking effectively breaking connection confusing download single http connection idle requests normal expected connections dropped timeout
+browser supportedit
+common browsers retrieve files hosted servers although support protocol extensions ftps313 ftp—rather http—url supplied accessible contents remote server presented manner similar used content fullfeatured client within firefox form extension called fireftp
+syntaxedit
+syntax described 1738 taking form ftpuserpasswordhostporturlpath bracketed parts optional
+example ftppublicftpserversexamplecommydirectorymyfiletxt represents file myfiletxt directory mydirectory server publicftpserversexamplecom resource ftpuser001secretpasswordprivateftpserversexamplecommydirectorymyfiletxt adds specification username password must used access resource
+details specifying username password found browsers documentation firefox14 internet explorer15 default browsers passive pasv mode easily traverses enduser firewalls
+variation existed different browsers treat path resolution cases nonroot home directory user16
+securityedit
+designed secure protocol many security weaknesses17 1999 authors 2577 listed vulnerability following problems
+
+brute force attack
+bounce attack
+packet capture
+port stealing guessing next open port usurping legitimate connection
+spoofing attack
+username enumeration
+
+encrypt traffic transmissions clear text usernames passwords commands data read anyone able perform packet capture sniffing network217 problem common many internet protocol specifications smtp telnet imap designed prior creation encryption mechanisms ssl4
+common solutions problem include
+
+using secure versions insecure protocols ftps instead telnets instead telnet
+using different secure protocol handle file transfer protocol secure copy protocol
+using secure tunnel secure shell virtual private network
+
+sshedit
+practice tunneling normal session secure shell connection17 uses multiple connections unusual tcpip protocol still particularly difficult tunnel many clients attempting tunnel control channel initial clienttoserver connection port protect channel data transferred software either sets connections data channels thus confidentiality integrity protection
+otherwise necessary client software specific knowledge protocol monitor rewrite control channel messages autonomously open packet forwardings data channels software packages support mode include
+
+tectia connectsecure winlinuxunix18 communications securitys software suite
+
+derivativesedit
+ftpsedit
+main article ftps
+explicit ftps extension standard allows clients request sessions encrypted done sending auth command server option allowing denying connections request protocol extension defined 4217 implicit ftps outdated standard required connection specified different ports plain
+file transfer protocoledit
+main article file transfer protocol
+file transfer protocol chronologically second protocols abbreviated sftp transfers files similar command users uses secure shell protocol transfer files unlike encrypts commands data preventing passwords sensitive information transmitted openly network cannot interoperate software
+trivial file transfer protocoledit
+main article trivial file transfer protocol
+trivial file transfer protocol tftp simple lockstep allows client file file onto remote host primary uses early stages booting local area network tftp simple implement tftp lacks security advanced features offered robust file transfer protocols file transfer protocol tftp first standardized 1981 current specification protocol found 1350
+simple file transfer protocoledit
+simple file transfer protocol first protocol abbreviated sftp defined proposed unsecured file transfer protocol level complexity intermediate tftp never widely accepted internet assigned historic status ietf runs port often receives initialism sftp command commands support three types data transmission ascii binary continuous systems word size multiple bits implementation binary continuous protocol also supports login user password hierarchical folders file management including rename delete upload download download overwrite download append
+commandsedit
+main article list commands
+reply codesedit
+main article list server return codes
+summary reply codes returned server codes standardized ietf reply code threedigit value first digit used indicate three possible outcomes success failure indicate error incomplete reply
+
+success reply
+failure reply
+error incomplete reply
+
+second digit defines kind error
+
+syntax replies refer syntax errors
+information replies requests information
+connections replies referring control data connections
+authentication accounting replies login process accounting procedures
+defined
+file system replies relay status codes server file system
+
+third digit reply code used provide additional detail categories defined second digit
+serversedit
+popular open source server implementations
+
+filezilla server windows
+pureftpd unix
+vsftpd unix
+proftpd unix
+
+alsoedit
+
+
+comparison client software
+comparison server software
+curlloader ftps loadingtesting opensource software
+file exchange protocol
+file service protocol
+ftam
+ftpfs
+list file transfer protocols
+list commands
+list server return codes
+list server software
+managed file transfer
+obex
+shared file access
+wrapper
+
+
+referencesedit
+
+
+
+forouzan 2000 tcpip protocol suite delhi india tata mcgrawhill publishing company limited
+kozierok charles 2005 tcpip guide tcpipguidecom
+dean tamara 2010 network guide networks delmar 168–171
+clark 2003 data networks internet west sussex england john wiley sons
+active passive definitive explanation slacksitecom archived original 2011
+parker september 2005 understanding protocol windowsnetworkingcom
+standard file transfer protocol postel reynolds october 1985
+2428 proposed standard extensions ipv6 extended passive mode allman metz ostermann september 1998
+preston january 2005 deflate transmission mode ietf draftprestonftpextdeflate03txt httpstoolsietforghtmldraftprestonftpextdeflate03txt retrieved january 2016
+prince brian organizations retire security security week security week retrieved september 2017
+1635 informational anonymous emtage marine 1994
+gleason mike 2005 file transfer protocol firewallnat ncftpcom
+matthews 2005 computer networking internet protocols action danvers john wiley sons
+accessing servers firefox help supportmozillacom 20120905 retrieved 20130116
+enter site password internet explorer supportmicrosoftcom 20110923 retrieved 20150328 written versions earlier might work newer versions
+jukka “yucca” korpela 19970918 urls communication wwwcstutfijkorpela retrieved 20160106
+securing using nurdletechcom
+access using keys compliance sshcom
+
+
+
+readingedit
+
+command july 1975
+standard file transfer protocol postel reynolds october 1985
+1579 informational firewallfriendly february 1994
+1635 informational anonymous 1994
+1639 operation address records foobar june 1994
+1738 uniform resource locators december 1994
+2228 proposed standard security extensions october 1997
+2389 proposed standard feature negotiation mechanism file transfer protocol august 1998
+2428 proposed standard extensions ipv6 extended passive mode september 1998
+2577 informational security considerations 1999
+2640 proposed standard internationalization file transfer protocol july 1999
+3659 proposed standard extensions hethmon march 2007
+5797 proposed standard command extension registry march 2010
+7151 proposed standard file transfer protocol host command virtual hosts march 2014
+iana commands extensions registry official registry commands extensions
+
+external linksedit
+
+communication networksfile transfer protocol wikibooks
+server online tester authentication encryption mode connectivity
+
+
+
+
+
+
+
+
+
+
+
+
+uniform resource identifier schemes
+
+
+
+official
+
+
+
+
+acct
+crid
+data
+file
+
+gopher
+http
+https
+info
+ldap
+mailto
+sips
+
+
+
+viewsource
+wais
+
+
+
+
+
+
+unofficial
+
+
+
+coffee
+ed2k
+feed
+irc6 ircs
+ldaps
+magnet
+ymsgr
+
+
+
+
+
+
+protocol list
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlefiletransferprotocololdid813112953 categories file transfer protocolapplication layer protocolsclear text protocolscomputerrelated introductions 1971history internetinternet standardsnetwork file transfer protocolsunix networkrelated softwarehidden categories dates august 2016

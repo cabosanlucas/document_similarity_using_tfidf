@@ -1,0 +1,729 @@
+Simple Knowledge Organization System (SKOS) is a W3C recommendation designed for representation of thesauri, classification schemes, taxonomies, subject-heading systems, or any other type of structured controlled vocabulary. SKOS is part of the Semantic Web family of standards built upon RDF and RDFS, and its main objective is to enable easy publication and use of such vocabularies as linked data.
+
+
+
+Contents
+
+
+1 History
+
+1.1 DESIRE II project (1997–2000)
+1.2 LIMBER (1999–2001)
+1.3 SWAD-Europe (2002–2004)
+1.4 Semantic web activity (2004–2005)
+1.5 Development as W3C Recommendation (2006–2009)
+1.6 Formal release (2009)
+1.7 Historical view of components
+
+
+2 Overview
+
+2.1 Element categories
+2.2 Concepts
+2.3 Labels and notations
+2.4 Documentation
+2.5 Semantic relations
+2.6 Mapping
+2.7 Concept collections
+
+
+3 Community and participation
+4 Applications
+5 Tools
+6 Data
+7 Relationships with other standards
+
+7.1 Metamodel
+7.2 Thesaurus standards
+7.3 Other semantic web standards
+
+
+8 See also
+9 References
+10 External links
+
+
+
+History[edit]
+DESIRE II project (1997–2000)[edit]
+The most direct ancestor to SKOS was the RDF Thesaurus work undertaken in the second phase of the EU DESIRE project [1][citation needed]. Motivated by the need to improve the user interface and usability of multi-service browsing and searching,[2] a basic RDF vocabulary for Thesauri was produced. As noted later in the SWAD-Europe workplan, the DESIRE work was adopted and further developed in the SOSIG and LIMBER projects. A version of the DESIRE/SOSIG implementation was described in W3C's QL'98 workshop, motivating early work on RDF rule and query languages: A Query and Inference Service for RDF.[3]
+LIMBER (1999–2001)[edit]
+SKOS built upon the output of the Language Independent Metadata Browsing of European Resources (LIMBER) project funded by the European Community, and part of the Information Society Technologies programme. In the LIMBER project CCLRC further developed an RDF thesaurus interchange format[4] which was demonstrated on the European Language Social Science Thesaurus (ELSST) at the UK Data Archive as a multilingual version of the English language Humanities and Social Science Electronic Thesaurus (HASSET) which was planned to be used by the Council of European Social Science Data Archives CESSDA.
+SWAD-Europe (2002–2004)[edit]
+SKOS as a distinct initiative began in the SWAD-Europe project, bringing together partners from both DESIRE, SOSIG (ILRT) and LIMBER (CCLRC) who had worked with earlier versions of the schema. It was developed in the Thesaurus Activity Work Package, in the Semantic Web Advanced Development for Europe (SWAD-Europe) project.[5] SWAD-Europe was funded by the European Community, and part of the Information Society Technologies programme. The project was designed to support W3C's Semantic Web Activity through research, demonstrators and outreach efforts conducted by the five project partners, ERCIM, the ILRT at Bristol University, HP Labs, CCLRC and Stilo. The first release of SKOS Core and SKOS Mapping were published at the end of 2003, along with other deliverables on RDF encoding of multilingual thesauri[6] and thesaurus mapping.[7]
+Semantic web activity (2004–2005)[edit]
+Following the termination of SWAD-Europe, SKOS effort was supported by the W3C Semantic Web Activity[8] in the framework of the Best Practice and Deployment Working Group.[9] During this period, focus was put both on consolidation of SKOS Core, and development of practical guidelines for porting and publishing thesauri for the Semantic Web.
+Development as W3C Recommendation (2006–2009)[edit]
+The SKOS main published documents — the SKOS Core Guide,[10] the SKOS Core Vocabulary Specification,[11] and the Quick Guide to Publishing a Thesaurus on the Semantic Web[12] — were developed through the W3C Working Draft process. Principal editors of SKOS were Alistair Miles,[13] initially Dan Brickley, and Sean Bechhofer.
+The Semantic Web Deployment Working Group,[14] chartered for two years (May 2006 – April 2008), has put in its charter to push SKOS forward on the W3C Recommendation track. The roadmap projected SKOS as a Candidate Recommendation by the end of 2007, and as a Proposed Recommendation in the first quarter of 2008. The main issues to solve were determining its precise scope of use, and its articulation with other RDF languages and standards used in libraries (such as Dublin Core).[15][16]
+Formal release (2009)[edit]
+On August 18, 2009, W3C released the new standard that builds a bridge between the world of knowledge organization systems – including thesauri, classifications, subject headings, taxonomies, and folksonomies – and the linked data community, bringing benefits to both. Libraries, museums, newspapers, government portals, enterprises, social networking applications, and other communities that manage large collections of books, historical artifacts, news reports, business glossaries, blog entries, and other items can now use SKOS[17] to leverage the power of linked data.
+Historical view of components[edit]
+SKOS was originally designed as a modular and extensible family of languages, organized as SKOS Core, SKOS Mapping, and SKOS Extensions, and a Metamodel. The entire specification is now complete within the namespace http://www.w3.org/2004/02/skos/core#.
+Overview[edit]
+In addition to the reference itself, the SKOS Primer (a W3C Working Group Note) summarizes the Simple Knowledge Organization System.
+The SKOS[18] defines the classes and properties sufficient to represent the common features found in a standard thesaurus. It is based on a concept-centric view of the vocabulary, where primitive objects are not terms, but abstract notions represented by terms. Each SKOS concept is defined as an RDF resource. Each concept can have RDF properties attached, including:
+
+one or more preferred index terms (at most one in each natural language)
+alternative terms or synonyms
+definitions and notes, with specification of their language
+
+Concepts can be organized in hierarchies using broader-narrower relationships, or linked by non-hierarchical (associative) relationships. Concepts can be gathered in concept schemes, to provide consistent and structured sets of concepts, representing whole or part of a controlled vocabulary.
+Element categories[edit]
+The principal element categories of SKOS are concepts, labels, notations, semantic relations, mapping properties, and collections. The associated concepts are listed in the table below.
+
+SKOS Vocabulary Organized by Theme
+
+Concepts
+Labels & Notation
+Documentation
+Semantic Relations
+Mapping Properties
+Collections
+
+
+Concept
+prefLabel
+note
+broader
+broadMatch
+Collection
+
+
+ConceptScheme
+altLabel
+changeNote
+narrower
+narrowMatch
+orderedCollection
+
+
+inScheme
+hiddenLabel
+definition
+related
+relatedMatch
+member
+
+
+hasTopConcept
+notation
+editorialNote
+broaderTransitive
+closeMatch
+memberList
+
+
+topConceptOf
+
+example
+narrowerTransitive
+exactMatch
+
+
+
+
+
+historyNote
+semanticRelation
+mappingRelation
+
+
+
+
+
+scopeNote
+
+
+
+
+
+Concepts[edit]
+The SKOS vocabulary is based on concepts. Concepts are the units of thought—ideas, meanings, or objects and events (instances or categories)—which underlie many knowledge organization systems. As such, concepts exist in the mind as abstract entities which are independent of the terms used to label them. In SKOS, a Concept (based on the OWL Class) is used to represent items in a knowledge organization system (terms, ideas, meanings, etc.) or such a system's conceptual or organizational structure.
+A ConceptScheme is analogous to a vocabulary, thesaurus, or other way of organizing concepts. SKOS does not constrain a concept to be within a particular scheme, nor does it provide any way to declare a complete scheme—there is no way to say the scheme consists only of certain members. A topConcept is (one of) the upper concept(s) in a hierarchical scheme.
+Labels and notations[edit]
+Each SKOS label is a string of Unicode characters, optionally with language tags, that are associated with a concept. The prefLabel is the preferred human-readable string (maximum one per language tag), while altLabel can be used for alternative strings, and hiddenLabel can be used for strings that are useful to associate, but not meant for humans to read.
+A SKOS notation is similar to a label, but the literal string has a datatype, like integer, float, or date; the datatype can even be made up (see 6.5.1 Notations, Typed Literals and Datatypes in the SKOS Reference). The notation is useful for classification codes and other strings not recognizable as words.
+Documentation[edit]
+The Documentation or Note properties provide basic information about SKOS concepts. All the concepts are considered a type of skos:note; they just provide more specific kinds of information. The property definition, for example, should contain a full description of the subject resource. More specific note types can be defined in a SKOS extension, if desired. A query for <A> skos:note ? will obtain all the notes about <A>, including definitions, examples, and scope, history and change, and editorial documentation.
+Any of these SKOS Documentation properties can refer to several object types: a literal (e.g., a string); a resource node that has its own properties; or a reference to another document, for example using a URI. This enables the documentation to have its own metadata, like creator and creation date.
+Specific guidance on SKOS documentation properties can be found in the SKOS Primer Documentary Notes.
+Semantic relations[edit]
+SKOS semantic relations are intended to provide ways to declare relationships between concepts within a concept scheme. While there are no restrictions precluding their use with two concepts from separate schemes, this is discouraged because it is likely to overstate what can be known about the two schemes, and perhaps link them inappropriately.
+The property related simply makes an association relationship between two concepts; no hierarchy or generality relation is implied. The properties broader and narrower are used to assert a direct hierarchical link between two concepts. The meaning may be unexpected; the relation <A> broader <B> means that A has a broader concept called B—hence that B is broader than A. Narrower follows in the same pattern.
+While the casual reader might expect broader and narrower to be transitive properties, SKOS does not declare them as such. Rather, the properties broaderTransitive and narrowerTransitive are defined as transitive super-properties of broader and narrower. These super-properties are (by convention) not used in declarative SKOS statements. Instead, when a broader or narrower relation is used in a triple, the corresponding transitive super-property also holds; and transitive relations can be inferred (and queried) using these super-properties.
+Mapping[edit]
+SKOS mapping properties are intended to express matching (exact or fuzzy) of concepts from one concept scheme to another, and by convention are used only to connect concepts from different schemes. The concepts relatedMatch, broadMatch, and narrowMatch are a convenience, with the same meaning as the semantic properties related, broader, and narrower. (See previous section regarding the meanings of broader and narrower.)
+The property relatedMatch makes a simple associative relationship between two concepts. When concepts are so closely related that they can generally be used interchangeably, exactMatch is the appropriate property (exactMatch relations are transitive, unlike any of the other Match relations). The closeMatch property that indicates concepts that only sometimes can be used interchangeably, and so it is not a transitive property.
+Concept collections[edit]
+The concept collections (Collection, orderedCollection) are labeled and/or ordered (orderedCollection) groups of SKOS concepts. Collections can be nested, and can have defined URIs or not (which is known as a blank node). Neither a SKOS Concept nor a ConceptScheme may be a Collection, nor vice versa; and SKOS semantic relations can only be used with a Concept (not a Collection). The items in a Collection can not be connected to other SKOS Concepts through the Collection node; individual relations must be defined to each Concept in the Collection.
+Community and participation[edit]
+All development work is carried out via the mailing list which is a completely open and publicly archived[19] mailing list devoted to discussion of issues relating to knowledge organisation systems, information retrieval and the Semantic Web. Anyone may participate informally in the development of SKOS by joining the discussions on public-esw-thes@w3.org – informal participation is warmly welcomed. Anyone who works for a W3C member organisation may formally participate in the development process by joining the Semantic Web Deployment Working Group – this entitles individuals to edit specifications and to vote on publication decisions.
+Applications[edit]
+
+Some important vocabularies have been migrated into SKOS format and are available in the public domain, including EuroVoc, AGROVOC and GEMET. Library of Congress Subject Headings (LCSH) also support the SKOS format.[20]
+SKOS has been used as the language for the thesauri used in the SWED Environmental Directory[21] developed in the SWAD-Europe project framework.
+A way to convert thesauri to SKOS,[22] with examples including the MeSH thesaurus, has been outlined by the Vrije Universiteit Amsterdam.
+Subject classification using DITA and SKOS has been developed by IBM.[23]
+SKOS is used to represent geographical feature types in the GeoNames ontology.
+
+Tools[edit]
+
+ThesauRex is an open-source, web-based SKOS editor. It is limited to broader/narrower relations among concepts and offers tree-based interaction and with thesauri and drag&drop creation of new thesauri based on a master thesaurus.
+Mondeca's Intelligent Topic Manager (ITM) is a full-featured SKOS-compliant solution for managing taxonomies, thesauri, and other controlled vocabularies.
+Opentheso is an open source web-based thesaurus management system compliant with ISO 25964:2011 and ISO 25964-2:2012 standards (Information and Documentation. Thesauri and Interoperability with other vocabularies). It offers SKOS and csv exports and imports, REST and SOAP web services and manages persistent identifiers (ARK). It has been developed at the French National Center for Scientific Research since 2007. It is currently used by the French archaeological libraries network Frantiq and by research teams and by the Hospices Civils de Lyon as a collaborative thesaurus management tool. It can be downloaded on github.
+OpenSKOS is a web service-based approach to publication, management and use of vocabulary data that can be mapped to SKOS. Its source code is available on GitHub. It includes CRUD like RESTful operations on SKOS concepts and a web-based editor for searching and editing concepts. It was developed by Picturae and funded by the Dutch heritage fond CATCHPlus.
+TemaTres Vocabulary Server[24] is an open source web-based vocabulary server for managing controlled vocabularies, taxonomies and thesauruses. Tematres provides complete export of vocabularies into SKOS-core in addition to Zthes, TopicMaps, MADS, Dublin Core, VDEX, BS 8723, SiteMap, SQL and text.
+ThManager[25] is a Java open-source application for creating and visualizing SKOS vocabularies.
+The W3C provides an experimental on-line validation service.[26]
+Vocbench[27] is an open-source, web-based RDF/OWL/SKOS/SKOS-XL editor developed by a collaboration between the Food and Agriculture Organization (FAO) of the United Nations, the University of Rome Tor Vergata and the Malaysian research centre MIMOS. It supports the FAO’s multilingual agricultural thesaurus AGROVOC, among other resources of FAO and the European Community.
+SKOS files can also be imported and edited in RDF-OWL editors such as Protégé, SKOS Shuttle and TopBraid Composer.
+SKOS synonyms can be transformed from WordNet RDF format using an XSLT style sheet; see W3C RDF
+PoolParty[28] is a commercial-quality thesaurus management system and a SKOS editor for the Semantic Web including text analysis functionalities and Linked Data capabilities.
+qSKOS[29] is an open-source tool for performing quality assessment of SKOS vocabularies by checking against a quality issue catalog.
+SKOSEd[30] is an open source plug-in for the Protégé 4[31] OWL ontology editor that supports authoring SKOS vocabularies. SKOSEd has an accompanying SKOS API[32] written in Java that can be used to build SKOS-based applications.
+Model Futures SKOS Exporter[33] for Microsoft Excel allows simple vocabularies to be developed as indented Excel spreadsheets and exported as SKOS RDF. BETA version.
+Lexaurus[34] is an enterprise thesaurus management system and multi-format editor. Its extensive API includes full revision management. SKOS is one of its many supported formats.
+SKOS Shuttle[35] is a thesaurus management service which allows to import, maintain, process and synchronize thesauri in SKOS using also special extensions of SKOS.
+TopBraid Enterprise Vocabulary Net (EVN)[36] and TopBraid Enterprise Data Governance (EDG) are web-based solutions that support development and management of interconnected controlled vocabularies such as taxonomies, thesauri, business glossaries and ontologies. SKOS and SKOS-XL are supported.
+Thesaurus Master, for creating, developing, and maintaining taxonomies and thesauri, is part of Access Innovations' Data Harmony knowledge management software line. It offers SKOS-compliant export.
+Fluent Editor 2014 – an ontology editor which allows to work and edit directly OWL annotations and SKOS. Annotations will processed also for referenced ontologies as well as imported/exported to OWL/RDF and can be processed on the server.
+Smartlogic Semaphore Ontology Editor – a SKOS and SKOS-XL based ontology editor which allows creating models based strictly on the SKOS standards.
+
+Data[edit]
+There are publicly available SKOS data sources.
+
+SKOS Datasets wiki[37] The W3C recommends using this list of publicly available SKOS data sources. Most data found in this wiki can be used for commercial and research applications.
+
+Relationships with other standards[edit]
+Metamodel[edit]
+The SKOS metamodel is broadly compatible with the data model of ISO 25964-1 – Thesauri for Information Retrieval. This data model can be viewed and downloaded from the website for ISO 25964.[38]
+
+
+
+
+Semantic model of the information elements of SKOS
+
+
+Thesaurus standards[edit]
+SKOS development has involved experts from both RDF and library community, and SKOS intends to allow easy migration of thesauri defined by standards such as NISO Z39.19 – 2005[39] or ISO 25964.[38]
+Other semantic web standards[edit]
+SKOS is intended to provide a way to make a legacy of concept schemes available to Semantic Web applications, simpler than the more complex ontology language, OWL. OWL is intended to express complex conceptual structures, which can be used to generate rich metadata and support inference tools. However, constructing useful web ontologies is demanding in terms of expertise, effort, and cost. In many cases, this type of effort might be superfluous or unsuited to requirements, and SKOS might be a better choice. The extensibility of RDF makes possible further incorporation or extension of SKOS vocabularies into more complex vocabularies, including OWL ontologies.
+See also[edit]
+
+Glossary
+Knowledge representation
+Metadata registry
+
+References[edit]
+
+
+^ Desire: Development of a European Service for Information on Research and Education, Desire Consortium, August 7, 2000, archived from the original on July 25, 2011 
+^ Desire: Research Deliverables: D3.1, Desire Consortium, archived from the original on May 9, 2008 
+^ A Query and Inference Service for RDF
+^ Miller, K. & Matthews, B. (2001). Having the right connections: the LIMBER Project. Journal of Digital Information, 1 (8), 5 February.
+^ SWAD-Europe
+^ SWAD-Europe Deliverable 8.3 : RDF Encoding of Multilingual Thesauri
+^ SWAD-Europe Deliverable 8.4 : Inter-Thesaurus Mapping
+^ W3C Semantic Web Activity
+^ W3C Semantic Web Best Practice and Deployment Working Group : Porting Thesauri Task Force
+^ SKOS Core Guide W3C Working Draft 2 November 2005
+^ SKOS Core Vocabulary Specification W3C Working Draft 2 November 2005
+^ Quick Guide to Publishing a Thesaurus on the Semantic Web W3C Working Draft 17 May 2005
+^ Alistair Miles Home Page
+^ W3C Semantic Web Deployment Working Group
+^ SKOS: Requirements for Standardization. The paper by Alistair Miles presented in October 2006 at the International Conference on Dublin Core and Metadata Applications.
+^ Retrieval and the Semantic Web, incorporating a Theory of Retrieval Using Structured Vocabularies. Dissertation on the theory of retrieval using structured vocabularies by Alistair Miles.
+^ Simple Knowledge Organization System (SKOS)
+^ SKOS Reference
+^ public-esw-thes@w3.org online archive. Archives of mailing list used for SKOS development.
+^ About the Library of Congress Authorities
+^ Semantic Web Environmental Directory
+^ A Method to Convert Thesauri to SKOS
+^ Subject classification using DITA and SKOS by IBM developerWorks.
+^ TemaTres is a Web tool to manage formal and linguistic representations of knowledge.
+^ ThManager an Open Source Tool for creating and visualizing SKOS RDF vocabularies.
+^ SKOS Core Validation Service
+^ [1]
+^ PoolParty is a thesaurus management system and a SKOS editor for the Semantic Web.
+^ qSKOS is an open-source tool for SKOS vocabulary quality assessment.
+^ SKOSEd SKOS plugin for Protege 4
+^ Protégé 4 Protégé 4 OWL editor
+^ SKOS Java API Java API for SKOS
+^ Model Futures Excel SKOS Exporter
+^ Lexaurus is an enterprise thesaurus management system and multi-format editor.
+^ SKOS Shuttle
+^ TopBraid EVN
+^ SKOS/Datasets
+^ a b ISO 25964 – the international standard for thesauri and interoperability with other vocabularies
+^ NISO Standards Z39.19 – 2005 : Guidelines for the Construction, Format, and Management of Monolingual Controlled Vocabularies
+
+
+External links[edit]
+
+SKOS Simple Knowledge Organization System Reference
+W3C SKOS Home Page
+W3C Simple Knowledge Organization System Primer
+Presentation of SKOS at XTech 2005 Conference
+W3C Invites Implementations of SKOS (Simple Knowledge Organization System) Reference; Primer Also Published
+SKOS Validator and Zthes Converter
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Semantic Web
+
+
+
+Background
+
+
+
+Databases
+Hypertext
+Internet
+Ontologies
+Semantic networks
+World Wide Web
+
+
+
+
+
+Sub-topics
+
+
+
+Data Web
+Dataspaces
+Hyperdata
+Linked data
+Rule-based systems
+
+
+
+
+
+Applications
+
+
+
+Semantic analytics
+Semantic broker
+Semantic computing
+Semantic mapper
+Semantic matching
+Semantic publishing
+Semantic reasoner
+Semantic search
+Semantic service-oriented architecture
+Semantic wiki
+
+
+
+
+
+Related topics
+
+
+
+Collective intelligence
+Description logic
+Folksonomy
+Geotagging
+Information architecture
+Knowledge extraction
+Knowledge management
+Knowledge representation
+Library 2.0
+Metadata
+Mind mapping
+ODBC
+References
+Topic Maps
+Web 2.0
+Web engineering
+Web Science Trust
+
+
+
+
+
+Standards
+
+
+
+
+Syntax and supporting technologies
+
+
+
+HTTP
+IRI
+
+URI
+
+
+RDF
+
+triples
+RDF/XML
+JSON-LD
+Turtle
+TriG
+Notation3
+N-Triples
+TriX (no W3C standard)
+
+
+RRID
+SPARQL
+XML
+
+
+
+
+
+Schemas, ontologies and rules
+
+
+
+Common logic
+OWL
+RDFS
+Rule Interchange Format
+Semantic Web Rule Language
+ALPS
+
+
+
+
+
+Semantic annotation
+
+
+
+eRDF
+GRDDL
+Microdata
+Microformats
+RDFa
+SAWSDL
+Facebook Platform
+
+
+
+
+
+Common vocabularies
+
+
+
+DOAP
+Dublin Core
+FOAF
+Schema.org
+SIOC
+SKOS
+
+
+
+
+
+Microformat vocabularies
+
+
+
+hAtom
+hCalendar
+hCard
+hProduct
+hRecipe
+hResume
+hReview
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+World Wide Web Consortium (W3C)
+
+
+
+Products and
+standards
+
+
+
+
+Recommendations
+
+
+
+ARIA
+Canonical XML
+CDF
+CSS
+DOM
+Geolocation API
+HTML (HTML5)
+ITS
+JSON-LD
+Linked Data Notifications
+MathML
+Micropub
+OWL
+P3P
+PLS
+RDF
+RDF Schema
+SISR
+SKOS
+SMIL
+SOAP
+SRGS
+SRI
+SSML
+SVG
+SCXML
+SPARQL
+Timed text
+VoiceXML
+Web storage
+WSDL
+Webmention
+XForms
+XHTML
+XHTML+RDFa
+XInclude
+XLink
+XML
+XML Base
+XML Encryption
+XML Events
+XML Information Set
+XML namespace
+XML Schema
+XML Signature
+XOP
+XPath
+XPath 2.0
+XPointer
+XProc
+XQuery
+XSL
+XSL-FO
+XSLT (elements)
+
+
+
+
+
+Notes
+
+
+
+XAdES
+XHTML+SMIL
+XUP
+
+
+
+
+
+Working drafts
+
+
+
+CCXML
+CURIE
+EME
+InkML
+MSE
+RIF
+SMIL Timesheets
+sXBL
+WICD
+XFDL
+XFrames
+XBL
+XMLHttpRequest
+
+
+
+
+
+Guidelines
+
+
+
+Web Content Accessibility Guidelines
+
+
+
+
+
+Initiative
+
+
+
+Multimodal Interaction Activity (MMI)
+Markup Validation Service
+Web Accessibility Initiative
+WebPlatform
+
+
+
+
+
+Deprecated
+
+
+
+C-HTML
+HDML
+JSSS
+PGML
+VML
+XHTML+MathML+SVG
+
+
+
+
+
+
+
+
+Organizations
+
+
+
+
+
+
+
+Advisory Committee (AC)
+World Wide Web Foundation
+
+
+
+
+
+Elected groups
+
+
+
+Advisory Board (AB)
+Technical Architecture Group (TAG)
+
+
+
+
+
+Working groups
+
+
+
+CSS
+HTML
+Geolocation
+Social Web
+SVG
+Web Hypertext Application Technology (WHATWG)
+Web Platform
+
+
+
+
+
+Closed groups
+
+
+
+Device Description (DDWG)
+WebOnt (Semantic Web Activity)
+
+
+
+
+
+
+
+
+Software
+
+
+
+
+
+
+
+CERN httpd
+Libwww
+
+
+
+
+
+Browsers
+
+
+
+Line Mode (1990–)
+Arena (1993–98)
+Agora (1994–97)
+Argo (1994–97)
+Amaya (browser/editor, 1996–2012)
+
+
+
+
+
+
+
+
+Conferences
+
+
+
+International World Wide Web Conference (IW3C)
+
+Steering Committee (IW3C2)
+First conference ("WWW1", 1994)
+
+
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Simple_Knowledge_Organization_System&oldid=817676764"					Categories: Knowledge representationSemantic WebSchool of Computer Science, University of ManchesterHidden categories: All articles with unsourced statementsArticles with unsourced statements from August 2012

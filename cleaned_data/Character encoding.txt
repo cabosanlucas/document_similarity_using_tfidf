@@ -1,0 +1,1155 @@
+computing character encoding used represent repertoire characters kind encoding system1 depending abstraction level context corresponding code points resulting code space regarded patterns octets natural numbers electrical pulses character encoding used computation data storage transmission textual data character character codeset code page related identical terms
+early character codes associated optical electrical telegraph could represent subset characters used written languages sometimes restricted upper case letters numerals punctuation cost digital representation data modern computer systems allows elaborate character codes unicode represent characters used many written languages character encoding using internationally accepted standards permits worldwide interchange text electronic form
+
+
+
+contents
+
+
+history
+terminology
+unicode encoding model
+character sets character maps code pages
+character encoding translation
+also
+
+common character encodings
+
+
+references
+reading
+external links
+
+
+
+historyedit
+early binary repertoires include bacons cipher braille international maritime signal flags 4digit encoding chinese characters chinese telegraph code hans schjellerup 1869 common examples character encoding systems include morse code baudot code american standard code information interchange ascii unicode2
+morse code introduced 1840s used encode letter latin alphabet arabic numeral characters series long short presses telegraph representations characters encoded using morse code varied length
+baudot code fivebit encoding created émile baudot 1870 patented 1874 modified donald murray 1901 standardized ccitt international telegraph alphabet ita2 1930
+fieldata sevenbit code introduced army signal corps late 1950s
+ibms binary coded decimal sixbit encoding scheme used early 1959 1401 1620 computers 7000 series example 7040 7090 computers well associated peripherals extended existing simple fourbit numeric encoding include alphabetic special characters mapping easily punchcard encoding already widespread precursor ebcdic
+ascii introduced 1963 sevenbit encoding scheme used encode letters numerals symbols device control codes fixedlength codes using integers
+ibms extended binary coded decimal interchange code usually abbreviated ebcdic eightbit encoding scheme developed 1963
+limitations sets soon became apparent number methods developed extend need support writing systems different languages including family east asian scripts required support larger number characters demanded systematic approach character encoding rather previous approaches
+trying develop universally interchangeable character encodings researchers 1980s faced dilemma hand seemed necessary bits accommodate additional characters hand users relatively small character latin alphabet still constituted majority computer users additional bits colossal waste thenscarce expensive computing resources would always zeroed users
+compromise solution eventually found developed unicode break assumption dating back telegraph codes character always directly correspond particular sequence bits instead characters would first mapped universal intermediate representation form abstract numbers called code points code points would represented variety ways various default numbers bits character code units depending context encode code points higher length code unit 8bit units solution implement variablewidth encodings escape sequence would signal subsequent bits parsed higher code point
+terminologyedit
+
+
+
+
+
+
+
+terminology related code unit
+
+character minimal unit text semantic value
+character collection characters might used multiple languages
+
+example latin character used english european languages though greek character used greek language
+
+coded character character character corresponds unique number
+code point coded character allowed value character
+code unit sequence used encode character repertoire within given encoding form
+
+
+character repertoire abstract characters
+
+character repertoire abstract million characters found wide variety scripts including latin cyrillic chinese korean japanese hebrew aramaic
+symbols musical notation also included character repertoire unicode gb18030 standards character repertoire characters added standard standard also adds characters maintain parity
+code unit size equivalent measurement particular encoding
+
+code unit usascii consists bits
+code unit utf8 ebcdic gb18030 consists bits
+code unit utf16 consists bits
+code unit utf32 consists bits
+
+example code unit consider string letters followed u10400 deseret capital letter long represented char32t char16t char8t string contains
+
+four characters
+four code points
+either
+
+four code units utf32 00000061 00000062 00000063 00010400
+five code units utf16 0061 0062 0063 d801 dc00
+seven code units utf8
+
+
+
+express character unicode hexadecimal value prefixed string range valid code points unicode standard u0000 u10ffff inclusive divided planes identified numbers characters range u0000 uffff plane called basic multilingual plane plane contains commonlyused characters characters range u10000 u10ffff planes called supplementary characters
+following table shows examples code point values
+
+
+character
+unicode code point
+glyph
+
+
+latin
+u0041
+
+
+
+latin sharp
+u00df
+
+
+
+east
+u6771
+
+
+
+ampersand
+u0026
+
+
+
+inverted exclamation mark
+u00a1
+
+
+
+section sign
+u00a7
+
+
+
+code point represented sequence code units mapping defined encoding thus number code units required represent code point depends encoding
+
+utf8 code points sequence three four code units
+utf16 code units twice long 8bit code units therefore code point scalar value less u10000 encoded single code unit code points value u10000 higher require code units pairs code units unique term utf16 unicode surrogate pairs
+utf32 32bit code unit large enough every code point represented single code unit
+gb18030 multiple code units code point common small code units code points mapped four code units3
+
+unicode encoding modeledit
+unicode parallel standard isoiec 10646 universal character together constitute modern unified character encoding rather mapping characters directly octets bytes separately define characters available corresponding natural numbers code points numbers encoded series fixedsize natural numbers code units finally units encoded stream octets purpose decomposition establish universal characters encoded variety ways4 describe model correctly requires precise terms character character encoding terms used modern model follow4
+character repertoire full abstract characters system supports repertoire closed additions allowed without creating standard case ascii iso8859 series open allowing additions case unicode limited extent windows code pages characters given repertoire reflect decisions made divide writing systems basic information units basic variants latin greek cyrillic alphabets broken letters digits punctuation special characters space arranged simple linear sequences displayed order read even alphabets diacritics pose complication regarded either part single character containing letter diacritic known precomposed character separate characters former allows simpler text handling system latter allows letterdiacritic combination used text ligatures pose similar problems writing systems arabic hebrew represented complex character repertoires need accommodate things like bidirectional text glyphs joined together different ways different situations
+coded character function maps characters code points code point represents character example given repertoire capital letter latin alphabet might represented code point character multiple coded character sets share repertoire example isoiec 88591 code pages cover repertoire different code points
+character encoding form mapping code points code units facilitate storage system represents numbers sequences fixed length practically computer system example system stores numeric information 16bit units directly represent code points 65535 unit larger code points 65536 million could represented using multiple 16bit units correspondence defined
+next character encoding scheme mapping code units sequence octets facilitate storage octetbased file system transmission octetbased network simple character encoding schemes include utf8 utf16be utf32be utf16le utf32le compound character encoding schemes utf16 utf32 isoiec 2022 switch several simple schemes using byte order marks escape sequences compressing schemes minimise number bytes used code unit scsu bocu punycode
+although utf32be simpler systems working unicode either utf8 backward compatible fixedwidth ascii maps unicode code points variablewidth sequences octets utf16be backward compatible fixedwidth ucs2be maps unicode code points variablewidth sequences 16bit words comparison unicode encodings detailed discussion
+finally higher level protocol supplies additional information select particular variant unicode character particularly regional variants unified unicode character example attribute xmllang
+unicode model uses term character historical systems directly assign sequence characters sequence bytes covering layers4
+character sets character maps code pagesedit
+historically terms character encoding character character code page synonymous computer science standard would specify repertoire characters encoded stream code units usually single character code unit terms related distinct meanings efforts standards bodies precise terminology writing unifying many different encoding systems4 regardless terms still used interchangeably character nearly ubiquitous
+code page usually means byteoriented encoding regard suite encodings covering different scripts many characters share codes code pages wellknown code page suites windows based windows1252 ibmdos based code page windows code page details encodings referred code pages singlebyte encodings octet byte size
+ibms character data representation architecture cdra designates coded character identifiers ccsids variously called charset character code page charmap4
+term code page occur unix linux charmap preferred usually larger context locales
+contrasted character encoding abstract characters code words character http mime parlance character encoding
+legacy encoding term sometimes used characterize character encodings ambiguity sense context unicodification refers encodings fail cover unicode code points generally using somewhat different character repertoire several code points representing unicode character5 versa code page sources refer encoding legacy preceded unicode6 windows code pages usually referred legacy antedate unicode unable represent possible unicode code points
+character encoding translationedit
+result many character encoding methods need backward compatibility archived data many computer programs developed translate data encoding schemes form data transcoding cited
+crossplatform
+
+browsers modern browsers feature automatic character encoding detection firefox example viewcharacter encoding submenu
+iconv program standardized convert encodings
+luit program converts encoding input output programs running interactively
+convertencodingpy python based utility convert text files arbitrary encodings line endings7
+decodehpy algorithm module heuristically guess encoding string8
+international components unicode java libraries perform charset conversion uconv used icu4c
+chardet translation mozilla automaticencodingdetection code python computer language
+newer versions unix file command attempt basic detection character encoding also available cygwin
+charset template library simple interface convert cuserdefined streams charset defined many charactersets allows unicode formats support endianness
+
+unixlike
+
+simple tool transcoding filenames9
+convmv convert filename encoding another10
+cstocs convert file contents encoding another czech slovak languages
+enca analyzes encodings given text files11
+recode convert file contents encoding another12
+utrac convert file contents encoding another13
+
+windows
+
+encodingconvert api14
+multibytetowidecharwidechartomultibyte convert ansi unicode unicode ansi15
+cscvt character conversion tool16
+enca analyzes encodings given text files17
+
+alsoedit
+
+code
+character encodings html
+character encoding articles related character encoding general
+character sets articles detailing specific character encodings
+hexadecimal representations
+mojibake character mismap
+mojikyo system glyph includes 100000 chinese character drawings modern ancient popular obscure
+tron part tron project encoding system unification instead uses control codes switch 16bit planes characters
+universal character characters
+charset sniffing used applications character encoding metadata available
+
+common character encodingsedit
+
+
+
+
+ascii
+
+
+ebcdic
+
+cp37
+cp930
+cp1047
+
+
+8859
+
+88591 western europe
+88592 western central europe
+88593 western europe south european turkish maltese plus esperanto
+88594 western europe baltic countries lithuania estonia latvia lapp
+88595 cyrillic alphabet
+88596 arabic
+88597 greek
+88598 hebrew
+88599 western europe amended turkish character
+885910 western europe rationalised character nordic languages including complete icelandic
+885911 thai
+885913 baltic languages plus polish
+885914 celtic languages irish gaelic scottish welsh
+885915 added euro sign rationalisations 88591
+885916 central eastern southern european languages albanian bosnian croatian hungarian polish romanian serbian slovenian also french german italian irish gaelic
+
+
+cp437 cp720 cp737 cp850 cp852 cp855 cp857 cp858 cp860 cp861 cp862 cp863 cp865 cp866 cp869 cp872
+mswindows character sets
+
+windows1250 central european languages latin script polish czech slovak hungarian slovene serbian croatian bosnian romanian albanian
+windows1251 cyrillic alphabets
+windows1252 western languages
+windows1253 greek
+windows1254 turkish
+windows1255 hebrew
+windows1256 arabic
+windows1257 baltic languages
+windows1258 vietnamese
+
+
+roman
+koi8r koi8u koi7
+
+iscii
+tscii
+viscii
+0208 widely deployed standard japanese character encoding several encoding forms
+
+shift microsoft code page dialect shiftjis
+eucjp
+iso2022jp
+
+
+0213 extended version 0208
+
+shiftjis2004
+eucjis2004
+iso2022jp2004
+
+
+chinese guobiao
+
+2312
+microsoft code page
+18030
+
+
+taiwan big5 famous variant microsoft code page
+
+hong kong hkscs
+
+
+korean
+
+1001 korean doublebyte character encoding standard
+euckr
+iso2022kr
+
+
+unicode subsets thereof 16bit basic multilingual plane
+
+utf8
+utf16
+utf32
+
+
+ansel isoiec 6937
+
+
+referencesedit
+
+
+definition tech terms dictionary
+henderson april 2014 ancient computer character code tables theyre still relevant smartbear retrieved april 2014
+httpdocsoraclecomjavasetutoriali18ntextterminologyhtml
+unicode technical report unicode character encoding model 20081111 retrieved 20090808
+processing database information using unicode case study archived june 2006 wayback machine
+constable peter 20010613 character encoding basics implementing writing systems introduction international retrieved 20100319
+convertencodingpy
+decodeh heuristically decode string text file archived january 2008 wayback machine
+charsetmove simple tool transcoding filenames
+convmv converts filenames encoding another
+extremely naive charset analyser
+recode project free software foundation
+utrac homepage
+microsoft framework class library encodingconvert method
+multibytetowidecharwidechartomultibyte convert ansi unicode unicode ansi
+kalyttas character converter
+extremely naive charset analyser
+
+
+readingedit
+
+mackenzie charles 1980 coded character sets history development systems programming series addisonwesley publishing company isbn 0201144603 lccn 7790165
+
+external linksedit
+
+character encoding ascii ansi unicode
+character sets registered internet assigned numbers authority iana
+characters encodings jukka korpela
+unicode technical report character encoding model
+decimal hexadecimal character codes html unicode encoding converter
+
+
+
+
+
+
+
+
+
+
+
+
+character encodings
+
+
+
+early telecommunications
+
+
+
+ascii
+isoiec
+isoiec 6937
+
+bcdic
+baudot code
+morse code
+
+telegraph code
+wabun code
+
+
+special telegraphy codes
+
+nonlatin
+chinese
+cyrillic
+
+
+needle telegraph codes
+
+
+
+
+
+isoiec 8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bibliographic
+
+
+
+ansel
+5426 54262 5427 5428 6438 6861 6862 10585 10586 10754 11822
+marc8
+
+
+
+
+
+national standards
+
+
+
+armscii
+brascii
+11643
+elot
+gost 10859
+18030
+hkscs
+iscii
+0201
+0208
+0212
+0213
+koi7
+9566
+1001
+pascii
+
+tis620
+tscii
+viscii
+yuscii
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isoiec 2022
+
+
+
+
+
+
+cccii
+
+
+
+
+
+macos code pages
+scripts
+
+
+
+arabic
+celtic
+centeuro
+chinesesimp euccn
+chinesetrad big5
+croatian
+cyrillic
+devanagari
+dingbats
+esperanto
+farsi
+gaelic
+greek
+gujarati
+gurmukhi
+hebrew
+iceland
+japanese shiftjis
+korean euckr
+latin1
+roman
+romanian
+sámi
+symbol
+thai tis620
+turkish
+ukrainian
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+855872
+
+
+
+
+
+
+
+
+86417248
+
+866808
+
+
+
+87411611162
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9501370
+
+
+
+1034
+1039
+1040
+1041
+1042
+1043
+1044
+1046
+1086
+1088
+1092
+1093
+1098
+1108
+1109
+1114
+1115
+1116
+1117
+1118
+1119
+1125848
+1126
+1127
+1131849
+1139
+1167
+1168
+1300
+1351
+1361
+1362
+1363
+1372
+1373
+1374
+1375
+1380
+1381
+1385
+1386
+1391
+1392
+1393
+1394
+kamenický
+mazovia
+cwi2
+koi8
+
+iran system
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+921901
+922902
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1004
+1006
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1029
+1036
+1089
+1111
+1124
+11291163
+1133
+1350
+1382
+1383
+
+
+
+
+
+apple macintosh
+emulations
+
+
+
+1275
+1280
+1281
+1282
+1283
+1284
+1285
+1286
+
+
+
+
+
+adobe emulations
+
+
+
+1038
+1276
+1277
+
+
+
+
+
+emulations
+
+
+
+1020
+1021
+1023
+1090
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1287
+1288
+
+
+
+
+
+emulations
+
+
+
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+
+
+
+
+
+windows code pages
+
+
+
+cergs
+8741162 tis620
+932943 shift
+9361386
+9501370 big5
+9491363 euckr
+1169
+1174
+extended latin8
+1200 utf16le
+1201 utf16be
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1261
+1270
+54936 gb18030
+
+
+
+
+
+ebcdic code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+371140
+
+
+
+
+
+
+
+
+
+
+
+
+2731141
+
+
+
+2771142
+2781143
+
+2801144
+
+
+
+2841145
+2851146
+
+
+
+
+
+
+2971147
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42016804
+
+
+424861612712
+
+
+5001148
+
+
+
+
+
+
+
+838838
+
+87011101153
+8711149
+87549719067
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9301390
+
+9331364
+9351388
+9371371
+9391399
+1001
+1002
+1003
+1005
+1007
+1024
+10251154
+10261155
+1027
+1028
+1030
+1031
+1032
+1033
+1037
+1047
+1068
+1069
+1070
+1071
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1087
+1091
+1097
+11121156
+1113
+11221157
+11231158
+11301164
+1132
+1136
+1137
+1150
+1151
+1152
+1159
+1165
+1166
+1278
+1279
+1303
+1364
+1376
+1377
+
+keis
+
+
+
+
+
+platform specific
+
+
+
+acorn
+adobe standard
+apple
+atascii
+atari
+bics
+casio calculators
+
+
+radix50
+mcsnrcs
+international
+elwrojunior
+fieldata
+
+geos
+0338
+roman extension
+roman8
+roman9
+focal
+
+lics
+lmbcs
+
+
+next
+
+petscii
+sharp calculators
+calculators
+trs80
+ventura international
+ventura symbol
+wiscii
+xccs
+zx80
+zx81
+spectrum
+
+
+
+
+
+unicode isoiec 10646
+
+
+
+utf1
+utf7
+utf8
+utf16 utf16leutf16be ucs2
+utf32 utf32leutf32be ucs4
+utfebcdic
+18030
+bocu1
+cesu8
+scsu
+
+
+
+
+
+miscellaneous code pages
+
+
+
+abicomp
+
+arib stdb24
+cork
+
+inis
+inis8
+johab
+
+
+
+
+seascii
+tace16
+tron
+utf5
+utf6
+wtf8
+
+
+
+
+
+related topics
+
+
+
+code page
+control character
+ccsid
+character encodings html
+charset detection
+unification
+hardware
+6429iec 6429ansi x364
+mojibake
+
+
+
+
+
+
+character sets
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlecharacterencodingoldid817021610 categories character encodingnatural language computinghidden categories webarchive template wayback links

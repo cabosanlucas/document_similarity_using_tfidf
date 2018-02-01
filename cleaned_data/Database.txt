@@ -1,0 +1,1112 @@
+database software redirects computer program europress
+topical guide subject outline databases
+
+
+
+
+example output database query
+
+
+database organized collection data1 relational database restrictively collection schemas tables queries reports views elements database designers typically organize data model aspects reality supports processes requiring information example modelling availability rooms hotels supports finding hotel vacancies
+databasemanagement system dbms computersoftware application interacts endusers applications database capture analyze data generalpurpose dbms allows definition creation querying update administration databases
+database generally portable across different dbmss different dbmss interoperate using standards odbc jdbc allow single application work dbms computer scientists classify databasemanagement systems according database models support popular database systems since 1980s supported relational model generally associated languagedisputed discuss sometimes dbms loosely referred database
+
+
+
+contents
+
+
+terminology overview
+applications
+generalpurpose specialpurpose dbmss
+history
+
+1960s navigational dbms
+1970s relational dbms
+integrated approach
+late 1970s dbms
+1980s desktop
+1990s objectoriented
+2000s nosql newsql
+
+
+research
+examples
+design modeling
+
+models
+external conceptual internal views
+
+
+languages
+performance security availability
+
+storage
+
+materialized views
+replication
+
+
+security
+transactions concurrency
+migration
+building maintaining tuning
+backup restore
+static analysis
+
+
+
+also
+notes
+references
+sources
+reading
+external links
+
+
+
+terminology overviewedit
+formally database refers related data organized access data usually provided database management system dbms consisting integrated computer software allows users interact databases provides access data contained database although restrictions exist limit access particular data dbms provides various functions allow entry storage retrieval large quantities information provides ways manage information organized
+close relationship term database often used casually refer database dbms used manipulate
+outside world professional information technology term database often used refer collection related data spreadsheet card index article concerned databases size usage requirements necessitate database management system2
+existing dbmss provide various functions allow management database data classified four main functional groups
+
+data definition creation modification removal definitions define organization data
+update insertion modification deletion actual data3
+retrieval providing information form directly usable processing applications retrieved data made available form basically stored database form obtained altering combining existing data database4
+administration registering monitoring users enforcing data security monitoring performance maintaining data integrity dealing concurrency control recovering information corrupted event unexpected system failure5
+
+database dbms conform principles particular database model6 database system refers collectively database model database management system database7
+physically database servers dedicated computers hold actual databases dbms related software database servers usually multiprocessor computers generous memory raid disk arrays used stable storage raid used recovery data disks fail hardware database accelerators connected servers highspeed channel also used large volume transaction processing environments dbmss found heart database applications dbmss built around custom multitasking kernel builtin networking support modern dbmss typically rely standard operating system provide functions
+since dbmss comprise significant market computer storage vendors often take account dbms requirements development plans8
+databases dbmss categorized according database models support relational types computer server cluster mobile phone query languages used access database xquery internal engineering affects performance scalability resilience security
+applicationsedit
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed march 2013 learn remove template message
+
+
+
+databases used support internal operations organizations underpin online interactions customers suppliers enterprise software
+databases used hold administrative information specialized data engineering data economic models examples database applications include computerized library systems flight reservation systems computerized parts inventory systems many content management systems store websites collections webpages database
+generalpurpose specialpurpose dbmssedit
+dbms become complex software system development typically requires thousands human years development efforta generalpurpose dbmss adabas oracle upgraded since 1970s generalpurpose dbmss meet needs many applications possible adds complexity however since development cost spread large number users often costeffective approach hand generalpurpose dbms introduce unnecessary overhead therefore many systems specialpurpose dbms common example email system performs many functions generalpurpose dbms insertion deletion messages composed various items data associating messages particular email address functions limited required handle email dont provide user functionality would available using generalpurpose dbms
+application software often access database behalf endusers without exposing dbms interface directly application programmers wire protocol directly likely application programming interface database designers database administrators interact dbms dedicated interfaces build maintain applications databases thus need knowledge understanding dbmss operate dbmss external interfaces tuning parameters
+historyedit
+following technology progress areas processors computer memory computer storage computer networks sizes capabilities performance databases respective dbmss grown orders magnitude development database technology divided three eras based data model structure navigational9 sqlrelational postrelational
+main early navigational data models hierarchical model epitomized ibms system codasyl model network model implemented number products idms
+relational model first proposed 1970 edgar codd departed tradition insisting applications search data content rather following links relational model employs sets ledgerstyle tables used different type entity mid1980s computing hardware become powerful enough allow wide deployment relational systems dbmss plus applications early 1990s however relational systems dominated largescale data processing applications 2015update remain dominant oracle mysql microsoft server dbms10 dominant database language standardised relational model influenced database languages data modelscitation needed
+object databases developed 1980s overcome inconvenience objectrelational impedance mismatch coining term postrelational also development hybrid objectrelational databases
+next generation postrelational databases late 2000s became known nosql databases introducing fast keyvalue stores documentoriented databases competing next generation known newsql databases attempted implementations retained relationalsql model aiming match high performance nosql compared commercially available relational dbmss
+1960s navigational dbmsedit
+information navigational database
+
+
+
+
+basic structure navigational codasyl database model
+
+
+introduction term database coincided availability directaccess storage disks drums mid1960s onwards term represented contrast tapebased systems past allowing shared interactive rather daily batch processing oxford english dictionary cites11 1962 report system development corporation california first term database specific technical sense
+computers grew speed capability number generalpurpose database systems emerged mid1960s number systems come commercial interest standard began grow charles bachman author product integrated data store founded database task group within codasyl group responsible creation standardization cobol 1971 database task group delivered standard generally became known codasyl approach soon number commercial products based approach entered market
+codasyl approach relied manual navigation linked data formed large network applications could find records three methods
+
+primary known calc typically implemented hashing
+navigating relationships called sets record another
+scanning records sequential order
+
+later systems added btrees provide alternate access paths many codasyl databases also added straightforward query language however final tally codasyl complex required significant training effort produce useful applications
+also dbms 1966 known information management system development software written apollo program system360 generally similar concept codasyl used strict hierarchy model data navigation instead codasyls network model concepts later became known navigational databases data accessed bachmans 1973 turing award presentation programmer navigator classifiedby hierarchical database idms cincom systems total database classified network databases remains 2014update12
+1970s relational dbmsedit
+edgar codd worked jose california offshoot offices primarily involved development hard disk systems unhappy navigational model codasyl approach notably lack search facility 1970 wrote number papers outlined approach database construction eventually culminated groundbreaking relational model data large shared data banks13
+paper described system storing working large databases instead records stored sort linked list freeform records codasyl codds idea table fixedlength records table used different type entity linkedlist system would inefficient storing sparse databases data record could left empty relational model solved splitting data series normalized tables relations optional elements moved main table would take room needed data freely inserted deleted edited tables dbms whatever maintenance needed present table view applicationuser
+
+
+
+
+relational model records linked using virtual keys stored database defined needed data contained records
+
+
+relational model also allowed content database evolve without constant rewriting links pointers relational part comes entities referencing entities known onetomany relationship like traditional hierarchical model manytomany relationship like navigational network model thus relational model express hierarchical navigational models well native tabular model allowing pure combined modeling terms three models application requires
+instance common database system track information users name login information various addresses phone numbers navigational approach data would placed single record unused items would simply placed database relational approach data would normalized user table address table phone number table instance records would created optional tables address phone numbers actually provided
+linking information back together system relational model information used uniquely defining particular record information collected user information stored optional tables would found searching instance login name user unique addresses phone numbers user would recorded login name simple relinking related data back single collection something traditional computer languages designed
+navigational approach would require programs loop order collect records relational approach would require loops collect information record codds suggestions setoriented language would later spawn ubiquitous using branch mathematics known tuple calculus demonstrated system could support operations normal databases inserting updating well providing simple system finding returning sets data single operation
+codds paper picked people berkeley eugene wong michael stonebraker started project known ingres using funding already allocated geographical database project student programmers produce code beginning 1973 ingres delivered first test products generally ready widespread 1979 ingres similar system number ways including language data access known quel time ingres moved emerging standard
+test implementation relational model prtv production business system discontinued honeywell wrote mrds multics implementations alphora dataphor dbms implementations usually called relational actually dbmss
+1970 university michigan began development micro information management system14 based childs settheoretic data model151617 micro used manage large data sets department labor environmental protection agency researchers university alberta university michigan wayne state university mainframe computers using michigan terminal system18 system remained production 1998
+integrated approachedit
+main article database machine
+1970s 1980s attempts made build database systems integrated hardware software underlying philosophy integration would provide higher performance lower cost examples system38 early offering teradata britton database machine
+another approach hardware support database management icls cafs accelerator hardware disk controller programmable search capabilities long term efforts generally unsuccessful specialized database machines could keep pace rapid development progress generalpurpose computers thus database systems nowadays software systems running generalpurpose hardware using generalpurpose computer data storage however idea still pursued certain applications companies like netezza oracle exadata
+late 1970s dbmsedit
+started working prototype system loosely based codds concepts system early 1970s first version ready 19745 work started multitable systems data could split data record optional stored single large chunk subsequent multiuser versions tested customers 1978 1979 time standardized query language sqlcitation needed added codds ideas establishing workable superior codasyl pushing develop true production version system known sqlds later database
+larry ellisons oracle database simply oracle started different chain based ibms papers system though oracle implementations completed 1978 wasnt oracle version ellison beat market 197919
+stonebraker went apply lessons ingres develop database postgres known postgresql postgresql often used global mission critical applications info domain name registries primary data store many large companies financial institutions
+sweden codds paper also read mimer developed mid1970s uppsala university 1984 project consolidated independent enterprise early 1980s mimer introduced transaction handling high robustness applications idea subsequently implemented dbmss
+another data model entity–relationship model emerged 1976 gained popularity database design emphasized familiar description earlier relational model later entity–relationship constructs retrofitted data modeling construct relational model difference become irrelevantcitation needed
+1980s desktopedit
+1980s ushered desktop computing computers empowered users spreadsheets like lotus database software like dbase dbase product lightweight easy computer user understand wayne ratliff creator dbase stated dbase different programs like basic fortran cobol dirty work already done data manipulation done dbase instead user user concentrate rather mess dirty details opening reading closing files managing space allocation20 dbase selling software titles 1980s early 1990s
+1990s objectorientededit
+1990s along rise objectoriented programming growth data various databases handled programmers designers began treat data databases objects persons data database persons attributes address phone number considered belong person instead extraneous data allows relations data relations objects attributes individual fields21 term objectrelational impedance mismatch described inconvenience translating programmed objects database tables object databases objectrelational databases attempt solve problem providing objectoriented language sometimes extensions programmers alternative purely relational programming side libraries known objectrelational mappings orms attempt solve problem
+2000s nosql newsqledit
+main articles nosql newsql
+databases type structured documentoriented database allows querying based document attributes databases mostly used enterprise database management used machinetomachine data interoperability standard database management systems include commercial software marklogic oracle berkeley free software clusterpoint distributed xmljson database enterprise software database platforms support industry standard acidcompliant transaction processing strong database consistency characteristics high level database security222324
+nosql databases often fast require fixed table schemas avoid join operations storing denormalized data designed scale horizontally popular nosql systems include mongodb couchbase riak memcached redis couchdb hazelcast apache cassandra hbase25 opensource software products
+recent years high demand massively distributed databases high partition tolerance according theorem impossible distributed system simultaneously provide consistency availability partition tolerance guarantees distributed system satisfy guarantees time three reason many nosql databases using called eventual consistency provide availability partition tolerance guarantees reduced level data consistency
+newsql class modern relational databases aims provide scalable performance nosql systems online transaction processing readwrite workloads still using maintaining acid guarantees traditional database system databases include google f1spanner citus cockroachdb tidb scalebase memsql nuodb26 voltdb
+researchedit
+database technology active research topic since 1960s academia research development groups companies example research research activity includes theory development prototypes notable research topics included models atomic transaction concept related concurrency control techniques query languages query optimization methods raid
+database research area several dedicated academic journals example transactions database systemstods data knowledge engineeringdke annual conferences sigmod pods vldb ieee icde
+examplesedit
+classify databases involves type contents example bibliographic documenttext statistical multimedia objects another application area example accounting music compositions movies banking manufacturing insurance third technical aspect database structure interface type section lists adjectives used characterize different kinds databases
+
+inmemory database database primarily resides main memory typically backedup nonvolatile computer data storage main memory databases faster disk databases often used response time critical telecommunications network equipment
+active database includes eventdriven architecture respond conditions inside outside database possible uses include security monitoring alerting statistics gathering authorization many databases provide active database features form database triggers
+cloud database relies cloud technology database dbms reside remotely cloud applications developed programmers later maintained utilized applications endusers browser open apis
+data warehouses archive data operational databases often external sources market research firms warehouse becomes central source data managers endusers access operational data example sales data might aggregated weekly totals converted internal product codes upcs compared acnielsen data basic essential components data warehousing include extracting analyzing mining data transforming loading managing data make available
+deductive database combines logic programming relational database example using datalog language
+distributed database data dbms span multiple computers
+documentoriented database designed storing retrieving managing documentoriented semi structured data information documentoriented databases main categories nosql databases
+embedded database system dbms tightly integrated application software requires access stored data dbms hidden applications endusers requires little ongoing maintenance27
+enduser databases consist data developed individual endusers examples collections documents spreadsheets presentations multimedia files several products exist support databases much simpler fullfledged dbmss elementary dbms functionality
+federated database system comprises several distinct databases dbms handled single database federated database management system fdbms transparently integrates multiple autonomous dbmss possibly different types case would also heterogeneous database system provides integrated conceptual view
+sometimes term multidatabase used synonym federated database though refer less integrated without fdbms managed integrated schema group databases cooperate single application case typically middleware used distribution typically includes atomic commit protocol twophase commit protocol allow distributed global transactions across participating databases
+graph database kind nosql database uses graph structures nodes edges properties represent store information general graph databases store graph distinct specialized graph databases triplestores network databases
+array dbms kind nosql dbms allows model store retrieve usually large multidimensional arrays satellite images climate simulation output
+hypertext hypermedia database word piece text representing object another piece text article picture film hyperlinked object hypertext databases particularly useful organizing large amounts disparate information example useful organizing online encyclopedias users conveniently jump around text world wide thus large distributed hypertext database
+knowledge base abbreviated δ2829 special kind database knowledge management providing means computerized collection organization retrieval knowledge also collection data representing problems solutions related experiences
+
+
+mobile database carried synchronized mobile computing device
+operational databases store detailed data operations organization typically process relatively high volumes updates using transactions examples include customer databases record contact credit demographic information business customers personnel databases hold information salary benefits skills data employees enterprise resource planning systems record details product components parts inventory financial databases keep track organizations money accounting financial dealings
+parallel database seeks improve performance parallelization tasks loading data building indexes evaluating queries
+
+
+
+
+major parallel dbms architectures induced underlying hardware architecture
+
+shared memory architecture multiple processors share main memory space well data storage
+shared disk architecture processing unit typically consisting multiple processors main memory units share storage
+shared nothing architecture processing unit main memory storage
+
+
+
+
+
+
+probabilistic databases employ fuzzy logic draw inferences imprecise data
+realtime databases process transactions fast enough result come back acted right away
+spatial database store data multidimensional features queries data include locationbased queries like closest hotel area
+temporal database builtin time aspects example temporal data model temporal version specifically temporal aspects usually include validtime transactiontime
+terminologyoriented database builds upon objectoriented database often customized specific field
+unstructured data database intended store manageable protected diverse objects naturally conveniently common databases include email messages documents journals multimedia objects name misleading since objects highly structured however entire possible object collection predefined structured framework established dbmss support unstructured data various ways dedicated dbmss emerging
+
+design modelingedit
+main article database design
+
+
+
+
+
+
+
+first task database designer produce conceptual data model reflects structure information held database common approach develop entityrelationship model often drawing tools another popular approach unified modeling language successful data model accurately reflect possible state external world modeled example people phone number allow information captured designing good conceptual data model requires good understanding application domain typically involves asking deep questions things interest organization like customer also supplier product sold different forms packaging product different products plane flies york dubai frankfurt flight maybe even three answers questions establish definitions terminology used entities customers products flights flight segments relationships attributes
+producing conceptual data model sometimes involves input business processes analysis workflow organization help establish information needed database left example help deciding whether database needs hold historic data well current data
+produced conceptual data model users happy next stage translate schema implements relevant data structures within database process often called logical database design output logical data model expressed form schema whereas conceptual data model theory least independent choice database technology logical data model expressed terms particular database model supported chosen dbms terms data model database model often used interchangeably article data model design specific database database model modelling notation used express design
+popular database model generalpurpose databases relational model precisely relational model represented language process creating logical database design using model uses methodical approach known normalization goal normalization ensure elementary fact recorded place insertions updates deletions automatically maintain consistency
+final stage database design make decisions affect performance scalability recovery security like depend particular dbms often called physical database design output physical data model goal stage data independence meaning decisions made performance optimization purposes invisible endusers applications types data independence physical data independence logical data independence physical design driven mainly performance requirements requires good knowledge expected workload access patterns deep understanding features offered chosen dbms
+another aspect physical database design security involves defining access control database objects well defining security levels methods data
+modelsedit
+main article database model
+
+
+
+
+collage five types database models
+
+
+database model type data model determines logical structure database fundamentally determines manner data stored organized manipulated popular example database model relational model approximation relational uses tablebased format
+common logical data models databases include
+
+navigational databases
+
+hierarchical database model
+network model
+graph database
+
+
+relational model
+entity–relationship model
+
+enhanced entity–relationship model
+
+
+object model
+document model
+entity–attribute–value model
+star schema
+
+objectrelational database combines related structures
+physical data models include
+
+inverted index
+flat file
+
+models include
+
+associative model
+multidimensional model
+array model
+multivalue model
+
+specialized models optimized particular types data
+
+database
+semantic model
+content store
+event store
+time series model
+
+external conceptual internal viewsedit
+
+
+
+
+traditional view data30
+
+
+database management system provides three views database data
+
+external level defines group endusers sees organization data database single database number views external level
+conceptual level unifies various external views compatible global view31 provides synthesis external views scope various database endusers rather interest database application developers database administrators
+internal level physical level internal organization data inside dbms concerned cost performance scalability operational matters deals storage layout data using storage structures indexes enhance performance occasionally stores data individual views materialized views computed generic data performance justification exists redundancy balances external views performance requirements possibly conflicting attempt optimize overall performance across activities
+
+typically conceptual logical physical internal view data number different external views allows users database information businessrelated rather technical processing viewpoint example financial department company needs payment details employees part companys expenses need details employees interest human resources department thus different departments need different views companys database
+threelevel database architecture relates concept data independence major initial driving forces relational model idea changes made certain level affect view higher level example changes internal level affect application programs written using conceptual level interfaces reduces impact making physical changes improve performance
+conceptual view provides level indirection internal external hand provides common view database independent different external view structures hand abstracts away details data stored managed internal level principle every level even every external view presented different data model practice usually given dbms uses data model external conceptual levels relational model internal level hidden inside dbms depends implementation requires different level detail uses types data structure types
+separating external conceptual internal levels major feature relational database model implementations dominate 21st century databases31
+languagesedit
+database languages specialpurpose languages allows following tasks sometimes distinguished sublanguages
+
+data control language controls access data
+data definition language defines data types creating altering dropping relationships among
+data manipulation language performs tasks inserting updating deleting data occurrences
+data query language allows searching information computing derived information
+
+database languages specific particular data model notable examples include
+
+combines roles data definition data manipulation query single language first commercial languages relational model although departs respects relational model described codd example rows columns table ordered became standard american national standards institute ansi 1986 international organization standardization 1987 standards regularly enhanced since supported varying degrees conformance mainstream commercial relational dbmss3233
+object model language standard object data management group influenced design newer query languages like jdoql
+xquery standard query language implemented database systems marklogic exist relational databases capability oracle also inmemory processors saxon
+sqlxml combines xquery sql34
+
+database language also incorporate features like
+
+dbmsspecific configuration storage engine management
+computations modify query results like counting summing averaging sorting grouping crossreferencing
+constraint enforcement automotive database allowing engine type
+application programming interface version query language programmer convenience
+
+performance security availabilityedit
+critical importance database technology smooth running enterprise database systems include complex mechanisms deliver required performance security availability allow database administrators control features
+storageedit
+main articles computer data storage database engine
+database storage container physical materialization database comprises internal physical level database architecture also contains information needed metadata data data internal data structures reconstruct conceptual level external level internal level needed putting data permanent storage generally responsibility database engine storage engine though typically accessed dbms underlying operating system often utilizing operating systems file systems intermediates storage layout storage properties configuration setting extremely important efficient operation dbms thus closely maintained database administrators dbms operation always database residing several types storage memory external storage database data additional needed information possibly large amounts coded bits data typically reside storage structures look completely different data look conceptual external levels ways attempt optimize best possible levels reconstruction needed users programs well computing additional types needed information data querying database
+dbmss support specifying character encoding used store data multiple encodings used database
+various lowlevel database storage structures used storage engine serialize data model written medium choice techniques indexing used improve performance conventional storage roworiented also columnoriented correlation databases
+materialized viewsedit
+main article materialized view
+often storage redundancy employed increase performance common example storing materialized views consist frequently needed external views query results storing views saves expensive computing time needed downsides materialized views overhead incurred updating keep synchronized original updated database data cost storage redundancy
+replicationedit
+main article database replication
+occasionally database employs storage redundancy database objects replication copies increase data availability improve performance simultaneous multiple enduser accesses database object provide resiliency case partial failure distributed database updates replicated object need synchronized across object copies many cases entire database replicated
+securityedit
+
+
+
+
+
+
+article appears contradict article database security please discussion linked talk page march 2013 learn remove template message
+
+
+
+main article database security
+database security deals various aspects protecting database content owners users ranges protection intentional unauthorized database uses unintentional database accesses unauthorized entities person computer program
+database access control deals controlling person certain computer program allowed access information database information comprise specific database objects record types specific records data structures certain computations certain objects query types specific queries utilizing specific access paths former using specific indexes data structures access information database access controls special authorized database owner personnel uses dedicated protected security dbms interfaces
+managed directly individual basis assignment individuals privileges groups elaborate models assignment individuals groups roles granted entitlements data security prevents unauthorized users viewing updating database using passwords users allowed access entire database subsets called subschemas example employee database contain data individual employee group users authorized view payroll data others allowed access work history medical data dbms provides interactively enter update database well interrogate capability allows managing personal databases
+data security general deals protecting specific chunks data physically corruption destruction removal physical security interpretation parts meaningful information looking strings bits comprise concluding specific valid creditcard numbers data encryption
+change access logging records accessed attributes changed changed logging services allow forensic database audit later keeping record access occurrences changes sometimes applicationlevel code used record changes rather leaving database monitoring attempt detect security breaches
+transactions concurrencyedit
+information concurrency control
+database transactions used introduce level fault tolerance data integrity recovery crash database transaction unit work typically encapsulating number operations database reading database object writing acquiring lock abstraction supported database also systems transaction well defined boundaries terms programcode executions included transaction determined transactions programmer special transaction commands
+acronym acid describes ideal properties database transaction atomicity consistency isolation durability
+migrationedit
+also data migration database migration
+database built dbms portable another dbms dbms cannot however situations desirable move migrate database dbms another reasons primarily economical different dbmss different total costs ownership tcos functional operational different dbmss different capabilities migration involves databases transformation dbms type another transformation maintain possible database related application related application programs intact thus databases conceptual external architectural levels maintained transformation desired also aspects architecture internal level maintained complex large database migration complicated costly onetime project factored decision migrate spite fact tools exist help migration specific dbmss typically dbms vendor provides tools help importing databases popular dbmss
+building maintaining tuningedit
+main article database tuning
+designing database application next stage building database typically appropriate generalpurpose dbms selected utilized purpose dbms provides needed user interfaces utilized database administrators define needed applications data structures within dbmss respective data model user interfaces used select needed dbms parameters like security related storage allocation parameters
+database ready data structures needed components defined typically populated initial applications data database initialization typically distinct project many cases using specialized dbms interfaces support bulk insertion making operational cases database becomes operational empty application data data accumulated operation
+database created initialised populated needs maintained various database parameters need changing database need tuned tuning better performance applications data structures changed added related application programs written applications functionality
+backup restoreedit
+main article backup
+sometimes desired bring database back previous state many reasons cases database found corrupted software error updated erroneous data achieve backup operation done occasionally continuously desired database state values data embedding databases data structures kept within dedicated backup files many techniques exist effectively state needed decided database administrator bring database back state specifying state desired point time database state files utilized restore state
+static analysisedit
+static analysis techniques software verification applied also scenario query languages particular abstract interpretation framework extended field query languages relational databases support sound approximation techniques35 semantics query languages tuned according suitable abstractions concrete domain data abstraction relational database system many interesting applications particular security purposes fine grained access control watermarking
+otheredit
+dbms features might include
+
+database logs
+graphics component producing graphs charts especially data warehouse system
+query optimizer performs query optimization every query choose efficient query plan partial order tree operations executed compute query result specific particular storage engine
+tools hooks database design application programming application program maintenance database performance analysis monitoring database configuration monitoring dbms hardware configuration dbms related database span computers networks storage units related database mapping especially distributed dbms storage allocation database layout monitoring storage migration
+increasingly calls single system incorporates core functionalities build test deployment framework database management source control borrowing developments software industry market offerings devops database36
+
+alsoedit
+topical guide subject outline databases
+
+
+
+
+
+book databases
+
+
+
+
+
+
+comparison database tools
+comparison object database management systems
+comparison objectrelational database management systems
+comparison relational database management systems
+data hierarchy
+data bank
+data store
+database theory
+database testing
+databasecentric architecture
+journal database management
+questionfocused dataset
+
+
+notesedit
+
+
+
+article quotes development time years involving people release alonechong 2007
+
+
+
+referencesedit
+
+
+database definition database merriamwebster merriamwebstercom
+ullman widom 1997
+update definition update merriamwebster merriamwebstercom
+retrieval definition retrieval merriamwebster merriamwebstercom
+administration definition administration merriamwebster merriamwebstercom
+tsitchizris lochovsky 1982
+beynon–davies 2003
+nelson nelson 2001
+bachman 1973
+topdb database index pyplgithubio
+database online oxford university press june 2013 retrieved july 2013
+corporation information management system transaction database servers delivers high performance total cost ownership retrieved 2014
+codd 1970
+hershey easthope 1972
+north 2010
+childs 1968a
+childs 1968b
+micro information management system version reference manual kahn rumelhart bronson october 1977 institute labor industrial relations ilir university michigan wayne state university
+oracle 30th anniversary timeline retrieved august 2017
+interview wayne ratliff foxpro history retrieved 20130712
+development objectoriented dbms portland oregon united states pages 472–482 1986 isbn 0897912047
+oracle berkeley retrieved march 2015
+acid transactions marklogic retrieved march 2015
+clusterpoint database glance archived original april 2015 retrieved march 2015
+dbengines ranking january 2013 retrieved january 2013
+proctor 2013
+graves steve cots databases embedded systems embedded computing design magazine january 2007 retrieved august 2008
+argumentation artificial intelligence iyad rahwan guillermo simari
+semantics retrieved december 2010
+itlnistgov 1993 integration definition information modeling idefix december 1993
+date 2003 31–32
+chapple 2005
+structured query language international business machines october 2006 retrieved 20070610
+wagner 2010
+halder cortesi 2011
+linders january 2016 database administration fits devops retrieved april 2017
+
+
+sourcesedit
+
+
+bachman charles 1973 programmer navigator communications 653–658 doi101145355611362534 subscription required help
+
+
+beynon–davies paul 2003 database systems palgrave macmillan isbn 9781403916013
+
+
+chapple mike 2005 fundamentals databases aboutcom archived original february 2009 retrieved january 2009
+
+
+childs david 1968a description settheoretic data structure concomp research conversational computers project technical report university michigan
+
+
+childs david 1968b feasibility settheoretic data structure general structure based reconstituted definition concomp research conversational computers project technical report university michigan
+
+
+chong raul wang xiaomei dang michael snow dwaine 2007 introduction understanding learning visually examples isbn 9780131580183 retrieved march 2013
+
+
+codd edgar 1970 relational model data large shared data banks communications 377–387 doi101145362384362685
+
+
+date 2003 introduction database systems pearson isbn 9780321197849
+
+
+halder raju cortesi agostino 2011 abstract interpretation database query languages computer languages systems structures elsevier 123–157 doi101016jcl201110004 issn 14778424
+
+
+hershey william easthope carol 1972 theoretic data structure retrieval language spring joint computer conference 1972 sigir forum 45–55 doi10114510954951095500
+
+
+nelson anne fulcher nelson william harris morehead 2001 building electronic commerce database constructions prentice hall isbn 9780201741308
+
+
+north march 2010 sets data models data independence dobbs archived original october 2010
+
+
+proctor seth july 2013 exploring architecture nuodb database part archived original july 2013 retrieved july 2013
+
+
+tsitchizris dionysios lochovsky fred 1982 data models prentice–hall isbn 9780131964280
+
+
+ullman jeffrey widom jennifer 1997 first course database systems prentice–hall isbn 0138613370
+
+
+wagner michael 2010 sqlxml2006 evaluierung standardkonformität ausgewählter datenbanksysteme diplomica verlag isbn 9783836696098
+
+
+readingedit
+
+
+ling tamer özsu 2009 encyclopedia database systems 4100 illus isbn 9780387496160
+connolly thomas carolyn begg database systems york harlow 2002
+gray reuter transaction processing concepts techniques edition morgan kaufmann publishers 1992
+kroenke david david auer database concepts york prentice 2007
+raghu ramakrishnan johannes gehrke database management systems
+abraham silberschatz henry korth sudarshan database system concepts
+lightstone teorey nadeau 2007 physical database design database professionals guide exploiting indexes views storage morgan kaufmann press isbn 0123693896
+teorey lightstone nadeau database modeling design logical design edition morgan kaufmann press 2005 isbn 0126853525
+
+
+external linksedit
+
+find aboutdatabaseat wikipedias sister projects
+
+definitions wiktionary
+media wikimedia commons
+news wikinews
+quotations wikiquote
+texts wikisource
+textbooks wikibooks
+learning resources wikiversity
+
+
+
+
+file extension information files extension
+
+
+
+
+
+
+
+
+
+
+
+
+
+database
+
+
+
+main
+
+
+
+requirements
+theory
+models
+database management system
+machine
+server
+application
+connection
+
+datasource
+
+
+
+administrator
+lock
+types
+tools
+
+
+
+
+
+languages
+
+
+
+data definition
+data manipulation
+query
+
+information retrieval
+
+
+
+
+
+
+
+security
+
+
+
+activity monitoring
+audit
+forensics
+negative database
+
+
+
+
+
+design
+
+
+
+entities relationships enhanced notation
+normalization
+refactoring
+
+
+
+
+
+programming
+
+
+
+abstraction layer
+objectrelational mapping
+
+
+
+
+
+management
+
+
+
+virtualization
+tuning
+
+caching
+
+
+migration
+preservation
+integrity
+
+
+
+
+
+also
+
+
+
+databasecentric architecture
+intelligent database
+twophase locking
+locks ordered sharing
+load file
+publishing
+halloween problem
+shipping
+
+
+
+
+
+
+
+
+book
+category
+wikiproject
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+database management systems
+
+
+
+types
+
+
+
+objectoriented
+
+comparison
+
+
+relational
+
+comparison
+
+
+documentoriented
+graph
+nosql
+newsql
+
+
+
+
+
+concepts
+
+
+
+database
+acid
+armstrongs axioms
+theorem
+crud
+null
+candidate
+foreign
+superkey
+surrogate
+unique
+
+
+
+
+
+objects
+
+
+
+relation
+
+table
+column
+
+
+
+view
+transaction
+transaction
+trigger
+index
+stored procedure
+cursor
+partition
+
+
+
+
+
+components
+
+
+
+concurrency control
+data dictionary
+jdbc
+
+odbc
+query language
+query optimizer
+query plan
+
+
+
+
+
+functions
+
+
+
+administration automation
+query optimization
+replication
+
+
+
+
+
+related topics
+
+
+
+database models
+database normalization
+database storage
+distributed database
+federated database system
+referential integrity
+relational algebra
+relational calculus
+relational database
+relational dbms
+relational model
+objectrelational database
+transaction processing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+database models
+
+
+
+common models
+
+
+
+flat
+hierarchical
+dimensional
+network
+relational
+entity–relationship
+
+enhanced
+
+
+graph
+objectoriented
+entity–attribute–value
+
+
+
+
+
+models
+
+
+
+associative
+correlational
+multidimensional
+array
+semantic
+star schema
+database
+
+
+
+
+
+implementations
+
+
+
+flat file
+columnoriented
+documentoriented
+objectrelational
+deductive
+temporal
+data store
+keyvalue store
+triplestore
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data warehouse
+
+
+
+
+
+
+
+
+creating data warehouse
+
+
+
+
+
+
+
+concepts
+
+
+
+database
+dimension
+dimensional modeling
+fact
+olap
+star schema
+aggregate
+
+
+
+
+
+variants
+
+
+
+anchor modeling
+columnoriented dbms
+data vault modeling
+holap
+molap
+rolap
+operational data store
+
+
+
+
+
+elements
+
+
+
+data dictionarymetadata
+data mart
+sixth normal form
+surrogate
+
+
+
+
+
+fact
+
+
+
+fact table
+earlyarriving fact
+measure
+
+
+
+
+
+dimension
+
+
+
+dimension table
+degenerate
+slowly changing
+
+
+
+
+
+filling
+
+
+
+extracttransformload
+extract
+transform
+load
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using data warehouse
+
+
+
+
+
+
+
+concepts
+
+
+
+business intelligence
+dashboard
+data mining
+decision support system
+olap cube
+data warehouse automation
+
+
+
+
+
+languages
+
+
+
+data mining extensions
+multidimensional expressions
+analysis xmla
+
+
+
+
+
+tools
+
+
+
+business intelligence software
+reporting software
+spreadsheet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+related
+
+
+
+
+
+
+
+people
+
+
+
+bill inmon
+ralph kimball
+
+
+
+
+
+products
+
+
+
+comparison olap servers
+data warehousing products producers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+41132762
+00865521
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitledatabaseoldid818048557 categories database management systemsdatabaseshidden categories accuracy disputesarticles disputed statements june 2015articles needing additional references march 2013all articles needing additional referencesarticles containing potentially dated statements 2015all articles containing potentially dated statementsall articles unsourced statementsarticles unsourced statements march 2013articles specifically marked weaselworded phrases march 2014articles containing potentially dated statements 2014articles unsourced statements 2012articles contradicting articlespages containing links subscriptiononly contentwikipedia articles identifiers

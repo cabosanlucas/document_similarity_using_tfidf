@@ -1,0 +1,1479 @@
+article scripting language uses disambiguation
+
+
+
+
+
+
+paradigm
+imperative functional objectoriented procedural reflective
+
+
+designed
+rasmus lerdorf
+
+
+developer
+zend technologies
+
+
+first appeared
+1995 years 19951
+
+
+
+
+
+stable release
+
+7202 november 2017 days 20171130
+
+
+
+
+
+
+typing discipline
+dynamic weak
+
+
+implementation language
+primarily components
+
+
+
+unixlike windows
+
+
+license
+license zend engine zend engine license
+
+
+filename extensions
+phtml php3 php4 php5 php7 phps phps
+
+
+website
+phpnet
+
+
+major implementations
+
+
+zend engine hhvm phalanger quercus project zero parrot
+
+
+influenced
+
+
+perl java tcl1
+
+
+influenced
+
+
+falcon hack
+
+
+
+
+programming wikibooks
+
+
+
+
+serverside scripting language designed development also used generalpurpose programming language originally created rasmus lerdorf 19943 reference implementation produced group4 originally stood personal home page3 stands recursive backronym hypertext preprocessor5
+code embedded html code used combination various template systems content management systems frameworks code usually processed interpreter implemented module server common gateway interface executable server combines results interpreted executed code type data including images generated page code also executed commandline interface used implement standalone graphical applications6
+standard interpreter powered zend engine free software released license widely ported deployed servers almost every operating system platform free charge7
+language evolved without written formal specification standard 2014 leaving canonical interpreter facto standard since 2014 work gone create formal specification8
+2010s increased efforts towards standardisation code sharing applications projects phpfig form psrinitiatives well composer dependency manager packagist repository hosts diverse array frameworks requiring frameworkspecific knowledge laravel recently emerging popular option incorporating ideas made popular competing nonphp frameworks like ruby rails
+
+
+
+contents
+
+
+history
+
+early history
+
+
+unicode
+
+release history
+
+
+mascot
+syntax
+
+data types
+functions
+objects
+
+
+implementations
+licensing
+development community
+installation configuration
+
+security
+also
+references
+reading
+external links
+
+
+
+historyedit
+early historyedit
+
+
+
+
+
+
+
+
+
+
+
+
+rasmus lerdorf wrote original common gateway interface component together andi gutmans zeev suraski rewrote parser formed
+
+
+development began 1995 rasmus lerdorf wrote several common gateway interface programs c91011 used maintain personal homepage extended work forms communicate databases called implementation personal home pageforms interpreter phpfi
+phpfi could used build simple dynamic applications accelerate reporting improve code lerdorf initially announced release phpfi personal home page tools tools version usenet discussion group compinfosystemswwwauthoringcgi june 19951213 release already basic functionality 2013update included perllike variables form handling ability embed html syntax resembled perl simpler limited less consistent4
+early intended programming language grew organically lerdorf noting retrospect don’t know stop never intent write programming language absolutely idea write programming language kept adding next logical step way14 development team began form months work beta testing officially released phpfi november 1997
+fact originally designed instead developed organically inconsistent naming functions inconsistent ordering parameters15 cases function names chosen match lowerlevel libraries wrapping16 early versions length function names used internally hash function names chosen improve distribution hash values17
+4edit
+
+
+
+
+example custom code computer screen
+
+
+zeev suraski andi gutmans rewrote parser 1997 formed base changing languages name recursive acronym hypertext preprocessor418 afterwards public testing began official launch came june 1998 suraski gutmans started rewrite phps core producing zend engine 199919 also founded zend technologies ramat israel4
+2000 powered zend engine released4 august 2008 branch reached version longer development security updates released2021
+5edit
+july 2004 released powered zend engine included features improved support objectoriented programming data objects extension defines lightweight consistent interface accessing databases numerous performance enhancements22 2008 became stable version development late static binding missing added version 532324
+many highprofile opensource projects ceased support code february 2008 gophp5 initiative25 provided consortium developers promoting transition 52627
+time interpreters became available existing 32bit 64bit operating systems either building source code using prebuilt binaries28 versions available microsoft windows binary distributions 32bit builds2930 requiring windows 32bit compatibility mode using internet information services 64bit windows platform version made 64bit x8664 builds available microsoft windows31
+unicodeedit
+received mixed reviews lacking native unicode support core language level3233 2005 project headed andrei zmievski initiated bring native unicode support throughout embedding international components unicode library representing text strings utf16 internally34 since would cause major changes internals language user code planned release version language along major features development35
+however shortage developers understood necessary changes performance problems arising conversion utf16 rarely used context delays project36 result release created 2009 many nonunicode features backported notably namespaces march 2010 project current form officially abandoned release prepared containing remaining nonunicode features traits closure rebinding37 initial hopes plan would formed unicode integration 2014 none adopted
+7edit
+2014 2015 major version developed numbered numbering version involved debate38 unicode experiment never released several articles book titles referenced name might caused confusion release reuse name39 vote name chosen40
+foundation branch originally dubbed next generation phpng authored dmitry stogov xinchen nikita popov41 aimed optimize performance refactoring zend engine retaining nearcomplete language compatibility42 july 2014update wordpressbased benchmarks served main benchmark suite phpng project showed almost increase performance changes phpng also expected make easier improve performance future compact data structures changes seen better suited successful migration justintime compiler43 significant changes reworked zend engine called zend engine succeeding zend engine used
+major internal changes phpng must receive major version number rather minor release according phps release process45 major versions allowed break backwardcompatibility code therefore presented opportunity improvements beyond phpng require backwardcompatibility breaks particular involved following changes
+
+many fatal recoverablelevel legacy error mechanisms replaced modern objectoriented exceptions46
+syntax variable dereferencing reworked internally consistent complete allowing operators arbitrary meaningful lefthandside expressions47
+support legacy 4style constructor methods deprecated48
+behavior foreach statement changed predictable49
+constructors classes builtin returned null upon failure changed throw exception instead consistency50
+several unmaintained deprecated server application programming interfaces sapis extensions removed core notably legacy mysql extension51
+behavior list operator changed remove support strings52
+support legacy aspstyle code delimiters script languagephp script removed53
+oversight allowing switch statement multiple default clauses fixed54
+support hexadecimal number support implicit conversions strings number types removed55
+leftshift rightshift operators changed behave consistently across platforms56
+conversions integers floating point numbers tightened implemented consistently across platforms5657
+
+also included language features notably introduces return type declarations functions58 complement existing parameter type declarations support scalar types integer float string boolean parameter return type declarations59
+release historyedit
+
+
+
+color
+meaning
+development
+
+
+
+release
+development
+
+
+yellow
+stable release
+security fixes
+
+
+green
+stable release
+security fixes
+
+
+blue
+future release
+features
+
+
+
+
+version
+release date
+supported until60
+notes
+
+
+
+june 1995
+
+officially called personal home page tools tools first name php4
+
+
+
+november 1997
+
+officially called phpfi first release could actually characterised standalone language many features endured present
+
+
+
+june 1998
+october 200060
+development moves person multiple developers zeev suraski andi gutmans rewrite base version4
+
+
+
+2000
+june 200160
+added advanced twostage parseexecute tagparsing system called zend engine61
+
+
+
+december 2001
+march 200260
+introduced superglobals post session etc61
+
+
+
+april 2002
+september 200260
+disabled registerglobals default data received network inserted directly global namespace anymore closing possible security holes applications61
+
+
+
+december 2002
+march 200560
+introduced commandline interface supplement cgi6162
+
+
+
+july 2005
+august 200860
+fixed memory corruption required breaking binary compatibility extensions compiled version 43x63
+
+
+
+july 2004
+september 200560
+zend engine object model64
+
+
+
+november 2005
+august 200660
+performance improvements introduction compiler variables reengineered engine64 added data objects consistent interface accessing databases65
+
+
+
+november 2006
+january 201160
+enabled filter extension default native json support64
+
+
+
+june 2009
+august 201460
+namespace support late static bindings jump label limited goto closures archives phar garbage collection circular references improved windows support sqlite3 mysqlnd replacement libmysql underlying library extensions work mysql fileinfo replacement mimemagic better mime support internationalization extension deprecation ereg extension
+
+
+
+march 2012
+september 201560
+trait support short array syntax support removed items registerglobals safemode allowcalltimepassreference sessionregister sessionunregister sessionisregistered builtin server66 several improvements existing features performance reduced memory requirements
+
+
+
+june 2013
+july 201667
+support generators finally blocks exceptions handling opcache based zend optimizer bundled official distribution68
+
+
+
+august 2014
+december 201867
+constant scalar expressions variadic functions argument unpacking exponentiation operator extensions statement functions constants phpdbg debugger sapi module smaller improvements69
+
+
+
+released
+
+abandoned version planned include native unicode support7071
+
+
+
+december 20152
+december 201845
+zend engine performance improvements43 64bit integer support windows72 uniform variable syntax47 astbased compilation process73 added closurecall74 bitwise shift consistency across platforms75 null coalesce operator76 unicode codepoint escape syntax77 return type declarations58 scalar type integer float string boolean declarations59 spaceship threeway comparison operator78 generator delegation79 anonymous classes80 simpler consistently available csprng api81 replacement many remaining internal errors modern exceptions46 shorthand syntax importing multiple items namespace82
+
+
+
+december 2016
+december 201967
+void return type83 class constant visibility modifiers84
+
+
+
+
+november 2017
+november 202067
+
+
+
+beginning june 2011 group implemented timeline release versions php45 system least release occur every month year minor release occur include features every minor release least supported years security fixes followed least year security fixes total threeyear release process every minor release features unless small selfcontained introduced minor release threeyear release process
+mascotedit
+
+
+
+
+elephpant mascot
+
+
+mascot project elephpant blue elephant logo side designed vincent pontier85 199886 elephpant sometimes differently colored plush form
+
+syntaxedit
+main article syntax semantics
+following hello world program written code embedded html document
+
+
+doctype html
+html
+head
+titlephp testtitle
+head
+body
+echo phello worldp
+body
+html
+
+however requirement exists code embedded html simplest version hello world written like closing omitted preferred files containing pure code87
+
+
+hello world
+
+interpreter executes code within delimiters anything outside delimiters processed although nonphp text still subject control structures described code common delimiters open close sections shortened form also exists short delimiter makes script files less portable since support disabled local configuration therefore discouraged8889 however recommendation echo short prior short syntax echo works shortopentag configuration setting enabled later always available919288 purpose delimiters separate code nonphp content javascript code html markup93
+first form delimiters xhtml documents creates correctly formed processing instructions94 means resulting mixture code markup serverside file wellformed
+variables prefixed dollar symbol type need specified advance introduced type hinting allows functions force parameters objects specific class arrays interfaces callback functions however type hints could used scalar types integer string59
+unlike function class names variable names case sensitive doublequoted heredoc strings provide ability interpolate variables value string95 treats newlines whitespace manner freeform language statements terminated semicolon96 three types comment syntax marks block inline comments well used oneline comments97 echo statement several facilities provides output text browser
+terms keywords language syntax similar style syntax conditions loops function returns similar syntax languages java perl
+data typesedit
+stores integers platformdependent range either 64bit 32bit signed integer equivalent clanguage long type unsigned integers converted signed values certain situations behavior different programming languages98 integer variables assigned using decimal positive negative octal hexadecimal binary notations
+floating point numbers also stored platformspecific range specified using floating point notation forms scientific notation99 native boolean type similar native boolean types java using boolean type conversion rules nonzero values interpreted true zero false perl
+null data type represents variable value null allowed value data type99
+variables resource type represent references resources external sources typically created functions particular extension processed functions extension examples include file image database resources99
+arrays contain elements type handle including resources objects even arrays order preserved lists values hashes keys values intermingled99 also supports strings used single quotes double quotes nowdoc heredoc syntax100
+standard library attempts solve standard problems implements efficient data access interfaces classes101
+functionsedit
+defines large array functions core language many also available various extensions functions well documented online documentation102 however builtin library wide variety naming conventions associated inconsistencies described history
+custom functions defined developer
+
+
+function myagebirthyear defines function named myage
+yearsold datey birthyear calculates
+return yearsold year yearsold returns descriptive form
+
+
+echo currently myage1981 outputs text concatenated
+return value myage
+result syntax myage called
+
+2017 output sample program currently years
+lieu function pointers functions referenced string containing name manner normal functions used example callbacks within function tables103 userdefined functions created time without prototyped102103 functions defined inside code blocks permitting runtime decision whether function defined functionexists function determines whether function given name already defined function calls must parentheses exception zeroargument class constructor functions called operator case parentheses optional
+support anonymous functions closures exist createfunction exists since merely thin wrapper around eval allows normal functions created program execution104 added syntax define anonymous function closure105 capture variables surrounding scope
+
+
+function getadderx
+return functiony
+return
+
+
+
+adder getadder8
+echo adder2 prints
+
+example getadder function creates closure using passed argument keyword imports variable lexical context takes additional argument returns created closure caller function firstclass object meaning stored variable passed parameter functions etc106
+unusually dynamically typed language supports type declarations function parameters enforced runtime supported classes interfaces since arrays since callables since scalar integer float string boolean types since 7059 also type declarations function return types expressed placing type name list parameters preceded colon58 example getadder function earlier example could annotated types like
+
+
+function getadderint closure
+return functionint
+return
+
+
+
+adder getadder8
+echo adder2 prints
+echo addernull throws exception incorrect type passed
+adder getadder would also throw exception
+
+default scalar type declarations follow weak typing principles example parameters type would allow integers also convertible numeric strings floats booleans passed function would convert them59 however strict typing mode used disallows conversions function calls returns within file59
+objectsedit
+basic objectoriented programming functionality added improved allowed gain abstraction making creative tasks easier programmers using language object handling completely rewritten expanding feature enhancing performance107 previous versions objects handled like value types107 drawback method code make heavy phps reference variables wanted modify object passed rather creating copy approach objects referenced handle value
+introduced private protected member variables methods along abstract classes final classes abstract methods final methods also introduced standard declaring constructors destructors similar objectoriented languages standard exception handling model furthermore added interfaces allowed multiple interfaces implemented special interfaces allow objects interact runtime system objects implementing arrayaccess used array syntax objects implementing iterator iteratoraggregate used foreach language construct virtual table feature engine static variables bound name instead reference compile time108
+developer creates copy object using reserved word clone zend engine check whether clone method defined call default clone copy objects properties clone method defined responsible setting necessary properties created object convenience engine supply function imports properties source object programmer start byvalue replica source object override properties need changed109
+following basic example objectoriented programming
+
+
+class person
+
+public firstname
+public lastname
+
+public function constructfirstname lastname optional second argument
+thisfirstname firstname
+thislastname lastname
+
+
+public function greet
+return hello name thisfirstname
+thislastname thislastname
+
+
+public static function staticgreetfirstname lastname
+return hello name firstname lastname
+
+
+
+personjohn smith
+personsally davis
+personiamine
+
+echo hegreet prints hello name john smith
+echo
+
+echo shegreet prints hello name sally davis
+echo
+
+echo othergreet prints hello name iamine
+echo
+
+echo personstaticgreetjane prints hello name jane
+
+visibility properties methods defined using keywords public private protected default public used synonym public items declared public accessed everywhere protected limits access inherited classes class defines item private limits visibility class defines item110 objects type access others private protected members even though instance phps member visibility features sometimes described highly useful111 however also sometimes described best irrelevant worst positively harmful112
+implementationsedit
+original complete widely used implementation powered zend engine known simply disambiguate implementations sometimes unofficially referred zend zend engine compiles source code onthefly internal format execute thus works interpreter113114 also reference implementation formal specification semantics zend define semantics complex nuanced semantics defined zend works difficult competing implementations offer complete compatibility
+phps singlerequestperscriptexecution model fact zend engine interpreter leads inefficiency result various products developed help improve performance order speed execution time compile source code every time page accessed scripts also deployed engines internal format using opcode cache works caching compiled form script opcodes shared memory avoid overhead parsing compiling code every time script runs opcode cache zend opcache built since version 55115 another example widely used opcode cache alternative cache available pecl extension116
+zend still popular implementation several implementations developed compilers support compilation hence offer performance benefits zend expense lacking full compatibility alternative implementations include following
+
+hiphop virtual machine hhvm developed facebook available open source converts code highlevel bytecode commonly known intermediate language translated x8664 machine code dynamically runtime justintime compiler resulting performance improvements117
+parrot virtual machine designed dynamic languages efficiently pipp transforms source code parrot intermediate representation translated parrots bytecode executed virtual machine
+phalanger compiles common intermediate language bytecode
+hiphop developed facebook available open source transforms scripts code compiles resulting code reducing server load early 2013 facebook deprecated favor hhvm multiple reasons including deployment difficulties lack support whole language including createfunction eval constructs118
+
+licensingedit
+free software released license stipulates that119
+
+products derived software called appear name without prior written permission groupphpnet indicate software works conjunction saying instead calling phpfoo
+
+restriction makes license incompatible general public license zend license incompatible advertising clause similar original license120
+development communityedit
+includes various free opensource libraries source distribution uses resulting binary builds fundamentally internetaware system builtin modules accessing file transfer protocol servers many database servers including postgresql mysql microsoft server sqlite embedded database ldap servers others numerous functions familiar programmers stdio family available standard builds121
+allows developers write extensions functionality language extensions compiled statically loaded dynamically runtime numerous extensions written support windows process management unixlike operating systems multibyte strings unicode curl several popular compression formats features made available extensions include integration dynamic generation images adobe flash content data objects abstraction layer used accessing databases122123124125126127128 even speech synthesis languages core functions dealing strings arrays also implemented extensions129 extension community library pecl project repository extensions language130
+projects zephir provide ability extensions created highlevel language compiled native extensions approach instead writing extensions directly simplifies development extensions reduces time required programming testing131
+group consists people 2015update thies arntzen stig bakken shane caraveo andi gutmans rasmus lerdorf ruby sascha schumann zeev suraski winstead andrei zmievski132
+zend technologies provides certification based 55133 exam programmers become certified developers
+installation configurationedit
+primary ways adding support server native server module executable direct module interface called server application programming interface sapi supported many servers including apache http server microsoft netscape defunct iplanet servers omnihttpd support internet server application programming interface isapi microsofts server module interface module support server always used common gateway interface fastcgi processor case server configured phps executable process requests files134
+phpfpm fastcgi process manager alternative fastcgi implementation bundled official distribution since version 533135 compared older fastcgi implementation contains additional features mostly useful heavily loaded servers136
+using commandline scripting commandline interface executable needed supports sapi 430137 main focus sapi developing shell applications using quite differences sapi sapis although share many behaviors138
+direct module interface called sapi different servers139 case apache windows provided form file called php5apache2dll140 module among functions provides interface server implemented form server understands form known sapi
+different kinds sapis various server extensions example addition listed sapis language include common gateway interface commandline interface cli139141
+also used writing desktop graphical user interface applications using phpgtk extension phpgtk included official distribution134 extension used versions newer common installing phpgtk compiling source code142
+installed used cloud environments software development kits sdks provided using cloudspecific features example
+
+amazon services provides php143
+windows azure used windows azure php144
+
+numerous configuration options supported affecting core features extensions145146 configuration file phpini searched different locations depending used147 configuration file split various sections148 configuration options also within server configuration149
+useedit
+
+
+
+
+broad overview lamp software bundle displayed together squid
+
+
+generalpurpose scripting language especially suited serverside development case generally runs server code requested file executed runtime usually create dynamic page content dynamic images used websites elsewhere150 also used commandline scripting clientside graphical user interface applications deployed servers many operating systems platforms used many relational database management systems rdbms hosting providers support clients available free charge group provides complete source code users build customize extend use7
+
+
+
+
+dynamic page example serverside scripting mysql
+
+
+acts primarily filter151 taking input file stream containing text andor instructions outputting another stream data commonly output html although could json binary data image audio formats since parser compiles input produce bytecode processing zend engine giving improved performance interpreter predecessor152
+originally designed create dynamic pages focuses mainly serverside scripting153 similar serverside scripting languages provide dynamic content server client microsofts aspnet microsystems javaserver pages154 modperl also attracted development many software frameworks provide building blocks design structure promote rapid application development include prado cakephp symfony codeigniter laravel framework phalcon zend framework offering features similar frameworks
+lamp architecture become popular industry deploying applications155 commonly used bundle alongside linux apache mysql although also refer python perl three similar packages wamp mamp also available windows first letter standing respective operating system although apache provided part base install users packages seek simpler installation mechanism easily kept date
+april 2007update million internet domains services hosted servers installed modphp recorded popular apache http server module156 2017update used serverside programming language million popular websites157 content management systems written include mediawiki158 joomla159 publish platform silverstripe160 wordpress161 drupal162 moodle163 websites written backend andor userfacing portion include facebook164 digg165 tumblr166 dailymotion167 slack168
+specific advanced usage scenarios offers well defined documented writing custom extensions c169170171172173174175 besides extending language form additional libraries extensions providing improving execution speed critical room improvements using true compiled language176177 also offers well defined ways embedding software projects easily used internal scripting language another project also providing tight interfacing projects specific internal data structures178
+received mixed reviews lacking support multithreading core language level179 though using threads made possible pthreads pecl extension180181
+january 2013update used million websites sampled installed million servers182
+command line interface phpcli activex windows script host scripting engines produced
+securityedit
+2013 vulnerabilities listed national vulnerability database linked php183 historically vulnerabilities listed since 1996 database linked technical security flaws language core libraries frequent 2009 total although applies programs listed184 recognizing programmers make mistakes languages include taint checking automatically detect lack input validation induces many issues feature developed php185 inclusion release rejected several times past186187
+advanced protection patches suhosin hardeningpatch especially designed hosting environments188
+certain language features configuration parameters primarily default values runtime settings make applications prone security issues among magicquotesgpc registerglobals189 configuration directives best known latter made parameters become variables opening path serious security vulnerabilities allowing attacker value uninitialized global variable interfere execution script support magic quotes register globals deprecated removed 540190
+another example runtime settings vulnerability comes failing disable execution engine configuration directive191 directory uploaded images stored leaving default settings result execution malicious code embedded within uploaded images192193194 also leaving enabled dynamic loading extensions enabledl configuration directive195 shared hosting environment lead security issues196197
+also implied type conversions result incompatible values treated identical programmers intent lead security issues example result comparison 0e1234 comparison true first compared value treated scientific notation value 0×101234 zero feature resulted authentication vulnerabilities simple machines forum198 typo3199 phpbb200 password hashes compared instead either function strcmp identity operator used 0e1234 results false201
+2013 analysis 170000 website defacements published zoneh frequently used technique exploitation file inclusion vulnerability mostly related insecure usage functions include require allowurlfopen202203
+alsoedit
+
+
+computer programming portal
+free software portal
+
+
+
+
+pear extension application repository
+extension community library pecl
+accelerator
+list accelerators
+list packages
+list editors
+phpgtk
+template processor
+xampp free open source crossplatform server solution stack package
+zend server
+hack programming language
+comparison programming languages
+comparison frameworks
+
+
+referencesedit
+
+
+lerdorf rasmus 20070426 hormones history presentation rasmus lerdorf given mysql conference santa clara california conversations network retrieved 20091211
+news archive 2017 released phpnet 20171130 retrieved 20171130
+history phpnet
+history related projects group retrieved 20080225
+manual preface wwwphpnet
+introduction manual retrieved 20090305
+embedding html oreilly 20010503 retrieved 20080225
+jackson joab 20140731 gets formal specification last itworld
+lerdorf rasmus 20120720 wonder people keep writing ever written perl never twitter retrieved 20140904
+lerdorf rasmus 20070426 hormones conversations network retrieved 20090622
+lerdorf rasmus 2007 slide slides hormones talk group retrieved 20090622
+lerdorf rasmus june 1995 announce personal home page tools tools retrieved june 2011
+lerdorf rasmus 19950608 announce personal home page tools tools newsgroup compinfosystemswwwauthoringcgi retrieved 20060917
+rasmus lerdorf senior technical yahoo behind 20031119 archived original 20130728 cited felipe ribeiro 2012 another sucks article
+problems retrieved december 2010
+phpinternals function name consistency newsphpnet 20131228 retrieved 20140209
+rasmus lerdorf 2013 flexible function naming newsgroup phpinternals retrieved december 2013
+acronym meaning vote phpnet archived original august 2000
+zend engine version feature overview design zend technologies retrieved 20060917
+phpnet 2007 news archive group 20070713 retrieved 20080222
+kerner sean michael 20080201 dead—long live internetnews retrieved 20080316
+trachtenberg adam 20040715 rocks oreilly retrieved 20080222
+late static binding digital sandwich 20060223 retrieved 20080325
+static keyword group retrieved 20080325
+gophp5 archived original 20110427
+gophp5 projects join forces gophp5 press release archived original 20091210 retrieved 20080223
+gophp5 gophp5 archived original 20110427 retrieved 20080222
+installation configuration phpnet retrieved 20131029
+windows binaries sources releases phpnet retrieved 20131029
+windows binaries sources releases phpnet retrieved 20131029
+windows binaries sources releases phpnet retrieved 20131029
+types strings manual phpnet retrieved 20130922
+details string type manual phpnet retrieved 20130922
+andrei zmievski 20050810 unicode support design document mailing list post retrieved 20140209
+retrieved 20140209
+andrei zmievski good ugly happened unicode retrieved 20140209
+rasmus lerdorf 20100311 mailing list post retrieved 20140207
+httpsphilsturgeonukphp20140723neverendingmuppetdebateofphp6vphp7
+name next release phpnet 20140707 retrieved 20140715
+phpdev voterfc name next release 20140730 retrieved 20140730
+httpnewsphpnetphpinternals73888
+rfcphpng phpnet retrieved december 2014
+phpng phpnet retrieved 20140715
+merge branch zendengine3 githubcom 20141205 retrieved 20141205
+release process 20110620 retrieved 20131006
+exceptions engine phpnet retrieved 20150521
+uniform variable syntax phpnet 20140531 retrieved 20140730
+online shell versions stats hhvm
+foreach behavior phpnet retrieved 20150521
+constructor behaviour internal classes phpnet retrieved 20150521
+removal dead php7 ported sapis extensions phpnet retrieved 20150521
+list behavior inconsistency phpnet retrieved 20150521
+remove alternative tags phpnet retrieved 20150521
+make defining multiple default cases switch syntax error phpnet retrieved 20150521
+remove support numeric strings phpnet retrieved 20150521
+integer semantics phpnet retrieved 20150521
+failure overflow phpnet retrieved 20150521
+return types phpnet 20150127 retrieved 20150128
+scalar type declarations phpnet 20150316 retrieved 20150317
+unsupported branches phpnet retrieved 20151114
+changelog group 20080103 retrieved 20080222
+using command line manual group retrieved 20090911
+release announcement mannual group retrieved 20131124
+changelog group 20071108 retrieved 20080222
+manual group 20111115 retrieved 20111115
+builtin server retrieved march 2012
+supported versions phpnet retrieved 20171213
+changes phpnet retrieved 20150303
+migrating phpnet retrieved 20140324
+resetting books shelves purporting cover since least 2008 march 2010 release fact even close recent events suggest released 2011 indeed released
+moves full speed ahead recent versions part release series “we’re going skip version years plans plans different we’re now” gutmans said going right version avoids confusion
+rfcsizetandint64next phpnet retrieved december 2014
+rfcabstractsyntaxtree phpnet retrieved december 2014
+rfcclosureapply phpnet retrieved december 2014
+rfcintegersemantics phpnet retrieved december 2014
+rfcissetternary phpnet retrieved december 2014
+unicode codepoint escape syntax 20141124 retrieved 20141219
+combined comparison spaceship operator phpnet retrieved 20150521
+generator delegation phpnet retrieved 20150521
+anonymous classes phpnet retrieved 20150521
+easy userland csprng phpnet retrieved 20150521
+group declarations phpnet retrieved 20150521
+rfcvoidreturntype phpnet 20151109 retrieved 20151114
+rfcclassconstantvisibility phpnet 20151027 retrieved 20151208
+elephpant 2014 retrieved 2014
+httpswwphpfbgithubiofaqcommunityelephpant
+tags manual phpnet retrieved 20140217
+rfcshortags phpnet 20080403 retrieved 20140508
+basic syntax group retrieved 20080222
+basic coding standard framework interoperability group retrieved 20160103
+echo manual phpnet retrieved 20140217
+description core phpini directives manual phpnet 20020317 retrieved 20140217
+first phpenabled page group retrieved 20080225
+bray november 2008 processing instructions extensible markup language fifth edition retrieved 20090618
+variables group retrieved 20080316
+instruction separation group retrieved 20080316
+comments group retrieved 20080316
+integers running scissors portability mysql performance blog march 2007 retrieved 20070328
+types group retrieved 20080316
+strings group retrieved 20080321
+standardphplibrary phpnet march 2009 retrieved 20090316
+userdefined functions manual phpnet 20140704 retrieved 20140707
+variable functions manual phpnet 20140704 retrieved 20140707
+createfunction manual phpnet 20140704 retrieved 20140707
+anonymous functions manual phpnet 20140704 retrieved 20140707
+christian seiler dmitry stogov 20080701 request comments lambda functions closures phpnet retrieved 20140707
+object references mjtsaicom retrieved 20080316
+classes objects group retrieved 20080316
+object cloning group retrieved 20080316
+visibility manual theserverpagescom 20050519 retrieved 20100826
+gervasio alejandro private methods member visibility devshedcom retrieved november 2010
+visibility public private protected aperiplussourceforgenet retrieved 20100826
+computer languages work retrieved 20091104
+gilmore 2006
+vote integrating zend optimizer distribution newsphpnet retrieved 20130308
+alternative cache phpnet retrieved 20130921
+hiphop virtual machine hhvmcom december 2013 retrieved 20140223
+announcement github removing hphpc support retrieved 20130524
+license version retrieved 20100520
+gplincompatible free software licenses various licenses comments free software foundation retrieved 20110103
+function method listing manual group retrieved 20150114
+introduction manual phpnet 20130607 retrieved 20130613
+darryl patterson august 2004 simplify business logic dataobjects oreilly media ibmcom retrieved december 2014
+united states united states retrieved december 2014
+five common database problems ibmcom 20060801 retrieved 20130613
+redbooks developing applications data servers redbooksibmcom retrieved december 2014
+phparchitect
+krill paul october 2005 catching enterprises vying java infoworld archived original july 2014
+cross reference php54extstandard phpnet retrieved december 2014
+developing custom extensions devnewzcom 20020909 archived original 20080218 retrieved 20080225
+zephir zephirlangcom 20151020 retrieved 20151214
+credits phpnet retrieved 20150729
+httpwwwzendcomenservicescertificationphp5certification
+general installation considerations phpnet retrieved 20130922
+news archive released phpnet 20100722
+fastcgi process manager phpnet retrieved 20130922
+command line usage introduction phpnet retrieved 20130922
+command line usage differences sapis phpnet retrieved 20130922
+general installation considerations phpnet retrieved 20130922
+apache microsoft windows phpnet retrieved 20130922
+command line usage introduction phpnet retrieved 20130922
+installing phpgtk phpnet retrieved 20130922
+awsamazoncom retrieved 20140306
+windows azure interoperability bridges labs center interoperabilitybridgescom retrieved 20140306
+runtime configuration table contents phpnet retrieved 20130922
+phpini directives list phpini directives phpnet retrieved 20130922
+runtime configuration configuration file phpnet retrieved 20130922
+phpini directives list phpini sections phpnet retrieved 20130922
+runtime configuration configuration setting phpnet retrieved 20130922
+manual image processing phpnet retrieved 20110409
+archived 20080611231433 wayback machinenot citation given
+mysql university alabama archived original 20080228 retrieved 20080225
+serverside scripting language indiana university 20070404 retrieved 20080225
+javaserver pages technology javaserver pages comparing methods serverside dynamic content white paper microsystems retrieved 20080225
+five simple ways tune lamp application
+usage stats securityspace 20070401 retrieved 20080224
+usage serverside programming languages websites w3techs 20101029 retrieved 20101029
+manualinstallation requirementsphp mediawiki 20100125 retrieved 20100226 programming language mediawiki written
+kempkens alex joomla content management system build websites apps
+server requirements silverstripe retrieved october 2014 silverstripe requires
+wordpress retrieved 20100226 wordpress built
+drupal drupalorg retrieved 20100613
+moodleorg retrieved 20091220
+facebook facebook blogfacebookcom retrieved 20090729
+digg oreilly retrieved 20100613
+tumblr tumblr engineering november 2016
+deployment dailymotion dailymotion engineering blog october 2016
+taking seriously slack engineering blog october 2016
+core extension structure phpnet retrieved 20130922
+core counter extension continuing example phpnet retrieved 20130922
+extension writing part introduction zend zend technologies 20050301 retrieved 20130922
+extension writing part parameters arrays zvals zend technologies 20050606 retrieved 20130922
+extension writing part parameters arrays zvals continued zend technologies 20050606 retrieved 20130922
+extension writing part resources zend technologies 20060512 retrieved 20130922
+wrapping classes extension zend technologies 20090422 retrieved 20130922
+extending stack overflow retrieved 20130922
+code interact stack overflow retrieved 20130922
+golemon sara 2006 extending embedding isbn 9780672327049
+request 46919 multi threading phpnet retrieved 20130922
+pthreads introduction manual phpnet retrieved 20130922
+pecl package pthreads peclphpnet retrieved 20140209
+andy 20130131 grows grows retrieved 20130401
+national vulnerability database search vulnerabilities retrieved 20140319
+phprelated vulnerabilities national vulnerability database 20120705 retrieved 20130401
+taint mode
+developer meeting notes 2005
+taint mode decision november 2007
+hardenedphp project 20080815
+security using register globals manual phpnet retrieved 20130922
+magic quotes manual phpnet retrieved 20140117
+engine configuration directive runtime configuration phpnet retrieved 20140213
+security exploit images 20070622 retrieved 20130922
+security exploit images classes blog 20070620 retrieved 20130922
+passing malicious getimagesize 20070604 retrieved 20130922
+enabledl configuration directive runtime configuration phpnet retrieved 20140213
+function reference phpnet retrieved 20130922
+host wont trojan webhosting talk retrieved 20130922
+raz0r simple machines forum admin password reset
+nibble security typo3sa2010020 typo3sa2010022 explained
+ahackru криптостойкость небезопасное сравнение
+comparison operators phpnet
+pawel krawczyk 2013 common attacks applications ipsecpl retrieved 20150415
+pawel krawczyk 2013 critical application flaws owasp ipsecpl retrieved 20150415
+
+
+readingedit
+
+paul ford june 2015 code bloomberg businessweek what’s absolute minimum must know
+
+external linksedit
+
+find aboutphpat wikipedias sister projects
+
+media wikimedia commons
+textbooks wikibooks
+learning resources wikiversity
+documentation mediawiki
+
+
+
+listen article infodl
+
+
+
+
+
+
+
+
+
+
+
+
+audio file created revision article dated 20111123 reflect subsequent edits article audio help
+spoken articles
+
+
+official website
+curlie based dmoz
+reference manual
+source code repository github
+symfony structure stability flexibility
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+people
+
+
+
+andi gutmans
+rasmus lerdorf
+zeev suraski
+
+
+
+
+
+
+
+
+resources
+
+
+
+accelerator list
+composer
+editors
+libraries
+pear
+
+
+
+
+
+implementations
+
+
+
+hhvm
+hphpc
+parrot
+phalanger
+project zero
+quercus
+zend engine
+
+
+
+
+
+frameworks
+
+
+
+cakephp
+codeigniter
+drupal
+publish
+fatfree
+fuelphp
+horde
+joomla
+laravel
+lithium
+midgard
+modx
+nette framework
+phalcon
+
+prado
+qcodo
+silex
+silverstripe
+symfony
+typo3
+wordpress
+xaraya
+xoops
+
+zend framework
+zeta components
+
+
+
+
+
+testing
+
+
+
+behat
+phpunit
+unit testing framework
+lime symfony
+
+
+
+
+
+orms
+
+
+
+doctrine
+propel
+
+
+
+
+
+ides
+
+
+
+aptana
+codelobster
+eclipse
+netbeans
+phpedit
+phpstorm
+radphp
+zend studio
+
+
+
+
+
+widget toolkit
+
+
+
+phpgtk
+phpqt
+wxphp
+
+
+
+
+
+
+
+
+category
+commons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+interfaces
+
+
+
+serverside
+
+
+
+
+protocols
+
+
+
+http
+
+scgi
+fcgi
+
+wsrp
+websocket
+
+
+
+
+
+server apis
+
+
+
+nsapi
+asapi
+isapi
+
+java servlet
+
+container
+
+
+owin
+aspnet handler
+python wsgi
+ruby rack
+javascript jsgi
+perl psgi
+wsapi
+portlet
+
+container
+
+
+
+
+
+
+
+apache modules
+
+
+
+modjk
+modlisp
+modmono
+modparrot
+modperl
+modphp
+modproxy
+modpython
+modwsgi
+modruby
+phusion passenger
+
+
+
+
+
+topics
+
+
+
+resource service
+open
+webhook
+application server
+
+comparison
+
+
+scripting
+
+
+
+
+
+
+
+
+clientside
+
+
+
+
+browser apis
+
+
+
+npapi
+
+liveconnect
+xpconnect
+
+
+npruntime
+ppapi
+
+nacl
+
+
+activex
+
+xbap
+webassembly
+
+
+
+
+
+apis
+
+
+
+
+
+
+
+
+audio
+canvas
+cors
+
+events
+
+file
+geolocation
+indexeddb
+
+
+
+video
+webrtc
+websocket
+messaging
+storage
+worker
+xmlhttprequest
+
+
+
+
+
+khronos
+
+
+
+webcl
+webgl
+
+
+
+
+
+others
+
+
+
+gears
+database formerly
+
+
+
+
+
+
+
+
+topics
+
+
+
+ajax dhtml
+mashup
+
+scripting
+
+
+
+
+
+
+
+
+topics
+
+
+
+dynamic page
+open platform
+rich internet application
+application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+programming languages
+
+
+
+
+
+
+comparison
+timeline
+history
+
+
+
+
+
+
+
+
+assembly
+basic
+
+
+
+cobol
+fortran
+
+groovy
+haskell
+java
+javascript
+kotlin
+lisp
+
+objectivec
+pascal
+perl
+
+python
+rexx
+ruby
+shell
+smalltalk
+swift
+visual basic vbnet
+vbscript
+
+
+
+
+
+
+
+
+
+category
+lists
+
+alphabetical
+categorical
+generational
+nonenglishbased
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+free opensource software
+
+
+
+general
+
+
+
+alternative terms free software
+comparison opensource closedsource software
+comparison source code hosting facilities
+free software
+free software project directories
+gratis versus libre
+longterm support
+opensource software
+opensource software development
+outline
+
+
+
+
+
+software
+packages
+
+
+
+audio
+bioinformatics
+codecs
+collaboration
+configuration management
+device drivers
+
+graphics
+wireless
+
+
+geophysics
+health
+mathematics
+operating systems
+programming languages
+routing
+statistics
+television
+video games
+applications
+
+content management systems
+ecommerce
+
+
+word processors
+android apps
+apps
+commercial
+trademarked
+formerly proprietary
+
+
+
+
+
+community
+
+
+
+free software movement
+history
+opensource software movement
+organizations
+events
+
+
+
+
+
+licenses
+
+
+
+
+apache
+apsl
+artistic
+beerware
+boost
+
+
+cddl
+
+
+lgpl
+
+
+
+msplrl
+python
+python software foundation
+sleepycat
+unlicense
+wtfpl
+zlib
+
+
+
+
+
+license types
+standards
+
+
+
+comparison free opensource software licenses
+contributor license agreement
+copyfree
+copyleft
+debian free software guidelines
+definition free cultural works
+free license
+free software definition
+open source definition
+opensource license
+permissive software licence
+public domain
+viral license
+
+
+
+
+
+challenges
+
+
+
+binary blob
+digital rights management
+hardware restrictions
+license proliferation
+mozilla software rebranding
+proprietary software
+scolinux controversies
+secure boot
+software patents
+software security
+trusted computing
+
+
+
+
+
+related topics
+
+
+
+cathedral bazaar
+forking
+microsoft open specification promise
+revolution
+
+
+
+
+
+
+
+
+book
+category
+commons
+portal
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh99002710
+45461260
+cb135584386 data
+xx548742
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlephpoldid817782186 categories programming languagesclassbased programming languagescrossplatform softwaredynamic programming languagesdynamically typed programming languagesfilename extensionsfree compilers interpretershighlevel programming languagesinternet terminologyobjectoriented programming languagesphp softwarephpprocedural programming languagesprogramming languages created 1995scripting languagessoftware using licensetextoriented programming languages1995 softwarehidden categories webarchive template wayback linksall articles failed verificationarticles failed verification april 2010good articlespages using deprecated image syntaxarticles containing potentially dated statements 2013all articles containing potentially dated statementsarticles containing potentially dated statements july 2014articles containing potentially dated statements 2015articles containing potentially dated statements april 2007articles containing potentially dated statements 2017articles containing potentially dated statements january 2013spoken articlesarticles haudio microformatsarticles dmoz linkswikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiersarticles example code

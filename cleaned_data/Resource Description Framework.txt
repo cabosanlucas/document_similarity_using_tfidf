@@ -1,0 +1,1014 @@
+
+concepts abstract syntax
+
+status
+published recommendation
+
+
+year started
+1997
+
+
+editors
+richard cyganiak david wood markus lanthaler
+
+
+base standards
+
+
+
+related standards
+rdfs rdfa
+
+
+domain
+semantic
+
+
+abbreviation
+
+
+
+website
+wwww3orgtr2014recrdf11concepts20140225
+
+
+resource description framework family world wide consortium specifications1 originally designed metadata data model come used general method conceptual description modeling information implemented resources using variety syntax notations data serialization formats also used knowledge management applications
+adopted recommendation 1999 specification published 2004 specification 2014
+
+
+
+contents
+
+
+overview
+history
+topics
+
+vocabulary
+
+classes
+
+3111
+3112 rdfs
+
+
+properties
+
+3121
+3122 rdfs
+
+
+
+
+serialization formats
+resource identification
+statement reification context
+query inference languages
+validation description
+
+
+examples
+
+example description person named eric miller41
+example postal abbreviation york
+example wikipedia article tony benn
+
+
+applications
+also
+references
+reading
+external links
+
+
+
+overviewedit
+data model2 similar classical conceptual modeling approaches entity–relationship class diagrams based idea making statements resources particular resources expressions form subject–predicate–object known triples subject denotes resource predicate denotes traits aspects resource expresses relationship subject object
+example represent notion color blue triple subject denoting predicate denoting color object denoting blue therefore uses subject instead object entity contrast typical approach entity–attribute–value model objectoriented design entity attribute color value blue
+abstract model several serialization formats file formats particular encoding resources triples varies format format
+mechanism describing resources major component w3cs semantic activity evolutionary stage world wide automated software store exchange machinereadable information distributed throughout turn enabling users deal information greater efficiency certainty rdfs simple data model ability model disparate abstract concepts also increasing knowledge management applications unrelated semantic activity
+collection statements intrinsically represents labeled directed multigraph theory makes data model better suited certain kinds knowledge representation relational ontological models however practice data often stored relational database native representations also called triplestores—or quad stores context named graph also stored triple3
+rdfs demonstrate build additional ontology languages upon
+historyedit
+initial design intended build vendorneutral operating systemindependent system metadata4 derived w3cs platform internet content selection pics early content labelling system5 project also shaped ideas dublin core meta content framework mcf4 developed 1995–1997 ramanathan guha apple bray netscape6
+first public draft appeared october 199778 issued working group included representatives microsoft netscape nokia reuters softquad university michigan5
+published specification rdfs data model serialization recommendation february 19999
+persistent misunderstandings developed time firstly influence resource description acronym idea specifically representing metadata secondly format rather data model rdfxml serialisation xmlbased little takeup period significant work done bristol around ilrt bristol university labs boston foaf became exemplar applications period
+recommendation 1999 replaced 2004 specifications primer10 concepts abstract11 rdfxml syntax specification revised12 semantics13 vocabulary description language 1014 test cases15
+series superseded 2014 following documents primer16 concepts abstract syntax17 syntax18 semantics19 schema 1120 test cases21
+topicsedit
+vocabularyedit
+vocabulary defined specification follows22
+classesedit
+rdfedit
+
+rdfxmlliteral class literal values
+rdfproperty class properties
+rdfstatement class statements
+rdfalt rdfbag rdfseq containers alternatives unordered containers ordered containers rdfscontainer superclass three
+rdflist class lists
+rdfnil instance rdflist representing empty list
+
+rdfsedit
+
+rdfsresource class resource everything
+rdfsliteral class literal values strings integers
+rdfsclass class classes
+rdfsdatatype class datatypes
+rdfscontainer class containers
+rdfscontainermembershipproperty class container membership properties rdf1 rdf2 subproperties rdfsmember
+
+propertiesedit
+rdfedit
+
+rdftype instance rdfproperty used state resource instance class
+rdffirst first item subject list
+rdfrest rest subject list rdffirst
+rdfvalue idiomatic property used structured values
+rdfsubject subject subject statement
+rdfpredicate predicate subject statement
+rdfobject object subject statement
+
+rdfstatement rdfsubject rdfpredicate rdfobject used reification
+rdfsedit
+
+rdfssubclassof subject subclass class
+rdfssubpropertyof subject subproperty property
+rdfsdomain domain subject property
+rdfsrange range subject property
+rdfslabel humanreadable name subject
+rdfscomment description subject resource
+rdfsmember member subject resource
+rdfsseealso information subject resource
+rdfsisdefinedby definition subject resource
+
+vocabulary used foundation schema extended
+serialization formatsedit
+
+turtle serialization
+
+filename extension
+
+
+
+internet media type
+textturtle23
+
+
+developed
+world wide consortium
+
+
+standard
+turtle terse triple language january 2014 years 20140109
+
+
+open format
+
+
+
+
+rdfxml serialization
+
+
+
+
+filename extension
+
+
+
+internet media type
+applicationrdfxml24
+
+
+developed
+world wide consortium
+
+
+standard
+concepts abstract syntax february 2004 years 20040210
+
+
+open format
+
+
+
+several common serialization formats including
+
+turtle25 compact humanfriendly format
+ntriples26 simple easytoparse linebased format compact turtle
+nquads2728 superset ntriples serializing multiple graphs
+jsonld29 jsonbased serialization
+notation3 nonstandard serialization similar turtle additional features ability define inference rules
+rdfxml30 xmlbased syntax first standard format serializing
+
+rdfxml sometimes misleadingly called simply introduced among specifications defining historically first standard serialization format however important distinguish rdfxml format abstract model although rdfxml format still serializations preferred many users humanfriendly31 graphs representable rdfxml restrictions syntax qnames
+little effort virtually arbitrary also interpreted using grddl pronounced griddle gleaning resource descriptions dialects languages
+triples stored type database called triplestore
+resource identificationedit
+subject statement either uniform resource identifier blank node denote resources resources indicated blank nodes called anonymous resources directly identifiable statement predicate also indicates resource representing relationship object blank node unicode string literal resources identified iris generalization uri32
+semantic applications relatively popular applications like foaf friend friend resources tend represented uris intentionally denote used access actual data world wide general limited description internetbased resources fact names resource dereferenceable example begins http used subject statement necessarily represent resource accessible http need represent tangible networkaccessible resource could represent absolutely anything however broad agreement bare without symbol returns 300level coded response used http request treated denoting internet resource succeeds accessing
+therefore producers consumers statements must agree semantics resource identifiers agreement inherent although controlled vocabularies common dublin core metadata partially mapped space intent publishing rdfbased ontologies often establish circumscribe intended meanings resource identifiers used express data example
+
+httpwwww3orgtr2004recowlguide20040210winemerlot
+
+intended owners refer class merlot wines vintner instances represent class wine produced single vintner definition expressed ontology document occurs without careful analysis definition might erroneously conclude instance something physical instead type wine
+note bare resource identifier rather reference containing character ending fragment identifier
+statement reification contextedit
+body knowledge modeled collection statements subjected reification statement triple subjectpredicateobject altogether assigned treated resource additional statements made jane says john author document reification sometimes important order deduce level confidence degree usefulness statement
+reified database original statement resource likely least three additional statements made assert subject resource assert predicate resource assert object resource literal statements original statement also exist depending applications needs
+borrowing concepts available logic illustrated graphical notations conceptual graphs topic maps model implementations acknowledge sometimes useful group statements according different criteria called situations contexts scopes discussed articles specification coeditor graham klyne3334 example statement associated context named order assert true relationship another example sometimes convenient group statements source identified particular rdfxml document updates made source corresponding statements changed model well
+implementation scopes necessarily require fully reified statements implementations allow single scope identifier associated statement assigned itself3536 likewise named graphs triples named represent context without need reify triples37
+query inference languagesedit
+main article query language
+predominant query language graphs sparql sparql sqllike language recommendation january 2008
+example sparql query show country capitals africa using fictional ontology
+
+
+prefix httpexamplecomexampleontology
+select capital country
+
+excityname capital
+exiscapitalof
+excountryname country
+exisincontinent exafrica
+
+
+nonstandard ways query graphs include
+
+rdql precursor sparql sqllike
+versa compact syntax non–sqllike solely implemented 4suite python
+first declarative languages uniformly querying schemas resource descriptions implemented rdfsuite38
+serql part sesame
+template element declare rules matching data uses extensively databinding
+
+validation descriptionedit
+main article query language
+several proposals validate describe
+
+shacl shapes constraint language expresses constraints graphs shacl divided parts shacl core shaclsparql shacl core consists list builtin constraints cardinality range values many others shaclsparql consists features shacl core plus advanced features sparqlbased constraints extension mechanism declare constraint components
+shex shape expressions concise language validation description
+
+examplesedit
+example description person named eric miller41edit
+following example taken website41 describing resource statements person identified httpwwww3orgpeopleemcontactme whose name eric miller whose email address emiller123atexample changed security purposes whose title
+
+
+
+
+graph describing eric miller41
+
+
+resource httpwwww3orgpeopleemcontactme subject
+objects
+
+eric miller predicate whose name
+mailtoemiller123atexample predicate whose email address
+predicate whose title
+
+subject
+predicates also uris example predicate
+
+whose name httpwwww3org200010swappimcontactfullname
+whose email address httpwwww3org200010swappimcontactmailbox
+whose title httpwwww3org200010swappimcontactpersonaltitle
+
+addition subject type httpwwww3org19990222rdfsyntaxnstype person httpwwww3org200010swappimcontactperson
+therefore following subject predicate object triples expressed
+
+httpwwww3orgpeopleemcontactme httpwwww3org200010swappimcontactfullname eric miller
+httpwwww3orgpeopleemcontactme httpwwww3org200010swappimcontactmailbox mailtoemiller123atexample
+httpwwww3orgpeopleemcontactme httpwwww3org200010swappimcontactpersonaltitle
+httpwwww3orgpeopleemcontactme httpwwww3org19990222rdfsyntaxnstype httpwwww3org200010swappimcontactperson
+
+standard ntriples format written
+
+
+httpwwww3orgpeopleemcontactme httpwwww3org200010swappimcontactfullname eric miller
+httpwwww3orgpeopleemcontactme httpwwww3org200010swappimcontactmailbox mailtoemiller123atexample
+httpwwww3orgpeopleemcontactme httpwwww3org200010swappimcontactpersonaltitle
+httpwwww3orgpeopleemcontactme httpwwww3org19990222rdfsyntaxnstype httpwwww3org200010swappimcontactperson
+
+equivalently written standard turtle syntax format
+
+
+prefix eric httpwwww3orgpeopleemcontact
+prefix contact httpwwww3org200010swappimcontact
+prefix httpwwww3org19990222rdfsyntaxns
+
+ericme contactfullname eric miller
+ericme contactmailbox mailtoemiller123atexample
+ericme contactpersonaltitle
+ericme rdftype contactperson
+
+written rdfxml format
+
+
+version10 encodingutf8
+rdfrdf xmlnscontacthttpwwww3org200010swappimcontact xmlnserichttpwwww3orgpeopleemcontact xmlnsrdfhttpwwww3org19990222rdfsyntaxns
+rdfdescription rdfabouthttpwwww3orgpeopleemcontactme
+contactfullnameeric millercontactfullname
+rdfdescription
+rdfdescription rdfabouthttpwwww3orgpeopleemcontactme
+contactmailbox rdfresourcemailtoemiller123atexample
+rdfdescription
+rdfdescription rdfabouthttpwwww3orgpeopleemcontactme
+contactpersonaltitledrcontactpersonaltitle
+rdfdescription
+rdfdescription rdfabouthttpwwww3orgpeopleemcontactme
+rdftype rdfresourcehttpwwww3org200010swappimcontactperson
+rdfdescription
+rdfrdf
+
+example postal abbreviation yorkedit
+certain concepts taken logic linguistics subjectpredicate subjectpredicateobject structures meanings similar distinct uses terms example demonstrates
+english language statement york postal abbreviation york would subject postal abbreviation predicate object
+encoded triple subject predicate would resources named uris object could resource literal element example ntriples form statement might look like
+
+
+urnxstatesnew20york httppurlorgdctermsalternative
+
+example urnxstatesnew20york resource denotes state york httppurlorgdctermsalternative predicate whose humanreadable definition found literal string note uris chosen standard dont need long meaning known whatever reading
+example wikipedia article tony bennedit
+like manner given httpenwikipediaorgwikitonybenn identifies particular resource regardless whether could traversed hyperlink whether resource actually wikipedia article tony benn title resource tony benn publisher wikipedia would assertions could expressed valid statements ntriples form statements might look like following
+
+
+httpenwikipediaorgwikitonybenn httppurlorgdcelements11title tony benn
+httpenwikipediaorgwikitonybenn httppurlorgdcelements11publisher wikipedia
+
+englishspeaking person information could represented simply
+
+title resource published wikipedia tony benn
+
+however puts information formal machine understand purpose provide encoding interpretation mechanism resources described particular software understand words software access information otherwise couldnt
+versions statements wordy requirement resource subject predicate unique subject resource must unique attempt pinpoint exact resource described predicate needs unique order reduce chance idea title publisher ambiguous software working description software recognizes httppurlorgdcelements11title specific definition concept title established dublin core metadata initiative also know title different land title honorary title letters title together
+following example written turtle shows simple claims elaborated combining multiple vocabularies note primary topic wikipedia page person whose name tony benn
+
+
+prefix httpwwww3org19990222rdfsyntaxns
+prefix foaf httpxmlnscomfoaf01
+prefix httppurlorgdcelements11
+
+httpenwikipediaorgwikitonybenn
+dcpublisher wikipedia
+dctitle tony benn
+foafprimarytopic
+foafperson
+foafname tony benn
+
+
+applicationsedit
+
+dbpedia extracts facts wikipedia articles publishes data
+creative commons uses embed license information pages files
+foaf friend friend designed describe people interests interconnections
+haystack client semantic browser lab43
+ideas group developing formal ontology enterprise architecture using encoding44
+microsoft shipped product connected services framework45 provides rdfbased profile management capabilities
+musicbrainz publishes information music albums46
+nepomuk opensource software specification social semantic desktop uses storage format collected metadata nepomuk mostly known integration desktop environment
+press association news agency ontologies dynamically identify link nosql data semantic publishing dynamic rules based creates custom content fly47
+site summary several languages publishing information updates made page often used disseminating news article summaries sharing weblog content
+simple knowledge organization system skos representation intended support vocabularythesaurus applications
+sioc semanticallyinterlinked online communities designed describe online communities create connections internetbased discussions message boards weblogs mailing lists48
+smartm3 provides infrastructure using specifically uses ontology agnostic nature enable heterogeneous mashingup information49
+
+uses include research social networking also help people business fields understand better relationships members industries could product placement50 also help scientists understand people connected another
+used better understanding road traffic patterns information regarding traffic patterns different websites used integrate information different sources common methodology using keyword searching method problematic consider synonyms ontologies useful situation issues comes trying efficiently study traffic fully understand traffic concepts related people streets roads must well understood since human concepts require addition fuzzy logic values useful describing roads like slipperiness precise concepts cannot measured would imply best solution would incorporate fuzzy logic ontology51
+alsoedit
+
+notations
+
+
+trig
+trix
+rdfxml
+rdfa
+jsonld
+
+
+similar concepts
+
+
+entity–attribute–value model
+graph theory model labeled directed multigraph
+website parse template
+tagging
+scicrunch
+semantic network
+
+
+unsorted
+
+
+associative model data
+business intelligence
+data portability
+open data portal
+folksonomy
+life science identifiers
+swoogle
+universal networking language
+void
+
+referencesedit
+
+
+
+semantic standards timeline 20120204
+httpwwww3orgtrprrdfsyntax resource description framework model syntax specification
+optimized index structures querying andreas harth stefan decker latin american congress buenos aires argentina october november 2005 71–80
+world wide consortium publishes public draft resource description framework cambridge 19971003
+lash alex 19971003 takes first step toward spec cnet news archived original june 2011 retrieved 20151128
+hammersley 2005 developing feeds atom sebastopol o’reilly isbn 0596008813
+lassila swick ralph 19971002 resource description framework model syntax retrieved 20151124
+swick ralph 19971211 resource description framework archived original february 1998 retrieved 20151124
+resource description framework model syntax specification 1999 retrieved 2014
+manola frank miller eric 20040210 primer retrieved 20151121
+klyne graham carroll jeremy 20040210 resource description framework concepts abstract syntax retrieved 20151121
+beckett dave 20040210 rdfxml syntax specification revised retrieved 20151121
+hayes patrick 20140210 semantics retrieved 20151121
+brickley guha 20040210 vocabulary description language schema recommendation february 2004 retrieved 20151121
+grant beckett dave 20040210 test cases retrieved 20151121
+schreiber guus raimond yves 20140624 primer retrieved 20151122
+cyganiak richard wood david lanthaler markus 20140225 concepts abstract syntax retrieved 20151122
+gandon fabien schreiber guus 20140225 syntax retrieved 20151122
+hayes patrick patelschneider peter 20140225 semantics retrieved 20151122
+brickley guha 20140225 schema retrieved 20151122
+kellogg gregg lanthaler markus 20140225 test cases retrieved 20151122
+vocabulary description language schema 20040210 retrieved 20110105
+turtle terse triple language 2014 retrieved 20140222
+applicationrdfxml media type registration ietf september 2004 retrieved 20110108
+turtle terse triple language january 2014
+ntriples linebased syntax graph january 2014
+nquads extending ntriples context 20120625
+nquads january 2014
+jsonld jsonbased serialization linked data
+syntax february 2014
+problems syntax miličić
+concepts abstract syntax httpswwww3orgtrrdf11concepts
+contexts information modelling
+circumstance provenance partial knowledge
+concept 4suite scopes
+redland library contexts
+named graphs
+query language icsforth rdfsuite icsforth
+shacl specification
+shex specification
+primer retrieved 20090313
+dcmi metadata terms dublincoreorg retrieved 20140530
+haystack
+ideas group website
+connected services framework
+musicbrainz wiki
+
+sioc semanticallyinterlinked online communities
+oliver honkola jukka ziegler jurgen 2008 “dynamic localized space based semantic webs” iadis wwwinternet 2008 proceedings p426 iadis press isbn 9789728924683
+approach discovering relevant semantic associations social network thushar santhi thilagam
+traffic information retrieval based fuzzy ontology semantic zhai yiduo liang jiatao jiang 2008
+
+
+
+readingedit
+
+w3cs specifications guides resources
+semantics specification semantics complete systems inference rules rdfs
+
+external linksedit
+
+
+
+wikimedia commons media related resource description framework
+
+
+
+resource description framework curlie based dmoz
+
+
+
+
+
+
+
+
+
+
+
+
+semantic
+
+
+
+background
+
+
+
+databases
+hypertext
+internet
+ontologies
+semantic networks
+world wide
+
+
+
+
+
+subtopics
+
+
+
+data
+dataspaces
+hyperdata
+linked data
+rulebased systems
+
+
+
+
+
+applications
+
+
+
+semantic analytics
+semantic broker
+semantic computing
+semantic mapper
+semantic matching
+semantic publishing
+semantic reasoner
+semantic search
+semantic serviceoriented architecture
+semantic wiki
+
+
+
+
+
+related topics
+
+
+
+collective intelligence
+description logic
+folksonomy
+geotagging
+information architecture
+knowledge extraction
+knowledge management
+knowledge representation
+library
+metadata
+mind mapping
+odbc
+references
+topic maps
+
+engineering
+science trust
+
+
+
+
+
+standards
+
+
+
+
+syntax supporting technologies
+
+
+
+http
+
+
+
+
+
+
+
+triples
+rdfxml
+jsonld
+turtle
+trig
+notation3
+ntriples
+trix standard
+
+
+rrid
+sparql
+
+
+
+
+
+
+schemas ontologies rules
+
+
+
+common logic
+
+rdfs
+rule interchange format
+semantic rule language
+alps
+
+
+
+
+
+semantic annotation
+
+
+
+erdf
+grddl
+microdata
+microformats
+rdfa
+sawsdl
+facebook platform
+
+
+
+
+
+common vocabularies
+
+
+
+doap
+dublin core
+foaf
+schemaorg
+sioc
+skos
+
+
+
+
+
+microformat vocabularies
+
+
+
+hatom
+hcalendar
+hcard
+hproduct
+hrecipe
+hresume
+hreview
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+world wide consortium
+
+
+
+products
+standards
+
+
+
+
+recommendations
+
+
+
+aria
+canonical
+
+
+
+geolocation
+html html5
+
+jsonld
+linked data notifications
+mathml
+micropub
+
+
+
+
+schema
+sisr
+skos
+smil
+soap
+srgs
+
+ssml
+
+scxml
+sparql
+timed text
+voicexml
+storage
+wsdl
+webmention
+xforms
+xhtml
+xhtmlrdfa
+xinclude
+xlink
+
+base
+encryption
+events
+information
+namespace
+schema
+signature
+
+xpath
+xpath
+xpointer
+xproc
+xquery
+
+xslfo
+xslt elements
+
+
+
+
+
+notes
+
+
+
+xades
+xhtmlsmil
+
+
+
+
+
+
+working drafts
+
+
+
+ccxml
+curie
+
+inkml
+
+
+smil timesheets
+sxbl
+wicd
+xfdl
+xframes
+
+xmlhttprequest
+
+
+
+
+
+guidelines
+
+
+
+content accessibility guidelines
+
+
+
+
+
+initiative
+
+
+
+multimodal interaction activity
+markup validation service
+accessibility initiative
+webplatform
+
+
+
+
+
+deprecated
+
+
+
+chtml
+hdml
+jsss
+pgml
+
+xhtmlmathmlsvg
+
+
+
+
+
+
+
+
+organizations
+
+
+
+
+
+
+
+advisory committee
+world wide foundation
+
+
+
+
+
+elected groups
+
+
+
+advisory board
+technical architecture group
+
+
+
+
+
+working groups
+
+
+
+
+html
+geolocation
+social
+
+hypertext application technology whatwg
+platform
+
+
+
+
+
+closed groups
+
+
+
+device description ddwg
+webont semantic activity
+
+
+
+
+
+
+
+
+software
+
+
+
+
+
+
+
+cern httpd
+libwww
+
+
+
+
+
+browsers
+
+
+
+line mode 1990–
+arena 1993–98
+agora 1994–97
+argo 1994–97
+amaya browsereditor 1996–2012
+
+
+
+
+
+
+
+
+conferences
+
+
+
+international world wide conference iw3c
+
+steering committee iw3c2
+first conference www1 1994
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data exchange formats
+
+
+
+human readable formats
+
+
+
+atom
+
+yaml
+json
+
+rebol
+
+
+
+
+
+
+
+binary formats
+
+
+
+
+asn1
+avro
+bson
+cbor
+flatbuffers
+messagepack
+protocol buffers
+thrift
+smile
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh2003010124
+47375127
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleresourcedescriptionframeworkoldid817400634 categories resource description frameworkknowledge representationworld wide consortium standardsxmlxmlbased standardsmetadatasemantic webbibliography file formatshidden categories pages using deprecated image syntaxarticles dmoz linkswikipedia articles lccn identifierswikipedia articles identifiers

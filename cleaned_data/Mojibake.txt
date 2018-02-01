@@ -1,0 +1,1313 @@
+
+
+
+
+
+
+article needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed 2009 learn remove template message
+
+
+
+
+
+
+
+utf8encoded japanese wikipedia article mojibake displayed interpreted windows1252 encoding
+
+
+
+
+
+article contains special characters without proper rendering support question marks boxes symbols
+
+
+mojibake 文字化け mod͡ʑibake character transformation japanese moji character bake pronounced bahkeh transform garbled text result text decoded using unintended character encoding1 result systematic replacement symbols completely unrelated ones often different writing system display include generic replacement character places binary representation considered invalid replacement also involve multiple consecutive symbols viewed encoding binary code constitutes symbol encoding either differing constant length encoding asian 16bit encodings european 8bit encodings variable length encodings notably utf8 utf16
+failed rendering glyphs either missing fonts missing glyphs font different issue confused mojibake symptoms failed rendering include blocks codepoint displayed hexadecimal using generic replacement character importantly replacements valid result correct error handling software
+
+
+
+contents
+
+
+causes
+
+underspecification
+misspecification
+
+human ignorance
+
+
+overspecification
+lack hardwaresoftware support
+
+
+resolutions
+problems different writing systems
+
+english
+central european
+russian cyrillic alphabets
+polish
+yugoslav languages
+hungarian
+
+examples
+
+
+western european languages
+caucasian languages
+asian encodings
+
+japanese
+chinese
+
+
+indic text
+african languages
+arabic
+
+3121 examples
+
+
+
+
+also
+references
+external links
+
+
+
+causesedit
+correctly reproduce original text encoded correspondence encoded data notion encoding must preserved mojibake instance incompliance achieved manipulating data relabeling
+mojibake often seen text data tagged wrong encoding even tagged moved computers different default encodings major source trouble communication protocols rely settings computer rather sending storing metadata together data
+differing default settings computers part differing deployments unicode among operating system families partly legacy encodings specializations different writing systems human languages whereas linux distributions mostly switched utf8 around 2004citation needed uses text microsoft windows still uses codepages text files differ languages
+writing systems example japanese several encodings historically employed causing users mojibake relatively often japanese example word mojibake 文字化け stored eucjp might incorrectly displayed ﾊｸｻ�ｽ､ｱ ﾊｸｻ嵂ｽ､ｱ ms932 ﾊｸｻ郾ｽ､ｱ shiftjis2004 interpreted form shift text stored utf8 displayed 譁�蟄怜喧縺� interpreted shift exacerbated locales involved utf8 text appears æ–‡å—åœ–ã‘ software assumes text windows1252 iso88591 encodings usually labelled western example 鏂囧瓧鍖栥亼 interpreted mainland china locale
+underspecificationedit
+encoding specified software decide means depending type software typical solution either configuration charset detection heuristics prone mispredict notsouncommon scenarios
+encoding text files usually governed oslevel setting depends brand operating system possibly users language therefore assumed encoding systematically wrong files come computer different setting example transferring files windows linux solution byte order mark source code machine readable text many parsers dont tolerate another storing encoding metadata filesystem filesystems support extended file attributes store usercharset2 also requires support software wants take advantage disturb software
+encodings easy detect particular utf8 many hard distinguish charset detection browser able distinguish page coded eucjp another shiftjis coding scheme assigned explicitly using http headers sent along documents using html documents meta tags used substitute missing http headers server cannot configured send proper http headers character encodings html
+misspecificationedit
+mojibake also occurs encoding wrongly specified often happens encodings similar example eudora email client windows known send emails labelled iso88591 reality windows12523 version eudora exhibit behaviour windows1252 contains extra printable characters range frequently seen typographically correct quotation marks dashes displayed properly software complying standard especially affected software running operating systems unix
+human ignoranceedit
+encodings still many partially compatible ascii predominant common subset sets stage human ignorance
+
+compatibility deceptive property common subset characters unaffected mixup encodings problems different writing systems
+people think using ascii tend label whatever superset ascii actually ascii maybe simplification even academic literature word ascii found used example something compatible unicode evidently ascii windows1252 unicode utf81 note utf8 backwards compatible ascii
+
+overspecificationedit
+layers protocols trying specify encoding based different information least certain information misleading recipient example consider server serving static html file http character communicated client number ways
+
+http header information based server configuration instance serving file disk controlled application running server dynamic websites
+file html meta httpequiv charset encoding attribute declaration encoding author meant save particular file
+file byte order mark encoding authors editor actually saved unless accidental encoding conversion happened opening encoding saving another correct however available unicode encodings utf8 utf16
+
+lack hardwaresoftware supportedit
+many older hardware typically designed support character character typically cannot altered character table contained within display firmware localized characters country device sold typically table differs country country systems potentially display mojibake loading text generated system different country likewise many early operating systems support multiple encoding formats thus displaying mojibake made display nonstandard text early versions microsoft windows palm example localized percountry basis support encoding standards relevant country localized version sold display mojibake file containing text different encoding format version designed support opened
+resolutionsedit
+applications using utf8 default encoding achieve greater degree interoperability widespread backward compatibility usascii utf8 also ability directly recognised simple algorithm well written software able avoid mixing utf8 encodings
+difficulty resolving instance mojibake varies depending application within occurs causes common applications mojibake occur browsers word processors modern browsers word processors often support wide array character encodings browsers often allow user change rendering engines encoding setting word processors allow user select appropriate encoding opening file take trial error users find correct encoding
+problem gets complicated occurs application normally support wide range character encoding nonunicode computer game case user must change operating systems encoding settings match game however changing systemwide encoding settings also cause mojibake preexisting applications windows later user also option microsoft applocale application allows changing perapplication locale settings even changing operating system encoding settings possible earlier operating systems windows resolve issue earlier operating systems user would third party font rendering applications
+problems different writing systemsedit
+englishedit
+mojibake english texts generally occurs punctuation dashes dashes curly quotes “”‘’ rarely character text since encodings agree ascii encoding english alphabet example pound sign appear encoded sender utf8 interpreted recipient cp1252 88591 iterated lead ã‚â£ ãƒâ€šã‚â£ ãƒæ’ã¢â‚¬å¡ãƒâ€šã‚â£
+computers older eras vendorspecific encodings caused mismatch also english text commodore brand 8bit computers used petscii encoding particularly notable inverting upper lower case compared standard ascii petscii printers worked fine computers flipped case letters mainframes ebcdic encoding match ascii
+central europeanedit
+users central eastern european languages also affected computers connected network late1980s different character encodings every language diacritical characters
+
+
+
+
+mojibake caused song title cyrillic страна audio system
+
+
+russian cyrillic alphabets edit
+mojibake colloquially called krakozyabry кракозя́бры ipakrɐkɐˈzʲæbrɪ̈ russian remains complicated several systems encoding cyrillic4 soviet union early russian federation developed encodings obmena informaciej обмена информацией translates code information exchange began cyrilliconly 7bit koi7 based ascii latin characters replaced cyrillic letters came 8bit koi8 encoding ascii extension encodes cyrillic letters highbit octets corresponding 7bit codes koi7 reason koi8 text even russian remains partially readable stripping eighth considered major advantage 8bitmimeunaware email systems example words школа русского языка shkola russkogo yazyka encoded koi8 passed high stripping process rendered kola russkogo qzyka eventually koi8 gained different flavors russianbulgarian koi8r ukrainian koi8u belarusian koi8ru even tajik koi8t
+meanwhile west code page supported ukrainian belarusian well russianbulgarian msdos microsoft windows code page 1251 added support serbian slavic variants cyrillic
+recently unicode encoding includes code points practically characters worlds languages including cyrillic characters
+unicode necessary match text encoding font using encoding system failure produced unreadable gibberish whose specific appearance varied depending exact combination text encoding font encoding example attempting view nonunicode cyrillic text using font limited latin alphabet using default western encoding typically results text consists almost entirely vowels diacritical marks koi8 библиотека biblioteka library becomes âéâìéïôåëá using win1251 view text koi8 vice versa results garbled text consists mostly capital letters koi8 win1251 share ascii region koi8 uppercase letters region win1251 lowercase vice versa general cyrillic gibberish symptomatic using wrong cyrillic font early years russian sector world wide koi8 win1251 common 2017 still encounter html pages win1251 rarely koi8 encodings well unicode estimated pages worldwide languages included encoded win12515 though html standard includes ability specify encoding given page source6 sometimes neglected forcing user switch encodings browser manually
+bulgarian mojibake often called majmunica маймуница meaning monkeys alphabet serbian called đubre ђубре meaning trash unlike former ussr south slavs never used something like koi8 code page 1251 dominant cyrillic encoding unicode therefore languages experienced fewer encoding incompatibility troubles russian 1980s bulgarian computers used encoding superficially similar although incompatible cp866
+
+example
+
+
+
+russian example
+кракозябры krakozyabry garbage characters
+
+
+file encoding
+setting browser
+result
+
+
+msdos
+88591
+æöóþ¢áñ
+
+
+koi8r
+88591
+ëòáëïúñâòù
+
+
+utf8
+koi8r
+я─п╟п╨п╬п╥я▐п╠я─я▀
+
+
+polishedit
+prior creation 88592 1987 users various computing platforms used character encodings amigapl amiga atari club atari masovia cp852 mazovia windows cp1250 polish companies selling early computers created mutuallyincompatible ways encode polish characters simply reprogrammed eproms video cards typically hercules provide hardware code pages needed glyphs polish—arbitrarily located without reference computer sellers placed
+situation began improve pressure academic user groups 88592 succeeded internet standard limited support dominant vendors software today largely replaced unicode numerous problems caused variety encodings even today users tend refer polish diacritical characters krzaczki kshachkih little shrubs
+yugoslav languagesedit
+slovenian croatian bosnian serbian variants yugoslav serbocroatian language basic latin alphabet letters capital counterparts slovenian officially although others used needed mostly foreign names well letters defined latin2 windows1250 exist usual osdefault windows1252 languages
+although mojibake occur characters letters included windows1252 much prone errors thus even nowadays šđčćž šđčćž often displayed šðèæž šðèæž although never used slavic languages
+confined basic ascii user names example common replacements đ→dj ć→cj capital forms analogously đ→dj đ→dj depending word case replacements introduce ambiguities reconstructing original form usually done manually required
+windows1252 encoding important english versions windows operating system widespread localized onescitation needed reasons include relatively small fragmented market increasing price high quality localization high degree software piracy turn caused high price software compared income discourages localization efforts people preferring english versions windows software citation needed
+drive differentiate croatian serbian bosnian croatian serbian even montenegrin three creates many problems many different localizations using different standards different quality common translations vast amount computer terminology originating english people adopted english words kompjuter computer kompajlirati compile unaccustomed translated terms understand option menu supposed based translated phrase therefore people understand english well accustomed english terminology english terminology also mostly taught schools problems regularly choose original english versions nonspecialist software
+cyrillic script used macedonian partially serbian problem similar cyrillicbased scripts
+newer versions english windows allow ansi codepage changed older versions require special english versions support setting often incorrectly example windows 98me nonrighttoleft singlebyte codepages including 1250 install time
+hungarianedit
+hungarian another affected language uses basic english characters plus accented forms present latin1 character plus characters latin1 characters correctly encoded latin2 windows1250 unicode unicode became common email clients emails containing hungarian text often letters corrupted sometimes point unrecognizability common respond email rendered unreadable examples character mangling referred betűszemét meaning garbage lettering phrase árvíztűrő tükörfúrógép nonsense phrase literally floodresistant mirrordrilling machine containing accented characters used hungarian
+examplesedit
+
+
+source encoding
+target encoding
+result
+occurrence
+
+
+hungarian example
+árvíztűrő tükörfúrógép
+árvíztűrő tükörfúrógép
+
+
+
+
+╡rv╓ztδrè tükörfθrαgép
+árvízt√rï tükörfúrógép
+common dosera text encoded central european encoding however operating system software printer used default encoding please note smallcase letters mainly correct exception correct made compatible german nowadays occurs mainly printed prescriptions cheques
+
+
+cwi2
+
+årvìztÿrº tükörfùrògép
+árvíztûrô tükörfúrógép
+cwi2 encoding designed text remains fairly wellreadable even display printer uses default encoding encoding heavily used 1980s early 1990s nowadays completely deprecated
+
+
+windows1250
+windows1252
+árvíztûrõ tükörfúrógép
+árvíztûrõ tükörfúrógép
+default western windows encoding used instead centraleuropean wrong text completely readable common error nowadays ignorance occurs often webpages even printed media
+
+
+
+windows1250
+µrvöztërš tšk™rférŕgp
+rvˇztűr‹ tkrfłr˘g‚p
+central european windows encoding used instead encoding correct
+
+
+windows1250
+
+┴rv═zt█rň t▄kírf┌rëg╔p
+ßrvýztűr§ třk÷rf˙rˇgúp
+central european encoding used instead windows encoding correct
+
+
+quotedprintable
+7bit ascii
+c1rvcdztdbrd5 tdckd6rfdard3gc9p
+e1rvedztfbrf5 tfckf6rffarf3ge9p
+mainly caused wrongly configured mail servers occur messages cellphones well
+
+
+utf8
+windows1252
+ãrvãztå°rå tãœkã–rfãšrãgã‰p
+ã¡rvãztå±rå‘ tã¼kã¶rfãºrã³gã©p
+mainly caused wrongly configured services webmail clients tested international usage problem remains concealed english texts case actual often generated content utf8 however configured html headers rendering engine displays default western encoding
+
+
+western european languagesedit
+alphabets north germanic languages catalan finnish german french portuguese spanish extensions latin alphabet additional characters typically ones become corrupted making texts mildly unreadable mojibake
+
+finnish swedish
+catalan
+norwegian danish
+dutch
+german
+faroese
+icelandic
+french
+italian
+spanish
+portuguese longer used
+irish
+british english
+
+uppercase counterparts applicable
+languages iso88591 character also known latin western however iso88591 obsoleted competing standards backward compatible windows1252 slightly altered iso885915 euro sign french otherwise confusion three character sets create mojibake languages furthermore always safe interpret iso88591 windows1252 fairly safe interpret iso885915 particular respect euro sign replaces rarely used currency sign however advent utf8 mojibake become common certain scenarios exchange text files unix windows computers utf8s incompatibility latin1 windows1252 utf8 ability directly recognised simple algorithm well written software able avoid mixing utf8 encodings common many software supporting utf8 languages supported msdos default cp437 machine default encodings except ascii problems buying operating system version less common windows msdos compatible however
+swedish norwegian danish german vowels rarely repeated usually obvious character gets corrupted second letter kã⁠¤rlek kärlek love even though reader guess almost texts remain legible finnish text hand feature repeating vowels words like hääyö wedding night sometimes render text hard read hääyö appears hã⁠¤ã⁠¤yã⁠¶ icelandic faroese eight possibly confounding characters respectively thus make difficult guess corrupted characters icelandic words like þjóðlöð outstanding hospitality become almost entirely unintelligible rendered ã¾jã³ã°lã¶ã°
+german buchstabensalat letter salad common term phenomenon spanish deformación literally deformation
+users transliterate writing using computer either omitting problematic diacritics using digraph replacements thus author might write ueber instead über standard practice german umlauts available latter practice seems better tolerated german language sphere nordic countries example norwegian digraphs associated archaic danish used jokingly however digraphs useful communication parts world example norwegian football player gunnar solskjær name spelled solskjaer back played manchester united
+artifact utf8 misinterpreted iso88591 ring ring seen scam raging norway june 20147
+
+examples
+
+
+
+swedish example
+smörgås open sandwich
+
+
+file encoding
+setting browser
+result
+
+
+msdos
+88591
+smrg†s
+
+
+88591
+roman
+smˆrgâs
+
+
+utf8
+88591
+smã¶rgã¥s
+
+
+utf8
+roman
+sm√∂rg√•s
+
+
+caucasian languagesedit
+writing systems certain languages caucasus region including scripts georgian armenian produce mojibake problem particularly acute case armscii armscii obsolete character encodings armenian alphabet superseded unicode standards armscii widely used lack support computer industry example microsoft windows support
+asian encodingsedit
+another type mojibake occurs text erroneously parsed multibyte encoding encodings east asian languages kind mojibake typically characters corrupted k舐lek kärlek swedish parsed compared mojibake harder read since letters unrelated problematic missing especially problematic short words starting becomes since letters combined mojibake also seems random variants compared normal three counting rarer capitals rare cases entire text string happens include pattern particular word lengths sentence bush facts misinterpreted
+japaneseedit
+main article japanese language computers
+japanese phenomenon mentioned called mojibake 文字化け particular problem japan numerous different encodings exist japanese text alongside unicode encodings like utf8 utf16 standard encodings shiftjis windows machines eucjp unix systems mojibake well encountered japanese users also often encountered nonjapanese attempting software written japanese market
+chineseedit
+chinese phenomenon called luàn pinyin simplified chinese traditional chinese meaning chaotic code occur computerised text encoded chinese character encoding displayed using wrong encoding occurs often possible issue switching character encoding without loss data situation complicated existence several chinese character encoding systems common ones unicode big5 guobiao several backward compatible versions possibility chinese characters encoded using japanese encoding
+easy identify original encoding luanma occurs guobiao encodings
+
+
+original encoding
+viewed
+result
+original text
+note
+
+
+big5
+
+瓣в眏
+三國志１１威力加強版
+lots blank undisplayable characters occasional chinese characters
+
+
+shiftjis
+
+暥帤壔偗僥僗僩
+文字化けテスト
+kana displayed characters radical kanji characters extremely uncommon practical modern chinese
+
+
+euckr
+
+叼力捞钙胶 抛农聪墨
+디제이맥스 테크니카
+random common simplified chinese characters cases make sense easily identifiable spaces every several characters
+
+
+additional problem caused encodings missing characters common rare antiquated characters still used personal place names examples taiwanese politicians wang chienshien chinese pinyin wáng jiànxuāns shyikun simplified chinese traditional chinese pinyin xíkūns singer david chinese pinyin zhés missing big5 exprc premier rongji chinese pinyin róngjīs missing gb2312 copyright symbol missing gbk8
+newspapers dealt problem various ways including using software combine existing similar characters using picture personality simply substituting homophone rare character hope reader would able make correct inference
+indic textedit
+similar effect occur brahmic indic scripts south asia used indoaryan indic languages hindustani hindiurdu bengali punjabi marathi others even character employed properly recognized application many indic scripts rules individual letter symbols combine create symbols syllables properly understood computer missing appropriate software even glyphs individual letter forms available
+particularly notable example wikipedia logo attempts show character analogous first syllable wikipedia many puzzle pieces puzzle piece meant bear devanagari character instead used display character followed unpaired modifier vowel easily recognizable mojibake generated computer configured display indic text9 logo redesigned 2010ref fixed errors
+idea plain text requires operating system provide font display unicode codes font different singhala makes orthographically incorrect glyphs letters syllables across operating systems instance reph short form diacritic normally goes plain letter however wrong letters like happens operating systems appears fault internal programming fonts macintosh iphone muurdhaja dark combination long form yield wrong shapes
+indic indicderived scripts notably officially supported windows release vista10 however various sites made freetodownload fonts
+african languagesedit
+certain writing systems africa unencoded text unreadable texts produce mojibake include horn africa geez script ethiopia eritrea used amharic tigre languages somali language employs osmanya alphabet southern africa mwangwego alphabet used write languages malawi mandombe alphabet created democratic republic congo generally supported various writing systems native west africa present similar problems alphabet used manding languages guinea syllabary used liberia
+arabicedit
+another affected language arabic text becomes unreadable encodings match
+examplesedit
+
+
+file encoding
+setting browser
+result
+
+
+arabic example
+universal declaration human rights
+
+
+browser rendering
+الإعلان العالمى لحقوق الإنسان
+
+
+utf8
+windows1252
+ï»¿ø§ùø¥ø¹ùø§ù† ø§ùø¹ø§ùù…ù‰ ùøù‚ùˆù‚ ø§ùø¥ù†ø³ø§ù†
+
+
+koi8r
+о╩©ь╖ы└ь╔ь╧ы└ь╖ы├ ь╖ы└ь╧ь╖ы└ы┘ы┴ ы└ь╜ы┌ы┬ы┌ ь╖ы└ь╔ы├ьёь╖ы├
+
+
+88595
+ялпиїй�иѕийй�иїй� иїй�ийиїй�й�й� й�ий�й�й� иїй�иѕй�игиїй�
+
+
+
+я╗┐╪з┘д╪е╪╣┘д╪з┘ж ╪з┘д╪╣╪з┘д┘е┘й ┘д╪н┘в┘и┘в ╪з┘д╪е┘ж╪│╪з┘ж
+
+
+88596
+ُ؛؟ظ�ع�ظ�ظ�ع�ظ�ع� ظ�ع�ظ�ظ�ع�ع�ع� ع�ظع�ع�ع� ظ�ع�ظ�ع�ظ�ظ�ع�
+
+
+88592
+ďťżř§ů�řľřšů�ř§ů� ř§ů�řšř§ů�ů�ů� ů�řů�ů�ů� ř§ů�řľů�řłř§ů�
+
+
+windows1256
+windows1252
+çáåúáçä çáúçáãì áíþæþ çáåäóçä
+
+
+examples article utf8 browser setting utf8 easily recognisable browser supports utf8 recognise automatically interpret something else utf8
+alsoedit
+
+code point
+replacement character
+newline conventions representing line break differ windows unix systems though software supports conventions trivial software must preserve display difference version control systems data comparison tools substantially difficult adhering convention
+byte order mark inband store encoding together data prepend intention invisible humans using compliant software design perceived garbage characters incompliant software including many interpreters
+html entities encoding special characters html mostly optional required certain characters escape interpretation markup
+
+
+failure apply transformation vulnerability crosssite scripting applying many times results garbling characters example quotation mark becomes quot ampquot ampampquot
+
+
+unreadable unexpected text messages
+
+
+people receive short unreadable chinese text messages whereas sender never sent despite look like hacking attempt delivery confirmation coded wrong format example
+
+received text message 浥獳慧攠⁴漠〱㈳㐵㘷㠹〠獵捣敥摥搮
+converted utf16 6d65 7373 6167 6520 2074 6f20 3031 3233 3435 3637 3839 3020 7375 6363 6565 6465 642e
+formatted utf8 spaces added
+converted utf8 characters message 01234567890 succeeded
+
+
+
+referencesedit
+
+
+
+unicode soon universal code ieee spectrum issue july 2012 advantage unicode everyone adopted would eradicate problem mojibake japanese character transformation mojibake jumble results characters encoded system decoded another
+guidelines extended attributes 20130517 retrieved 20150215
+unicode mailinglist eudora email client 20010513 retrieved 20141101
+control delete dictionary cyberslang jonathon keats globe pequot 2007 isbn 1599210398
+usage windows1251 websites
+declaring character encodings html
+smsscam june 2014 retrieved june 2014
+archived original 20021001 conversion code page microsoft windows unicode need manually selecting gb18030 browser view correctly
+cohen noam june 2007 errors defy fixes typo wikipedias logo fractures sanskrit york times retrieved july 2009
+content moved windows msdnmicrosoftcom retrieved 20140205
+unicode code converter
+
+
+
+external linksedit
+
+
+
+
+
+
+article require cleanup meet wikipedias quality standards specific problem full spam please help improve article december 2017 learn remove template message
+
+
+
+
+
+
+look mojibake wiktionary free dictionary
+
+
+
+
+
+wikimedia commons media related mojibake
+
+
+
+universal text decoder knows broken mixed text
+avoiding mojibake reprinted article japan times
+coldfusion developers guide article
+online decoder hebrew text online decoder converts input readable hebrew text
+translators guide
+recovery tool recovery japanese text japanese
+chinese email fixer recovery chinese text
+chinese encoding converter convert file encoding text files
+decodrru fast cyrillic decoder email charsets
+universal cyrillic decoder recovery cyrillic text
+multilingual online text decoder online decoder converts scrambled input readable text supported languages russian bulgarian greek hebrew thai
+noto ĉapeloj resuma tabelo covers cases esperanto mojibake
+encoding repair fixes mojibake originally intended japanese windows freeware 1998 compatible windows vista
+krzaki krzaki krzaki online decoder polish mojibake cases
+thing plain text developers guide better handling text encoding
+padma transformer indic scripts source code github
+ftfy python library fixes unicode thats broken various ways
+
+
+
+
+
+
+
+
+
+
+
+
+character encodings
+
+
+
+early telecommunications
+
+
+
+ascii
+isoiec
+isoiec 6937
+
+bcdic
+baudot code
+morse code
+
+telegraph code
+wabun code
+
+
+special telegraphy codes
+
+nonlatin
+chinese
+cyrillic
+
+
+needle telegraph codes
+
+
+
+
+
+isoiec 8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bibliographic
+
+
+
+ansel
+5426 54262 5427 5428 6438 6861 6862 10585 10586 10754 11822
+marc8
+
+
+
+
+
+national standards
+
+
+
+armscii
+brascii
+11643
+elot
+gost 10859
+18030
+hkscs
+iscii
+0201
+0208
+0212
+0213
+koi7
+9566
+1001
+pascii
+
+tis620
+tscii
+viscii
+yuscii
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isoiec 2022
+
+
+
+
+
+
+cccii
+
+
+
+
+
+macos code pages
+scripts
+
+
+
+arabic
+celtic
+centeuro
+chinesesimp euccn
+chinesetrad big5
+croatian
+cyrillic
+devanagari
+dingbats
+esperanto
+farsi
+gaelic
+greek
+gujarati
+gurmukhi
+hebrew
+iceland
+japanese shiftjis
+korean euckr
+latin1
+roman
+romanian
+sámi
+symbol
+thai tis620
+turkish
+ukrainian
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+855872
+
+
+
+
+
+
+
+
+86417248
+
+866808
+
+
+
+87411611162
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9501370
+
+
+
+1034
+1039
+1040
+1041
+1042
+1043
+1044
+1046
+1086
+1088
+1092
+1093
+1098
+1108
+1109
+1114
+1115
+1116
+1117
+1118
+1119
+1125848
+1126
+1127
+1131849
+1139
+1167
+1168
+1300
+1351
+1361
+1362
+1363
+1372
+1373
+1374
+1375
+1380
+1381
+1385
+1386
+1391
+1392
+1393
+1394
+kamenický
+mazovia
+cwi2
+koi8
+
+iran system
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+921901
+922902
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1004
+1006
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1029
+1036
+1089
+1111
+1124
+11291163
+1133
+1350
+1382
+1383
+
+
+
+
+
+apple macintosh
+emulations
+
+
+
+1275
+1280
+1281
+1282
+1283
+1284
+1285
+1286
+
+
+
+
+
+adobe emulations
+
+
+
+1038
+1276
+1277
+
+
+
+
+
+emulations
+
+
+
+1020
+1021
+1023
+1090
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1287
+1288
+
+
+
+
+
+emulations
+
+
+
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+
+
+
+
+
+windows code pages
+
+
+
+cergs
+8741162 tis620
+932943 shift
+9361386
+9501370 big5
+9491363 euckr
+1169
+1174
+extended latin8
+1200 utf16le
+1201 utf16be
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1261
+1270
+54936 gb18030
+
+
+
+
+
+ebcdic code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+371140
+
+
+
+
+
+
+
+
+
+
+
+
+2731141
+
+
+
+2771142
+2781143
+
+2801144
+
+
+
+2841145
+2851146
+
+
+
+
+
+
+2971147
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42016804
+
+
+424861612712
+
+
+5001148
+
+
+
+
+
+
+
+838838
+
+87011101153
+8711149
+87549719067
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9301390
+
+9331364
+9351388
+9371371
+9391399
+1001
+1002
+1003
+1005
+1007
+1024
+10251154
+10261155
+1027
+1028
+1030
+1031
+1032
+1033
+1037
+1047
+1068
+1069
+1070
+1071
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1087
+1091
+1097
+11121156
+1113
+11221157
+11231158
+11301164
+1132
+1136
+1137
+1150
+1151
+1152
+1159
+1165
+1166
+1278
+1279
+1303
+1364
+1376
+1377
+
+keis
+
+
+
+
+
+platform specific
+
+
+
+acorn
+adobe standard
+apple
+atascii
+atari
+bics
+casio calculators
+
+
+radix50
+mcsnrcs
+international
+elwrojunior
+fieldata
+
+geos
+0338
+roman extension
+roman8
+roman9
+focal
+
+lics
+lmbcs
+
+
+next
+
+petscii
+sharp calculators
+calculators
+trs80
+ventura international
+ventura symbol
+wiscii
+xccs
+zx80
+zx81
+spectrum
+
+
+
+
+
+unicode isoiec 10646
+
+
+
+utf1
+utf7
+utf8
+utf16 utf16leutf16be ucs2
+utf32 utf32leutf32be ucs4
+utfebcdic
+18030
+bocu1
+cesu8
+scsu
+
+
+
+
+
+miscellaneous code pages
+
+
+
+abicomp
+
+arib stdb24
+cork
+
+inis
+inis8
+johab
+
+
+
+
+seascii
+tace16
+tron
+utf5
+utf6
+wtf8
+
+
+
+
+
+related topics
+
+
+
+code page
+control character
+ccsid
+character encodings html
+charset detection
+unification
+hardware
+6429iec 6429ansi x364
+mojibake
+
+
+
+
+
+
+character sets
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlemojibakeoldid815682751 categories character encodingcomputer errorsnonsensehidden categories articles needing additional references 2009all articles needing additional referencesarticles containing japaneselanguage textall articles unsourced statementsarticles unsourced statements july 2014articles unsourced statements december 2014articles unsourced statements august 2013articles containing swedishlanguage textarticles containing finnishlanguage textarticles containing icelandiclanguage textarticles containing germanlanguage textarticles containing spanishlanguage textarticles containing norwegianlanguage textarticles containing chineselanguage textarticles wanted charactersarticles containing simplified chineselanguage textarticles containing traditional chineselanguage textarticles containing potentially dated statements 2010all articles containing potentially dated statementsarticles containing arabiclanguage textarticles needing cleanup december 2017all pages needing cleanupcleanup tagged articles reason field december 2017wikipedia pages needing cleanup december 2017articles japaneselanguage external links

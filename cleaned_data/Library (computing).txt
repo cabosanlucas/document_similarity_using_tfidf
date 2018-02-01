@@ -1,0 +1,316 @@
+software library redirects confused library software
+software library redirects virtual libraries maintain collections computer program digital asset management
+
+
+
+
+illustration application uses libvorbisfile play vorbis file
+
+
+computer science library collection nonvolatile resources used computer programs often develop software include configuration data documentation help data message templates prewritten code subroutines classes values type specifications ibms os360 successors referred partitioned data sets
+library also collection implementations behavior written terms language welldefined interface behavior invoked instance people want write higher level program library make system calls instead implementing system calls addition behavior provided reuse multiple independent programs program invokes libraryprovided behavior mechanism language example simple imperative language behavior library invoked using normal functioncall distinguishes call library function versus another function program code organized system
+library code organized used multiple programs connection code part program organized used within program distinction gain hierarchical notion program grows large multimillionline program case internal libraries reused independent subportions large program distinguishing feature library organized purposes reused independent programs subprograms user needs know interface internal details library
+value library lies reuse behavior program invokes library gains behavior implemented inside library without implement behavior libraries encourage sharing code modular fashion ease distribution code
+behavior implemented library connected invoking program different program lifecycle phases code library accessed build invoking program library called static library1 alternative build executable invoking program distribute independently library implementation library behavior connected executable invoked executed either part process starting execution middle execution case library called dynamic library loaded time dynamic library loaded linked preparing program execution linker alternatively middle execution application explicitly request module loaded
+compiled languages standard library although programmers also create custom libraries modern software systems provide libraries implement majority system services libraries commoditized services modern application requires code used modern applications provided system libraries
+
+
+
+contents
+
+
+history
+linking
+relocation
+static libraries
+shared libraries
+
+memory sharing
+dynamic linking
+optimizations
+locating libraries time
+
+microsoft windows
+openstep
+unixlike systems
+
+
+dynamic loading
+
+
+object class libraries
+remote libraries
+code generation libraries
+file naming
+
+modern unixlike systems
+macos
+microsoft windows
+
+
+also
+notes
+references
+external links
+
+
+
+historyedit
+earliest programming concepts analogous libraries intended separate data definitions program implementation jovial brought compool communication pool concept popular attention 1959 although adopted idea largesystem sage software following computer science principles separation concerns information hiding comm pools purpose permit sharing system data among many programs providing centralized data description2
+cobol also included primitive capabilities library system 19593 jean sammet described inadequate library facilities retrospect4
+another major contributor modern library concept came form subprogram innovation fortran fortran subprograms compiled independently compiler lacked linker prior introduction modules fortran90 type checking fortrannb subprograms impossible5
+finally historians concept remember influential simula simula first objectoriented programming language classes nearly identical modern concept used java class concept simula also progenitor package module modula26 even developed originally 1965 simula classes could included library files added compile time7
+linkingedit
+main articles link time linker computing
+libraries important program linking binding process resolves references known links symbols library modules linking process usually automatically done linker binder program searches libraries modules given order usually considered error link target found multiple times given libraries linking done executable file created whenever program used time
+references resolved addresses jumps routine calls main program module depending upon another resolved fixed relocatable addresses common base allocating runtime memory memory segments module referenced
+programming languages feature called smart linking whereby linker aware integrated compiler linker knows external references used code library never actually used even though internally referenced discarded compiled application example program uses integers arithmetic arithmetic operations exclude floatingpoint library routines smartlinking feature lead smaller application file sizes reduced memory usage
+relocationedit
+main article relocation computer science
+references program library module stored relative symbolic form cannot resolved code libraries assigned final static addresses relocation process adjusting references done either linker loader general relocation cannot done individual libraries addresses memory vary depending program using libraries combined positionindependent code avoids references absolute addresses therefore require relocation
+static librariesedit
+main article static library
+linking performed creation executable another object file known static linking early binding case linking usually done linker also done compiler static library also known archive intended statically linked originally static libraries existed static linking must performed modules recompiled
+modules required program sometimes statically linked copied executable file process resulting standalone file known static build program static build need relocation virtual memory used address space layout randomization desired8
+shared librariesedit
+shared object redirects synchronization mechanism monitor synchronization
+shared library shared object file intended shared executable files shared object files modules used program loaded individual shared objects memory load time time rather copied linker creates single monolithic executable file program
+shared libraries statically linked meaning references library modules resolved modules allocated memory executable file created often linking shared libraries postponed loadeddubious discuss
+modern operating systemsnb shared library files format executable files offers main advantages first requires making loader rather single loader considered well worth added complexity secondly allows executables also used shared libraries symbol table typical combined executable shared library formats macho unix windows
+older environments 16bit windows 3000 stack based data local allowed shared library code significant restrictions placed shared library code
+memory sharingedit
+main article shared memory interprocess communication
+library code shared memory multiple processes well disk virtual memory used processes would execute physical page mapped different address spaces processes advantages instance openstep system applications often hundred kilobytes size loaded quickly majority code located libraries already loaded purposes operating systemcitation needed
+programs accomplish sharing using positionindependent code unix leads complex flexible architecture using common virtual addresses windows systems make sure various tricks like premapping address space reserving slots shared library code great probability shared third alternative singlelevel store used system38 successors allows positiondependent code places significant restrictions code placed shared
+cases different versions shared libraries cause problems especially libraries different versions file name different applications installed system require specific version scenario known hell named windows file modern operating systems 2001 cleanup methods eliminate situations application specific private libraries9
+dynamic linkingedit
+main article dynamic linker
+dynamic linking late binding linking performed program loaded load time executed time rather executable file created dynamically linked library dynamiclink library windows dynamic shared object unixlike systems library intended dynamic linking minimum amount work done linker executable file created records library routines program needs index names numbers routines library majority work linking done time application loaded load time execution time usually necessary linking program called dynamic linker linking loader actually part underlying operating system however possible exceedingly difficult write program uses dynamic linking includes dynamic linker even operating system provides support dynamic linking
+programmers originally developed dynamic linking multics operating system starting 1964 michigan terminal system built late 1960s10
+optimizationsedit
+since shared libraries systems change often systems compute likely load address shared library system needed store information libraries executables every shared library loaded undergone process load predetermined address speeds process dynamic linking optimization known prebinding macos prelinking linux disadvantages technique include time required precompute addresses every time shared libraries change inability address space layout randomization requirement sufficient virtual address space problem alleviated adoption 64bit architectures least time
+locating libraries timeedit
+loaders shared libraries vary widely functionality depend executable storing explicit paths libraries change library naming layout file system cause systems fail commonly name library path stored executable operating system supplying method find library ondisk based algorithm
+shared library executable depends deleted moved renamed incompatible version library copied place earlier search executable would fail load called dependency hell existing many platforms infamous windows variant commonly known hell problem cannot occur version library uniquely identified program references libraries full unique identifiers hell problems earlier windows versions arose using names libraries guaranteed unique resolve dynamic links programs avoid hell later versions windows rely largely options programs install private dlls—essentially partial retreat shared libraries—along mechanisms prevent replacement shared system dlls earlier versions
+microsoft windowsedit
+microsoft windows checks registry determine proper place load dlls implement objects dlls check directories defined order first windows checks directory loaded program private dll9 directories calling setdlldirectory function system32 system windows directories current working directory finally directories specified path environment variable11 applications written framework framework since 2002 also check global assembly cache primary store shared files remove issue hell
+openstepedit
+openstep used flexible system collecting list libraries number known locations similar path concept system first starts moving libraries around causes problems although users incur time cost first starting system
+unixlike systemsedit
+unixlike systems search path specifying file system directories look dynamic libraries systems specify default path configuration file others hardcode dynamic loader executable file formats specify additional directories search libraries particular program usually overridden environment variable although disabled setuid setgid programs user cant force program arbitrary code root permissions developers libraries encouraged place dynamic libraries places default search path downside make installation libraries problematic known locations quickly become home increasing number library files making management complex
+dynamic loadingedit
+main article dynamic loading
+dynamic loading subset dynamic linking involves dynamically linked library loading unloading time request request made implicitly compile time explicitly time implicit requests made compile time linker adds library references include file paths simply file names explicit requests made applications make direct calls operating systems time
+operating systems support dynamically linked libraries also support dynamically loading libraries runtime linker instance microsoft windows uses functions loadlibrary loadlibraryex freelibrary getprocaddress microsoft dynamic link libraries posix based systems including unix unixlike systems dlopen dlclose dlsym development systems automate process
+object class librariesedit
+although originally pioneered 1960s dynamic linking reach operating systems used consumers late 1980s generally available form operating systems early 1990s period objectoriented programming becoming significant part programming landscape runtime binding requires additional information traditional libraries dont supply addition names entry points code located within also require list objects depend sideeffect oops main advantages inheritance means parts complete definition method different places simply listing library requires services another true system libraries known compile time vary system system
+time many developers worked idea multitier programs display running desktop computer would services mainframe minicomputer data storage processing instance program guibased computer would send messages minicomputer return small samples huge dataset display remote procedure calls already handled tasks standard system
+soon majority minicomputer mainframe vendors instigated projects combine producing library format could used anywhere systems known object libraries distributed objects supported remote access microsofts example system local dcom modified version supports remote access
+time object libraries held status next thing programming world number efforts create systems would across platforms companies competed developers locked system examples include ibms system object model somdsom microsystems distributed objects everywhere nexts portable distributed objects digitals objectbroker microsofts component object model comdcom number corbabased systems
+inevitable cooling marketing hype object libraries continue used objectoriented programming distributed information systems class libraries rough equivalent older types code libraries contain classes describe characteristics define actions methods involve objects class libraries used create instances objects characteristics specific values languages like java distinction clear classes often contained library files like javas file format instantiated objects residing memory although potentially able made persistent separate files others like smalltalk class libraries merely starting point system image includes entire state environment classes instantiated objects
+remote librariesedit
+another solution library issue comes using completely separate executables often lightweight form calling using remote procedure call network another computer approach maximizes operating system reuse code needed support library code used provide application support security every program additionally systems require library exist machine forward requests network
+however approach means every library call requires considerable amount overhead calls much expensive calling shared library already loaded machine approach commonly used distributed architecture makes heavy remote calls notably clientserver systems application servers enterprise javabeans
+code generation librariesedit
+code generation libraries highlevel apis generate transform byte code java used aspectoriented programming data access frameworks testing generate dynamic proxy objects also used intercept field access12
+file namingedit
+modern unixlike systemsedit
+system stores libfooa libfooso files directories usrlib usrlocallib filenames always start suffix archive static library shared object dynamically linked library systems might multiple names dynamically linked library names names symbolic links remaining name names might include major version library full version number example systems libfooso2 would filename second major interface revision dynamically linked library libfoo files sometimes found library directories libtool archives usable system
+macosedit
+system inherits static library conventions library stored file sostyle dynamically linked libraries dylib suffix instead libraries macos however consist frameworks placed inside special directories called bundles wrap librarys required files metadata example framework called myframework would implemented bundle called myframeworkframework myframeworkframeworkmyframework either dynamically linked library file symlink dynamically linked library file myframeworkframeworkversionscurrentmyframework
+microsoft windowsedit
+dynamiclink libraries usually suffix dll13 although file name extensions identify specificpurpose dynamically linked libraries libraries interface revisions either encoded file names abstracted away using comobject interfaces depending compiled files either static libraries representations dynamically linkable libraries needed compilation known import libraries unlike unix world uses different file extensions linking file windows must first know regular static library import library latter case file must present time
+alsoedit
+
+code reuse
+linker computing
+loader computing
+dynamiclink library
+object file
+plugin
+prebinding
+static library
+runtime library
+visual component library
+component library cross platform
+lazarus component library
+standard library
+java class library
+framework class library
+generic programming used standard library
+soname
+method stub
+
+notesedit
+
+
+
+possible earlier subprograms
+older systems burroughs multics also single format executable files regardless whether shared
+
+
+
+referencesedit
+
+
+static libraries tldp archived original july 2013 retrieved october 2013
+wexelblat richard 1981 history programming languages monograph series york academic press subsidiary harcourt brace isbn 0127450408
+wexelblat
+wexelblat
+wilson leslie clark robert 1988 comparative programming languages wokingham england addisonwesley isbn 0201184834
+wilson clark
+wexelblat
+christian collberg john hartman sridivya babu sharath udupa 2003 slinky static linking reloaded department computer science university arizona archived original march 2016 retrieved march 2016 maint uses authors parameter link
+anderson rick 20000111 hell microsoftcom archived original 20010605 retrieved 20120115 private dlls dlls installed specific application used application
+history information technology digest
+dynamiclink library search order microsoft developer network library microsoft march 2012 archived original 2012 retrieved 2012
+code generation library httpsourceforgenet source forge archived original january 2010 retrieved march 2010 byte code generation library high level generate transform java byte code used testing data access frameworks generate dynamic proxy objects intercept field access
+bresnahan christine blum richard april 2015 lpic1 linux professional institute certification study guide exam 101400 exam 102400 john wiley sons published 2015 isbn 9781119021186 archived original september 2015 retrieved september 2015 linux shared libraries similar dynamic link libraries dlls windows windows dlls usually identified filename extensions
+
+
+external linksedit
+
+shared libraries linkers loaders john levine
+dynamic linking loading linkers loaders john levine
+article beginners guide linkers david drysdale
+article faster program startups improving runtime linking efficiency léon bottou john ryland
+create program libraries baris simsek
+binary file descriptor library
+librarycentric software design workshop lcsd05 oopsla05
+librarycentric software design workshop lcsd06 oopsla06
+create shared library ulrich drepper much background info
+anatomy linux dynamic libraries ibmcom
+
+
+
+
+
+
+
+
+
+
+
+
+application binary interface
+
+
+
+parts
+conventions
+
+
+
+alignment
+calling convention
+call stack
+library
+
+static
+
+
+machine code
+memory segmentation
+name mangling
+object code
+opaque pointer
+positionindependent code
+relocation
+system call
+virtual method table
+
+
+
+
+
+related topics
+
+
+
+binary code compatibility
+foreign function interface
+language binding
+linker
+
+dynamic
+
+
+loader
+year 2038 problem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+executable object file formats
+
+
+
+
+
+
+aout
+
+coff
+
+
+ecoff
+
+goff
+hunk
+macho
+
+
+
+os360
+
+
+xcoff
+
+
+
+
+
+
+
+
+comparison formats
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+41215217
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlelibrarycomputingoldid815607213 categories computer librariesoperating system technologyhidden categories maint uses authors parameterall accuracy disputesarticles disputed statements 2014all articles unsourced statementsarticles unsourced statements december 2008use dates august 2011wikipedia articles identifiers

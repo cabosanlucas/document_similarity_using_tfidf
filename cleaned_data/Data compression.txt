@@ -1,0 +1,1340 @@
+source coding redirects term computer programming source code
+signal processing data compression source coding1 bitrate reduction involves encoding information using fewer bits original representation2 compression either lossy lossless lossless compression reduces bits identifying eliminating statistical redundancy information lost lossless compression lossy compression reduces bits removing unnecessary less important information3
+process reducing size data file often referred data compression context data transmission called source coding encoding done source data stored transmitted4 source coding confused channel coding error detection correction line coding means mapping data onto signal
+compression useful reduces resources required store transmit data computational resources consumed compression process usually reversal process decompression data compression subject space–time complexity tradeoff instance compression scheme video require expensive hardware video decompressed fast enough viewed decompressed option decompress video full watching inconvenient require additional storage design data compression schemes involves tradeoffs among various factors including degree compression amount distortion introduced using lossy data compression computational resources required compress decompress data56
+
+
+
+contents
+
+
+lossless
+lossy
+theory
+
+machine learning
+data differencing
+
+
+uses
+
+audio
+
+lossy audio compression
+
+4111 coding methods
+4112 speech encoding
+
+
+history
+
+
+video
+
+encoding theory
+timeline
+
+
+genetics
+emulation
+
+
+outlook currently unused potential
+also
+references
+external links
+
+
+
+losslessedit
+lossless data compression algorithms usually exploit statistical redundancy represent data without losing information process reversible lossless compression possible realworld data exhibits statistical redundancy example image areas color change several pixels instead coding pixel pixel data encoded pixels basic example runlength encoding many schemes reduce file size eliminating redundancy
+lempel–ziv compression methods among popular algorithms lossless storage7 deflate variation optimized decompression speed compression ratio compression slow deflate used pkzip gzip lempel–ziv–welch used images methods tablebased compression model table entries substituted repeated strings data methods table generated dynamically earlier data input table often huffman encoded shri current lzbased coding schemes perform well brotli used microsofts formatcitation needed
+best modern lossless compressors probabilistic models prediction partial matching burrows–wheeler transform also viewed indirect form statistical modelling8
+class grammarbased codes gaining popularity compress highly repetitive input extremely effectively instance biological data collection closely related species huge versioned document collection internet archival basic task grammarbased codes constructing contextfree grammar deriving single string sequitur repair practical grammar compression algorithms software publicly availablecitation needed
+refinement direct probabilistic modelling statistical estimates coupled algorithm called arithmetic coding arithmetic coding modern coding technique uses mathematical calculations finitestate machine produce string encoded bits series input data symbols achieve superior compression techniques betterknown huffman algorithm uses internal memory state avoid need perform onetoone mapping individual input symbols distinct representations integer number bits clears internal memory encoding entire string data symbols arithmetic coding applies especially well adaptive data compression tasks statistics vary contextdependent easily coupled adaptive model probability distribution input data early example arithmetic coding optional widely used feature jpeg image coding standard9 since applied various designs including h263 h264mpeg4 hevc video coding10
+lossyedit
+lossy data compression converse lossless data compression schemes loss information acceptable dropping nonessential detail data source save storage space lossy data compression schemes designed research people perceive data question example human sensitive subtle variations luminance variations color jpeg image compression works part rounding nonessential bits information11 corresponding tradeoff preserving information reducing size number popular compression formats exploit perceptual differences including used music files images video
+lossy image compression used digital cameras increase storage capacities minimal degradation picture quality similarly dvds lossy mpeg2 video coding format video compression
+lossy audio compression methods psychoacoustics used remove nonaudible less audible components audio signal compression human speech often performed even specialized techniques speech coding voice coding sometimes distinguished separate discipline audio compression different audio speech compression standards listed audio coding formats voice compression used internet telephony example audio compression used ripping decoded audio players8
+theoryedit
+theoretical background compression provided information theory closely related algorithmic information theory lossless compression rate–distortion theory lossy compression areas study essentially forged claude shannon published fundamental papers topic late 1940s early 1950s coding theory also related idea data compression also deeply connected statistical inference12
+machine learningedit
+also machine learning
+close connection machine learning compression system predicts posterior probabilities sequence given entire history used optimal data compression using arithmetic coding output distribution optimal compressor used prediction finding symbol compresses best given previous history equivalence used justification using data compression benchmark general intelligence131415
+data differencingedit
+main article data differencing
+data compression viewed special case data differencing1617 data differencing consists producing difference given source target patching producing target given source difference data compression consists producing compressed file given target decompression consists producing target given compressed file thus consider data compression data differencing empty source data compressed file corresponding difference nothing considering absolute entropy corresponding data compression special case relative entropy corresponding data differencing initial data
+wishes emphasize connection term differential compression refer data differencing
+usesedit
+audioedit
+also audio codec audio coding format
+audio data compression confused dynamic range compression potential reduce transmission bandwidth storage requirements audio data audio compression algorithms implemented software audio codecs lossy audio compression algorithms provide higher compression cost fidelity used numerous audio applications algorithms almost rely psychoacoustics eliminate reduce fidelity less audible sounds thereby reducing space required store transmit them2
+lossy lossless compression information redundancy reduced using methods coding pattern recognition linear prediction reduce amount information used represent uncompressed data
+acceptable tradeoff loss audio quality transmission storage size depends upon application example 640mb compact disc holds approximately hour uncompressed high fidelity music less hours music compressed losslessly hours music compressed format medium rate digital sound recorder typically store around hours clearly intelligible speech 640mb18
+lossless audio compression produces representation digital data decompress exact digital duplicate original audio stream unlike playback lossy compression techniques vorbis compression ratios around 50–60 original size19 similar generic lossless data compression lossless compression unable attain high compression ratios complexity waveforms rapid changes sound forms codecs like flac shorten linear prediction estimate spectrum signal many algorithms convolution filter slightly whiten flatten spectrum thereby allowing traditional lossless compression work efficiently process reversed upon decompression
+audio files processed either compression editing desirable work unchanged original uncompressed losslessly compressed processing lossily compressed file purpose usually produces final result inferior creation compressed file uncompressed original addition sound editing mixing lossless audio compression often used archival storage master copies
+number lossless audio compression formats exist shorten early lossless format newer ones include free lossless audio codec flac apples apple lossless alac mpeg4 microsofts windows media audio lossless lossless monkeys audio wavpack list lossless codecs complete listing
+audio formats feature combination lossy format lossless correction allows stripping correction easily obtain lossy file formats include mpeg4 scalable lossless wavpack optimfrog dualstream
+formats associated distinct system
+
+direct stream transfer used super audio
+meridian lossless packing used dvdaudio dolby truehd bluray
+
+lossy audio compressionedit
+
+
+
+
+comparison spectrograms audio uncompressed format several lossy formats lossy spectrograms show bandlimiting higher frequencies common technique associated lossy audio compression
+
+
+lossy audio compression used wide range applications addition direct applications players computers digitally compressed audio streams used video dvds digital television streaming media internet satellite cable radio increasingly terrestrial radio broadcasts lossy compression typically achieves greater compression lossless compression data percent percent original stream rather percent percent discarding lesscritical data20
+innovation lossy audio compression psychoacoustics recognize data audio stream perceived human auditory system lossy compression reduces perceptual redundancy first identifying perceptually irrelevant sounds sounds hard hear typical examples include high frequencies sounds occur time louder sounds sounds coded decreased accuracy
+nature lossy algorithms audio quality suffers file decompressed recompressed digital generation loss makes lossy compression unsuitable storing intermediate results professional audio engineering applications sound editing multitrack recording however popular users particularly megabyte store minutes worth music adequate quality
+coding methodsedit
+determine information audio signal perceptually irrelevant lossy compression algorithms transforms modified discrete cosine transform mdct convert time domain sampled waveforms transform domain transformed typically frequency domain component frequencies allocated bits according audible audibility spectral components calculated using absolute threshold hearing principles simultaneous masking—the phenomenon wherein signal masked another signal separated frequency—and cases temporal masking—where signal masked another signal separated time equalloudness contours also used weight perceptual importance components models human earbrain combination incorporating effects often called psychoacoustic models21
+types lossy compressors linear predictive coding used speech sourcebased coders coders model sounds generator human vocal tract whiten audio signal flatten spectrum quantization thought basic perceptual coding technique reconstruction audio signal using linear predictor shapes coders quantization noise spectrum target signal partially masking it20
+lossy formats often used distribution streaming audio interactive applications coding speech digital transmission cell phone networks applications data must decompressed data flows rather entire data stream transmitted audio codecs used streaming applications applications codec designed stream data effectively usually chosen20
+latency results methods used encode decode data codecs analyze longer segment data optimize efficiency code manner requires larger segment data time decode often codecs create segments called frame create discrete data segments encoding decoding inherent latency coding algorithm critical example twoway transmission data telephone conversation significant delays seriously degrade perceived quality
+contrast speed compression proportional number operations required algorithm latency refers number samples must analysed block audio processed minimum case latency zero samples coderdecoder simply reduces number bits used quantize signal time domain algorithms also often latencies hence popularity speech coding telephony algorithms however large number samples analyzed implement psychoacoustic model frequency domain latency order twoway communication
+speech encodingedit
+speech encoding important category audio data compression perceptual models used estimate human hear generally somewhat different used music range frequencies needed convey sounds human voice normally narrower needed music sound normally less complex result speech encoded high quality using relatively rate
+data compressed analog voltage varies time quantization employed digitize numbers normally integers referred analogtodigital conversion integers generated quantization bits entire range analog signal divided intervals signal values within interval quantized number 16bit integers generated range analog signal divided 65536 intervals
+relation illustrates compromise high resolution large number analog intervals high compression small integers generated application quantization used several speech compression methods accomplished general combination approaches
+
+encoding sounds could made single human voice
+throwing away data signal—keeping enough reconstruct intelligible voice rather full frequency range human hearing
+
+perhaps earliest algorithms used speech encoding audio data compression general alaw algorithm µlaw algorithm
+historyedit
+
+
+
+
+solidyne worlds first commercial audio compression card 1990
+
+
+literature compendium large variety audio coding systems published ieee journal selected areas communications jsac february 1988 papers time collection documented entire variety finished working audio coders nearly using perceptual masking techniques kind frequency analysis backend noiseless coding22 several papers remarked difficulty obtaining good clean digital audio research purposes authors jsac edition also active mpeg1 audio committee
+worlds first commercial broadcast automation audio compression system developed oscar bonello engineering professor university buenos aires23 1983 using psychoacoustic principle masking critical bands first published 196724 started developing practical application based recently developed computer broadcast automation system launched 1987 name audicom twenty years later almost radio stations world using similar technology manufactured number companies
+videoedit
+also video coding format video codec
+video compression uses modern coding techniques reduce redundancy video data video compression algorithms codecs combine spatial image compression temporal motion compensation video compression practical implementation source coding information theory practice video codecs also audio compression techniques parallel compress separate combined data streams package25
+majority video compression algorithms lossy compression uncompressed video requires high data rate although lossless video compression codecs perform compression factor typical mpeg4 lossy compression video compression factor 20026 lossy compression tradeoff video quality cost processing compression decompression system requirements highly compressed video present visible distracting artifacts
+video compression schemes typically operate squareshaped groups neighboring pixels often called macroblocks pixel groups blocks pixels compared frame next video compression codec sends differences within blocks areas video motion compression must encode data keep larger number pixels changing commonly explosions flames flocks animals panning shots highfrequency detail leads quality decreases increases variable bitrate
+encoding theoryedit
+video data represented series still image frames sequence frames contains spatial temporal redundancy video compression algorithms attempt eliminate code smaller size similarities encoded storing differences frames using perceptual features human vision example small differences color difficult perceive changes brightness compression algorithms average color across similar areas reduce space manner similar used jpeg image compression9 methods inherently lossy others preserve relevant information original uncompressed video
+powerful techniques compressing video interframe compression interframe compression uses earlier later frames sequence compress current frame intraframe compression uses current frame effectively image compression27
+powerful used method works comparing frame video previous frame contains areas nothing moved system simply issues short command copies part previous frame bitforbit next sections frame move simple manner compressor emits slightly longer command tells decompressor shift rotate lighten darken copy longer command still remains much shorter intraframe compression interframe compression works well programs simply played back viewer cause problems video sequence needs edited28
+interframe compression copies data frame another original frame simply lost transmission following frames cannot reconstructed properly video formats compress frame independently using intraframe compression making cuts intraframecompressed video almost easy editing uncompressed video finds beginning ending frame simply copies bitforbit frame wants keep discards frames doesnt want another difference intraframe interframe compression intraframe systems frame uses similar amount data interframe systems certain frames frames mpeg2 arent allowed copy data frames require much data frames nearby20
+possible build computerbased video editor spots problems caused frames edited frames need allowed newer formats like used editing however process demands computing power editing intraframe compressed video picture quality
+today nearly commonly used video compression methods standards approved itut apply discrete cosine transform spatial redundancy reduction widely used regard introduced ahmed natarajan 197429 methods fractal compression matching pursuit discrete wavelet transform subject research typically used practical products except wavelet coding stillimage coders without motion compensation interest fractal compression seems waning recent theoretical analysis showing comparative lack effectiveness methods27
+timelineedit
+following table partial history international video compression standards
+
+history video compression standards
+
+year
+standard
+publisher
+popular implementations
+
+
+1984
+h120
+itut
+
+
+
+1988
+h261
+itut
+videoconferencing videotelephony
+
+
+1993
+mpeg1 part
+
+videocd
+
+
+1995
+h262mpeg2 part
+itut
+video bluray digital video broadcasting svcd
+
+
+1996
+h263
+itut
+videoconferencing videotelephony video mobile phones
+
+
+1999
+mpeg4 part
+
+video internet divx xvid
+
+
+2003
+h264mpeg4
+sony panasonic samsung itut
+bluray digital video broadcasting ipod video apple videoconferencing
+
+
+2009
+dirac
+smpte
+video internet hdtv broadcast uhdtv
+
+
+2013
+h265
+itut
+
+
+
+geneticsedit
+also compression genomic resequencing data
+genetics compression algorithms latest generation lossless algorithms compress data typically sequences nucleotides using conventional compression algorithms genetic algorithms adapted specific datatype 2012 team scientists johns hopkins university published genetic compression algorithm reference genome compression hapzipper tailored hapmap data achieves 20fold compression reduction file size providing 4fold better compression much faster time leading generalpurpose compression utilities chanda elhaik bader introduced based encoding mafe reduces heterogeneity dataset sorting snps minor allele frequency thus homogenizing dataset30 algorithms 2009 2013 dnazip genomezip compression ratios 1200fold—allowing billion basepair diploid human genomes stored megabytes relative reference genome averaged many genomes3132
+emulationedit
+order emulate cdbased consoles playstation data compression desirable reduce huge amounts disk space used isos example final fantasy normally gigabytes proper compression reduced around size33
+outlook currently unused potentialedit
+estimated total amount data stored worlds storage devices could compressed existing compression algorithms remaining average factor 451citation needed estimated combined technological capacity world store information provides 1300 exabytes hardware digits 2007 corresponding content optimally compressed represents exabytes shannon information34
+alsoedit
+
+
+auditory masking
+http compression
+kolmogorov complexity
+magic compression algorithm
+minimum description length
+modulon code
+range encoding
+subband coding
+universal code data compression
+vector quantization
+
+
+referencesedit
+
+
+wade graham 1994 signal coding processing cambridge university press isbn 9780521423366 retrieved 20111222 broad objective source coding exploit remove inefficient redundancy source thereby achieve reduction overall source rate
+mahdi mohammed mohamed november 2012 implementing novel approach convert audio compression text coding hybrid technique international journal computer science issues 53–59 retrieved march 2013
+pujar kadlaskar 2010 lossless method image compression decompression using huffman coding techniques journal theoretical applied information technology 18–23
+salomon david 2008 concise introduction data compression berlin springer isbn 9781848000728
+mittal vetter 2015 survey architectural approaches data compression cache main memory systems ieee transactions parallel distributed systems ieee
+tank 2011 implementation limpelziv algorithm lossless compression using vhdl thinkquest 2010 proceedings first international conference contours computing technology berlin springer 275–283
+navqi saud naqvi riaz siddiqui april 2011 optimized design implementation algorithm high bandwidth applications electrical review 2011 279–285
+mahmud salauddin march 2012 improved data compression method general data international journal scientific engineering research retrieved march 2013
+lane jpeg image compression part internet archives independent jpeg group retrieved march 2013
+sullivan wiegand december 2012 overview high efficiency video coding hevc standard ieee transactions circuits systems video technology ieee retrieved 20170812
+arcangel cory compression retrieved march 2013
+marak laszlo image compression university marne vallee retrieved march 2013
+mahoney matt rationale large text compression benchmark florida institute technology retrieved march 2013
+shmilovici kahiri bengal hauser measuring efficiency intraday forex market universal data compression algorithm computational economics 131154 2009
+bengal data compression measures analyze robust designs ieee trans reliability 381388 2008
+korn 3284 vcdiff generic differencing compression data format internet engineering task force retrieved march 2013
+korn 1995 krishnamurthy vdelta differencing compression practical reusable unix software york john wiley sons
+olympus ws120 digital speech recorder according manual store hours speechquality audio format 500mb flash memory
+coalson josh flac comparison retrieved march 2013
+jaiswal 2009 audiovideo engineering pune maharashtra nirali prakashan isbn 9788190639675
+faxin zheming 2010 threedimensional model analysis processing berlin springer isbn 9783642126512
+file compression possibilities brief guide compress file different ways
+summary solidynes contributions broadcast engineering brief history solidyne buenos aires solidyne archived original march 2013 retrieved march 2013
+zwicker eberhard 1967 communication receiver melville acoustical society america
+video coding center signal information processing research georgia institute technology retrieved march 2013
+graphics media video group 2007 lossless video codecs comparison moscow state university
+faxin zheming 2010 threedimensional model analysis processing berlin springer isbn 9783642126512
+bhojani video compression hypothesis retrieved march 2013
+ahmed natarajan january 1974 discrete cosine transform ieee transactions computers c–23 90–93 doi101109tc1974223784
+chanda bader elhaik elhaik bader 2012 hapzipper sharing hapmap populations easier nucleic acids research e159 doi101093nargks709 3488212 pmid 22844100 maint multiple names authors list link
+christley 2009 human genomes email attachments bioinformatics 274–5 doi101093bioinformaticsbtn582 pmid 18996942 maint multiple names authors list link
+pavlichin weissman yona weissman yona september 2013 human genome contracts bioinformatics 2199–202 doi101093bioinformaticsbtt362 pmid 23793748 maint multiple names authors list link
+pcsx2 team january 2016 released year report retrieved april 2016
+hilbert martin lópez priscila april 2011 worlds technological capacity store communicate compute information science 6025 60–65 bibcode2011sci33260h doi101126science1200970 pmid 21310967 retrieved march 2013
+
+
+external linksedit
+
+data compression basics video
+video compression 10bit benefits
+10bit save bandwidth even content 8bit
+compression technology used
+wiley introduction compression theory
+subjective listening tests lowbitrate audio codecs
+audio archiving guide music formats guide helping user pick right codec
+mpeg video compression intro format wayback machine archived september 2007
+hydrogenaudio wiki comparison
+introduction data compression blelloch
+greetings 1080p uncompressed source material compression testing research
+explanation lossless signal compression method used codecs
+interactive blind listening tests audio codecs internet
+testvid 2000 uncompressed source video clips compression testing
+videsignline intro video compression
+data footprint reduction technologypermanent dead link
+length coding video compression
+
+
+
+
+
+
+
+
+
+
+
+
+data compression methods
+
+
+
+lossless
+
+
+
+
+entropy type
+
+
+
+unary
+arithmetic
+asymmetric numeral systems
+golomb
+huffman
+
+adaptive
+canonical
+modified
+
+
+range
+shannon
+shannon–fano
+shannon–fano–elias
+tunstall
+universal
+
+expgolomb
+fibonacci
+gamma
+levenshtein
+
+
+
+
+
+
+
+dictionary type
+
+
+
+byte pair encoding
+deflate
+snappy
+lempel–ziv
+
+lz77 lz78
+lzfse
+lzjb
+lzma
+
+lzrw
+
+lzss
+
+lzwl
+
+
+brotli
+zstandard
+
+
+
+
+
+
+
+types
+
+
+
+
+
+delta
+
+
+
+
+
+
+
+
+
+
+
+
+
+audio
+
+
+
+
+concepts
+
+
+
+rate
+
+average
+constant
+variable
+
+
+companding
+convolution
+dynamic range
+latency
+nyquist–shannon theorem
+sampling
+sound quality
+speech coding
+subband coding
+
+
+
+
+
+codec parts
+
+
+
+alaw
+μlaw
+acelp
+adpcm
+celp
+dpcm
+fourier transform
+
+
+
+
+
+
+mdct
+psychoacoustic model
+wlpc
+
+
+
+
+
+
+
+
+image
+
+
+
+
+concepts
+
+
+
+chroma subsampling
+coding tree unit
+color space
+compression artifact
+image resolution
+macroblock
+pixel
+psnr
+quantization
+standard test image
+
+
+
+
+
+methods
+
+
+
+chain code
+
+
+fractal
+
+
+
+spiht
+wavelet
+
+
+
+
+
+
+
+
+video
+
+
+
+
+concepts
+
+
+
+rate
+
+average
+constant
+variable
+
+
+display resolution
+frame
+frame rate
+frame types
+interlace
+video characteristics
+video quality
+
+
+
+
+
+codec parts
+
+
+
+lapped transform
+
+deblocking filter
+motion compensation
+
+
+
+
+
+
+
+
+theory
+
+
+
+entropy
+kolmogorov complexity
+lossy
+quantization
+rate–distortion
+redundancy
+timeline information theory
+
+
+
+
+
+
+
+
+compression formats
+compression software codecs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+multimedia compression container formats
+
+
+
+video
+compression
+
+
+
+
+isoiec
+
+
+
+mjpeg
+motion jpeg 2000
+mpeg1
+mpeg2
+
+part
+
+
+mpeg4
+
+part 2asp
+part 10avc
+
+
+mpegh
+
+part 2hevc
+
+
+
+
+
+
+
+itut
+
+
+
+h120
+h261
+h262
+h263
+h264
+h265
+
+
+
+
+
+smpte
+
+
+
+
+
+
+
+
+
+
+
+
+alliance open media
+
+
+
+
+
+
+
+
+
+others
+
+
+
+apple video
+
+bink
+cinepak
+daala
+dirac
+
+
+ffv1
+huffyuv
+indeo
+lagarith
+microsoft video
+lossless
+video
+pixlet
+prores
+prores 4444
+quicktime
+
+animation
+graphics
+
+
+realvideo
+rtvideo
+sheervideo
+smacker
+sorenson video spark
+theora
+thor
+
+
+
+
+
+
+
+yuls
+
+
+
+
+
+
+
+
+audio
+compression
+
+
+
+
+isoiec
+
+
+
+mpeg1 layer
+mpeg1 layer
+
+multichannel
+
+
+mpeg1 layer
+
+
+heaac
+aacld
+
+
+mpeg surround
+mpeg4
+mpeg4
+mpeg4
+mpeg4 hvxc
+mpeg4 celp
+mpegd usac
+mpegh audio
+
+
+
+
+
+itut
+
+
+
+g711 alaw µlaw
+g718
+g719
+g722
+g7221
+g7222
+g723
+g7231
+g726
+g728
+g729
+g7291
+
+
+
+
+
+ietf
+
+
+
+opus
+ilbc
+
+
+
+
+
+3gpp
+
+
+
+
+amrwb
+amrwb
+evrc
+evrcb
+
+gsmhr
+gsmfr
+gsmefr
+
+
+
+
+
+others
+
+
+
+acelp
+
+
+alac
+asao
+atrac
+celt
+codec2
+
+
+flac
+isac
+monkeys audio
+
+
+true audio
+
+
+
+musepack
+optimfrog
+
+qcelp
+rcelp
+realaudio
+rtaudio
+
+
+silk
+siren
+
+speex
+svopc
+twinvq
+vmrwb
+vorbis
+vselp
+wavpack
+
+
+aptx
+
+
+
+
+
+
+
+
+image
+compression
+
+
+
+
+
+itut ietf
+
+
+
+ccitt group
+
+heif
+hevc
+jbig
+jbig2
+jpeg
+jpeg 2000
+jpeg
+lossless jpeg
+
+tiff
+tiffep
+tiffit
+
+
+
+
+
+others
+
+
+
+apng
+
+djvu
+
+flif
+icer
+
+
+qtvr
+wbmp
+webp
+
+
+
+
+
+
+
+
+containers
+
+
+
+
+isoiec
+
+
+
+mpeges
+
+mpegpes
+
+
+mpegps
+mpegts
+base media file format
+mpeg4 part
+motion jpeg 2000
+mpeg21 part
+mpeg media transport
+
+
+
+
+
+itut
+
+
+
+h2220
+t802
+
+
+
+
+
+ietf
+
+
+
+
+
+
+
+
+
+others
+
+
+
+
+
+
+aiff
+
+
+
+bink
+
+smacker
+
+
+
+divx media format
+
+flash video
+
+
+m2ts
+matroska
+
+webm
+
+
+
+
+quicktime file format
+ratdvd
+realmedia
+riff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+collaborations
+
+
+
+netvc
+mpegla
+
+
+
+
+
+
+compression methods methods compression software codecs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data compression software
+
+
+
+archivers
+compression
+comparison
+
+
+
+
+free software
+
+
+
+7zip
+archive manager
+
+expander
+freearc
+infozip
+archiver
+
+peazip
+unarchiver decompression
+
+xarchiver
+zipeg
+zpaq
+
+
+
+
+
+freeware
+
+
+
+filzip
+
+stuffit expander decompression
+tugzip
+zipgenius
+
+
+
+
+
+commercial
+
+
+
+
+alzip
+archive utility
+
+betterzip
+bulkzip
+
+macbinary
+pkzipsecurezip
+powerarchiver
+stuffit
+winace
+winrar
+winzip
+
+
+
+
+
+
+
+
+nonarchiving
+compressors
+
+
+
+
+generic
+
+
+
+bzip2
+compress
+gzip
+lzip
+lzop
+pack
+rzip
+snappy
+utils
+
+
+
+
+
+code
+
+
+
+
+
+
+
+
+audio
+compression
+comparison
+
+
+
+
+lossy
+
+
+
+fraunhofer
+nero codec
+freeware advanced audio coder faac
+helix producer
+l3enc
+lame
+toolame
+libavcodec
+libcelt
+libopus
+libspeex
+musepack
+libvorbis
+windows media encoder
+
+
+
+
+
+lossless
+
+
+
+alac
+flac
+libavcodec
+monkeys audio
+mp4als
+optimfrog
+shorten
+true audio
+wavpack
+
+
+
+
+
+
+
+
+video
+compression
+comparison
+
+
+
+
+lossy
+
+
+
+
+mpeg4
+
+
+
+3ivx
+divx
+nero digital
+ffmpeg
+hdx4
+xvid
+
+
+
+
+
+h264
+mpeg4
+
+
+
+coreavc
+blucode
+divx
+ffmpeg
+nero digital
+openh264
+quicktime
+x264
+
+
+
+
+
+hevc
+
+
+
+divx
+x265
+
+
+
+
+
+others
+
+
+
+cineform
+cinepak
+daala
+dnxhd
+helix producer
+indeo
+libavcodec
+schrödinger dirac
+
+sorenson
+
+libtheora
+libvpx
+windows media encoder
+
+
+
+
+
+
+
+
+lossless
+
+
+
+ffv1
+huffyuv
+lagarith
+lossless
+yuls
+
+
+
+
+
+
+
+
+
+
+
+also compression methods compression formats
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data
+
+
+
+
+
+
+storage
+analysis
+cleansing
+compression
+corruption
+curation
+editing
+farming
+fusion
+integration
+integrity
+loss
+mining
+preprocessing
+quality
+reduction
+scraping
+scrubbing
+security
+validation
+warehouse
+wranglingmunging
+protection privacy
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+00942229
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitledatacompressionoldid816681214 categories computingdata compressiondigital audiodigital televisionfilm video technologyvideo compressionvideotelephonyutility software typeshidden categories maint multiple names authors listkvng rthall articles unsourced statementsarticles unsourced statements march 2017articles unsourced statements january 2017webarchive template wayback linksall articles dead external linksarticles dead external links september 2017articles permanently dead external links

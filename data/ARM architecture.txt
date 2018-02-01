@@ -1,0 +1,2670 @@
+For the Australian architectural firm, see ARM Architecture (Ashton Raggatt McDougall).
+
+ARM architectures
+
+
+The ARM logo
+
+
+
+Designer
+ARM Holdings
+
+
+Bits
+32-bit, 64-bit
+
+
+Introduced
+1985; 33 years ago (1985)
+
+
+Design
+RISC
+
+
+Type
+Register-Register
+
+
+Branching
+Condition code, compare and branch
+
+
+Open
+Proprietary
+
+
+
+64/32-bit architecture
+
+Introduced
+2011
+
+
+Version
+ARMv8-A, ARMv8.1-A, ARMv8.2-A, ARMv8.3-A
+
+
+Encoding
+AArch64/A64 and AArch32/A32 use 32-bit instructions, T32 (Thumb-2) uses mixed 16- and 32-bit instructions. ARMv7 user-space compatibility[1]
+
+
+Endianness
+Bi (little as default)
+
+
+Extensions
+All mandatory: Thumb-2, NEON, Jazelle, VFPv4-D16, VFPv4
+
+
+Registers
+
+
+General purpose
+31× 64-bit integer registers[1]
+
+
+Floating point
+32× 128-bit registers[1] for scalar 32- and 64-bit FP or SIMD FP or integer; or cryptography
+
+
+
+32-bit architectures (Cortex)
+
+Version
+ARMv8-R, ARMv8-M, ARMv7-A, ARMv7-R, ARMv7E-M, ARMv7-M, ARMv6-M
+
+
+Encoding
+32-bit except Thumb-2 extensions use mixed 16- and 32-bit instructions.
+
+
+Endianness
+Bi (little as default); Cortex-M is fixed and can't change on the fly.
+
+
+Extensions
+Thumb-2, NEON, Jazelle, DSP, Saturated, FPv4-SP, FPv5
+
+
+Registers
+
+
+General purpose
+15× 32-bit integer registers; R15 is PC (26-bit addressing in older), R14 is link register.
+
+
+Floating point
+Up to 32× 64-bit registers,[2] SIMD/floating-point (optional)
+
+
+
+32-bit architectures (legacy)
+
+Version
+ARMv6, ARMv5, ARMv4T, ARMv3, ARMv2
+
+
+Encoding
+32-bit except Thumb extension uses mixed 16- and 32-bit instructions.
+
+
+Endianness
+Bi (little as default) in ARMv3 and above
+
+
+Extensions
+Thumb, Jazelle
+
+
+Registers
+
+
+General purpose
+15× 32-bit integer registers; R15 is PC (26-bit addressing in older), R14 is link register.
+
+
+ARM, originally Acorn RISC Machine, later Advanced RISC Machine, is a family of reduced instruction set computing (RISC) architectures for computer processors, configured for various environments. British company ARM Holdings develops the architecture and licenses it to other companies, who design their own products that implement one of those architectures‍—‌including systems-on-chips (SoC) and systems-on-modules (SoM) that incorporate memory, interfaces, radios, etc. It also designs cores that implement this instruction set and licenses these designs to a number of companies that incorporate those core designs into their own products.
+Processors that have a RISC architecture typically require fewer transistors than those with a complex instruction set computing (CISC) architecture (such as the x86 processors found in most personal computers), which improves cost, power consumption, and heat dissipation. These characteristics are desirable for light, portable, battery-powered devices‍—‌including smartphones, laptops and tablet computers, and other embedded systems.[3][4][5] For supercomputers, which consume large amounts of electricity, ARM could also be a power-efficient solution.[6]
+ARM Holdings periodically releases updates to architectures and core designs. All of them support a 32-bit address space (only pre-ARMv3 chips, made before ARM Holdings was formed, as in original Acorn Archimedes, had smaller) and 32-bit arithmetic; instructions for ARM Holdings' cores have 32-bit fixed-length instructions, but later versions of the architecture also support a variable-length instruction set that provides both 32- and 16-bit instructions for improved code density. Some older cores can also provide hardware execution of Java bytecodes. The ARMv8-A architecture, announced in October 2011,[7] adds support for a 64-bit address space and 64-bit arithmetic with its new 32-bit fixed-length instruction set.
+With over 100 billion ARM processors produced as of 2017[update], ARM is the most widely used instruction set architecture in terms of quantity produced.[8][9][10][11][12] Currently, the widely used Cortex cores, older "classic" cores, and specialized SecurCore cores variants are available for each of these to include or exclude optional capabilities.
+
+
+
+Contents
+
+
+1 History
+
+1.1 Acorn RISC Machine: ARM2
+1.2 Collaboration: ARM6
+1.3 Early licensees
+1.4 Market share
+
+
+2 Licensing
+
+2.1 Core licence
+2.2 Architectural licence
+
+
+3 Cores
+
+3.1 Example applications of ARM cores
+
+
+4 32-bit architecture
+
+4.1 CPU modes
+4.2 Instruction set
+
+4.2.1 Arithmetic instructions
+4.2.2 Registers
+4.2.3 Conditional execution
+4.2.4 Other features
+4.2.5 Pipelines and other implementation issues
+4.2.6 Coprocessors
+
+
+4.3 Debugging
+4.4 DSP enhancement instructions
+4.5 SIMD extensions for multimedia
+4.6 Jazelle
+4.7 Thumb
+4.8 Thumb-2
+4.9 Thumb Execution Environment (ThumbEE)
+4.10 Floating-point (VFP)
+4.11 Advanced SIMD (NEON)
+4.12 Security extensions
+
+4.12.1 TrustZone (for Cortex-A profile)
+4.12.2 TrustZone for ARMv8-M (for Cortex-M profile)
+
+
+4.13 No-execute page protection
+4.14 Large Physical Address Extension (LPAE)
+4.15 ARMv8-R and ARMv8-M
+
+
+5 64/32-bit architecture
+
+5.1 ARMv8-A
+
+5.1.1 AArch64 features
+5.1.2 ARMv8.1-A
+5.1.3 ARMv8.2-A
+5.1.4 ARMv8.3-A
+
+
+
+
+6 Operating system support
+
+6.1 32-bit operating systems
+6.2 64-bit operating systems
+6.3 Porting to 32- or 64-bit ARM operating systems
+
+
+7 See also
+8 References
+9 Further reading
+10 External links
+
+
+
+History[edit]
+
+
+
+
+Microprocessor-based system on a chip
+
+
+
+
+
+
+The ARM1 second processor for the BBC Micro
+
+
+The British computer manufacturer Acorn Computers first developed the Acorn RISC Machine architecture (ARM)[13][14] in the 1980s to use in its personal computers. Its first ARM-based products were coprocessor modules for the BBC Micro series of computers. After the successful BBC Micro computer, Acorn Computers considered how to move on from the relatively simple MOS Technology 6502 processor to address business markets like the one that was soon dominated by the IBM PC, launched in 1981. The Acorn Business Computer (ABC) plan required that a number of second processors be made to work with the BBC Micro platform, but processors such as the Motorola 68000 and National Semiconductor 32016 were considered unsuitable, and the 6502 was not powerful enough for a graphics-based user interface.[15]
+According to Sophie Wilson, all the processors tested at that time performed about the same, with about a 4 Mbit/second bandwidth.[16]
+After testing all available processors and finding them lacking, Acorn decided it needed a new architecture. Inspired by papers from the Berkeley RISC project, Acorn considered designing its own processor.[17] A visit to the Western Design Center in Phoenix, where the 6502 was being updated by what was effectively a single-person company, showed Acorn engineers Steve Furber and Sophie Wilson they did not need massive resources and state-of-the-art research and development facilities.[18]
+Wilson developed the instruction set, writing a simulation of the processor in BBC BASIC that ran on a BBC Micro with a 6502 second processor. This convinced Acorn engineers they were on the right track. Wilson approached Acorn's CEO, Hermann Hauser, and requested more resources. Hauser gave his approval and assembled a small team to implement Wilson's model in hardware.
+Acorn RISC Machine: ARM2[edit]
+The official Acorn RISC Machine project started in October 1983. They chose VLSI Technology as the silicon partner, as they were a source of ROMs and custom chips for Acorn. Wilson and Furber led the design. They implemented it with a similar efficiency ethos as the 6502.[19] A key design goal was achieving low-latency input/output (interrupt) handling like the 6502. The 6502's memory access architecture had let developers produce fast machines without costly direct memory access (DMA) hardware.
+The first samples of ARM silicon worked properly when first received and tested on 26 April 1985.[3]
+The first ARM application was as a second processor for the BBC Micro, where it helped in developing simulation software to finish development of the support chips (VIDC, IOC, MEMC), and sped up the CAD software used in ARM2 development. Wilson subsequently rewrote BBC BASIC in ARM assembly language. The in-depth knowledge gained from designing the instruction set enabled the code to be very dense, making ARM BBC BASIC an extremely good test for any ARM emulator. The original aim of a principally ARM-based computer was achieved in 1987 with the release of the Acorn Archimedes.[20] In 1992, Acorn once more won the Queen's Award for Technology for the ARM.
+The ARM2 featured a 32-bit data bus, 26-bit address space and 27 32-bit registers. Eight bits from the program counter register were available for other purposes; the top six bits (available because of the 26-bit address space) served as status flags, and the bottom two bits (available because the program counter was always word-aligned) were used for setting modes. The address bus was extended to 32 bits in the ARM6, but program code still had to lie within the first 64 MB of memory in 26-bit compatibility mode, due to the reserved bits for the status flags.[21] The ARM2 had a transistor count of just 30,000, compared to Motorola's six-year-older 68000 model with around 40,000.[22] Much of this simplicity came from the lack of microcode (which represents about one-quarter to one-third of the 68000) and from (like most CPUs of the day) not including any cache. This simplicity enabled low power consumption, yet better performance than the Intel 80286. A successor, ARM3, was produced with a 4 KB cache, which further improved performance.[23]
+Collaboration: ARM6[edit]
+
+
+
+
+Die of an ARM610 microprocessor
+
+
+In the late 1980s Apple Computer and VLSI Technology started working with Acorn on newer versions of the ARM core. In 1990, Acorn spun off the design team into a new company named Advanced RISC Machines Ltd.,[24][25][26] which became ARM Ltd when its parent company, ARM Holdings plc, floated on the London Stock Exchange and NASDAQ in 1998.[27] The new Apple-ARM work would eventually evolve into the ARM6, first released in early 1992. Apple used the ARM6-based ARM610 as the basis for their Apple Newton PDA.
+Early licensees[edit]
+In 1994, Acorn used the ARM610 as the main central processing unit (CPU) in their RiscPC computers. DEC licensed the ARMv4 architecture and produced the StrongARM.[28] At 233 MHz, this CPU drew only one watt (newer versions draw far less). This work was later passed to Intel as part of a lawsuit settlement, and Intel took the opportunity to supplement their i960 line with the StrongARM. Intel later developed its own high performance implementation named XScale, which it has since sold to Marvell. Transistor count of the ARM core remained essentially the same throughout these changes; ARM2 had 30,000 transistors,[29] while ARM6 grew only to 35,000.[30]
+Market share[edit]
+In 2005, about 98% of all mobile phones sold used at least one ARM processor.[31] In 2010, producers of chips based on ARM architectures reported shipments of 6.1 billion ARM-based processors, representing 95% of smartphones, 35% of digital televisions and set-top boxes and 10% of mobile computers. In 2011, the 32-bit ARM architecture was the most widely used architecture in mobile devices and the most popular 32-bit one in embedded systems.[32] In 2013, 10 billion were produced[33] and "ARM-based chips are found in nearly 60 percent of the world’s mobile devices".[34]
+Licensing[edit]
+See also: ARM Holdings § Licensees
+
+
+
+
+Die of a STM32F103VGT6 ARM Cortex-M3 microcontroller with 1 megabyte flash memory by STMicroelectronics
+
+
+Core licence[edit]
+ARM Holdings' primary business is selling IP cores, which licensees use to create microcontrollers (MCUs), CPUs, and systems-on-chips based on those cores. The original design manufacturer combines the ARM core with other parts to produce a complete device, typically one that can be built in existing Semiconductor fabrication plants (fabs) at low cost and still deliver substantial performance. The most successful implementation has been the ARM7TDMI with hundreds of millions sold. Atmel has been a precursor design center in the ARM7TDMI-based embedded system.
+The ARM architectures used in smartphones, PDAs and other mobile devices range from ARMv5 to ARMv7-A, used in low-end and midrange devices, to ARMv8-A used in current high-end devices.
+In 2009, some manufacturers introduced netbooks based on ARM architecture CPUs, in direct competition with netbooks based on Intel Atom.[35] According to analyst firm IHS iSuppli, by 2015, ARM Integrated circuits may be in 23% of all laptops.[36]
+ARM Holdings offers a variety of licensing terms, varying in cost and deliverables. ARM Holdings provides to all licensees an integratable hardware description of the ARM core as well as complete software development toolset (compiler, debugger, software development kit) and the right to sell manufactured silicon containing the ARM CPU.
+SoC packages integrating ARM's core designs include Nvidia Tegra's first three generations, CSR plc's Quatro family, ST-Ericsson's Nova and NovaThor, Silicon Labs's Precision32 MCU, Texas Instruments's OMAP products, Samsung's Hummingbird and Exynos products, Apple's A4, A5, and A5X, and Freescale's i.MX.
+Fabless licensees, who wish to integrate an ARM core into their own chip design, are usually only interested in acquiring a ready-to-manufacture verified semiconductor intellectual property core. For these customers, ARM Holdings delivers a gate netlist description of the chosen ARM core, along with an abstracted simulation model and test programs to aid design integration and verification. More ambitious customers, including integrated device manufacturers (IDM) and foundry operators, choose to acquire the processor IP in synthesizable RTL (Verilog) form. With the synthesizable RTL, the customer has the ability to perform architectural level optimisations and extensions. This allows the designer to achieve exotic design goals not otherwise possible with an unmodified netlist (high clock speed, very low power consumption, instruction set extensions, etc.). While ARM Holdings does not grant the licensee the right to resell the ARM architecture itself, licensees may freely sell manufactured product such as chip devices, evaluation boards and complete systems. Merchant foundries can be a special case; not only are they allowed to sell finished silicon containing ARM cores, they generally hold the right to re-manufacture ARM cores for other customers.
+ARM Holdings prices its IP based on perceived value. Lower performing ARM cores typically have lower licence costs than higher performing cores. In implementation terms, a synthesizable core costs more than a hard macro (blackbox) core. Complicating price matters, a merchant foundry that holds an ARM licence, such as Samsung or Fujitsu, can offer fab customers reduced licensing costs. In exchange for acquiring the ARM core through the foundry's in-house design services, the customer can reduce or eliminate payment of ARM's upfront licence fee.
+Compared to dedicated semiconductor foundries (such as TSMC and UMC) without in-house design services, Fujitsu/Samsung charge two- to three-times more per manufactured wafer.[citation needed] For low to mid volume applications, a design service foundry offers lower overall pricing (through subsidisation of the licence fee). For high volume mass-produced parts, the long term cost reduction achievable through lower wafer pricing reduces the impact of ARM's NRE (Non-Recurring Engineering) costs, making the dedicated foundry a better choice.
+Companies that have designed chips with ARM cores include Amazon.com's Annapurna Labs subsidiary,[37] Analog Devices, Apple, AppliedMicro (now: MACOM Technology Solutions[38]), Atmel, Broadcom, Cypress Semiconductor, Freescale Semiconductor (now NXP Semiconductors), Nvidia, NXP, Qualcomm, Renesas, Samsung Electronics, ST Microelectronics and Texas Instruments.
+Architectural licence[edit]
+Companies can also obtain an ARM architectural licence for designing their own CPU cores using the ARM instruction sets. These cores must comply fully with the ARM architecture. Companies that have designed cores that implement an ARM architecture include Apple, AppliedMicro, Broadcom, Cavium (now: Marvell), Nvidia, Qualcomm, and Samsung Electronics.
+Cores[edit]
+Main article: List of ARM microarchitectures
+
+
+Architecture
+Core bit-width
+Cores
+Profile
+References
+
+
+ARM Holdings
+Third-party
+
+
+
+ARMv1
+
+
+32[a 1]
+
+ARM1
+
+
+
+
+
+
+ARMv2
+
+
+32[a 1]
+
+ARM2, ARM250, ARM3
+Amber, STORM Open Soft Core[39]
+
+
+
+
+
+ARMv3
+
+
+32[a 2]
+
+ARM6, ARM7
+
+
+
+
+
+
+ARMv4
+
+
+32[a 2]
+
+ARM8
+StrongARM, FA526, ZAP Open Source Processor Core[40]
+
+
+
+
+
+ARMv4T
+
+
+32[a 2]
+
+ARM7TDMI, ARM9TDMI, SecurCore SC100
+
+
+
+
+
+
+ARMv5TE
+
+
+32
+
+ARM7EJ, ARM9E, ARM10E
+XScale, FA626TE, Feroceon, PJ1/Mohawk
+
+
+
+
+
+ARMv6
+
+
+32
+
+ARM11
+
+
+
+
+
+
+ARMv6-M
+
+
+32
+
+ARM Cortex-M0, ARM Cortex-M0+, ARM Cortex-M1, SecurCore SC000
+
+
+Microcontroller
+
+
+
+
+
+ARMv7-M
+
+
+32
+
+ARM Cortex-M3, SecurCore SC300
+
+
+Microcontroller
+
+
+
+
+
+ARMv7E-M
+
+
+32
+
+ARM Cortex-M4, ARM Cortex-M7
+
+
+Microcontroller
+
+
+
+
+
+ARMv8-M
+
+
+32
+
+ARM Cortex-M23,[41] ARM Cortex-M33[42]
+
+
+Microcontroller
+
+
+[43]
+
+
+
+
+ARMv7-R
+
+
+32
+
+ARM Cortex-R4, ARM Cortex-R5, ARM Cortex-R7, ARM Cortex-R8
+
+
+Real-time
+
+
+
+
+
+ARMv8-R
+
+
+32
+
+ARM Cortex-R52
+
+
+Real-time
+
+
+[44][45][46]
+
+
+
+
+ARMv7-A
+
+
+32
+
+ARM Cortex-A5, ARM Cortex-A7, ARM Cortex-A8, ARM Cortex-A9, ARM Cortex-A12, ARM Cortex-A15, ARM Cortex-A17
+Qualcomm Krait, Scorpion, PJ4/Sheeva, Apple Swift
+
+Application
+
+
+
+
+
+ARMv8-A
+
+
+32
+
+ARM Cortex-A32
+
+
+Application
+
+
+
+
+
+ARMv8-A
+
+
+64/32
+
+ARM Cortex-A35,[47] ARM Cortex-A53, ARM Cortex-A57,[48] ARM Cortex-A72,[49] ARM Cortex-A73[50]
+X-Gene, Nvidia Project Denver, AMD K12, Apple Cyclone/Typhoon/Twister/Hurricane/Zephyr, Cavium Thunder X,[51][52][53] Qualcomm Kryo, Samsung M1 and M2 ("Mongoose")[54]
+
+Application
+
+
+[55][56]
+
+
+
+
+ARMv8.1-A
+
+
+64/32
+
+TBA
+
+
+Application
+
+
+
+
+
+ARMv8.2-A
+
+
+64/32
+
+ARM Cortex-A55,[57] ARM Cortex-A75,[58]
+
+
+Application
+
+
+
+
+
+ARMv8.3-A
+
+
+64/32
+
+TBA
+
+
+Application
+
+
+
+
+
+
+
+^ a b Although most datapaths and CPU registers in the early ARM processors were 32-bit, addressable memory was limited to 26 bits; with upper bits, then, used for status flags in the program counter register.
+^ a b c ARMv3 included a compatibility mode to support the 26-bit addresses of earlier versions of the architecture. This compatibility mode optional in ARMv4, and removed entirely in ARMv5.
+
+
+
+ARM Holdings provides a list of vendors who implement ARM cores in their design (application specific standard products (ASSP), microprocessor and microcontrollers).[59]
+Example applications of ARM cores[edit]
+Main article: List of applications of ARM cores
+
+
+
+
+Tronsmart MK908, a Rockchip-based quad-core Android "mini PC", with a microSD card next to it for a size comparison
+
+
+ARM cores are used in a number of products, particularly PDAs and smartphones. Some computing examples are Microsoft's first generation Surface and Surface 2, Apple's iPads and Asus's Eee Pad Transformer tablet computers, and several Chromebook laptops. Others include Apple's iPhone smartphone and iPod portable media player, Canon PowerShot digital cameras, Nintendo Switch hybrid and 3DS handheld game consoles, and TomTom turn-by-turn navigation systems.
+In 2005, ARM Holdings took part in the development of Manchester University's computer SpiNNaker, which used ARM cores to simulate the human brain.[60]
+ARM chips are also used in Raspberry Pi, BeagleBoard, BeagleBone, PandaBoard and other single-board computers, because they are very small, inexpensive and consume very little power.
+32-bit architecture[edit]
+
+
+
+
+An ARMv7 is used to power the popular Raspberry Pi 2 micro-computer.
+
+
+
+
+
+
+An ARMv7 is also used to power the CuBox family of micro-computers.
+
+
+See also: Comparison of ARMv7-A cores
+The 32-bit ARM architecture, such as ARMv7-A, was the most widely used architecture in mobile devices as of 2011[update].[32]
+Since 1995, the ARM Architecture Reference Manual[61] has been the primary source of documentation on the ARM processor architecture and instruction set, distinguishing interfaces that all ARM processors are required to support (such as instruction semantics) from implementation details that may vary. The architecture has evolved over time, and version seven of the architecture, ARMv7, defines three architecture "profiles":
+
+A-profile, the "Application" profile, implemented by 32-bit cores in the Cortex-A series and by some non-ARM cores
+R-profile, the "Real-time" profile, implemented by cores in the Cortex-R series
+M-profile, the "Microcontroller" profile, implemented by most cores in the Cortex-M series
+
+Although the architecture profiles were first defined for ARMv7, ARM subsequently defined the ARMv6-M architecture (used by the Cortex M0/M0+/M1) as a subset of the ARMv7-M profile with fewer instructions.
+CPU modes[edit]
+Except in the M-profile, the 32-bit ARM architecture specifies several CPU modes, depending on the implemented architecture features. At any moment in time, the CPU can be in only one mode, but it can switch modes due to external events (interrupts) or programmatically.[62]
+
+User mode: The only non-privileged mode.
+FIQ mode: A privileged mode that is entered whenever the processor accepts a fast interrupt request.
+IRQ mode: A privileged mode that is entered whenever the processor accepts an interrupt.
+Supervisor (svc) mode: A privileged mode entered whenever the CPU is reset or when an SVC instruction is executed.
+Abort mode: A privileged mode that is entered whenever a prefetch abort or data abort exception occurs.
+Undefined mode: A privileged mode that is entered whenever an undefined instruction exception occurs.
+System mode (ARMv4 and above): The only privileged mode that is not entered by an exception. It can only be entered by executing an instruction that explicitly writes to the mode bits of the Current Program Status Register (CPSR).
+Monitor mode (ARMv6 and ARMv7 Security Extensions, ARMv8 EL3): A monitor mode is introduced to support TrustZone extension in ARM cores.
+Hyp mode (ARMv7 Virtualization Extensions, ARMv8 EL2): A hypervisor mode that supports Popek and Goldberg virtualization requirements for the non-secure operation of the CPU.[63][64]
+Thread mode (ARMv6-M, ARMv7-M, ARMv8-M): A mode which can be specified as either privileged or unprivileged, while whether Main Stack Pointer (MSP) or Process Stack Pointer (PSP) is used can also be specified in CONTROL register with privileged access. This mode is designed for user tasks in RTOS environment but it's typically used in bare-metal for super-loop.
+Handler mode (ARMv6-M, ARMv7-M, ARMv8-M): A mode dedicated for exception handling (except the RESET which are handled in Thread mode). Handler mode always uses MSP and works in privileged level.
+
+Instruction set[edit]
+The original (and subsequent) ARM implementation was hardwired without microcode, like the much simpler 8-bit 6502 processor used in prior Acorn microcomputers.
+The 32-bit ARM architecture (and the 64-bit architecture for the most part) includes the following RISC features:
+
+Load/store architecture.
+No support for unaligned memory accesses in the original version of the architecture. ARMv6 and later, except some microcontroller versions, support unaligned accesses for half-word and single-word load/store instructions with some limitations, such as no guaranteed atomicity.[65][66]
+Uniform 16× 32-bit register file (including the program counter, stack pointer and the link register).
+Fixed instruction width of 32 bits to ease decoding and pipelining, at the cost of decreased code density. Later, the Thumb instruction set added 16-bit instructions and increased code density.
+Mostly single clock-cycle execution.
+
+To compensate for the simpler design, compared with processors like the Intel 80286 and Motorola 68020, some additional design features were used:
+
+Conditional execution of most instructions reduces branch overhead and compensates for the lack of a branch predictor.
+Arithmetic instructions alter condition codes only when desired.
+32-bit barrel shifter can be used without performance penalty with most arithmetic instructions and address calculations.
+Has powerful indexed addressing modes.
+A link register supports fast leaf function calls.
+A simple, but fast, 2-priority-level interrupt subsystem has switched register banks.
+
+Arithmetic instructions[edit]
+ARM includes integer arithmetic operations for add, subtract, and multiply; some versions of the architecture also support divide operations.
+ARM supports 32-bit × 32-bit multiplies with either a 32-bit result or 64-bit result, though Cortex-M0 / M0+ / M1 cores don't support 64-bit results.[67] Some ARM cores also support 16-bit × 16-bit and 32-bit × 16-bit multiplies.
+The divide instructions are only included in the following ARM architectures:
+
+ARMv7-M and ARMv7E-M architectures always include divide instructions.[68]
+ARMv7-R architecture always includes divide instructions in the Thumb instruction set, but optionally in its 32-bit instruction set.[69]
+ARMv7-A architecture optionally includes the divide instructions. The instructions might not be implemented, or implemented only in the Thumb instruction set, or implemented in both the Thumb and ARM instruction sets, or implemented if the Virtualization Extensions are included.[69]
+
+Registers[edit]
+
+Registers across CPU modes
+
+usr
+sys
+svc
+abt
+und
+irq
+fiq
+
+
+R0
+
+
+R1
+
+
+R2
+
+
+R3
+
+
+R4
+
+
+R5
+
+
+R6
+
+
+R7
+
+
+R8
+R8_fiq
+
+
+R9
+R9_fiq
+
+
+R10
+R10_fiq
+
+
+R11
+R11_fiq
+
+
+R12
+R12_fiq
+
+
+R13
+R13_svc
+R13_abt
+R13_und
+R13_irq
+R13_fiq
+
+
+R14
+R14_svc
+R14_abt
+R14_und
+R14_irq
+R14_fiq
+
+
+R15
+
+
+CPSR
+
+
+
+SPSR_svc
+SPSR_abt
+SPSR_und
+SPSR_irq
+SPSR_fiq
+
+
+Registers R0 through R7 are the same across all CPU modes; they are never banked.
+Registers R8 through R12 are the same across all CPU modes except FIQ mode. FIQ mode has its own distinct R8 through R12 registers.
+R13 and R14 are banked across all privileged CPU modes except system mode. That is, each mode that can be entered because of an exception has its own R13 and R14. These registers generally contain the stack pointer and the return address from function calls, respectively.
+Aliases:
+
+R13 is also referred to as SP, the Stack Pointer.
+R14 is also referred to as LR, the Link Register.
+R15 is also referred to as PC, the Program Counter.
+
+The Current Program Status Register (CPSR) has the following 32 bits.[70]
+
+M (bits 0–4) is the processor mode bits.
+T (bit 5) is the Thumb state bit.
+F (bit 6) is the FIQ disable bit.
+I (bit 7) is the IRQ disable bit.
+A (bit 8) is the imprecise data abort disable bit.
+E (bit 9) is the data endianness bit.
+IT (bits 10–15 and 25–26) is the if-then state bits.
+GE (bits 16–19) is the greater-than-or-equal-to bits.
+DNM (bits 20–23) is the do not modify bits.
+J (bit 24) is the Java state bit.
+Q (bit 27) is the sticky overflow bit.
+V (bit 28) is the overflow bit.
+C (bit 29) is the carry/borrow/extend bit.
+Z (bit 30) is the zero bit.
+N (bit 31) is the negative/less than bit.
+
+Conditional execution[edit]
+Almost every ARM instruction has a conditional execution feature called predication, which is implemented with a 4-bit condition code selector (the predicate). To allow for unconditional execution, one of the four-bit codes causes the instruction to be always executed. Most other CPU architectures only have condition codes on branch instructions.
+Though the predicate takes up four of the 32 bits in an instruction code, and thus cuts down significantly on the encoding bits available for displacements in memory access instructions, it avoids branch instructions when generating code for small if statements. Apart from eliminating the branch instructions themselves, this preserves the fetch/decode/execute pipeline at the cost of only one cycle per skipped instruction.
+The standard example of conditional execution is the subtraction-based Euclidean algorithm:
+In the C programming language, the loop is:
+
+
+    while (i != j)  // We enter the loop when i<j or i>j, not when i==j
+    {
+       if (i > j)   // When i>j we do this
+           i -= j;
+       else         // When i<j we do that (since i!=j is checked in while condition)
+           j -= i;
+    }
+
+For ARM assembly, the loop can be effectively transformed into:
+
+
+loop:
+    // Compare i and j
+    GT = i > j;
+    LT = i < j;
+    NE = i != j;
+
+    // Perform operations based on flag results
+    if(GT) i -= j;    // Subtract *only* if greater-than
+    if(LT) j -= i;    // Subtract *only* if less-than
+    if(NE) goto loop; // Loop *only* if compared values were not equal
+
+and coded as:
+
+
+loop:   CMP    Ri, Rj       ; set condition "NE" if (i != j),
+                            ;               "GT" if (i > j),
+                            ;            or "LT" if (i < j)
+        SUBGT  Ri, Ri, Rj   ; if "GT" (Greater Than), i = i-j;
+        SUBLT  Rj, Rj, Ri   ; if "LT" (Less Than), j = j-i;
+        BNE  loop           ; if "NE" (Not Equal), then loop
+
+which avoids the branches around the then and else clauses. If Ri and Rj are equal then neither of the SUB instructions will be executed, eliminating the need for a conditional branch to implement the while check at the top of the loop, for example had SUBLE (less than or equal) been used.
+One of the ways that Thumb code provides a more dense encoding is to remove the four bit selector from non-branch instructions.
+Other features[edit]
+Another feature of the instruction set is the ability to fold shifts and rotates into the "data processing" (arithmetic, logical, and register-register move) instructions, so that, for example, the C statement
+
+
+a += (j << 2);
+
+could be rendered as a single-word, single-cycle instruction:[71]
+
+
+ADD  Ra, Ra, Rj, LSL #2
+
+This results in the typical ARM program being denser than expected with fewer memory accesses; thus the pipeline is used more efficiently.
+The ARM processor also has features rarely seen in other RISC architectures, such as PC-relative addressing (indeed, on the 32-bit[1] ARM the PC is one of its 16 registers) and pre- and post-increment addressing modes.
+The ARM instruction set has increased over time. Some early ARM processors (before ARM7TDMI), for example, have no instruction to store a two-byte quantity.
+Pipelines and other implementation issues[edit]
+The ARM7 and earlier implementations have a three-stage pipeline; the stages being fetch, decode and execute. Higher-performance designs, such as the ARM9, have deeper pipelines: Cortex-A8 has thirteen stages. Additional implementation changes for higher performance include a faster adder and more extensive branch prediction logic. The difference between the ARM7DI and ARM7DMI cores, for example, was an improved multiplier; hence the added "M".
+Coprocessors[edit]
+The ARM architecture (pre-ARMv8) provides a non-intrusive way of extending the instruction set using "coprocessors" that can be addressed using MCR, MRC, MRRC, MCRR and similar instructions. The coprocessor space is divided logically into 16 coprocessors with numbers from 0 to 15, coprocessor 15 (cp15) being reserved for some typical control functions like managing the caches and MMU operation on processors that have one.
+In ARM-based machines, peripheral devices are usually attached to the processor by mapping their physical registers into ARM memory space, into the coprocessor space, or by connecting to another device (a bus) that in turn attaches to the processor. Coprocessor accesses have lower latency, so some peripherals—for example, an XScale interrupt controller—are accessible in both ways: through memory and through coprocessors.
+In other cases, chip designers only integrate hardware using the coprocessor mechanism. For example, an image processing engine might be a small ARM7TDMI core combined with a coprocessor that has specialised operations to support a specific set of HDTV transcoding primitives.
+Debugging[edit]
+
+
+
+
+
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (March 2011) (Learn how and when to remove this template message)
+
+
+
+All modern ARM processors include hardware debugging facilities, allowing software debuggers to perform operations such as halting, stepping, and breakpointing of code starting from reset. These facilities are built using JTAG support, though some newer cores optionally support ARM's own two-wire "SWD" protocol. In ARM7TDMI cores, the "D" represented JTAG debug support, and the "I" represented presence of an "EmbeddedICE" debug module. For ARM7 and ARM9 core generations, EmbeddedICE over JTAG was a de facto debug standard, though not architecturally guaranteed.
+The ARMv7 architecture defines basic debug facilities at an architectural level. These include breakpoints, watchpoints and instruction execution in a "Debug Mode"; similar facilities were also available with EmbeddedICE. Both "halt mode" and "monitor" mode debugging are supported. The actual transport mechanism used to access the debug facilities is not architecturally specified, but implementations generally include JTAG support.
+There is a separate ARM "CoreSight" debug architecture, which is not architecturally required by ARMv7 processors.
+DSP enhancement instructions[edit]
+To improve the ARM architecture for digital signal processing and multimedia applications, DSP instructions were added to the set.[72] These are signified by an "E" in the name of the ARMv5TE and ARMv5TEJ architectures. E-variants also imply T, D, M, and I.
+The new instructions are common in digital signal processor (DSP) architectures. They include variations on signed multiply–accumulate, saturated add and subtract, and count leading zeros.
+SIMD extensions for multimedia[edit]
+Introduced in the ARMv6 architecture, this was a precursor to Advanced SIMD, also known as NEON.[73]
+Jazelle[edit]
+Main article: Jazelle
+Jazelle DBX (Direct Bytecode eXecution) is a technique that allows Java Bytecode to be executed directly in the ARM architecture as a third execution state (and instruction set) alongside the existing ARM and Thumb-mode. Support for this state is signified by the "J" in the ARMv5TEJ architecture, and in ARM9EJ-S and ARM7EJ-S core names. Support for this state is required starting in ARMv6 (except for the ARMv7-M profile), though newer cores only include a trivial implementation that provides no hardware acceleration.
+Thumb[edit]
+To improve compiled code-density, processors since the ARM7TDMI (released in 1994[74]) have featured the Thumb instruction set, which have their own state. (The "T" in "TDMI" indicates the Thumb feature.) When in this state, the processor executes the Thumb instruction set, a compact 16-bit encoding for a subset of the ARM instruction set.[75] Most of the Thumb instructions are directly mapped to normal ARM instructions. The space-saving comes from making some of the instruction operands implicit and limiting the number of possibilities compared to the ARM instructions executed in the ARM instruction set state.
+In Thumb, the 16-bit opcodes have less functionality. For example, only branches can be conditional, and many opcodes are restricted to accessing only half of all of the CPU's general-purpose registers. The shorter opcodes give improved code density overall, even though some operations require extra instructions. In situations where the memory port or bus width is constrained to less than 32 bits, the shorter Thumb opcodes allow increased performance compared with 32-bit ARM code, as less program code may need to be loaded into the processor over the constrained memory bandwidth.
+Embedded hardware, such as the Game Boy Advance, typically have a small amount of RAM accessible with a full 32-bit datapath; the majority is accessed via a 16-bit or narrower secondary datapath. In this situation, it usually makes sense to compile Thumb code and hand-optimise a few of the most CPU-intensive sections using full 32-bit ARM instructions, placing these wider instructions into the 32-bit bus accessible memory.
+The first processor with a Thumb instruction decoder was the ARM7TDMI. All ARM9 and later families, including XScale, have included a Thumb instruction decoder.[76] The Thumb instruction set was originally inspired by SuperH's ISA; ARM licensed several patents from Hitachi.[76]
+Thumb-2[edit]
+Thumb-2 technology was introduced in the ARM1156 core, announced in 2003. Thumb-2 extends the limited 16-bit instruction set of Thumb with additional 32-bit instructions to give the instruction set more breadth, thus producing a variable-length instruction set. A stated aim for Thumb-2 was to achieve code density similar to Thumb with performance similar to the ARM instruction set on 32-bit memory.
+Thumb-2 extends the Thumb instruction set with bit-field manipulation, table branches and conditional execution. At the same time, the ARM instruction set was extended to maintain equivalent functionality in both instruction sets. A new "Unified Assembly Language" (UAL) supports generation of either Thumb or ARM instructions from the same source code; versions of Thumb seen on ARMv7 processors are essentially as capable as ARM code (including the ability to write interrupt handlers). This requires a bit of care, and use of a new "IT" (if-then) instruction, which permits up to four successive instructions to execute based on a tested condition, or on its inverse. When compiling into ARM code, this is ignored, but when compiling into Thumb it generates an actual instruction. For example:
+
+
+; if (r0 == r1)
+CMP r0, r1
+ITE EQ        ; ARM: no code ... Thumb: IT instruction
+; then r0 = r2;
+MOVEQ r0, r2  ; ARM: conditional; Thumb: condition via ITE 'T' (then)
+; else r0 = r3;
+MOVNE r0, r3  ; ARM: conditional; Thumb: condition via ITE 'E' (else)
+; recall that the Thumb MOV instruction has no bits to encode "EQ" or "NE"
+
+All ARMv7 chips support the Thumb instruction set. All chips in the Cortex-A series, Cortex-R series, and ARM11 series support both "ARM instruction set state" and "Thumb instruction set state", while chips in the Cortex-M series support only the Thumb instruction set.[77][78][79]
+Thumb Execution Environment (ThumbEE)[edit]
+ThumbEE (erroneously called Thumb-2EE in some ARM documentation), marketed as Jazelle RCT (Runtime Compilation Target), was announced in 2005, first appearing in the Cortex-A8 processor. ThumbEE is a fourth instruction set state, making small changes to the Thumb-2 extended instruction set. These changes make the instruction set particularly suited to code generated at runtime (e.g. by JIT compilation) in managed Execution Environments. ThumbEE is a target for languages such as Java, C#, Perl, and Python, and allows JIT compilers to output smaller compiled code without impacting performance.
+New features provided by ThumbEE include automatic null pointer checks on every load and store instruction, an instruction to perform an array bounds check, and special instructions that call a handler. In addition, because it utilises Thumb-2 technology, ThumbEE provides access to registers r8-r15 (where the Jazelle/DBX Java VM state is held).[80] Handlers are small sections of frequently called code, commonly used to implement high level languages, such as allocating memory for a new object. These changes come from repurposing a handful of opcodes, and knowing the core is in the new ThumbEE state.
+On 23 November 2011, ARM Holdings deprecated any use of the ThumbEE instruction set,[81] and ARMv8 removes support for ThumbEE.
+Floating-point (VFP)[edit]
+VFP (Vector Floating Point) technology is an FPU (Floating-Point Unit) coprocessor extension to the ARM architecture[82] (implemented differently in ARMv8 - coprocessors not defined there). It provides low-cost single-precision and double-precision floating-point computation fully compliant with the ANSI/IEEE Std 754-1985 Standard for Binary Floating-Point Arithmetic. VFP provides floating-point computation suitable for a wide spectrum of applications such as PDAs, smartphones, voice compression and decompression, three-dimensional graphics and digital audio, printers, set-top boxes, and automotive applications. The VFP architecture was intended to support execution of short "vector mode" instructions but these operated on each vector element sequentially and thus did not offer the performance of true single instruction, multiple data (SIMD) vector parallelism. This vector mode was therefore removed shortly after its introduction,[83] to be replaced with the much more powerful NEON Advanced SIMD unit.
+Some devices such as the ARM Cortex-A8 have a cut-down VFPLite module instead of a full VFP module, and require roughly ten times more clock cycles per float operation.[84] Pre-ARMv8 architecture implemented floating-point/SIMD with the coprocessor interface. Other floating-point and/or SIMD units found in ARM-based processors using the coprocessor interface include FPA, FPE, iwMMXt, some of which were implemented in software by trapping but could have been implemented in hardware. They provide some of the same functionality as VFP but are not opcode-compatible with it.
+
+VFPv1
+Obsolete
+VFPv2
+An optional extension to the ARM instruction set in the ARMv5TE, ARMv5TEJ and ARMv6 architectures. VFPv2 has 16 64-bit FPU registers.
+VFPv3 or VFPv3-D32
+Implemented on most Cortex-A8 and A9 ARMv7 processors. It is backwards compatible with VFPv2, except that it cannot trap floating-point exceptions. VFPv3 has 32 64-bit FPU registers as standard, adds VCVT instructions to convert between scalar, float and double, adds immediate mode to VMOV such that constants can be loaded into FPU registers.
+VFPv3-D16
+As above, but with only 16 64-bit FPU registers. Implemented on Cortex-R4 and R5 processors and the Tegra 2 (Cortex-A9).
+VFPv3-F16
+Uncommon; it supports IEEE754-2008 half-precision (16-bit) floating point as a storage format.
+VFPv4 or VFPv4-D32
+Implemented on the Cortex-A12 and A15 ARMv7 processors, Cortex-A7 optionally has VFPv4-D32 in the case of an FPU with NEON.[85] VFPv4 has 32 64-bit FPU registers as standard, adds both half-precision support as a storage format and fused multiply-accumulate instructions to the features of VFPv3.
+VFPv4-D16
+As above, but it has only 16 64-bit FPU registers. Implemented on Cortex-A5 and A7 processors (in case of an FPU without NEON[85]).
+VFPv5-D16-M
+Implemented on Cortex-M7 when single and double-precision floating-point core option exists.
+
+In Debian GNU/Linux, and derivatives such as Ubuntu, armhf (ARM hard float) refers to the ARMv7 architecture including the additional VFP3-D16 floating-point hardware extension (and Thumb-2) above. Software packages and cross-compiler tools use the armhf vs. arm/armel suffixes to differentiate.[86]
+Advanced SIMD (NEON)[edit]
+The Advanced SIMD extension (aka NEON or "MPE" Media Processing Engine) is a combined 64- and 128-bit SIMD instruction set that provides standardized acceleration for media and signal processing applications. NEON is included in all Cortex-A8 devices, but is optional in Cortex-A9 devices.[87] NEON can execute MP3 audio decoding on CPUs running at 10 MHz, and can run the GSM adaptive multi-rate (AMR) speech codec at 13 MHz. It features a comprehensive instruction set, separate register files, and independent execution hardware.[88] NEON supports 8-, 16-, 32-, and 64-bit integer and single-precision (32-bit) floating-point data and SIMD operations for handling audio and video processing as well as graphics and gaming processing. In NEON, the SIMD supports up to 16 operations at the same time. The NEON hardware shares the same floating-point registers as used in VFP. Devices such as the ARM Cortex-A8 and Cortex-A9 support 128-bit vectors, but will execute with 64 bits at a time,[84] whereas newer Cortex-A15 devices can execute 128 bits at a time.
+ProjectNe10 is ARM's first open-source project (from its inception). The Ne10 library is a set of common, useful functions written in both NEON and C (for compatibility). The library was created to allow developers to use NEON optimisations without learning NEON, but it also serves as a set of highly optimised NEON intrinsic and assembly code examples for common DSP, arithmetic, and image processing routines. The source code is available on GitHub[89]
+Security extensions[edit]
+TrustZone (for Cortex-A profile)[edit]
+The Security Extensions, marketed as TrustZone Technology, is in ARMv6KZ and later application profile architectures. It provides a low-cost alternative to adding another dedicated security core to an SoC, by providing two virtual processors backed by hardware based access control. This lets the application core switch between two states, referred to as worlds (to reduce confusion with other names for capability domains), in order to prevent information from leaking from the more trusted world to the less trusted world. This world switch is generally orthogonal to all other capabilities of the processor, thus each world can operate independently of the other while using the same core. Memory and peripherals are then made aware of the operating world of the core and may use this to provide access control to secrets and code on the device.[90]
+Typically, a rich operating system is run in the less trusted world, with smaller security-specialized code in the more trusted world, aiming to reduce the attack surface. Typical applications include DRM functionality for controlling the use of media on ARM-based devices,[91] and preventing any unapproved use of the device.
+One option for the more trusted world is TrustZone Software, a TrustZone optimized version of the Trusted Foundations Software developed by Trusted Logic Mobility. Trusted Foundations Software was acquired by Gemalto. Giesecke & Devrient developed a rival implementation named Mobicore. In April 2012 ARM, Gemalto and Giesecke & Devrient combined their TrustZone portfolios into a joint venture Trustonic.[92][93]
+In practice, since the specific implementation details of proprietary TrustZone implementations have not been publicly disclosed for review, it is unclear what level of assurance is provided for a given threat model, but they are not immune from attack.[94][95]
+Open Virtualization[96] and T6[97] are open source implementations of the trusted world architecture for TrustZone.
+AMD has licensed and incorporated TrustZone technology into its Secure Processor Technology.[98] Enabled in some but not all products, AMD's APUs include a Cortex-A5 processor for handling secure processing.[99][100][101] In fact, the Cortex-A5 TrustZone core had been included in earlier AMD products, but was not enabled due to time constraints.[100]
+Samsung Knox uses TrustZone for purposes such as detecting modifications to the kernel.[102]
+TrustZone for ARMv8-M (for Cortex-M profile)[edit]
+The Security Extension, marketed as TrustZone for ARMv8-M Technology, was introduced in the ARMv8-M architecture.
+No-execute page protection[edit]
+As of ARMv6, the ARM architecture supports no-execute page protection, which is referred to as XN, for eXecute Never.[103]
+Large Physical Address Extension (LPAE)[edit]
+The Large Physical Address Extension (LPAE), which extends the physical address size from 32 bits to 40 bits, was added to the ARMv7-A architecture in 2011.[104]
+ARMv8-R and ARMv8-M[edit]
+The ARMv8-R and ARMv8-M sub-architectures, announced after the ARMv8-A sub-architecture, share some features with ARMv8-A, but don't include any 64-bit AArch64 instructions.
+64/32-bit architecture[edit]
+ARMv8-A[edit]
+See also: Comparison of ARMv8-A cores
+Announced in October 2011,[7] ARMv8-A (often called ARMv8 while the ARMv8-R is also available) represents a fundamental change to the ARM architecture. It adds an optional 64-bit architecture (e.g. Cortex-A32 is a 32-bit ARMv8-A CPU[105] while most ARMv8-A CPUs support 64-bit, unlike all ARMv8-R), named "AArch64", and the associated new "A64" instruction set. AArch64 provides user-space compatibility with ARMv7-A, the 32-bit architecture, therein referred to as "AArch32" and the old 32-bit instruction set, now named "A32". The Thumb instruction sets are referred to as "T32" and have no 64-bit counterpart. ARMv8-A allows 32-bit applications to be executed in a 64-bit OS, and a 32-bit OS to be under the control of a 64-bit hypervisor.[1] ARM announced their Cortex-A53 and Cortex-A57 cores on 30 October 2012.[48] Apple was the first to release an ARMv8-A compatible core (Apple A7) in a consumer product (iPhone 5S). AppliedMicro, using an FPGA, was the first to demo ARMv8-A.[106] The first ARMv8-A SoC from Samsung is the Exynos 5433 used in the Galaxy Note 4, which features two clusters of four Cortex-A57 and Cortex-A53 cores in a big.LITTLE configuration; but it will run only in AArch32 mode.[107]
+To both AArch32 and AArch64, ARMv8-A makes VFPv3/v4 and advanced SIMD (NEON) standard. It also adds cryptography instructions supporting AES, SHA-1/SHA-256 and finite field arithmetic.[108]
+AArch64 features[edit]
+
+New instruction set, A64
+
+Has 31 general-purpose 64-bit registers.
+Has dedicated zero or stack pointer (SP) register (depending on instruction).
+The program counter (PC) is no longer directly accessible as a register.
+Instructions are still 32 bits long and mostly the same as A32 (with LDM/STM instructions and most conditional execution dropped).
+
+Has paired loads/stores (in place of LDM/STM).
+No predication for most instructions (except branches).
+
+
+Most instructions can take 32-bit or 64-bit arguments.
+Addresses assumed to be 64-bit.
+
+
+Advanced SIMD (NEON) enhanced
+
+Has 32× 128-bit registers (up from 16), also accessible via VFPv4.
+Supports double-precision floating point.
+Fully IEEE 754 compliant.
+AES encrypt/decrypt and SHA-1/SHA-2 hashing instructions also use these registers.
+
+
+A new exception system
+
+Fewer banked registers and modes.
+
+
+Memory translation from 48-bit virtual addresses based on the existing Large Physical Address Extension (LPAE), which was designed to be easily extended to 64-bit.
+
+AArch64 was introduced in ARMv8-A and is included in subsequent versions of ARMV8-A. AArch64 is not included in ARMv8-R or ARMv8-M, because they are both 32-bit architectures.
+ARMv8.1-A[edit]
+In December 2014, ARMv8.1-A,[109] an update with "incremental benefits over v8.0", was announced. The enhancements fell into two categories: changes to the instruction set, and changes to the exception model and memory translation.
+Instruction set enhancements included the following:
+
+A set of AArch64 atomic read-write instructions.
+Additions to the Advanced SIMD instruction set for both AArch32 and AArch64 to enable opportunities for some library optimizations:
+
+Signed Saturating Rounding Doubling Multiply Accumulate, Returning High Half.
+Signed Saturating Rounding Doubling Multiply Subtract, Returning High Half.
+The instructions are added in vector and scalar forms.
+
+
+A set of AArch64 load and store instructions that can provide memory access order that is limited to configurable address regions.
+The optional CRC instructions in v8.0 become a requirement in ARMv8.1.
+
+Enhancements for the exception model and memory translation system included the following:
+
+A new Privileged Access Never (PAN) state bit provides control that prevents privileged access to user data unless explicitly enabled.
+An increased VMID range for virtualization; supports a larger number of virtual machines.
+Optional support for hardware update of the page table access flag, and the standardization of an optional, hardware updated, dirty bit mechanism.
+The Virtualization Host Extensions (VHE). These enhancements improve the performance of Type 2 hypervisors by reducing the software overhead associated when transitioning between the Host and Guest operating systems. The extensions allow the Host OS to execute at EL2, as opposed to EL1, without substantial modification.
+A mechanism to free up some translation table bits for operating system use, where the hardware support is not needed by the OS.
+
+ARMv8.2-A[edit]
+In January 2016, ARMv8.2-A was announced.[110] Its enhancements fell into four categories:
+
+Optional half-precision floating-point data processing (half-precision was already supported, but not for processing, just as a storage format.)
+Memory model enhancements
+Introduction of reliability, availability and serviceability (RAS) features
+Introduction of statistical profiling
+
+ARMv8.3-A[edit]
+In 2016, ARMv8.3-A was announced. Its enhancements fell into six categories:[111]
+
+Pointer authentication[112] (AArch64 only); mandatory extension (based on a new block cipher, QARMA[113]) to the architecture (compilers need to exploit the security feature, but as the instructions are in NOP space, they are backwards compatible albeit providing no extra security on older chips).
+Nested virtualization (AArch64 only)
+Advanced SIMD complex number support (AArch64 and AArch32); e.g. rotations in by multiples of 90 degrees.
+Improved JavaScript data type conversion support (AArch64 and AArch32); meaning next instruction can branch depending on if conversion to integer was exact (then a flag was set ).
+A change to the memory consistency model (AArch64 only); to support the (non-default) weaker RCpc (Release Consistent processor consistent) model of C++11/C11 (the default C++11/C11 consistency model was already supported in previous ARMv8).
+ID mechanism support for larger system-visible caches (AArch64 and AArch32)
+
+ARMv8.3-A architecture is now supported by (at least) the GCC 7 compiler.[114]
+Operating system support[edit]
+32-bit operating systems[edit]
+
+
+
+
+Android, a popular operating system which is primarily used on the ARM architecture.
+
+
+
+Historical operating systems
+The first 32-bit ARM-based personal computer, the Acorn Archimedes, ran an interim operating system called Arthur, which evolved into RISC OS, used on later ARM-based systems from Acorn and other vendors. Some Acorn machines also had a Unix port called RISC iX. (Neither is to be confused with RISC/os, a contemporary Unix variant for the MIPS architecture.)
+Embedded operating systems
+The 32-bit ARM architecture is supported by a large number of embedded and real-time operating systems, including:
+
+
+Android
+ChibiOS/RT
+Deos
+DRYOS
+eCos
+embOS
+FreeRTOS
+Integrity
+Linux
+MicroC/OS-II
+MQX
+Nucleus PLUS
+NuttX
+OSE
+OS-9[115]
+Plan 9
+PikeOS[116]
+QNX
+RIOT
+RTEMS
+RTXC Quadros
+SCIOPTA,[117]
+ThreadX
+TizenRT
+T-Kernel
+VxWorks
+Windows Embedded Compact
+Windows 10 IoT Core
+
+
+Mobile device operating systems
+The 32-bit ARM architecture is the primary hardware environment for most mobile device operating systems such as:
+
+
+Android
+Bada
+BlackBerry OS/BlackBerry 10
+Chrome OS
+Firefox OS
+MeeGo
+Sailfish
+Symbian
+Tizen
+Ubuntu Touch
+webOS
+Windows RT
+Windows Phone
+Windows 10 Mobile
+
+
+Previously, but now discontinued:
+
+
+iOS 10 and earlier
+
+
+Desktop/server operating systems
+The 32-bit ARM architecture is supported by RISC OS and multiple Unix-like operating systems including:
+
+
+BSD (NetBSD, FreeBSD, OpenBSD)
+OpenSolaris[118]
+
+
+and several Linux distributions, such as:
+
+
+Debian
+Gentoo
+Ubuntu
+
+64-bit operating systems[edit]
+
+Embedded operating systems
+SCIOPTA[117]
+Mobile device operating systems
+iOS supports ARMv8-A in iOS 7 and later on 64-bit Apple SoCs. It became the primary hardware environment for all devices as of iOS 11.
+Android supports ARMv8-A in Android Lollipop (5.0) and later.
+Windows 10 support for 64-bit ARM is forthcoming.[119]
+Desktop/server operating systems
+Support for ARMv8-A was merged into the Linux kernel version 3.7 in late 2012.[120] ARMv8-A is supported by a number of Linux distributions, such as Debian,[121][122] Fedora,[123] openSUSE.[124] Support for ARMv8-A was merged into FreeBSD in late 2014.[125] OpenBSD has experimental ARMv8 support as of 2017.[126]
+
+Porting to 32- or 64-bit ARM operating systems[edit]
+Windows applications recompiled for ARM and linked with Winelib –  from the Wine project can run on 32-bit or 64-bit ARM in Linux (or FreeBSD or other compatible enough operating systems).[127][128] x86 binaries, e.g. when not specially compiled for ARM, have been demonstrated on ARM using QEMU with Wine (on Linux, macOS and more), but do not work at full speed or same capability as with Winelib.
+See also[edit]
+
+
+Electronics portal
+
+
+
+Apple mobile processors
+ARM big.LITTLE – ARM's heterogeneous computing architecture
+ARM Accredited Engineer – certification program
+ARMulator – an instruction set simulator
+Amber (processor core) – an open-source ARM-compatible processor core
+AMULET microprocessor – an asynchronous implementation of the ARM architecture
+Comparison of ARMv7-A cores
+Comparison of ARMv8-A cores
+Unicore – a 32-register architecture based heavily on a 32-bit ARM
+
+References[edit]
+
+
+^ a b c d e Grisenthwaite, Richard (2011). "ARMv8-A Technology Preview" (PDF). Retrieved 31 October 2011. 
+^ "Procedure Call Standard for the ARM Architecture" (PDF). ARM Holdings. 30 November 2013. Retrieved 27 May 2013. 
+^ a b "Some facts about the Acorn RISC Machine" Roger Wilson posting to comp.arch, 2 November 1988. Retrieved 25 May 2007.
+^ "ARM Cores Climb Into 3G Territory" by Mark Hachman, 2002.
+^ "The Two Percent Solution" by Jim Turley 2002.
+^ "Fujitsu drops SPARC, turns to ARM for Post-K supercomputer". Retrieved 18 December 2016. 
+^ a b "ARM Discloses Technical Details Of The Next Version Of The ARM Architecture" (Press release). ARM Holdings. 27 October 2011. Retrieved 20 September 2013. 
+^ "MCU Market on Migration Path to 32-bit and ARM-based Devices: 32-bit tops in sales; 16-bit leads in unit shipments". IC Insights. 25 April 2013. Retrieved 1 July 2014. 
+^ Hachman, Mark (2002). "ARM Cores Climb into 3G Territory". ExtremeTech. 
+^ Turley, Jim (2002). "The Two Percent Solution". www.embedded.com. 
+^ ARM Holdings eager for PC and server expansion, 1 February 2011 
+^ Kerry McGuire Balanza (11 May 2010), ARM from zero to billions in 25 short years, ARM Holdings, retrieved 8 November 2012 
+^ VLSI Technology, Inc. (1990). Acorn RISC Machine Family Data Manual. Prentice-Hall. ISBN 9780137816187. 
+^ Acorn Archimedes Promotion from 1987. 1987. 
+^ Manners, David (29 April 1998). "ARM's way". Electronics Weekly. Retrieved 26 October 2012. 
+^ Sophie Wilson at Alt Party 2009 (Part 3/8). 
+^ Chisnall, David (23 August 2010). "Understanding ARM Architectures". Retrieved 26 May 2013. 
+^ Furber, Stephen B. (2000). ARM system-on-chip architecture. Boston: Addison-Wesley. ISBN 0-201-67519-6. 
+^ Goodwins, Rupert (4 December 2010). "Intel's victims: Eight would-be giant killers". ZDNet. Retrieved 7 March 2012. 
+^ Acorn Archimedes Promotion from 1987 on YouTube
+^ Richard Murray. "32 bit operation". 
+^ Levy, Markus. "The History of The ARM Architecture: From Inception to IPO" (PDF). Retrieved 14 March 2013. 
+^ Santanu Chattopadhyay (1 January 2010). Embedded System Design. PHI Learning Pvt. Ltd. p. 9. ISBN 978-81-203-4024-4. Retrieved 15 March 2013. 
+^ ARM milestones, ARM company website. Retrieved 8 April 2015
+^ Andrews, Jason (2005). "3 SoC Verification Topics for the ARM Architecture". Co-verification of hardware and software for ARM SoC design. Oxford, UK: Elsevier. p. 69. ISBN 0-7506-7730-9. ARM started as a branch of Acorn Computer in Cambridge, England, with the formation of a joint venture between Acorn, Apple and VLSI Technology. A team of twelve employees produced the design of the first ARM microprocessor between 1983 and 1985. 
+^ Weber, Jonathan (28 November 1990). "Apple to Join Acorn, VLSI in Chip-Making Venture". Los Angeles Times. Los Angeles. Retrieved 6 February 2012. Apple has invested about $3 million (roughly 1.5 million pounds) for a 30% interest in the company, dubbed Advanced Risc Machines Ltd. (ARM) [...] 
+^ "ARM Corporate Backgrounder" Archived 4 October 2006 at the Wayback Machine., ARM Technology.
+^ Montanaro, James et al. (1997). "A 160-MHz, 32-b, 0.5-W CMOS RISC Microprocessor". Digital Technical Journal, vol. 9, no. 1. pp. 49–62.
+^ DeMone, Paul (9 November 2000). "ARM's Race to Embedded World Domination". Real World Technologies. Retrieved 6 October 2015. 
+^ "March of the Machines". technologyreview.com. MIT Technology Review. 2010-04-20. Retrieved 6 October 2015. 
+^ Krazit, Tom (3 April 2006). "ARMed for the living room". CNet.com. 
+^ a b Fitzpatrick, J. (2011). "An Interview with Steve Furber". Communications of the ACM. 54 (5): 34. doi:10.1145/1941487.1941501. 
+^ Tracy Robinson (12 February 2014). "Celebrating 50 Billion shipped ARM-powered Chips". 
+^ Sarah Murry (3 March 2014). "ARM's Reach: 50 Billion Chip Milestone". 
+^ Brown, Eric (2009). "ARM netbook ships with detachable tablet". 
+^ McGrath, Dylan (18 July 2011). "IHS: ARM ICs to be in 23% of laptops in 2015". EE Times. Retrieved 20 July 2011. 
+^ Peter Clarke (7 January 2016). "Amazon Now Sells Own ARM chips". 
+^ "MACOM Successfully Completes Acquisition of AppliedMicro" (Press release). January 26, 2017. 
+^ Nolting, Stephan. "STORM CORE Processor System" (PDF). OpenCores. Retrieved 1 April 2014. 
+^ "krevanth/ZAP". GitHub. Retrieved 2016-10-13. 
+^ "Cortex-M23 Processor". ARM. Retrieved 27 October 2016. 
+^ "Cortex-M33 Processor". ARM. Retrieved 27 October 2016. 
+^ "ARMv8-M Architecture Simplifies Security for Smart Embedded". ARM. Retrieved November 10, 2015. 
+^ "ARMv8-R Architecture". Retrieved 10 July 2015. 
+^ "ARM Cortex-R Architecture" (PDF). ARM Holdings. October 2013. Retrieved 1 February 2014. 
+^ Smith, Ryan (20 September 2016). "ARM Announces Cortex-R52 CPU: Deterministic & Safe, for ADAS & More". Anandtech.com. Retrieved 20 September 2016. 
+^ "Cortex-A35 Processor". ARM. Retrieved 10 November 2015. 
+^ a b "ARM Launches Cortex-A50 Series, the World's Most Energy-Efficient 64-bit Processors" (Press release). ARM Holdings. Retrieved 31 October 2012. 
+^ "Cortex-A72 Processor". ARM. Retrieved 10 July 2015. 
+^ "Cortex-A73 Processor". ARM. Retrieved 2 June 2016. 
+^ "Cavium Thunder X ups the ARM core count to 48 on a single chip". SemiAccurate. 3 June 2014. .
+^ Cavium at Supercomputing 2014 Yahoo Finance; November 17, 2014
+^ Cray to Evaluate ARM Chips in Its Supercomputers eWeek; November 17, 2014
+^ "Samsung Announces Exynos 8890 with Cat.12/13 Modem and Custom CPU". AnandTech. 
+^ "ARMv8-A Architecture". Retrieved 10 July 2015. 
+^ ARMv8 Architecture Technology Preview (Slides); ARM Holdings.
+^ "Cortex-A55 Processor". ARM. Retrieved 29 May 2017. 
+^ "Cortex-A75 Processor". ARM. Retrieved 29 May 2017. 
+^ "Line Card" (PDF). 2003. Retrieved 1 October 2012. 
+^ Parrish, Kevin (14 July 2011). "One Million ARM Cores Linked to Simulate Brain". EE Times. Retrieved 2 August 2011. 
+^ http://infocenter.arm.com/help/index.jsp
+^ "Processor mode". ARM Holdings. Retrieved 26 March 2013. 
+^ "KVM/ARM" (PDF). Retrieved 3 April 2013. 
+^ Brash, David (August 2010). "Extensions to the ARMv7-A Architecture" (PDF). ARM Ltd. Retrieved 6 June 2014. 
+^ "How does the ARM Compiler support unaligned accesses?". 2011. Retrieved 5 October 2013. 
+^ "Unaligned data access". Retrieved 5 October 2013. 
+^ Cortex-M0 r0p0 Technical Reference Manual; ARM Holdings.
+^ "ARMv7-M Architecture Reference Manual; ARM Holdings". Silver.arm.com. Retrieved 19 January 2013. 
+^ a b "ARMv7-A and ARMv7-R Architecture Reference Manual; ARM Holdings". Silver.arm.com. Retrieved 19 January 2013. 
+^ "ARM Information Center". Retrieved 10 July 2015. 
+^ "9.1.2. Instruction cycle counts". 
+^ "ARM DSP Instruction Set Extensions". arm.com. Archived from the original on 14 April 2009. Retrieved 18 April 2009. 
+^ "DSP & SIMD". Retrieved 10 July 2015. 
+^ ARM7TDMI Technical Reference Manual page ii
+^ Jaggar, Dave (1996). ARM Architecture Reference Manual. Prentice Hall. pp. 6–1. ISBN 978-0-13-736299-8. 
+^ a b Nathan Willis (June 10, 2015). "Resurrecting the SuperH architecture". LWN.net. 
+^ "ARM Processor Instruction Set Architecture". Arm.com. Archived from the original on 15 April 2009. Retrieved 18 April 2009. 
+^ "ARM aims son of Thumb at uCs, ASSPs, SoCs". Linuxdevices.com. Retrieved 18 April 2009. 
+^ "ARM Information Center". Infocenter.arm.com. Retrieved 18 April 2009. 
+^ "Arm strengthens Java compilers: New 16-Bit Thumb-2EE Instructions Conserve System Memory" by Tom R. Halfhill 2005.
+^ ARM Architecture Reference Manual, ARMv7-A and ARMv7-R edition, issue C.b, Section A2.10, 24 July 2012.
+^ "ARM Compiler toolchain Using the Assembler — VFP coprocessor". Arm.com. Retrieved 20 August 2014. 
+^ "VFP directives and vector notation". Arm.com. Retrieved 21 November 2011. 
+^ a b "Differences between ARM Cortex-A8 and Cortex-A9". Shervin Emami. Retrieved 21 November 2011. 
+^ a b "Cortex-A7 MPCore Technical Reference Manual — 1.3 Features". ARM. Retrieved 11 July 2014. 
+^ "ArmHardFloatPort - Debian Wiki". Wiki.debian.org. 20 August 2012. Retrieved 8 January 2014. 
+^ "Cortex-A9 Processor". arm.com. Retrieved 21 November 2011. 
+^ "About the Cortex-A9 NEON MPE". arm.com. Retrieved 21 November 2011. 
+^ https://github.com/projectNe10/Ne10
+^ "Genode - An Exploration of ARM TrustZone Technology". Retrieved 10 July 2015. 
+^ "ARM Announces Availability of Mobile Consumer DRM Software Solutions Based on ARM T". News.thomasnet.com. Retrieved 18 April 2009. 
+^ "Trustonic". Trustonic. Retrieved 14 June 2013. 
+^ "ARM, Gemalto and Giesecke & Devrient Form Joint Venture To". ARM Holdings. 3 April 2012. Retrieved 19 January 2013. 
+^ Laginimaineb (2015-10-08). "Bits, Please!: Full TrustZone exploit for MSM8974". Bits, Please!. Retrieved 2016-05-03. 
+^ Di Shen. "Attacking your "Trusted Core" Exploiting TrustZone on Android" (PDF). Black Hat Briefings. Retrieved 2016-05-03. 
+^ "ARM TrustZone and ARM Hypervisor Open Source Software". Open Virtualization. Retrieved 14 June 2013. 
+^ "T6: TrustZone Based Trusted Kernel". trustkernel. 8 July 2014. Retrieved 8 July 2014. 
+^ "AMD Secure Technology". AMD. AMD. Retrieved 6 July 2016. 
+^ Smith, Ryan (13 June 2012). "AMD 2013 APUs to include ARM Cortex A5 Processor for Trustzone Capabilities". Anandtech.com. Retrieved 6 July 2016. 
+^ a b Shimpi, Anand Lal (29 April 2014). "AMD Beema Mullins Architecture A10 micro 6700T Performance Preview". Anandtech.com. Retrieved 6 July 2016. 
+^ Walton, Jarred (4 June 2014). "AMD Launches Mobile Kaveri APUs". Anandtech.com. Retrieved 6 July 2016. 
+^ "The Samsung KNOX Platform" (PDF). Samsung Electronics. April 2016. 
+^ "ARM Architecture Reference Manual" (PDF). p. B4-8. Archived from the original (PDF) on 6 February 2009. APX and XN (execute never) bits have been added in VMSAv6 [Virtual Memory System Architecture] 
+^ ARM Architecture Reference Manual, ARMv7-A and ARMv7-R edition. ARM Limited. 
+^ "Cortex-A32 Processor - ARM". Retrieved 18 December 2016. 
+^ "AppliedMicro Showcases World's First 64-bit ARM v8 Core" (Press release). AppliedMicro. 28 October 2011. Retrieved 11 February 2014. 
+^ "Samsung's Exynos 5433 is an A57/A53 ARM SoC". AnandTech. Retrieved 17 September 2014. 
+^ "ARM Cortex-A53 MPCore Processor Technical Reference Manual: Cryptography Extension". ARM. Retrieved 11 September 2016. 
+^ Brash, David (2 December 2014). "The ARMv8-A architecture and its ongoing development". Retrieved 23 January 2015. 
+^ Brash, David (5 January 2016). "ARMv8-A architecture evolution". Retrieved 7 June 2016. 
+^ David Brash (26 October 2016). "ARMv8-A architecture – 2016 additions". 
+^ "[Ping~,AArch64] Add commandline support for -march=armv8.3-a". pointer authentication extension is defined to be mandatory extension on ARMv8.3-A and is not optional 
+^ "Qualcomm releases whitepaper detailing pointer authentication on ARMv8.3". 
+^ "GCC 7 Release Series - Changes, New Features, and Fixes". The ARMv8.3-A architecture is now supported. It can be used by specifying the -march=armv8.3-a option. [..] The option -msign-return-address= is supported to enable return address protection using ARMv8.3-A Pointer Authentication Extensions. 
+^ "OS-9 Specifications". Microware. 
+^ "PikeOS Safe and Secure Virtualization". Retrieved 10 July 2013.
+^ a b "Safety Certified Real-Time Operating Systems - Supported CPUs". 
+^ "ARM Platform Port". opensolaris.org. Archived from the original on 2 December 2012. Retrieved 29 December 2012. 
+^ "Windows is coming back to ARM, this time with 32-bit x86 compatibility". Ars Technica. Retrieved 2016-12-16. the full desktop Windows 10 variant is coming to ARM. It will be a 64-bit version, running on Qualcomm's latest and greatest processors (probably the Snapdragon 835), and the way Microsoft describes [..] also regular Win32 desktop applications." 
+^ Linus Torvalds (1 October 2012). "Re: [GIT PULL] arm64: Linux kernel port". Linux kernel mailing list. Retrieved 2 October 2012. 
+^ Larabel, Michael (27 February 2013). "64-bit ARM Version Of Ubuntu/Debian Is Booting". Phoronix. Retrieved 17 August 2014. 
+^ "Debian Project News - August 14th, 2014". Debian. 14 August 2014. Retrieved 17 August 2014. 
+^ "Architectures/AArch64". Retrieved 16 January 2015. 
+^ "Portal:ARM/AArch64". Retrieved 16 January 2015. 
+^ "64-bit ARM architecture project update". The FreeBSD Foundation. 24 November 2014. 
+^ "OpenBSD/arm64". Retrieved 7 August 2017. 
+^ "ARM - The Official Wine Wiki". Retrieved 10 July 2015. 
+^ "ARM64 - The Official Wine Wiki". Retrieved 10 July 2015. 
+
+
+Further reading[edit]
+See also: List of books about ARM Cortex-M
+External links[edit]
+
+
+
+Wikimedia Commons has media related to ARM microprocessors.
+
+
+
+Official website, ARM Ltd.
+ARM Virtualization Extensions
+
+
+Quick Reference Cards
+
+
+Instructions: Thumb, ARM and Thumb-2, Vector Floating Point
+Opcodes: Thumb, Thumb, ARM, ARM, GNU Assembler Directives
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Application ARM-based chips
+
+
+
+
+
+
+ARM Holdings
+ARM architecture
+List of ARM microarchitectures
+List of applications of ARM cores
+ARM Cortex-A
+ARM Cortex-R
+ARM Cortex-M
+Comparison of ARMv7-A cores
+Comparison of ARMv8-A cores
+
+
+
+
+
+Application
+processors
+(32-bit)
+
+
+
+
+Cortex-A5
+
+
+
+Actions ATM702x
+Amlogic M805/S805, T82x
+Atmel SAMA5D3
+InfoTM iMAPx820, iMAPx15
+Qualcomm Snapdragon S4 Play, 200
+RDA RDA8810PL
+Telechips TCC892x
+
+
+
+
+
+Cortex-A7
+
+
+
+Allwinner A2x, A3x, A83T, H3, H8
+Broadcom VideoCore BCM2836, BCM23550
+Freescale QorIQ LS10xx
+Leadcore LC1813, LC1860/C, LC1913, LC1960
+Marvell Armada PXA1920, 1500 mini plus
+MediaTek MT65xx
+Qualcomm Snapdragon 200, 400
+
+
+
+
+
+Cortex-A8
+
+
+
+Allwinner A1x
+Apple A4
+Freescale i.MX5
+Rockchip RK291x
+Samsung Exynos 3110(S5PC110), S5PV210
+Texas Instruments OMAP 3
+ZiiLABS ZMS-08
+
+
+
+
+
+Cortex-A9
+
+
+
+Actions ATM702x, ATM703x
+Altera Cyclone V, Arria V/10
+Amlogic AML8726, MX, M6x, M801, M802/S802, S812, T86x
+Apple A5, A5X
+Broadcom VideoCore BCM21xxx, BCM28xxx
+Freescale i.MX6
+HiSilicon K3V2, 910's
+InfoTM iMAPx912
+Leadcore LC1810, LC1811
+Marvell Armada 1500 mini
+MediaTek MT65xx
+Nvidia Tegra, 2, 3, 4i
+Nufront NuSmart 2816M, NS115, NS115M
+Renesas EMMA EV2, R-Car H1, RZ/A
+Rockchip RK292x, RK30xx, RK31xx
+Samsung Exynos 4 421x, 441x
+ST-Ericsson NovaThor
+Telechips TCC8803
+Texas Instruments OMAP 4
+VIA WonderMedia WM88x0, 89x0
+Xilinx Zynq-7000
+ZiiLABS ZMS-20, ZMS-40
+
+
+
+
+
+Cortex-A15
+
+
+
+Allwinner A80
+HiSilicon K3V3
+MediaTek MT8135/V
+Nvidia Tegra 4, K1
+Renesas R-Car H2
+Samsung Exynos 5 52xx, 54xx
+Texas Instruments OMAP 5, DRA7xx, AM57xx
+
+
+
+
+
+Cortex-A17
+
+
+
+MediaTek MT6595, MT5595
+Mstar 6A928
+Rockchip RK3288
+
+
+
+
+
+ARMv7-A
+compatible
+
+
+
+Apple A6, A6X, S1
+Broadcom Brahma-B15
+Marvell P4J
+Qualcomm Snapdragon S1, S2, S3, S4 Plus, S4 Pro, 600, 800 (Scorpion, Krait)
+
+
+
+
+
+
+
+
+Application
+processors
+(64-bit)
+
+
+
+
+Cortex-A53
+
+
+
+Actions GT7, S900, V700
+Allwinner A64, H5, H64, R18
+Altera Stratix 10
+Amlogic S9 Family, T96x
+Broadcom BCM2837
+EZchip TILE-Mx100
+HiSilicon Kirin 620, 65x, 93x
+Marvell Armada PXA1928, Mobile PXA1908/PXA1936
+MediaTek MT673x, MT675x, MT6795, MT873x, MT8752, MT8163
+NXP ARM S32
+Qualcomm Snapdragon 41x, 42x, 43x, 61x, 62x
+Rockchip RK3328, RK3368
+Samsung Exynos 7 75xx, 78xx
+Spreadtrum SC9860/GV, SC9836
+Xilinx ZynqMP
+Freescale QorIQ LS1088
+
+
+
+
+
+Cortex-A57
+
+
+
+AMD Opteron A1100-series
+Freescale QorIQ LS20xx
+Nvidia Tegra X1
+Qualcomm Snapdragon 808, 810
+Samsung Exynos 7 5433, 7420
+
+
+
+
+
+Cortex-A72
+
+
+
+HiSilicon Kirin 95x
+MediaTek Helio X2x, MT817x
+Mstar 6A938
+Qualcomm Snapdragon 65x
+Rockchip RK3399
+Freescale QorIQ LS2088
+
+
+
+
+
+Cortex-A73
+
+
+
+HiSilicon Kirin 960, Kirin 970
+MediaTek Helio X30
+
+
+
+
+
+ARMv8-A
+compatible
+
+
+
+Apple A7 to A11
+Applied Micro X-Gene
+Cavium ThunderX CN87xx, CN88xx
+Nvidia Tegra K1 (Project Denver)
+Samsung Mongoose
+NXP i.MX 8
+Qualcomm Kryo
+Qualcomm Falkor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Embedded ARM-based chips
+
+
+
+
+
+
+ARM Holdings
+ARM architecture
+List of ARM cores
+ARM Cortex-A
+ARM Cortex-R
+ARM Cortex-M
+List of ARM Cortex-M development tools
+
+
+
+
+
+Embedded
+microcontrollers
+
+
+
+
+Cortex-M0
+
+
+
+Cypress PSoC 4, 4M, 4L
+Infineon XMC1000
+Nordic nRF51
+NXP LPC11xx, LPC12xx
+nuvoTon NuMicro
+Sonix SN32F700
+STMicroelectronics STM32 F0
+Toshiba TX00
+Vorago VA108x0
+
+
+
+
+
+Cortex-M0+
+
+
+
+Atmel SAM D-R-L-C
+Cypress PSoC 4S, FM0+
+Holtek HT32F52xxx
+NXP LPC8xx, LPC11E6x, LPC11U6x
+NXP Kinetis E, EA, L, M, V1, W0
+Renesas Synergy S1
+Silicon Labs EFM32 Zero, Happy
+STMicroelectronics STM32 L0
+
+
+
+
+
+Cortex-M1
+
+
+
+Altera FPGAs Cyclone-II, Cyclone-III, Stratix-II, Stratix-III
+Microsemi (Actel) FPGAs Fusion, IGLOO/e, ProASIC3L, ProASIC3/E
+Xilinx FPGAs Spartan-3, Virtex-2-3-4
+
+
+
+
+
+Cortex-M3
+
+
+
+Actel SmartFusion, SmartFusion 2
+Analog Devices ADuCM3xx
+Atmel SAM 3A-3N-3S-3U-3X
+Cypress PSoC 5, 5LP, FM3
+Fujitsu FM3
+Holtek HT32F
+NXP LPC13xx, LPC17xx, LPC18xx
+ON Semiconductor Q32M210
+Silicon Labs Precision32
+Silicon Labs EFM32 Tiny, Gecko, Leopard, Giant
+STMicroelectronics STM32 F1, F2, L1, W
+Texas Instruments F28, LM3, TMS470, OMAP 4
+Toshiba TX03
+
+
+
+
+
+Cortex-M4
+
+
+
+Atmel SAM 4L-4N-4S
+Freescale/NXP Kinetis K, W2
+
+
+
+
+
+Cortex-M4F
+
+
+
+Atmel SAM 4C-4E-4G
+Cypress FM4
+Infineon XMC4000
+Microchip CEC1302
+Nordic nRF52
+NXP LPC40xx, LPC43xx
+NXP Kinetis K, V3, V4
+Renesas Synergy S3, S5, S7
+Silicon Labs EFM32 Wonder
+STMicroelectronics STM32 F3, F4, L4
+Texas Instruments LM4F/TM4C, MSP432
+Toshiba TX04
+
+
+
+
+
+Cortex-M7F
+
+
+
+Atmel SAM E70-S70-V70
+NXP Kinetis KV5x
+STMicroelectronics STM32 F7, H7
+
+
+
+
+
+
+
+
+Real-time
+microcontrollers
+
+
+
+
+Cortex-R4F
+
+
+
+Texas Instruments RM4, TMS570
+
+
+
+
+
+Cortex-R5F
+
+
+
+Scaleo OLEA
+Texas Instruments RM57
+Xilinx ZynqMP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Classic ARM-based chips
+
+
+
+
+
+
+ARM Holdings
+ARM architecture
+List of ARM cores
+ARM Cortex-A
+ARM Cortex-R
+ARM Cortex-M
+List of ARM Cortex-M development tools
+
+
+
+
+
+Classic
+processors
+
+
+
+
+ARM7
+
+
+
+Atmel SAM7L, SAM7S, SAM7SE, SAM7X, SAM7XC, AT91CAP7, AT91M, AT91R
+NXP LPC21xx, LPC22xx, LPC23xx, LPC24xx, LH7
+STMicroelectronics STR7
+
+
+
+
+
+ARM9
+
+
+
+Atmel SAM9G, SAM9M, SAM9N, SAM9R, SAM9X, SAM9XE, SAM926x, AT91CAP9
+Freescale i.MX1x, i.MX2x
+Rockchip RK27xx, RK28xx
+NXP LPC29xx, LPC3xxx, LH7A
+ST-Ericsson Nomadik STn881x
+STMicroelectronics STR9
+Texas Instruments OMAP 1, AM1x
+VIA WonderMedia WM8505/8650
+ZiiLABS ZMS-05
+
+
+
+
+
+ARM11
+
+
+
+Broadcom BCM2835
+Freescale i.MX3x
+Infotmic IMAPX210/220
+Mindspeed Comcerto 1000
+Nvidia Tegra APX, 6xx
+Qualcomm MSM7000, Snapdragon S1
+ST-Ericsson Nomadik STn882x
+Telechips TCC8902
+Texas Instruments OMAP 2
+VIA WonderMedia WM87x0
+
+
+
+
+
+ARMv2a
+compatible
+
+
+
+Amber (open FPGA core)
+
+
+
+
+
+ARMv4
+compatible
+
+
+
+Faraday FA526
+
+
+
+
+
+ARMv4T
+compatible
+
+
+
+DEC/Intel StrongARM
+
+
+
+
+
+ARMv5TE
+compatible
+
+
+
+Intel/Marvell XScale
+Marvell Sheeva, Feroceon, Jolteon, Mohawk
+Faraday FA606TE, FA616TE, FA626TE, FA726TE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Reduced instruction set computer (RISC) architectures
+
+
+
+
+
+
+Berkeley RISC
+IBM 801
+Stanford MIPS
+
+
+
+
+
+Active
+
+
+
+Altera Nios II
+Analog Devices Blackfin
+ARC
+ARM
+Atmel AVR
+DLX
+eSi-RISC
+M32R
+LatticeMico8
+LatticeMico32
+Meta
+MIPS
+OpenRISC
+Power
+
+PowerPC
+Cell
+
+
+RISC-V
+S+core
+Sunway
+SPARC
+Renesas SuperH
+Unicore
+Xilinx MicroBlaze
+Xilinx PicoBlaze
+XMOS XCore XS1
+VISC
+Mill
+
+
+
+
+
+Historic
+
+
+
+Alpha
+AMD Am29000
+Apollo PRISM
+Atmel AVR32
+Clipper
+CRISP
+DEC Prism
+Intel i860
+Intel i960
+MIPS-X
+Motorola 88000
+PA-RISC
+ROMP
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Microcontrollers
+
+
+
+Main
+
+
+
+Single-board microcontroller
+Special function register
+
+
+
+
+
+Architectures
+
+
+
+68000
+8051
+ARM
+AVR
+PIC
+RISC-V
+
+
+
+
+
+Families
+
+
+
+
+4-bit
+
+
+
+Am2900
+MARC4
+S1C6x
+TLCS-47
+TMS1000
+μCOM-4
+
+
+
+
+
+8-bit
+
+
+
+6800
+
+68HC05
+68HC08
+68HC11
+S08
+RS08
+
+
+6502
+
+65C02
+MELPS 740
+
+
+8048
+8051
+
+XC800
+
+
+AVR
+COP8
+H8
+PIC10/12/16/17/18
+ST6/ST7
+
+STM8
+
+
+Z8
+Z80
+
+eZ80
+Rabbit 2000
+TLCS-870
+
+
+
+
+
+
+
+16-bit
+
+
+
+68HC12/16
+C166
+CR16/C
+H8S
+MSP430
+PIC24/dsPIC
+R8C
+RL78
+TLCS-900
+Z8000
+
+
+
+
+
+32-bit
+
+
+
+Am29000
+ARM/Cortex-M
+
+LPC
+
+
+AVR32
+CRX
+FR
+
+FR-V
+
+
+H8SX
+M32R
+68000
+
+ColdFire
+
+
+PIC32
+PowerPC
+
+MPC5xx
+
+
+Propeller
+TLCS-900
+TriCore
+V850
+RX
+Z80000
+
+
+
+
+
+64-bit
+
+
+
+PowerPC64
+
+
+
+
+
+
+
+
+Interfaces
+
+
+
+
+Programming
+
+
+
+In-circuit serial programming (ICSP)
+In-system programming (ISP)
+Program and Debug Interface (PDI)
+High-voltage serial programming (HVSP)
+High voltage parallel programming (HVPP)
+Bootloader
+ROM
+aWire
+
+
+
+
+
+Debugging
+
+
+
+debugWIRE
+Joint Test Action Group (JTAG)
+In-circuit debugging (ICD)
+In-circuit emulator (ICE)
+In-target probe (ITP)
+
+
+
+
+
+
+
+
+Simulators
+
+
+
+gpsim
+
+
+
+
+
+Lists
+
+
+
+List of common microcontrollers
+By manufacturer
+
+Intel
+NXP/Freescale
+
+
+List of Wi-Fi microcontrollers
+
+
+
+
+
+See also
+
+
+
+Embedded system
+Programmable logic controller
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+CPU technologies
+
+
+
+Architecture
+
+
+
+Turing machine
+Post–Turing machine
+Universal Turing machine
+Quantum Turing machine
+Belt machine
+Stack machine
+Register machine
+Counter machine
+Pointer machine
+Random access machine
+Random access stored program machine
+Finite-state machine
+Queue automaton
+Von Neumann
+Harvard (modified)
+HIVE (Hierarchical Identify Verify Exploit)
+Dataflow
+TTA
+Cellular
+Artificial neural network
+
+Machine learning
+Deep learning
+Neural processing unit (NPU)
+
+
+Convolutional neural network
+Load/store architecture
+Register memory architecture
+Register register architecture
+Endianness
+FIFO
+Zero-copy
+NUMA
+HUMA
+HSA
+Mobile computing
+Surface computing
+Wearable computing
+Heterogeneous computing
+Parallel computing
+Concurrent computing
+Distributed computing
+Cloud computing
+Amorphous computing
+Ubiquitous computing
+Fabric computing
+Reconfigurable computing
+Cognitive computing
+Analogous computing
+Mechanical computing
+Electric computing
+Hybrid computing
+Digital computing
+DNA computing
+Peptide computing
+Chemical computing
+Organic computing
+Wetware computing
+Quantum computing
+Neuromorphic computing
+Optical computing
+Reversible computing
+Unconventional computing
+Hypercomputation
+Ternary computer
+Symmetric multiprocessing (SMP)
+Asymmetric multiprocessing (AMP)
+Cache hierarchy
+Memory hierarchy
+
+
+
+
+
+ISA types
+
+
+
+ASIP
+CISC
+RISC
+EDGE (TRIPS)
+VLIW (EPIC)
+MISC
+OISC
+NISC
+ZISC
+Comparison
+
+
+
+
+
+ISAs
+
+
+
+x86
+z/Architecture
+ARM
+MIPS
+Power Architecture (PowerPC)
+SPARC
+VISC
+Mill
+Itanium (IA-64)
+Alpha
+Prism
+SuperH
+Clipper
+VAX
+Unicore
+PA-RISC
+MicroBlaze
+
+
+
+
+
+Word size
+
+
+
+1-bit
+2-bit
+4-bit
+8-bit
+9-bit
+10-bit
+12-bit
+15-bit
+16-bit
+18-bit
+22-bit
+24-bit
+25-bit
+26-bit
+27-bit
+31-bit
+32-bit
+33-bit
+34-bit
+36-bit
+39-bit
+40-bit
+48-bit
+50-bit
+60-bit
+64-bit
+128-bit
+256-bit
+512-bit
+Variable
+
+
+
+
+
+Execution
+
+
+
+Instruction pipelining
+
+Bubble
+Operand forwarding
+
+
+Out-of-order execution
+
+Register renaming
+
+
+Speculative execution
+
+Branch predictor
+Memory dependence prediction
+
+
+Hazards
+
+
+
+
+
+Parallel level
+
+
+
+Bit
+
+Bit-serial
+Word
+
+
+Instruction
+Pipelining
+
+Scalar
+Superscalar
+
+
+Task
+
+Thread
+Process
+
+
+Data
+
+Vector
+
+
+Memory
+
+
+
+
+
+Multithreading
+
+
+
+Temporal
+Simultaneous (SMT) (Hyper-threading)
+Speculative (SpMT)
+Preemptive
+Cooperative
+Clustered Multi-Thread (CMT)
+Hardware scout
+
+
+
+
+
+Flynn's taxonomy
+
+
+
+SISD
+SIMD (SWAR)
+SIMT
+MISD
+MIMD
+
+SPMD
+
+
+Addressing mode
+
+
+
+
+
+CPU performance
+
+
+
+Instructions per second (IPS)
+Instructions per clock (IPC)
+Cycles per instruction (CPI)
+Floating-point operations per second (FLOPS)
+Transactions per second (TPS)
+Synaptic Updates Per Second (SUPS)
+Performance per watt
+Orders of magnitude (computing)
+Cache performance measurement and metric
+
+
+
+
+
+Core count
+
+
+
+Single-core processor
+Multi-core processor
+Manycore processor
+
+
+
+
+
+Types
+
+
+
+Central processing unit (CPU)
+GPGPU
+AI accelerator
+Vision processing unit (VPU)
+Vector processor
+Barrel processor
+Stream processor
+Digital signal processor (DSP)
+I/O processor/DMA controller
+Network processor
+Baseband processor
+Physics processing unit (PPU)
+Coprocessor
+Secure cryptoprocessor
+ASIC
+FPGA
+FPOA
+CPLD
+Microcontroller
+Microprocessor
+Mobile processor
+Notebook processor
+Ultra-low-voltage processor
+Multi-core processor
+Manycore processor
+Tile processor
+Multi-chip module (MCM)
+Chip stack multi-chip modules
+System on a chip (SoC)
+Multiprocessor system-on-chip (MPSoC)
+Programmable System-on-Chip (PSoC)
+Network on a chip (NoC)
+
+
+
+
+
+Components
+
+
+
+Execution unit (EU)
+Arithmetic logic unit (ALU)
+Address generation unit (AGU)
+Floating-point unit (FPU)
+Load-store unit (LSU)
+Fixed-point unit (FXU)
+Vector unit (VU)
+Branch predictor
+Branch execution unit (BEU)
+Instruction Decoder
+Instruction Scheduler
+Instruction Fetch Unit
+Instruction Dispatch Unit
+Instruction Sequencing Unit
+Unified Reservation Station
+Barrel shifter
+Uncore
+Sum addressed decoder (SAD)
+Front-side bus
+Back-side bus
+Northbridge (computing)
+Southbridge (computing)
+Adder (electronics)
+Binary multiplier
+Binary decoder
+Address decoder
+Multiplexer
+Demultiplexer
+Registers
+Cache
+Memory management unit (MMU)
+Input–output memory management unit (IOMMU)
+Integrated Memory Controller (IMC)
+Power Management Unit (PMU)
+Translation lookaside buffer (TLB)
+Stack engine
+Register file
+Processor register
+Hardware register
+Memory buffer register (MBR)
+Program counter
+Microcode ROM
+Datapath
+Control unit
+Instruction unit
+Re-order buffer
+Data buffer
+Write buffer
+Coprocessor
+Electronic switch
+Electronic circuit
+Integrated circuit
+Three-dimensional integrated circuit
+Boolean circuit
+Digital circuit
+Analog circuit
+Mixed-signal integrated circuit
+Power management integrated circuit
+Quantum circuit
+Logic gate
+
+Combinational logic
+Sequential logic
+Emitter-coupled logic (ECL)
+Transistor–transistor logic (TTL)
+Glue logic
+
+
+Quantum gate
+Gate array
+Counter (digital)
+Bus (computing)
+Semiconductor device
+Clock rate
+CPU multiplier
+Vision chip
+Memristor
+
+
+
+
+
+Power
+management
+
+
+
+APM
+ACPI
+Dynamic frequency scaling
+Dynamic voltage scaling
+Clock gating
+
+
+
+
+
+Hardware
+security
+
+
+
+Non-executable memory (NX bit)
+Memory Protection Extensions (Intel MPX)
+Intel Secure Key
+Hardware restriction (firmware)
+Software Guard Extensions (Intel SGX)
+Trusted Execution Technology
+OmniShield
+Trusted Platform Module (TPM)
+Secure cryptoprocessor
+Hardware security module
+Hengzhi chip
+
+
+
+
+
+Related
+
+
+
+History of general-purpose CPUs
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+LCCN: sh2015001756
+GND: 4706184-4
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ARM_architecture&oldid=817808436"					Categories: ARM architectureAcorn ComputersComputer-related introductions in 1983Instruction set architecturesHidden categories: Webarchive template wayback linksUse British English from June 2012Use dmy dates from July 2014Articles containing potentially dated statements from 2017All articles containing potentially dated statementsAll articles with unsourced statementsArticles with unsourced statements from May 2013Articles containing potentially dated statements from 2011Articles needing additional references from March 2011All articles needing additional referencesWikipedia articles with LCCN identifiersWikipedia articles with GND identifiersArticles with example code

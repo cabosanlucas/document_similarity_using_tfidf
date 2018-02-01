@@ -1,0 +1,864 @@
+telecommunication communication protocol system rules allow entities communications system transmit information kind variation physical quantity protocol defines rules syntax semantics synchronization communication possible error recovery methods protocols implemented hardware software combination both1
+communicating systems welldefined formats protocol exchanging various messages message exact meaning intended elicit response range possible responses predetermined particular situation specified behavior typically independent implemented communication protocols agreed upon parties involved2 reach agreement protocol developed technical standard programming language describes computations close analogy protocols programming languages protocols communication programming languages computations3
+multiple protocols often describe different aspects single communication group protocols designed work together known protocol suite implemented software protocol stack
+internet communication protocols published internet engineering task force ietf ieee handles wired wireless networking international organization standardization handles types itut handles telecommunication protocols formats public switched telephone network pstn pstn internet converge standards also driven towards convergence
+
+
+
+contents
+
+
+communicating systems
+basic requirements
+universal protocols
+protocol design
+
+layering
+
+protocol layering
+software layering
+strict layering
+
+
+design patterns application layer protocols
+formal specification
+
+
+protocol development
+
+need protocol standards
+standards organizations
+standardization process
+future standardization
+
+
+taxonomies
+also
+references
+
+bibliography
+
+
+reading
+external links
+
+
+
+communicating systemsedit
+information exchanged devices network media governed rules conventions communication protocol specifications nature communication actual data exchanged statedependent behaviors defined specifications digital computing systems rules expressed algorithms data structures protocols communication algorithms programming languages computations34
+operating systems usually contain cooperating processes manipulate shared data communicate communication governed wellunderstood protocols embedded process code itself56 contrast shared memory communicating systems communicate using shared transmission medium transmission necessarily reliable individual systems different hardware operating systems
+implement networking protocol protocol software modules interfaced framework implemented machines operating system framework implements networking functionality operating system7 protocol algorithms expressed portable programming language protocol software made operating system independent best known frameworks tcpip model model
+time internet developed abstraction layering proven successful design approach compiler operating system design given similarities programming languages communication protocols originally monolithic networking programs decomposed cooperating protocols8 gave rise concept layered protocols nowadays forms basis protocol design9
+systems typically single protocol handle transmission instead cooperating protocols sometimes called protocol suite10 best known protocol suites tcpip ipxspx ax25 appletalk
+protocols arranged based functionality groups instance group transport protocols functionalities mapped onto layers layer solving distinct class problems relating instance application transport internet network interfacefunctions11 transmit message protocol selected layer selection next protocol accomplished extending message protocol selector layer12
+basic requirementsedit
+getting data across network part problem protocol data received evaluated context progress conversation protocol therefore must include rules describing context kind rules said express syntax communication rules determine whether data meaningful context exchange takes place kind rules said express semantics communication
+messages sent received communicating systems establish communication protocols therefore specify rules governing transmission general much following addressed13
+
+data formats data exchange
+digital message bitstrings exchanged bitstrings divided fields field carries information relevant protocol conceptually bitstring divided parts called header payload actual message carried payload header area contains fields relevance operation protocol bitstrings longer maximum transmission unit divided pieces appropriate size14
+address formats data exchange
+addresses used identify sender intended receivers addresses carried header area bitstrings allowing receivers determine whether bitstrings interest processed ignored connection sender receiver identified using address pair sender address receiver address usually address values special meanings all1s address could taken mean addressing stations network sending address would result broadcast local network rules describing meanings address value collectively called addressing scheme15
+address mapping
+sometimes protocols need addresses scheme addresses another scheme instance translate logical address specified application ethernet address referred address mapping16
+routing
+systems directly connected intermediary systems along route intended receivers need forward messages behalf sender internet networks connected using routers interconnection networks routers called internetworking
+detection transmission errors
+error detection necessary networks data corruption possible common approach crcs data area added packets making possible receiver detect differences caused corruption receiver rejects packets differences arranges somehow retransmission17
+acknowledgements
+acknowledgement correct reception packets required connectionoriented communication acknowledgements sent receivers back respective senders18
+loss information timeouts retries
+packets lost network delayed transit cope protocols sender expect acknowledgement correct reception receiver within certain amount time timeouts sender must assume packet received retransmit case permanently broken link retransmission effect number retransmissions limited exceeding retry limit considered error19
+direction information flow
+direction needs addressed transmissions occur direction time halfduplex links sender time shared medium known media access control arrangements made accommodate case collision contention parties respectively simultaneously transmit wish transmit20
+sequence control
+long bitstrings divided pieces sent network individually pieces lost delayed types networks take different routes destination result pieces arrive sequence retransmissions result duplicate pieces marking pieces sequence information sender receiver determine lost duplicated necessary retransmissions reassemble original message21
+flow control
+flow control needed sender transmits faster receiver intermediate network equipment process transmissions flow control implemented messaging receiver sender22
+
+universal protocolsedit
+
+
+nice thing standards many choose
+
+
+—andrew tanenbaum computer networks23
+
+
+despite numbers networking protocols show little variety networking protocols underlying principles concepts general purpose programming language would yield large number applications differing details24 suitably defined dedicated protocolling language would therefore little syntax perhaps enough specify parameters optional modes operation virtual machine would incorporated possible principles concepts making virtual machine universal protocol protocolling language would syntax semantics describing universal protocol would therefore effect protocol hardly differing universal networking protocol networking context protocol language
+notion universal networking protocol provides rationale standardization networking protocols assuming existence universal networking protocol development protocol standards using consensus model agreement group experts might viable coordinate protocol design efforts
+networking protocols operate heterogeneous environments consisting different network technologies possibly rich applications single universal protocol would hard design implement correctly instead ietf decided reduce complexity assuming relatively simple network architecture allowing decomposition single universal networking protocol generic protocols classes specific protocols dealing lowlevel network details dealing highlevel details common network applications remote login file transfer email browsing choose similar general path allowing network architectures standardize protocols
+protocol designedit
+systems engineering principles applied create common network protocol design principles
+communicating systems operate concurrently important aspect concurrent programming synchronization software receiving transmitting messages communication proper sequencing syntax semantics communication governed lowlevel protocol usually modest complexity highlevel protocols relatively large complexity could however merit implementation language interpreters example latter case html languagecitation needed
+concurrent programming traditionally topic operating systems theory texts25 formal verification seems indispensable concurrent programs notorious hidden sophisticated bugs contain26 mathematical approach study concurrency communication referred communicating sequential processes csp27 concurrency also modeled using finite state machines mealy moore machines mealy moore machines design tools digital electronics systems encountered form hardware used telecommunication electronic devices general28
+design complex protocols often involves decomposition simpler cooperating protocols cooperating protocols sometimes called protocol family protocol suite10 within conceptual framework
+literature presents numerous analogies computer communication programming analogy transfer mechanism protocol comparable central processing unit framework introduces rules allow programmer design cooperating protocols independently another protocols computer communication programming languages computation2930
+layeringedit
+
+
+
+
+figure tcpip model internet layering scheme relation common protocols
+
+
+modern protocol design protocols layered layering design principle divides protocol design task smaller steps accomplishes specific part interacting parts protocol small number welldefined ways layering allows parts protocol designed tested without combinatorial explosion cases keeping design relatively simple layering also permits familiar protocols adapted unusual circumstances example mail protocol adapted send messages aircraft changing modem protocol inmars lapd data protocol used international marine radio satellites
+communication protocols internet designed function diverse complex settings internet protocols designed simplicity modularity interoperating coarse hierarchy functional layers traditionally called tcpip model internet protocol suite31 name tcpip arose first cooperating protocols transmission control protocol internet protocol resulted decomposition original transmission control program monolithic communication protocol first layers communication suite model expanded four layers additional protocols however internet protocol development focussed principle layering mandatory recipe communication rather evolved convenient description modularity protocol cooperation
+different model seven layer model developed internationally rigorous reference model general communication much stricter rules protocol interaction rigorous layering concept functionality
+typically application software built upon robust data transport layer underlying transport layer datagram delivery routing mechanism typically connectionless internet packet relaying across networks happens another layer involves network link technologies often specific certain physical layer technologies ethernet layering provides opportunities exchange technologies needed example protocols often stacked tunneling arrangement accommodate connection dissimilar networks example tunneled across asynchronous transfer mode network
+protocol layeringedit
+
+
+
+
+figure message flows using protocol suite black loops show actual messaging loops loops effective communication layers enabled lower layers
+
+
+protocol layering forms basis protocol design9 allows decomposition single complex protocols simpler cooperating protocols also functional decomposition protocol belongs functional class called protocol layer31 protocol layers solve distinct class communication problems internet protocol suite consists following layers application transport internet network interfacefunctions11 together layers make layering scheme model
+computations deal algorithms data communication involves protocols messages analog data flow diagram kind message flow diagram4 visualize protocol layering protocol suites diagram message flows systems shown figure
+systems make protocol suite vertical flows protocols system horizontal message flows protocols systems message flows governed rules data formats specified protocols blue lines therefore mark boundaries horizontal protocol layers
+vertical protocols layered dont obey protocol layering principle states layered protocol designed layer destination receives exactly object sent layer source horizontal protocols layered protocols belong protocol suite layered protocols allow protocol designer concentrate layer time without worrying layers perform30
+vertical protocols need protocols systems satisfy minimal assumptions ensure protocol layering principle holds layered protocols achieved using technique called encapsulation32
+usually message stream data divided small pieces called messages streams packets datagrams network frames depending layer pieces transmitted pieces contain header area data area data header area identifies source destination network packet protocol data meaningful protocol like crcs data sent data length timestamp3334
+rule enforced vertical protocols pieces transmission encapsulated data area lower protocols sending side reverse happen receiving side result lowest level piece looks like header1header2header3data layer directly header2header3data layer header3data sending receiving side rule therefore ensures protocol layering principle holds effectively virtualizes lowest transmission lines reason message flows coloured figure
+ensure sides protocol pieces also carry data identifying protocol header
+design protocol layering network internet architecture interrelated cannot designed without other35 important features respect internet architecture network services provides described next
+
+internet offers universal interconnection means pair computers connected internet allowed communicate computer identified address internet interconnected physical networks appear user single large network interconnection scheme called internetwork internet36
+conceptually internet addresses consists netid hostid netid identifies network hostid identifies host term host misleading individual computer multiple network interfaces internet address internet address identifies connection network individual computer37 netid used routers decide send packet38
+network technology independence achieved using lowlevel address resolution protocol used internet addresses physical addresses mapping called address resolution physical addresses used protocols network interface layer39 tcpip protocols make almost underlying communication technology40
+
+
+
+
+
+figure message flows presence router
+
+
+physical networks interconnected routers routers forward packets interconnected networks making possible hosts reach hosts physical networks message flows communicating systems presence router illustrated figure datagrams passed router router router reached deliver datagram physically attached network called direct delivery41 decide whether datagram delivered directly sent router closer destination table called routing table consulted table consists pairs networkids paths taken reach known networks path indication datagram delivered directly address router known closer destination42 special entry specify default router chosen known paths43
+networks treated equal pointtopoint link computers considered network44
+connectionless packet delivery packetswitched system service offered internet adapts well different hardware including besteffort delivery mechanisms like ethernet connectionless delivery means messages streams divided pieces multiplexed separately high speed intermachine connections allowing connections used concurrently piece carries information identifying destination delivery packets said unreliable packets lost duplicated delayed delivered order without notice sender receiver unreliability arises resources exhausted underlying networks fail45 unreliable connectionless delivery system defined internet protocol protocol also specifies routing function chooses path data sent46 also possible tcpip protocols connection oriented systems connection oriented systems build virtual circuits paths exclusive senders receivers built datagrams sent data virtual circuits forwarded data protocol modules technique called tunneling used networks networks47
+reliable stream transport service using unreliable connectionless packet delivery service defined transmission control protocol services layered well application programs residing layer called application services make tcp48 programs wishing interact packet delivery system using user datagram protocol udp49
+
+software layeringedit
+established protocol layering protocols protocol designer resume software design software layered organization relationship protocol layering visualized figure
+
+
+
+
+figure protocol software layering
+
+
+software modules implementing protocols represented cubes information flow modules represented arrows horizontal arrows virtual blue lines mark layer boundaries
+send message system module interacts module directly hands message encapsulated module reacts encapsulating message data area filling header data accordance protocol implements interacts module handing newly formed message whenever appropriate bottom module directly interacts bottom module system message sent across receiving system reverse happens ultimately assuming transmission errors protocol violations message gets delivered original form topmodule system
+protocol errors receiving module discards piece received reports back error condition original source piece layer handing error message case bottom module sending across51
+division message stream data pieces subsequent reassembly handled layer introduced divisionreassembly reassembly done destination intermediate routers52
+tcpip software organized four layers53
+
+application layer highest layer services available across tcpip internet accessed application programs application chooses style transport used sequence individual messages continuous stream bytes application program passes data transport layer delivery
+transport layer transport layer provides communication application another transport layer regulate flow information provide reliable transport ensuring data arrives without error sequence receiving side sends back acknowledgments sending side retransmits lost pieces called packets stream data divided packets module packet passed along destination address next layer transmission layer must accept data many applications concurrently therefore also includes codes packet header identify sending receiving application program
+internet layer internet layer handles communication machines packets sent accepted transport layer along identification receiving machine packets encapsulated datagrams datagram headers filled routing algorithm used determine datagram delivered directly sent router datagram passed appropriate network interface transmission incoming datagrams checked validity routing algorithm used decide whether datagram processed locally forwarded datagram addressed local machine datagram header deleted appropriate transport protocol packet chosen icmp error control messages handled well layer
+network interface layer network interface layer responsible accepting datagrams transmitting specific network network interface consist device driver complex subsystem uses data link protocol
+
+program translation divided four subproblems compiler assembler link editor loader result translation software layered well allowing software layers designed independently noting ways conquer complexity program translation could readily applied protocols analogy programming languages protocols designers tcpip protocol suite keen imposing layering software framework seen tcpip layering considering translation pascal program message compiled function application layer assembler program assembled function transport layer object code pieces linked function internet layer together library object code routing table link editor producing relocatable machine code datagram passed loader fills memory locations ethernet addresses produce executable code network frame loaded function network interface layer physical memory transmission medium show closely analogy fits terms parentheses previous sentence denote relevant analogs terms written cursively denote data representations program translation forms linear sequence layers output passed input next layer furthermore translation process involves multiple data representations thing happening protocol software multiple protocols define data representations data passed software modules54
+network interface layer uses physical addresses layers addresses boundary network interface layer internet layer called highlevel protocol address boundary55 modules application layer generally considered part operating system passing data modules much less expensive passing data application program transport layer boundary application layer transport layer called operating system boundary56
+strict layeringedit
+strictly adhering layered model practice known strict layering always best approach networking57 strict layering serious impact performance implementation least tradeoff simplicity performance58 another perhaps important point shown considering fact protocols internet protocol suite cannot expressed using tcpip model words protocols behave ways described model59 improve model offending protocol could perhaps split protocols cost extra layers hidden caveat model also used provide conceptual view suite intended users tradeoff made preciseness designer clarity intended user60
+design patterns application layer protocolsedit
+commonly reoccurring problems occur design implementation communication protocols addressed patterns several different pattern languages pattern language applicationlevel communication protocols commdp6162 service design patterns63 patterns enterprise application architecture64 patternoriented software architecture pattern language distributed computing65 first pattern languages focuses design protocols implementations others address issues either areas latter
+formal specificationedit
+formal methods describing communication syntax abstract syntax notation standard augmented backusnaur form ietf standard
+finite state machine models6667 communicating finitestate machines68 used formally describe possible interactions protocol
+protocol developmentedit
+communication take place protocols agreed upon recall digital computing systems rules expressed algorithms datastructures raising opportunity hardware independence expressing algorithms portable programming language makes protocol software operating system independent source code could considered protocol specification form specification however suitable parties involved
+thing would enforce source parties another proprietary software producers would accept describing software interfaces modules paper agreeing interfaces implementers free referred source independence specifying algorithms paper detailing hardware dependencies unambiguous paper draft created adhered published ensures interoperability software hardware
+paper draft developed protocol standard getting approval standards organization approval paper draft needs enter successfully complete standardization process activity referred protocol development members standards organization agree adhere standard voluntary basis often members control large marketshares relevant protocol many cases standards enforced government thought serve important public interest getting approval important protocol
+noted though cases protocol standards sufficient gain widespread acceptance sometimes source code needs disclosed enforced government interest public
+need protocol standardsedit
+need protocol standards shown looking happened bisync protocol invented early linklevel protocol used connect separate nodes originally intended used multinode network revealed several deficiencies protocol absence standardization manufacturers organizations felt free enhance protocol creating incompatible versions networks cases deliberately done discourage users using equipment manufacturers variants original bisync protocol assume standard would prevented least happening7
+cases protocols gain market dominance without going standardization process protocols referred facto standards facto standards common emerging markets niche markets markets monopolized oligopolized hold market negative grip especially used scare away competition historical perspective standardization seen measure counteract illeffects facto standards positive exceptions exist facto standard operating system like gnulinux negative grip market sources published maintained open thus inviting competition standardization therefore solution open systems interconnection
+standards organizationsedit
+standards organizations relevance communication protocols international organization standardization international telecommunication union institute electrical electronics engineers ieee internet engineering task force ietf ietf maintains protocols internet ieee controls many software hardware protocols electronics industry commercial consumer devices umbrella organization telecommunication engineers designing public switched telephone network pstn well many radio communication systems marine electronics nmea standards used world wide consortium produces protocols standards technologies
+international standards organizations supposed impartial local organizations national commercial selfinterest consider standards organizations also research development standards future practice standards organizations mentioned cooperate closely other69
+standardization processedit
+standardization process starts commissioning subcommittee workgroup workgroup issues working drafts discussion documents interested parties including standards bodies order provoke discussion comments generate questions much discussion usually disagreement standard provide satisfy needs usually conflicting views taken account often compromise progress draft proposal working group
+draft proposal discussed member countries standard bodies organizations within country comments suggestions collated national views formulated members vote proposal rejected draft proposal consider objections counterproposals create draft proposal another vote feedback modification compromise proposal reaches status draft international standard ultimately international standard
+process normally takes several years complete original paper draft created designer differ substantially standard contain following features
+
+various optional modes operation example allow setup different packet sizes startup time parties could reach consensus optimum packet size
+parameters left undefined allowed take values defined discretion implementor often reflects conflicting views members
+parameters reserved future reflecting members agreed facility provided could reach agreement done available time
+various inconsistencies ambiguities inevitably found implementing standard
+
+international standards reissued periodically handle deficiencies reflect changing views subject70
+future standardization osiedit
+lesson learned arpanet predecessor internet standardization protocols enough protocols also need framework operate therefore important develop generalpurpose futureproof framework suitable structured protocols layered protocols standardization would prevent protocol standards overlapping functionality would allow clear definition responsibilities protocol different levels layers71 gave rise open systems interconnection reference model rmosi used framework design standard protocols services conforming various layer specifications72
+model communicating systems assumed connected underlying physical medium providing basic unspecified transmission mechanism layers numbered seven layer referred nlayer layer provides service layer application process using services layer immediately layers communicate means interface called service access point corresponding layers system called peer entities communicate peer entities given layer nprotocol implemented using services n1layer systems directly connected intermediate peer entities called relays used address uniquely identifies service access point address naming domains need restricted layer possible naming domain layers73 layer types standards protocol standards defining peer entities given layer communicate service standards defining given layer communicates layer
+original version rmosi layers functionality highest lowest layer
+
+application layer provide following services application processes identification intended communication partners establishment necessary authority communicate determination availability authentication partners agreement privacy mechanisms communication agreement responsibility error recovery procedures ensuring data integrity synchronization cooperating application processes identification constraints syntax character sets data structures determination cost acceptable quality service selection dialogue discipline including required logon logoff procedures74
+presentation layer provide following services application layer request establishment session data transfer negotiation syntax used application layers necessary syntax transformations formatting special purpose transformations data compression data encryption75
+session layer provide following services presentation layer establishment release session connections normal expedited data exchange quarantine service allows sending presentation entity instruct receiving session entity release data presentation entity without permission interaction management presentation entities control whose turn perform certain control functions resynchronization session connection reporting unrecoverable exceptions presentation entity76
+transport layer provides reliable transparent data transfer costeffective required selected quality service support multiplexing several transport connections network connection split transport connection several network connections77
+network layer setup maintenance release network paths transport peer entities relays needed routing relay functions provided layer quality service negotiated network transport entities time connection layer also responsible network congestion control78
+data link layer setup maintenance release data link connections errors occurring physical layer detected corrected errors reported network layer exchange data link units including flow control defined layer79
+physical layer describes details like electrical characteristics physical connection transmission techniques used setup maintenance clearing physical connections80
+
+contrast tcpip layering scheme assumes connectionless network rmosi assumed connectionoriented network connectionoriented networks suitable wide area networks connectionless networks suitable local area networks using connections communicate implies form session virtual circuits hence tcpip model lacking session layer constituent members mostly concerned wide area networks development rmosi concentrated connection oriented networks connectionless networks mentioned addendum rmosi81 time ietf cope fact internet needed protocols simply result ietf developed standardization process based rough consensus running code82
+standardization process described rfc2026
+nowadays ietf become standards organization protocols internet rmosi extended model include connectionless services could developed international standards
+taxonomiesedit
+classification schemes protocols usually focus domain function example domain connectionoriented protocols connectionless protocols used connectionoriented networks connectionless networks respectively example function consider tunneling protocol used encapsulate packets highlevel protocol packets passed across transport system using highlevel protocol
+layering scheme combines function domain dominant layering schemes ones proposed ietf despite fact underlying assumptions layering schemes different enough warrant distinguishing common practice compare relating common protocols layers schemes83 example practice lists network protocols
+layering scheme ietf called internet layering tcpip layering functionality layers described section software layering overview protocols using scheme given article internet protocols
+layering scheme called model layering functionality layers described section future standardization overview protocols using scheme given article protocols
+networking equipment configuration termofart distinction often drawn term protocol strictly refers transport layer term service refers protocols utilizing protocol transport common case protocols services distinguished port numbers conformance port numbers voluntary content inspection systems term service strictly refers port numbers term application often used refer protocols identified inspection signatures protocols upon transport layer relies like ipv4 distinguished address family
+alsoedit
+
+lists network protocols
+application programming interface
+
+referencesedit
+
+
+licesio rodríguezaragón tema internet teleinformática retrieved 20130424 spanish
+protocol encyclopædia britannica retrieved 20120924
+comer 2000 sect need multiple protocols protocols communication programming languages computation
+comer 2000 sect internet services protocols communication algorithms computation
+benari 1982 chapter concurrent programming abstraction 1819 states
+benari 1982 section summary summarizes concurrent programming abstraction
+marsden 1986 section standards necessary 6465 uses example show need standard protocols standard framework
+comer 2000 sect need multiple protocols explains drawing analogies computer communication programming languages
+sect 1110 disadvantage layering states layering forms basis protocol design
+comer 2000 sect need multiple protocols states
+comer 2000 sect conceptual layers protocol software layer takes responsibility handling part problem
+comer 2000 sect 1111 basic idea behind multiplexing demultiplexing states
+marsden 1986 chapter fundamental protocol concepts problem areas 2642 explains much following
+comer 2000 sect datagram size network fragmentation explains fragmentation effect header fragments
+comer 2000 chapter classful internet addresses 646771
+marsden 1986 section layering concepts general definitions explains address mapping
+marsden 1986 section detection transmission errors explains advantages backward error correction
+marsden 1986 section acknowledgement 2833 explains advantages positive acknowledgement mentions datagram protocols exceptions
+marsden 1986 section loss information timeouts retries 3334
+marsden 1986 section direction information flow 3435 explains masterslave negotiations gain control
+marsden 1986 section sequence control 3536 explains packets lost sequencing solves
+marsden 1986 section flow control 3638
+tanenbaum andrew 2003 computer networks prentice hall professional isbn 9780130661029 retrieved june 2011
+comer 2000 foreword first edition late postel principles architecture layering multiplexing encapsulation addressing address mapping routing naming quite similar protocol suite though course different detail
+benari 1982 preface xiii
+benari 1982 preface
+hoare 1985 chapter communication deals communication
+srinivasan nptel courses electronics communication engineering digital circuits systems available online archived copy archived original december 2009 retrieved october 2010
+comer 2000 sect need multiple protocols states less using analogies
+comer 2000 sect protocol layering principle explains layered protocols
+comer 2000 sect need multiple protocols introduces decomposition layers
+comer 2000 glossary internetworking terms p686 term encapsulation
+comer 2000 sect 1151 tcpip 5layer reference model describes transformations messages streams observed protocol layers
+comer 2000 sect 2410 ethernet frame format ethernet frames used example administrative data protocol
+comer 2000 sect functionality layers states software organization
+comer 2000 sect networklevel interconnection explains universal interconnection internetworking
+comer 2000 sect addresses specify network connections explains
+comer 2000 sect original classful addressing scheme explains address scheme netid routing
+comer 2000 sect summary explains
+comer 2000 sect technologies tcpip used states
+comer 2000 sect indirect delivery states
+comer 2000 sect nexthop routing gives details routing table
+comer 2000 sect default routes explains default routing
+comer 2000 sect networks equal states
+comer 2000 sect connectionless delivery system explains delivery system
+comer 2000 sect purposes internet protocol states
+comer 2000 sect 2111 x25net tunnels 4647 explains tunneling mentions
+comer 2000 sect introduction introduces
+comer 2000 sect 1210 summary explains
+comer 2000 sect conceptual layers protocol software first paragraphs describe sending message successive layers
+comer 2000 sect error reporting error correction describes icmp protocol used handle datagram errors
+comer 2000 sect reassembly fragments describes reassembly datagrams
+comer 2000 sect 1151 tcpip 5layer reference model explains functionality layers
+comer 2000 sect need multiple protocols explains similarities protocol software compiler assembler linker loader
+comer 2000 sect 1191 highlevel protocol boundary describes boundary
+comer 2000 sect 1191 operating system boundary describes operating system boundary
+ietf 1989 sect organization paragraph many design choices involve creative breaking strict layering
+comer 2000 sect 1110 disadvantage layering explains strict layering extremely inefficient giving examples optimizations
+ietf 1989 sect organization paragraph explaining strict layering imperfect model
+ietf 1989 sect organization states layerist organization chosen simplicity clarity
+jorge edison lascano stephen clyde raza communicationprotocol design patterns commdp commdp online available httpcommdpservusueduwikiindexphpcommunicationprotocoldesignpatternscommdp accessed 17mar2017
+lascano clyde pattern language applicationlevel communication protocols presented icsea 2016 eleventh international conference software engineering advances 2016 22–30
+daigneau service design patterns fundamental design solutions soapwsdl restful services edition upper saddle river addisonwesley professional 2011
+fowler patterns enterprise application architecture edition boston addisonwesley professional 2002
+buschmann henney schmidt patternoriented software architecture volume pattern language distributed computing volume edition chichester england york wiley 2007
+bochmann 1978 finite state description communication protocols computer networks 1976 361–372 doi1010160376507578900156
+comer 2000 glossary internetworking terms abbreviations term protocol
+brand daniel zafiropulo pitro 1983 communicating finitestate machines journal doi101145322374322380
+marsden 1986 section advantages standardisation 6667 states
+marsden 1986 section problems standardisation follows hdlc illustrate process
+marsden 1986 section standards necessary explains lessons learned arpanet
+marsden 1986 section introduction introduces
+marsden 1986 section layering concepts general definitions 183185 explains terminology
+marsden 1986 section application layer explains
+marsden 1986 section presentation layer explains
+marsden 1986 section session layer explains
+marsden 1986 section transport layer explains
+marsden 1986 section network layer explains
+marsden 1986 section data link layer explains
+marsden 1986 section 1410 physical layer explains
+marsden 1986 section 1411 connectionless mode rmosi mentions
+comer 2000 section internet protocols standardization explains ietf existing protocols
+comer 2000 sect 1151 tcpip 5layer reference model states
+
+
+bibliographyedit
+
+radia perlman interconnections bridges routers switches internetworking protocols edition addisonwesley 1999 isbn 0201634481 particular network design folklore also available online httpwwwinformitcomarticlesarticleaspxp20482
+gerard holzmann design validation computer protocols prentice hall 1991 isbn 0135399254 also available online httpspinrootcomspindocbook91html
+douglas comer 2000 internetworking tcpip principles protocols architecture prentice hall isbn 0130183806 particular ch11 protocol layering also guide glossary internetworking terms abbreviations
+internet engineering task force abbr ietf 1989 rfc1122 requirements internet hosts communication layers braden available online httptoolsietforghtmlrfc1122 describes tcpip implementors protocolsoftware particular introduction gives overview design goals suite
+benari 1982 principles concurrent programming 10th print prentice hall international isbn 0137010788
+hoare 1985 communicating sequential processes 10th print prentice hall international isbn 0131532715 available online httpwwwusingcspcom
+tennent 1981 principles programming languages 10th print prentice hall international isbn 0137098731
+brian marsden 1986 communication network protocols edition chartwell bratt isbn 0862381061
+andrew tanenbaum 1984 structured computer organization 10th print prentice hall international isbn 0138546053
+
+readingedit
+
+radia perlman interconnections bridges routers switches internetworking protocols edition addisonwesley 1999 isbn 0201634481 particular network design folklore
+gerard holzmann design validation computer protocols prentice hall 1991 isbn 0135399254 also available online httpspinrootcomspindocbook91html
+
+external linksedit
+
+javvins protocol dictionary
+overview protocols telecontrol field reference model
+pdfchart showing protocols reference layer
+blog discuss ideas modeling testing communication protocols
+
+
+
+
+
+
+
+
+
+
+
+
+telecommunications
+
+
+
+history
+
+
+
+
+beacon
+broadcasting
+cable protection system
+cable
+communications satellite
+computer network
+drums
+electrical telegraph
+
+heliographs
+hydraulic telegraph
+internet
+mass media
+mobile phone
+optical telecommunication
+optical telegraphy
+pager
+photophone
+prepay mobile phone
+radio
+radiotelephone
+satellite communications
+semaphore
+smartphone
+smoke signals
+telecommunications history
+telautograph
+telegraphy
+teleprinter teletype
+telephone
+telephone cases
+television
+timeline communication technology
+undersea telegraph line
+videoconferencing
+videophone
+videotelephony
+whistled language
+
+
+
+
+
+pioneers
+
+
+
+edwin howard armstrong
+john logie baird
+paul baran
+alexander graham bell
+bernerslee
+jagadish chandra bose
+vint cerf
+claude chappe
+donald davies
+forest
+philo farnsworth
+reginald fessenden
+elisha gray
+erna schneider hoover
+charles
+hedy lamarr
+innocenzo manzetti
+guglielmo marconi
+antonio meucci
+radia perlman
+alexander stepanovich popov
+johann philipp reis
+nikola tesla
+camille tissot
+alfred vail
+charles wheatstone
+vladimir zworykin
+
+
+
+
+
+transmission
+media
+
+
+
+coaxial cable
+fiberoptic communication
+
+optical fiber
+
+
+freespace optical communication
+molecular communication
+radio waves
+transmission line
+
+
+
+
+
+network topology
+switching
+
+
+
+links
+nodes
+terminal node
+network switching circuit
+packet
+telephone exchange
+
+
+
+
+
+multiplexing
+
+
+
+spacedivision
+frequencydivision
+timedivision
+polarizationdivision
+orbital angularmomentum
+codedivision
+
+
+
+
+
+networks
+
+
+
+arpanet
+bitnet
+cellular network
+computer
+cyclades
+ethernet
+fidonet
+internet
+isdn
+
+mobile
+
+network
+public switched telephone
+radio
+telecommunications equipment
+television
+telex
+
+wireless
+world wide
+
+
+
+
+
+
+
+
+category
+portal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+major fields computer science
+
+
+
+
+note template roughly follows 2012 computing classification system
+
+
+
+hardware
+
+
+
+printed circuit board
+peripheral
+integrated circuit
+verylargescale integration
+energy consumption
+electronic design automation
+
+
+
+
+
+computer systems
+organization
+
+
+
+computer architecture
+embedded system
+realtime computing
+dependability
+
+
+
+
+
+networks
+
+
+
+network architecture
+network protocol
+network components
+network scheduler
+network performance evaluation
+network service
+
+
+
+
+
+software organization
+
+
+
+interpreter
+middleware
+virtual machine
+operating system
+software quality
+
+
+
+
+
+software notations
+tools
+
+
+
+programming paradigm
+programming language
+compiler
+domainspecific language
+modeling language
+software framework
+integrated development environment
+software configuration management
+software library
+software repository
+
+
+
+
+
+software development
+
+
+
+software development process
+requirements analysis
+software design
+software construction
+software deployment
+software maintenance
+programming team
+opensource model
+
+
+
+
+
+theory computation
+
+
+
+model computation
+formal language
+automata theory
+computational complexity theory
+logic
+semantics
+
+
+
+
+
+algorithms
+
+
+
+algorithm design
+analysis algorithms
+randomized algorithm
+computational geometry
+
+
+
+
+
+mathematics
+computing
+
+
+
+discrete mathematics
+probability
+statistics
+mathematical software
+information theory
+mathematical analysis
+numerical analysis
+
+
+
+
+
+information
+systems
+
+
+
+database management system
+information storage systems
+enterprise information system
+social information systems
+geographic information system
+decision support system
+process control system
+multimedia information system
+data mining
+digital library
+computing platform
+digital marketing
+world wide
+information retrieval
+
+
+
+
+
+security
+
+
+
+cryptography
+formal methods
+security services
+intrusion detection system
+hardware security
+network security
+information security
+application security
+
+
+
+
+
+human–computer
+interaction
+
+
+
+interaction design
+social computing
+ubiquitous computing
+visualization
+accessibility
+
+
+
+
+
+concurrency
+
+
+
+concurrent computing
+parallel computing
+distributed computing
+multithreading
+multiprocessing
+
+
+
+
+
+artificial
+intelligence
+
+
+
+natural language processing
+knowledge representation reasoning
+computer vision
+automated planning scheduling
+search methodology
+control method
+philosophy artificial intelligence
+distributed artificial intelligence
+
+
+
+
+
+machine learning
+
+
+
+supervised learning
+unsupervised learning
+reinforcement learning
+multitask learning
+crossvalidation
+
+
+
+
+
+graphics
+
+
+
+animation
+rendering
+image manipulation
+graphics processing unit
+mixed reality
+virtual reality
+image compression
+solid modeling
+
+
+
+
+
+applied
+computing
+
+
+
+ecommerce
+enterprise software
+computational mathematics
+computational physics
+computational chemistry
+computational biology
+computational social science
+computational engineering
+computational healthcare
+digital
+electronic publishing
+cyberwarfare
+electronic voting
+video game
+word processing
+operations research
+educational technology
+document management
+
+
+
+
+
+
+
+
+book
+category
+portal
+wikiproject
+commons
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+00828222
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlecommunicationprotocololdid817964687 categories communications protocolsdata transmissionnetwork protocolshidden categories articles spanishlanguage external linkskvng rthall articles unsourced statementsarticles unsourced statements december 2017use dates march 2017

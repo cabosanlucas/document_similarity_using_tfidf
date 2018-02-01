@@ -1,0 +1,944 @@
+uses modulation disambiguation
+
+
+
+
+
+
+article technical readers understand please help improve make understandable nonexperts without removing technical details february 2017 learn remove template message
+
+
+
+
+
+passband modulation
+
+
+analog modulation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+digital modulation
+
+
+
+
+
+apsk
+
+
+mfsk
+
+
+
+
+
+scfde
+
+
+
+
+
+
+hierarchical modulation
+
+
+
+
+
+
+
+
+
+
+spread spectrum
+
+
+
+
+
+dsss
+fhss
+thss
+
+
+
+
+also
+
+
+
+
+capacityapproaching codes
+demodulation
+line coding
+modem
+
+
+
+
+
+
+ofdm
+
+multiplexing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+electronics telecommunications modulation process varying properties periodic waveform called carrier signal modulating signal typically contains information transmitted radio systems 20th century used frequency modulation amplitude modulation make carrier carry radio broadcast
+general telecommunications modulation process conveying message signal example digital stream analog audio signal inside another signal physically transmitted modulation sine waveform transforms narrow frequency range baseband message signal moderate high frequency range passband signal pass filter
+modulator device performs modulation demodulator sometimes detector demod device performs demodulation inverse modulation modem modulator–demodulator perform operations
+analog modulation transfer analog baseband lowpass signal example audio signal signal analog bandpass channel different frequency example limited radio frequency band cable network channel
+digital modulation transfer digital stream analog bandpass channel example public switched telephone network bandpass filter limits frequency range 300–3400 limited radio frequency band
+analog digital modulation facilitate frequency division multiplexing several pass information signals transferred simultaneously shared physical medium using separate passband channels several different carrier frequencies
+digital baseband modulation methods also known line coding transfer digital stream baseband channel typically nonfiltered copper wire serial wired local area network
+pulse modulation methods transfer narrowband analog signal example phone call wideband baseband channel schemes stream another digital transmission system
+music synthesizers modulation used synthesize waveforms extensive overtone spectrum using small number oscillators case carrier frequency typically order much lower modulating waveform frequency modulation synthesis ring modulation synthesis
+
+
+
+contents
+
+
+analog modulation methods
+
+list analog modulation techniques
+
+
+digital modulation methods
+
+fundamental digital modulation methods
+modulator detector principles operation
+list common digital modulation techniques
+automatic digital modulation recognition admr
+digital baseband modulation line coding
+
+
+pulse modulation methods
+miscellaneous modulation techniques
+also
+references
+reading
+external links
+
+
+
+analog modulation methodsedit
+
+
+
+
+lowfrequency message signal carried radio wave
+
+
+analog modulation modulation applied continuously response analog information signal
+list analog modulation techniquesedit
+common analog modulation techniques
+
+amplitude modulation amplitude carrier signal varied accordance instantaneous amplitude modulating signal
+
+doublesideband modulation
+
+doublesideband modulation carrier dsbwc used radio broadcasting band
+doublesideband suppressedcarrier transmission dsbsc
+doublesideband reduced carrier transmission dsbrc
+
+
+singlesideband modulation ssbam
+
+singlesideband modulation carrier ssbwc
+singlesideband modulation suppressed carrier modulation ssbsc
+
+
+vestigial sideband modulation vsbam
+quadrature amplitude modulation
+
+
+angle modulation approximately constant envelope
+
+frequency modulation frequency carrier signal varied accordance instantaneous amplitude modulating signal
+phase modulation phase shift carrier signal varied accordance instantaneous amplitude modulating signal
+transpositional modulation waveform inflection modified resulting signal quarter cycle transposed modulation process pseudoanalog modulation carrier also carries phase variable phase famǿ
+
+
+
+digital modulation methodsedit
+digital modulation analog carrier signal modulated discrete signal digital modulation methods considered digitaltoanalog conversion corresponding demodulation detection analogtodigital conversion changes carrier signal chosen finite number alternative symbols modulation alphabet
+
+
+
+
+schematic baud bits data link containing arbitrarily chosen values
+
+
+
+simple example telephone line designed transferring audible sounds example tones digital bits zeros ones computers however communicate telephone line means modems representing digital bits tones called symbols four alternative symbols corresponding musical instrument generate four different tones time first symbol represent sequence second third fourth modem plays melody consisting 1000 tones second symbol rate 1000 symbolssecond baud since tone symbol represents message consisting digital bits example rate twice symbol rate 2000 bits second similar technique used dialup modems opposed modems
+
+according definition digital signalcitation needed modulated signal digital signal according another definitioncitation needed modulation form digitaltoanalog conversion textbooks would consider digital modulation schemes form digital transmission synonymous data transmission would consider analog transmission
+fundamental digital modulation methodsedit
+fundamental digital modulation techniques based keying
+
+phaseshift keying finite number phases used
+frequencyshift keying finite number frequencies used
+amplitudeshift keying finite number amplitudes used
+quadrature amplitude modulation finite number least phases least amplitudes used
+
+inphase signal example cosine waveform quadrature phase signal example sine wave amplitude modulated finite number amplitudes summed seen twochannel system channel using resulting signal equivalent combination
+methods phases frequencies amplitudes assigned unique pattern binary bits usually phase frequency amplitude encodes equal number bits number bits comprises symbol represented particular phase frequency amplitude
+alphabet consists
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+alternative symbols symbol represents message consisting bits symbol rate also known baud rate
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+symbolssecond baud data rate
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+bitsecond
+example alphabet consisting alternative symbols symbol represents bits thus data rate four times baud rate
+case carrier frequency modulated signal constant modulation alphabet often conveniently represented constellation diagram showing amplitude signal xaxis amplitude signal yaxis symbol
+modulator detector principles operationedit
+sometimes also often generated detected using principle signals combined complexvalued signal imaginary unit resulting called equivalent lowpass signal equivalent baseband signal complexvalued representation realvalued modulated physical signal socalled passband signal signal
+general steps used modulator transmit data
+
+group incoming data bits codewords symbol transmitted
+codewords attributes example amplitudes signals equivalent pass signal frequency phase values
+adapt pulse shaping filtering limit bandwidth form spectrum equivalent pass signal typically using digital signal processing
+perform digital analog conversion signals since today normally achieved using digital signal processing
+generate highfrequency sine carrier waveform perhaps also cosine quadrature component carry modulation example multiplying sine cosine waveform signals resulting equivalent pass signal frequency shifted modulated passband signal signal sometimes achieved using technology example direct digital synthesis using waveform table instead analog signal processing case step done step
+amplification analog bandpass filtering avoid harmonic distortion periodic spectrum
+
+receiver side demodulator typically performs
+
+bandpass filtering
+automatic gain control compensate attenuation example fading
+frequency shifting signal equivalent baseband signals intermediate frequency signal multiplying signal local oscillator sine wave cosine wave frequency superheterodyne receiver principle
+sampling analogtodigital conversion sometimes instead point example means undersampling
+equalization filtering example matched filter compensation multipath propagation time spreading phase distortion frequency selective fading avoid intersymbol interference symbol distortion
+detection amplitudes signals frequency phase signal
+quantization amplitudes frequencies phases nearest allowed symbol values
+mapping quantized amplitudes frequencies phases codewords groups
+paralleltoserial conversion codewords stream
+pass resultant stream processing removal errorcorrecting codes
+
+common digital communication systems design modulator demodulator must done simultaneously digital modulation schemes possible transmitterreceiver pair prior knowledge data encoded represented communications system digital communication systems modulator transmitter demodulator receiver structured perform inverse operations
+noncoherent modulation methods require receiver reference clock signal phase synchronized sender carrier signal case modulation symbols rather bits characters data packets asynchronously transferred opposite coherent modulation
+list common digital modulation techniquesedit
+common digital modulation techniques
+
+phaseshift keying
+
+binary bpsk using symbols
+quadrature qpsk using symbols
+8psk using symbols
+16psk using symbols
+differential dpsk
+differential qpsk dqpsk
+offset qpsk oqpsk
+π4–qpsk
+
+
+frequencyshift keying
+
+audio frequencyshift keying afsk
+multifrequency shift keying mary mfsk
+dualtone multifrequency dtmf
+
+
+amplitudeshift keying
+onoff keying common form
+
+mary vestigial sideband modulation example 8vsb
+
+
+quadrature amplitude modulation combination
+
+polar modulation like combination askcitation needed
+
+
+continuous phase modulation methods
+
+minimumshift keying
+gaussian minimumshift keying gmsk
+continuousphase frequencyshift keying cpfsk
+
+
+orthogonal frequencydivision multiplexing ofdm modulation
+
+discrete multitone including adaptive modulation bitloading
+
+
+wavelet modulation
+trellis coded modulation also known trellis modulation
+spreadspectrum techniques
+
+directsequence spread spectrum dsss
+chirp spread spectrum according ieee 802154a uses pseudostochastic coding
+frequencyhopping spread spectrum fhss applies special scheme channel release
+
+
+
+gmsk particular cases continuous phase modulation indeed particular case subfamily known continuousphase frequency shift keying cpfsk defined rectangular frequency pulse linearly increasing phase pulse onesymboltime duration total response signaling
+ofdm based idea frequencydivision multiplexing multiplexed streams parts single original stream stream split several parallel data streams transferred subcarrier using conventional digital modulation scheme modulated subcarriers summed form ofdm signal dividing recombining help handling channel impairments ofdm considered modulation technique rather multiplex technique since transfers stream communication channel using sequence socalled ofdm symbols ofdm extended multiuser channel access method orthogonal frequencydivision multiple access ofdma multicarrier code division multiple access mccdma schemes allowing several users share physical medium giving different subcarriers spreading codes different users
+kinds power amplifier switching amplifiers class amplifiers cost less less battery power linear amplifiers output power however work relatively constantamplitudemodulation signals angle modulation cdma ofdm nevertheless even though switching amplifiers completely unsuitable normal constellations often modulation principle used drive switching amplifiers waveforms sometimes demodulators used receive signals switching amplifiers
+automatic digital modulation recognition admredit
+automatic digital modulation recognition intelligent communication systems important issues software defined radio cognitive radio according incremental expanse intelligent receivers automatic modulation recognition becomes challenging topic telecommunication systems computer engineering systems many civil military applications moreover blind recognition modulation type important problem commercial systems especially software defined radio usually systems extra information system configuration considering blind approaches intelligent receivers reduce information overload increase transmission performance1 obviously knowledge transmitted data many unknown parameters receiver signal power carrier frequency phase offsets timing information blind identification modulation made fairly difficult becomes even challenging realworld scenarios multipath fading frequencyselective timevarying channels2
+main approaches automatic modulation recognition first approach uses likelihoodbased methods assign input signal proper class another recent approach based feature extraction
+digital baseband modulation line codingedit
+main article line code
+term digital baseband modulation digital baseband transmission synonymous line codes methods transfer digital stream analog baseband channel lowpass channel using pulse train discrete number signal levels directly modulating voltage current cable serial common examples unipolar nonreturntozero manchester alternate mark inversion codings3
+
+
+
+
+
+
+
+
+
+
+
+line coding digital baseband transmission
+
+
+
+main articles
+
+
+
+unipolar encoding
+bipolar encoding
+onoff keying
+
+
+
+
+
+
+
+
+basic line codes
+
+
+
+return zero
+nonreturntozero level nrznrzl
+nonreturntozero inverted nrzi
+nonreturntozero space nrzs
+manchester
+differential manchesterbiphase
+
+
+
+
+
+extended line codes
+
+
+
+conditioned diphase
+4b3t
+4b5b
+2b1q
+alternate mark inversion
+modified code
+coded mark inversion
+mlt3 encoding
+hybrid ternary code
+6b8b encoding
+8b10b encoding
+64b66b encoding
+eighttofourteen modulation
+delaymiller encoding
+tcpam
+
+
+
+
+
+optical line codes
+
+
+
+carriersuppressed returntozero
+alternatephase returntozero
+
+
+
+
+
+
+
+
+also baseband
+baud
+rate
+digital signal
+digital transmission
+ethernet physical layer
+pulse modulation methods
+pulseamplitude modulation
+pulse code modulation
+serial communication
+categoryline codes
+
+
+
+
+
+
+pulse modulation methodsedit
+pulse modulation schemes transferring narrowband analog signal analog baseband channel twolevel signal modulating pulse wave pulse modulation schemes also allow narrowband analog signal transferred digital signal quantized discretetime signal fixed rate transferred underlying digital transmission system example line code modulation schemes conventional sense since channel coding schemes considered source coding schemes cases analogtodigital conversion techniques
+analogoveranalog methods
+
+pulseamplitude modulation
+pulsewidth modulation pulsedepth modulation
+pulseposition modulation
+
+analogoverdigital methods
+
+pulsecode modulation
+
+differential dpcm
+adaptive dpcm adpcm
+
+
+delta modulation δmodulation
+deltasigma modulation
+continuously variable slope delta modulation cvsdm also called adaptivedelta modulation
+pulsedensity modulation
+
+miscellaneous modulation techniquesedit
+
+onoff keying transmit morse code radio frequencies known continuous wave operation
+adaptive modulation
+space modulation method whereby signals modulated within airspace used instrument landing systems
+
+alsoedit
+
+
+
+wikimedia commons media related modulation
+
+
+
+
+channel access methods
+channel coding
+codec
+communications channel
+demodulation
+electrical resonance
+heterodyne
+line code
+modem
+modulation order
+neuromodulation
+modulator
+ring modulation
+telecommunication
+types radio emissions
+
+
+referencesedit
+
+
+
+
+
+
+article needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed june 2008 learn remove template message
+
+
+
+
+
+
+hadi valipour mehdi homayounpour amin mehralian automatic digital modulation recognition presence noise using proceedings 2012 sixth international symposium telecommunications 378–382 2012 tehran iran
+dobre octavia abdi yeheskel barness communications 2007 137–156 2007 survey automatic modulation classification techniques classical approaches trends communications 137–156 maint multiple names authors list link
+kelin swamy 2010 wireless communication systems subsystems enabling technologies cambridge university press isbn 9780521114035
+
+
+
+readingedit
+
+multipliers modulators analog dialogue june 2013
+
+external linksedit
+
+interactive presentation softdemapping awgnchannel webdemo institute telecommunications university stuttgart
+modemmodulation demodulation
+
+
+
+
+
+
+
+
+
+
+
+
+telecommunications
+
+
+
+history
+
+
+
+
+beacon
+broadcasting
+cable protection system
+cable
+communications satellite
+computer network
+drums
+electrical telegraph
+
+heliographs
+hydraulic telegraph
+internet
+mass media
+mobile phone
+optical telecommunication
+optical telegraphy
+pager
+photophone
+prepay mobile phone
+radio
+radiotelephone
+satellite communications
+semaphore
+smartphone
+smoke signals
+telecommunications history
+telautograph
+telegraphy
+teleprinter teletype
+telephone
+telephone cases
+television
+timeline communication technology
+undersea telegraph line
+videoconferencing
+videophone
+videotelephony
+whistled language
+
+
+
+
+
+pioneers
+
+
+
+edwin howard armstrong
+john logie baird
+paul baran
+alexander graham bell
+bernerslee
+jagadish chandra bose
+vint cerf
+claude chappe
+donald davies
+forest
+philo farnsworth
+reginald fessenden
+elisha gray
+erna schneider hoover
+charles
+hedy lamarr
+innocenzo manzetti
+guglielmo marconi
+antonio meucci
+radia perlman
+alexander stepanovich popov
+johann philipp reis
+nikola tesla
+camille tissot
+alfred vail
+charles wheatstone
+vladimir zworykin
+
+
+
+
+
+transmission
+media
+
+
+
+coaxial cable
+fiberoptic communication
+
+optical fiber
+
+
+freespace optical communication
+molecular communication
+radio waves
+transmission line
+
+
+
+
+
+network topology
+switching
+
+
+
+links
+nodes
+terminal node
+network switching circuit
+packet
+telephone exchange
+
+
+
+
+
+multiplexing
+
+
+
+spacedivision
+frequencydivision
+timedivision
+polarizationdivision
+orbital angularmomentum
+codedivision
+
+
+
+
+
+networks
+
+
+
+arpanet
+bitnet
+cellular network
+computer
+cyclades
+ethernet
+fidonet
+internet
+isdn
+
+mobile
+
+network
+public switched telephone
+radio
+telecommunications equipment
+television
+telex
+
+wireless
+world wide
+
+
+
+
+
+
+
+
+category
+portal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+analog digital audio broadcasting
+
+
+
+terrestrial
+
+
+
+
+radio modulation
+
+
+
+
+
+cofdm
+
+
+
+
+
+frequency allocations
+
+
+
+
+
+
+high
+band
+
+
+
+
+
+digital systems
+
+
+
+camd
+dabdab
+drmdrm
+fmextra
+radio
+
+dvbt2 lite
+
+
+
+
+
+
+
+
+satellite
+
+
+
+
+frequency allocations
+
+
+
+band
+band
+band
+band
+
+
+
+
+
+digital systems
+
+
+
+
+dabs
+dvbsh
+sdmb
+
+
+
+
+
+
+commercial radio providers
+
+
+
+1worldspace
+sirius holdings
+siriusxm canada
+
+
+
+
+
+
+
+
+codecs
+
+
+
+
+amrwb
+
+heaac
+mpeg1 audio layer
+
+
+
+
+
+subcarrier signals
+
+
+
+amss
+directband
+
+rdsrbds
+scascmo
+darc
+
+
+
+
+
+
+
+
+
+
+related topics
+
+
+
+technical audio
+
+
+
+audio data compression
+audio signal processing
+
+
+
+
+
+technical stereo formats
+
+
+
+belar
+cquam
+harris
+kahnhazeltine
+magnavox
+
+
+
+
+
+technical emission
+
+
+
+broadcasting
+expanded band
+cable radio
+digital radio
+error detection correction
+broadcast band
+broadcasting
+multipath propagation
+shortwave relay station
+
+
+
+
+
+cultural
+
+
+
+history radio
+international broadcasting
+
+
+
+
+
+
+
+
+comparison radio systems
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlemodulationoldid812894752 categories frequency mixershistory radiohistory televisionphysical layer protocolsradio modulation modestelecommunication theorytelevision terminologyhidden categories maint multiple names authors listwikipedia articles technical february 2017all articles technicalarticles needing expert attention february 2017all articles needing expert attentionall articles unsourced statementsarticles unsourced statements september 2015articles unsourced statements october 2008articles needing additional references june 2008all articles needing additional references

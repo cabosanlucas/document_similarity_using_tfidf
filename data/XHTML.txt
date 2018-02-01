@@ -1,0 +1,1519 @@
+
+XHTML
+
+Filename extension
+.xhtml, .xht,
+.xml, .html, .htm
+
+
+Internet media type
+application/xhtml+xml
+
+
+Developed by
+World Wide Web Consortium
+
+
+Initial release
+26 January 2000 (2000-01-26)
+
+
+Latest release
+
+5.0
+(28 October 2014; 3 years ago (2014-10-28))
+
+
+
+Type of format
+Markup language
+
+
+Extended from
+XML, HTML
+
+
+Standard
+W3C HTML5 (Recommendation)
+
+
+Open format?
+Yes
+
+
+
+
+HTML
+
+
+
+
+HTML
+Dynamic HTML
+HTML5
+
+audio
+canvas
+video
+
+
+XHTML
+
+Basic
+Mobile Profile
+C-HTML
+
+
+HTML element
+
+span and div
+
+
+HTML attribute
+HTML frame
+HTML editor
+Character encodings
+
+Unicode
+
+
+Language code
+Document Object Model
+Browser Object Model
+Style sheets
+
+CSS
+
+
+Font family
+Web colors
+HTML scripting
+JavaScript
+
+WebGL
+WebCL
+
+
+W3C
+
+Validator
+
+
+WHATWG
+Quirks mode
+Web storage
+Web browser (layout) engine
+
+
+
+
+Comparisons
+
+
+
+
+Document markup languages
+Web browsers
+HTML
+Non-standard HTML
+HTML5
+
+canvas
+media
+
+
+XHTML
+
+1.1
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+Extensible Hypertext Markup Language (XHTML) is part of the family of XML markup languages. It mirrors or extends versions of the widely used Hypertext Markup Language (HTML), the language in which Web pages are formulated.
+While HTML, prior to HTML5, was defined as an application of Standard Generalized Markup Language (SGML), a flexible markup language framework, XHTML is an application of XML, a more restrictive subset of SGML. XHTML documents are well-formed and may therefore be parsed using standard XML parsers, unlike HTML, which requires a lenient HTML-specific parser.[1]
+XHTML 1.0 became a World Wide Web Consortium (W3C) Recommendation on January 26, 2000. XHTML 1.1 became a W3C Recommendation on May 31, 2001. The standard known as XHTML5 is being developed as an XML adaptation of the HTML5 specification.[2][3]
+
+
+
+Contents
+
+
+1 Overview
+
+1.1 Motivation
+1.2 Relationship to HTML
+1.3 Adoption
+1.4 Criticism
+
+
+2 Versions of XHTML
+
+2.1 XHTML 1.0
+2.2 Modularization of XHTML
+2.3 XHTML 1.1: Module-based XHTML
+2.4 XHTML Basic
+
+2.4.1 XHTML-Print
+
+
+2.5 XHTML Mobile Profile
+
+2.5.1 XHTML Mobile Profile 1.1
+2.5.2 XHTML Mobile Profile 1.2
+2.5.3 XHTML Mobile Profile 1.3
+
+
+2.6 XHTML 1.2
+2.7 XHTML 2.0
+2.8 XHTML5
+
+
+3 Semantic content in XHTML
+4 Valid XHTML documents
+
+4.1 Root element
+4.2 DOCTYPEs
+4.3 XML declaration
+4.4 Common errors
+
+
+5 Backward compatibility
+
+5.1 Examples
+
+
+6 Cross-compatibility of XHTML and HTML
+7 See also
+8 References
+9 External links
+
+
+
+Overview[edit]
+XHTML 1.0 is "a reformulation of the three HTML 4 document types as applications of XML 1.0".[4] The World Wide Web Consortium (W3C) also continues to maintain the HTML 4.01 Recommendation, and the specifications for HTML5 and XHTML5 are being actively developed. In the current XHTML 1.0 Recommendation document, as published and revised to August 2002, the W3C commented that, "The XHTML family is the next step in the evolution of the Internet. By migrating to XHTML today, content developers can enter the XML world with all of its attendant benefits, while still remaining confident in their content's backward and future compatibility."[4]
+However, in 2005, the Web Hypertext Application Technology Working Group (WHATWG) formed, independently of the W3C, to work on advancing ordinary HTML not based on XHTML. The WHATWG eventually began working on a standard that supported both XML and non-XML serializations, HTML5, in parallel to W3C standards such as XHTML 2. In 2007, the W3C's HTML working group voted to officially recognize HTML5 and work on it as the next-generation HTML standard.[5] In 2009, the W3C allowed the XHTML 2 Working Group's charter to expire, acknowledging that HTML5 would be the sole next-generation HTML standard, including both XML and non-XML serializations.[6] Of the two serializations, the W3C suggests that most authors use the HTML syntax, rather than the XHTML syntax.[7]
+Motivation[edit]
+XHTML was developed to make HTML more extensible and increase interoperability with other data formats.[8] In addition, browsers were forgiving of errors in HTML, and most websites were displayed despite technical errors in the markup; XHTML introduced stricter error handling.[9] HTML 4 was ostensibly an application of Standard Generalized Markup Language (SGML); however the specification for SGML was complex, and neither web browsers nor the HTML 4 Recommendation were fully conformant to it.[10] The XML standard, approved in 1998, provided a simpler data format closer in simplicity to HTML 4.[11] By shifting to an XML format, it was hoped HTML would become compatible with common XML tools;[12] servers and proxies would be able to transform content, as necessary, for constrained devices such as mobile phones.[13] By using namespaces, XHTML documents could provide extensibility by including fragments from other XML-based languages such as Scalable Vector Graphics and MathML.[14] Finally, the renewed work would provide an opportunity to divide HTML into reusable components (XHTML Modularization) and clean up untidy parts of the language.[15]
+Relationship to HTML[edit]
+There are various differences between XHTML and HTML. The Document Object Model (DOM) is a tree structure that represents the page internally in applications, and XHTML and HTML are two different ways of representing that in markup (serializations). Both are less expressive than the DOM (for example, "--" may be placed in comments in the DOM, but cannot be represented in a comment in either XHTML or HTML), and generally XHTML's XML syntax is a little more expressive than HTML (for example, arbitrary namespaces are not allowed in HTML). First off, one source of differences is immediate: XHTML uses an XML syntax, while HTML uses a pseudo-SGML syntax (officially SGML for HTML 4 and under, but never in practice, and standardised away from SGML in HTML5). Secondly however, because the expressible contents of the DOM in syntax are slightly different, there are some changes in actual behavior between the two models.
+First, there are some differences in syntax:[16]
+
+Broadly, the XML rules require that all elements be closed, either by a separate closing tag or using self-closing syntax (e.g. <br />), while HTML syntax permits some elements to be unclosed because either they are always empty (e.g. <input>) or their end can be determined implicitly ("omissibility", e.g. <p>).
+XML is case-sensitive for element and attribute names, while HTML is not.
+Some shorthand features in HTML are omitted in XML, such as (1) attribute minimization, where attribute values or their quotes may be omitted (e.g. <option selected> or <option selected=selected>, while in XML this must be expressed as <option selected="selected">); (2) element minimization may be used to remove elements entirely (such as <tbody> inferred in a table if not given); and (3) the rarely used SGML syntax for element minimization ("shorttag"), which most browsers do not implement.[17]
+There are numerous other technical requirements surrounding namespaces and precise parsing of whitespace and certain characters and elements. The exact parsing of HTML in practice has been undefined until recently; see the HTML5 specification ([HTML5]) for full details, or the working summary (HTML vs. XHTML).
+
+Second, in contrast to these minor syntactical differences, there are some behavioral differences, mostly arising from the underlying differences in serialization. For example:
+
+Most prominently, behavior on parse errors differ. A fatal parse error in XML (such as an incorrect tag structure) causes document processing to be aborted.
+Most content requiring namespaces will not work in HTML, except the built-in support for SVG and MathML in the HTML5 parser along with certain magic prefixes such as xlink.
+JavaScript processing is a little different in XHTML, with minor changes in case sensitivity to some functions, and further precautions to restrict processing to well-formed content. Scripts must not use the document.write() method; it is not available for XHTML. The innerHTML property is available, but will not insert non-well-formed content. On the other hand, it can be used to insert well-formed namespaced content into XHTML.
+Cascading Style Sheets (CSS) is also applied slightly differently. Due to XHTML's case-sensitivity, all CSS selectors become case-sensitive for XHTML documents.[18] Some CSS properties, such as backgrounds, set on the <body> element in HTML are 'inherited upwards' into the <html> element; this appears not to be the case for XHTML.[19]
+
+Adoption[edit]
+The similarities between HTML 4.01 and XHTML 1.0 led many web sites and content management systems to adopt the initial W3C XHTML 1.0 Recommendation. To aid authors in the transition, the W3C provided guidance on how to publish XHTML 1.0 documents in an HTML-compatible manner, and serve them to browsers that were not designed for XHTML.[20][21]
+Such "HTML-compatible" content is sent using the HTML media type (text/html) rather than the official Internet media type for XHTML (application/xhtml+xml). When measuring the adoption of XHTML to that of regular HTML, therefore, it is important to distinguish whether it is media type usage or actual document contents that is being compared.[22][23]
+Most web browsers have mature support[24] for all of the possible XHTML media types.[25] The notable exception is Internet Explorer versions 8 and earlier by Microsoft; rather than rendering application/xhtml+xml content, a dialog box invites the user to save the content to disk instead. Both Internet Explorer 7 (released in 2006) and Internet Explorer 8 (released in March 2009) exhibit this behavior.[26] Microsoft developer Chris Wilson explained in 2005 that IE7’s priorities were improved browser security and CSS support, and that proper XHTML support would be difficult to graft onto IE’s compatibility-oriented HTML parser;[27] however, Microsoft added support for true XHTML in IE9.[28]
+As long as support is not widespread, most web developers avoid using XHTML that is not HTML-compatible,[29] so advantages of XML such as namespaces, faster parsing and smaller-footprint browsers do not benefit the user.[30][31][32]
+Criticism[edit]
+In the early 2000s, some Web developers began to question why Web authors ever made the leap into authoring in XHTML.[33][34][35] Others countered that the problems ascribed to the use of XHTML could mostly be attributed to two main sources: the production of invalid XHTML documents by some Web authors and the lack of support for XHTML built into Internet Explorer 6.[36][37] They went on to describe the benefits of XML-based Web documents (i.e. XHTML) regarding searching, indexing and parsing as well as future-proofing the Web itself.
+In October 2006, HTML inventor and W3C chair Tim Berners-Lee, introducing a major W3C effort to develop a new HTML specification, posted in his blog that, "The attempt to get the world to switch to XML … all at once didn't work. The large HTML-generating public did not move … Some large communities did shift and are enjoying the fruits of well-formed systems … The plan is to charter a completely new HTML group."[38] The current HTML5 working draft says "special attention has been given to defining clear conformance criteria for user agents in an effort to improve interoperability … while at the same time updating the HTML specifications to address issues raised in the past few years." Ian Hickson, editor of the HTML5 specification criticising the improper use of XHTML in 2002,[33] is a member of the group developing this specification and is listed as one of the co-editors of the current working draft.[39]
+Simon Pieters researched the XML-compliance of mobile browsers[40] and concluded “the claim that XHTML would be needed for mobile devices is simply a myth”.
+Versions of XHTML[edit]
+XHTML 1.0[edit]
+
+
+
+
+In earlier times[when?], Wikipedia used the XHTML 1.0 Transitional doctype and syntax, though it was not served as XHTML
+
+
+December 1998 saw the publication of a W3C Working Draft entitled Reformulating HTML in XML. This introduced Voyager, the codename for a new markup language based on HTML 4, but adhering to the stricter syntax rules of XML. By February 1999 the name of the specification had changed to XHTML 1.0: The Extensible HyperText Markup Language, and in January 2000 it was officially adopted as a W3C Recommendation.[41] There are three formal DTDs for XHTML 1.0, corresponding to the three different versions of HTML 4.01:
+
+XHTML 1.0 Strict is the XML equivalent to strict HTML 4.01, and includes elements and attributes that have not been marked deprecated in the HTML 4.01 specification. As of November 2015[update], XHTML 1.0 Strict is the document type used for the homepage of the website of the World Wide Web Consortium.
+XHTML 1.0 Transitional is the XML equivalent of HTML 4.01 Transitional, and includes the presentational elements (such as center, font and strike) excluded from the strict version.
+XHTML 1.0 Frameset is the XML equivalent of HTML 4.01 Frameset, and allows for the definition of frameset documents—a common Web feature in the late 1990s.
+
+The second edition of XHTML 1.0 became a W3C Recommendation in August 2002.[42]
+Modularization of XHTML[edit]
+Modularization provides an abstract collection of components through which XHTML can be subsetted and extended. The feature is intended to help XHTML extend its reach onto emerging platforms, such as mobile devices and Web-enabled televisions. The initial draft of Modularization of XHTML became available in April 1999, and reached Recommendation status in April 2001.[43]
+The first modular XHTML variants were XHTML 1.1 and XHTML Basic 1.0.
+In October 2008 Modularization of XHTML was superseded by XHTML Modularization 1.1, which adds an XML Schema implementation. It was itself superseded by a second edition in July 2010.[44]
+XHTML 1.1: Module-based XHTML[edit]
+XHTML 1.1 evolved out of the work surrounding the initial Modularization of XHTML specification. The W3C released a first draft in September 1999; Recommendation status was reached in May 2001.[45] The modules combined within XHTML 1.1 effectively recreate XHTML 1.0 Strict, with the addition of ruby annotation elements (ruby, rbc, rtc, rb, rt and rp) to better support East-Asian languages. Other changes include removal of the name attribute from the a and map elements, and (in the first edition of the language) removal of the lang attribute in favour of xml:lang.
+Although XHTML 1.1 is largely compatible with XHTML 1.0 and HTML 4, in August 2002 the Working Group issued a formal Note advising that it should not be transmitted with the HTML media type.[46] With limited browser support for the alternate application/xhtml+xml media type, XHTML 1.1 proved unable to gain widespread use. In January 2009 a second edition of the document (XHTML Media Types – Second Edition) was issued, relaxing this restriction and allowing XHTML 1.1 to be served as text/html.[47]
+A second edition of XHTML 1.1 was issued on 23 November 2010, which addresses various errata and adds an XML Schema implementation not included in the original specification.[48] (It was first released briefly on 7 May 2009 as a "Proposed Edited Recommendation"[49] before being rescinded on 19 May due to unresolved issues.)
+XHTML Basic[edit]
+Main article: XHTML Basic
+Since information appliances may lack the system resources to implement all XHTML abstract modules, the W3C defined a feature-limited XHTML specification called XHTML Basic. It provides a minimal feature subset sufficient for the most common content-authoring. The specification became a W3C recommendation on December 2000.[50]
+Of all the versions of XHTML, XHTML Basic 1.0 provides the fewest features. With XHTML 1.1, it is one of the two first implementations of modular XHTML. In addition to the Core Modules (Structure, Text, Hypertext, and List), it implements the following abstract modules: Base, Basic Forms, Basic Tables, Image, Link, Metainformation, Object, Style Sheet, and Target.[51][52]
+XHTML Basic 1.1 replaces the Basic Forms Module with the Forms Module, and adds the Intrinsic Events, Presentation, and Scripting modules. It also supports additional tags and attributes from other modules. This version became a W3C recommendation on 29 July 2008.[53]
+The current version of XHTML Basic is 1.1 Second Edition (23 November 2010), in which the language is re-implemented in the W3C's XML Schema language. This version also supports the lang attribute.[54]
+XHTML-Print[edit]
+XHTML-Print, which became a W3C Recommendation in September 2006, is a specialized version of XHTML Basic designed for documents printed from information appliances to low-end printers.[55]
+XHTML Mobile Profile[edit]
+Main article: XHTML Mobile Profile
+XHTML Mobile Profile (abbreviated XHTML MP or XHTML-MP) is a third-party variant of the W3C's XHTML Basic specification. Like XHTML Basic, XHTML was developed for information appliances with limited system resources.
+In October 2001, a limited company called the Wireless Application Protocol Forum began adapting XHTML Basic for WAP 2.0, the second major version of the Wireless Application Protocol. WAP Forum based their DTD on the W3C's Modularization of XHTML, incorporating the same modules the W3C used in XHTML Basic 1.0—except for the Target Module. Starting with this foundation, the WAP Forum replaced the Basic Forms Module with a partial implementation of the Forms Module, added partial support for the Legacy and Presentation modules, and added full support for the Style Attribute Module.
+In 2002, the WAP Forum was subsumed into the Open Mobile Alliance (OMA), which continued to develop XHTML Mobile Profile as a component of their OMA Browsing Specification.
+XHTML Mobile Profile 1.1[edit]
+To this version, finalized in 2004, the OMA added partial support for the Scripting Module, and partial support for Intrinsic Events. XHTML MP 1.1 is part of v2.1 of the OMA Browsing Specification (1 November 2002).[56]
+XHTML Mobile Profile 1.2[edit]
+This version, finalized 27 February 2007, expands the capabilities of XHTML MP 1.1 with full support for the Forms Module and OMA Text Input Modes. XHTML MP 1.2 is part of v2.3 of the OMA Browsing Specification (13 March 2007).[56]
+XHTML Mobile Profile 1.3[edit]
+XHTML MP 1.3 (finalized on 23 September 2008) uses the XHTML Basic 1.1 document type definition, which includes the Target Module. Events in this version of the specification are updated to DOM Level 3 specifications (i.e., they are platform- and language-neutral).
+XHTML 1.2[edit]
+The XHTML 2 Working Group considered the creation of a new language based on XHTML 1.1.[57] If XHTML 1.2 was created, it would include WAI-ARIA and role attributes to better support accessible web applications, and improved Semantic Web support through RDFa. The inputmode attribute from XHTML Basic 1.1, along with the target attribute (for specifying frame targets) might also be present. The XHTML2 WG had not been chartered to carry out the development of XHTML1.2. Since the W3C announced that it does not intend to recharter the XHTML2 WG,[6] and closed the WG in December 2010, this means that XHTML 1.2 proposal would not eventuate.
+XHTML 2.0[edit]
+Between August 2002 and July 2006, the W3C released eight Working Drafts of XHTML 2.0, a new version of XHTML able to make a clean break from the past by discarding the requirement of backward compatibility. This lack of compatibility with XHTML 1.x and HTML 4 caused some early controversy in the web developer community.[58] Some parts of the language (such as the role and RDFa attributes) were subsequently split out of the specification and worked on as separate modules, partially to help make the transition from XHTML 1.x to XHTML 2.0 smoother. A ninth draft of XHTML 2.0 was expected to appear in 2009, but on July 2, 2009, the W3C decided to let the XHTML2 Working Group charter expire by that year's end, effectively halting any further development of the draft into a standard.[6] Instead, XHTML 2.0 and its related documents were released as W3C Notes.[59][60]
+New features to have been introduced by XHTML 2.0 included:
+
+HTML forms were to be replaced by XForms, an XML-based user input specification allowing forms to be displayed appropriately for different rendering devices.
+HTML frames were to be replaced by XFrames.
+The DOM Events were to be replaced by XML Events, which uses the XML Document Object Model.
+A new list element type, the nl element type, were to be included to specifically designate a list as a navigation list. This would have been useful in creating nested menus, which are currently created by a wide variety of means like nested unordered lists or nested definition lists.
+Any element was to be able to act as a hyperlink, e. g., <li href="articles.html">Articles</li>, similar to XLink. However, XLink itself is not compatible with XHTML due to design differences.
+Any element was to be able to reference alternative media with the src attribute, e. g., <p src="lbridge.jpg" type="image/jpeg">London Bridge</p> is the same as <object src="lbridge.jpg" type="image/jpeg"><p>London Bridge</p></object>.
+The alt attribute of the img element was removed: alternative text was to be given in the content of the img element, much like the object element, e. g., <img src="hms_audacious.jpg">HMS <span class="italic">Audacious</span></img>.
+A single heading element (h) was added. The level of these headings was determined by the depth of the nesting. This would have allowed the use of headings to be infinite, rather than limiting use to six levels deep.
+The remaining presentational elements i, b and tt, still allowed in XHTML 1.x (even Strict), were to be absent from XHTML 2.0. The only somewhat presentational elements remaining were to be sup and sub for superscript and subscript respectively, because they have significant non-presentational uses and are required by certain languages. All other tags were meant to be semantic instead (e. g. strong for strong emphasis) while allowing the user agent to control the presentation of elements via CSS (e.g. rendered as boldface text in most visual browsers, but possibly rendered with changes of tone in a text-to-speech reader, larger + italic font per rules in a user-end stylesheet, etc.).
+The addition of RDF triple with the property and about attributes to facilitate the conversion from XHTML to RDF/XML.
+
+XHTML5[edit]
+Main article: HTML5
+HTML5 initially grew independently of the W3C, through a loose group of browser manufacturers and other interested parties calling themselves the WHATWG, or Web Hypertext Application Technology Working Group. The key motive of the group was to create a platform for dynamic web applications; they considered XHTML 2.0 to be too document-centric, and not suitable for the creation of internet forum sites or online shops.[61]
+HTML5 has both a regular text/html serialization and an XML serialization, which is also known as XHTML5.[62] The language is more compatible with HTML 4 and XHTML 1.x than XHTML 2.0, due to the decision to keep the existing HTML form elements and events model. It adds many new elements not found in XHTML 1.x, however, such as section and aside tags.
+Semantic content in XHTML[edit]
+XHTML+RDFa is an extended version of the XHTML markup language for supporting RDF through a collection of attributes and processing rules in the form of well-formed XML documents. This host language is one of the techniques used to develop Semantic Web content by embedding rich semantic markup.
+Valid XHTML documents[edit]
+
+
+
+
+
+
+This section does not cite any sources. Please help improve this section by adding citations to reliable sources. Unsourced material may be challenged and removed. (July 2013) (Learn how and when to remove this template message)
+
+
+
+An XHTML document that conforms to an XHTML specification is said to be valid. Validity assures consistency in document code, which in turn eases processing, but does not necessarily ensure consistent rendering by browsers. A document can be checked for validity with the W3C Markup Validation Service. In practice, many web development programs provide code validation based on the W3C standards.
+Root element[edit]
+The root element of an XHTML document must be html, and must contain an xmlns attribute to associate it with the XHTML namespace. The namespace URI for XHTML is http://www.w3.org/1999/xhtml. The example tag below additionally features an xml:lang attribute to identify the document with a natural language:
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+DOCTYPEs[edit]
+Main article: DOCTYPE
+In order to validate an XHTML document, a Document Type Declaration, or DOCTYPE, may be used. A DOCTYPE declares to the browser the Document Type Definition (DTD) to which the document conforms. A Document Type Declaration should be placed before the root element.
+The system identifier part of the DOCTYPE, which in these examples is the URL that begins with http://, need only point to a copy of the DTD to use, if the validator cannot locate one based on the public identifier (the other quoted string). It does not need to be the specific URL that is in these examples; in fact, authors are encouraged to use local copies of the DTD files when possible. The public identifier, however, must be character-for-character the same as in the examples.
+XML declaration[edit]
+See also: Processing Instruction
+A character encoding may be specified at the beginning of an XHTML document in the XML declaration when the document is served using the application/xhtml+xml MIME type. (If an XML document lacks encoding specification, an XML parser assumes that the encoding is UTF-8 or UTF-16, unless the encoding has already been determined by a higher protocol.)
+For example:
+
+<?xml version="1.0" encoding="UTF-8" ?>
+
+The declaration may be optionally omitted because it declares as its encoding the default encoding. However, if the document instead makes use of XML 1.1 or another character encoding, a declaration is necessary. Internet Explorer prior to version 7 enters quirks mode, if it encounters an XML declaration in a document served as text/html.
+Common errors[edit]
+Some of the most common errors in the usage of XHTML are:
+
+Not closing empty elements (elements without closing tags in HTML4)
+
+Incorrect: <br>
+Correct: <br />
+Note that any of these is acceptable in XHTML: <br></br>, <br/>, and <br />. Older HTML-only browsers interpreting it as HTML will generally accept <br> and <br />.
+
+
+Omitting end tags
+
+Incorrect: <p>This is a paragraph.<p>This is another paragraph.
+Correct: <p>This is a paragraph.</p><p>This is another paragraph.</p>
+
+
+Improperly nesting elements (Note that this would also be invalid in HTML)
+
+Incorrect: <em><strong>This is some text.</em></strong>
+Correct: <em><strong>This is some text.</strong></em>
+
+
+Not putting quotation marks around attribute values
+
+Incorrect: <td rowspan=3>
+Incorrect: <td rowspan='3">
+Correct: <td rowspan="3">
+Correct: <td rowspan='3'>
+
+
+Using the ampersand character outside entities (Note that this would also be invalid in HTML)
+
+Incorrect: <title>Cars & Trucks</title>
+Correct: <title>Cars &amp; Trucks</title>
+Incorrect: <a href="index.php?page=news&id=5">News</a>
+Correct: <a href="index.php?page=news&amp;id=5">News</a>
+
+
+Failing to recognize that XHTML elements and attributes are case-sensitive
+
+Incorrect: <BODY><P ID="ONE">The Best Page Ever</P></BODY>
+Correct: <body><p id="ONE">The Best Page Ever</p></body>
+
+
+Using attribute minimization
+
+Incorrect: <textarea readonly>READ-ONLY</textarea>
+Correct: <textarea readonly="readonly">READ-ONLY</textarea>
+
+
+Misusing CDATA, script-comments and xml-comments when embedding scripts and stylesheets.
+
+This problem can be avoided altogether by putting all script and stylesheet information into separate files and referring to them as follows in the XHTML head element.
+
+
+
+
+
+ <link rel="stylesheet" href="/style/screen.css" type="text/css" />
+ <script type="text/javascript" src="/script/site.js"></script>
+
+
+
+
+Note: The format <script …></script>, rather than the more concise <script … />, is required for HTML compatibility when served as MIME type text/html.
+
+
+If an author chooses to include script or style data inline within an XHTML document, different approaches are recommended as shown in the examples below, depending whether the author intends to serve the page as application/xhtml+xml and target only fully conformant browsers, or serve the page as text/html and try to obtain usability in Internet Explorer 6 and other non-conformant browsers.
+
+
+
+Backward compatibility[edit]
+XHTML 1.x documents are mostly backward compatible with HTML 4 user agents when the appropriate guidelines are followed. XHTML 1.1 is essentially compatible, although the elements for ruby annotation are not part of the HTML 4 specification and thus generally ignored by HTML 4 browsers. Later XHTML 1.x modules such as those for the role attribute, RDFa and WAI-ARIA degrade gracefully in a similar manner.
+XHTML 2.0 is significantly less compatible, although this can be mitigated to some degree through the use of scripting. (This can be simple one-liners, such as the use of “document.createElement()” to register a new HTML element within Internet Explorer, or complete JavaScript frameworks, such as the FormFaces implementation of XForms.)
+Examples[edit]
+The following are examples of XHTML 1.0 Strict, with both having the same visual output. The former one follows the HTML Compatibility Guidelines of the XHTML Media Types Note while the latter one breaks backward compatibility, but provides cleaner markup.[47]
+
+Media type recommendation (in RFC 2119 terms) for the examples:
+
+Media type
+Example 1
+Example 2
+
+
+application/xhtml+xml
+SHOULD
+SHOULD
+
+
+application/xml
+MAY
+MAY
+
+
+text/xml
+MAY
+MAY
+
+
+text/html
+MAY
+SHOULD NOT
+
+
+Example 1.
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>XHTML 1.0 Strict Example</title>
+ <script type="text/javascript">
+ //<![CDATA[
+ function loadpdf() {
+    document.getElementById("pdf-object").src="http://www.w3.org/TR/xhtml1/xhtml1.pdf";
+ }
+ //]]>
+ </script>
+ </head>
+ <body onload="loadpdf()">
+ <p>This is an example of an
+ <abbr title="Extensible HyperText Markup Language">XHTML</abbr> 1.0 Strict document.<br />
+ <img id="validation-icon"
+    src="http://www.w3.org/Icons/valid-xhtml10"
+    alt="Valid XHTML 1.0 Strict" /><br />
+ <object id="pdf-object"
+    name="pdf-object"
+    type="application/pdf"
+    data="http://www.w3.org/TR/xhtml1/xhtml1.pdf"
+    width="100%"
+    height="500">
+ </object>
+ </p>
+ </body>
+</html>
+
+Example 2.
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+ <title>XHTML 1.0 Strict Example</title>
+ <script type="application/javascript">
+ <![CDATA[
+ function loadpdf() {
+    document.getElementById("pdf-object").src="http://www.w3.org/TR/xhtml1/xhtml1.pdf";
+ }
+ ]]>
+ </script>
+ </head>
+ <body onload="loadpdf()">
+ <p>This is an example of an
+ <abbr title="Extensible HyperText Markup Language">XHTML</abbr> 1.0 Strict document.<br/>
+ <img id="validation-icon"
+    src="http://www.w3.org/Icons/valid-xhtml10"
+    alt="Valid XHTML 1.0 Strict"/><br />
+ <object id="pdf-object"
+    type="application/pdf"
+    data="http://www.w3.org/TR/xhtml1/xhtml1.pdf"
+    width="100%"
+    height="500"></object>
+ </p>
+ </body>
+</html>
+
+Notes:
+
+The "loadpdf" function is actually a workaround for Internet Explorer. It can be replaced by adding <param name="src" value="http://www.w3.org/TR/xhtml1/xhtml1.pdf" /> within <object>.
+The img element does not get a name attribute in the XHTML 1.0 Strict DTD. Use id instead.
+
+Cross-compatibility of XHTML and HTML[edit]
+HTML5 and XHTML5 serializations are largely inter-compatible if adhering to the stricter XHTML5 syntax, but there are some cases in which XHTML will not work as valid HTML5 (e.g., processing instructions are deprecated in HTML[clarify], are treated as comments, and close on the first ">", whereas they are fully allowed in XML, are treated as their own type, and close on "?>").[63]
+See also[edit]
+
+Extensible User Interface Protocol
+HTML
+List of XML and HTML character entity references
+
+References[edit]
+
+
+^ Graff, Eliot (7 May 2014). "Polyglot Markup: A robust profile of the HTML5 vocabulary". W3C. 
+^ "HTML vs. XHTML". whatwg.org. 
+^ "The WHATWG Blog". whatwg.org. 
+^ a b "XHTML 1.0 Specification, Section 1: What is XHTML?". World Wide Web Consortium. 2000-01-26. Retrieved 2007-06-16. 
+^ "results of HTML 5 text, editor, name questions". w3.org. 
+^ a b c "Frequently Asked Questions (FAQ) about the future of XHTML". w3.org. 
+^ "HTML5 Working Draft, Section 1.6: HTML vs XHTML". World Wide Web Consortium. 2011-01-13. Retrieved 2011-02-16. 
+^ "XHTML 1.0 Specification, Section 1.1: Why the need for XHTML?". World Wide Web Consortium. 2000-01-26. Retrieved 2007-06-16. 
+^ Pilgrim, Mark. "How Did We Get Here? - Dive Into HTML5". diveintohtml5.info. Retrieved 2016-06-11. 
+^ Arjun Ray (1999-10-06). "Dropping the Normative Reference to SGML (was: I-D ACTION.)". Retrieved 2008-12-29. … However, since ISO 8879 does not afford applications the leeway to prohibit internal subsets, it follows that the letter of the HTML [4] spec automatically disentitles it to be a conforming SGML application… 
+^ Tina Holmboe (2008-10-06). "XHTML—Myths and Reality". The Developer’s Archive. Retrieved 2008-12-29. … Since the design goals of XML itself partially mirrored those of the original HTML, it was logical for work to begin on formulating an XML–based markup language… 
+^ Kip Hampton (2001-01-10). "Creating Web Utilities Using XML::XPath". XML.com. Retrieved 2008-12-29. … The problem: You want to take advantage of the power and simplicity that XML tools can offer, but you face a site full of aging HTML documents. The solution: Convert your documents to XHTML and put Perl and XML::XPath to work… 
+^ Jean-Luc David (2004-04-14). "Developing Wireless Content using XHTML Mobile". XML.com. Retrieved 2008-12-29. … A useful feature of XHTML is that it can be manipulated as XML. Extensible Stylesheet Language Templates can be used to transform XHTML into WML or any other proprietary mobile formats… 
+^ "Namespaces Crash Course". Mozilla Developer Center. Retrieved 2008-12-29. … It has been a long standing goal of the W3C to make it possible for different types of XML based content to be mixed together in the same XML file. For example, SVG and MathML might be incorporated directly into an XHTML based scientific document… 
+^ Steven Pemberton (2004-07-21). "HTML and XHTML Frequently Answered Questions". World Wide Web Consortium. Retrieved 2008-12-29. … with an XML-based HTML other XML languages could include bits of XHTML, and XHTML documents could include bits of other markup languages. We could also take advantage of the redesign to clean up some of the more untidy parts of HTML, and add some new needed functionality, like better forms… 
+^ Clark, James (1997-12-15). "Comparison of SGML and XML". World Wide Web Consortium Note. 
+^ "Shorthand markup". HTML 4, Appendix B: Performance, Implementation, and Design Notes. W3C. Retrieved 30 September 2011. 
+^ "Case Sensitivity". SitePoint Pty. Ltd. Retrieved 30 September 2011. 
+^ For a non-authoritative summary, see Wilson, Nicholas. "CSS differences between XHTML and HTML". 
+^ "XHTML 1.0 Specification, Appendix C: HTML Compatibility Guidelines". World Wide Web Consortium. 2000-01-26. Retrieved 2007-06-16. 
+^ "XHTML Media Types, W3C Working Group Note". World Wide Web Consortium. 2002-08-01. Retrieved 2008-06-12. 
+^ [1]
+^ Greta de Groat (2002). "Perspectives on the Web and Google: Monika Henzinger, Director of Research, Google", Journal of Internet Cataloging, Vol. 5(1), pp. 17-28, 2002.
+^ Early implementations (such as Mozilla 0.7 and Opera 6.0, both released in 2001) do not incrementally render XHTML as it is received over the network, giving a degraded user experience; see the Mozilla Web Author FAQ. Later browsers such as Opera 9.0, Safari 3.0 and Firefox 3.0 do not have this issue.
+^ "XHTML media type test - results". w3.org. 
+^ Chris Wilson (2005-09-15). "The <?xml> prolog, strict mode, and XHTML in IE". Retrieved 2007-06-16. I’ve also been reading comments for some time in the IEBlog asking for support for the “application/xml+xhtml” MIME type in IE. I should say that IE7 will not add support for this MIME type – we will, of course, continue to read XHTML when served as “text/html”, presuming it follows the HTML compatibility recommendations. 
+^ Chris Wilson (2005-09-15). "The <?xml> prolog, strict mode, and XHTML in IE". Retrieved 2007-06-16. …If we tried to support real XHTML in IE 7 we would have ended up using our existing HTML parser (which is focused on compatibility) and hacking in XML constructs. It is highly unlikely we could support XHTML well in this way; in particular, we would certainly not detect a few error cases here or there, and we would silently support invalid cases. This would, of course, cause compatibility problems based on parser error handling in the future, which XML is explicitly trying to avoid; we don’t want to cause another mess like the one with current HTML error handling (rooted in compatibility with earlier browsers – you can blame me for that personally somewhat, but not IE). I would much rather take the time to implement XHTML properly after IE 7, and have it be truly interoperable… 
+^ Hachamovitch, Dean (2010-03-16). "HTML5, Hardware Accelerated: First IE9 Platform Preview Available for Developers". IEBlog on Microsoft Developer Network. Microsoft. Retrieved 2010-03-22. …At this time, we’re looking for developer feedback on our implementation of HTML5’s parsing rules, Selection APIs, XHTML support, and inline SVG. Within CSS3, we’re looking for developer feedback on IE9’s support for Selectors, Namespaces, Colors, Values, Backgrounds and Borders, and Fonts.… 
+^ "List of XHTML Sites (the X-Philes)". Retrieved 2008-08-26. 
+^ "In 2007, 37 leaders in search engine optimisation concluded that having keywords in the keywords attribute is little to none." Sanger.nu blog, September 9 2008, retrieved August 2 2011 Archived February 21, 2009, at the Wayback Machine.
+^ "Meta used for SEO". Archived from the original on March 18, 2016. Retrieved March 18, 2016. 
+^ Danny Sullivan, How To Use HTML Meta Tags, Search Engine Watch, December 5, 2002
+^ a b Ian Hickson, a former developer of the Opera browser and cofounder of the WHATWG (2002-09-08). "Sending XHTML as text/html Considered Harmful". Retrieved 2007-06-16. 
+^ Anne van Kesteren, a developer of the Opera browser (2004-06-13). "XHTML is invalid HTML". Retrieved 2007-06-16. 
+^ Maciej Stachowiak, a developer of Apple's Safari browser (2006-09-20). "Understanding HTML, XML and XHTML". Retrieved 2007-06-16. 
+^ Brad Fults (2005-12-21). "Sending XHTML as text/html Considered Harmful to Feelings". Retrieved 2008-09-13. There are not nearly as many disadvantages (if any) to sending XHTML as text/html as [Ian Hickson] claims and the advantages I mentioned above make it well worth using in my humble opinion. There are some subtle footnotes and parentheticals [in Hickson's article] indicating that the harmfulness only applies to authors that don't know the pitfalls of this practice, but much like the "Do not eat" label on the little packets of silica gel, Ian's advisory seems to be common sense and not worth mentioning to any author who actually knows what XHTML is and how to write it. 
+^ Paul McDonald (2007-06-30). "The case for XHTML". Retrieved 2008-09-13. Some people say XHTML on the Web has failed, but I say it is our biggest success in the fight for Web Standards. … XHTML is a good thing for the web, though, and it's a shame that people are trying to make a case against it. To prove this, I'll flesh out the myth for you and then show you why XHTML is the best thing since sliced bread, when it comes to our fight for Web Standards. … So to conclude, sending XHTML as text/html causes no damage or harm anywhere today, as long as your XHTML does validate. And, if you want Web Standards to become more and more widespread, stick to using XHTML and validate your pages. 
+^ Tim Berners-Lee (2006-10-27). "Reinventing HTML". Retrieved 2007-06-16. Some things are clearer with hindsight of several years. It is necessary to evolve HTML incrementally. The attempt to get the world to switch to XML, including quotes around attribute values and slashes in empty tags and namespaces all at once didn't work. The large HTML-generating public did not move, largely because the browsers didn't complain. Some large communities did shift and are enjoying the fruits of well-formed systems, but not all. It is important to maintain HTML incrementally, as well as continuing a transition to [a] well-formed world, and developing more power in that world.
+"The plan is to charter a completely new HTML group. Unlike the previous one, this one will be chartered to do incremental improvements to HTML, as also in parallel xHTML. It will have a different chair and staff contact. It will work on HTML and xHTML together. We have strong support for this group, from many people we have talked to, including browser makers. 
+^ Ian Hickson; David Hyatt (2011-01-13). "HTML5: A vocabulary and associated APIs for HTML and XHTML". Retrieved 2011-02-16. 
+^ Simon Pieters. "Results of mobile tests". Retrieved 2009-10-31. 
+^ "XHTML 1.0: The Extensible HyperText Markup Language, W3C Recommendation 26 January 2000". World Wide Web Consortium. 2000-01-26. Retrieved 2008-07-19. 
+^ "XHTML 1.0 The Extensible HyperText Markup Language (Second Edition)". World Wide Web Consortium. 2002-08-01. Retrieved 2008-07-19. 
+^ "Modularization of XHTML, W3C Recommendation 10 April 2001". World Wide Web Consortium. 2001-04-10. Retrieved 2008-07-19. 
+^ "XHTML Modularization 1.1 - Second Edition, W3C Recommendation 29 July 2010". World Wide Web Consortium. 2010-07-29. Retrieved 2010-12-31. 
+^ "XHTML 1.1 - Module-based XHTML, W3C Recommendation 31 May 2001". World Wide Web Consortium. 2001-05-31. Retrieved 2008-07-19. 
+^ "XHTML Media Types, W3C Working Group Note 1 August 2002". World Wide Web Consortium. 2002-08-01. Retrieved 2008-07-19. 
+^ a b "XHTML Media Types – Second Edition, W3C Working Group Note 16 January 2009". World Wide Web Consortium. 2009-01-16. Retrieved 2009-01-28.  This document supersedes the HTML Compatibility Guidelines originally found in XHTML 1.0 Appendix C.
+^ "XHTML 1.1, XHTML Basic 1.1, XHTML Print Recommendations Revised". W3C NEWS ARCHIVE: 2010. World Wide Web Consortium. Retrieved 12 December 2010. 
+^ "XHTML 1.1 - Module-based XHTML – Second Edition". World Wide Web Consortium. 2009-05-07. Retrieved 2009-05-25. 
+^ "XHTML Basic, W3C Recommendation 19 December 2000". World Wide Web Consortium. 2000-12-19. Retrieved 2008-07-19. 
+^ "XHTML Flavors comparisons". World Wide Web Consortium. 2007-01-09. Retrieved 2013-01-30. 
+^ XHTML Basic. W3.org. Retrieved on 2013-07-17.
+^ XHTML™ Basic 1.1. W3.org. Retrieved on 2013-07-17.
+^ "XHTML™ Basic 1.1 - Second Edition". w3.org. 
+^ "XHTML-Print, W3C Recommendation 20 September 2006". World Wide Web Consortium. 2006-09-20. Retrieved 2008-07-19. 
+^ a b "OMA Browsing Archive". OMA Releases. Open Mobile Alliance Ltd. 26 September 2011.  External link in |work= (help)
+^ "[XHTML] Agenda: 2008-07-09". w3.org. 
+^ See both XHTML 2.0 Considered Harmful and XHTML 2.0 Considered Hopeful by browser developer Tantek Çelik, who criticises early drafts of XHTML 2.0 for the absence of the style attribute and the cite element. Developer Daniel Glazman offers similar criticism, but also shows support for some backward-incompatible changes such as the decision to remove the ins and del elements.
+^ "XHTML 2.0, W3C Working Group Note 16 December 2010". World Wide Web Consortium. 2010-12-16. Retrieved 2010-12-31. 
+^ "XHTML2 Working Group Documents Published as W3C Notes". World Wide Web Consortium. 2010-12-16. Retrieved 2010-12-31. 
+^ Ian Hickson (2008-01-22). "HTML 5, 1.1.2. Relationship to XHTML2". World Wide Web Consortium. Retrieved 2008-07-19. … XHTML2… defines a new HTML vocabulary with better features for hyperlinks, multimedia content, annotating document edits, rich metadata, declarative interactive forms, and describing the semantics of human literary works such as poems and scientific papers… However, it lacks elements to express the semantics of many of the non-document types of content often seen on the Web. For instance, forum sites, auction sites, search engines, online shops, and the like, do not fit the document metaphor well, and are not covered by XHTML2… This specification aims to extend HTML so that it is also suitable in these contexts… 
+^ "9 The XHTML syntax — HTML5". w3.org. 
+^ HTML vs. XHTML, WHATWG Wiki
+
+
+External links[edit]
+
+
+
+Wikibooks has a book on the topic of: XHTML
+
+
+
+W3C's Markup Home Page
+XHTML 1.0 Recommendation
+XHTML 1.1 Recommendation
+XHTML 2.0 Working Group Note
+XHTML Basic
+XHTML 1.0 Strict / 1.1 Online Reference
+Links dealing with the MIME type of XHTML documents:
+
+Beware of XHTML
+Sending XHTML as text/html Considered Harmful
+Serving up XHTML with the correct MIME type
+The Road to XHTML 2.0: MIME Types – Mark Pilgrim (3/19/2003). Includes examples for conditionally serving application/xhtml+xml using PHP, Python, and Apache (via URL rewriting).
+Mozilla Web Author FAQ: How is the treatment of application/xhtml+xml documents different from the treatment of text/html documents? – summarizes one web browser's XHTML processing mode
+
+
+Empty elements in SGML, HTML, XML, and XHTML
+Heptagrama's Basic XHTML 1.0 Strict Tutorial
+W3C's Markup Validator
+HTML to XHTML conversion library for .NET
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Document markup languages
+
+
+
+Office suite
+
+
+
+Compound Document Format
+OOXML
+
+SpreadsheetML
+PresentationML
+WordprocessingML
+
+
+ODF
+UOF
+
+
+
+
+
+Well-known
+
+
+
+HTML
+XHTML
+MathML
+RTF
+TeX
+LaTeX
+Markdown
+
+
+
+
+
+Lesser-known
+
+
+
+AmigaGuide
+AsciiDoc
+CML
+C-HTML
+ConTeXt
+Crossmark
+DITA
+DocBook
+eLML
+EAD
+Enriched text
+FHTML
+GML
+GuideML
+HDML
+HyTime
+HyperTeX
+IPF
+LilyPond
+LinuxDoc
+Lout
+MIF
+MAML
+MEI
+MusicXML
+OMDoc
+OpenMath
+POD
+RTML
+RTML
+RFT
+S1000D
+TEI
+Texinfo
+troff
+Wikitext
+WML
+WapTV
+XAML
+YAML
+
+
+
+
+
+
+List of document markup languages
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+World Wide Web Consortium (W3C)
+
+
+
+Products and
+standards
+
+
+
+
+Recommendations
+
+
+
+ARIA
+Canonical XML
+CDF
+CSS
+DOM
+Geolocation API
+HTML (HTML5)
+ITS
+JSON-LD
+Linked Data Notifications
+MathML
+Micropub
+OWL
+P3P
+PLS
+RDF
+RDF Schema
+SISR
+SKOS
+SMIL
+SOAP
+SRGS
+SRI
+SSML
+SVG
+SCXML
+SPARQL
+Timed text
+VoiceXML
+Web storage
+WSDL
+Webmention
+XForms
+XHTML
+XHTML+RDFa
+XInclude
+XLink
+XML
+XML Base
+XML Encryption
+XML Events
+XML Information Set
+XML namespace
+XML Schema
+XML Signature
+XOP
+XPath
+XPath 2.0
+XPointer
+XProc
+XQuery
+XSL
+XSL-FO
+XSLT (elements)
+
+
+
+
+
+Notes
+
+
+
+XAdES
+XHTML+SMIL
+XUP
+
+
+
+
+
+Working drafts
+
+
+
+CCXML
+CURIE
+EME
+InkML
+MSE
+RIF
+SMIL Timesheets
+sXBL
+WICD
+XFDL
+XFrames
+XBL
+XMLHttpRequest
+
+
+
+
+
+Guidelines
+
+
+
+Web Content Accessibility Guidelines
+
+
+
+
+
+Initiative
+
+
+
+Multimodal Interaction Activity (MMI)
+Markup Validation Service
+Web Accessibility Initiative
+WebPlatform
+
+
+
+
+
+Deprecated
+
+
+
+C-HTML
+HDML
+JSSS
+PGML
+VML
+XHTML+MathML+SVG
+
+
+
+
+
+
+
+
+Organizations
+
+
+
+
+
+
+
+Advisory Committee (AC)
+World Wide Web Foundation
+
+
+
+
+
+Elected groups
+
+
+
+Advisory Board (AB)
+Technical Architecture Group (TAG)
+
+
+
+
+
+Working groups
+
+
+
+CSS
+HTML
+Geolocation
+Social Web
+SVG
+Web Hypertext Application Technology (WHATWG)
+Web Platform
+
+
+
+
+
+Closed groups
+
+
+
+Device Description (DDWG)
+WebOnt (Semantic Web Activity)
+
+
+
+
+
+
+
+
+Software
+
+
+
+
+
+
+
+CERN httpd
+Libwww
+
+
+
+
+
+Browsers
+
+
+
+Line Mode (1990–)
+Arena (1993–98)
+Agora (1994–97)
+Argo (1994–97)
+Amaya (browser/editor, 1996–2012)
+
+
+
+
+
+
+
+
+Conferences
+
+
+
+International World Wide Web Conference (IW3C)
+
+Steering Committee (IW3C2)
+First conference ("WWW1", 1994)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Web browsers
+
+
+
+
+
+
+Comparison
+
+lightweight
+
+
+History
+List
+
+for Unix
+
+
+Timeline
+Usage share
+
+
+
+
+
+
+
+
+
+Features
+
+
+
+Ad filtering
+Augmented browsing
+Bookmarks
+
+Bookmarklet
+Live bookmark
+Smart Bookmarks
+
+
+Browser extension
+Browser security
+Browser synchronizer
+
+comparison
+
+
+Cookies
+Download manager
+Favicon
+Incremental search
+Plug-in
+Privacy mode
+Tabs
+Universal Edit Button
+
+
+
+
+
+Web standards
+
+
+
+Acid tests
+Cascading Style Sheets
+HTML
+HTML5
+JavaScript
+MathML
+SVG
+WebGL
+XHTML
+
+
+
+
+
+Protocols
+
+
+
+HTTP
+HTTPS
+OCSP
+SPDY
+SSL/TLS
+WebSocket
+WPAD
+
+
+
+
+
+Related topics
+
+
+
+BrowserChoice.eu
+CRL
+iLoo
+Internet suite
+Man-in-the-browser
+Mobile Web
+Offline reader
+PAC
+Pwn2Own
+Rich Internet application
+Site-specific browser
+Widget
+World Wide Web
+XML
+
+
+
+
+
+
+
+
+
+
+
+
+
+Desktop
+
+
+
+
+
+
+
+Blink-based
+
+
+
+Chromium
+
+Brave
+Chrome
+Dragon
+Opera
+QupZilla
+Sleipnir
+Slimjet
+SRWare Iron
+UC Browser
+Vivaldi
+Yandex Browser
+Sputnik
+SafeZone
+
+
+
+
+
+
+
+Gecko-based
+
+
+
+AT&T Pogo
+Avant
+Camino
+Firefox
+
+Conkeror
+GNU IceCat
+IceDragon
+Swiftfox
+Swiftweasel
+TenFourFox
+Timberwolf
+Tor Browser
+Waterfox
+xB Browser
+
+
+Galeon
+Ghostzilla
+K-Meleon
+Kazehakase
+Kirix Strata
+Lotus Symphony
+Lunascape
+Mozilla
+
+Beonex Communicator
+Classilla
+Netscape
+SeaMonkey
+
+
+
+
+
+
+
+Trident-based
+
+
+
+AOL Explorer
+Avant
+Deepnet Explorer
+GreenBrowser
+Internet Explorer
+Lunascape
+Maxthon
+MediaBrowser
+MenuBox
+NeoPlanet
+NetCaptor
+SlimBrowser
+SpaceTime
+UltraBrowser
+WebbIE
+ZAC Browser
+
+
+
+
+
+WebKit-based
+
+
+
+Arora
+Avant
+Dooble
+Epic
+Flock
+Fluid
+iCab
+Konqueror
+Lunascape
+Maxthon
+Midori
+OmniWeb
+Origyn Web Browser
+Otter Browser
+QtWeb
+rekonq
+Safari
+Shiira
+SlimBoat
+surf
+Torch
+Uzbl
+Epiphany
+WebPositive
+xombrero
+
+
+
+
+
+Text-based
+
+
+
+ELinks
+Emacs/W3
+Line Mode Browser
+Links
+Lynx
+w3m
+
+
+
+
+
+Other
+
+
+
+Basilisk
+abaco
+Amaya
+Arachne
+Arena
+Charon
+Dillo
+eww
+Gazelle
+HotJava
+IBM Home Page Reader
+IBrowse
+KidZui
+Microsoft Edge
+Mosaic
+Mothra
+NetPositive
+NetSurf
+Pale Moon
+Qihoo 360 Secure Browser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mobile
+
+
+
+
+
+
+
+Blink-based
+
+
+
+Android Browser
+Chromium
+
+Brave
+Chrome for Android
+Opera Mobile
+Silk
+
+
+Firefox Focus for Android
+Opera Mini on Android
+
+
+
+
+
+Gecko-based
+
+
+
+Firefox for Android
+MicroB
+Minimo
+Waterfox
+
+
+
+
+
+Presto-based
+
+
+
+Opera Mini (on Extreme/Mini modes)
+
+
+
+
+
+Trident-based
+
+
+
+Maxthon
+
+
+
+
+
+WebKit-based
+
+
+
+BOLT
+Dolphin Browser
+Chrome for iOS
+Coast (web browser)
+Firefox for iOS
+Firefox Focus for iOS
+Opera Mini (Turbo/Normal modes on iOS)
+Maxthon
+Mercury Browser
+Nokia Browser for Symbian
+Rockmelt
+Safari
+Steel
+
+
+
+
+
+Other
+
+
+
+Blazer
+CM Browser
+Deepfish
+ibisBrowser
+Internet Explorer Mobile
+Iris Browser
+Konqueror Embedded
+Microsoft Edge
+NetFront
+Skweezer
+Skyfire
+Teashark
+ThunderHawk
+UC Browser
+Vision
+WinWAP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Television and video game console
+
+
+
+
+
+
+
+Gecko-based
+
+
+
+Kylo
+
+
+
+
+
+Presto-based
+
+
+
+Internet Channel
+
+
+
+
+
+WebKit-based
+
+
+
+Google TV
+Nintendo 3DS Internet Browser
+Nintendo DS & DSi Browser
+NetFront
+Steam Overlay
+Wii U Internet Browser
+
+
+
+
+
+Other
+
+
+
+MSN TV
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Software no longer in development shown in italics
+
+
+ Category
+ Commons
+ Internet portal
+ Software portal
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+GND: 4600114-1
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=XHTML&oldid=813634009"					Categories: XHTMLHTMLMarkup languagesOpen formatsWorld Wide Web Consortium standardsXML-based standardsHidden categories: Webarchive template wayback linksCS1 errors: external linksAll articles with vague or ambiguous timeVague or ambiguous time from March 2013Articles containing potentially dated statements from November 2015All articles containing potentially dated statementsArticles needing additional references from July 2013All articles needing additional referencesAll Wikipedia articles needing clarificationWikipedia articles needing clarification from March 2013Wikipedia articles with GND identifiersPages using RFC magic links

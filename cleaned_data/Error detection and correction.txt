@@ -1,0 +1,218 @@
+confused error handling
+
+
+
+
+
+
+article needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed august 2008 learn remove template message
+
+
+
+information theory coding theory applications computer science telecommunication error detection correction error control techniques enable reliable delivery digital data unreliable communication channels many communication channels subject channel noise thus errors introduced transmission source receiver error detection techniques allow detecting errors error correction enables reconstruction original data many cases
+
+
+
+contents
+
+
+definitions
+history
+introduction
+implementation
+error detection schemes
+
+repetition codes
+parity bits
+checksums
+cyclic redundancy checks crcs
+cryptographic hash functions
+errorcorrecting codes
+
+
+error correction
+
+automatic repeat request
+errorcorrecting code
+hybrid schemes
+
+
+applications
+
+internet
+deepspace telecommunications
+satellite broadcasting
+data storage
+errorcorrecting memory
+
+
+also
+references
+reading
+external links
+
+
+
+definitionsedit
+general definitions terms follows
+
+error detection detection errors caused noise impairments transmission transmitter receiver
+error correction detection errors reconstruction original errorfree data
+
+historyedit
+modern development errorcorrecting codes 1947 richard hamming1 description hammings code appeared claude shannons mathematical theory communication2 quickly generalized marcel golay3
+introductionedit
+general idea achieving error detection correction redundancy extra data message receivers check consistency delivered message recover data determined corrupted errordetection correction schemes either systematic nonsystematic systematic scheme transmitter sends original data attaches fixed number check bits parity data derived data bits deterministic algorithm error detection required receiver simply apply algorithm received data bits compare output received check bits values match error occurred point transmission system uses nonsystematic code original message transformed encoded message least many bits original message
+good error control performance requires scheme selected based characteristics communication channel common channel models include memoryless models errors occur randomly certain probability dynamic models errors occur primarily bursts consequently errordetecting correcting codes generally distinguished randomerrordetectingcorrecting bursterrordetectingcorrecting codes also suitable mixture random errors burst errors
+channel capacity cannot determined highly variable errordetection scheme combined system retransmissions erroneous data known automatic repeat request notably used internet alternate approach error control hybrid automatic repeat request harq combination errorcorrection coding
+implementationedit
+error correction generally realized different ways
+
+automatic repeat request sometimes also referred backward error correction error control technique whereby error detection scheme combined requests retransmission erroneous data every block data received checked using error detection code used check fails retransmission data requested done repeatedly data verified
+forward error correction sender encodes data using errorcorrecting code prior transmission additional information redundancy added code used receiver recover original data general reconstructed data deemed likely original data
+
+combined minor errors corrected without retransmission major errors corrected request retransmission called hybrid automatic repeatrequest harq
+error detection schemesedit
+error detection commonly realized using suitable hash function checksum algorithm hash function adds fixedlength message enables receivers verify delivered message recomputing comparing provided
+exists vast variety different hash function designs however particularly widespread either simplicity suitability detecting certain kinds errors cyclic redundancy checks performance detecting burst errors
+randomerrorcorrecting code based minimum distance coding provide strict guarantee number detectable errors protect preimage attack repetition code described section special case errorcorrecting code although rather inefficient repetition code suitable applications error correction detection simplicity
+repetition codesedit
+main article repetition code
+repetition code coding scheme repeats bits across channel achieve errorfree communication given stream data transmitted data divided blocks bits block transmitted predetermined number times example send pattern 1011 fourbit block repeated three times thus producing 1011 1011 1011 however twelvebit pattern received 1010 1011 1011 first block unlike determined error occurred
+repetition code inefficient susceptible problems error occurs exactly place group 1010 1010 1010 previous example would detected correct advantage repetition codes extremely simple fact used transmissions numbers stations45
+parity bitsedit
+main article parity
+parity added group source bits ensure number bits bits value outcome even simple scheme used detect single number three five errors output even number flipped bits make parity appear correct even though data erroneous
+extensions variations parity mechanism horizontal redundancy checks vertical redundancy checks double dual diagonal parity used raiddp
+checksumsedit
+main article checksum
+checksum message modular arithmetic message code words fixed word length byte values negated means onescomplement operation prior transmission detect errors resulting allzero messages
+checksum schemes include parity bits check digits longitudinal redundancy checks checksum schemes damm algorithm luhn algorithm verhoeff algorithm specifically designed detect errors commonly introduced humans writing remembering identification numbers
+cyclic redundancy checks crcsedit
+main article cyclic redundancy check
+cyclic redundancy check nonsecure hash function designed detect accidental changes digital data computer networks result suitable detecting maliciously introduced errors characterized specification called generator polynomial used divisor polynomial long division finite field taking input data dividend remainder becomes result
+cyclic code favorable properties make well suited detecting burst errors crcs particularly easy implement hardware therefore commonly used digital networks storage devices hard disk drives
+even parity special case cyclic redundancy check singlebit generated divisor
+cryptographic hash functionsedit
+main article cryptographic hash function
+output cryptographic hash function also known message digest provide strong assurances data integrity whether changes data accidental transmission errors maliciously introduced modification data likely detected mismatching hash value furthermore given hash value infeasible find input data given yield hash value attacker change message also hash value keyed hash message authentication code used additional security without knowing infeasible attacker calculate correct keyed hash value modified message
+errorcorrecting codesedit
+main article forward error correction
+errorcorrecting code used error detection code minimum hamming distance detect errors code word using minimumdistancebased errorcorrecting codes error detection suitable strict limit minimum number errors detected desired
+codes minimum hamming distance degenerate cases errorcorrecting codes used detect single errors parity example singleerrordetecting code
+error correctionedit
+automatic repeat request arqedit
+main article automatic repeat request
+automatic repeat request error control method data transmission makes errordetection codes acknowledgment andor negative acknowledgment messages timeouts achieve reliable data transmission acknowledgment message sent receiver indicate correctly received data frame
+usually transmitter receive acknowledgment timeout occurs within reasonable amount time sending data frame retransmits frame either correctly received error persists beyond predetermined number retransmissions
+three types protocols stopandwait gobackn selective repeat
+appropriate communication channel varying unknown capacity case internet however requires availability back channel results possibly increased latency retransmissions requires maintenance buffers timers retransmissions case network congestion strain server overall network capacity6
+example used shortwave radio data links form arqe combined multiplexing arqm
+errorcorrecting codeedit
+errorcorrecting code forward error correction code process adding redundant data parity data message recovered receiver even number errors capability code used introduced either process transmission storage since receiver sender retransmission data backchannel required forward error correction therefore suitable simplex communication broadcasting errorcorrecting codes frequently used lowerlayer communication well reliable storage media dvds hard disks
+errorcorrecting codes usually distinguished convolutional codes block codes
+
+convolutional codes processed bitbybit basis particularly suitable implementation hardware viterbi decoder allows optimal decoding
+block codes processed blockbyblock basis early examples block codes repetition codes hamming codes multidimensional paritycheck codes followed number efficient codes reed–solomon codes notable current widespread turbo codes lowdensity paritycheck codes ldpc relatively constructions provide almost optimal efficiency
+
+shannons theorem important theorem forward error correction describes maximum information rate reliable communication possible channel certain error probability signaltonoise ratio strict upper limit expressed terms channel capacity specifically theorem says exist codes increasing encoding length probability error discrete memoryless channel made arbitrarily small provided code rate smaller channel capacity code rate defined fraction source symbols encoded symbols
+actual maximum code rate allowed depends errorcorrecting code used lower shannons proof existential nature show construct codes optimal efficient encoding decoding algorithms
+hybrid schemesedit
+main article hybrid
+hybrid combination forward error correction basic approaches6
+
+messages always transmitted parity data errordetection redundancy receiver decodes message using parity information requests retransmission using parity data sufficient successful decoding identified failed integrity check
+messages transmitted without parity data errordetection information receiver detects error requests information transmitter using uses reconstruct original message
+
+latter approach particularly attractive erasure channel using rateless erasure code
+applicationsedit
+applications require latency telephone conversations cannot automatic repeat request must forward error correction time system discovers error retransmits resent data arrive late good
+applications transmitter immediately forgets information soon sent television cameras cannot must error occurs original data longer available also used data storage systems raid distributed data store
+applications must return channel applications return channel cannot applications require extremely error rates digital money transfers must reliability inspection engineering also make theory errorcorrecting codes7
+internetedit
+typical tcpip stack error control performed multiple levels
+
+ethernet frame carries crc32 checksum frames received incorrect checksums discarded receiver hardware
+ipv4 header contains checksum protecting contents header packets mismatching checksums dropped within network receiver
+checksum omitted ipv6 header order minimize processing costs network routing current link layer technology assumed provide sufficient error detection also 3819
+optional checksum covering payload addressing information headers packets incorrect checksums discarded operating system network stack checksum optional ipv4 datalink layer checksum already provide desired level error protection
+provides checksum protecting payload addressing information headers packets incorrect checksums discarded within network stack eventually retransmitted using either explicitly tripleack implicitly timeout
+
+deepspace telecommunicationsedit
+development errorcorrection codes tightly coupled history deepspace missions extreme dilution signal power interplanetary distances limited power availability aboard space probes whereas early missions sent data uncoded starting 1968 digital error correction implemented form suboptimally decoded convolutional codes reed–muller codes8 reed–muller code well suited noise spacecraft subject approximately matching bell curve implemented mariner spacecraft missions 1969 1977
+voyager voyager missions started 1977 designed deliver color imaging amongst scientific information jupiter saturn9 resulted increased coding requirements thus spacecraft supported optimally viterbidecoded convolutional codes could concatenated outer golay 24128 code
+voyager craft additionally supported implementation reed–solomon code concatenated reed–solomon–viterbi code allowed powerful error correction enabled spacecrafts extended journey uranus neptune craft coding system upgrades 1989
+ccsds currently recommends usage error correction codes performance similar voyager code minimum concatenated codes increasingly falling favor space missions replaced powerful codes turbo codes ldpc codes
+different kinds deep space orbital missions conducted suggest trying find size fits error correction system ongoing problem time come missions close earth nature channel noise different spacecraft interplanetary mission experiences additionally spacecraft increases distance earth problem correcting noise gets larger
+satellite broadcasting dvbedit
+demand satellite transponder bandwidth continues grow fueled desire deliver television including channels high definition data transponder availability bandwidth constraints limited growth transponder capacity determined selected modulation scheme forward error correction rate
+overview
+
+qpsk coupled traditional reed solomon viterbi codes used nearly years delivery digital satellite
+higher order modulation schemes 8psk 16qam 32qam enabled satellite industry increase transponder efficiency several orders magnitude
+increase information rate transponder comes expense increase carrier power meet threshold requirement existing antennas
+tests conducted using latest chipsets demonstrate performance achieved using turbo codes even lower figure assumed early designs
+
+data storageedit
+error detection correction codes often used improve reliability data storage mediacitation needed parity track present first magnetic tape data storage 1951 optimal rectangular code used group coded recording tapes detects also corrects singlebit errors file formats particularly archive formats include checksum often crc32 detect corruption truncation employ redundancy andor parity files recover portions corrupted data reed solomon codes used compact discs correct errors caused scratches
+modern hard drives codes detect reed–solomon codes correct minor errors sector reads recover data sectors gone store data spare sectors10 raid systems variety error correction techniques correct errors hard drive completely fails filesystems btrfs well raid implementations support data scrubbing resilvering allows blocks detected hopefully recovered used recovered data rewritten exactly physical location spare blocks elsewhere piece hardware replacement hardware
+errorcorrecting memoryedit
+main article memory
+dram memory provide increased protection soft errors relying error correcting codes errorcorrecting memory known edacprotected memory particularly desirable high faulttolerant applications servers well deepspace applications increased radiation
+errorcorrecting memory controllers traditionally hamming codes although triple modular redundancy
+interleaving allows distributing effect single cosmic potentially upsetting multiple physically neighboring bits across multiple words associating neighboring bits different words long single event upset exceed error threshold single error particular word accesses corrected singlebit error correcting code illusion errorfree memory system maintained11
+addition hardware providing features required memory operate operating systems usually contain related reporting facilities used provide notifications soft errors transparently recovered increasing rate soft errors might indicate dimm module needs replacing feedback information would easily available without related reporting capabilities example linux kernels edac subsystem previously known bluesmoke collects data errorcheckingenabled components inside computer system beside collecting reporting back events related memory also supports checksumming errors including detected bus121314
+systems also support memory scrubbing
+alsoedit
+
+
+computer science portal
+
+
+
+berger code
+burst errorcorrecting code
+link adaptation
+list algorithms error detection correction
+list errorcorrecting codes
+list hash functions
+reliability computer networking
+
+referencesedit
+
+
+thompson thomas 1983 errorcorrecting codes sphere packings simple groups carus mathematical monographs mathematical association america isbn 0883850230
+shannon 1948 mathematical theory communication bell system tech journal
+golay marcel 1949 notes digital coding procire ieee
+frank gerwen numbers mysterious stations retrieved march 2012
+gary cutlack august 2010 mysterious russian numbers station changes broadcast years gizmodo retrieved march 2012
+mcauley reliable broadband communication using burst erasure correcting code sigcomm 1990
+bengal herer 2003 selfcorrecting inspection procedure inspection errors transactions quality reliability 529540
+andrews development turbo ldpc codes deepspace applications proceedings ieee 2007
+huffman william cary pless vera 2003 fundamentals errorcorrecting codes cambridge university press isbn 9780521782807
+hard drive died scott moulton
+using strongarm sa1110 onboard computer nanosatellite tsinghua space center tsinghua university beijing archived original 20111002 retrieved 20090216
+jeff layton error detection correction linux magazine retrieved 20140812
+edac project bluesmokesourceforgenet retrieved 20140812
+documentationedactxt linux kernel documentation kernelorg 20140616 archived original 20090905 retrieved 20140812
+
+
+readingedit
+
+daniel costello 1983 error control coding fundamentals applications prentice hall isbn 013283796x
+
+external linksedit
+
+online textbook information theory inference learning algorithms david mackay contains chapters elementary errorcorrecting codes theoretical limits errorcorrection latest stateoftheart errorcorrecting codes including lowdensity paritycheck codes turbo codes fountain codes
+compute parameters linear codes online interface generating computing parameters minimum distance covering radius linear errorcorrecting codes
+page
+softecc system software memory integrity checking
+tunable softwarebased dram error detection correction library
+detection correction silent data corruption largescale highperformance computing
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleerrordetectionandcorrectionoldid810663727 categories error detection correctioncomputer errorshidden categories articles needing additional references august 2008all articles needing additional referencesall articles unsourced statementsarticles unsourced statements january 2012pages using magic links

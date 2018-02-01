@@ -1,0 +1,1356 @@
+
+
+
+
+
+
+
+
+filename extension
+
+
+
+internet media type
+
+
+
+applicationxml
+textxml1
+
+
+
+
+
+uniform type identifier
+publicxml
+
+
+conformation
+publictext
+
+
+developed
+world wide consortium
+
+
+type format
+markup language
+
+
+extended
+sgml
+
+
+extended
+
+
+
+numerous languages including xhtml
+
+atom
+
+
+
+
+
+
+standard
+
+
+
+fifth edition
+november 2008 years 20081126
+second edition
+august 2006 years 20060816
+
+
+
+
+
+open format
+
+
+
+
+
+
+extensible markup language
+
+status
+published
+
+
+year started
+1996 years 1996
+
+
+editors
+
+
+
+bray
+jean paoli
+sperbergmcqueen
+maler
+françois yergeau
+john cowan
+
+
+
+
+
+related standards
+schema
+
+
+domain
+data serialization
+
+
+abbreviation
+
+
+
+website
+
+
+
+
+
+computing extensible markup language markup language defines rules encoding documents format humanreadable machinereadable w3cs specification2 several related specifications3—all free open standards—define xml4
+design goals emphasize simplicity generality usability across internet5 textual data format strong support unicode different human languages although design focuses documents language widely used representation arbitrary data structures6 used services
+several schema systems exist definition xmlbased languages programmers developed many application programming interfaces apis processing data
+
+
+
+contents
+
+
+applications
+terminology
+characters escaping
+
+valid characters
+encoding detection
+escaping
+comments
+international
+
+
+wellformedness errorhandling
+schemas validation
+
+document type definition
+schema
+relax
+schematron
+dsdl schema languages
+
+
+related specifications
+programming interfaces
+
+simple
+pull parsing
+document object model
+data binding
+data type
+
+
+history
+
+sources
+versions
+
+
+criticism
+also
+notes
+references
+reading
+external links
+
+
+
+applications xmledit
+essence extensible markup languages necessary explained markup language example markup language standard generalized markup language
+hundreds document formats using syntax developed7 including atom soap xhtml xmlbased formats become default many officeproductivity tools including microsoft office office open openofficeorg libreoffice opendocument apples iworkcitation needed also provided base language communication protocols xmpp applications microsoft framework files configuration apple implementation registry based xml8
+industry data standards fpml mismo based rich features schema specification many standards quite complex uncommon specification comprise several thousand pages
+publishing dita industry data standard used extensively underpin various publishing formats
+widely used services oriented architecture disparate systems communicate exchanging messages message exchange format standardised schema also referred canonical schema
+come common interchange data internet ietf rfc3023 superseded rfc7303 gave rules construction internet media types sending also defines media types applicationxml textxml data nothing semantics textxml criticizedi potential source encoding problems suggested deprecated9
+7303 also recommends xmlbased languages given media types ending example imagesvgxml
+guidelines networked context appear 3470 also known ietf document covering many aspects designing deploying xmlbased language
+terminologyedit
+material section based specification exhaustive list constructs appear provides introduction constructs often encountered daytoday
+
+character
+document string characters almost every legal unicode character appear document
+
+
+processor application
+processor analyzes markup passes structured information application specification places requirements processor must application outside scope processor specification calls often referred colloquially parser
+
+
+markup content
+characters making document divided markup content distinguished application simple syntactic rules generally strings constitute markup either begin character begin character strings characters markup content however cdata section delimiters cdata classified markup text classified content addition whitespace outermost element classified markup
+
+
+
+markup construct begins ends tags come three flavors
+
+starttag section
+endtag section
+emptyelement linebreak
+
+
+
+
+element
+element logical document component either begins starttag ends matching endtag consists emptyelement characters starttag endtag elements content contain markup including elements called child elements example greetinghello worldgreeting another linebreak
+
+
+attribute
+attribute markup construct consisting name–value pair exists within starttag emptyelement example srcmadonnajpg altmadonna names attributes values madonnajpg madonna respectively another example step number3connect bstep name attribute number value attribute single value attribute appear element common situation list multiple values desired must done encoding list wellformed attributeii format beyond defines usually either comma semicolon delimited list individual values known contain spacesiii spacedelimited list used classinner greetingboxwelcomediv attribute class value inner greetingbox also indicates class names inner greetingbox
+
+
+declaration
+documents begin declaration describes information example version10 encodingutf8
+
+characters escapingedit
+documents consist entirely characters unicode repertoire except small number specifically excluded control characters character defined unicode appear within content document
+includes facilities identifying encoding unicode characters make document expressing characters reason another cannot used directly
+valid charactersedit
+main article valid characters
+unicode code points following ranges valid documents10
+
+u0009 horizontal u000a line feed u000d carriage return controls accepted
+u0020–ud7ff ue000–ufffd excludes noncharacters surrogates ufffe uffff forbidden
+u10000–u10ffff includes code points supplementary planes including noncharacters
+
+1111 extends allowed characters include plus remaining characters range u0001–u001f time however restricts control characters u0009 horizontal u000a line feed u000d carriage return u0085 next line requiring written escaped form example u0001 must written equivalent case characters restriction backwards incompatibility introduced allow common encoding errors detected
+code point u0000 null character permitted document
+encoding detectionedit
+unicode character encoded bytes storage transmission variety different ways called encodings unicode defines encodings cover entire repertoire wellknown ones include utf8 utf1612 many text encodings predate unicode ascii isoiec 8859 character repertoires almost every case subsets unicode character
+allows unicodedefined encodings encodings whose characters also appear unicode also provides mechanism whereby processor reliably without prior knowledge determine encoding used13 encodings utf8 utf16 necessarily recognized every parser
+escapingedit
+provides escape facilities including characters problematic include directly example
+
+characters syntax markers never appear content outside cdata section allowed recommended entity values14
+character encodings support subset unicode example legal encode document ascii ascii lacks code points unicode characters
+might possible type character authors machine
+characters glyphs cannot visually distinguished characters nonbreaking space space cyrillic capital letter x410 latin capital letter
+
+five predefined entities
+
+represents
+represents
+represents
+apos represents
+quot represents
+
+permitted unicode characters represented numeric character reference consider chinese character whose numeric code unicode hexadecimal 4e2d decimal 20013 user whose keyboard offers method entering character could still insert document encoded either 20013 x4e2d similarly string jörg could encoded inclusion document jxf6rg
+permitted however null character control characters excluded even using numeric character reference15 alternative encoding mechanism base64 needed represent characters
+commentsedit
+comments appear anywhere document outside markup comments cannot appear declaration comments begin compatibility sgml string doublehyphen allowed inside comments16 means comments cannot nested ampersand special significance within comments entity character references recognized represent characters outside character document encoding
+example valid comment need escape code comments
+international useedit
+
+
+
+example contains armenian text without proper rendering support question marks boxes symbols instead armenian letters
+
+
+
+
+
+example contains cyrillic text without proper rendering support question marks boxes misplaced vowels missing conjuncts instead cyrillic letters
+
+
+fifth edition support direct almost unicode character element names attributes comments character data processing instructions ones special symbolic meaning lessthan sign following wellformed document including chinese armenian cyrillic characters
+
+
+version10 encodingutf8
+լեզուռուսերենданные俄语
+
+wellformedness errorhandlingedit
+main article wellformed document
+specification defines document wellformed text meaning satisfies list syntax rules provided specification points fairly lengthy list include
+
+document contains properly encoded legal unicode characters
+none special syntax characters appear except performing markupdelineation roles
+starttag endtag emptyelement delimit elements correctly nested none missing none overlapping
+names casesensitive starttag endtag must match exactly
+names cannot contain characters space character cannot begin numeric digit
+single root element contains elements
+
+definition document excludes texts contain violations wellformedness rules simply processor encounters violation required report errors cease normal processing policy occasionally referred draconian error handling stands notable contrast behavior programs process html designed produce reasonable result even presence severe markup errors17 xmls policy area criticized violation postels conservative send liberal accept18
+specification defines valid document wellformed document also conforms rules document type definition dtd1920
+schemas validationedit
+addition wellformed document valid means contains reference document type definition elements attributes declared follow grammatical rules specifies
+processors classified validating nonvalidating depending whether check documents validity processor discovers validity error must able report continue normal processing
+example schema grammar since initial publication substantial work area schema languages schema languages typically constrain elements used document attributes applied order appear allowable parentchild relationships
+document type definitionedit
+main article document type definition
+oldest schema language document type definition inherited sgml
+dtds following benefits
+
+support ubiquitous inclusion standard
+dtds terse compared elementbased schema languages consequently present information single screen
+dtds allow declaration standard public entity sets publishing characters
+dtds define document type rather types used namespace thus grouping constraints document single collection
+
+dtds following limitations
+
+explicit support newer features importantly namespaces
+lack expressiveness dtds simpler sgml dtds certain structures cannot expressed regular grammars dtds support rudimentary datatypes
+lack readability designers typically make heavy parameter entities behave essentially textual macros make easier define complex grammars expense clarity
+syntax based regular expression syntax inherited sgml describe schema typical apis attempt offer applications structured representation syntax less accessible programmers elementbased syntax
+
+peculiar features distinguish dtds schema types syntactic support embedding within documents defining entities arbitrary fragments text andor markup processor inserts document wherever referenced like character escapes
+technology still used many applications ubiquity
+schemaedit
+main article schema
+newer schema language described successor dtds schema often referred initialism schema instances schema definition xsds powerful dtds describing languages rich datatyping system allow detailed constraints documents logical structure xsds also xmlbased format makes possible ordinary tools help process
+xsschema element defines schema
+
+
+version10 encodingiso88591
+xsschema xmlnsxshttpwwww3org2001xmlschemaxsschema
+
+relax ngedit
+relax regular language next generation initially specified oasis standard part regulargrammarbased validation isoiec 19757 dsdl relax schemas written either based syntax compact nonxml syntax syntaxes isomorphic james clarks conversion tool—trang—can convert without loss information relax simpler definition validation framework schema making easier implement also ability datatype framework plugins relax schema author example require values document conform definitions schema datatypes
+schematronedit
+schematron language making assertions presence absence patterns document typically uses xpath expressions schematron standard part rulebased validation isoiec 19757 dsdl
+dsdl schema languagesedit
+dsdl document schema definition languages multipart isoiec standard isoiec 19757 brings together comprehensive small schema languages targeted specific problems dsdl includes relax full compact syntax schematron assertion language languages defining datatypes character repertoire constraints renaming entity expansion namespacebased routing document fragments different validators dsdl schema languages vendor support schemas extent grassroots reaction industrial publishers lack utility schemas publishing
+schema languages describe structure particular format also offer limited facilities influence processing individual files conform format dtds xsds ability instance provide infoset augmentation facility attribute defaults relax schematron intentionally provide
+related specificationsedit
+cluster specifications closely related developed starting soon initial publication frequently case term used refer together technologies come seen part core
+
+namespaces enable document contain elements attributes taken different vocabularies without naming collisions occurring although namespaces part specification virtually software also supports namespaces
+base defines xmlbase attribute used base resolution relative references within scope single element
+information infoset abstract data model documents terms information items infoset commonly used specifications languages convenience describing constraints constructs languages allow
+extensible stylesheet language family languages used transform render documents split three parts
+
+
+
+
+xslt transformations language transforming documents documents formats html plain text xslfo xslt tightly coupled xpath uses address components input document mainly elements attributes
+xslfo formatting objects language rendering documents often used generate pdfs
+xpath path language nonxml language addressing components elements attributes document xpath widely used corexml specifications programming libraries accessing xmlencoded data
+
+
+
+
+xquery query query language strongly rooted xpath schema provides methods access manipulate return mainly conceived query language databases
+signature defines syntax processing rules creating digital signatures content
+encryption defines syntax processing rules encrypting content
+xmlmodel part schema association isoiec 19757 dsdl defines means associating document schema types mentioned
+
+specifications conceived part core failed find wide adoption including xinclude xlink xpointer
+programming interfacesedit
+design goals include shall easy write programs process documents5 despite specification contains almost information programmers might processing infoset specification provides vocabulary refer constructs within document provide guidance access information variety apis accessing developed used standardized
+existing apis processing tend fall categories
+
+streamoriented apis accessible programming language example stax
+treetraversal apis accessible programming language example
+data binding provides automated translation document programminglanguage objects
+declarative transformation languages xslt xquery
+syntax extensions generalpurpose programming languages example linq scala
+
+streamoriented facilities require less memory certain tasks based linear traversal document faster simpler alternatives treetraversal databinding apis typically require much memory often found convenient programmers include declarative retrieval document components xpath expressions
+xslt designed declarative description document transformations widely implemented serverside packages browsers xquery overlaps xslt functionality designed searching large databases
+simple xmledit
+main article simple
+simple lexical eventdriven document read serially contents reported callbacks various methods handler object users design fast efficient implement difficult extracting information random since tends burden application author keeping track part document processed better suited situations certain types information always handled matter occur document
+pull parsingedit
+pull parsing21 treats document series items read sequence using iterator design pattern allows writing recursive descent parsers structure code performing parsing mirrors structure parsed intermediate parsed results used accessed local variables within methods performing parsing passed method parameters lowerlevel methods returned method return values higherlevel methods examples pull parsers include stax java programming language xmlpullparser smalltalk xmlreader elementtreeiterparse python systemxmlxmlreader framework traversal nodeiterator treewalker
+pull parser creates iterator sequentially visits various elements attributes data document code uses iterator test current item tell example whether starttag endtag text inspect attributes local name namespace values attributes value text also move iterator next item code thus extract information document traverses recursivedescent approach tends lend keeping data typed local variables code parsing instance typically requires parser manually maintain intermediate data within stack elements parent elements element parsed pullparsing code straightforward understand maintain parsing code
+document object modeledit
+main article document object model
+document object model allows navigation entire document tree node objects representing documents contents document created parser generated manually users limitations data types nodes abstract implementations provide programming languagespecific bindings implementations tend memory intensive generally require entire document loaded memory constructed tree objects access allowed
+data bindingedit
+data binding binding documents hierarchy custom strongly typed objects contrast generic objects created parser approach simplifies code development many cases allows problems identified compile time rather runtime suitable applications document structure known fixed time application written example data binding systems include java architecture binding jaxb serialization framework22 serialization gsoap
+data typeedit
+appeared firstclass data type languages ecmascript extension ecmascriptjavascript language explicitly defines specific objects xmllist javascript support document nodes node lists distinct objects dotnotation specifying parentchild relationships23 supported mozilla browsers though deprecated adobe actionscript adopted universally similar notations used microsofts linq implementation microsoft scala uses java opensource xmlsh application provides linuxlike shell special features manipulation similarly treats data type using notation24 resource description framework defines data type rdfxmlliteral hold wrapped canonical xml25 facebook produced extensions javascript languages core syntax similar fashion namely respectively
+historyedit
+application profile sgml 887926
+versatility sgml dynamic information display understood early digital media publishers late 1980s prior rise internet2728 mid1990s practitioners sgml gained experience thennew world wide believed sgml offered solutions problems likely face grew connolly added sgml list w3cs activities joined staff 1995 work began mid1996 microsystems engineer bosak developed charter recruited collaborators bosak well connected small community people experience sgml web29
+compiled working group eleven members30 supported roughly 150member interest group technical debate took place interest group mailing list issues resolved consensus failed majority vote working group record design decisions rationales compiled michael sperbergmcqueen december 199731 james clark served technical lead working group notably contributing emptyelement empty syntax name names forward consideration included magma minimal architecture generalized markup applications slim structured language internet markup mgml minimal generalized markup language coeditors specification originally bray michael sperbergmcqueen halfway project bray accepted consulting engagement netscape provoking vociferous protests microsoft bray temporarily asked resign editorship intense dispute working group eventually solved appointment microsofts jean paoli third coeditor
+working group never facetoface design accomplished using combination email weekly teleconferences major design decisions reached short burst intense work august november 199632 first working draft specification published33 design work continued 1997 became recommendation february 1998
+sourcesedit
+profile standard sgml comes sgml unchanged sgml comes separation logical physical structures elements entities availability grammarbased validation dtds separation data metadata elements attributes mixed content separation processing representation processing instructions default anglebracket syntax removed sgml declaration fixed delimiter adopts unicode document character
+sources technology text encoding initiative defined profile sgml transfer syntax html elements synchronous resource document character sets separate resource encoding xmllang attribute invented like http metadata accompanied resource rather needed declaration link ercsextended reference concrete syntax project spread standardization project regarding east asian documents project isorelated chinajapankorea document processing expert group basis naming rules spread also introduced hexadecimal numeric character references concept references make available unicode characters support ercs html better sgml standard 8879 revised 1996 1998 websgml adaptations header followed hytime
+ideas developed discussion novel included algorithm encoding detection encoding header processing instruction target xmlspace attribute close delimiter emptyelement tags notion wellformedness opposed validity enables parsing without schema first formalized although implemented successfully electronic book technology dynatext software34 software university waterloo oxford english dictionary project risp lisp sgml text processor uniscope tokyo army missile command iads hypertext system mentor graphics context interleaf xerox publishing system
+versionsedit
+current versions first initially defined 1998 undergone minor revisions since without given version number currently fifth edition published november 2008 widely implemented still recommended general
+second initially published february 2004 third edition35 currently second edition published august 2006 contains features contentious intended make easier certain cases36 main changes enable lineending characters used ebcdic platforms scripts characters absent unicode widely implemented recommended need particular features37
+prior fifth edition release differed stricter requirements characters available element attribute names unique identifiers first four editions characters exclusively enumerated using specific version unicode standard unicode unicode fifth edition substitutes mechanism futureproof reduces redundancy approach taken fifth edition editions certain characters forbidden names everything else allowed accommodate suitable name characters future unicode versions fifth edition names contain characters balinese cham phoenician scripts among many others added unicode since unicode 3236
+almost unicode code point used character data attribute values document even character corresponding code point defined current version unicode character data attribute values allows control characters robustness control characters introduced must expressed numeric character references allowed even required expressed numeric character references38 among supported control characters line break codes must treated whitespace whitespace characters control codes written directly
+discussion although organization announced plans work project xmlsw skunkworks written original developers xml39 contains proposals might look like elimination dtds syntax integration namespaces base information base standard
+world wide consortium also binary characterization working group preliminary research cases properties binary encoding information working group chartered produce official standards since definition textbased itut using name fast infoset binary infoset avoid confusion itut x891 isoiec 248241
+criticismedit
+extensions regularly criticized verbosity complexity40 mapping basic tree model type systems programming languages databases difficult especially used exchanging highly structured data applications primary design goal however data binding systems allow applications access data directly objects representing data structure data programming language used ensures type safety rather using retrieve data direct representation accomplished automatically creating mapping elements schema document members class represented memory criticisms attempt refute claim selfdescribing language41 though specification makes claim json yaml sexpressions frequently proposed simpler alternatives comparison data serialization formats42 focus representing highly structured data rather documents contain highly structured relatively unstructured content however standardized schema specifications offer broader range structured data types compared simpler serialization formats offer modularity reuse namespace
+alsoedit
+
+list markup languages
+list schemas
+comparison layout engines
+comparison data serialization formats
+binary
+ebml
+wbxml
+xhtml
+protocol
+
+notesedit
+
+
+
+murata kohn lilley 2009 draft update 3023 2001 introduced textxml advocated formal deprecation9 however rfc7203 2014
+embedded quote characters would problem
+common example class identifier names
+
+
+
+referencesedit
+
+
+
+media types 7303 internet engineering task force july 2014
+specification world wide consortium retrieved august 2010
+semantic standards timeline dblabntuagr retrieved august 2016
+document license w3org retrieved november 2017
+origin goals w3org retrieved august 2016
+fennell philip june 2013 extremes london 2013 80–86 doi1014337xmllondon13fennell01 isbn 9780992647100
+applications initiatives xmlcoveragesorg retrieved november 2017
+appleexaminercom plist files apple examiner retrieved november 2017
+murata kohn lilley september 2009 internet drafts media types internet engineering task force retrieved february 2012
+extensible markup language fifth edition world wide consortium 20081126 retrieved november 2012
+extensible markup language second edition world wide consortium retrieved august 2010
+characters bytes tbrayorg retrieved november 2017
+autodetection character encodings w3org retrieved november 2017
+extensible markup language fifth edition w3org retrieved november 2017
+i18n html xhtml control codes w3org retrieved november 2017
+extensible markup language w3org retrieved november 2017 section comments
+pilgrim mark 2004 history draconian error handling webarchiveorg archived original 20110726 retrieved july 2013
+exceptions postels dive mark webarchiveorg archived original 20110514 retrieved april 2013
+notepad xmlnotepadcodeplexcom retrieved november 2017
+notepad 2007 microsoftcom retrieved november 2017
+ducharme push pull next xmlcom retrieved november 2017
+serialization framework msdnmicrosoftcom retrieved july 2009
+processing mozilla developer center mozilla foundation
+shell core syntax xmlshorg 20100513 retrieved august 2010
+resource description framework concepts abstract syntax w3org retrieved august 2010
+isoiec 197573 isoiec june 2006
+bray february 2005 conversation bray searching ways tame worlds vast stores information association computing machinerys queue site retrieved april 2006
+edited sueann ambron kristina hooper foreword john sculley 1988 publishers multimedia interactivity interactive multimedia cobb group isbn 1556151241 maint extra text authors list link
+eliot kimber 2006 drmacrosxmlrantsblogspotcom retrieved november 2017
+working group originally called editorial review board original members seven added first edition complete listed first edition recommendation httpwwww3orgtr1998recxml19980210
+reports sgml sgml w3org retrieved july 2009
+oracle technology network java developers oracle technology network oracle javasuncom retrieved november 2017
+extensible markup language w3org 19961114 retrieved july 2009
+bosak microsystems 20061207 closing keynote 2006 2006xmlconferenceorg archived original 20070711 retrieved july 2009
+extensible markup language third edition w3org retrieved august 2010
+extensible markup language second edition rationale list changes w3org retrieved january 2012
+harold elliotte rusty 2004 effective addisonwesley 10–19 isbn 0321150406
+extensible markup language second edition w3org retrieved august 2010
+bray extensible markup language xmlsw 20020210
+angle bracket codinghorrorcom retrieved november 2017
+myth selfdescribing workflowhealthbaseinfo september 2003 retrieved november 2017
+usable alternatives syntax know stackoverflowcom retrieved november 2017
+
+
+
+readingedit
+
+annex 88791986 sgml
+lawrence cunningham 2005 language deals standards future contracts washington university review ssrn 900616
+bosak bray 1999 secondgeneration scientific american archived original october 2009
+kelly sean february 2006 making mistakes developercom retrieved october 2010
+laurent simon february 2003 five years later oreilly blog oreilly media retrieved october 2010
+world wide consortium february 2008 retrieved october 2010
+introduction course slides pierre geneves october 2012 archived original 20151016 maint originalurl status unknown link
+
+external linksedit
+
+
+
+wikimedia commons media related
+
+
+
+
+
+wikibooks book topic subjectxml
+
+
+
+homepage
+specification
+retrospective extended reference concrete syntax rick jelliffe
+java future 1997 bosak
+httpvalidatorw3org official markup validation service
+originally w3cs peter flynn
+
+
+
+
+
+
+
+
+
+
+
+
+world wide consortium
+
+
+
+products
+standards
+
+
+
+
+recommendations
+
+
+
+aria
+canonical
+
+
+
+geolocation
+html html5
+
+jsonld
+linked data notifications
+mathml
+micropub
+
+
+
+
+schema
+sisr
+skos
+smil
+soap
+srgs
+
+ssml
+
+scxml
+sparql
+timed text
+voicexml
+storage
+wsdl
+webmention
+xforms
+xhtml
+xhtmlrdfa
+xinclude
+xlink
+
+base
+encryption
+events
+information
+namespace
+schema
+signature
+
+xpath
+xpath
+xpointer
+xproc
+xquery
+
+xslfo
+xslt elements
+
+
+
+
+
+notes
+
+
+
+xades
+xhtmlsmil
+
+
+
+
+
+
+working drafts
+
+
+
+ccxml
+curie
+
+inkml
+
+
+smil timesheets
+sxbl
+wicd
+xfdl
+xframes
+
+xmlhttprequest
+
+
+
+
+
+guidelines
+
+
+
+content accessibility guidelines
+
+
+
+
+
+initiative
+
+
+
+multimodal interaction activity
+markup validation service
+accessibility initiative
+webplatform
+
+
+
+
+
+deprecated
+
+
+
+chtml
+hdml
+jsss
+pgml
+
+xhtmlmathmlsvg
+
+
+
+
+
+
+
+
+organizations
+
+
+
+
+
+
+
+advisory committee
+world wide foundation
+
+
+
+
+
+elected groups
+
+
+
+advisory board
+technical architecture group
+
+
+
+
+
+working groups
+
+
+
+
+html
+geolocation
+social
+
+hypertext application technology whatwg
+platform
+
+
+
+
+
+closed groups
+
+
+
+device description ddwg
+webont semantic activity
+
+
+
+
+
+
+
+
+software
+
+
+
+
+
+
+
+cern httpd
+libwww
+
+
+
+
+
+browsers
+
+
+
+line mode 1990–
+arena 1993–98
+agora 1994–97
+argo 1994–97
+amaya browsereditor 1996–2012
+
+
+
+
+
+
+
+
+conferences
+
+
+
+international world wide conference iw3c
+
+steering committee iw3c2
+first conference www1 1994
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+browsers
+
+
+
+
+
+
+comparison
+
+lightweight
+
+
+history
+list
+
+unix
+
+
+timeline
+usage share
+
+
+
+
+
+
+
+
+
+features
+
+
+
+filtering
+augmented browsing
+bookmarks
+
+bookmarklet
+live bookmark
+smart bookmarks
+
+
+browser extension
+browser security
+browser synchronizer
+
+comparison
+
+
+cookies
+download manager
+favicon
+incremental search
+plugin
+privacy mode
+tabs
+universal edit button
+
+
+
+
+
+standards
+
+
+
+acid tests
+cascading style sheets
+html
+html5
+javascript
+mathml
+
+webgl
+xhtml
+
+
+
+
+
+protocols
+
+
+
+http
+https
+ocsp
+spdy
+ssltls
+websocket
+wpad
+
+
+
+
+
+related topics
+
+
+
+browserchoiceeu
+
+iloo
+internet suite
+maninthebrowser
+mobile
+offline reader
+
+pwn2own
+rich internet application
+sitespecific browser
+widget
+world wide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+desktop
+
+
+
+
+
+
+
+blinkbased
+
+
+
+chromium
+
+brave
+chrome
+dragon
+opera
+qupzilla
+sleipnir
+slimjet
+srware iron
+browser
+vivaldi
+yandex browser
+sputnik
+safezone
+
+
+
+
+
+
+
+geckobased
+
+
+
+pogo
+avant
+camino
+firefox
+
+conkeror
+icecat
+icedragon
+swiftfox
+swiftweasel
+tenfourfox
+timberwolf
+browser
+waterfox
+browser
+
+
+galeon
+ghostzilla
+kmeleon
+kazehakase
+kirix strata
+lotus symphony
+lunascape
+mozilla
+
+beonex communicator
+classilla
+netscape
+seamonkey
+
+
+
+
+
+
+
+tridentbased
+
+
+
+explorer
+avant
+deepnet explorer
+greenbrowser
+internet explorer
+lunascape
+maxthon
+mediabrowser
+menubox
+neoplanet
+netcaptor
+slimbrowser
+spacetime
+ultrabrowser
+webbie
+browser
+
+
+
+
+
+webkitbased
+
+
+
+arora
+avant
+dooble
+epic
+flock
+fluid
+icab
+konqueror
+lunascape
+maxthon
+midori
+omniweb
+origyn browser
+otter browser
+qtweb
+rekonq
+safari
+shiira
+slimboat
+surf
+torch
+uzbl
+epiphany
+webpositive
+xombrero
+
+
+
+
+
+textbased
+
+
+
+elinks
+emacsw3
+line mode browser
+links
+lynx
+
+
+
+
+
+
+
+
+
+
+basilisk
+abaco
+amaya
+arachne
+arena
+charon
+dillo
+
+gazelle
+hotjava
+home page reader
+ibrowse
+kidzui
+microsoft edge
+mosaic
+mothra
+netpositive
+netsurf
+pale moon
+qihoo secure browser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mobile
+
+
+
+
+
+
+
+blinkbased
+
+
+
+android browser
+chromium
+
+brave
+chrome android
+opera mobile
+silk
+
+
+firefox focus android
+opera mini android
+
+
+
+
+
+geckobased
+
+
+
+firefox android
+microb
+minimo
+waterfox
+
+
+
+
+
+prestobased
+
+
+
+opera mini extrememini modes
+
+
+
+
+
+tridentbased
+
+
+
+maxthon
+
+
+
+
+
+webkitbased
+
+
+
+bolt
+dolphin browser
+chrome
+coast browser
+firefox
+firefox focus
+opera mini turbonormal modes
+maxthon
+mercury browser
+nokia browser symbian
+rockmelt
+safari
+steel
+
+
+
+
+
+
+
+
+
+blazer
+browser
+deepfish
+ibisbrowser
+internet explorer mobile
+iris browser
+konqueror embedded
+microsoft edge
+netfront
+skweezer
+skyfire
+teashark
+thunderhawk
+browser
+vision
+winwap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+television video game console
+
+
+
+
+
+
+
+geckobased
+
+
+
+kylo
+
+
+
+
+
+prestobased
+
+
+
+internet channel
+
+
+
+
+
+webkitbased
+
+
+
+google
+nintendo internet browser
+nintendo browser
+netfront
+steam overlay
+internet browser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+software longer development shown italics
+
+
+category
+commons
+internet portal
+software portal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data exchange formats
+
+
+
+human readable formats
+
+
+
+atom
+
+yaml
+json
+
+rebol
+
+
+
+
+
+
+
+binary formats
+
+
+
+
+asn1
+avro
+bson
+cbor
+flatbuffers
+messagepack
+protocol buffers
+thrift
+smile
+
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh97007825
+45015533
+cb131774360 data
+xx546216
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlexmloldid814880050 categories application layer protocolsbibliography file formatscomputer file formatsdata modeling languagesdata serialization formatsmarkup languagesopen formatspresentation layer protocolstechnical communicationworld wide consortium standardsxmlhidden categories pages using magic linkscs1 maint extra text authors listpages using deprecated image syntaxall articles unsourced statementsarticles unsourced statements 2017cs1 maint originalurl status unknownarticles prone spam november 2013wikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiersarticles example code

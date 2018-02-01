@@ -1,0 +1,466 @@
+computer science computer programming data type simply type classification data tells compiler interpreter programmer intends data programming languages support various types data example real integer boolean data type provides values expression variable function take values type defines operations done data meaning data values type storeda type value expression take value
+
+
+
+contents
+
+
+concept
+definition
+classes data types
+
+primitive data types
+
+machine data types
+boolean type
+numeric types
+
+
+composite types
+
+enumerations
+string text types
+
+
+types
+
+pointers references
+function types
+
+
+abstract data types
+utility types
+
+
+type systems
+also
+references
+reading
+
+
+
+conceptedit
+data types used within type systems offer various ways defining implementing using different type systems ensure varying degrees type safety
+almost programming languages explicitly include notion data type though different languages different terminology common data types include
+
+integers
+booleans
+characters
+floatingpoint numbers
+alphanumeric strings
+
+example java programming language type represents 32bit integers ranging value 2147483648 2147483647 well operations performed integers addition subtraction multiplication colors hand represented three bytes denoting amounts green blue string representing colors name allowable operations include addition subtraction multiplication
+programming languages also allow programmer define additional data types usually combining multiple elements types defining valid operations data type example programmer might create data type named complex number would include real imaginary parts data type also represents constraint placed upon interpretation data type system describing representation interpretation structure values objects stored computer memory type system uses data type information check correctness computer programs access manipulate data
+data types statistics comparable types computer programming vice versa shown following table
+
+
+statistics
+programming
+
+
+realvalued interval scale
+floatingpoint
+
+
+realvalued ratio scale
+
+
+count data usually nonnegative
+integer
+
+
+binary data
+boolean
+
+
+categorical data
+enumerated type
+
+
+random vector
+list array
+
+
+random matrix
+twodimensional array
+
+
+random tree
+tree
+
+
+definitionedit
+parnas shore weiss 1976 identified five definitions type used—sometimes implicitly—in literature types including behavior align closely objectoriented models whereas structured programming model would tend include code called plain data structures
+five types
+
+syntactic
+type purely syntactic label associated variable declared definitions type give semantic meaning typesclarification needed
+representation
+type defined terms composition primitive types—often machine types
+representation behaviour
+type defined representation operators manipulating representations
+value space
+type possible values variable possess definitions make possible speak disjoint unions cartesian products types
+value space behaviour
+type values variable possess functions apply values
+
+definition terms representation often done imperative languages algol pascal definition terms value space behaviour used higherlevel languages simula
+classes data typesedit
+primitive data typesedit
+primitive data types typically types builtin basic language implementation
+machine data typesedit
+data computers based digital electronics represented bits alternatives lowest level smallest addressable unit data usually group bits called byte usually octet bits unit processed machine code instructions called word 2011 typically bits instructions interpret word binary number 32bit word represent unsigned integer values
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle 2321
+
+signed integer values
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle 2311
+
+twos complement machine language machine doesnt need distinguish unsigned signed data types part
+specific setwhich arithmetic instructions differentclarification needed interpretation bits word floatingpoint number
+machine data types need exposed made available systems lowlevel programming languages allowing finegrained control hardware programming language instance supplies integer types various widths short long corresponding native type exist target platform compiler break code using types exist instance 32bit integer requested platform compiler tacitly treat array integers
+several languages allow binary hexadecimal literals convenient manipulation machine data
+higher level programming machine data types often hidden abstracted implementation detail would render code less portable exposed instance generic numeric type might supplied instead integers specific bitwidth
+boolean typeedit
+boolean type represents values true false although values possible rarely implemented single binary digit efficiency reasons many programming languages explicit boolean type instead interpreting instance false values true boolean data simply refers logical structure language interpreted machine language case boolean refers logic false true always zero especially known boolean
+numeric typesedit
+
+
+integer data types nonfractional numbers subtyped according ability contain negative values unsigned also small number predefined subtypes short long allow users freely define subranges pascalada
+floating point data types usually represent values highprecision fractional values rational numbers mathematically sometimes misleadingly called reals evocative mathematical real numbers usually predefined limits maximum values precision output values often represented decimal number format
+fixed point data types convenient representing monetary values often implemented internally integers leading predefined limits
+bignum arbitrary precision numeric types lack predefined limits primitive types used sparingly efficiency reasons
+
+composite typesedit
+composite types derived primitive type done number ways ways combined called data structures composing primitive type compound type generally results type arrayofinteger different type integer
+
+array stores number elements type specific order accessed randomly using integer specify element required although elements almost type arrays fixedlength expandable
+
+list similar array contents strung together series references next element
+
+
+record also called tuple struct records among simplest data structures record value contains values typically fixed number sequence typically indexed names elements records usually called fields members
+union union type definition specify number permitted primitive types stored instances float long integer contrast record could defined contain float integer whereas union type allowed time
+
+tagged union also called variant variant record discriminated union disjoint union contains additional field indicating current type enhanced type safety
+
+
+abstract data structure store certain values without particular order repeated values values retrieved sets rather tests value membership obtain boolean
+object contains number data fields like record also number subroutines accessing modifying called methods
+
+many others possible tend variations compounds
+enumerationsedit
+enumerated type distinct values compared assigned necessarily particular concrete representation computers memory compilers interpreters represent arbitrarily example four suits deck playing cards four enumerators named club diamond heart spade belonging enumerated type named suit variable declared suit data type assign four values implementations allow programmers assign integer values enumeration values even treat typeequivalent integers
+string text typesedit
+
+
+alphanumeric character letter alphabet digit blank space punctuation mark
+alphanumeric strings sequence characters typically used represent words text
+
+character string types store sequences characters character ascii since character sets include digits possible numeric string 1234 however many languages treat belonging different type numeric value 1234
+character string types different subtypes according required character width original 7bit wide ascii found limited superseded 16bit sets encode wide variety nonlatin alphabets hebrew chinese symbols strings either stretchtofit fixed size even programming language also subtyped maximum size
+note strings primitive languages instance composed arrays characters
+typesedit
+types based derived basic types explained languages functions type derived type return value
+pointers referencesedit
+main noncomposite derived type pointer data type whose value refers directly points another value stored elsewhere computer memory using address primitive kind reference everyday terms page number book could considered piece data refers another pointers often stored format similar integer however attempting dereference look pointer whose value never valid memory address would cause program crash ameliorate potential problem pointers considered separate type type data point even underlying representation
+function typesedit
+main article function type
+
+
+
+
+section needs expansion help adding october 2012
+
+
+
+abstract data typesedit
+type specify implementation abstract data type instance stack abstract type implemented array contiguous block memory containing multiple values linked list noncontiguous memory blocks linked pointers
+abstract types handled code know care underlying types contained programming agnostic concrete data types called generic programming arrays records also contain underlying types considered concrete specify contents elements laid memory
+examples include
+
+queue firstin firstout list variations deque priority queue
+store certain values without particular order repeated values
+stack lastin first data structure
+tree hierarchical structure
+graph
+hash dictionary associative array flexible variation record namevalue pairs added deleted freely
+smart pointer abstract counterpart pointer kinds references
+
+utility typesedit
+convenience highlevel languages supply readymade real world data types instance times dates monetary values memory even language allows built primitive types
+type systemsedit
+type system associates types computed values examining flow values type system attempts prove type errors occur type system question determines constitutes type error type system generally seeks guarantee operations expecting certain kind value used values operation make sense
+compiler static type value optimize storage needs choice algorithms operations value many compilers float data type example represented bits accord ieee specification singleprecision floating point numbers thus floatingpointspecific microprocessor operations values floatingpoint addition multiplication
+depth type constraints manner evaluation affect typing language programming language associate operation varying concrete algorithms type case type polymorphism type theory study type systems although concrete type systems programming languages originate practical issues computer architecture compiler implementation language design
+type systems variously static dynamic strong weak typing forth
+alsoedit
+
+data types
+data dictionary
+functional programming
+kind
+type theory mathematical models types
+type system different choices programming language typing
+
+referencesedit
+
+
+
+type free online dictionary computing
+shaffer data structures algorithms
+
+
+
+readingedit
+
+parnas david shore john weiss david 1976 abstract types defined classes variables proceedings 1976 conference data abstraction definition structure 149–154 doi101145800237807133
+cardelli luca wegner peter december 1985 understanding types data abstraction polymorphism computing surveys york 471–523 doi10114560416042 issn 03600300
+cleaveland craig 1986 introduction data types addisonwesley isbn 0201119404
+
+
+
+
+
+
+
+
+
+
+
+
+data types
+
+
+
+uninterpreted
+
+
+
+
+byte
+trit
+tryte
+word
+array
+
+
+
+
+
+numeric
+
+
+
+arbitraryprecision bignum
+complex
+decimal
+fixed point
+floating point
+
+double precision
+extended precision
+half precision
+long double
+minifloat
+octuple precision
+quadruple precision
+single precision
+
+
+integer
+
+signedness
+
+
+interval
+rational
+
+
+
+
+
+pointer
+
+
+
+address
+
+physical
+virtual
+
+
+reference
+
+
+
+
+
+text
+
+
+
+character
+string
+
+nullterminated
+
+
+
+
+
+
+
+composite
+
+
+
+algebraic data type
+
+generalized
+
+
+array
+associative array
+class
+dependent
+equality
+inductive
+list
+object
+
+metaobject
+
+
+option type
+product
+record
+
+union
+
+tagged
+
+
+
+
+
+
+
+
+
+
+
+boolean
+bottom type
+collection
+enumerated type
+exception
+function type
+opaque data type
+recursive data type
+semaphore
+stream
+type
+type class
+unit type
+void
+
+
+
+
+
+related
+topics
+
+
+
+abstract data type
+data structure
+generic
+kind
+
+metaclass
+
+
+parametric polymorphism
+primitive data type
+protocol
+
+interface
+
+
+subtyping
+type constructor
+type conversion
+type system
+
+
+
+
+
+
+also platformdependent independent units information
+
+
+
+
+
+
+
+authority control
+
+
+
+40111490
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitledatatypeoldid815852944 categories data typesprogramming language conceptshidden categories wikipedia articles needing clarification august 2016all articles specifically marked weaselworded phrasesarticles specifically marked weaselworded phrases august 2016articles expanded october 2012all articles expandedarticles using small message boxeswikipedia articles identifiers

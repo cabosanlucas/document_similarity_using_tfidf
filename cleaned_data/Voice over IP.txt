@@ -1,0 +1,725 @@
+voice internet protocol also voice voip telephony methodology group technologies delivery voice communications multimedia sessions internet protocol networks internet terms internet telephony broadband telephony broadband phone service specifically refer provisioning communications services voice voicemessaging public internet rather public switched telephone network pstn
+steps principles involved originating voip telephone calls similar traditional digital telephony involve signaling channel setup digitization analog voice signals encoding instead transmitted circuitswitched network digital information packetized transmission occurs packets packetswitched network transport media streams using special media delivery protocols encode audio video audio codecs video codecs various codecs exist optimize media stream based application requirements network bandwidth implementations rely narrowband compressed speech others support highfidelity stereo codecs popular codecs include μlaw alaw versions g711 g722 open source voice codec known ilbc codec uses kbits called g729 many others
+early providers voiceoverip services offered business models technical solutions mirrored architecture legacy telephone network secondgeneration providers skype built closed networks private user bases offering benefit free calls convenience potentially charging access communication networks pstn limited freedom users mixandmatch thirdparty hardware software thirdgeneration providers google talk adopted concept federated voip—which departure architecture legacy networks1 solutions typically allow dynamic interconnection users domains internet user wishes place call
+addition voip phones voip available many personal computers internet access devices calls text messages sent mobile data wifi2
+
+
+
+contents
+
+
+pronunciation
+protocols
+adoption
+
+consumer market
+pstn mobile network providers
+corporate
+
+
+quality service
+
+
+layer
+
+
+performance metrics
+pstn integration
+
+number portability
+emergency calls
+
+
+support
+power requirements
+security
+caller
+compatibility traditional analog telephone sets
+support telephony devices
+operational cost
+regulatory legal issues
+
+canada
+european union
+arab states persian gulf
+india
+south korea
+united states
+
+
+history
+
+milestones
+
+
+also
+references
+external links
+
+
+
+pronunciationedit
+voip variously pronounced initialism voip acronym usually ˈvɔjp voyp voice3 pronunciation full words voice internet protocol voice sometimes used
+protocolsedit
+voice implemented various ways using proprietary protocols protocols based open standards protocols used voip phone specialpurpose software mobile application integrated page voip protocols include
+
+session initiation protocol connection management protocol developed ietf
+h323 first voip call signaling control protocols found widespread implementation since development newer less complex protocols mgcp h323 deployments increasingly limited carrying existing longhaul network trafficcitation needed
+media gateway control protocol mgcp connection management media gateways
+h248 control protocol media gateways across converged internetwork consisting traditional public switched telephone network pstn modern packet networks
+realtime transport protocol transport protocol realtime audio video data
+realtime transport control protocol rtcp sister protocol providing stream statistics status information
+secure realtime transport protocol srtp encrypted version
+session description protocol file format used principally describe voip connections
+interasterisk exchange protocol used voip servers
+xmpp extensible messaging presence protocol instant messaging presence information contact list maintenance
+jingle adds peertopeer session control xmpp
+skype protocol proprietary internet telephony protocol suite based peertopeer architecture
+
+adoptionedit
+consumer marketedit
+
+
+
+
+example residential network including voip
+
+
+massmarket voip services existing broadband internet access subscribers place receive telephone calls much manner would public switched telephone network pstn fullservice voip phone companies provide inbound outbound service direct inbound dialing many offer unlimited domestic calling sometimes international calls flat monthly subscription phone calls subscribers provider usually free flatfee service available
+voip phone necessary connect voip service provider implemented several ways
+
+dedicated voip phones connect directly network using technologies wired ethernet wifi typically designed style traditional digital business telephones
+analog telephone adapter connects network implements electronics firmware operate conventional analog telephone attached modular phone jack residential internet gateways cablemodems function built
+softphone application software installed networked computer equipped microphone speaker headset application typically presents dial display field user operate application mouse clicks keyboard input
+
+pstn mobile network providersedit
+becoming increasingly common telecommunications providers voip telephony dedicated public networks connect switching centers interconnect telephony network providers often referred backhaul45
+smartphones wifienabled mobile phones clients built firmware available application download
+corporate useedit
+bandwidth efficiency costs voip technology provide businesses migrating traditional copperwire telephone systems voip systems reduce monthly phone costs 2008 private branch exchange lines installed internationally voip6
+voip solutions aimed businesses evolved unified communications services treat communications—phone calls faxes voice mail email conferences more—as discrete units delivered means handset including cellphones kinds competitors competing space focused voip medium large enterprises another targeting smalltomedium business market7
+voip allows voice data communications single network significantly reduce infrastructure costs8
+prices extensions voip lower systems voip switches commodity hardware personal computers rather closed architectures devices rely standard interfaces8
+voip devices simple intuitive user interfaces users often make simple system configuration changes dualmode phones enable users continue conversations move outside cellular service internal wifi network longer necessary carry desktop phone cell phone maintenance becomes simpler fewer devices oversee8
+skype originally marketed service among friends begun cater businesses providing freeofcharge connections users skype network connecting ordinary pstn telephones charge9
+united states social security administration converting field offices 63000 workers traditional phone installations voip infrastructure carried existing data network1011
+quality serviceedit
+communication network perceived less reliable contrast circuitswitched public telephone network provide networkbased mechanism ensure data packets lost delivered sequential order besteffort network without fundamental quality service guarantees voice data travels packets networks fixed maximum capacity system prone congestioncitation needed attacks12 traditional circuit switched systems circuit switched system insufficient capacity refuse connections carrying remainder without impairment quality realtime data telephone conversations packetswitched networks degrades dramatically13 therefore voip implementations face problems latency packet loss jitter1314
+default network routers handle traffic firstcome firstserved basis fixed delays cannot controlled caused physical distance packets travel especially problematic satellite circuits involved long distance geostationary satellite back delays 400–600 typical latency minimized marking voice packets delaysensitive methods diffserv13
+network routers high volume traffic links introduce latency exceeds permissible thresholds voip load link grows quickly switches experience queue overflows congestion results data packets lost signals transport protocol like reduce transmission rate alleviate congestion voip usually uses recovering congestion retransmission usually entails much latency13 mechanisms avoid undesirable loss voip packets immediately transmitting ahead queued bulk traffic link even bulk traffic queue overflowing
+voip endpoints usually wait completion transmission previous packets data sent although possible preempt abort less important packet midtransmission commonly done especially highspeed links transmission times short even maximumsized packets15 alternative preemption slower links dialup digital subscriber line reduce maximum transmission time reducing maximum transmission unit every packet must contain protocol headers increases relative header overhead every link traversed bottleneck usually internet access link15
+receiver must resequence packets arrive order recover gracefully packets arrive late jitter results rapid random unpredictable changes queue lengths along given internet path competition users transmission links voip receivers counter jitter storing incoming packets briefly dejitter playout buffer deliberately increasing latency improve chance packet hand time voice engine play added delay thus compromise excessive latency excessive dropout momentary audio interruptions
+although jitter random variable several random variables least somewhat independent individual queuing delays routers along internet path question according central limit theorem jitter modeled gaussian random variable suggests continually estimating mean delay standard deviation setting playout delay packets delayed several standard deviations mean arrive late useful practice variance latency many internet paths dominated small number often relatively slow congested bottleneck links internet backbone links fast gbits delays dominated transmission medium optical fiber routers driving enough buffering queuing delays significant
+suggested rely packetized nature media voip communications transmit stream packets source phone destination phone simultaneously across different routes multipath routing16 temporary failures less impact communication quality capillary routing packet level fountain codes particularly raptor codes recommended transmitting extra redundant packets making communication reliablecitation needed
+number protocols defined support reporting quality service quality experience voip calls include rtcp extended report 3611 rtcp summary reports h4609 annex h323 h24830 mgcp extensions 3611 voip metrics block generated phone gateway live call contains information packet loss rate packet discard rate jitter packet lossdiscard burst metrics burst lengthdensity lengthdensity network delay system delay signal noise echo level mean opinion scores factors configuration information related jitter buffer
+3611 voip metrics reports exchanged endpoints occasional basis call call message sent rtcp summary report signaling protocol extensions 3611 voip metrics reports intended support real time feedback related problems exchange information endpoints improved call quality calculation variety applications
+rural areas particular greatly hindered ability choose voip system generally poor access superfast broadband rural country areas release data potential corporate users based outside populated areas switch internet connection data comparatively fast regular superfast broadband connection greatly enhances overall quality user experience voip system areas
+atmedit
+modems provide ethernet ethernet connections local equipment inside actually asynchronous transfer mode modems adaptation layer aal5 segment ethernet packet series 53byte cells transmission reassembling back ethernet frames receiving virtual circuit identifier part 5byte header every cell transmitter multiplex active virtual circuits arbitrary order cells always sent sequentially
+majority providers customer even bundled voip service every ethernet frame must completely transmitted another begin second established given high priority reserved voip priority data packet could suspended midtransmission voip packet sent right away high priority link would pick priority left links multiplexed cellbycell basis high priority packet would wait byte times begin transmission would need reduce interface accept resulting increase higher layer protocol overhead need abort priority packet resend later
+substantial header overhead roughly twice total header overhead 1500 byte ethernet frame incurred every user whether take advantage multiple virtual circuits can13
+atms potential latency reduction greatest slow links worstcase latency decreases increasing link speed fullsize 1500 byte ethernet frame takes transmit kbits mbits bottleneck link latency probably small enough ensure good voip performance without reductions multiple latest generations vdsl vdsl2 carry ethernet without intermediate atmaal5 layers generally support ieee 8021p priority tagging voip queued ahead less timecritical traffic13
+layer 2edit
+number protocols deal data link layer physical layer include qualityofservice mechanisms used ensure applications like voip work well even congested scenarios examples include
+
+ieee 80211e approved amendment ieee 80211 standard defines qualityofservice enhancements wireless applications modifications media access control layer standard considered critical importance delaysensitive applications voice wireless
+ieee 8021p defines different classes service including dedicated voice traffic layer2 wired ethernet
+itut standard provides create highspeed gigabit second local area network using existing home wiring power lines phone lines coaxial cables provides means contentionfree transmission opportunities cftxops allocated flows voip call require negotiated contract network controllers
+
+performance metricsedit
+quality voice transmission characterized several metrics monitored network elements user agent hardware software metrics include network packet loss packet jitter packet latency delay postdial delay echo metrics determined voip performance testing monitoring171819202122
+pstn integrationedit
+voip media gateway controller class softswitch works cooperation media gateway business gateway connects digital media stream complete creating path voice well data media include interfaces connecting standard pstn networks inter protocol networks ethernet interfaces also included modern systems specially designed link calls passed voip23
+e164 global fgfnumbering standard pstn plmn voip implementations support e164 allow calls routed voip subscribers pstnplmn24 voip implementations also allow identification techniques used example skype allows subscribers choose skype names25 usernames whereas implementations uris26 similar email addresses often voip implementations employ methods translating none164 identifiers e164 numbers vice versa skypein service provided skype27 enum service sip28
+echo also issue pstn integration29 common causes echo include impedance mismatches analog circuitry acoustic coupling transmit receive signal receiving
+number portabilityedit
+local number portability mobile number portability also impact voip business november 2007 federal communications commission united states released order extending number portability obligations interconnected voip providers carriers support voip providers30 number portability service allows subscriber select telephone carrier without requiring number issued typically responsibility former carrier number undisclosed number assigned carrier achieved maintaining database numbers dialed number initially received original carrier quickly rerouted carrier multiple porting references must maintained even subscriber returns original carrier mandates carrier compliance consumerprotection stipulations
+voice call originating voip environment also faces challenges reach destination number routed mobile phone number traditional mobile carrier voip identified past least cost routing system based checking destination telephone call made sending call network cost customer least rating subject debate given complexity call routing created number portability number portability place providers longer rely using network root prefix determine route call instead must determine actual network every number routing call
+therefore voip solutions also need handle routing voice call countries without central database like might necessary query network home network mobile phone number belongs popularity voip increases enterprise markets least cost routing options needs provide certain level reliability handling calls
+checks important assure quality service handling lookups routing call provides assurance voice call actually work
+emergency callsedit
+telephone connected land line direct relationship telephone number physical location maintained telephone company available emergency responders national emergency response service centers form emergency subscriber lists emergency call received center location automatically determined databases displayed operator console
+telephony direct link location communications point exists even provider hardware infrastructure provider know approximate location device based address allocated network router known service address isps track automatic assignment addresses customer equipment31
+communication provides device mobility example residential broadband connection used link virtual private network corporate entity case address used customer communications belong enterprise address residential offpremises extensions appear part upstream mobile devices handset wireless broadband adapter address relationship physical location known telephony service provider since mobile user could anywhere region network coverage even roaming another cellular company
+voip level phone gateway identify session initiation protocol registrar account credentials cases internet telephony service provider itsp knows particular users equipment active service providers often provide emergency response services agreement user registers physical location agrees emergency services provided address emergency number called device
+emergency services provided voip vendors united states system called enhanced e911 based wireless communications public safety 1999 voip e911 emergencycalling system associates physical address calling partys telephone number voip providers provide access public switched telephone network required implement e91131 service subscriber charged voip providers allow customers optout service31
+voip e911 system based static table lookup unlike cellular phones location e911 call traced using assisted methods voip e911 information accurate long subscribers legal responsibility diligent keeping emergency address information current
+supportedit
+sending faxes voip networks sometimes referred foip transmission documents problematic early voip implementations voice digitization compression codecs optimized representation human voice proper timing modem signals cannot guaranteed packetbased connectionless network standardsbased solution reliably delivering faxoverip protocol
+protocol designed compensate differences traditional packetless communications analog lines packetbased transmissions basis communications machine standard device connected analog telephone adapter software application dedicated network device operating ethernet interface32 originally designed transmission methods across network provides near realtime characteristics recovery rule packet lost error occurs transmission33
+newer high machines builtin capabilities connected directly network switch router packet contains portion data stream sent previous packet successive packets lost actually lose data integrity
+power requirementsedit
+telephones traditional residential analog service usually connected directly telephone company phone lines provide direct current power basic analog handsets independently locally available electrical power
+phones voip telephone adapters connect routers cable modems typically depend availability mains electricity locally generated power34 voip service providers customer premises equipment cablemodems batterybacked power supplies assure uninterrupted service several hours case local power failures batterybacked devices typically designed analog handsets
+voip service providers implement services route calls telephone services subscriber cellular phone event customers network device inaccessible terminate call
+susceptibility phone service power failures common problem even traditional analog service areas many customers purchase modern telephone units operate wireless handsets base station modern phone features builtin voicemail phone book features
+securityedit
+security concerns voip telephone systems similar internetconnected device means hackers know voip vulnerabilities institute denialofservice attacks harvest customer data record conversations compromise voicemail messages quality internet connection determines quality calls voip phone service also work power outage internet connection service provided voip phone service also different analog phone associated fixed address emergency center able determine location based virtual phone number353637 compromised voip user account session credentials enable attacker incur substantial charges thirdparty services longdistance international telephone calling
+technical details many voip protocols create challenges routing voip traffic firewalls network address translators used interconnect transit networks internet private session border controllers often employed enable voip calls protected networks methods traverse devices involve assistive protocols stun interactive connectivity establishment
+though many consumer voip solutions support encryption signaling path media securing voip phone conceptually easier implement traditional telephone circuits result lack encryption relatively easy eavesdrop voip calls access data network possible38 free opensource solutions wireshark facilitate capturing voip conversations
+standards securing voip available secure realtime transport protocol srtp zrtp protocol analog telephony adapters well softphones ipsec available secure pointtopoint voip transport level using opportunistic encryption
+government military organizations various security measures protect voip traffic voice secure vosip secure voice svoip secure voice secure svosip39 distinction lies whether encryption applied telephone network40 secure voice secure accomplished encrypting voip protocols srtp zrtp secure voice accomplished using type encryption classified network like siprnet4142434445 public secure voip also available free programs many popular commercial voip programs libraries zrtp46
+caller idedit
+voice protocols equipment provide caller support compatible facility provided public switched telephone network pstn many voip service providers also allow callers configure arbitrary caller information47
+compatibility traditional analog telephone setsedit
+analog telephone adapters decode dial pulses generated rotary dial telephones supporting touchtone signaling pulsetotone converters commercially available
+support telephony devicesedit
+special telephony services operate conjunction digital video recorders satellite television receivers alarm systems conventional modems pstn lines impaired operated voip services incompatibilities design
+operational costedit
+voip drastically reduced cost communication sharing network infrastructure data voice4849 single broadband connection ability transmit telephone call secure calls using standardized protocols secure realtime transport protocol facilities creating secure telephone connection traditional phone lines digitizing digital transmission already place voip necessary encrypt authenticate existing data stream automated software virtual eliminate need personnel greet switch incoming calls
+regulatory legal issuesedit
+popularity voip grows governments becoming interested regulating voip manner similar pstn services50
+throughout developing world countries regulation weak captured dominant operator restrictions voip imposed including panama voip taxed guyana voip prohibited india retail commercial sales allowed long distance service51 ethiopia government nationalising telecommunication service criminal offence offer services using voip country installed firewalls prevent international calls made using voip measures taken popularity voip reduced income generated state owned telecommunication company
+canadaedit
+canada canadian radiotelevision telecommunications commission regulates telephone service including voip telephony service voip services operating canada required provide emergency service52
+european unionedit
+
+
+
+
+
+
+section needs updated please update article reflect recent events newly available information
+last update 2006 september 2013
+
+
+
+european union treatment voip service providers decision national telecommunications regulator must competition define relevant national markets determine whether service provider national markets significant market power subject certain obligations general distinction usually made voip services function managed networks broadband connections voip services function unmanaged networks essentially internetcitation needed
+relevant directive clearly drafted concerning obligations exist independently market power obligation offer access emergency calls impossible definitively whether voip service providers either type bound review directive complete 2007citation needed
+arab states persian gulfedit
+oman illegal form voip extent sites gizmo5 blocked providing using voip services illegal oman violate stand fined 50000 omani rial 130317 dollars spend years jail 2009 police oman raided internet cafes throughout country arrested people usingproviding voip services53
+indiaedit
+india legal voip illegal voip gateways inside india54 effectively means people make voip call number remote side normal phone gateway converts voip call pots call permitted inside india foreign based voip server services illegal india54
+interest access service providers international long distance operators internet telephony permitted restrictions internet telephony considered different service scope nature kind real time voice offered access service providers long distance carriers hence following type internet telephony permitted india55
+
+within outside india
+device adapter conforming standard international agencies like ietf india pstnplmn abroad
+device adapter conforming standards international agencies like ietf connected node static address similar device adapter within outside india
+except whatever described condition form internet telephony permitted
+india separate numbering scheme provided internet telephony presently digit numbering allocation based e164 permitted fixed telephony cdma wireless service internet telephony numbering scheme shall conform addressing scheme internet assigned numbers authority iana translation e164 number private number address allotted device vice versa show compliance iana numbering scheme permitted
+internet service licensee permitted pstnplmn connectivity voice communication telephone connected pstnplmn following e164 numbering prohibited india
+
+south koreaedit
+south korea providers registered government authorized offer voip services unlike many voip providers offer flat rates korean voip services generally metered charged rates similar terrestrial calling foreign voip providers encounter high barriers government registration issue came head 2006 internet service providers providing personal internet services contract united states forces korea members residing usfk bases threatened block access voip services used usfk members economical keep contact families united states grounds service members voip providers registered compromise reached usfk korean telecommunications officials january 2007 wherein usfk service members arriving korea june 2007 subscribing services provided base continue usbased voip subscription later arrivals must koreanbased voip provider contract offer pricing similar flat rates offered voip providers56
+united statesedit
+united states federal communications commission requires interconnected voip service providers comply requirements comparable traditional telecommunications service providers57 voip operators required support local number portability make service accessible people disabilities regulatory fees universal service contributions mandated payments enable enforcement authorities conduct surveillance pursuant communications assistance enforcement calea
+operators interconnected voip fully connected pstn mandated provide enhanced service without special request provide customer location updates clearly disclose limitations e911 functionality consumers obtain affirmative acknowledgements disclosures consumers58 allow customers “optout” service59 voip operators also receive benefit certain telecommunications regulations including entitlement interconnection exchange traffic incumbent local exchange carriers wholesale carriers providers nomadic voip service—those unable determine location users—are exempt state telecommunications regulation60
+another legal issue congress debating concerns changes foreign intelligence surveillance issue question calls americans foreigners national security agency authorized americans conversations without warrant—but internet specifically voip draw clear line location caller calls recipient traditional phone system voips cost flexibility convinces organizations adopt technology surveillance enforcement agencies becomes difficult voip technology also increased security concerns voip similar technologies made difficult government determine target physically located communications intercepted creates whole legal challenges61
+historyedit
+early developments packet network designs paul baran researchers motivated desire higher degree circuit redundancy network availability face infrastructure failures possible circuitswitched networks telecommunications midtwentieth century 1973 danny cohen first demonstrated form packet voice part flight simulator application operated across early arpanet6263 following time span decades various forms packet telephony developed industry interest groups formed support technologies following termination arpanet project expansion internet commercial traffic telephony became established area interest commercial labs major concerns microsoft intel opensource software vocaltec became available mid1990s late 1990s first softswitches became available protocols h323 media gateway control protocol mgcp session initiation protocol gained widespread attention early 2000s proliferation highbandwidth alwayson internet connections residential dwellings businesses spawned industry internet telephony service providers itsps development opensource telephony software asterisk fueled widespread interest entrepreneurship voiceoverip services applying internet technology paradigms cloud services telephony
+milestonesedit
+
+1973 packet voice application danny cohen
+1974 institute electrical electronic engineers ieee publishes paper entitled protocol packet network interconnection64
+1974 network voice protocol tested arpanet august 1974 carrying cvsd encoded voice
+1977 danny cohen postel information sciences institute vint cerf defense advanced research projects agency darpa agree separate create carrying realtime traffic
+1981 ipv4 described
+1985 national science foundation commissions creation nsfnet65
+1986 proposals various standards organizationsspecify voice addition commercial packet voice products companies stratacom
+1991 first voiceoverip application speak freely released public domain originally written john walker developed brian wiles66
+1992 frame relay forum conducts development standards voice frame relay
+1994 mtalk freeware voip application linux67
+1995 vocaltec releases first commercial internet phone software6869
+
+beginning 1995 intel microsoft radvision initiated standardization activities voip communications system70
+
+
+1996
+
+itut begins development standards transmission signaling voice communications internet protocol networks h323 standard71
+telecommunication companies petition congress internet phone technology72
+
+
+1997 level began development first softswitch term coined 199873
+1999
+
+session initiation protocol specification 2543 released74
+mark spencer digium develops first open source private branch exchange software asterisk75
+
+
+2004 commercial voip service providers proliferate
+2007 voip device manufacturers sellers boom asia specifically philippines many families overseas workers reside7677
+2011 rise webrtc technology allows voip directly browsers
+
+alsoedit
+
+
+audio
+communications assistance enforcement
+comparison audio network protocols
+comparison voip software
+differentiated services
+high rate audio video internet protocol
+integrated services
+internet
+multimedia subsystem
+list voip companies
+mobile voip
+network voice protocol
+audio video profile
+trunking
+unistim
+voice
+voicexml
+voip recording
+
+
+referencesedit
+
+
+xmpp federation google talkabout 2006 retrieved 20120511
+booth 2010 chapter phones software voip integrated mobile voip library technology reports 11–19
+voip cambridge dictionaries online
+wireless carriers look backhaul wwweetimescom times archived original august 2011 retrieved april 2015 maint unfit link
+mobiles challenge wwwtotaltelecom total telecom online archived original february 2006 retrieved april 2015 maint unfit link
+michael dosch steve church voip broadcast studio axia audio retrieved 20110621
+callahan renee december 2008 businesses move voiceoverip forbes retrieved 20090303
+korzeniowski peter january 2009 three technologies need 2009 forbes retrieved 20090302
+skype business skypecom retrieved 20090316
+jackson william 2009 goes voip government computer news retrieved 20090528
+social security build worlds largest voip government technology retrieved 20090529
+voip– vulnerability internet protocol
+quality service voice retrieved 2011
+prabhakar rastogi thotton 2005 architecture requirements voip networks bell labs technical journal 31–45 doi101002bltj20077
+quality service voice retrieved 2011
+ieee multipath routing adaptive playback scheduling voice service overlay networks sarnoff symposium 2008 ieee 28–30 april 2008 doi101109sarnof20084520089 isbn 9781424418435
+cablelabs packetcable residential telephony feature definition technical report pkttrrstv03071106 2007
+voip performance measurement using parameters ahmuhamad amin 20160814
+methodology infrastructure performance testing miroslav voznak rozhon 20160814
+voice voip performance evaluation vmware vsphere® vmware 20160814
+performance stress testing servers clients networks startrinity 20160813
+testing voice volp networks ixia 20160814
+importance softswitch voip technology ixcua 2011 retrieved 20121004
+3824– using e164 numbers session initiation protocol internet society june 2004 retrieved 20090121
+create skype name skype retrieved 20090121
+3969– internet assigned number authority iana uniform resource identifier parameter registry session initiation protocol internet society december 2004 retrieved 20090121
+personal online number skype retrieved 20090121
+applicationlevel network interoperability evolution tmcnetcom 2006 retrieved 20090121
+jeff riddel 2007 packetcable implementation cisco press isbn 9781587051814
+keeping telephone number change service provider
+consumer advisory voip service retrieved 2011
+softswitchorg faxing networks
+umass discussion transmission characteristics
+regulation tool voip regulatory issues universal service retrieved september 2017
+taub eric april 2008 voip system security time worry maybe york times retrieved 20090302
+stanton 2006 secure voip achievable goal computer fraud security 11–14 doi101016s1361372306703335
+stanton 2006 secure voip achievable goal computer fraud security 11–14 doi101016s1361372306703335
+examining wellknown attacks voip circleid retrieved 20060405
+disamil internet protocol telephony voice internet protocol security technical implementation guide
+secure voice svoip voice secure vosip installations general dynamics systems
+dunte markus ruland christoph june 2007 secure voiceoverip international journal computer science network security 63–68
+sansorg sans institute infosec reading room
+white teague daniel 7–10 2004 browse conference publications signals systems computer help working abstracts packet loss concealment secure voice environment signals systems computers 2004 conference record thirtyeighth asilomar conference 415–419 doi101109acssc20041399165
+gdc4scom stateoftheart voice encryptor
+cellcrypt secure voip heading blackberry networkworldcom
+secure voip calling free software right privacy free software magazine
+voipsaorg blog hello fake telespoof fakecaller
+fccgov advantages voip
+voip infrastructure
+global voip policy status matrix global alliance retrieved 20061123
+proenza francisco road broadband development developing countries competition driven wireless voip retrieved 20080407
+telecom decision crtc 200521 canadian radiotelevision telecommunications commission government canada april 2005 retrieved april 2017
+metz cade oman cuffs selling voip calls register retrieved september 2016
+mahanagar doorsanchar bhawan jawahar nehru marg 2008 telecom regulatory authority india trai consultation paper issues related internet telephony consultation paper 112008 delhi india telecom regulatory authority india trai section 2212 pctophone internet telephony archived original 20141006 retrieved september 2012 user allowed make pc–tophone internet telephony calls pstnplmn abroad
+harish kumar gangwar technical note illegal international long distance telephone exchange india
+stripescom stars stripes usfk deal keeps voip access troops
+pershing genny cybertelecom voip wwwcybertelecomorg retrieved september 2017
+gpogov 2007
+voip service retrieved august 2014
+voice internet protocol voip november 2010 retrieved september 2017
+greenberg andy 2008 state cybersecurity wiretappings fuzzy future forbes retrieved 20090302
+danny cohen internet hall fame retrieved 20141206
+advanced content delivery streaming cloud services willey retrieved 20141206
+cerf kahn 1974 protocol packet network intercommunication ieee transactions communications 637–648 doi101109tcom19741092259
+launch nsfnet national science foundation retrieved 20090121
+speak freely history brian wiles april 1999 retrieved 20130319
+mtalkreadme sunsiteedu retrieved 20120429
+keating internet phone release computer telephony interaction magazine retrieved 20071107
+established voip part vocaltec ilocus retrieved 20090121
+free library radvision intel target compatibility radvisions h323320 videoconferencing gateway intels business video conferencing teamstation products june 1997 voip developer solutions
+h323 visual telephone systems equipment local area networks provide nonguaranteed quality service itut retrieved 20090121
+2235 zakon retrieved 20090121
+established voip part level ilocus july 2007 retrieved 20071107
+2543 session initiation protocol handley schulzrinne schooler rosenberg retrieved 20090121
+asterisk asteriskorg retrieved 20090121
+prospects bright voice calls internet retrieved 20150101
+philippine daily inquirer google news archive retrieved 20150101
+
+
+external linksedit
+
+dictionary definition voip wiktionary
+internet telephony travel guide wikivoyage
+
+
+
+
+
+
+
+
+
+
+
+
+computermediated communication
+
+
+
+
+
+
+online chat
+online discussion
+communication software
+collaborative software
+social network service
+virtual learning environment
+
+
+
+
+
+asynchronous conferencing
+
+
+
+email
+electronic mailing list
+fidonet
+usenet
+internet forum
+
+textboard
+imageboard
+
+
+shoutbox
+bulletin board system
+online guestbook
+
+
+
+
+
+synchronous conferencing
+
+
+
+data conferencing
+instant messaging
+internet relay chat
+messenger
+talker
+videoconferencing
+voice
+
+voice chat online gaming
+
+
+chat
+conferencing
+
+
+
+
+
+publishing
+
+
+
+blog
+microblogging
+wiki
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+telephony
+
+
+
+types
+
+
+
+landline
+mobile phone
+satellite phone
+photophone
+
+
+
+
+
+connectivity
+
+
+
+cable protection system
+communications satellites
+fibreoptical
+freespace optical
+isdn
+mobile phone signal
+pots
+pstn
+submarine cables
+voip
+
+
+
+
+
+calls
+
+
+
+missed call
+misdialed call
+nuisance call
+phone
+
+
+
+
+
+applications
+
+
+
+transmission
+telephone calls
+telephone newspapers
+théâtrophone
+video calls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+telecommunications
+
+
+
+history
+
+
+
+
+beacon
+broadcasting
+cable protection system
+cable
+communications satellite
+computer network
+drums
+electrical telegraph
+
+heliographs
+hydraulic telegraph
+internet
+mass media
+mobile phone
+optical telecommunication
+optical telegraphy
+pager
+photophone
+prepay mobile phone
+radio
+radiotelephone
+satellite communications
+semaphore
+smartphone
+smoke signals
+telecommunications history
+telautograph
+telegraphy
+teleprinter teletype
+telephone
+telephone cases
+television
+timeline communication technology
+undersea telegraph line
+videoconferencing
+videophone
+videotelephony
+whistled language
+
+
+
+
+
+pioneers
+
+
+
+edwin howard armstrong
+john logie baird
+paul baran
+alexander graham bell
+bernerslee
+jagadish chandra bose
+vint cerf
+claude chappe
+donald davies
+forest
+philo farnsworth
+reginald fessenden
+elisha gray
+erna schneider hoover
+charles
+hedy lamarr
+innocenzo manzetti
+guglielmo marconi
+antonio meucci
+radia perlman
+alexander stepanovich popov
+johann philipp reis
+nikola tesla
+camille tissot
+alfred vail
+charles wheatstone
+vladimir zworykin
+
+
+
+
+
+transmission
+media
+
+
+
+coaxial cable
+fiberoptic communication
+
+optical fiber
+
+
+freespace optical communication
+molecular communication
+radio waves
+transmission line
+
+
+
+
+
+network topology
+switching
+
+
+
+links
+nodes
+terminal node
+network switching circuit
+packet
+telephone exchange
+
+
+
+
+
+multiplexing
+
+
+
+spacedivision
+frequencydivision
+timedivision
+polarizationdivision
+orbital angularmomentum
+codedivision
+
+
+
+
+
+networks
+
+
+
+arpanet
+bitnet
+cellular network
+computer
+cyclades
+ethernet
+fidonet
+internet
+isdn
+
+mobile
+
+network
+public switched telephone
+radio
+telecommunications equipment
+television
+telex
+
+wireless
+world wide
+
+
+
+
+
+
+
+
+category
+portal
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+00959468
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlevoiceoveripoldid816905547 categories broadbandvoice ipvideotelephonyaudio network protocolshidden categories maint unfit urluse dates september 2012all articles unsourced statementsarticles unsourced statements september 2017kvng rtharticles unsourced statements january 2009wikipedia articles need updating september 2013all wikipedia articles need updatingarticles unsourced statements september 2013articles needing detailed referencespages using magic links

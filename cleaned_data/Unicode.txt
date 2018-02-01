@@ -1,0 +1,2409 @@
+1889 universal telegraphic phrasebook commercial code communications
+
+
+
+article contains special characters without proper rendering support question marks boxes symbols
+
+
+
+
+
+
+logo unicode consortium
+
+
+unicode computing industry standard consistent encoding representation handling text expressed worlds writing systems latest version contains repertoire 136755 characters covering modern historic scripts well multiple symbol sets unicode standard maintained conjunction isoiec 10646 codeforcode identical
+unicode standard consists code charts visual reference encoding method standard character encodings reference data files number related items character properties rules normalization decomposition collation rendering bidirectional display order correct display text containing righttoleft scripts arabic hebrew lefttoright scripts1 june 2017update recent version unicode standard maintained unicode consortium
+unicodes success unifying character sets widespread predominant internationalization localization computer software standard implemented many recent technologies including modern operating systems java programming languages framework
+unicode implemented different character encodings unicode standard defines utf8 utf16 utf32 several encodings commonly used encodings utf8 utf16 ucs2 precursor utf16
+utf8 dominantly used websites uses byte first code points bytes characters first unicode code points ascii characters ascii text utf8 text
+ucs2 simply uses bytes bits character encode first 65536 code points socalled basic multilingual plane 1114112 code points planes possible 120000 code points defined many unicode characters beyond reach ucs2 therefore ucs2 obsolete though still widely used software utf16 extends ucs2 using 16bit encoding ucs2 basic multilingual plane 4byte encoding planes long contains code points reserved range u0d800u0dfff ucs2 text valid utf16 text
+utf32 also referred ucs4 uses four bytes character like ucs2 number bytes character fixed facilitating character indexing unlike ucs2 utf32 able encode unicode code points however character uses four bytes utf32 takes significantly space encodings widely used
+
+
+
+contents
+
+
+origin development
+
+history
+architecture terminology
+
+code point planes blocks
+general category property
+abstract characters
+
+
+unicode consortium
+versions
+scripts covered
+
+
+mapping encodings
+
+unicode transformation format universal coded character
+readymade versus composite characters
+ligatures
+standardized subsets
+
+
+adoption
+
+operating systems
+input methods
+email
+
+fonts
+newlines
+
+
+issues
+
+philosophical completeness criticisms
+mapping legacy character sets
+indic scripts
+combining characters
+anomalies
+
+
+also
+references
+reading
+external links
+
+
+
+origin developmentedit
+unicode explicit transcending limitations traditional character encodings defined 8859 standard find wide usage various countries world remain largely incompatible many traditional character encodings share common problem allow bilingual computer processing usually using latin characters local script multilingual computer processing computer processing arbitrary scripts mixed
+unicode intent encodes underlying characters—graphemes graphemelike units—rather variant glyphs renderings characters case chinese characters sometimes leads controversies distinguishing underlying character variant glyphs unification
+text processing unicode takes role providing unique code point—a number glyph—for character words unicode represents character abstract leaves visual rendering size shape font style software browser word processor simple becomes complicated however concessions made unicodes designers hope encouraging rapid adoption unicode
+first code points made identical content iso88591 make trivial convert existing western text many essentially identical characters encoded multiple times different code points preserve distinctions used legacy encodings therefore allow conversion encodings unicode back without losing information example fullwidth forms section code points encompasses full latin alphabet separate main latin alphabet section chinese japanese korean fonts latin characters rendered width ideographs rather half width examples duplicate characters unicode
+historyedit
+based experiences xerox character code standard xccs since 19802 origins unicode date 1987 becker xerox collins mark davis apple started investigating practicalities creating universal character set3 additional input peter fenwick dave opstad2 becker published draft proposal internationalmultilingual text character encoding system august 1988 tentatively called unicode explained name unicode intended suggest unique unified universal encoding2
+document entitled unicode becker outlined 16bit character model2
+
+unicode intended address need workable reliable world text encoding unicode could roughly described widebody ascii stretched bits encompass characters worlds living languages properly engineered design bits character sufficient purpose
+
+original 16bit design based assumption scripts characters modern would need encoded2
+
+unicode gives higher priority ensuring utility future preserving past antiquities unicode aims first instance characters published modern text union newspapers magazines printed world 1988 whose number undoubtedly 16384 beyond modernuse characters others defined obsolete rare better candidates privateuse registration congesting public list generally useful unicodes
+
+early 1989 unicode working group expanded include whistler mike kernaghan metaphor karen smithyoshimura joan aliprand glenn wright microsystems 1990 michel suignard asmus freytag microsoft rick mcgowan next joined group 1990 work mapping existing character encoding standards completed final review draft unicode ready
+unicode consortium incorporated california january 19914 october 1991 first volume unicode standard published second volume covering ideographs published june 1992
+1996 surrogate character mechanism implemented unicode unicode longer restricted bits increased unicode codespace million code points allowed encoding many historic scripts egyptian hieroglyphs thousands rarely used obsolete characters anticipated needing encoding among characters originally intended unicode rarely used kanji chinese characters many part personal place names making rarely used much essential envisioned original architecture unicode5
+microsoft truetype specification version 1992 used name apple unicode instead unicode platform naming table
+architecture terminologyedit
+unicode defines codespace 1114112 code points range 0hex 10ffffhex6 normally unicode code point referred writing followed hexadecimal number code points basic multilingual plane four digits used u0058 character latin capital letter code points outside five digits used required ue0001 character language u10fffd character private character10fffd7
+code point planes blocksedit
+main article plane unicode
+unicode codespace divided seventeen planes numbered
+
+
+
+
+
+
+
+
+
+
+unicode planes used code point ranges
+
+
+
+basic
+supplementary
+
+
+plane
+plane
+plane
+planes 3–13
+plane
+planes 15–16
+
+
+0000–​ffff
+10000–​1ffff
+20000–​2ffff
+30000–​dffff
+e0000–​effff
+f0000–​10ffff
+
+
+basic multilingual plane
+supplementary multilingual plane
+supplementary ideographic plane
+unassigned
+supplement­ary specialpurpose plane
+supplement­ary private area planes
+
+
+
+
+
+
+
+spuaab
+
+
+
+0000–​0fff
+1000–​1fff
+2000–​2fff
+3000–​3fff
+4000–​4fff
+5000–​5fff
+6000–​6fff
+7000–​7fff
+
+
+8000–​8fff
+9000–​9fff
+a000–​afff
+b000–​bfff
+c000–​cfff
+d000–​dfff
+e000–​efff
+f000–​ffff
+
+
+10000–​10fff
+11000–​11fff
+12000–​12fff
+13000–​13fff
+14000–​14fff
+
+16000–​16fff
+17000–​17fff
+
+
+18000–​18fff
+
+
+1b000–​1bfff
+
+1d000–​1dfff
+1e000–​1efff
+1f000–​1ffff
+
+
+20000–​20fff
+21000–​21fff
+22000–​22fff
+23000–​23fff
+24000–​24fff
+25000–​25fff
+26000–​26fff
+27000–​27fff
+
+
+28000–​28fff
+29000–​29fff
+2a000–​2afff
+2b000–​2bfff
+2c000–​2cfff
+2d000–​2dfff
+2e000–​2efff
+2f000–​2ffff
+
+
+
+e0000–​e0fff
+
+
+spuaa
+f0000–​fffff
+
+spuab
+100000–​10ffff
+
+
+
+code points accessed single code unit utf16 encoding encoded three bytes utf8 code points planes supplementary planes accessed surrogate pairs utf16 encoded four bytes utf8
+within plane characters allocated within named blocks related characters although blocks arbitrary size always multiple code points often multiple code points characters required given script spread several different blocks
+general category propertyedit
+code point single general category property major categories denoted letter mark number punctuation symbol separator within categories subdivisions general category useful every since legacy encodings used multiple characteristics single code point u000a control000a line feed ascii control formatting separator unicode general category control often properties must used specify characteristics behaviour code point possible general categories
+
+
+general category unicode character propertya
+
+
+
+
+
+
+
+
+
+
+value
+category major minor
+basic typeb
+character assignedb
+fixedc
+remarks
+
+
+
+
+
+
+
+
+
+
+letter
+
+
+
+letter uppercase
+graphic
+character
+
+
+
+
+
+letter lowercase
+graphic
+character
+
+
+
+
+
+letter titlecase
+graphic
+character
+
+ligatures containing uppercase followed lowercase letters
+
+
+
+letter modifier
+graphic
+character
+
+
+
+
+
+letter
+graphic
+character
+
+
+
+
+mark
+
+
+
+mark nonspacing
+graphic
+character
+
+
+
+
+
+mark spacing combining
+graphic
+character
+
+
+
+
+
+mark enclosing
+graphic
+character
+
+
+
+
+number
+
+
+
+number decimal digit
+graphic
+character
+
+numeric type
+
+
+
+number letter
+graphic
+character
+
+numerals composed letters letterlike symbols roman numerals
+
+
+
+number
+graphic
+character
+
+vulgar fractions superscript subscript digits
+
+
+punctuation
+
+
+
+punctuation connector
+graphic
+character
+
+includes underscore
+
+
+
+punctuation dash
+graphic
+character
+
+includes several hyphen characters
+
+
+
+punctuation open
+graphic
+character
+
+opening bracket characters
+
+
+
+punctuation close
+graphic
+character
+
+closing bracket characters
+
+
+
+punctuation initial quote
+graphic
+character
+
+opening quotation mark include ascii neutral quotation mark behave like depending usage
+
+
+
+punctuation final quote
+graphic
+character
+
+closing quotation mark behave like depending usage
+
+
+
+punctuation
+graphic
+character
+
+
+
+
+symbol
+
+
+
+symbol math
+graphic
+character
+
+mathematical symbols include parentheses brackets categories also include despite frequent mathematical operators primarily considered punctuation
+
+
+
+symbol currency
+graphic
+character
+
+currency symbols
+
+
+
+symbol modifier
+graphic
+character
+
+
+
+
+
+symbol
+graphic
+character
+
+
+
+
+separator
+
+
+
+separator space
+graphic
+character
+
+includes space
+
+
+
+separator line
+format
+character
+
+u2028 line separator lsep
+
+
+
+separator paragraph
+format
+character
+
+u2029 paragraph separator psep
+
+
+
+
+
+
+control
+control
+character
+fixed
+named control
+
+
+
+format
+format
+character
+
+includes soft hyphen control characters support bidirectional text language characters
+
+
+
+surrogate
+surrogate
+abstract
+fixed 2048
+named surrogate
+
+
+
+private
+privateuse
+abstract
+fixed 137468 total 6400 131068 planes 15–16
+named privateuse
+
+
+
+assigned
+noncharacter
+
+fixed
+named noncharacter
+
+
+reserved
+
+fixed
+named reserved
+
+
+
+
+
+
+table general category unicode standard unicode consortium july 2017
+table types code points unicode standard unicode consortium july 2017
+unicode character encoding stability policies property value stability stability policy groups never change gcnd corresponds numeric typede decimal
+table construction code point labels unicode standard unicode consortium july 2017 code point label used identify nameless code point controlhhhh control0088 name remains blank prevent inadvertently replacing documentation control name true control code unicode also uses character noncharacter
+
+
+
+
+
+
+code points range ud800–udbff 1024 code points known highsurrogate code points code points range udc00–udfff 1024 code points known lowsurrogate code points highsurrogate code point also known leading surrogate followed lowsurrogate code point also known trailing surrogate together form surrogate pair used utf16 represent 1048576 code points outside high surrogate code points valid thus range code points available characters u0000–ud7ff ue000–u10ffff 1112064 code points value code points excluding surrogates sometimes referred characters scalar value
+certain noncharacter code points guaranteed never used encoding characters although applications make code points internally wish sixtysix noncharacters ufdd0–ufdef code point ending value fffe ffff ufffe uffff u1fffe u1ffff u10fffe u10ffff noncharacters stable noncharacters ever defined12
+reserved code points code points available encoded characters defined characters unicode
+privateuse code points considered assigned characters interpretation specified unicode standard13 interchange characters requires agreement sender receiver interpretation three privateuse areas unicode codespace
+
+private area ue000–uf8ff 6400 characters
+supplementary private areaa uf0000–uffffd 65534 characters
+supplementary private areab u100000–u10fffd 65534 characters
+
+graphic characters characters defined unicode particular semantic either visible glyph shape represent visible space unicode 136537 graphic characters
+format characters characters visible appearance effect appearance behavior neighboring characters example u200c zero width nonjoiner u200d zero width joiner used change default shaping behavior adjacent characters inhibit ligatures request ligature formation format characters unicode
+sixtyfive code points u0000–u001f u007f–u009f reserved control codes correspond control codes defined isoiec 6429 u0009 u000a line feed u000d carriage return widely used unicodeencoded texts
+graphic characters format characters control code characters private characters known collectively assigned characters
+abstract charactersedit
+graphic format characters defined unicode correspond directly repertoire abstract characters representable unicode unicode encodes characters associating abstract character particular code point14 however abstract characters encoded single unicode character abstract characters represented unicode sequence characters example latin small letter ogonek acute accent required lithuanian represented character sequence u012f u0307 u0301 unicode maintains list uniquely named character sequences abstract characters directly encoded unicode15
+graphic format private characters unique immutable name identified immutability guaranteed since unicode version name stability policy12 cases name seriously defective misleading serious typographical error formal alias defined applications encouraged formal alias place official character name example ua015 syllable formal alias syllable iteration mark ufe18 presentation form vertical right white lenticular brakcet formal alias presentation form vertical right white lenticular bracket16
+unicode consortiumedit
+main article unicode consortium
+unicode consortium nonprofit organization coordinates unicodes development full members include main computer software hardware companies interest textprocessing standards including adobe systems apple google microsoft oracle corporation yahoo17
+consortium ambitious goal eventually replacing existing character encoding schemes unicode standard unicode transformation format schemes many existing schemes limited size scope incompatible multilingual environments
+versionsedit
+unicode developed conjunction international organization standardization shares character repertoire isoiec 10646 universal character unicode isoiec 10646 function equivalently character encodings unicode standard contains much information implementers covering—in depth—topics bitwise encoding collation rendering unicode standard enumerates multitude character properties including needed supporting bidirectional text standards slightly different terminology
+consortium first published unicode standard isbn 0321185781 1991 continues develop standards based original work latest version standard unicode released june 2017 available consortiums website last major versions versions published book form unicode isbn 0321480910 since unicode full text standard longer published book form 2012 however announced core specification unicode version would made available 692page printondemand paperback18 unlike previous major version printings standard printondemand core specification include code charts standard annexes entire standard including core specification still remain freely available unicode website
+thus following major minor versions unicode standard published update versions include changes character repertoire signified third number version omitted table below19
+
+unicode versions
+
+version
+date
+book
+corresponding isoiec 10646 edition
+scripts
+characters
+
+
+totaltablenote
+notable additions
+
+
+
+october 1991
+isbn 0201567881
+
+
+7161
+initial repertoire covers scripts arabic armenian bengali bopomofo cyrillic devanagari georgian greek coptic gujarati gurmukhi hangul hebrew hiragana kannada katakana latin malayalam oriya tamil telugu thai tibetan20
+
+
+
+june 1992
+isbn 0201608456
+
+
+28359
+initial 20902 unified ideographs defined21
+
+
+
+june 1993
+
+isoiec 1064611993
+
+34233
+4306 hangul syllables added original 2350 characters tibetan removed22
+
+
+
+july 1996
+isbn 0201483459
+isoiec 1064611993 plus amendments
+
+38950
+original hangul syllables removed 11172 hangul syllables added location tibetan added back location different character repertoire surrogate character mechanism defined plane plane private areas allocated23
+
+
+
+1998
+
+isoiec 1064611993 plus amendments well characters amendment
+
+38952
+euro sign object replacement character added24
+
+
+
+september 1999
+isbn 0201616335
+isoiec 1064612000
+
+49259
+cherokee ethiopic khmer mongolian burmese ogham runic sinhala syriac thaana unified canadian aboriginal syllabics syllables added well braille patterns25
+
+
+
+march 2001
+
+isoiec 1064612000
+isoiec 1064622001
+
+
+94205
+deseret gothic italic added well sets symbols western music byzantine music 42711 additional unified ideographs26
+
+
+
+march 2002
+
+isoiec 1064612000 plus amendment
+isoiec 1064622001
+
+
+95221
+philippine scripts buhid hanunóo tagalog tagbanwa added27
+
+
+
+april 2003
+isbn 0321185781
+isoiec 106462003
+
+96447
+cypriot syllabary limbu linear osmanya shavian ugaritic added well hexagram symbols28
+
+
+
+march 2005
+
+isoiec 106462003 plus amendment
+
+97720
+buginese glagolitic kharoshthi persian syloti nagri tifinagh added coptic disunified greek ancient greek numbers musical symbols also added29
+
+
+
+july 2006
+isbn 0321480910
+isoiec 106462003 plus amendments well four characters amendment
+
+99089
+balinese cuneiform phagspa phoenician added30
+
+
+
+april 2008
+
+isoiec 106462003 plus amendments
+
+100713
+carian cham kayah lepcha lycian lydian chiki rejang saurashtra sundanese added well sets symbols phaistos disc mahjong tiles domino tiles also important additions burmese additions letters scribal abbreviations used medieval manuscripts addition capital
+
+
+
+october 2009
+
+isoiec 106462003 plus amendments
+
+107361
+avestan bamum egyptian hieroglyphs gardiner comprising 1071 characters imperial aramaic inscriptional pahlavi inscriptional parthian javanese kaithi lisu meetei mayek south arabian turkic samaritan tham viet added 4149 additional unified ideographs cjkc well extended jamo hangul characters vedic sanskrit32
+
+
+
+october 2010
+
+isoiec 106462010 plus indian rupee sign
+
+109449
+batak brahmi mandaic playing card symbols transport symbols alchemical symbols emoticons emoji additional unified ideographs cjkd added33
+
+
+
+january 2012
+
+isoiec 106462012
+
+110181
+chakma meroitic cursive meroitic hieroglyphs miao sharada sora sompeng takri34
+
+
+
+september 2012
+
+isoiec 106462012 plus turkish lira sign
+
+110182
+turkish lira sign35
+
+
+
+september 2013
+
+isoiec 106462012 plus characters
+
+110187
+bidirectional formatting characters36
+
+
+
+june 2014
+
+isoiec 106462012 plus amendments well ruble sign
+
+113021
+bassa caucasian albanian duployan elbasan grantha khojki khudawadi linear mahajani manichaean mende kikakui modi nabataean north arabian permic pahawh hmong palmyrene psalter pahlavi siddham tirhuta warang citi dingbats37
+
+
+
+june 2015
+
+isoiec 106462014 plus amendment well lari sign nine unified ideographs emoji characters38
+
+120737
+ahom anatolian hieroglyphs hatran multani hungarian signwriting 5771 unified ideographs lowercase letters cherokee five emoji skin tone modifiers39
+
+
+
+june 2016
+
+isoiec 106462014 plus amendments well adlam newa japanese symbols emoji symbols40
+
+128237
+adlam bhaiksuki marchen newa osage tangut emoji4142
+
+
+
+june 2017
+
+isoiec 106462017 plus emoji characters hentaigana characters zanabazar square characters43
+
+136755
+zanabazar square soyombo masaram gondi nüshu hentaigana nonstandard hiragana 7494 unified ideographs emoji44
+
+
+
+
+
+number characters listed version unicode total number graphic format control characters excluding privateuse characters noncharacters surrogate code points
+
+
+
+scripts coverededit
+main article script unicode
+
+
+
+
+many modern applications render substantial subset many scripts unicode demonstrated screenshot openofficeorg application
+
+
+unicode covers almost scripts writing systems current today45not citation given
+total scripts included latest version unicode covering alphabets abugidas syllabaries although still scripts encoded particularly mainly used historical liturgical academic contexts additions characters already encoded scripts well symbols particular mathematics music form notes rhythmic symbols also occur
+unicode roadmap committee michael everson rick mcgowan whistler maintain list scripts candidates potential candidates encoding tentative code block assignments unicode roadmap page unicode consortium site scripts roadmap jurchen khitan small script encoding proposals made working approval process others scripts mayan rongorongo proposal made await agreement character repertoire details user communities involved
+modern invented scripts included unicode tengwar qualify inclusion unicode lack realworld klingon listed conscript unicode registry along unofficial widely used private area code assignments
+also medieval unicode font initiative focused special latin medieval characters part proposals already included unicode
+script encoding initiative project deborah anderson university california berkeley founded 2002 goal funding proposals scripts encoded standard project become major source proposed additions standard recent years46
+mapping encodingsedit
+also universal character characters
+several mechanisms specified implementing unicode choice depends available storage space source code compatibility interoperability systems
+unicode transformation format universal coded character setedit
+unicode defines mapping methods unicode transformation format encodings universal coded character encodings encoding maps possibly subset range unicode code points sequences values fixedsize range termed code values encodings code points except surrogates unique sequence bytes47 numbers names encodings indicate number bits code value encodings number bytes code value encodings utf8 utf16 probably commonly used encodings ucs2 obsolete subset utf16 ucs4 utf32 functionally equivalent
+encodings include
+
+utf1 retired predecessor utf8 maximizes compatibility 2022 longer part unicode standard
+utf7 7bit encoding sometimes used email often considered obsolete part unicode standard documented informational internet standards track either
+utf8 8bit variablewidth encoding maximizes compatibility ascii
+utfebcdic 8bit variablewidth encoding similar utf8 designed compatibility ebcdic part unicode standard
+utf16 16bit variablewidth encoding
+utf32 32bit fixedwidth encoding
+
+utf8 uses four bytes code point compact latin scripts asciicompatible provides facto standard encoding interchange unicode text used freebsd recent linux distributions direct replacement legacy encodings general text handling
+ucs2 utf16 encodings specify unicode byte order mark beginnings text files used byte ordering detection byte endianness detection code point ufeff important property unambiguity byte reorder regardless unicode encoding used ufffe result byteswapping ufeff equate legal character ufeff places beginning text conveys zerowidth nonbreak space character appearance effect preventing formation ligatures
+character converted utf8 becomes byte sequence unicode standard allows serve signature utf8 encoded text character unmarked48 software developers adopted encodings including utf8 attempt distinguish utf8 local 8bit code pages however 3629 utf8 standard recommends byte order marks forbidden protocols using utf8 discusses cases possible addition large restriction possible patterns utf8 instance cannot lone bytes high means possible distinguish utf8 character encodings without relying
+utf32 ucs4 32bit code value serves fairly direct representation characters code point although endianness varies across different platforms affects code value manifests octet sequence encodings code point represented variable number code values utf32 widely used internal representation text programs opposed stored transmitted text since every unix operating system uses compilers generate software uses standard wide character encoding programming languages seed7 utf32 internal representation strings characters recent versions python programming language beginning also configured utf32 representation unicode strings effectively disseminating encoding highlevel coded software
+punycode another encoding form enables encoding unicode strings limited character supported asciibased domain name system encoding used part idna system enabling internationalized domain names scripts supported unicode earlier historical proposals include utf5 utf6
+gb18030 another encoding form unicode standardization administration china official character peoples republic china bocu1 scsu unicode compression schemes april fools 2005 specified parody encodings utf9 utf18
+readymade versus composite charactersedit
+unicode includes mechanism modifying character shape greatly extends supported glyph repertoire covers combining diacritical marks inserted main character multiple combining diacritics stacked character unicode also contains precomposed versions letterdiacritic combinations normal make conversion legacy encodings simpler allow applications unicode internal text format without implement combining characters example represented unicode u0065 latin small letter followed u0301 combining acute accent also represented precomposed character u00e9 latin small letter acute thus many cases users multiple ways encoding character deal unicode provides mechanism canonical equivalence
+example arises hangul korean alphabet unicode provides mechanism composing hangul syllables individual subcomponents known hangul jamo however also provides 11172 combinations precomposed syllables made common jamo
+ideographs currently codes precomposed form still ideographs comprise simpler elements often called radicals english principle unicode could decomposed hangul would greatly reduced number required code points allowing display virtually every conceivable ideograph might away problems caused unification similar idea used input methods cangjie wubi however attempts character encoding stumbled fact ideographs decompose simply regularly hangul
+radicals provided unicode radicals u2e80 u2eff kangxi radicals u2f00 u2fdf ideographic description characters u2ff0 u2ffb unicode standard unicode warns using ideographic description sequences alternate representation previously encoded characters
+
+process different formal encoding ideograph canonical description unencoded ideographs semantic assigned described ideographs equivalence defined described ideographs conceptually ideographic descriptions akin english phrase acute accent character sequence u0065 u0301
+
+ligaturesedit
+many scripts including arabic devanagari special orthographic rules require certain combinations letterforms combined special ligature forms rules governing ligature formation quite complex requiring special scriptshaping technologies arabic calligraphic engine decotype 1980s used generate arabic examples printed editions unicode standard became proof concept opentype adobe microsoft graphite international apple
+instructions also embedded fonts tell operating system properly output different character sequences simple solution placement combining marks diacritics assigning marks width zero placing glyph left right left sidebearing depending direction script intended used mark handled appear whatever character precedes adjust position relative width height base glyph visually awkward overlap glyphs real stacking impossible approximated limited cases example thai topcombining vowels tone marks different heights start generally approach effective monospaced fonts used fallback rendering method complex methods fail
+standardized subsetsedit
+several subsets unicode standardized microsoft windows since windows supports wgl4 characters considered support contemporary european languages using latin greek cyrillic script standardized subsets unicode include multilingual european subsets49
+mes1 latin scripts characters mes2 latin greek cyrillic 1062 characters50 mes3a mes3b larger subsets shown note mes2 includes every character mes1 wgl4
+
+wgl4 mes1 mes2
+
+
+cells
+ranges
+
+
+
+20–7e
+basic latin 00–7f
+
+
+a0–ff
+latin1 supplement 80–ff
+
+
+
+00–13 14–15 16–2b 2c–2d 2e–4d 4e–4f 50–7e
+latin extendeda 00–7f
+
+
+deef fa–ff
+latin extendedb 80–ff
+
+
+
+18–1b 1e–1f
+latin extendedb 00–4f
+
+
+
+extensions 50–af
+
+
+bb–bd d8–db
+spacing modifier letters b0–ff
+
+
+
+74–75 84–8a 8e–a1 a3–ce da–e1
+greek 70–ff
+
+
+
+01–0c 0e–4f 51–5c 5e–5f 90–91 92–c4 c7–c8 cb–cc d0–eb ee–f5 f8–f9
+cyrillic 00–ff
+
+
+
+02–03 0a–0b 1e–1f 40–41 56–57 60–61 6a–6b 80–85 f2–f3
+latin extended additional 00–ff
+
+
+
+00–15 18–1d 20–45 48–4d 50–57 5f–7d 80–b4 b6–c4 c6–d3 d6–db dd–ef f2–f4 f6–fe
+greek extended 00–ff
+
+
+
+13–14 18–19 1a–1b 1c–1d 20–22 32–33 39–3a
+general punctuation 00–6f
+
+
+
+superscripts subscripts 70–9f
+
+
+a3–a4
+currency symbols a0–cf
+
+
+
+
+letterlike symbols 00–4f
+
+
+5b–5e
+number forms 50–8f
+
+
+90–93 94–95
+arrows 90–ff
+
+
+
+08–09 11–12 19–1a 1e–1f 27–28 60–61 64–65 82–83
+mathematical operators 00–ff
+
+
+
+20–21 29–2a
+miscellaneous technical 00–ff
+
+
+
+50–6c
+drawing 00–7f
+
+
+90–93
+block elements 80–9f
+
+
+a0–a1 aa–ac ca–cb d8–d9
+geometric shapes a0–ff
+
+
+
+3a–3c 65–66
+miscellaneous symbols 00–ff
+
+
+
+01–02
+private area 00–ff
+
+
+
+01–02
+alphabetic presentation forms 00–4f
+
+
+
+
+specials
+
+
+rendering software cannot process unicode character appropriately often displays open rectangle unicode replacement character ufffd indicate position unrecognized character systems made attempts provide information characters apples last resort font display substitute glyph indicating unicode range character internationals unicode fallback font display showing hexadecimal scalar value character
+adoptionedit
+operating systemsedit
+unicode become dominant scheme internal processing storage text although great deal text still stored legacy encodings unicode used almost exclusively building information processing systems early adopters tended ucs2 fixedwidth twobyte precursor utf16 later moved utf16 variablewidth current standard least disruptive support nonbmp characters best known system windows descendants windows 2000 windows windows vista windows windows windows uses utf16 sole internal character encoding java bytecode environments macos also internal representation unicode available windows microsoft layer unicode well descendants windows windows
+utf8 originally developed plan become main storage encoding unixlike operating systems though others also used libraries relatively easy replacement traditional extended ascii character sets utf8 also common unicode encoding used html documents world wide
+multilingual textrendering engines unicode include uniscribe directwrite microsoft windows atsui core text macos pango gnome desktop
+input methodsedit
+main article unicode input
+keyboard layouts cannot simple combinations characters several operating systems provide alternative input methods allow access entire repertoire
+isoiec 1475552 standardises methods entering unicode characters code points specifies several methods basic method beginning sequence followed hexadecimal representation code point ending sequence also screenselection entry method specified characters listed table screen character program
+emailedit
+main article unicode email
+mime defines different mechanisms encoding nonascii characters email depending whether characters email headers subject text body message cases original character identified well transfer encoding email transmission unicode utf8 character base64 quotedprintable transfer encoding recommended depending whether much message consists ascii characters details different mechanisms specified mime standards generally hidden users email software
+adoption unicode email slow east asian text still encoded encodings iso2022 devices mobile phones still cannot correctly handle unicode data support improving however many major free mail providers yahoo google gmail microsoft outlookcom support
+webedit
+main article unicode html
+recommendations used unicode document character since html browsers supported unicode especially utf8 many years used display problems resulting primarily font related issues older microsoft internet explorer render many code points unless explicitly told font contains them53
+although syntax rules affect order characters allowed appear including xhtml documents definition54 comprise characters unicode code points exception
+
+control codes
+permanently unassigned code points d800–dfff
+fffe ffff
+
+html characters manifest either directly bytes according documents encoding encoding supports users write numeric character references based characters unicode code point example references 1049 1511 1605 3671 12354 21494 33865 47568 numeric values expressed hexadecimal prefix display browsers
+specifying uris example urls http requests nonascii characters must percentencoded
+fontsedit
+main article unicode typeface
+free retail fonts based unicode widely available since truetype opentype support unicode font formats unicode code points glyphs
+thousands fonts exist market fewer dozen fonts—sometimes described panunicode fonts—attempt support majority unicodes character repertoire instead unicodebased fonts typically focus supporting basic ascii particular scripts sets characters symbols several reasons justify approach applications documents rarely need render characters writing systems fonts tend demand resources computing environments operating systems applications show increasing intelligence regard obtaining glyph information separate font files needed font substitution furthermore designing consistent rendering instructions tens thousands glyphs constitutes monumental task venture passes point diminishing returns typefaces
+newlinesedit
+unicode partially addresses newline problem occurs trying read text file different platforms unicode defines large number characters conforming applications recognize line terminators
+terms newline unicode introduced u2028 line separator u2029 paragraph separator attempt provide unicode solution encoding paragraphs lines semantically potentially replacing various platform solutions unicode provide around historical platform dependent solutions nonetheless unicode solutions adopted unicode line paragraph separators sole canonical line ending characters however common approach solving issue newline normalization achieved cocoa text system also html recommendations approach every possible newline character converted internally common newline really matter since internal operation rendering words text system correctly treat character newline regardless inputs actual encoding
+issuesedit
+philosophical completeness criticismsedit
+unification identification forms east asian languages treat stylistic variations historical character become controversial aspects unicode despite presence majority experts three regions ideographic rapporteur group advises consortium additions repertoire unification55
+unicode criticized failing separately encode older alternative forms kanji critics argue complicates processing ancient japanese uncommon japanese names often fact unicode encodes characters rather glyphs visual representations basic character often vary language another unification glyphs leads perception languages basic character representation merged56clarification needed several attempts create alternative encodings preserve stylistic differences chinese japanese korean characters opposition unicodes policy unification example tron although widely adopted japan users need handle historical japanese text favor
+although repertoire fewer 21000 characters earliest version unicode largely limited characters common modern usage unicode includes 70000 characters work continuing thousands historic dialectal characters used china japan korea taiwan vietnam
+modern font technology provides means address practical issue needing depict unified character terms collection alternative glyph representations form unicode variation sequences example advanced typographic tables opentype permit number alternative glyph representations selected performing character glyph mapping process case information provided within plain text designate alternate character form select
+
+
+
+
+various cyrillic characters shown without italics
+
+
+difference appropriate glyphs characters script differ italic unicode generally unified seen comparison russian labeled standard serbian characters right meaning differences displayed smart font technology manually changing fonts
+mapping legacy character setsedit
+unicode designed provide codepointbycodepoint roundtrip format conversion preexisting character encodings text files older character sets converted unicode back back file without employing contextdependent interpretation meant inconsistent legacy architectures combining diacritics precomposed characters exist unicode giving method representing text pronounced three different encoding forms korean hangul since version precomposed characters represented combining sequence already existing characters longer added standard order preserve interoperability software using different versions unicode
+injective mappings must provided characters existing legacy character sets characters unicode facilitate conversion unicode allow interoperability legacy software lack consistency various mappings earlier japanese encodings shiftjis eucjp unicode roundtrip format conversion mismatches particularly mapping character 0208 wave dash heavily used legacy database data either uff5e fullwidth tilde microsoft windows u301c wave dash vendors57
+japanese computer programmers objected unicode requires separate u005c reverse solidus backslash u00a5 sign mapped 0x5c 0201 legacy code exists usage58 encoding also replaces tilde 0x7e macron 0xaf separation characters exists 88591 long unicode
+indic scriptsedit
+indic scripts tamil devanagari allocated code points matching iscii standard correct rendering unicode indic text requires transforming stored logical order characters visual order forming ligatures conjuncts components local scholars argued favor assignments unicode code points ligatures going practice writing systems though unicode contains arabic ligatures backward compatibility purposes only596061 encoding ligatures unicode happen part ligatures fontdependent unicode encoding independent font variations kind issue arose tibetan script 2003 standardization administration china proposed encoding precomposed tibetan syllables62 rejected encoding relevant committee isoiec
+thai alphabet support criticized ordering thai characters vowels written left preceding consonant visual order instead phonetic order unlike unicode representations indic scripts complication unicode inheriting thai industrial standard worked thai always written keyboards ordering problem complicates unicode collation process slightly requiring table lookups reorder thai characters collation56 even unicode adopted encoding according spoken order would still problematic collate words dictionary order word แสดง dɛːŋ perform starts consonant cluster inherent vowel consonant vowel spoken order would come dictionary word collated written vowel following
+combining charactersedit
+main article combining character
+also unicode normalization normalization
+characters diacritical marks generally represented either single precomposed character decomposed sequence base letter plus nonspacing marks example precomposed macron acute followed combining macron combining acute rendered identically appearing macron acute accent practice appearance vary depending upon rendering engine fonts used display characters similarly underdots needed romanization indic often placed incorrectlycitation needed unicode characters precomposed glyphs used many cases thus avoiding problem precomposed character encoded problem often solved using specialist unicode font charis uses graphite opentype technologies advanced rendering features
+anomaliesedit
+unicode standard imposed rules intended guarantee stability64 depending strictness rule change prohibited allowed example name given code point change script property flexible unicodes rules version unicode changed many code point names version moment unicode stated assigned name code point never change anymore implies mistakes published mistakes cannot corrected even trivial happened instance spelling brakcet bracket character name 2006 list anomalies character names first published example65
+
+u2118 script capital html 8472 weierp capital
+
+name says capital small letter true capital u1d4ab mathematical script capital html 11997966
+
+
+u034f combining grapheme joiner html join graphemes65
+ua015 syllable html 40981 syllable iteration mark name however cannot changed policy consortium
+ufe18 presentation form vertical right white lenticular brakcet html 65048 bracket spelled incorrectly since fixed character name policy cannot changed67
+
+alsoedit
+
+comparison unicode encodings
+cultural political religious symbols unicode
+international components unicode icutc part unicode
+list binary codes
+list unicode characters
+list html character entity references
+opensource unicode typefaces
+standards related unicode
+unicode symbols
+universal character
+lotus multibyte character lmbcs parallel development similar intentions
+
+referencesedit
+
+
+unicode standard technical introduction retrieved 20100316
+becker joseph 19980910 19880829 unicode unicodeorg 10th anniversary reprint unicode consortium archived original 20161125 retrieved 20161025 1978 initial proposal universal signs made belleville xerox parc many persons contributed ideas development encoding design beginning 1980 efforts evolved xerox character code standard xccs present author multilingual encoding maintained xerox internal corporate standard since 1982 efforts smura pellar others
+unicode arose result eight years working experience xccs fundamental differences xccs proposed peter fenwick dave opstad pure 16bit codes collins ideographic character unification unicode retains many features xccs whose utility proved years international line communication multilingual system products
+summary narrative retrieved 20100315
+history unicode release publication dates unicodeorg retrieved february 2017
+searle stephen unicode revisited retrieved 20130118
+glossary unicode terms retrieved 20100316
+appendix notational conventions unicode standard unicode consortium june 2017
+unicode character encoding stability policy retrieved 20100316
+properties retrieved 20100316
+unicode character encoding model retrieved 20100316
+unicode named sequences retrieved 20100316
+unicode name aliases retrieved 20100316
+unicode consortium members retrieved 20100316
+unicode paperback available announcementsatunicodeorg retrieved 20120530
+enumerated versions unicode standard retrieved 20160621
+unicode data retrieved 20100316
+unicode data retrieved 20100316
+unicode data 1995 retrieved 20100316
+unicode data2014 retrieved 20100316
+unicode data212 retrieved 20100316
+unicode data300 retrieved 20100316
+unicode data310 retrieved 20100316
+unicode data320 retrieved 20100316
+unicode data400 retrieved 20100316
+unicode data retrieved 20100316
+unicode data retrieved 20100317
+unicode data retrieved 20100317
+unicode data retrieved 20100317
+unicode data retrieved 20101011
+unicode data retrieved 20120131
+unicode data retrieved 20120926
+unicode data retrieved 20130930
+unicode data retrieved 20140615
+unicode unicode consortium retrieved 20150617
+unicode data retrieved 20150617
+unicode unicode consortium retrieved 20160621
+unicode data retrieved 20160621
+lobao martim june 2016 emoji werent approved unicode google added android anyway android police retrieved september 2016
+unicode 1000 unicode consortium retrieved 20170620
+unicode data 1000 retrieved 20170620
+character code charts retrieved 20100317
+script encoding initiative unicode consortium retrieved 20120604
+utf8 utf16 utf32 unicodeorg retrieved december 2016
+unicode standard version unicode consortium 2013 isbn 9781936213085
+138732000 multilingual european subsets isoiec 106461 workshop agreement 13873
+multilingual european character mes2 rationale markus kuhn 1998
+pike 20030430 utf8 history
+isoiec jtc1sc 18wg retrieved 20120604
+wood alan setting windows internet explorer multilingual unicode support alan wood retrieved 20120604
+extensible markup language second edition retrieved 20131101
+brief history character codes steven searle originally written 1999 last updated 2004
+secret life unicode peek unicodes soft underbelly suzanne topping 2001 internet archive
+afii contribution wave dash unicode vendorspecific character table japanese
+problem section 4435 introduction i18n tomohiro kubota 2001
+arabic presentation formsa retrieved 20100320
+arabic presentation formsb retrieved 20100320
+alphabetic presentation forms retrieved 20100320
+china december 2002 proposal tibetan brdarten characters encoding isoiec 10646
+umamaheswaran november 2003 resolutions meeting resolution m4420
+unicode stability policy
+unicode technical note known anomalies unicode character names unicodeorg april 2017
+unicode chart actually form lowercase calligraphic despite name
+misspelling bracket character name known defect
+
+
+readingedit
+
+
+unicode standard version unicode consortium addisonwesley longman april 2000 isbn 0201616335
+unicode standard version unicode consortium addisonwesley professional august 2003 isbn 0321185781
+unicode standard version fifth edition unicode consortium addisonwesley professional october 2006 isbn 0321480910
+julie allen unicode standard version unicode consortium mountain view 2011 isbn 9781936213016
+complete manual typography james felici adobe press edition 2002 isbn 0321127307
+unicode primer tony graham books 2000 isbn 0764546252
+unicode demystified practical programmers guide encoding standard richard gillam addisonwesley professional edition 2002 isbn 0201700522
+unicode explained jukka korpela oreilly edition 2006 isbn 059610121x
+
+
+external linksedit
+
+find aboutunicodeat wikipedias sister projects
+
+definitions wiktionary
+media wikimedia commons
+textbooks wikibooks
+discussion metawiki
+
+
+
+unicode consortium
+unicode curlie based dmoz
+alan woods unicode resources contains lists word processors unicode capability fonts characters grouped type characters presented lists grids
+
+
+
+
+
+
+
+
+
+
+
+
+unicode
+
+
+
+unicode
+
+
+
+unicode consortium
+isoiec 10646 universal character
+versions
+
+
+
+
+
+code points
+
+
+
+blocks
+universal character
+character charts
+character property
+planes
+private areas
+
+
+
+
+
+characters
+
+
+
+
+special purpose
+
+
+
+
+combining grapheme joiner
+lefttoright mark righttoleft mark
+soft hyphen
+word joiner
+zerowidth joiner
+zerowidth nonjoiner
+zerowidth space
+
+
+
+
+
+lists
+
+
+
+characters
+unified ideographs
+combining character
+duplicate characters
+numerals
+scripts
+spaces
+symbols
+halfwidth fullwidth
+
+
+
+
+
+
+
+
+processing
+
+
+
+
+algorithms
+
+
+
+bidirectional text
+collation
+
+14651
+
+
+equivalence
+variation sequences
+international ideographs core
+
+
+
+
+
+comparison
+
+
+
+bocu1
+cesu8
+punycode
+scsu
+utf1
+utf7
+utf8
+utf9utf18
+utf16ucs2
+utf32ucs4
+utfebcdic
+
+
+
+
+
+
+
+
+pairs
+code points
+
+
+
+combining character
+compatibility characters
+duplicate characters
+equivalence
+homoglyph
+precomposed character
+
+list
+
+
+zvariant
+variation sequences
+regional indicator symbol
+fitzpatrick modifiers
+
+
+
+
+
+usage
+
+
+
+domain names
+email
+fonts
+html
+
+entity references
+numeric references
+
+
+input
+international ideographs core
+
+
+
+
+
+related standards
+
+
+
+common locale data repository cldr
+18030
+isoiec 8859
+15924
+
+
+
+
+
+related topics
+
+
+
+anomalies
+conscript unicode registry
+ideographic rapporteur group
+international components unicode
+people involved unicode
+unification
+
+
+
+
+
+
+
+
+
+
+scripts symbols unicode
+
+
+
+common
+inherited scripts
+
+
+
+combining marks
+diacritics
+punctuation
+space
+numbers
+
+
+
+
+
+modern scripts
+
+
+
+adlam
+arabic
+
+diacritics
+
+
+armenian
+balinese
+bamum
+batak
+bengali
+bopomofo
+braille
+buhid
+burmese
+canadian aboriginal
+chakma
+cham
+cherokee
+unified ideographs
+cyrillic
+deseret
+devanagari
+geez
+georgian
+greek
+gujarati
+gurmukhī
+hangul
+hanja
+hanunóo
+hebrew
+
+diacritics
+
+
+hiragana
+javanese
+kanji
+kannada
+katakana
+kayah
+khmer
+khudawadi
+
+latin
+lepcha
+limbu
+lisu fraser
+lontara
+malayalam
+mandaic
+masaram gondi
+meetei mayek
+mende kikakui
+miao pollard
+mongolian
+
+
+
+newa
+nushu
+chiki
+oriya
+osage
+osmanya
+pahawh hmong
+
+rejang
+samaritan
+śāradā
+saurashtra
+shavian
+sinhala
+sorang sompeng
+sundanese
+sylheti nagari
+syriac
+tagalog baybayin
+tagbanwa
+
+tham
+viet
+takri
+tamil
+telugu
+thaana
+thai
+tibetan
+tifinagh
+tirhuta
+
+warang citi
+
+
+
+
+
+
+ancient
+historic scripts
+
+
+
+ahom
+anatolian hieroglyphs
+ancient north arabian
+avestan
+bassa
+bhaiksuki
+brāhmī
+carian
+caucasian albanian
+coptic
+cuneiform
+cypriot
+egyptian hieroglyphs
+elbasan
+glagolitic
+gothic
+grantha
+hatran
+imperial aramaic
+inscriptional pahlavi
+inscriptional parthian
+kaithi
+kharosthi
+khojki
+linear
+linear
+lycian
+lydian
+mahajani
+manichaean
+marchen
+meroitic
+modi
+multani
+nabataean
+ogham
+hungarian
+italic
+permic
+persian cuneiform
+turkic
+palmyrene
+phagspa
+phoenician
+psalter pahlavi
+runic
+siddham
+south arabian
+soyombo
+tangut
+ugaritic
+zanabazar square
+
+
+
+
+
+notational scripts
+
+
+
+duployan
+signwriting
+
+
+
+
+
+symbols
+
+
+
+cultural political religious symbols
+currency
+mathematical operators symbols
+phonetic symbols including
+emoji
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+character encodings
+
+
+
+early telecommunications
+
+
+
+ascii
+isoiec
+isoiec 6937
+
+bcdic
+baudot code
+morse code
+
+telegraph code
+wabun code
+
+
+special telegraphy codes
+
+nonlatin
+chinese
+cyrillic
+
+
+needle telegraph codes
+
+
+
+
+
+isoiec 8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bibliographic
+
+
+
+ansel
+5426 54262 5427 5428 6438 6861 6862 10585 10586 10754 11822
+marc8
+
+
+
+
+
+national standards
+
+
+
+armscii
+brascii
+11643
+elot
+gost 10859
+18030
+hkscs
+iscii
+0201
+0208
+0212
+0213
+koi7
+9566
+1001
+pascii
+
+tis620
+tscii
+viscii
+yuscii
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isoiec 2022
+
+
+
+
+
+
+cccii
+
+
+
+
+
+macos code pages
+scripts
+
+
+
+arabic
+celtic
+centeuro
+chinesesimp euccn
+chinesetrad big5
+croatian
+cyrillic
+devanagari
+dingbats
+esperanto
+farsi
+gaelic
+greek
+gujarati
+gurmukhi
+hebrew
+iceland
+japanese shiftjis
+korean euckr
+latin1
+roman
+romanian
+sámi
+symbol
+thai tis620
+turkish
+ukrainian
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+855872
+
+
+
+
+
+
+
+
+86417248
+
+866808
+
+
+
+87411611162
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9501370
+
+
+
+1034
+1039
+1040
+1041
+1042
+1043
+1044
+1046
+1086
+1088
+1092
+1093
+1098
+1108
+1109
+1114
+1115
+1116
+1117
+1118
+1119
+1125848
+1126
+1127
+1131849
+1139
+1167
+1168
+1300
+1351
+1361
+1362
+1363
+1372
+1373
+1374
+1375
+1380
+1381
+1385
+1386
+1391
+1392
+1393
+1394
+kamenický
+mazovia
+cwi2
+koi8
+
+iran system
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+921901
+922902
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1004
+1006
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1029
+1036
+1089
+1111
+1124
+11291163
+1133
+1350
+1382
+1383
+
+
+
+
+
+apple macintosh
+emulations
+
+
+
+1275
+1280
+1281
+1282
+1283
+1284
+1285
+1286
+
+
+
+
+
+adobe emulations
+
+
+
+1038
+1276
+1277
+
+
+
+
+
+emulations
+
+
+
+1020
+1021
+1023
+1090
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1287
+1288
+
+
+
+
+
+emulations
+
+
+
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+
+
+
+
+
+windows code pages
+
+
+
+cergs
+8741162 tis620
+932943 shift
+9361386
+9501370 big5
+9491363 euckr
+1169
+1174
+extended latin8
+1200 utf16le
+1201 utf16be
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1261
+1270
+54936 gb18030
+
+
+
+
+
+ebcdic code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+371140
+
+
+
+
+
+
+
+
+
+
+
+
+2731141
+
+
+
+2771142
+2781143
+
+2801144
+
+
+
+2841145
+2851146
+
+
+
+
+
+
+2971147
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42016804
+
+
+424861612712
+
+
+5001148
+
+
+
+
+
+
+
+838838
+
+87011101153
+8711149
+87549719067
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9301390
+
+9331364
+9351388
+9371371
+9391399
+1001
+1002
+1003
+1005
+1007
+1024
+10251154
+10261155
+1027
+1028
+1030
+1031
+1032
+1033
+1037
+1047
+1068
+1069
+1070
+1071
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1087
+1091
+1097
+11121156
+1113
+11221157
+11231158
+11301164
+1132
+1136
+1137
+1150
+1151
+1152
+1159
+1165
+1166
+1278
+1279
+1303
+1364
+1376
+1377
+
+keis
+
+
+
+
+
+platform specific
+
+
+
+acorn
+adobe standard
+apple
+atascii
+atari
+bics
+casio calculators
+
+
+radix50
+mcsnrcs
+international
+elwrojunior
+fieldata
+
+geos
+0338
+roman extension
+roman8
+roman9
+focal
+
+lics
+lmbcs
+
+
+next
+
+petscii
+sharp calculators
+calculators
+trs80
+ventura international
+ventura symbol
+wiscii
+xccs
+zx80
+zx81
+spectrum
+
+
+
+
+
+unicode isoiec 10646
+
+
+
+utf1
+utf7
+utf8
+utf16 utf16leutf16be ucs2
+utf32 utf32leutf32be ucs4
+utfebcdic
+18030
+bocu1
+cesu8
+scsu
+
+
+
+
+
+miscellaneous code pages
+
+
+
+abicomp
+
+arib stdb24
+cork
+
+inis
+inis8
+johab
+
+
+
+
+seascii
+tace16
+tron
+utf5
+utf6
+wtf8
+
+
+
+
+
+related topics
+
+
+
+code page
+control character
+ccsid
+character encodings html
+charset detection
+unification
+hardware
+6429iec 6429ansi x364
+mojibake
+
+
+
+
+
+
+character sets
+
+
+
+
+
+
+
+authority control
+
+
+
+43434976
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleunicodeoldid817582674 categories unicodecharacter encodingdigital typographyhidden categories articles containing potentially dated statements june 2017all articles containing potentially dated statementsall articles failed verificationarticles failed verification october 2013wikipedia articles needing clarification april 2010articles containing spanishlanguage textall articles unsourced statementsarticles unsourced statements july 2011articles dmoz linkswikipedia articles identifierspages using magic links

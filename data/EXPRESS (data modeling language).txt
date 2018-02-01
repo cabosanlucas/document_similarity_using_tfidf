@@ -1,0 +1,648 @@
+
+
+
+
+Fig 1. Requirements of a database for an audio compact disc (CD) collection, presented in EXPRESS-G notation.
+
+
+EXPRESS is a standard data modeling language for product data. EXPRESS is formalized in the ISO Standard for the Exchange of Product model STEP (ISO 10303), and standardized as ISO 10303-11.[1]
+
+
+
+Contents
+
+
+1 Overview
+
+1.1 EXPRESS-G
+
+
+2 Simple example
+3 EXPRESS Building blocks
+
+3.1 Datatypes
+3.2 Entity-Attribute
+3.3 Supertypes and subtypes
+3.4 Algorithmic constraints
+
+
+4 See also
+5 References
+6 Further reading
+
+
+
+Overview[edit]
+Data models formally define data objects and relationships among data objects for a domain of interest. Some typical applications of data models include supporting the development of databases and enabling the exchange of data for a particular area of interest. Data models are specified in a data modeling language.[2] EXPRESS is a data modeling language defined in ISO 10303-11, the EXPRESS Language Reference Manual.[3]
+An EXPRESS data model can be defined in two ways, textually and graphically. For formal verification and as input for tools such as SDAI the textual representation within an ASCII file is the most important one. The graphical representation on the other hand is often more suitable for human use such as explanation and tutorials. The graphical representation, called EXPRESS-G, is not able to represent all details that can be formulated in the textual form.
+EXPRESS is similar to programming languages such as Pascal. Within a SCHEMA various datatypes can be defined together with structural constraints and algorithmic rules. A main feature of EXPRESS is the possibility to formally validate a population of datatypes - this is to check for all the structural and algorithmic rules.
+EXPRESS-G[edit]
+EXPRESS-G is a standard graphical notation for information models.[4] It is a useful companion to the EXPRESS language for displaying entity and type definitions, relationships and cardinality.[5] This graphical notation supports a subset of the EXPRESS language. One of the advantages of using EXPRESS-G over EXPRESS is that the structure of a data model can be presented in a more understandable manner. A disadvantage of EXPRESS-G is that complex constraints cannot be formally specified. Figure 1 is an example. The data model presented in figure could be used to specify the requirements of a database for an audio compact disc (CD) collection.[2]
+Simple example[edit]
+
+
+
+
+Fig 2. An EXPRESS-G diagram for Family schema
+
+
+A simple EXPRESS data model looks like fig 2, and the code like this:
+
+SCHEMA Family;
+
+ENTITY Person
+   ABSTRACT SUPERTYPE OF (ONEOF (Male, Female));
+     name: STRING;
+     mother: OPTIONAL Female;
+     father: OPTIONAL Male;
+END_ENTITY;
+
+ENTITY Female
+   SUBTYPE OF (Person);
+END_ENTITY;
+
+ENTITY Male
+   SUBTYPE of (Person);
+END_ENTITY;
+
+END_SCHEMA;
+
+The data model is enclosed within the EXPRESS schema Family. It contains a supertype entity Person with the two subtypes Male and Female. Since Person is declared to be ABSTRACT only occurrences of either (ONEOF) the subtype Male or Female can exist. Every occurrence of a person has a mandatory name attribute and optionally attributes mother and father. There is a fixed style of reading for attributes of some entity type:
+
+a Female can play the role of mother for a Person
+a Male can play the role of father for a Person
+
+EXPRESS Building blocks[edit]
+Datatypes[edit]
+EXPRESS offers a series of datatypes, with specific data type symbols of the EXPRESS-G notation:[2]
+
+
+
+
+Entity data type: This is the most important datatype in EXPRESS. It is covered below in more detail. Entity datatypes can be related in two ways, in a sub-supertype tree and/or by attributes.
+Enumeration data type: Enumeration values are simple strings such as red, green, and blue for an rgb-enumeration. In the case that an enumeration type is declared extensible it can be extended in other schemas.
+Defined data type: This further specializes other datatypes—e.g., define a datatype positive that is of type integer with a value > 0.
+Select data type: Selects define a choice or an alternative between different options. Most commonly used are selects between different entity_types. More rare are selects that include defined types. In the case that an enumeration type is declared extensible, it can be extended in other schemas.
+Simple data type
+
+String: This is the most often used simple type. EXPRESS strings can be of any length and can contain any character (ISO 10646/Unicode).
+Binary: This data type is only very rarely used. It covers a number of bits (not bytes). For some implementations the size is limited to 32 bit.
+Logical: Similar to the boolean datatype a logical has the possible values TRUE and FALSE and in addition UNKNOWN.
+Boolean: With the boolean values TRUE and FALSE.
+Number: The number data type is a supertype of both, integer and real. Most implementations take uses a double type to represent a real_type, even if the actual value is an integer.
+Integer: EXPRESS integers can have in principle any length, but most implementations restricted them to a signed 32 bit value.
+Real: Ideally an EXPRESS real value is unlimited in accuracy and size. But in practise a real value is represented by a floating point value of type double.
+
+
+Aggregation data type: The possible kinds of aggregation_types are SET, BAG, LIST and ARRAY. While SET and BAG are unordered, LIST and ARRAY are ordered. A BAG may contain a particular value more than once, this is not allowed for SET. An ARRAY is the only aggregate that may contain unset members. This is not possible for SET, LIST, BAG. The members of an aggregate may be of any other data type.
+
+A few general things are to be mentioned for datatypes.
+
+Constructed datatypes can be defined within an EXPRESS schema. They are mainly used to define entities, and to specify the type of entity attributes and aggregate members.
+Datatypes can be used in a recursive way to build up more and more complex data types. E.g. it is possible to define a LIST of an ARRAY of a SELECT of either some entities or other datatypes. If it makes sense to define such datatypes is a different question.
+EXPRESS defines a couple of rules how a datatype can be further specialized. This is important for re-declared attributes of entities.
+GENERIC data types can be used for procedures, functions and abstract entities.
+
+Entity-Attribute[edit]
+Entity attributes allow to add "properties" to entities and to relate one entity with another one in a specific role. The name of the attribute specifies the role. Most datatypes can directly serve as type of an attribute. This includes aggregation as well.
+There are three different kinds of attributes, explicit, derived and inverse attributes. And all these can be re-declared in a subtype. In addition an explicit attribute can be re-declared as derived in a subtype. No other change of the kind of attributes is possible.
+
+Explicit attributes are those with direct values visible in a STEP-File.
+Derived attributes get their values from an expression. In most cases the expression refers to other attributes of THIS instance. The expression may also use EXPRESS functions.
+Inverse attributes do not add "information" to an entity, but only name and constrain an explicit attribute to an entity from the other end.
+
+Specific attribute symbols of the EXPRESS-G notation:[2]
+
+
+
+Supertypes and subtypes[edit]
+An entity can be defined to be a subtype of one or several other entities (multiple inheritance is allowed!). A supertype can have any number of subtypes. It is very common practice in STEP to build very complex sub-supertype graphs. Some graphs relate 100 and more entities with each other.
+An entity instance can be constructed for either a single entity (if not abstract) or for a complex combination of entities in such a sub-supertype graph. For the big graphs the number of possible combinations is likely to grow in astronomic ranges. To restrict the possible combinations special supertype constraints got introduced such as ONEOF and TOTALOVER. Furthermore, an entity can be declared to be abstract to enforce that no instance can be constructed of just this entity but only if it contains a non-abstract subtype.
+Algorithmic constraints[edit]
+Entities and defined data types may be further constrained with WHERE rules. WHERE rules are also part of global rules. A WHERE rule is an expression, which must evaluate to TRUE, otherwise a population of an EXPRESS schema, is not valid. Like derived attributes these expression may invoke EXPRESS functions, which may further invoke EXPRESS procedures. The functions and procedures allow formulating complex statements with local variables, parameters and constants - very similar to a programming language.
+The EXPRESS language can describe local and global rules. For example:
+
+ENTITY area_unit
+  SUBTYPE OF (named_unit);
+WHERE
+  WR1: (SELF\named_unit.dimensions.length_exponent = 2) AND
+       (SELF\named_unit.dimensions.mass_exponent = 0) AND
+       (SELF\named_unit.dimensions.time_exponent = 0) AND
+       (SELF\named_unit.dimensions.electric_current_exponent = 0) AND
+       (SELF\named_unit.dimensions.
+         thermodynamic_temperature_exponent = 0) AND
+       (SELF\named_unit.dimensions.amount_of_substance_exponent = 0) AND
+       (SELF\named_unit.dimensions.luminous_intensity_exponent = 0);
+END_ENTITY; -- area_unit
+
+This example describes that area_unit entity must have square value of length. For this the attribute dimensions.length_exponent must be equal to 2 and all other exponents of basic SI units must be 0.
+Another example:
+
+TYPE day_in_week_number = INTEGER;
+WHERE
+  WR1: (1 <= SELF) AND (SELF <= 7);
+END_TYPE; -- day_in_week_number
+
+That is, it means that week value cannot exceed 7.
+And so, you can describe some rules to your entities. More details on the given examples can be found in ISO 10303-41
+See also[edit]
+
+
+
+Wikimedia Commons has media related to EXPRESS.
+
+
+
+ISO related subjects
+
+
+ISO 10303: ISO standard for the computer-interpretable representation and exchange of industrial product data.
+ISO 10303-21: Data exchange form of STEP with an ASCII structure
+ISO 10303-22: Standard data access interface, part of the implementation methods of STEP
+ISO 10303-28: STEP-XML specifies the use of the Extensible Markup Language (XML) to represent EXPRESS schema
+ISO 13584-24: The logical model of PLIB is specified in EXPRESS
+ISO 13399: ISO standard for cutting tool data representation and exchange
+ISO/PAS 16739: Industry Foundation Classes is specified in EXPRESS
+List of STEP (ISO 10303) parts
+
+
+Other related subjects
+
+
+CAD data exchange
+EDIF: Electronic Design Interchange Format
+Diagram
+General-purpose modeling
+Modeling language
+Wirth syntax notation
+
+References[edit]
+ This article incorporates public domain material from the National Institute of Standards and Technology website http://www.nist.gov.
+
+
+
+^ ISO 10303-11:2004 Industrial automation systems and integration -- Product data representation and exchange -- Part 11: Description methods: The EXPRESS language reference manual
+^ a b c d Michael R. McCaleb (1999). "A Conceptual Data Model of Datum Systems". National Institute of Standards and Technology. August 1999.
+^ ISO International Standard 10303-11:1994, Industrial automation systems and integration — Product data representation andexchange — Part 11: Description methods: The EXPRESS language reference manual, International Organization for Standardization, Geneva, Switzerland (1994).
+^ 4 EXPRESS-G Language Overview. Accessed 9 Nov 2008.
+^ For information on the EXPRESS-G notation, consult Annex B of the EXPRESS Language Reference Manual (ISO 10303-11)
+
+
+
+Further reading[edit]
+
+ISO 10303, the main page for STEP, the Standard for the Exchange of Product model data
+Douglas A. Schenck and Peter R. Wilson, Information Modeling the EXPRESS Way, Oxford University Press, 1993, ISBN 978-0-19-508714-7
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=EXPRESS_(data_modeling_language)&oldid=784491517"					Categories: Data modelingData modeling languagesISO 10303Hidden categories: Wikipedia articles incorporating text from the National Institute of Standards and Technology

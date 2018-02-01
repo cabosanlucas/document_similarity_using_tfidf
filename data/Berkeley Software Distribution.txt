@@ -1,0 +1,846 @@
+"BSD" redirects here. For the Windows error message abbreviated "BSOD" or "BSoD", see Blue Screen of Death. For other uses, see BSD (disambiguation).
+
+BSD
+
+Developer
+Computer Systems Research Group, University of California, Berkeley
+
+
+Written in
+C
+
+
+OS family
+Unix
+
+
+Working state
+Superseded by derivatives (see below)
+
+
+Source model
+Historically closed source, gradual transition to free software from 1991 on.
+
+
+Initial release
+1977; 41 years ago (1977)
+
+
+Latest release
+4.4-Lite2 / 1995; 23 years ago (1995)
+
+
+Available in
+English
+
+
+Platforms
+PDP-11, VAX, Intel 80386
+
+
+Kernel type
+Monolithic
+
+
+Userland
+BSD
+
+
+Default user interface
+Command-line interface
+
+
+License
+BSD licenses
+
+
+Official website
+www.bsd.org
+
+
+Berkeley Software Distribution (BSD) was a Unix operating system derivative developed and distributed by the Computer Systems Research Group (CSRG) of the University of California, Berkeley, from 1977 to 1995. Today the term "BSD" is often used non-specifically to refer to any of the BSD descendants which together form a branch of the family of Unix-like operating systems. Operating systems derived from the original BSD code remain actively developed and widely used.
+Historically, BSD has been considered a branch of Unix, Berkeley Unix, because it shared the initial codebase and design with the original AT&T Unix operating system. In the 1980s, BSD was widely adopted by vendors of workstation-class systems in the form of proprietary Unix variants such as DEC ULTRIX and Sun Microsystems SunOS. This can be attributed to the ease with which it could be licensed, and the familiarity the founders of many technology companies of the time had with it.
+Although these proprietary BSD derivatives were largely superseded by the UNIX System V Release 4 and OSF/1 systems in the 1990s (both of which incorporated BSD code and are the basis of other modern Unix systems), later BSD releases provided a basis for several open source development projects that are ongoing, including FreeBSD, OpenBSD, NetBSD, DragonFlyBSD, Darwin, and TrueOS, among others. These, in turn, have been incorporated in whole or in part in modern proprietary operating systems, e.g., the TCP/IP networking code in Windows NT 3.1 and most of the foundation of Apple's macOS and iOS.
+
+
+
+Contents
+
+
+1 History
+
+1.1 Relationship to Research Unix
+1.2 Relationship to System V
+
+
+2 Technology
+
+2.1 Berkeley sockets
+2.2 Binary compatibility
+2.3 Standards adherence
+
+
+3 Significant BSD descendants
+4 See also
+5 References
+6 Bibliography
+7 External links
+
+
+
+History[edit]
+Main article: History of the Berkeley Software Distribution
+
+
+
+
+Simplified evolution of Unix systems. Not shown are Junos, PlayStation 3 system software and other proprietary forks.
+
+
+The earliest distributions of Unix from Bell Labs in the 1970s included the source code to the operating system, allowing researchers at universities to modify and extend Unix. The operating system arrived at Berkeley in 1974, at the request of computer science professor Bob Fabry who had been on the program committee for the Symposium on Operating Systems Principles where Unix was first presented. A PDP-11/45 was bought to run the system, but for budgetary reasons, this machine was shared with the mathematics and statistics groups at Berkeley, who used RSTS, so that Unix only ran on the machine eight hours per day (sometimes during the day, sometimes during the night). A larger PDP-11/70 was installed at Berkeley the following year, using money from the Ingres database project.[1]
+Also in 1975, Ken Thompson took a sabbatical from Bell Labs and came to Berkeley as a visiting professor. He helped to install Version 6 Unix and started working on a Pascal implementation for the system. Graduate students Chuck Haley and Bill Joy improved Thompson's Pascal and implemented an improved text editor, ex.[1] Other universities became interested in the software at Berkeley, and so in 1977 Joy started compiling the first Berkeley Software Distribution (1BSD), which was released on March 9, 1978.[2] 1BSD was an add-on to Version 6 Unix rather than a complete operating system in its own right. Some thirty copies were sent out.[1]
+The Second Berkeley Software Distribution (2BSD), released in May 1979,[3] included updated versions of the 1BSD software as well as two new programs by Joy that persist on Unix systems to this day: the vi text editor (a visual version of ex) and the C shell. Some 75 copies of 2BSD were sent out by Bill Joy.[1]
+
+
+
+
+The VAX-11/780, a typical minicomputer used for early BSD timesharing systems
+
+
+A VAX computer was installed at Berkeley in 1978, but the port of Unix to the VAX architecture, UNIX/32V, did not take advantage of the VAX's virtual memory capabilities. The kernel of 32V was largely rewritten by Berkeley students to include a virtual memory implementation, and a complete operating system including the new kernel, ports of the 2BSD utilities to the VAX, and the utilities from 32V was released as 3BSD at the end of 1979. 3BSD was also alternatively called Virtual VAX/UNIX or VMUNIX (for Virtual Memory Unix), and BSD kernel images were normally called /vmunix until 4.4BSD.
+
+
+
+
+"4.3 BSD UNIX" from the University of Wisconsin circa 1987. System startup and login.
+
+
+After 4.3BSD was released in June 1986, it was determined that BSD would move away from the aging VAX platform. The Power 6/32 platform (codenamed "Tahoe") developed by Computer Consoles Inc. seemed promising at the time, but was abandoned by its developers shortly thereafter. Nonetheless, the 4.3BSD-Tahoe port (June 1988) proved valuable, as it led to a separation of machine-dependent and machine-independent code in BSD which would improve the system's future portability.
+Apart from portability, the CSRG worked on an implementation of the OSI network protocol stack, improvements to the kernel virtual memory system and (with Van Jacobson of LBL) new TCP/IP algorithms to accommodate the growth of the Internet.[4]
+Until then, all versions of BSD incorporated proprietary AT&T Unix code and were, therefore, subject to an AT&T software license. Source code licenses had become very expensive and several outside parties had expressed interest in a separate release of the networking code, which had been developed entirely outside AT&T and would not be subject to the licensing requirement. This led to Networking Release 1 (Net/1), which was made available to non-licensees of AT&T code and was freely redistributable under the terms of the BSD license. It was released in June 1989.
+After Net/1, BSD developer Keith Bostic proposed that more non-AT&T sections of the BSD system be released under the same license as Net/1. To this end, he started a project to reimplement most of the standard Unix utilities without using the AT&T code. Within eighteen months, all of the AT&T utilities had been replaced, and it was determined that only a few AT&T files remained in the kernel. These files were removed, and the result was the June 1991 release of Networking Release 2 (Net/2), a nearly complete operating system that was freely distributable.
+Net/2 was the basis for two separate ports of BSD to the Intel 80386 architecture: the free 386BSD by William Jolitz and the proprietary BSD/386 (later renamed BSD/OS) by Berkeley Software Design (BSDi). 386BSD itself was short-lived, but became the initial code base of the NetBSD and FreeBSD projects that were started shortly thereafter.
+BSDi soon found itself in legal trouble with AT&T's Unix System Laboratories (USL) subsidiary, then the owners of the System V copyright and the Unix trademark. The USL v. BSDi lawsuit was filed in 1992 and led to an injunction on the distribution of Net/2 until the validity of USL's copyright claims on the source could be determined. The lawsuit slowed development of the free-software descendants of BSD for nearly two years while their legal status was in question, and as a result systems based on the Linux kernel, which did not have such legal ambiguity, gained greater support. The lawsuit was settled in January 1994, largely in Berkeley's favor. Of the 18,000 files in the Berkeley distribution, only three had to be removed and 70 modified to show USL copyright notices. A further condition of the settlement was that USL would not file further lawsuits against users and distributors of the Berkeley-owned code in the upcoming 4.4BSD release.[5]
+The final release from Berkeley was 1995's 4.4BSD-Lite Release 2, after which the CSRG was dissolved and development of BSD at Berkeley ceased. Since then, several variants based directly or indirectly on 4.4BSD-Lite (such as FreeBSD, NetBSD, OpenBSD and DragonFly BSD) have been maintained.
+In addition, the permissive nature of the BSD license has allowed many other operating systems, both free and proprietary, to incorporate BSD code. For example, Microsoft Windows has used BSD-derived code in its implementation of TCP/IP[6] and bundles recompiled versions of BSD's command-line networking tools since Windows 2000.[7] Also Darwin, the system on which Apple's macOS is built, is a derivative of 4.4BSD-Lite2 and FreeBSD. Various commercial Unix operating systems, such as Solaris, also contain varying amounts of BSD code.
+Relationship to Research Unix[edit]
+Starting with the 8th Edition, versions of Research Unix at Bell Labs had a close relationship to BSD. This began when 4.1cBSD for the VAX was used as the basis for Research Unix 8th Edition. This continued in subsequent versions, such as the 9th Edition, which incorporated source code and improvements from 4.3BSD. The result was that these later versions of Research Unix were closer to BSD than they were to System V. In a Usenet posting from 2000, Dennis Ritchie described this relationship between BSD and Research Unix:[8]
+
+Research Unix 8th Edition started from (I think) BSD 4.1c, but with enormous amounts scooped out and replaced by our own stuff. This continued with 9th and 10th. The ordinary user command-set was, I guess, a bit more BSD-flavored than SysVish, but it was pretty eclectic.
+
+Relationship to System V[edit]
+Eric S. Raymond summarizes the longstanding relationship between System V and BSD, stating, "The divide was roughly between longhairs and shorthairs; programmers and technical people tended to line up with Berkeley and BSD, more business-oriented types with AT&T and System V."[9]
+In 1989, David A. Curry wrote about the differences between BSD and System V. He characterized System V as being often regarded as the "standard Unix." However, he described BSD as more popular among university and government computer centers, due to its advanced features and performance:[10]
+
+Most university and government computer centers that use UNIX use Berkeley UNIX, rather than System V. There are several reasons for this, but perhaps the two most significant are that Berkeley UNIX provides networking capabilities that until recently (Release 3.0) were completely unavailable in System V, and that Berkeley UNIX is much more suited to a research environment, which requires a faster file system, better virtual memory handling, and a larger variety of programming languages.
+
+Technology[edit]
+Berkeley sockets[edit]
+
+
+
+
+4.3 BSD from the University of Wisconsin. Displaying the man page for Franz Lisp
+
+
+
+
+
+
+Tape for SunOS 4.1.1, a 4.3BSD derivative
+
+
+
+
+
+
+Sony NEWS workstation running the BSD-based NEWS-OS operating system
+
+
+Berkeley's Unix was the first Unix to include libraries supporting the Internet Protocol stacks: Berkeley sockets. A Unix implementation of IP's predecessor, the ARPAnet's NCP, with FTP and Telnet clients, had been produced at U. Illinois in 1975, and was available at Berkeley.[11][12] However, the memory scarcity on the PDP-11 forced a complicated design and performance problems.[13]
+By integrating sockets with the Unix operating system's file descriptors, it became almost as easy to read and write data across a network as it was to access a disk. The AT&T laboratory eventually released their own STREAMS library, which incorporated much of the same functionality in a software stack with a different architecture, but the wide distribution of the existing sockets library reduced the impact of the new API. Early versions of BSD were used to form Sun Microsystems' SunOS, founding the first wave of popular Unix workstations.
+Binary compatibility[edit]
+BSD operating systems can run much native software of several other operating systems on the same architecture, using a binary compatibility layer. Much simpler and faster than emulation, this allows, for instance, applications intended for Linux to be run at effectively full speed. This makes BSDs not only suitable for server environments, but also for workstation ones, given the increasing availability of commercial or closed-source software for Linux only. This also allows administrators to migrate legacy commercial applications, which may have only supported commercial Unix variants, to a more modern operating system, retaining the functionality of such applications until they can be replaced by a better alternative.
+Standards adherence[edit]
+Current BSD operating system variants support many of the common IEEE, ANSI, ISO, and POSIX standards, while retaining most of the traditional BSD behavior. Like AT&T Unix, the BSD kernel is monolithic, meaning that device drivers in the kernel run in privileged mode, as part of the core of the operating system.
+Significant BSD descendants[edit]
+See also: Comparison of BSD operating systems
+Several operating systems are based on BSD, including FreeBSD, OpenBSD, NetBSD, and DragonFly BSD. Both NetBSD and FreeBSD were created in 1993. They were initially derived from 386BSD (also known as "Jolix"), and merged the 4.4BSD-Lite source code in 1994. OpenBSD was forked from NetBSD in 1995, and DragonFly BSD was forked from FreeBSD in 2003.
+BSD was also used as the basis for several proprietary versions of Unix, such as Sun's SunOS, Sequent's Dynix, NeXT's NeXTSTEP, DEC's Ultrix and OSF/1 AXP (now Tru64 UNIX). NeXTSTEP later became the foundation for Apple Inc.'s macOS.
+See also[edit]
+
+
+Free software portal
+
+
+
+BSD Daemon
+BSD licenses
+Comparison of BSD operating systems
+List of BSD operating systems
+
+References[edit]
+
+
+^ a b c d Salus, Peter H. (2005). "Chapter 7. BSD and the CSRG". The Daemon, the Gnu and the Penguin. Groklaw. 
+^ Salus (1994), p. 142
+^ Toomey, Warren. "Details of the PUPS archives". tuhs.org. The Unix Heritage Society. Retrieved October 6, 2010. 
+^ M.K. McKusick, M.J. Karels, Keith Sklower, Kevin Fall, Marc Teitelbaum and Keith Bostic (1989). Current Research by The Computer Systems Research Group of Berkeley. Proc. European Unix Users Group.
+^ Eric S. Raymond. "The Art of Unix Programming: Origins and History of Unix, 1969–1995". Retrieved 2014-07-18. 
+^ http://www.kuro5hin.org/?op=displaystory;sid=2001/6/19/05641/7357
+^ "BSD Code in Windows". everything2.com. March 20, 2001. Retrieved 2009-01-20. 
+^ Dennis Ritchie (October 26, 2000). "alt.folklore.computers: BSD (Dennis Ritchie)". Retrieved July 3, 2014. 
+^ Raymond, Eric S. The Art of Unix Programming. 2003. p. 38
+^ Curry, David. Using C on the UNIX System: A Guide to System Programming. 1989. pp. 2–3
+^ G. L. Chesson (1976). The network Unix system. Proc. 5th ACM Symp. on Operating Systems Principles.
+^ RFC 681.
+^ Quarterman, John S.; Silberschatz, Abraham; Peterson, James L. (December 1985). "4.2BSD and 4.3BSD as examples of the Unix system". Computing Surveys. 17 (4): 379–418. CiteSeerX 10.1.1.117.9743 . doi:10.1145/6041.6043. 
+
+
+Bibliography[edit]
+
+Marshall K. McKusick, Keith Bostic, Michael J. Karels, John S. Quartermain, The Design and Implementation of the 4.4BSD Operating System (Addison Wesley, 1996; ISBN 978-0-201-54979-9)
+Marshall K. McKusick, George V. Neville-Neil, The Design and Implementation of the FreeBSD Operating System (Addison Wesley, August 2, 2004; ISBN 978-0-201-70245-3)
+Samuel J. Leffler, Marshall K. McKusick, Michael J. Karels, John S. Quarterman, The Design and Implementation of the 4.3BSD UNIX Operating System (Addison Wesley, November 1989; ISBN 978-0-201-06196-3)
+McKusick, Marshall Kirk (1999). "Twenty Years of Berkeley Unix – From AT&T-Owned to Freely Redistributable". In DiBona, Chris; Ockman, Sam; Stone, Mark. Open Sources: Voices from the Revolution. O'Reilly. ISBN 978-1-56592-582-3. 
+Peter H. Salus, The Daemon, the GNU & The Penguin (Reed Media Services, September 1, 2008; ISBN 978-0-9790342-3-7)
+Peter H. Salus, A Quarter Century of UNIX (Addison Wesley, June 1, 1994; ISBN 978-0-201-54777-1)
+Peter H. Salus, Casting the Net (Addison-Wesley, March 1995; ISBN 978-0-201-87674-1)
+
+External links[edit]
+
+Berkeley Software Distribution at Curlie (based on DMOZ)
+A timeline of BSD and Research UNIX
+UNIX History – History of UNIX and BSD using diagrams
+The Design and Implementation of the 4.4BSD Operating System
+The Unix Tree: Source code and manuals for old versions of Unix
+EuroBSDCon, an annual event in Europe in September, October or November, founded in 2001
+BSDCan, a conference in Ottawa, Ontario, Canada, held annually in May since 2004, in June since 2015
+AsiaBSDCon, a conference in Tokyo, held annually in March of each year, since 2007
+mdoc.su — short manual page URLs for FreeBSD, OpenBSD, NetBSD and DragonFly BSD, a web-service written in nginx
+BXR.SU — Super User's BSD Cross Reference, a userland and kernel source code search engine based on OpenGrok and nginx
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Berkeley Software Distribution
+
+
+
+People
+
+
+
+Bob Fabry
+Keith Bostic
+Marshall Kirk McKusick
+Michael J. Karels
+Bill Joy
+Samuel Leffler
+Jordan Hubbard
+Theo de Raadt
+Poul-Henning Kamp
+Lynne and William Jolitz
+
+
+
+
+
+Derivatives
+
+
+
+
+Active
+
+
+
+FreeBSD
+OpenBSD
+NetBSD
+DragonFly BSD
+TrueOS
+Junos OS
+Darwin
+PS3/PS4/PSP/PS Vita operating system
+Nintendo Switch operating system
+Full list
+
+
+
+
+
+Discontinued
+
+
+
+386BSD
+BSD/OS
+SunOS
+Ultrix
+
+
+
+
+
+
+
+
+Companies
+
+
+
+Sleepycat Software
+Walnut Creek CDROM
+Berkeley Software Design
+iXsystems
+
+
+
+
+
+Other topics
+
+
+
+Comparison
+History
+Licensing
+BSD Daemon
+Computer Systems Research Group
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Unix and Unix-like operating systems
+
+
+
+
+
+
+BSD
+
+386BSD
+
+FreeBSD
+NetBSD
+OpenBSD
+DragonFly BSD
+
+
+NeXTSTEP
+Darwin
+
+macOS
+iOS
+
+
+SunOS
+Ultrix
+
+
+Coherent
+GNU
+Linux
+
+Android
+Chrome OS
+
+
+LynxOS
+MINIX
+QNX
+
+BlackBerry 10
+
+
+Research Unix
+System V
+
+A/UX
+AIX
+HP-UX
+illumos
+IRIX
+OpenServer
+Solaris
+Tru64 UNIX
+UnixWare
+
+
+Xenix
+more...
+
+
+
+
+
+
+
+
+ Category
+ Commons
+ Book
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Free and open-source software
+
+
+
+General
+
+
+
+Alternative terms for free software
+Comparison of open-source and closed-source software
+Comparison of source code hosting facilities
+Free software
+Free software project directories
+Gratis versus libre
+Long-term support
+Open-source software
+Open-source software development
+Outline
+
+
+
+
+
+Software
+packages
+
+
+
+Audio
+Bioinformatics
+Codecs
+Collaboration
+Configuration management
+Device drivers
+
+Graphics
+Wireless
+
+
+Geophysics
+Health
+Mathematics
+Operating systems
+Programming languages
+Routing
+Statistics
+Television
+Video games
+Web applications
+
+Content management systems
+E-commerce
+
+
+Word processors
+Android apps
+iOS apps
+Commercial
+Trademarked
+Formerly proprietary
+
+
+
+
+
+Community
+
+
+
+Free software movement
+History
+Open-source software movement
+Organizations
+Events
+
+
+
+
+
+Licenses
+
+
+
+AFL
+Apache
+APSL
+Artistic
+Beerware
+Boost
+BSD
+CC0
+CDDL
+EPL
+GNU GPL
+GNU LGPL
+ISC
+MIT
+MPL
+Ms-PL/RL
+Python
+Python Software Foundation
+Sleepycat
+Unlicense
+WTFPL
+zlib
+
+
+
+
+
+License types
+and standards
+
+
+
+Comparison of free and open-source software licenses
+Contributor License Agreement
+Copyfree
+Copyleft
+Debian Free Software Guidelines
+Definition of Free Cultural Works
+Free license
+The Free Software Definition
+The Open Source Definition
+Open-source license
+Permissive software licence
+Public domain
+Viral license
+
+
+
+
+
+Challenges
+
+
+
+Binary blob
+Digital rights management
+Hardware restrictions
+License proliferation
+Mozilla software rebranding
+Proprietary software
+SCO/Linux controversies
+Secure boot
+Software patents
+Software security
+Trusted Computing
+
+
+
+
+
+Related topics
+
+
+
+The Cathedral and the Bazaar
+Forking
+Microsoft Open Specification Promise
+Revolution OS
+
+
+
+
+
+
+
+
+ Book
+ Category
+ Commons
+ Portal
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Operating systems
+
+
+
+General
+
+
+
+Advocacy
+Comparison
+Forensic engineering
+History
+Hobbyist development
+List
+Timeline
+Usage share
+
+
+
+
+
+Kernel
+
+
+
+
+Architectures
+
+
+
+Exokernel
+Hybrid
+Microkernel
+Monolithic
+Rump kernel
+Unikernel
+
+
+
+
+
+Components
+
+
+
+Device driver
+Loadable kernel module
+Microkernel
+User space
+
+
+
+
+
+
+
+
+Process management
+
+
+
+
+Concepts
+
+
+
+Context switch
+Interrupt
+IPC
+Process
+Process control block
+Real-time
+Thread
+Time-sharing
+
+
+
+
+
+Scheduling
+algorithms
+
+
+
+Computer multitasking
+Fixed-priority preemptive
+Multilevel feedback queue
+Preemptive
+Round-robin
+Shortest job next
+
+
+
+
+
+
+
+
+Memory management and
+resource protection
+
+
+
+Bus error
+General protection fault
+Memory protection
+Paging
+Protection ring
+Segmentation fault
+Virtual memory
+
+
+
+
+
+Storage access and
+file systems
+
+
+
+Boot loader
+Defragmentation
+Device file
+File attribute
+Inode
+Journal
+Partition
+Virtual file system
+Virtual tape library
+
+
+
+
+
+List
+
+
+
+AmigaOS
+Android
+BeOS
+BSD
+Chrome OS
+CP/M
+DOS
+GNU
+Haiku
+illumos
+IncludeOS
+iOS
+Linux
+Macintosh
+
+Classic Mac OS
+macOS
+
+
+MINIX
+MorphOS
+MUSIC/SP
+Nemesis
+NOS
+OpenVMS
+ORVYL
+OS/2
+OSv
+Pick
+QNX
+ReactOS
+RISC OS
+RSTS/E
+RSX-11
+RT-11
+Solaris
+TOPS-10/TOPS-20
+TPF
+Unix
+Visi On
+VM/CMS
+VS/9
+Windows
+Xinu
+z/OS
+
+
+
+
+
+Miscellaneous concepts
+
+
+
+API
+Computer network
+HAL
+Live CD
+Live USB
+OS shell
+
+CLI
+GUI
+TUI
+VUI
+
+
+PXE
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+WorldCat Identities
+VIAF: 148616527
+GND: 5243276-2
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Berkeley_Software_Distribution&oldid=816798580"					Categories: Berkeley Software Distribution1977 softwareFree software operating systemsFree software programmed in CScience and technology in the San Francisco Bay AreaUniversity of California, BerkeleyHidden categories: Pages using RFC magic linksUse mdy dates from December 2014Articles with DMOZ linksWikipedia articles with VIAF identifiersWikipedia articles with GND identifiers

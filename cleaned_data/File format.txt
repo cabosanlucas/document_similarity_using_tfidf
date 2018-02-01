@@ -1,0 +1,392 @@
+
+
+
+
+
+
+
+article multiple issues please help improve discuss issues talk page learn remove template messages
+
+
+
+
+
+
+
+article possibly contains original research please improve verifying claims made adding inline citations statements consisting original research removed april 2013 learn remove template message
+
+
+
+
+
+
+
+
+
+article needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed april 2013 learn remove template message
+
+
+
+
+
+learn remove template message
+
+
+
+file type redirects file type also refer unix file types
+file format standard information encoded storage computer file specifies bits used encode information digital storage medium file formats either proprietary free either unpublished open
+file formats designed particular types data files example store bitmapped images using lossless data compression file formats however designed storage several different types data format container different types multimedia including combination audio video without text subtitles metadata text file contain stream characters including possible control characters encoded various character encoding schemes file formats html scalable vector graphics source code computer software text files defined syntaxes allow used specific purposes
+
+
+
+contents
+
+
+specifications
+patents
+identifying file type
+
+filename extension
+internal metadata
+
+file header
+magic number
+
+
+external metadata
+
+typecodes
+uniform type identifiers utis
+extended attributes
+posix extended attributes
+pronom unique identifiers puids
+mime types
+file format identifiers ffids
+file content based format identification
+
+
+
+
+file structure
+
+unstructured formats memory dumps
+chunkbased formats
+directorybased formats
+
+
+also
+references
+external links
+
+
+
+specificationsedit
+file formats often published specification describing encoding method enabling testing program intended functionalityfurther explanation needed formats freely available specification documents partly developers view specification documents trade secrets partly developers never author formal specification document letting precedent programs define formatclarification needed
+developer format doesnt publish free specifications another developer looking utilize kind file must either reverse engineer file find read acquire specification document formats developers signing nondisclosure agreement latter approach possible formal specification document exists strategies require significant time money therefore file formats publicly available specifications tend supported programs
+patentsedit
+patent rather copyright often used protect file format although patents file formats directly permitted formats encode data using patented algorithms example using compression file format requires patented algorithm though patent owner initially enforce patent later began collecting royalty fees resulted significant decrease gifs partly responsible development alternative format however patent expired mid2003 worldwide mid2004
+identifying file typeedit
+different operating systems traditionally taken different approaches determining particular files format approach advantages disadvantages modern operating systems individual applications need following approaches read foreign file formats work completely
+filename extensionedit
+main article filename extension
+popular method used many operating systems including windows vmcms determine format file based name—the letters following final period portion filename known filename extension example html documents identified names html images original filesystem file names limited eightcharacter identifier threecharacter extension known filename many threeletter extensions often given extension might linked program many formats still threecharacter extensions even though modern operating systems application programs longer limitation since standard list extensions format extension confuse operating system users
+artifact approach system easily tricked treating file different format simply renaming it—an html file instance easily treated plain text renaming filenamehtml filenametxt although strategy useful expert users could easily understand manipulate information often confusing less technical users could accidentally make file unusable lose renaming incorrectly
+recent operating system shells windows hide extension listing files prevents user accidentally changing file type allows expert users turn feature display extensions
+hiding extension however create appearance identical filenames folder example company logo needed format publishing format sites extensions visible would appear unique filenames companylogoeps companylogopng hand hiding extensions would make appear companylogo
+hiding extensions also pose security risk1 example malicious user could create executable program innocent name holiday photojpgexe would hidden user would holiday photojpg would appear jpeg image unable harm machine save bugs application used view however operating system would still extension thus program would able cause harm computer true files extension shown user information file deduced without explicitly investigating file extensions spoofed word macro viruses create word file template format save extension since word generally ignores extensions looks format file would open templates execute spread virus trick users possible store icon inside program case operating systems icon assignment executable file would overridden icon commonly used represent jpeg images making program look like image issue requires users extensions hidden vigilant never operating system choose program open file known trustworthy contradicts idea making things easier user represents practical problem windows systems extensionhiding turned default
+internal metadataedit
+second identify file format information regarding format stored inside file either information meant purpose binary strings happen always specific locations files formats since easiest place locate beginning area usually called file header greater bytes magic number bytes long
+file headeredit
+metadata contained file header usually stored start file might present areas often including depending file format type data contained characterbased text files usually characterbased headers whereas binary formats usually binary headers although rule textbased file headers usually take space humanreadable easily examined using simple software text editor hexadecimal editor
+well identifying file format file headers contain metadata file contents example image files store information image format size resolution color space optionally authoring information made image made camera model photographic settings used exif metadata used software reading interpreting file loading process afterwards
+file headers used operating system quickly gather information file without loading memory uses computers resources reading directly directory information instance graphic file manager display contents folder must read headers many files display appropriate icons located different places storage medium thus taking longer access folder containing many files complex metadata thumbnail information require considerable time displayed
+header binary hardcoded header needs complex interpretation order recognized especially metadata content protections sake risk file format misinterpreted even badly written source result corrupt metadata extremely cases might even render file unreadableclarification needed
+complex example file headers used wrapper container file formats
+magic numberedit
+also magic number programming
+incorporate file type metadata often associated unix derivatives store magic number inside file originally term used specific 2byte identifiers beginnings files since binary sequence regarded number feature file format uniquely distinguishes used identification images instance always begin ascii representation either gif87a gif89a depending upon standard adhere many file types especially plaintext files harder spot method html files example might begin string html case sensitive appropriate document type definition starts doctype html xhtml identifier begins files also begin html comments random text several empty lines still usable html
+magic number approach offers better guarantees format identified correctly often determine precise information file since reasonably reliable magic number tests fairly complex file must effectively tested every possibility magic database approach relatively inefficient especially displaying large lists files contrast file name metadatabased methods need check piece data match sorted index also data must read file increasing latency opposed metadata stored directory file types dont lend recognition system must fall back metadata however best program check file told process correct format files name metadata altered independently content failing welldesigned magic number test pretty sure sign file either corrupt wrong type hand valid magic number guarantee file corrupt correct type
+socalled shebang lines script files special case magic numbers magic number humanreadable text identifies specific command interpreter options passed command interpreter
+another operating system using magic numbers amigaos magic numbers called magic cookies adopted standard system recognize executables hunk executable file format also single programs tools utilities deal automatically saved data files kind file types saving loading data system enhanced amiga standard datatype recognition system another method fourcc method originating ostype macintosh later adapted interchange file format derivatives
+external metadataedit
+final storing format file explicitly store information format file system rather within file
+approach keeps metadata separate main data name also less portable either file extensions magic numbers since format converted filesystem filesystem also true extent filename extensions—for instance compatibility msdoss three character limit—most forms storage roughly equivalent definition files data name varying representation metadata
+note files archive files solve problem handling metadata utility program collects multiple files together along metadata file foldersdirectories came within file file extension file also compressed possibly encrypted transmissible single file across operating systems systems attached email destination must unzipped compatible utility useful problems transmission solved
+typecodesedit
+hierarchical file system stores codes creator type part directory entry file codes referred ostypes codes could 4byte sequence often selected ascii representation formed sequence meaningful characters abbreviation applications name developers initials instance hypercard stack file creator wild hypercards previous name wildcard type stak bbedit text editor creator code referring original programmer rich siegel type code specifies format file creator code specifies default program open doubleclicked user example user could several text files type code text open different program differing creator codes feature intended example humanreadable plaintext files could opened general purpose text editor programming html code files would open specialized editor feature often source user confusion program would launch files doubleclicked often unpredictable risc uses similar system consisting 12bit number looked table descriptions—eg hexadecimal number aliased poscript representing postscript file
+uniform type identifiers utisedit
+main article uniform type identifier
+uniform type identifier method used uniquely identifying typed classes entity file formats developed apple replacement ostype type creator codes
+core foundation string uses reversedns string common standard types domain called public publicpng portable network graphics image domains used thirdparty types comadobepdf portable document format utis defined within hierarchical structure known conformance hierarchy thus publicpng conforms supertype publicimage conforms supertype publicdata exist multiple hierarchies provides great flexibility
+addition file formats utis also used entities exist including
+
+pasteboard data
+folders directories
+translatable types handled translation manager
+bundles
+frameworks
+streaming data
+aliases symlinks
+
+extended attributesedit
+hpfs fat12 fat16 fat32 filesystems allow storage extended attributes files comprise arbitrary triplets name coded type value value names unique values long standardized meanings certain types names type extended attribute used determine file type value comprises list file types associated file string plain text html document thus file several types
+ntfs filesystem also allows storage extended attributes file forks feature merely present support subsystem present win32 subsystem treats information opaque block data instead relies file forks store metainformation win32specific formats extended attributes still read written win32 programs data must entirely parsed applications
+posix extended attributesedit
+unix unixlike systems ext2 ext3 reiserfs version filesystems allow storage extended attributes files include arbitrary list namevalue strings names unique value accessed related name
+pronom unique identifiers puidsedit
+pronom persistent unique identifier puid extensible scheme persistent unique unambiguous identifiers file formats developed national archives part pronom technical registry service puids expressed uniform resource identifiers using infopronom namespace although widely used outside government digital preservation programmes puid scheme provide greater granularity alternative schemes
+mime typesedit
+mime types widely used many internetrelated applications increasingly elsewhere although usage ondisc type information rare consist standardised system identifiers managed iana consisting type subtype separated slash—for instance texthtml imagegif originally intended identifying type file attached email independent source target operating systems mime types identify files beos amigaos morphos well store unique application signatures application launching amigaos morphos mime type system works parallel amiga specific datatype system
+problems mime types though several organisations people created mime types without registering properly iana makes standard awkward cases
+file format identifiers ffidsedit
+file format identifiers another widely used identify file formats according origin file category created description explorer suite software composed several digits form nnnnnnnnnxxyyyyyyy first part indicates organisation originmaintainer number represents value companystandards organisation database following digits categorize type file hexadecimal final part composed usual file extension file international standard number file padded left zeros example file specification ffid 000000001310015948 indicates image file 0015948 standard number 000000001 indicates organisation
+file content based format identificationedit
+another less popular identify file format examine file contents distinguishable patterns among file types contents file sequence bytes byte unique permutations 0–255 thus counting occurrence byte patterns often referred byte frequency distribution gives distinguishable patterns identify file types many contentbased file type identification schemes byte frequency distribution build representative models file type statistical data mining techniques identify file types
+file structureedit
+several types ways structure data file usual ones described
+unstructured formats memory dumpsedit
+earlier file formats used data formats consisted directly dumping memory images structures file
+several drawbacks unless memory images also reserved spaces future extensions extending improving type structured file difficult also creates files might specific platform programming language example structure containing pascal string recognized hand developing tools reading writing types files simple
+limitations unstructured formats development types file formats could easily extended backward compatible time
+chunkbased formatsedit
+kind file structure piece data embedded container somehow identifies data containers scope identified start endmarkers kind explicit length field somewhere fixed requirements file formats definition
+throughout 1970s many programs used formats general kind example wordprocessors troff script scribe database export files electronic arts commodoreamiga also used type file format 1985 interchange file format file format
+container sometimes called chunk although chunk also imply piece small andor chunks contain chunks many formats impose requirements
+information identifies particular chunk called many different things often terms including field name identifier label identifiers often humanreadable classify parts data example surname address rectangle font name thing identifiers sense database serial number although identifier well identify associated data
+type file structure tools know certain chunk identifiers simply skip understand depending actual meaning skipped data useful explicitly defines behavior
+concept used riff microsoftibm equivalent jpeg storage distinguished encoding rules encoded streams files originally described ccitt x4091984 therefore predate structured data exchange format sdxf
+indeed data format must somehow identify significance component parts embedded boundarymarkers obvious
+
+mime headers colonseparated label start logical line mime headers cannot contain mime headers though data content headers subparts extracted conventions
+similar files often using header records field names commas mark field boundaries like mime provision structures level
+loosely considered kind chunkbased format since data elements identified markup akin chunk identifiers however formal advantages schemas validation well ability represent complex structures trees dags charts considered chunk format sgml predecessor among earliest examples formats
+json similar without schemas crossreferences definition meaning repeated fieldnames often convenient programmers
+protocol buffers turn similar json notably replacing boundarymarkers data field numbers mapped tofrom names external mechanism
+
+directorybased formatsedit
+another extensible format closely resembles file system documents actual filesystems file composed directory entries contain location data within file well signatures certain cases type good examples types file structures disk images documents tiff images
+alsoedit
+
+audio file format
+chemical file format
+digital container format
+document file format
+droid file format identification utility
+file command file type identification utility
+file conversion
+future proofing
+graphics file format summary
+image file formats
+list archive formats
+list file formats
+list filename extensions alphabetical
+list free file formats
+list motion gesture file formats
+magic number programming
+list file signatures magic numbers
+object file
+video file format
+windows file types
+
+referencesedit
+
+
+
+
+
+
+article includes list references sources remain unclear insufficient inline citations please help improve article introducing precise citations october 2008 learn remove template message
+
+
+
+
+
+world december 2003 windows tips security reasons pays know file extensions retrieved june 2008
+file format identification
+
+
+
+
+
+
+extended attribute data types rexx tips tricks version retrieved february 2005
+extended attributes used rexx tips tricks version retrieved february 2005
+extended attributes roger retrieved february 2005
+
+
+
+
+external linksedit
+
+
+
+look file format wiktionary free dictionary
+
+
+
+
+library resources
+file
+
+
+
+
+
+resources library
+
+
+
+
+
+open directory data format links file types resources dmoz
+best practices file formats stanford university libraries data management services file formats direct impact ability open files later date ability people access data
+
+
+
+
+
+
+
+
+
+
+
+
+
+computer files
+
+
+
+types
+
+
+
+binary file text file
+file format
+
+list file formats
+file signatures
+magic number
+
+
+metafile
+sidecar file
+sparse file
+swap file
+system file
+temporary file
+zerobyte file
+
+
+
+
+
+properties
+
+
+
+filename
+
+filename
+long filename
+filename mangling
+
+
+filename extension
+
+list filename extensions
+
+
+file attribute
+
+extended file attributes
+
+
+file size
+hidden file hidden directory
+
+
+
+
+
+organisation
+
+
+
+directoryfolder
+
+ntfs junction point
+temporary folder
+
+
+directory structure
+file sequence
+file system
+
+filesystem hierarchy standard
+
+
+path
+
+
+
+
+
+operations
+
+
+
+open
+close
+read
+write
+
+
+
+
+
+linking
+
+
+
+alias
+file descriptor
+hard link
+shadow
+shortcut
+symbolic link
+
+
+
+
+
+management
+
+
+
+file comparison
+file compression
+file manager
+
+comparison file managers
+
+
+file system permissions
+file transfer
+
+file sharing
+
+
+file verification
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlefileformatoldid811037141 categories computer file formatshidden categories articles contain original research april 2013all articles contain original researcharticles needing additional references april 2013all articles needing additional referencesarticles multiple maintenance issueswikipedia articles needing clarification 2012wikipedia articles needing clarification january 2014articles lacking intext citations october 2008all articles lacking intext citations

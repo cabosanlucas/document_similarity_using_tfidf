@@ -1,0 +1,1420 @@
+uses disambiguation
+
+
+
+
+rotating globe
+
+
+
+filename extension
+
+
+
+internet media type
+imagegif
+
+
+type code
+
+giff
+
+
+uniform type identifier
+comcompuservegif
+
+
+magic number
+gif87agif89a
+
+
+developed
+compuserve
+
+
+initial release
+1987 years 19871
+
+
+latest release
+
+
+1989 years 19892
+
+
+
+type format
+lossless bitmap image format
+
+
+website
+wwww3orggraphicsgifspecgif89atxt
+
+
+graphics interchange format better known acronym dʒɪf ghif bitmap image format developed team bulletin board service provider compuserve american computer scientist steve wilhite june 19871 since come widespread usage world wide wide support portability
+format supports bits pixel image allowing single image reference palette different colors chosen 24bit color space also supports animations allows separate palette colors frame palette limitations make less suitable reproducing color photographs images color gradients wellsuited simpler images graphics logos solid areas color
+images compressed using lempel–ziv–welch lossless data compression technique reduce file size without degrading visual quality compression technique patented 1985 controversy licensing agreement software patent holder unisys compuserve 1994 spurred development portable network graphics standard 2004 relevant patents expired
+
+
+
+contents
+
+
+history
+linguistic characteristics
+
+pronunciation
+
+
+usage
+file format
+palettes
+
+true color
+
+
+example file
+
+image coding
+image decoding
+code lengths
+uncompressed
+
+
+compression example
+interlacing
+animated
+unisys patent enforcement
+alternatives
+
+
+animation formats
+
+
+also
+references
+external links
+
+
+
+historyedit
+compuserve introduced june 1987 provide color image format file downloading areas replacing earlier runlength encoding format black white became popular used data compression efficient runlength encoding formats macpaint used fairly large images could therefore downloaded reasonably short time even slow modems
+original version called 87a1 1989 compuserve released enhanced version called 89a2 added support animation delays multiple images stream already supported transparent background colors storage applicationspecific metadata specification also supports incorporating text labels text embedding graphical data little control display fonts feature widely used versions distinguished looking first bytes file magic number signature interpreted ascii read gif87a gif89a respectively
+compuserve encouraged adoption providing downloadable conversion utilities many computers december 1987 example apple iigs user could view pictures created atari commodore first image formats commonly used sites blackandwhite xbm4
+september 1995 netscape navigator added ability animated gifs loop
+feature storing multiple images file accompanied control data used extensively produce simple animations optional interlacing feature stores image scan lines order fashion even partially downloaded image somewhat recognizable also helped gifs popularity5 user could abort download required
+2015 facebook added support even though originally support site67
+linguistic characteristicsedit
+noun word found newer editions many dictionaries 2012 american wing oxford university press recognized verb well meaning create file gifing perfect medium sharing scenes summer olympics presss lexicographers voted word year saying gifs evolved tool serious applications including research journalism89
+pronunciation gifedit
+also hard soft description prescription
+
+
+
+
+humorous image announcing launch white house tumblr suggests pronouncing hard sound
+
+
+creators format pronounced word soft dʒɪf steve wilhite says intended pronunciation deliberately echoes american peanut butter brand compuserve employees would often choosy developers choose spoofing brands television commercials10 word also widely pronounced hard gift11
+american heritage dictionary12 cites indicating primary pronunciation cambridge dictionary american english13 offers hardg pronunciation merriamwebsters collegiate dictionary14 oed15 cite pronunciations place default position ˈgif ˈjif oxford american dictionary gave edition16 updated edition17
+disagreement pronunciation heated internet debate occasion receiving lifetime achievement award 2013 webby award ceremony wilhite rejected hardg pronunciation111819 speech 17000 posts twitter news articles20 white house11 program jeopardy19 also waded debate 2013
+usageedit
+
+gifs suitable sharpedged line logos limited number colors takes advantage formats lossless compression favors flat areas uniform color well defined edges21
+gifs used store lowcolor sprite data games22
+gifs used small animations lowresolution video clips22
+
+file formatedit
+
+
+
+
+fileemptygif editor
+
+
+conceptually file describes fixedsized graphical area logical screen populated zero images many files single image fills entire logical screen others divide logical screen separate subimages images also function animation frames animated file need fill entire logical screen
+files start fixedlength header gif87a gif89a giving version followed fixedlength logical screen descriptor giving size characteristics logical screen screen descriptor also specify presence size global color table follows next present
+thereafter file divided segments introduced 1byte sentinel
+
+image introduced 0x2c comma
+extension block introduced 0x21 exclamation point
+trailer single byte value 0x3b semicolon last byte file
+
+image starts fixedlength image descriptor specify presence size local color table follows next present image data follows byte giving width unencoded symbols must least bits wide even bicolor images followed linked list subblocks containing lzwencoded data
+extension blocks blocks extend definition mechanism already defined spec consist sentinel additional byte specifying type extension linked list subblocks extension data extension blocks modify image like graphic control extension specifies optional animation delay time optional transparent background color must immediately precede segment image refer
+linked lists used image data extension blocks consist series subblocks subblock beginning byte giving number subsequent data bytes subblock series subblocks terminated empty subblock byte
+structure allows file parsed even parts understood marked contain extension blocks intent decoder read display file without features covered extensions understand
+full detail file format covered specification2
+palettesedit
+
+
+
+
+example image saved websafe palette dithered using floyd–steinberg method reduced number colors image display issues
+
+
+palettebased colors used image frame file values defined palette table hold entries data image refer colors indices 0–255 palette table color definitions palette drawn color space millions shades shades bits primary maximum number colors frame limitation seemed reasonable developed people could afford hardware display colors simultaneously simple graphics line drawings cartoons greyscale photographs typically need fewer colors
+frame designate index transparent background color pixel assigned index takes color pixel position background determined previous frame animation
+many techniques collectively called dithering developed approximate wider range colors small color palette using pixels colors approximate inbetween colors techniques sacrifice spatial resolution approximate deeper color resolution part specification dithering course used images subsequently encoded images often ideal solution images loss spatial resolution typically makes image look fuzzy screen dithering patterns often interfere compressibility image data working gifs main purpose
+early days graphical browserswhen graphics cards 8bit buffers allowing colors common fairly common make images using websafe paletteaccording ensured predictable display severely limited choice colors 24bit color became norm palettes could instead populated optimum colors individual images
+small color table suffice small images keeping color table small allows file downloaded faster specifications allow color tables colors graphics applications read display images table sizes support sizes creating images tables colors widely supported
+true coloredit
+
+
+
+
+animated illustrating technique displaying typical limit colors
+
+
+although almost never used true color images possible so2324 image include multiple image blocks 256color palette blocks tiled create complete image alternatively gif89a specification introduced idea transparent color image block include palette visible colors plus transparent color complete image created layering image blocks visible portion layer showing transparent portions layers
+render fullcolor image original image must broken smaller regions different colors regions stored separate image block local palette image blocks displayed together either tiling layering partially transparent image blocks complete fullcolor image appears example breaking image tiles pixels pixels total ensures tile local palette limit colors although larger tiles used similar colors merged resulting loss color information23
+since image block requires local color table file lots image blocks large limiting usefulness fullcolor gifs24 additionally rendering programs handle tiled layered images correctly many rendering programs interpret tiles layers animation frames display sequence endless animation23 browsers automatically displaying frames delay time seconds more2526better source needed
+example fileedit
+
+
+
+
+sample image enlarged actual size pixels wide high
+
+
+
+
+
+
+bytes 30ch example define palette colors
+
+
+
+microsoft paint saves small blackandwhite image following file paint make optimal unnecessarily large color table storing full colors instead used symbol width file efficient representation 15pixel image illustrated enlarged
+although graphics control extension block declares color index hexadecimal transparent index used image color indexes appearing image data decimal global color table maps black white respectively
+note numbers following tables littleendian byte order format specification prescribes
+
+
+byte hexadecimal text
+value meaning
+
+gif89a header
+logical screen descriptor
+logical screen width pixels
+logical screen height pixels
+follows colors resolution bitsprimary lowest bits represent depth minus highest true means present
+background color
+default pixel aspect ratio
+global color table
+color black
+color
+
+color black
+
+color white
+graphic control extension comment fields precede files
+bytes data follow
+transparent background color field lowest signifies transparency
+delay animation hundredths second used
+color transparent
+block
+image descriptor
+corner position image logical screen
+image width height pixels
+local color table
+start image minimum code size
+bytes encoded image data follow
+
+image data
+file terminator
+
+image codingedit
+image pixel data scanned horizontally left converted encoding codes mapped bytes storing file pixel codes typically dont match 8bit size bytes codes packed bytes littleendian scheme least significant first code stored least significant first byte higher order bits code higher order bits byte spilling order bits next byte necessary subsequent code stored starting least significant already used
+byte stream stored file series subblocks subblock maximum length bytes prefixed byte indicating number data bytes subblock series subblocks terminated empty subblock single byte indicating subblock data bytes
+sample image reversible mapping 9bit codes bytes shown
+
+
+9bit code
+
+binary
+bytes
+
+
+
+
+00000000
+
+
+
+
+
+
+
+
+
+01010001
+
+
+
+
+
+
+
+
+
+11111100
+
+
+
+
+
+
+
+
+
+00011011
+
+
+
+
+
+
+
+
+
+00101000
+
+
+
+
+
+
+
+
+
+01110000
+
+
+
+
+
+
+
+
+
+10100000
+
+
+
+
+
+
+
+
+
+11000001
+
+
+
+
+
+
+
+
+
+10000011
+
+
+
+
+00000001
+
+
+
+
+
+
+
+
+
+00000001
+
+
+
+slight compression evident pixel colors defined initially bytes exactly represented code bytes including control codes encoding process produces 9bit codes shown local string accumulates pixel color numbers palette output action long local string found code table special treatment first pixels arrive table grows initial size additions strings output code local string initialized latest pixel color could included output code
+
+table 9bit
+string code code action
+000h initialize root table 9bit codes
+palette
+colors
+0ffh
+100h
+101h
+100h clear
+pixel local
+color palette string
+black 028h pixel always output
+white string found table
+102h always string table
+initialize local string
+white string found table
+0ffh output code previous string
+103h latest string table
+initialize local string
+white string found table
+black string found table
+103h output code previous string
+104h latest string table
+initialize local string
+white string found table
+white string found table
+102h output code previous string
+105h latest string table
+initialize local string
+white string found table
+white string found table
+103h output code previous string
+106h latest string table
+initialize local string
+white string found table
+white string found table
+white string found table
+106h output code previous string
+107h latest string table
+initialize local string
+white string found table
+white string found table
+white string found table
+pixels
+107h output code last string
+101h
+
+clarity table shown built strings increasing length scheme function table consumes unpredictable amount memory memory saved practice noting string stored consists previously stored string augmented character economical store address words existing address character
+algorithm requires search table pixel linear search 4096 addresses would make coding slow practice codes stored order numerical value allows search done successive approximation register used adcs magnitude comparisons efficiency extra table needed convert codes actual memory addresses extra table upkeeping needed code stored happens much less pixel rate
+image decodingedit
+decoding begins mapping stored bytes back 9bit codes decoded recover pixel colors shown table identical used encoder built adding strings rule
+
+incoming code found table
+string local code followed first byte string incoming code
+string local code followed copy first byte
+
+
+shift
+9bit local table pixel
+code code code string palette color action
+100h 000h initialize root table 9bit codes
+palette
+colors
+0ffh
+100h
+101h
+028h black decode pixel
+0ffh 028h incoming code found table
+white output string table
+102h table
+103h 0ffh incoming code found table
+103h table
+output string table
+white
+white
+102h 103h incoming code found table
+output string table
+black
+white
+104h table
+103h 102h incoming code found table
+output string table
+white
+white
+105h table
+106h 103h incoming code found table
+106h table
+output string table
+white
+white
+white
+107h 106h incoming code found table
+107h table
+output string table
+white
+white
+white
+white
+101h
+
+
+code lengthsedit
+shorter code lengths used palettes smaller colors example palette colors color indexes bits wide symbols range symbol width taken bits codes starting bits fact symbol width need match palette size long values decoded always less number colors palette symbols width palette size power example first four colors values palette used symbols taken bits wide codes starting bits
+conversely symbol width could even values used data would require 2color table although would point encoding file something similar typically happens bicolor images minimum symbol width even values used
+code table initially contains codes longer symbol size order accommodate special codes codes strings added process table full code length increases give space strings maximum code 4095 fffhex decoder builds table tracks increases code length able unpack incoming bytes accordingly
+uncompressed gifedit
+
+
+
+
+uncompressed 7bit symbols colors 8bit codes click image explanation code
+
+
+encoding process modified create file without compression still viewable image technique introduced originally avoid patent infringement uncompressed also useful intermediate format graphics programmer individual pixels accessible reading painting uncompressed file converted ordinary file simply passing image editor
+modified encoding method ignores building table emits root palette codes codes clear stop yields simpler encoding 1to1 correspondence code values palette codes sacrifices compression pixel image generates output code indicating color index processing uncompressed standard decoder prevented writing strings dictionary table code width must never increase since triggers different packing bits bytes
+symbol width codes width fall naturally blocks lower block codes coding single symbols upper block codes used decoder sequences length greater upper block first codes already taken clear stop decoder must also prevented using last code upper block decoder fills slot increase code width thus upper block codes available decoder wont trigger increase code width decoder always step behind maintaining table generate table entry upon receiving first code encoder generate succeeding code thus encoder generate codes without triggering increase code width therefore encoder must emit extra clear codes intervals codes less make decoder reset coding dictionary standard allows extra clear codes inserted image data time composite data stream partitioned subblocks carry bytes
+sample image following 9bit codes represent clear followed image pixels scan order stop
+
+9bit codes
+
+codes mapped bytes uncompressed file differs compressed file thus
+
+
+bytes uncompressed image data follow
+
+
+
+
+compression exampleedit
+trivial example large image solid color demonstrates variablelength compression used files
+
+
+code
+pixels
+notes
+
+
+
+
+value
+
+length
+bits
+code
+
+accumulated
+nini
+relations using apply
+color pixels coding table full
+
+
+
+100h
+
+
+
+clear code table
+
+
+
+
+
+
+left pixel color chosen
+highest index 256color palette
+
+
+
+102h
+
+
+
+
+
+
+
+
+103h
+
+1ffh
+
+
+
+
+
+32640
+
+
+last 9bit code
+
+
+
+
+
+200h
+
+3ffh
+
+
+
+
+32896
+
+294528
+
+
+last 10bit code
+
+
+
+
+1791
+400h
+
+7ffh
+
+
+
+1791
+295296
+
+1604736
+
+
+last 11bit code
+
+
+1792
+
+3839
+800h
+
+fffh
+
+1792
+
+3839
+1606528
+
+7370880
+
+
+code table full
+
+
+
+fffh
+3839
+maximum code repeat samecolor pixels
+overall data compression asymptotically approaches
+3839 2559
+
+
+
+101h
+
+
+image data
+
+
+code values shown packed bytes packed blocks bytes block image data begins byte declares number bytes follow last block data image marked zero blocklength byte
+interlacingedit
+specification allows image within logical screen file specify interlaced order raster lines data block sequential allows partial display image recognized full image painted
+interlaced image divided bottom strips pixels high rows image presented following order
+
+pass line topmost line strip
+pass line strip
+pass lines strip
+pass lines strip
+
+pixels within line interlaced presented consecutively left right noninterlaced images break data line data next indicator image interlaced images header block
+animated gifedit
+
+
+
+
+
+
+section missing information accessibility problems browsers enable animated gifs users block animated gifs please expand section include information details exist talk page 2015
+
+
+
+
+
+
+
+used display animation image newtons cradle
+
+
+
+
+
+
+animation made photos morphing
+
+
+
+
+
+
+animation pumpjack made looping part video
+
+
+basic animation added gif89a spec graphics control extension allows various images frames file painted time delays forming video clip animated file comprises number frames displayed succession introduced gives time delay wait frame drawn global information start file applies default frames data streamoriented fileoffset start depends length preceding data within frame lzwcoded image data arranged subblocks bytes size subblock declared byte precedes
+default however animation displays sequence frames stopping last frame displayed since designed allow users define blocks netscape 1990s used application extension block intended allow vendors applicationspecific information file implement netscape application block nab27 block placed immediately animation frames specifies number times sequence frames played value signifies continuous display support repeating animations first appeared netscape navigator version spread browsers28 browsers recognize support though strictly part gif89a specification
+following example shows structure animation file rotating earth largegif shown thumbnail article
+
+
+byte hexadecimal text
+value meaning
+
+gif89a header
+logical screen descriptor
+width pixels
+height pixels
+follows colors resolution 8bitsprimary
+background color
+default pixel aspect ratio
+global color table
+
+application extension block
+eleven bytes data follow
+
+
+netscape 8character application name
+application authentication code
+three bytes data
+data subblock index always
+65535 unsigned number repetitions
+extension block
+graphic control extension frame
+four bytes data follow
+bitfields 3x311 00001000 restore color
+delay painting next frame
+transparent color
+block
+image descriptor
+corner frame
+400400 frame width height
+local color table interlace
+code size
+bytes encoded image data follow
+data
+bytes encoded image data follow
+data
+
+92ba data frame
+92bb graphic control extension frame
+
+153b7b21 graphic control extension frame
+
+15cf353b file terminator
+
+animation delay frame specified hundredths second economy data possible frame need rewrite portion pixels display image descriptor define smaller rectangle rescanned instead whole image browsers displays support animated gifs typically show first frame
+size color quality animated files vary significantly depending application used create strategies minimizing file size include using common global color table frames rather complete local color table frame minimizing number pixels covered successive frames pixels change frame next included latter frame simply packing series independent frame images composite animation tends yield large file sizes
+internet explorer slows gifs framerate frames second higher microsoft reports google chrome safari also slow animations29
+starting early 1995 university used animated live video streaming format show controllable model railroad
+unisys patent enforcementedit
+1977 1978 jacob abraham lempel published pair papers class lossless datacompression algorithms collectively referred lz77 lz78 1983 terry welch developed fast variant lz78 named lempel–ziv–welch lzw3031
+welch filed patent application method june 1983 resulting patent 4558302 granted december 1985 assigned sperry corporation subsequently merged burroughs corporation 1986 formed unisys30 patents obtained united kingdom france germany italy japan canada
+june 1984 article welch published ieee magazine publicly described technique first time32 became popular data compression technique patent granted unisys entered licensing agreements hundred companies3033
+popularity compuserve choose compression technique version developed 1987 time compuserve aware patent30 unisys became aware version used compression technique entered licensing negotiations compuserve january 1993 subsequent agreement announced december 199431 unisys stated expected major commercial online information services companies employing patent license technology unisys reasonable rate would require licensing fees paid noncommercial nonprofit gifbased applications including online services33
+following announcement widespread condemnation compuserve unisys many software developers threatened stop using format developed 1995 intended replacement303132 however obtaining support makers browsers software format proved difficult possible replace although gradually increased popularity30 therefore variations without compression developed instance libungif library based eric raymonds giflib allows creation gifs followed data format avoided compression features thus avoiding unisys patent34 2001 dobbs article described another alternative compression based square roots35
+august 1999 unisys changed details licensing practice announcing option owners certain noncommercial private websites obtain licenses payment onetime license 5000 750036 licenses required website owners users used licensed software generate gifs nevertheless unisys subjected thousands online attacks abusive emails users believing going charged 5000 sued using gifs websites37 despite giving free licenses hundreds nonprofit organizations schools governments unisys completely unable generate good publicity continued condemned individuals organizations league programming freedom started burn gifs campaign 19993839
+united states patent expired june 200340 counterpart patents united kingdom france germany italy expired june 2004 japanese patents expired june 2004 canadian patent expired july 200440 consequently unisys patents patent applications relating improvements technique40 used freely41
+alternativesedit
+pngedit
+portable network graphics designed replacement order avoid infringement unisys patent compression technique30 offers better compression features gif42 animation significant exception suitable instances truecolor imaging alpha transparency required
+although support format came slowly browsers generally support older versions internet explorer support features versions earlier support alpha channel transparency without using microsoftspecific html extensions43 gamma correction images supported version display images earlier versions wrong tint44
+identical 8bit lower image data files typically smaller equivalent gifs efficient compression techniques used encoding45 complete support complicated chiefly complex canvas structure allows though enables compact animation features
+animation formatsedit
+originally developed pngbased solution animations reached version 2001 applications support
+2006 extension format called apng proposed alternative format mozilla apng provide ability animate files retaining backwards compatibility decoders cannot understand animation chunk unlike older decoders simply render first frame animation group officially rejected apng official extension april 200746 several subsequent proposals simple animated graphics format based using several different approaches47 nevertheless animated portable network graphics still development mozilla supported firefox 34849 support dropped5051
+embedded adobe flash objects mpegs used websites display simple video require additional browser plugin webm webp development supported browsers52 options animation include serving individual frames using ajax animating images using javascript smilcitation needed
+introduction widespread support html5 video browsers websites looped version video generated javascript functions gives appearance size speed advantages compressed video notable examples gfycat imgur gifv metaformat really video playing looped webm compressed video53
+alsoedit
+
+
+computer graphics portal
+internet portal
+animation portal
+
+
+
+cinemagraph partially animated photograph often
+comparison graphics file formats
+comparison layout engines graphics
+form digital associated
+plotutils supports pseudogif uses runlength encoding rather
+microsoft animator free program create simple animated gifs
+software patent
+
+referencesedit
+
+
+graphics interchange format version june 1987 retrieved october 2012
+graphics interchange format version july 1990 retrieved march 2009
+online computes apple applications december 1987 retrieved september 2016
+holdener anthony 2008 ajax definitive guide interactive applications oreilly media isbn 0596528388
+furht borko 2008 encyclopedia multimedia springer isbn 0387747249
+mchugh molly 20150529 finally actually really truly post gifs facebook wiredcom retrieved 20150529
+perez sarah 20150529 facebook confirms officially support gifs techcrunchcom retrieved 20150529
+oxford dictionaries word year 2012 oxfordwords blog oxford american dictionaries 20121113 retrieved 20130501
+flood alison 20130427 americas word year thats call omnishambles books blog london guardiancouk retrieved 20130501
+olsen steve pronunciation page retrieved march 2009
+gifs inventor says ignore dictionaries news 20130522 retrieved 20130522
+american heritage abbreviations dictionary third edition houghton mifflin company 2005 retrieved 20070415
+cambridge dictionary american english cambridge university press retrieved 20140219
+definition merriamwebster dictionary merriamwebster dictionary merriamwebster incorporated retrieved june 2013
+oxford dictionaries online oxford university press retrieved october 2014
+oxford american dictionary oxford university press 2005
+oxford american dictionary 2012 part macintosh builtin dictionaries
+oleary 2013 honor creator york times retrieved 2013
+rothberg daniel december 2013 jeopardy wades pronunciation battle angeles times angeles times retrieved 20131204
+oleary 2013 battle pronunciation erupts york times
+marur bhaskar march 2012 comparison platform independent electronic document distribution techniques devices circuits systems icdcs international conference devices circuits systems icdcs karunya university coimbatore india ieee 297–301 doi101109icdcsyst20126188724 isbn 9781457715457 retrieved 20150310
+chin iverson campesato trani 2011 android flash york apress isbn 9781430232315 retrieved march 2015
+andreas kleinert 2007 truecolor extensions archived original march 2012 retrieved march 2012
+philip howard truecolor example archived original february 2015 retrieved march 2012
+nullsleep jeremiah johnson animated minimum frame delay browser compatibility study retrieved 2015
+theyre different match animation rate files accross browsers developers blog 2012 archived original february 2017 retrieved june 2017
+royal frazier gif89a retrieved january 2013
+scott walter 1996 scripting secret weapons publishing isbn 0789709473
+msdn blogs microsoft retrieved 2015
+greg roelofs history portable network graphics format retrieved march 2012
+stuart caie patent dead retrieved march 2012
+controversy software developers perspective retrieved 2015
+unisys clarifies policy regarding patent online service offerings archived february 2007 wayback machine archived league programming freedom
+libungif retrieved 2015
+cargill 20011001 replacing dictionary square root dobbs journal retrieved 20170120
+software patent information archived original june 2009 retrieved 20070131 maint originalurl status unknown link clarification september 1999
+unisys suing webmasters using gifs slashdot investigation controversy
+httpburnallgifsorg original version archived webarchive 1999
+burn gifs project league programming freedom latest version
+license information lzwbased technologies archived original june 2009 retrieved 20050426
+files pages free software foundation retrieved 2012
+versus compression retrieved june 2009
+alphaimageloader filter microsoft retrieved 2015
+whats internet explorer msdn retrieved march 2009
+image file format retrieved june 2009
+vote failed apng 20070405a sourceforge mailing list 20070420
+discussion simple animated format archived original 20090226 retrieved 20110712
+apng specification retrieved 2015
+mozilla labs blog archive better animations firefox
+195280 removal mngjng support retrieved 2015
+18574 restore support animation format image format retrieved 2015
+chromium blog chrome beta animated webp images faster chrome android touch input blogchromiumorg 20131121 retrieved 20140201
+introducing gifv imgur blog imgurcom 20141009 retrieved 20141214
+
+
+external linksedit
+
+
+
+wikimedia commons media related file format
+
+
+
+giflib project
+specgif89atxt specification w3org
+specification reformatted html
+explained
+animated gifs 6minute documentary produced book series
+gifcities geocities animated search engine
+
+
+
+
+
+
+
+
+
+
+
+
+graphics file formats
+
+
+
+raster
+
+
+
+
+anim
+apng
+
+
+
+bsave
+
+
+
+
+
+
+
+
+fits
+flic
+flif
+
+
+hdri
+hevc
+icer
+icns
+
+
+ilbm
+jbig
+jbig2
+
+jpeg
+jpeg 2000
+jpegls
+jpeg
+
+
+miff
+nrrd
+
+
+
+
+
+pictor
+
+
+
+qtvr
+
+
+
+jpeghdr
+logluv tiff
+
+
+
+
+tiff
+
+tiffep
+tiffit
+
+
+
+wbmp
+webp
+
+
+
+
+
+
+
+
+
+
+
+
+
+ciff
+
+
+
+
+
+
+vector
+
+
+
+
+
+
+
+
+
+gerber
+hvif
+iges
+pgml
+
+
+
+
+
+
+
+
+
+compound
+
+
+
+
+djvu
+
+
+pict
+
+
+xaml
+
+
+
+
+
+related
+
+
+
+exchangeable image file format exif
+extensible metadata platform
+
+
+
+
+
+
+
+
+category
+comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+multimedia compression container formats
+
+
+
+video
+compression
+
+
+
+
+isoiec
+
+
+
+mjpeg
+motion jpeg 2000
+mpeg1
+mpeg2
+
+part
+
+
+mpeg4
+
+part 2asp
+part 10avc
+
+
+mpegh
+
+part 2hevc
+
+
+
+
+
+
+
+itut
+
+
+
+h120
+h261
+h262
+h263
+h264
+h265
+
+
+
+
+
+smpte
+
+
+
+
+
+
+
+
+
+
+
+
+alliance open media
+
+
+
+
+
+
+
+
+
+others
+
+
+
+apple video
+
+bink
+cinepak
+daala
+dirac
+
+
+ffv1
+huffyuv
+indeo
+lagarith
+microsoft video
+lossless
+video
+pixlet
+prores
+prores 4444
+quicktime
+
+animation
+graphics
+
+
+realvideo
+rtvideo
+sheervideo
+smacker
+sorenson video spark
+theora
+thor
+
+
+
+
+
+
+
+yuls
+
+
+
+
+
+
+
+
+audio
+compression
+
+
+
+
+isoiec
+
+
+
+mpeg1 layer
+mpeg1 layer
+
+multichannel
+
+
+mpeg1 layer
+
+
+heaac
+aacld
+
+
+mpeg surround
+mpeg4
+mpeg4
+mpeg4
+mpeg4 hvxc
+mpeg4 celp
+mpegd usac
+mpegh audio
+
+
+
+
+
+itut
+
+
+
+g711 alaw µlaw
+g718
+g719
+g722
+g7221
+g7222
+g723
+g7231
+g726
+g728
+g729
+g7291
+
+
+
+
+
+ietf
+
+
+
+opus
+ilbc
+
+
+
+
+
+3gpp
+
+
+
+
+amrwb
+amrwb
+evrc
+evrcb
+
+gsmhr
+gsmfr
+gsmefr
+
+
+
+
+
+others
+
+
+
+acelp
+
+
+alac
+asao
+atrac
+celt
+codec2
+
+
+flac
+isac
+monkeys audio
+
+
+true audio
+
+
+
+musepack
+optimfrog
+
+qcelp
+rcelp
+realaudio
+rtaudio
+
+
+silk
+siren
+
+speex
+svopc
+twinvq
+vmrwb
+vorbis
+vselp
+wavpack
+
+
+aptx
+
+
+
+
+
+
+
+
+image
+compression
+
+
+
+
+
+itut ietf
+
+
+
+ccitt group
+
+heif
+hevc
+jbig
+jbig2
+jpeg
+jpeg 2000
+jpeg
+lossless jpeg
+
+tiff
+tiffep
+tiffit
+
+
+
+
+
+others
+
+
+
+apng
+
+djvu
+
+flif
+icer
+
+
+qtvr
+wbmp
+webp
+
+
+
+
+
+
+
+
+containers
+
+
+
+
+isoiec
+
+
+
+mpeges
+
+mpegpes
+
+
+mpegps
+mpegts
+base media file format
+mpeg4 part
+motion jpeg 2000
+mpeg21 part
+mpeg media transport
+
+
+
+
+
+itut
+
+
+
+h2220
+t802
+
+
+
+
+
+ietf
+
+
+
+
+
+
+
+
+
+others
+
+
+
+
+
+
+aiff
+
+
+
+bink
+
+smacker
+
+
+
+divx media format
+
+flash video
+
+
+m2ts
+matroska
+
+webm
+
+
+
+
+quicktime file format
+ratdvd
+realmedia
+riff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+collaborations
+
+
+
+netvc
+mpegla
+
+
+
+
+
+
+compression methods methods compression software codecs
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlegifoldid816717381 categories graphics file formatscompuserveopen formatscomputerrelated introductions 1987hidden categories webarchive template wayback linkscs1 maint originalurl status unknownuse dates august 2012all articles vague ambiguous timevague ambiguous time march 2015all articles specifically marked weaselworded phrasesarticles specifically marked weaselworded phrases march 2015all articles lacking reliable referencesarticles lacking reliable references march 2015articles expanded 2015all articles unsourced statementsarticles unsourced statements december 2013commons category local link different wikidata

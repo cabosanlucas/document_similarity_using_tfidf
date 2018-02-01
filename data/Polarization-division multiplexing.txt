@@ -1,0 +1,153 @@
+
+
+Multiplexing
+
+
+
+
+
+Analog modulation
+
+
+
+
+
+AM
+FM
+PM
+QAM
+SM
+SSB
+
+
+
+
+
+
+Circuit mode
+(constant bandwidth)
+
+
+
+
+
+
+TDM
+FDM / WDM
+SDMA
+Polarization
+Spatial
+OAM
+
+
+
+
+
+
+Statistical multiplexing
+(variable bandwidth)
+
+
+
+
+
+
+Packet switching
+Dynamic TDMA
+FHSS
+DSSS
+OFDMA
+SC-FDM
+MC-SS
+
+
+
+
+
+Related topics
+
+
+
+
+Channel access methods
+Media access control
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+Polarization-division multiplexing (PDM) is a physical layer method for multiplexing signals carried on electromagnetic waves, allowing two channels of information to be transmitted on the same carrier frequency by using waves of two orthogonal polarization states. It is used in microwave links such as satellite television downlinks to double the bandwidth by using two orthogonally polarized feed antennas in satellite dishes. It is also used in fiber optic communication by transmitting separate left and right circularly polarized light beams through the same optical fiber.
+
+
+
+Contents
+
+
+1 Radio
+
+1.1 Cross-Polarization Interference Cancellation (XPIC)
+
+
+2 Photonics
+3 See also
+4 References
+
+
+
+Radio[edit]
+Polarization techniques have long been used in radio transmission to reduce interference between channels, particularly at VHF frequencies and beyond.
+Under some circumstances, the data rate of a radio link can be doubled by transmitting two separate channels of radio waves on the same frequency, using orthogonal polarization. For example, in point to point terrestrial microwave links, the transmitting antenna can have two feed antennas; a vertical feed antenna which transmits microwaves with their electric field vertical (vertical polarization), and a horizontal feed antenna which transmits microwaves on the same frequency with their electric field horizontal (horizontal polarization). These two separate channels can be received by vertical and horizontal feed antennas at the receiving station. For satellite communications, orthogonal circular polarization is often used instead, (i.e. right- and left-handed), as the sense of circular polarization is not changed by the relative orientation of the antenna in space.
+A dual polarization system comprises usually two independent transmitters, each of which can be connected by means of waveguide or TEM lines (such as coaxial cables or stripline or quasi-TEM such as microstrip) to a single-polarization antenna for its standard operation. Although two separate single-polarization antennas can be used for PDM (or two adjacent feeds in a reflector antenna), radiating two independent polarization states can be often easily achieved by means of a single dual-polarization antenna.
+When the transmitter has a waveguide interface, typically rectangular in order to be in single-mode regione at the operating frequency, a dual-polarized antenna with a circular (or square) waveguide port is the radiating element chosen for modern communication systems. The circular or square waveguide port is needed so that at least two degenerate modes are supported. An ad-hoc component must be therefore introduced in such situations to merge two separate single-polarized signals into one dual-polarized physical interface, namely an ortho-mode transducer (OMT).
+In case the transmitter has TEM or quasi-TEM output connections, instead, a dual-polarization antenna often presents separate connections (i.e. a printed square patch antenna with two feed points), and embeds the function of an OMT by means of intrinsically transferring the two excitation signals to the orthogonal polarization states.
+A dual-polarized signal thus carries two independent data streams to a receiving antenna, which can itself be a single-polarized one, for receiving only one of the two streams at a time, or a dual-polarized model, again relaying its received signal to two single-polarization output connectors (via an OMT if in waveguide).
+The ideal dual-polarization system lies its foundation onto the perfect orthogonality of the two polarization states, and any of the single-polarized interfaces at the receiver would theoretically contain only the signal meant to be transmitted by the desired polarization, thus introducing no interference and allowing the two data streams to be multiplexed and demultiplexed transparently without any degradation due to the coexistence with the other.
+Companies working on commercial PDM technology include Siae Microelettronica, Huawei and Alcatel-Lucent.
+Cross-Polarization Interference Cancellation (XPIC)[edit]
+Practical systems, however, suffer from non-ideal behaviors which mix the signals and the polarization states together:
+
+the OMT at the transmitting side has a finite cross-polarization discrimination (XPD) and thus leaks part of the signals meant to be transmitted in one polarization to the other
+the transmitting antenna has a finite XPD and thus leaks part of its input polarizations to the other radiated polarization state
+propagation in presence of rain, snow, hail creates depolarization, as part of the two impinging polarizations is leaked to the other
+the finite XPD of the receiving antenna acts similarly to the transmitting side and the relative alignment of the two antennas contributes to a loss of system XPD
+the finite XPD of the receiving OMT likewise further mixes the signals from the dual-polarized port to the single-polarized ports
+
+As a consequence, the signal at one of the received single-polarization terminals actually contains a dominant quantity of the desired signal (meant to be transmitted onto one polarization) and a minor amount of undesired signal (meant to be transported by the other polarization), which represents an interference over the former. As a consequence, each received signal must be cleared of the interference level in order to reach the required signal-to-noise-and-interference ratio (SNIR) needed by the receiving stages, which may be of the order of more than 30 dB for high-level M-QAM schemes. Such operation is carried out by a cross-polarization-interference cancellation (XPIC), typically implemented as a baseband digital stage.
+Compared to spatial multiplexing, received signals for a PMD system have a much more favourable carrier-to-interference ratio, as the amount of leakage is often much smaller than the useful signal, whereas spatial multiplexing operates with an amount of interference equal to the amount of useful signal. This observation, valid for a good PMD design, allows the adaptive XPIC to be designed in a simpler manner than a general MIMO cancelling scheme, since the starting point (without cancellation) is typically already sufficient for establishing a low-capacity link by means of a reduced modulation.
+An XPIC typically acts on one of the received signals "C" containing the desired signal as dominant term and uses the other received "X" signal too (containing the interfering signal as dominant term). The XPIC algorithm multiplies the "X" by a complex coefficient and then adds it to the received "C". The complex recombination coefficient is adjusted adaptively to maximize the MMSE as measured on the recombination. Once the MMSE is improved to the required level, the two terminals can switch to high-order modulations.
+Photonics[edit]
+Polarization-division multiplexing is typically used together with phase modulation or optical QAM, allowing transmission speeds of 100 Gbit/s or more over a single wavelength. Sets of PDM wavelength signals can then be carried over wavelength-division multiplexing infrastructure, potentially substantially expanding its capacity. Multiple polarization signals can be combined to form new states of polarization, which is known as parallel polarization state generation.[1]
+The major problem with the practical use of PDM over fiber-optic transmission systems are the drifts in polarization state that occur continuously over time due to physical changes in the fibre environment. Over a long-distance system, these drifts accumulate progressively without limit, resulting in rapid and erratic rotation of the polarized light's Jones vector over the entire Poincaré sphere. Polarization mode dispersion, polarization-dependent loss. and cross-polarization modulation are other phenomena that can cause problems in PDM systems.
+For this reason, PDM is generally used in conjunction with advanced channel coding techniques, allowing the use of digital signal processing to decode the signal in a way that is resilient to polarization-related signal artifacts. Modulations used include PDM-QPSK and PDM-DQPSK.[2]
+Companies working on commercial PDM technology include Alcatel-Lucent, Ciena, Cisco Systems, Huawei and Infinera.
+See also[edit]
+
+Polarization scrambler
+Wavelength-division multiplexing
+Orbital angular momentum multiplexing
+
+References[edit]
+
+
+
+^ She, Alan; Capasso, Federico (17 May 2016). "Parallel Polarization State Generation". Scientific Reports. Nature. arXiv:1602.04463 . Bibcode:2016NatSR...626019S. doi:10.1038/srep26019. Retrieved 27 June 2016. 
+^ "The Road to 100G Networking" (PDF). Ciena. 2008. Retrieved 2012-06-25. 
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Polarization-division_multiplexing&oldid=800410290"					Categories: PhotonicsRadio communicationsMultiplexing

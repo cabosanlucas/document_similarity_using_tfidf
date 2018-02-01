@@ -1,0 +1,477 @@
+
+
+play media
+
+
+video process scanning realtime optical character recognition portable scanner
+
+
+optical character recognition also optical character reader mechanical electronic conversion images typed handwritten printed text machineencoded text whether scanned document photo document scenephoto example text signs billboards landscape photo subtitle text superimposed image example television broadcast1 widely used form information entry printed paper data records whether passport documents invoices bank statements computerised receipts business cards mail printouts staticdata suitable documentation common method digitising printed texts electronically edited searched stored compactly displayed online used machine processes cognitive computing machine translation extracted texttospeech data text mining field research pattern recognition artificial intelligence computer vision
+early versions needed trained images character worked font time advanced systems capable producing high degree recognition accuracy fonts common support variety digital image file format inputs2 systems capable reproducing formatted output closely approximates original page including images columns nontextual components
+
+
+
+contents
+
+
+history
+
+blind visually impaired users
+
+
+applications
+types
+techniques
+
+preprocessing
+character recognition
+postprocessing
+applicationspecific optimisations
+
+
+workarounds
+
+forcing better input
+crowdsourcing
+
+
+accuracy
+unicode
+also
+references
+external links
+
+
+
+historyedit
+also timeline optical character recognition
+early optical character recognition traced technologies involving telegraphy creating reading devices blind3 1914 emanuel goldberg developed machine read characters converted standard telegraph codecitation needed concurrently edmund fournier dalbe developed optophone handheld scanner moved across printed page produced tones corresponded specific letters characters4
+late 1920s 1930s emanuel goldberg developed called statistical machine searching microfilm archives using optical code recognition system 1931 granted patent number 1838389 invention patent acquired
+advent smartphones smartglasses used internet connected mobile device applications extract text captured using devices camera devices functionality built operating system typically extract text image file captured provided device56 returns extracted text along information location detected text original image back device processing texttospeech display
+blind visually impaired usersedit
+1974 kurzweil started company kurzweil computer products continued development omnifont could recognise text printed virtually font kurzweil often credited inventing omnifont companies including compuscan late 1960s 1970s37 kurzweil decided best application technology would create reading machine blind would allow blind people computer read text loud device required invention enabling technologies flatbed scanner texttospeech synthesiser january 1976 successful finished product unveiled widely reported news conference headed kurzweil leaders national federation blindcitation needed 1978 kurzweil computer products began selling commercial version optical character recognition computer program lexisnexis first customers bought program upload legal paper news documents onto nascent online databases years later kurzweil sold company xerox interest commercialising papertocomputer text conversion xerox eventually spun scansoft merged nuance communicationscitation needed research group headed ramakrishnan medical intelligence language engineering indian institute science developed printtobraille tool open source frontend8 used convert scanned images printed books braille books
+2000s made available online service webocr cloud computing environment mobile applications like realtime translation foreignlanguage signs smartphone
+various commercial open source systems available common writing systems including latin cyrillic arabic hebrew indic bengali bangla devanagari tamil chinese japanese korean characters
+applicationsedit
+engines developed many kinds domainspecific applications receipt invoice check legal billing document
+used
+
+data entry business documents check passport invoice bank statement receipt
+automatic number plate recognition
+automatic insurance documents information extraction
+extracting business card information contact list9
+quickly make textual versions printed documents book scanning project gutenberg
+make electronic images printed documents searchable google books
+converting handwriting real time control computer computing
+defeating captcha antibot systems though specifically designed prevent ocr101112 purpose also test robustness captcha antibot systems
+assistive technology blind visually impaired users
+
+typesedit
+
+optical character recognition targets typewritten text glyph character time
+optical word recognition targets typewritten text word time languages space word divider usually called
+intelligent character recognition also targets handwritten printscript cursive text glyph character time usually involving machine learning
+intelligent word recognition also targets handwritten printscript cursive text word time especially useful languages glyphs separated cursive script
+
+generally offline process analyses static document handwriting movement analysis used input handwriting recognition13 instead merely using shapes glyphs words technique able capture motions order segments drawn direction pattern putting lifting additional information make endtoend process accurate technology also known online character recognition dynamic character recognition realtime character recognition intelligent character recognition
+techniquesedit
+preprocessingedit
+software often preprocesses images improve chances successful recognition techniques include14
+
+deskew document aligned properly scanned need tilted degrees clockwise counterclockwise order make lines text perfectly horizontal vertical
+despeckle remove positive negative spots smoothing edges
+binarisation convert image color greyscale blackandwhite called binary image colours task binarisation performed simple separating text desired image component background15 task binarisation necessary since commercial recognition algorithms work binary images since proves simpler so16 addition effectiveness binarisation step influences significant extent quality character recognition stage careful decisions made choice binarisation employed given input image type since quality binarisation method employed obtain binary result depends type input image scanned document scene text image historical degraded document etc1718
+line removal cleans nonglyph boxes lines
+layout analysis zoning identifies columns paragraphs captions distinct blocks especially important multicolumn layouts tables
+line word detection establishes baseline word character shapes separates words necessary
+script recognition multilingual documents script change level words hence identification script necessary right invoked handle specific script19
+character isolation segmentation percharacter multiple characters connected image artifacts must separated single characters broken multiple pieces artifacts must connected
+normalise aspect ratio scale20
+
+segmentation fixedpitch fonts accomplished relatively simply aligning image uniform grid based vertical grid lines least often intersect black areas proportional fonts sophisticated techniques needed whitespace letters sometimes greater words vertical lines intersect character21
+character recognitionedit
+basic types core algorithm produce ranked list candidate characters22
+matrix matching involves comparing image stored glyph pixelbypixel basis also known pattern matching pattern recognition image correlation relies input glyph correctly isolated rest image stored glyph similar font scale technique works best typewritten text work well fonts encountered technique early physical photocellbased implemented rather directly
+feature extraction decomposes glyphs features like lines closed loops line direction line intersections extraction features reduces dimensionality representation makes recognition process computationally efficient features compared abstract vectorlike representation character might reduce glyph prototypes general techniques feature detection computer vision applicable type commonly seen intelligent handwriting recognition indeed modern software23 nearest neighbour classifiers knearest neighbors algorithm used compare image features stored glyph features choose nearest match24
+software cuneiform tesseract twopass approach character recognition second pass known adaptive recognition uses letter shapes recognised high confidence first pass recognise better remaining letters second pass advantageous unusual fonts lowquality scans font distorted blurred faded21
+result stored standardised alto format dedicated schema maintained united states library congress
+list optical character recognition software comparison optical character recognition software
+postprocessingedit
+accuracy increased output constrained lexicon list words allowed occur document14 might example words english language technical lexicon specific field technique problematic document contains words lexicon like proper nouns tesseract uses dictionary influence character segmentation step improved accuracy21
+output stream plain text stream file characters sophisticated systems preserve original layout page produce example annotated includes original image page searchable textual representation
+nearneighbor analysis make cooccurrence frequencies correct errors noting certain words often seen together25 example washington generally common english washington
+knowledge grammar language scanned also help determine word likely verb noun example allowing greater accuracy
+levenshtein distance algorithm also used postprocessing optimize results api26
+applicationspecific optimisationsedit
+recent yearswhen major technology providers began tweak systems better deal specific types input beyond applicationspecific lexicon better performance taking account business rules standard expressionclarification needed rich information contained color images strategy called applicationoriented customised applied license plates invoices screenshots cards driver licenses automobile manufacturing
+workaroundsedit
+several techniques solving problem character recognition means improved algorithms
+forcing better inputedit
+special fonts like ocra ocrb micr fonts precisely specified sizing spacing distinctive character shapes allow higher accuracy rate transcription often used early matrixmatching systems
+comb fields preprinted boxes encourage humans write legibly glyph box25 often printed dropout color easily removed system25
+palm used special glyphs known graffiti similar printed english characters simplified modified easier recognition platforms computationally limited hardware users would need learn write special glyphs
+zonebased restricts image specific part document often referred template
+crowdsourcingedit
+crowdsourcing humans perform character recognition quickly process images like computerdriven higher accuracy recognising images obtained computers practical systems include amazon mechanical turk recaptcha national library finland developed online interface users correct ocred texts standardised alto format27 crowdsourcing also used perform character recognition directly invite software developers develop image processing algorithms example rankorder tournaments28
+accuracyedit
+
+
+
+
+
+
+article needs updated please update article reflect recent events newly available information march 2013
+
+
+
+commissioned department energy information science research institute isri mission foster improvement automated technologies understanding machine printed documents conducted authoritative annual test accuracy 1992 199629
+recognition latinscript typewritten text still accurate even clear imaging available study based recognition 19th early 20thcentury newspaper pages concluded characterbycharacter accuracy commercial software varied 9930 total accuracy achieved human review data dictionary authentication areas—including recognition hand printing cursive handwriting printed text scripts especially east asian language characters many strokes single character—are still subject active research mnist database commonly used testing systems ability recognise handwritten digits
+accuracy rates measured several ways measured greatly affect reported accuracy rate example word context basically lexicon words used correct software finding nonexistent words character error rate accuracy result error rate accuracy worse measurement based whether whole word recognised incorrect letters31
+webbased systems recognising handprinted text become well known commercial products recent yearswhen tablet history accuracy rates neat clean handprinted characters achieved computing software accuracy rate still translates dozens errors page making technology useful limited applicationscitation needed
+recognition cursive text active area research recognition rates even lower handprinted text higher rates recognition general cursive script likely possible without contextual grammatical information example recognising entire words dictionary easier trying parse individual characters script reading amount line cheque always writtenout number example using smaller dictionary increase recognition rates greatly shapes individual cursive characters simply contain enough information accurately greater recognise handwritten cursive scriptcitation needed
+unicodeedit
+main article optical character recognition unicode block
+characters support added unicode standard june 1993 release version
+characters mapped fonts specific micr ocra ocrb
+
+
+optical character recognition12
+official unicode consortium code chart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+u244x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+u245x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+notes
+
+unicode version
+grey areas indicate nonassigned code points
+
+
+
+
+alsoedit
+
+
+effect
+applications artificial intelligence
+computational linguistics
+digital library
+digital mailroom
+digital
+institutional repository
+legibility
+list emerging technologies
+live character recognition solution
+magnetic character recognition
+music
+indian languages
+optical mark recognition
+outline artificial intelligence
+sketch recognition
+speech recognition
+voice recording
+comparison optical character recognition software
+tesseract engine
+
+
+referencesedit
+
+
+ondemand document
+ondemand undefined
+schantz herbert 1982 history optical character recognition manchester center recognition technologies users association isbn 9780943072012
+dalbe july 1914 typereading optophone proceedings royal society mathematical physical engineering sciences 373–375 doi101098rspa19140061
+extracting text images using android june 2015
+tutorial google glass october 2014
+history data processing magazine 1970
+printtobraille tool ocrguifrontend mile dept iisc archived original december 2014 retrieved december 2014
+javascript using entity extraction linkedin company lookup july 2014
+crack captchas andrewtnet 20060628 retrieved 20130616
+breaking visual captcha cssfuca 20021210 retrieved 20130616
+john resig 20090123 john resig neural nets javascript ejohnorg retrieved 20130616
+tappert suen wakahara 1990 state online handwriting recognition ieee transactions pattern analysis machine intelligence doi1011093457669
+optical character recognition works nicomsoftcom retrieved 20130616
+sezgin mehmet sankur bulent 2004 survey image thresholding techniques quantitative performance evaluation journal electronic imaging bibcode2004jei13146s doi10111711631315 retrieved 2015
+gupta maya jacobson nathaniel garcia eric 2007 binarisation image preprocessing searching historical documents pattern recognition doi101016jpatcog200604043 retrieved 2015
+trier oeivind jain anil 1995 goaldirected evaluation binarisation methods ieee transactions pattern analysis machine intelligence 1191–1201 doi10110934476511 retrieved 2015
+milyaev sergey barinova olga novikova tatiana kohli pushmeet lempitsky victor 2013 image binarisation endtoend text understanding natural images document analysis recognition icdar 2013 12th international conference retrieved 2015
+pati ramakrishnan 19870529 word level multiscript identification pattern recognition letters 1218 1229 2008 doi101016jpatrec200801027
+basic opencv damiles blogdamilescom retrieved 20130616
+smith 2007 overview tesseract engine retrieved 20130523
+introduction dataidcom retrieved 20130616
+software works ocrwizard retrieved 20130616
+basic pattern recognition classification opencv damiles blogdamilescom retrieved 20130616
+document scanning work explain stuff 20120130 retrieved 20130616
+optimize results extracting text image ondemand developer community
+point online interactive text editor fennougrica
+riedl zanibbi hearst menietti crusan metelsky lakhani february 2016 detecting figures part labels patents competitionbased development image processing algorithms international journal document analysis recognition doi101007s1003201602608
+code data evaluate accuracy originally unlvisri google code archive
+holley rose april 2009 good analysing improving accuracy large scale historic newspaper digitisation programs dlib magazine retrieved january 2014
+suen plamondon tappert thomassen ward yamamoto 19870529 future challenges handwriting computer applications international symposium handwriting computer applications montreal 1987 retrieved 20081003
+
+
+external linksedit
+
+
+
+wikimedia commons media related optical character recognition
+
+
+
+unicode range 2440245f optical character recognition unicode
+annotated bibliography references handwriting character recognition computing
+notes history penbased computing youtube
+
+
+
+
+
+
+
+
+
+
+
+
+optical character recognition software
+
+
+
+free software
+
+
+
+cuneiform
+gocr
+ocrad
+ocrfeeder
+ocropus
+tesseract
+
+
+
+
+
+proprietary software
+
+
+
+abbyy finereader
+asprise
+microsoft office document imaging
+omnipage
+readsoft
+smartscore
+vuescan
+
+
+
+
+
+also
+
+
+
+list optical character recognition software
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+natural language processing
+
+
+
+general terms
+
+
+
+text corpus
+speech corpus
+stopwords
+bagofwords
+aicomplete
+ngram bigram trigram
+
+
+
+
+
+text analysis
+
+
+
+text segmentation
+partofspeech tagging
+text chunking
+compound term processing
+collocation extraction
+stemming
+lemmatisation
+namedentity recognition
+coreference resolution
+sentiment analysis
+concept mining
+parsing
+wordsense disambiguation
+terminology extraction
+truecasing
+
+
+
+
+
+automatic summarization
+
+
+
+multidocument summarization
+sentence extraction
+text simplification
+
+
+
+
+
+machine translation
+
+
+
+computerassisted
+examplebased
+rulebased
+
+
+
+
+
+automatic identification
+data capture
+
+
+
+speech recognition
+speech synthesis
+optical character recognition
+natural language generation
+
+
+
+
+
+topic model
+
+
+
+pachinko allocation
+latent dirichlet allocation
+latent semantic analysis
+
+
+
+
+
+computerassisted
+reviewing
+
+
+
+automated essay scoring
+concordancer
+grammar checker
+predictive text
+spell checker
+syntax guessing
+
+
+
+
+
+natural language
+user interface
+
+
+
+automated online assistant
+chatbot
+interactive fiction
+question answering
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleopticalcharacterrecognitionoldid814907567 categories optical character recognitionartificial intelligence applicationsapplications computer visionautomatic identification data capturecomputational linguisticsunicodesymbolsmachine learning taskhidden categories articles unsourced statementsarticles unsourced statements april 2012articles unsourced statements october 2011all articles vague ambiguous timevague ambiguous time march 2013wikipedia articles needing clarification march 2013wikipedia articles need updating march 2013all wikipedia articles need updatingarticles unsourced statements 2009

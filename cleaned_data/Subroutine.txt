@@ -1,0 +1,399 @@
+
+
+
+
+
+
+article needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed february 2013 learn remove template message
+
+
+
+computer programming subroutine sequence program instructions perform specific task packaged unit unit used programs wherever particular task performed
+subprograms defined within programs separately libraries used multiple programs different programming languages subroutine called procedure function routine method subprogram generic term callable unit sometimes used1
+name subprogram suggests subroutine behaves much computer program used step larger program another subprogram subroutine often coded started called several times several places execution program including subroutines branch back return next instruction call subroutines task done maurice wilkes david wheeler stanley gill credited invention concept termed closed subroutine23 contrasted open subroutine macro4
+subroutines powerful programming tool5 syntax many programming languages includes support writing using judicious subroutines example structured programming approach often substantially reduce cost developing maintaining large program increasing quality reliability6 subroutines often collected libraries important mechanism sharing trading software discipline objectoriented programming based objects methods subroutines attached objects object classes
+compiling method called threaded code executable program basically sequence subroutine calls
+
+
+
+contents
+
+
+main concepts
+language support
+advantages
+disadvantages
+history
+
+language support
+subroutine libraries
+return indirect jump
+jump subroutine
+call stack
+delayed stacking
+
+
+examples
+small basic example
+visual basic examples
+example
+local variables recursion reentrancy
+overloading
+closures
+conventions
+
+return codes
+
+
+optimization subroutine calls
+
+inlining
+
+
+also
+references
+
+
+
+main conceptsedit
+content subroutine body piece program code executed subroutine called invoked
+subroutine written expects obtain data values calling program replace parameters formal parameters calling program provides actual values parameters called arguments different programming languages different conventions passing arguments
+
+
+convention
+description
+common
+
+
+call value
+argument evaluated copy value passed subroutine
+default algollike languages algol pascal delphi simula modula oberon many others java references objects arrays also passed value
+
+
+call reference
+reference argument typically address passed
+selectable algollike languages algol algol pascal delphi simula modula oberon many others fortran
+
+
+call result
+parameter value copied back argument return subroutine
+parameters
+
+
+call valueresult
+parameter value copied back entry subroutine return
+algol
+
+
+call name
+like macro replace parameters unevaluated argument expressions
+algol scala
+
+
+call constant value
+like call value except parameter treated constant
+nonassignable parameters parameters
+
+
+subroutine return computed value caller return value provide various result values output parameters indeed common subroutines implement mathematical functions purpose subroutine purely compute results whose values entirely determined arguments passed subroutine examples might include computing logarithm number determinant matrix
+subroutine call also side effects modifying data structures computer memory reading writing peripheral device creating file halting program machine even delaying programs execution specified time subprogram side effects return different results time called even called arguments example random number function available many languages returns different pseudorandom number time called widespread subroutines side effects characteristic imperative programming languages
+subroutine coded call recursively places perform task method allows direct implementation functions defined mathematical induction recursive divide conquer algorithms
+subroutine whose purpose compute booleanvalued function answer yesno question sometimes called predicate logic programming languages oftenvague subroutines called predicates since primarilyvague determine success failurecitation needed example type function subroutine main
+language supportedit
+highlevel programming languages usually include specific constructs
+
+delimit part program body makes subroutine
+assign identifier name subroutine
+specify names data types parameters return values
+provide private naming scope temporary variables
+identify variables outside subroutine accessible within
+call subroutine
+provide values parameters
+main program contains address subprogram
+program contains address next instruction function call main program
+specify return values within body
+return calling program
+dispose values returned call
+handle exceptional conditions encountered call
+package subroutines module library object class
+
+programming languages pascal fortran many dialects basic distinguish functions function subprograms provide explicit return value calling program subroutines procedures languages function calls normally embedded expressions sqrt function called sqrtx procedure calls either behave syntactically statements print procedure called printx explicitly invoked statement call gosub call printx languages lisp distinguish functions subroutines
+strictly functional programming languages haskell subprograms side effects means various internal states program change functions always return result repeatedly called arguments languages typically support functions since subroutines return value unless cause side effect
+programming languages subroutines also simply called functions confused mathematical functions functional programming different concepts
+languages compiler usually translate procedure calls returns machine instructions according welldefined calling convention subroutines compiled separately programs call instruction sequences corresponding call return statements called procedures prologue epilogue
+advantagesedit
+advantages breaking program subroutines include
+
+decomposing complex programming task simpler steps main tools structured programming along data structures
+reducing duplicate code within program
+enabling reuse code across multiple programs
+dividing large programming task among various programmers various stages project
+hiding implementation details users subroutine
+improving traceability languages offer ways obtain call trace includes names involved subroutines perhaps even information file names line numbers decomposing code subroutines debugging would impaired severely
+
+disadvantagesedit
+invoking subroutine versus using inline code imposes computational overhead call mechanism
+subroutine typically requires standard housekeeping code entry exit function function prologue epilogue usually saving general purpose registers return address minimum
+historyedit
+idea subroutine worked computing machines already existed time arithmetic conditional jump instructions planned ahead time changed relatively little special instructions used procedure calls changed greatly years earliest computers microprocessors smallscale experimental machine 1802 single subroutine call instruction subroutines could implemented required programmers call sequence—a series instructions—at call site early computers microprocessors 1620 intel 8008 microcontrollers singleinstruction subroutine call uses dedicated hardware stack store return addresses—such hardware supports levels subroutine nesting support recursive subroutines machines 1960s—such univac pdp1 1130—typically calling convention saved instruction counter first memory location called subroutine allows arbitrarily deep levels subroutine nesting support recursive subroutines pdp11 1970 first computers stackpushing subroutine call instruction feature supports arbitrarily deep subroutine nesting also supports recursive subroutines7
+language supportedit
+early assemblers subroutine support limited subroutines explicitly separated main program indeed source code subroutine could interspersed subprograms assemblers would offer predefined macros generate call return sequences 1960s assemblers usually much sophisticated support inline separately assembled subroutines could linked together
+subroutine librariesedit
+even cumbersome approach subroutines proved useful thing allowed code many different programs moreover memory scarce resource early computers subroutines allowed significant savings size programs
+many early computers loaded program instructions memory punched paper tape subroutine could provided separate piece tape loaded spliced main program mainline8 subroutine tape could used many different programs similar approach applied computers used punched cards main input name subroutine library originally meant library literal sense kept indexed collections tapes carddecks collective
+return indirect jumpedit
+remove need selfmodifying code computer designers eventually provided indirect jump instruction whose operand instead return address location variable processor register containing return address
+computers instead modifying subroutines return jump calling program would store return address variable subroutine completed would execute indirect jump would direct execution location given predefined variable
+jump subroutineedit
+another advance jump subroutine instruction combined saving return address calling jump thereby minimizing overhead significantly
+system360 example branch instructions balr designed procedure calling would save return address processor register specified instruction return subroutine execute indirect branch instruction register subroutine needed register purpose calling another subroutine would save registers contents private memory location register stack
+systems 2100 instruction would perform similar task except return address stored memory location target branch execution procedure would actually begin next memory location 2100 assembly language would write example
+
+
+mysub calls subroutine mysub
+return mysub done
+
+call subroutine called mysub main program subroutine would coded
+
+mysub storage mysubs return address
+start mysubs body
+
+mysubi returns calling program
+
+instruction placed address next instruction namely location specified operand namely mysub branched next location namely mysub subroutine could return main program executing indirect jump mysubi branched location stored location mysub
+compilers fortran languages could easily make instructions available approach supported multiple levels calls however since return address parameters return values subroutine assigned fixed memory locations allow recursive calls
+incidentally similar method used lotus early 1980s discover recalculation dependencies spreadsheet namely location reserved cell store return address since circular references allowed natural recalculation order allows tree walk without reserving space stack memory limited small computers
+call stackedit
+modern implementations call stack special case stack data structure implement subroutine calls returns procedure call creates entry called stack frame stack procedure returns stack frame deleted stack space used procedure calls stack frame contains private data corresponding call typically includes procedures parameters internal variables return address
+call sequence implemented sequence ordinary instructions approach still used reduced instruction computing risc long instruction word vliw architectures many traditional machines designed since late 1960s included special instructions purpose
+call stack usually implemented contiguous area memory arbitrary design choice whether bottom stack lowest highest address within area stack grow forwards backwards memory however many architectures chose lattercitation needed
+designs notably forth implementations used separate stacks mainly control information like return addresses loop counters data former worked like call stack indirectly accessible programmer language constructs latter directly accessible
+stackbased procedure calls first introduced important motivation save precious memorycitation needed scheme compiler reserve separate space memory private data parameters return address local variables procedure moment stack contains private data calls currently active namely called havent returned ways programs usually assembled libraries still uncommon find programs include thousands subroutines handful active given momentcitation needed programs call stack mechanism could save significant amounts memory indeed call stack mechanism viewed earliest simplest method automatic memory management
+however another advantage call stack method allows recursive subroutine calls since nested call procedure gets separate instance private data
+delayed stacking edit
+disadvantage call stack mechanism increased cost procedure call matching returnclarification needed extra cost includes incrementing decrementing stack pointer architectures checking stack overflow accessing local variables parameters framerelative addresses instead absolute addresses cost realized increased execution time increased processor complexity
+overhead obvious objectionable leaf procedures leaf functions return without making procedure calls themselves91011 reduce overhead many modern compilers delay call stack really neededcitation needed example call procedure store return address parameters called procedure certain processor registers transfer control procedures body simple jump procedure returns without making call call stack used needs call another procedure call stack save contents registers return address needed returns
+examplesedit
+programming languages subprograms termed functions classified member functions associated class free functions12 languages special keyword void indicate function takes parameters especially return value note functions sideeffects including modifying variables whose addresses passed parameters passed reference examples
+
+
+void function1void code
+
+function return value called standalone function function1
+
+
+function2void
+
+return
+
+
+function returns result number call part expression function2
+
+
+char function3int number
+
+char selection smtwtfs
+return selectionnumber
+
+
+function converts number initial letter corresponding week namely result calling might assigned variable numday function3number
+
+
+void function4int pointertovar
+
+pointertovar
+
+
+function return value modifies variable whose address passed parameter would called function4variabletoincrement
+small basic exampleedit
+
+
+example calls subroutine
+
+example begins subroutine
+textwindowwritelinethis example subroutine microsoft small basic subroutine
+endsub ends subroutine
+
+example example calls subroutine13to define actual subroutine keyword must used subroutine name following content followed endsub must typed
+visual basic examplesedit
+visual basic language subprograms termed functions subs methods associated class visual basic uses various terms called types define passed parameter default unspecified variable registered variant type passed byref default byval also function declared given public private friend designation determines whether accessed outside module project declared
+
+value byval passing value argument procedure passing copy value instead passing address result variables actual value cant changed procedure passed
+reference byref passing value argument procedure passing address variable instead passing copy value allows procedure access actual variable result variables actual value changed procedure passed unless otherwise specified arguments passed reference
+public optional indicates function procedure accessible procedures modules used module contains option private procedure available outside project
+private optional indicates function procedure accessible procedures module declared
+friend optional used class module indicates function procedure visible throughout project visible controller instance object
+
+
+
+private function function1
+code
+function
+
+function return value called standalone function function1
+
+
+private function function2 integer
+function2
+function
+
+function returns result number call part expression function2
+
+
+private function function3byval intvalue integer string
+strarray6 string
+strarray arraym
+function3 strarrayintvalue
+function
+
+function converts number initial letter corresponding week namely result calling might assigned variable numday function3number
+
+
+private function function4byref intvalue integer
+intvalue intvalue
+function
+
+function return value modifies variable whose address passed parameter would called function4variabletoincrement
+exampleedit
+called procedure passed descriptor providing information argument string lengths array bounds allows procedure general eliminates need programmer pass information default passes arguments reference trivial subroutine change sign element twodimensional array might look like
+
+changesign procedurearray
+declare array float
+array array
+changesign
+
+could called various arrays follows
+
+first array bounds
+declare array1 39float
+second array bounds
+declare array2 1616 float
+call changesignarray1
+call changesignarray2
+
+local variables recursion reentrancyedit
+subprogram find useful make certain amount scratch space memory used execution subprogram hold intermediate results variables stored scratch space termed local variables scratch space termed activation record activation record typically return address tells pass control back subprogram finishes
+subprogram number nature call sites recursion supported subprogram even call causing execution suspend another nested execution subprogram occurs recursion useful means simplify complex algorithms break complex problems recursive languages generally provide copy local variables call programmer desires value local variables stay calls declared static languages global values common areas used example recursive subroutine find fibonacci numbers
+
+
+fibint
+
+ifn1 return
+return fibn1fibn2
+
+
+early languages like fortran initially support recursion variables statically allocated well location return address computers late 1960s pdp8 support hardware stack registerscitation needed
+modern languages algol almost invariably stack usually supported modern computer instruction sets provide fresh activation record every execution subprogram nested execution free modify local variables without concern effect suspended executions progress nested calls accumulate call stack structure formed consisting activation record suspended subprogram fact stack structure virtually ubiquitous activation records commonly termed stack frames
+languages pascal also support nested subroutines subroutines callable within scope outer parent subroutine inner subroutines access local variables outer subroutine called accomplished storing extra context information within activation record also termed display
+subprogram executed properly even another execution subprogram already progress subprogram said reentrant recursive subprogram must reentrant reentrant subprograms also useful multithreaded situations since multiple threads call subprogram without fear interfering cics transaction processing system quasireentrant slightly less restrictive similar requirement application programs shared many threads
+multithreaded environment generally stack environment fully supports coroutines lazy evaluation data structures stacks store activation records
+overloadingedit
+strongly typed languages sometimes desirable number functions name operating different types data different parameter profiles example square root function might defined operate reals complex values matrices algorithm used case different return result different writing three separate functions name programmer convenience remember different names type data subtype defined reals separate positive negative reals functions written reals return real parameter positive another return complex value parameter negative
+objectoriented programming series functions name accept different parameter profiles parameters different types functions said overloaded
+example subroutine overloading
+
+
+include iostream
+
+double areadouble double
+return
+
+
+double areadouble
+return
+
+
+main
+double rectanglearea area3
+double circlearea area5
+
+stdcout area rectangle rectanglearea stdendl
+stdcout area circle circlearea stdendl
+
+return
+
+
+code functions name different parameters
+another example subroutine might construct object accept directions trace path points screen plethora parameters could passed constructor colour trace starting coordinates trace speed programmer wanted constructor able accept color parameter could call another constructor accepts color turn calls constructor parameters passing default values parameters would generally centered screen placed origin speed would another value coders choosing
+closuresedit
+main article closure computer science
+closure subprogram together values variables captured environment created closures notable feature lisp programming language introduced john mccarthy depending implementation closures serve mechanism sideeffects
+conventionsedit
+wide number conventions coding subroutines developed pertaining naming many developers adopted approach name subroutine verb certain task adjective makes inquiry noun used substitute variables
+programmers suggest subroutine perform task subroutine perform task split subroutines argue subroutines components code maintenance roles program must remain distinct
+proponents modular programming modularizing code advocate subroutine minimal dependency pieces code example global variables generally deemed unwise advocates perspective adds tight coupling subroutine global variables coupling necessary advice refactor subroutines accept passed parameters instead however increasing number parameters passed subroutines affect code readability
+return codesedit
+besides main normal effect subroutine need inform calling program exceptional conditions occurred execution languages programming standards often done return code integer value placed subroutine standard location encodes normal exceptional conditions
+system360 return code expected subroutine return value often designed multiple 4—so could used direct branch table index branch table often located immediately call instruction avoid extra conditional tests improving efficiency system360 assembly language would write example
+
+14subrtn01 subroutine storing return address
+table15 returned value index branch table
+branching appropriate branch instr
+table return code good
+return code invalid input branch table
+error return code unexpected condition
+
+optimization subroutine callsedit
+significant runtime overhead calling subroutine including passing arguments branching subprogram branching back caller overhead often includes saving restoring certain processor registers allocating reclaiming call frame storage languages subroutine call also implies automatic testing subroutines return code handling exceptions raise objectoriented languages significant source overhead intensively used dynamic dispatch method calls
+seemingly obvious optimizations procedure calls cannot applied procedures side effects example expression fx1fx1 function must called twice calls return different results moreover value must fetched second call since first call changed determining whether subprogram side effect difficult indeed undecidablecitation needed optimizations safe purely functional programming languages compilers typical imperative programming usually assume worst
+inliningedit
+method used eliminate overhead inline expansion inlining subprograms body call site versus branching subroutine back avoid call overhead also allows compiler optimize procedures body effectively taking account context arguments call inserted body optimized compiler inlining however usually increase code size unless program contains call subroutine subroutine body less code call overhead
+alsoedit
+
+
+
+look subroutine wiktionary free dictionary
+
+
+
+function mathematics
+method computer programming
+evaluation strategy
+modular programming
+transclusion
+operator overloading
+functional programming
+commandquery separation
+coroutines subprograms call main programs
+event handler subprogram called response input event interrupt
+
+referencesedit
+
+
+
+election assistance commission 2007 definitions words special meanings voluntary voting system guidelines retrieved 20130114
+wheeler 1952 subroutines programmes proceedings 1952 national meeting pittsburgh doi101145609784609816
+wilkes wheeler gill 1951 preparation programs electronic digital computer addisonwesley
+dainith john open subroutine dictionary computing 2004 encyclopediacom retrieved january 2013
+donald knuth computer programming volume fundamental algorithms addisonwesley isbn 0201896834
+dahl dijkstra hoare 1972 structured programming academic press isbn 0122005503
+lewis steele memo debunking expensive procedure call myth procedure call implementations considered harmful section procedure calls reputation
+frank thomas 1983 introduction pdp11 assembly language prenticehall software series prenticehall isbn 9780134917047 retrieved 20160706 could supply assembling clerk copies source code useful subroutines presenting mainline program assembly tell subroutines called mainline
+information center infocenterarmcom retrieved 20130929
+overview calling conventions msdnmicrosoftcom retrieved 20130929
+function types msdnmicrosoftcom retrieved 20130929
+meant free function
+httpwwwsmallbasiccom
+
+
+
+
+
+
+authority control
+
+
+
+42538592
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlesubroutineoldid817901119 categories source codeuniversity cambridge computer laboratoryholismprogramming constructssubroutineshidden categories articles needing additional references february 2013all articles needing additional referencesall wikipedia articles needing clarificationwikipedia articles needing clarification november 2009all articles unsourced statementsarticles unsourced statements november 2009articles unsourced statements november 2008wikipedia articles needing clarification november 2015articles unsourced statements june 2011articles unsourced statements 2010wikipedia articles identifiersarticles example code

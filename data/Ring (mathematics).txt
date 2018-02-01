@@ -1,0 +1,6462 @@
+This article is about an algebraic structure. For geometric rings, see Annulus (mathematics). For the set theory concept, see Ring of sets.
+
+
+
+
+Chapter IX of David Hilbert's Die Theorie der algebraischen Zahlkörper. The chapter title is Die Zahlringe des Körpers, literally "the number rings of the field". The word "ring" is the contraction of "Zahlring".
+
+
+In mathematics, a ring is one of the fundamental algebraic structures used in abstract algebra. It consists of a set equipped with two binary operations that generalize the arithmetic operations of addition and multiplication. Through this generalization, theorems from arithmetic are extended to non-numerical objects such as polynomials, series, matrices and functions.
+The conceptualization of rings started in the 1870s and completed in the 1920s. Key contributors include Dedekind, Hilbert, Fraenkel, and Noether. Rings were first formalized as a generalization of Dedekind domains that occur in number theory, and of polynomial rings and rings of invariants that occur in algebraic geometry and invariant theory. Afterward, they also proved to be useful in other branches of mathematics such as geometry and mathematical analysis.
+A ring is an abelian group with a second binary operation that is associative, is distributive over the abelian group operation, and has an identity element (this last property is not required by some authors, see § Notes on the definition). By extension from the integers, the abelian group operation is called addition and the second binary operation is called multiplication.
+Whether a ring is commutative or not (i.e., whether the order in which two elements are multiplied changes the result or not) has profound implications on its behavior as an abstract object. As a result, commutative ring theory, commonly known as commutative algebra, is a key topic in ring theory. Its development has been greatly influenced by problems and ideas occurring naturally in algebraic number theory and algebraic geometry. Examples of commutative rings include the set of integers equipped with the addition and multiplication operations, the set of polynomials equipped with the addition and multiplication of functions, the coordinate ring of an affine algebraic variety, and the ring of integers of a number field. Examples of noncommutative rings include the ring of n × n real square matrices with n ≥ 2, group rings in representation theory, operator algebras in functional analysis, rings of differential operators in the theory of differential operators, and the cohomology ring of a topological space in topology.
+
+
+Algebraic structures
+
+
+
+
+Group-like
+
+
+Semigroup / Monoid
+Racks and quandles
+Quasigroup and loop
+
+
+
+Abelian group
+Magma
+Lie group
+
+
+Group theory
+
+
+
+
+
+
+Ring-like
+
+
+
+Ring
+Semiring
+Near-ring
+Commutative ring
+Integral domain
+Field
+Division ring
+
+
+Ring theory
+
+
+
+
+
+
+Lattice-like
+
+
+
+Lattice
+Semilattice
+Complemented lattice
+Total order
+Heyting algebra
+Boolean algebra
+
+
+
+Map of lattices
+Lattice theory
+
+
+
+
+
+
+
+
+Module-like
+
+
+
+Module
+Group with operators
+Vector space
+
+
+
+Linear algebra
+
+
+
+
+
+
+
+
+Algebra-like
+
+
+Algebra
+
+
+
+Associative
+Non-associative
+Composition algebra
+
+
+Lie algebra
+Graded
+Bialgebra
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+
+
+
+Contents
+
+
+1 Definition and illustration
+
+1.1 Definition
+1.2 Notes on the definition
+1.3 Basic properties
+1.4 Example: Integers modulo 4
+1.5 Example: 2-by-2 matrices
+
+
+2 History
+
+2.1 Dedekind
+2.2 Hilbert
+2.3 Fraenkel and Noether
+2.4 Multiplicative identity: mandatory vs. optional
+
+
+3 Basic examples
+4 Basic concepts
+
+4.1 Elements in a ring
+4.2 Subring
+4.3 Ideal
+4.4 Homomorphism
+4.5 Quotient ring
+
+
+5 Module
+6 Constructions
+
+6.1 Direct product
+6.2 Polynomial ring
+6.3 Matrix ring and endomorphism ring
+6.4 Limits and colimits of rings
+6.5 Localization
+6.6 Completion
+6.7 Rings with generators and relations
+
+
+7 Special kinds of rings
+
+7.1 Domains
+7.2 Division ring
+7.3 Semisimple rings
+7.4 Central simple algebra and Brauer group
+7.5 Valuation ring
+
+
+8 Rings with extra structure
+9 Some examples of the ubiquity of rings
+
+9.1 Cohomology ring of a topological space
+9.2 Burnside ring of a group
+9.3 Representation ring of a group ring
+9.4 Function field of an irreducible algebraic variety
+9.5 Face ring of a simplicial complex
+
+
+10 Category theoretical description
+11 Generalization
+
+11.1 Rng
+11.2 Nonassociative ring
+11.3 Semiring
+
+
+12 Other ring-like objects
+
+12.1 Ring object in a category
+12.2 Ring scheme
+12.3 Ring spectrum
+
+
+13 See also
+14 Notes
+15 Citations
+16 References
+
+16.1 General references
+16.2 Special references
+16.3 Primary sources
+16.4 Historical references
+
+
+
+
+
+Definition and illustration[edit]
+The most familiar example of a ring is the set of all integers, 
+
+
+
+
+Z
+
+
+
+{\displaystyle \mathbb {Z} }
+
+, consisting of the numbers
+
+. . . , −5, −4, −3, −2, −1, 0, 1, 2, 3, 4, 5, . . .
+
+The familiar properties for addition and multiplication of integers serve as a model for the axioms for rings.
+Definition[edit]
+A ring is a set R equipped with two binary operations[1] + and · satisfying the following three sets of axioms, called the ring axioms[2][3][4]
+1. R is an abelian group under addition, meaning that:
+
+
+
+(a + b) + c = a + (b + c) for all a, b, c in R   (that is, + is associative).
+a + b = b + a for all a, b in R   (that is, + is commutative).
+There is an element 0 in R such that a + 0 = a for all a in R   (that is, 0 is the additive identity).
+For each a in R there exists −a in R such that a + (−a) = 0   (that is, −a is the additive inverse of a).
+
+
+
+2. R is a monoid under multiplication, meaning that:
+
+
+
+(a · b) · c = a · (b · c) for all a, b, c in R   (that is, · is associative).
+There is an element 1 in R such that a · 1 = a and 1 · a = a for all a in R   (that is, 1 is the multiplicative identity).[5]
+
+
+
+3. Multiplication is distributive with respect to addition:
+
+
+
+a ⋅ (b + c) = (a · b) + (a · c) for all a, b, c in R   (left distributivity).
+(b + c) · a = (b · a) + (c · a) for all a, b, c in R   (right distributivity).
+
+
+
+Notes on the definition[edit]
+As explained in § History below, many authors follow an alternative convention in which a ring is not defined to have a multiplicative identity. This article adopts the convention that, unless otherwise stated, a ring is assumed to have such an identity. A structure satisfying all the axioms except the requirement that there exists a multiplicative identity element is called a rng (or sometimes pseudo-ring). For example, the set of even integers with the usual + and ⋅ is a rng, but not a ring.
+The operations + and ⋅ are called addition and multiplication, respectively. The multiplication symbol ⋅ is often omitted, so the juxtaposition of ring elements is interpreted as multiplication. For example, xy means x ⋅ y.
+Although ring addition is commutative, ring multiplication is not required to be commutative: ab need not necessarily equal ba. Rings that also satisfy commutativity for multiplication (such as the ring of integers) are called commutative rings. Books on commutative algebra or algebraic geometry often adopt the convention that "ring" means "commutative ring", to simplify terminology.
+In a ring, multiplication does not have to have an inverse. A commutative ring such that every nonzero element has a multiplicative inverse is called a field.
+The additive group of a ring is the ring equipped just with the structure of addition. Although the definition assumes that the additive group is abelian, this can be inferred from the other ring axioms.[6]
+Basic properties[edit]
+Some basic properties of a ring follow immediately from the axioms:
+
+The additive identity, the additive inverse of each element, and the multiplicative identity are unique.
+For any element x in a ring R, one has x0 = 0 = 0x (zero is an absorbing element with respect to multiplication) and (–1)x = –x.
+If 0 = 1 in a ring R (or more generally, 0 is a unit element), then R has only one element, and is called the zero ring.
+The binomial formula holds for any commuting pair of elements (i.e., any x and y such that xy = yx).
+
+Example: Integers modulo 4[edit]
+See also: Modular arithmetic
+Equip the set 
+
+
+
+
+
+Z
+
+
+4
+
+
+=
+{
+
+
+0
+¯
+
+
+,
+
+
+1
+¯
+
+
+,
+
+
+2
+¯
+
+
+,
+
+
+3
+¯
+
+
+}
+
+
+{\displaystyle \mathbf {Z} _{4}=\{{\overline {0}},{\overline {1}},{\overline {2}},{\overline {3}}\}}
+
+ with the following operations:
+
+The sum 
+
+
+
+
+
+x
+¯
+
+
++
+
+
+y
+¯
+
+
+
+
+{\displaystyle {\overline {x}}+{\overline {y}}}
+
+ in Z4 is the remainder when the integer x + y is divided by 4 (as x + y is always smaller than 8, this remainder is either x + y or x + y – 4). For example, 
+
+
+
+
+
+2
+¯
+
+
++
+
+
+3
+¯
+
+
+=
+
+
+1
+¯
+
+
+
+
+{\displaystyle {\overline {2}}+{\overline {3}}={\overline {1}}}
+
+ and 
+
+
+
+
+
+3
+¯
+
+
++
+
+
+3
+¯
+
+
+=
+
+
+2
+¯
+
+
+
+
+{\displaystyle {\overline {3}}+{\overline {3}}={\overline {2}}}
+
+.
+The product 
+
+
+
+
+
+x
+¯
+
+
+⋅
+
+
+y
+¯
+
+
+
+
+{\displaystyle {\overline {x}}\cdot {\overline {y}}}
+
+ in Z4 is the remainder when the integer xy is divided by 4. For example, 
+
+
+
+
+
+2
+¯
+
+
+⋅
+
+
+3
+¯
+
+
+=
+
+
+2
+¯
+
+
+
+
+{\displaystyle {\overline {2}}\cdot {\overline {3}}={\overline {2}}}
+
+ and 
+
+
+
+
+
+3
+¯
+
+
+⋅
+
+
+3
+¯
+
+
+=
+
+
+1
+¯
+
+
+
+
+{\displaystyle {\overline {3}}\cdot {\overline {3}}={\overline {1}}}
+
+.
+
+Then Z4 is a ring: each axiom follows from the corresponding axiom for Z. If x is an integer, the remainder of x when divided by 4 may be considered as an element of Z4, and this element is often denoted by "x mod 4" or 
+
+
+
+
+
+x
+¯
+
+
+
+
+{\displaystyle {\overline {x}}}
+
+, which is consistent with the notation for 0,1,2,3. The additive inverse of any 
+
+
+
+
+
+x
+¯
+
+
+
+
+{\displaystyle {\overline {x}}}
+
+ in Z4 is 
+
+
+
+
+
+
+−
+x
+
+¯
+
+
+
+
+{\displaystyle {\overline {-x}}}
+
+. For example, 
+
+
+
+−
+
+
+3
+¯
+
+
+=
+
+
+
+−
+3
+
+¯
+
+
+=
+
+
+1
+¯
+
+
+.
+
+
+{\displaystyle -{\overline {3}}={\overline {-3}}={\overline {1}}.}
+
+
+Example: 2-by-2 matrices[edit]
+Main article: Matrix ring
+The set of 2-by-2 matrices with real number entries is written
+
+
+
+
+
+
+
+
+M
+
+
+
+2
+
+
+(
+
+R
+
+)
+=
+
+{
+
+
+
+
+(
+
+
+
+a
+
+
+b
+
+
+
+
+c
+
+
+d
+
+
+
+)
+
+
+|
+
+ 
+a
+,
+b
+,
+c
+,
+d
+∈
+
+R
+
+}
+
+.
+
+
+{\displaystyle {\mathcal {M}}_{2}(\mathbb {R} )=\left\{\left.{\begin{pmatrix}a&b\\c&d\end{pmatrix}}\right|\ a,b,c,d\in \mathbb {R} \right\}.}
+
+
+
+With the operations of matrix addition and matrix multiplication, this set satisfies the above ring axioms. The element 
+
+
+
+
+
+(
+
+
+
+1
+
+
+0
+
+
+
+
+0
+
+
+1
+
+
+
+)
+
+
+
+
+{\displaystyle {\begin{pmatrix}1&0\\0&1\end{pmatrix}}}
+
+ is the multiplicative identity of the ring. If 
+
+
+
+A
+=
+
+
+(
+
+
+
+0
+
+
+1
+
+
+
+
+1
+
+
+0
+
+
+
+)
+
+
+
+
+{\displaystyle A={\begin{pmatrix}0&1\\1&0\end{pmatrix}}}
+
+ and 
+
+
+
+B
+=
+
+
+(
+
+
+
+0
+
+
+1
+
+
+
+
+0
+
+
+0
+
+
+
+)
+
+
+
+
+{\displaystyle B={\begin{pmatrix}0&1\\0&0\end{pmatrix}}}
+
+, then 
+
+
+
+A
+B
+=
+
+
+(
+
+
+
+0
+
+
+0
+
+
+
+
+0
+
+
+1
+
+
+
+)
+
+
+
+
+{\displaystyle AB={\begin{pmatrix}0&0\\0&1\end{pmatrix}}}
+
+ while 
+
+
+
+B
+A
+=
+
+
+(
+
+
+
+1
+
+
+0
+
+
+
+
+0
+
+
+0
+
+
+
+)
+
+
+
+
+{\displaystyle BA={\begin{pmatrix}1&0\\0&0\end{pmatrix}}}
+
+; this example shows that the ring is noncommutative.
+More generally, for any ring R, commutative or not, and any nonnegative integer n, one may form the ring of n-by-n matrices with entries in R: see Matrix ring.
+History[edit]
+See also: Ring theory § History
+
+
+
+
+Richard Dedekind, one of the founders of ring theory.
+
+
+Dedekind[edit]
+The study of rings originated from the theory of polynomial rings and the theory of algebraic integers.[7] In 1871, Richard Dedekind defined the concept of the ring of integers of a number field.[8] In this context, he introduced the terms "ideal" (inspired by Ernst Kummer's notion of ideal number) and "module" and studied their properties. But Dedekind did not use the term "ring" and did not define the concept of a ring in a general setting.
+Hilbert[edit]
+The term "Zahlring" (number ring) was coined by David Hilbert in 1892 and published in 1897.[9] In 19th century German, the word "Ring" could mean "association", which is still used today in English in a limited sense (e.g., spy ring),[10] so if that were the etymology then it would be similar to the way "group" entered mathematics by being a non-technical word for "collection of related things". According to Harvey Cohn, Hilbert used the term for a ring that had the property of "circling directly back" to an element of itself.[11] Specifically, in a ring of algebraic integers, all high powers of an algebraic integer can be written as an integral combination of a fixed set of lower powers, and thus the powers "cycle back". For instance, if a3 − 4a + 1 = 0 then a3 = 4a − 1, a4 = 4a2 − a, a5 = −a2 + 16a − 4, a6 = 16a2 − 8a + 1, a7 = −8a2 + 65a − 16, and so on; in general, an is going to be an integral linear combination of 1, a, and a2.
+Fraenkel and Noether[edit]
+The first axiomatic definition of a ring was given by Adolf Fraenkel in 1914,[12][13] but his axioms were stricter than those in the modern definition. For instance, he required every non-zero-divisor to have a multiplicative inverse.[14] In 1921, Emmy Noether gave the modern axiomatic definition of (commutative) ring and developed the foundations of commutative ring theory in her paper Idealtheorie in Ringbereichen.[15]
+Multiplicative identity: mandatory vs. optional[edit]
+Fraenkel required a ring to have a multiplicative identity 1,[16] whereas Noether did not.[15]
+Most or all books on algebra[17][18] up to around 1960 followed Noether's convention of not requiring a 1. Starting in the 1960s, it became increasingly common to see books including the existence of 1 in the definition of ring, especially in advanced books by notable authors such as Artin,[19] Atiyah and MacDonald,[20] Bourbaki,[21] Eisenbud,[22] and Lang.[23] But even today, there remain many books that do not require a 1.
+Faced with this terminological ambiguity, some authors have tried to impose their views, while others have tried to adopt more precise terms.
+In the first category, we find for instance Gardner and Wiegandt, who argue that if one requires all rings to have a 1, then some consequences include the lack of existence of infinite direct sums of rings, and the fact that proper direct summands of rings are not subrings. They conclude that "in many, maybe most, branches of ring theory the requirement of the existence of a unity element is not sensible, and therefore unacceptable."[24]
+In the second category, we find authors who use the following terms:[25][26]
+
+
+
+rings with multiplicative identity: unital ring, unitary ring, unit ring, ring with unity, ring with identity, or ring with 1
+rings not requiring multiplicative identity: rng or pseudo-ring.
+
+
+
+Basic examples[edit]
+Commutative rings:
+
+The prototype example is the ring of integers with the two operations of addition and multiplication.
+The rational, real and complex numbers are commutative rings of a type called fields.
+An algebra over a ring is itself a ring. These are also modules. Some examples:
+
+Any algebra over a field.
+The polynomial ring R[X] of polynomials over a ring R is itself a ring. A free module over R of infinite dimension
+
+
+
+
+
+Z
+
+[
+c
+]
+
+
+{\displaystyle \mathbf {Z} [c]}
+
+, the integers with an irrational number c adjoined. A free module of infinite dimension if c is a transcendental number, a free module of finite dimension if c is an algebraic integer
+
+
+
+
+
+Z
+
+[
+1
+
+/
+
+n
+]
+
+
+{\displaystyle \mathbf {Z} [1/n]}
+
+, the set of fractions whose denominators are a power of n (including negative ones). A non-free module.
+
+
+
+
+
+Z
+
+[
+1
+
+/
+
+10
+]
+
+
+{\displaystyle \mathbf {Z} [1/10]}
+
+, the set of decimal fractions.
+
+
+
+
+
+Z
+
+[
+(
+1
++
+
+
+d
+
+
+)
+
+/
+
+2
+]
+
+
+{\displaystyle \mathbf {Z} [(1+{\sqrt {d}})/2]}
+
+, where d is a square-free integer of the form 4n+1. A free module of rank two. Cf. Quadratic integers.
+
+
+
+
+
+Z
+
+[
+i
+]
+
+
+{\displaystyle \mathbf {Z} [i]}
+
+, the Gaussian integers.
+
+
+
+
+
+Z
+
+[
+(
+1
++
+
+
+−
+3
+
+
+)
+
+/
+
+2
+]
+
+
+{\displaystyle \mathbf {Z} [(1+{\sqrt {-3}})/2]}
+
+, the Eisenstein integers. Also their generalization, a Kummer ring.
+
+
+The set of all algebraic integers forms a ring. This follows for example from the fact that it is the integral closure of the ring of rational integers in the field of complex numbers. The rings in the three previous examples are subrings of this ring.
+The set of formal power series R[[X1, …, Xn]] over a commutative ring R is a ring.
+If S is a set, then the power set of S becomes a ring if we define addition to be the symmetric difference of sets and multiplication to be intersection. This corresponds to a ring of sets and is an example of a Boolean ring.
+The set of all continuous real-valued functions defined on the real line forms a commutative ring. The operations are pointwise addition and multiplication of functions.
+Let X be a set and R a ring. Then the set of all functions from X to R forms a ring, which is commutative if R is commutative. The ring of continuous functions in the previous example is a subring of this ring if X is the real line and R is the field of real numbers.
+
+Noncommutative rings:
+
+For any ring R and any natural number n, the set of all square n-by-n matrices with entries from R, forms a ring with matrix addition and matrix multiplication as operations. For n = 1, this matrix ring is isomorphic to R itself. For n > 1 (and R not the zero ring), this matrix ring is noncommutative.
+If G is an abelian group, then the endomorphisms of G form a ring, the endomorphism ring End(G) of G. The operations in this ring are addition and composition of endomorphisms. More generally, if V is a left module over a ring R, then the set of all R-linear maps forms a ring, also called the endomorphism ring and denoted by EndR(V).
+If G is a group and R is a ring, the group ring of G over R is a free module over R having G as basis. Multiplication is defined by the rules that the elements of G commute with the elements of R and multiply together as they do in the group G.
+Many rings that appear in analysis are noncommutative. For example, most Banach algebras are noncommutative.
+
+Non-rings:
+
+The set of natural numbers N with the usual operations is not a ring, since (N, +) is not even a group (the elements are not all invertible with respect to addition). For instance, there is no natural number which can be added to 3 to get 0 as a result. There is a natural way to make it a ring by adding negative numbers to the set, thus obtaining the ring of integers. The natural numbers (including 0) form an algebraic structure known as a semiring (which has all of the properties of a ring except the additive inverse property).
+Let R be the set of all continuous functions on the real line that vanish outside a bounded interval depending on the function, with addition as usual but with multiplication defined as convolution:
+
+
+
+
+
+(
+f
+∗
+g
+)
+(
+x
+)
+=
+
+∫
+
+−
+∞
+
+
+∞
+
+
+f
+(
+y
+)
+g
+(
+x
+−
+y
+)
+d
+y
+.
+
+
+{\displaystyle (f*g)(x)=\int _{-\infty }^{\infty }f(y)g(x-y)dy.}
+
+
+
+
+
+
+Then R is a rng, but not a ring: the Dirac delta function has the property of a multiplicative identity, but it is not a function and hence is not an element of R.
+
+Basic concepts[edit]
+Elements in a ring[edit]
+A left zero divisor of a ring 
+
+
+
+R
+
+
+{\displaystyle R}
+
+ is a nonzero element 
+
+
+
+a
+
+
+{\displaystyle a}
+
+ in the ring such that there exists a nonzero element 
+
+
+
+b
+
+
+{\displaystyle b}
+
+ of 
+
+
+
+R
+
+
+{\displaystyle R}
+
+ such that 
+
+
+
+a
+b
+=
+0
+
+
+{\displaystyle ab=0}
+
+.[27] A right zero divisor is defined similarly.
+A nilpotent element is an element 
+
+
+
+a
+
+
+{\displaystyle a}
+
+ such that 
+
+
+
+
+a
+
+n
+
+
+=
+0
+
+
+{\displaystyle a^{n}=0}
+
+ for some 
+
+
+
+n
+>
+0
+
+
+{\displaystyle n>0}
+
+. One example of a nilpotent element is a nilpotent matrix. A nilpotent element in a nonzero ring is necessarily a zero divisor.
+An idempotent 
+
+
+
+e
+
+
+{\displaystyle e}
+
+ is an element such that 
+
+
+
+
+e
+
+2
+
+
+=
+e
+
+
+{\displaystyle e^{2}=e}
+
+. One example of an idempotent element is a projection in linear algebra.
+A unit is an element 
+
+
+
+a
+
+
+{\displaystyle a}
+
+ having a multiplicative inverse; in this case the inverse is unique, and is denoted by 
+
+
+
+
+a
+
+−
+1
+
+
+
+
+{\displaystyle a^{-1}}
+
+. The set of units of a ring is a group under ring multiplication; this group is denoted by 
+
+
+
+
+R
+
+×
+
+
+
+
+{\displaystyle R^{\times }}
+
+ or 
+
+
+
+
+R
+
+∗
+
+
+
+
+{\displaystyle R^{*}}
+
+ or 
+
+
+
+U
+(
+R
+)
+
+
+{\displaystyle U(R)}
+
+. For example, if R is the ring of all square matrices of size n over a field, then 
+
+
+
+
+R
+
+×
+
+
+
+
+{\displaystyle R^{\times }}
+
+ consists of the set of all invertible matrices of size n, and is called the general linear group.
+Subring[edit]
+Main article: Subring
+A subset S of R is said to be a subring if it can be regarded as a ring with the addition and the multiplication restricted from R to S. Equivalently, S is a subring if it is not empty, and for any x, y in S, 
+
+
+
+x
+y
+
+
+{\displaystyle xy}
+
+, 
+
+
+
+x
++
+y
+
+
+{\displaystyle x+y}
+
+ and 
+
+
+
+−
+x
+
+
+{\displaystyle -x}
+
+ are in S. If all rings have been assumed, by convention, to have a multiplicative identity, then to be a subring one would also require S to share the same identity element as R.[28] So if all rings have been assumed to have a multiplicative identity, then a proper ideal is not a subring.
+For example, the ring Z of integers is a subring of the field of real numbers and also a subring of the ring of polynomials Z[X] (in both cases, Z contains 1, which is the multiplicative identity of the larger rings). On the other hand, the subset of even integers 2Z does not contain the identity element 1 and thus does not qualify as a subring of Z.
+An intersection of subrings is a subring. The smallest subring containing a given subset E of R is called a subring generated by E. Such a subring exists since it is the intersection of all subrings containing E.
+For a ring R, the smallest subring containing 1 is called the characteristic subring of R. It can be obtained by adding copies of 1 and −1 together many times in any mixture. It is possible that 
+
+
+
+n
+⋅
+1
+=
+1
++
+1
++
+…
++
+1
+
+
+{\displaystyle n\cdot 1=1+1+\ldots +1}
+
+ (n times) can be zero. If n is the smallest positive integer such that this occurs, then n is called the characteristic of R. In some rings, 
+
+
+
+n
+⋅
+1
+
+
+{\displaystyle n\cdot 1}
+
+ is never zero for any positive integer n, and those rings are said to have characteristic zero.
+Given a ring R, let 
+
+
+
+Z
+⁡
+(
+R
+)
+
+
+{\displaystyle \operatorname {Z} (R)}
+
+ denote the set of all elements x in R such that x commutes with every element in R: 
+
+
+
+x
+y
+=
+y
+x
+
+
+{\displaystyle xy=yx}
+
+ for any y in R. Then 
+
+
+
+Z
+⁡
+(
+R
+)
+
+
+{\displaystyle \operatorname {Z} (R)}
+
+ is a subring of R; called the center of R. More generally, given a subset X of R, let S be the set of all elements in R that commute with every element in X. Then S is a subring of R, called the centralizer (or commutant) of X. The center is the centralizer of the entire ring R. Elements or subsets of the center are said to be central in R; they generate a subring of the center.
+Ideal[edit]
+Main article: Ideal (ring theory)
+The definition of an ideal in a ring is analogous to that of normal subgroup in a group. But, in actuality, it plays a role of an idealized generalization of an element in a ring; hence, the name "ideal". Like elements of rings, the study of ideals is central to structural understanding of a ring.
+Let R be a ring. A nonempty subset I of R is then said to be a left ideal in R if, for any x, y in I and r in R, 
+
+
+
+x
++
+y
+
+
+{\displaystyle x+y}
+
+ and 
+
+
+
+r
+x
+
+
+{\displaystyle rx}
+
+ are in I. If 
+
+
+
+R
+I
+
+
+{\displaystyle RI}
+
+ denotes the span of I over R; i.e., the set of finite sums
+
+
+
+
+
+
+r
+
+1
+
+
+
+x
+
+1
+
+
++
+⋯
++
+
+r
+
+n
+
+
+
+x
+
+n
+
+
+,
+
+
+r
+
+i
+
+
+∈
+R
+,
+
+
+x
+
+i
+
+
+∈
+I
+,
+
+
+{\displaystyle r_{1}x_{1}+\cdots +r_{n}x_{n},\quad r_{i}\in R,\quad x_{i}\in I,}
+
+
+
+then I is a left ideal if 
+
+
+
+R
+I
+⊆
+I
+
+
+{\displaystyle RI\subseteq I}
+
+. Similarly, I is said to be right ideal if 
+
+
+
+I
+R
+⊆
+I
+
+
+{\displaystyle IR\subseteq I}
+
+. A subset I is said to be a two-sided ideal or simply ideal if it is both a left ideal and right ideal. A one-sided or two-sided ideal is then an additive subgroup of R. If E is a subset of R, then 
+
+
+
+R
+E
+
+
+{\displaystyle RE}
+
+ is a left ideal, called the left ideal generated by E; it is the smallest left ideal containing E. Similarly, one can consider the right ideal or the two-sided ideal generated by a subset of R.
+If x is in R, then 
+
+
+
+R
+x
+
+
+{\displaystyle Rx}
+
+ and 
+
+
+
+x
+R
+
+
+{\displaystyle xR}
+
+ are left ideals and right ideals, respectively; they are called the principal left ideals and right ideals generated by x. The principal ideal 
+
+
+
+R
+x
+R
+
+
+{\displaystyle RxR}
+
+ is written as 
+
+
+
+(
+x
+)
+
+
+{\displaystyle (x)}
+
+. For example, the set of all positive and negative multiples of 2 along with 0 form an ideal of the integers, and this ideal is generated by the integer 2. In fact, every ideal of the ring of integers is principal.
+Like a group, a ring is said to be simple if it is nonzero and it has no proper nonzero two-sided ideals. A commutative simple ring is precisely a field.
+Rings are often studied with special conditions set upon their ideals. For example, a ring in which there is no strictly increasing infinite chain of left ideals is called a left Noetherian ring. A ring in which there is no strictly decreasing infinite chain of left ideals is called a left Artinian ring. It is a somewhat surprising fact that a left Artinian ring is left Noetherian (the Hopkins–Levitzki theorem). The integers, however, form a Noetherian ring which is not Artinian.
+For commutative rings, the ideals generalize the classical notion of divisibility and decomposition of an integer into prime numbers in algebra. A proper ideal P of R is called a prime ideal if for any elements 
+
+
+
+x
+,
+y
+∈
+R
+
+
+{\displaystyle x,y\in R}
+
+ we have that 
+
+
+
+x
+y
+∈
+P
+
+
+{\displaystyle xy\in P}
+
+ implies either 
+
+
+
+x
+∈
+P
+
+
+{\displaystyle x\in P}
+
+ or 
+
+
+
+y
+∈
+P
+
+
+{\displaystyle y\in P}
+
+. Equivalently, P is prime if for any ideals 
+
+
+
+I
+,
+J
+
+
+{\displaystyle I,J}
+
+ we have that 
+
+
+
+I
+J
+⊆
+P
+
+
+{\displaystyle IJ\subseteq P}
+
+ implies either 
+
+
+
+I
+⊆
+P
+
+
+{\displaystyle I\subseteq P}
+
+ or 
+
+
+
+J
+⊆
+P
+.
+
+
+{\displaystyle J\subseteq P.}
+
+ This latter formulation illustrates the idea of ideals as generalizations of elements.
+Homomorphism[edit]
+Main article: Ring homomorphism
+A homomorphism from a ring (R, +, ·) to a ring (S, ‡, *) is a function f from R to S that preserves the ring operations; namely, such that, for all a, b in R the following identities hold:
+
+f(a + b) = f(a) ‡ f(b)
+f(a · b) = f(a) * f(b)
+f(1R) = 1S
+
+If one is working with not necessarily unital rings, then the third condition is dropped.
+A ring homomorphism is said to be an isomorphism if there exists an inverse homomorphism to f (i.e., a ring homomorphism which is an inverse function). Any bijective ring homomorphism is a ring isomorphism. Two rings 
+
+
+
+R
+,
+S
+
+
+{\displaystyle R,S}
+
+ are said to be isomorphic if there is an isomorphism between them and in that case one writes 
+
+
+
+R
+≃
+S
+
+
+{\displaystyle R\simeq S}
+
+. A ring homomorphism between the same ring is called an endomorphism and an isomorphism between the same ring an automorphism.
+Examples:
+
+The function that maps each integer x to its remainder modulo 4 (a number in {0, 1, 2, 3}) is a homomorphism from the ring Z to the quotient ring Z/4Z ("quotient ring" is defined below).
+If 
+
+
+
+u
+
+
+{\displaystyle u}
+
+ is a unit element in a ring R, then 
+
+
+
+R
+→
+R
+,
+x
+↦
+u
+x
+
+u
+
+−
+1
+
+
+
+
+{\displaystyle R\to R,x\mapsto uxu^{-1}}
+
+ is a ring homomorphism, called an inner automorphism of R.
+Let R be a commutative ring of prime characteristic p. Then 
+
+
+
+x
+↦
+
+x
+
+p
+
+
+
+
+{\displaystyle x\mapsto x^{p}}
+
+ is a ring endomorphism of R called the Frobenius homomorphism.
+The Galois group of a field extension 
+
+
+
+L
+
+/
+
+K
+
+
+{\displaystyle L/K}
+
+ is the set of all automorphisms of L whose restrictions to K are the identity.
+For any ring R, there are a unique ring homomorphism Z →R and a unique ring homomorphism R →0.
+An epimorphism (i.e., right-cancelable morphism) of rings need not be surjective. For example, the unique map 
+
+
+
+
+Z
+
+→
+
+Q
+
+
+
+{\displaystyle \mathbb {Z} \to \mathbb {Q} }
+
+ is an epimorphism.
+An algebra homomorphism from a k-algebra to the endomorphism algebra of a vector space over k is called a representation of the algebra.
+
+Given a ring homomorphism 
+
+
+
+f
+:
+R
+→
+S
+
+
+{\displaystyle f:R\to S}
+
+, the set of all elements mapped to 0 by f is called the kernel of f. The kernel is a two-sided ideal of R. The image of f, on the other hand, is not always an ideal, but it is always a subring of S.
+To give a ring homomorphism from a commutative ring R to a ring A with image contained in the center of A is the same as to give a structure of an algebra over R to A (in particular gives a structure of A-module).
+Quotient ring[edit]
+Main article: Quotient ring
+The quotient ring of a ring, is analogous to the notion of a quotient group of a group. More formally, given a ring (R, +, · ) and a two-sided ideal I of (R, +, · ), the quotient ring (or factor ring) R/I is the set of cosets of I (with respect to the additive group of (R, +, · ); i.e. cosets with respect to (R, +)) together with the operations:
+
+(a + I) + (b + I) = (a + b) + I and
+(a + I)(b + I) = (ab) + I.
+
+for every a, b in R.
+Like the case of a quotient group, there is a canonical map 
+
+
+
+p
+:
+R
+→
+R
+
+/
+
+I
+
+
+{\displaystyle p:R\to R/I}
+
+ given by 
+
+
+
+x
+↦
+x
++
+I
+
+
+{\displaystyle x\mapsto x+I}
+
+. It is surjective and satisfies the universal property: if 
+
+
+
+f
+:
+R
+→
+S
+
+
+{\displaystyle f:R\to S}
+
+ is a ring homomorphism such that 
+
+
+
+f
+(
+I
+)
+=
+0
+
+
+{\displaystyle f(I)=0}
+
+, then there is a unique 
+
+
+
+
+
+f
+¯
+
+
+:
+R
+
+/
+
+I
+→
+S
+
+
+{\displaystyle {\overline {f}}:R/I\to S}
+
+ such that 
+
+
+
+f
+=
+
+
+f
+¯
+
+
+∘
+p
+
+
+{\displaystyle f={\overline {f}}\circ p}
+
+. In particular, taking I to be the kernel, one sees that the quotient ring 
+
+
+
+R
+
+/
+
+ker
+⁡
+f
+
+
+{\displaystyle R/\operatorname {ker} f}
+
+ is isomorphic to the image of f; the fact known as the first isomorphism theorem. The last fact implies that actually any surjective ring homomorphism satisfies the universal property since the image of such a map is a quotient ring.
+Module[edit]
+Main article: Module (mathematics)
+The concept of a module over a ring generalizes the concept of a vector space (over a field) by generalizing from multiplication of vectors with elements of a field (scalar multiplication) to multiplication with elements of a ring. More precisely, given a ring R with 1, an R-module M is an abelian group equipped with an operation R × M → M (associating an element of M to every pair of an element of R and an element of M) that satisfies certain axioms. This operation is commonly denoted multiplicatively and called multiplication. The axioms of modules are the following: for all a, b in R and all x, y in M, we have:
+
+M is an abelian group under addition.
+
+
+
+
+a
+(
+x
++
+y
+)
+=
+a
+x
++
+a
+y
+
+
+{\displaystyle a(x+y)=ax+ay}
+
+
+
+
+
+
+(
+a
++
+b
+)
+x
+=
+a
+x
++
+b
+x
+
+
+{\displaystyle (a+b)x=ax+bx}
+
+
+
+
+
+
+1
+x
+=
+x
+
+
+{\displaystyle 1x=x}
+
+
+
+
+
+
+(
+a
+b
+)
+x
+=
+a
+(
+b
+x
+)
+
+
+{\displaystyle (ab)x=a(bx)}
+
+
+
+When the ring is noncommutative these axioms define left modules; right modules are defined similarly by writing xa instead of ax. This is not only a change of notation, as the last axiom of right modules (that is x(ab) = (xa)b) becomes (ab)x = b(ax), if left multiplication (by ring elements) is used for a right module.
+Basic examples of modules are ideals, including the ring itself.
+Although similarly defined, the theory of modules is much more complicated than that of vector space, mainly, because, unlike vector spaces, modules are not characterized (up to an isomorphism) by a single invariant (the dimension of a vector space). In particular, not all modules have a basis.
+The axioms of modules imply that (−1)x = −x, where the first minus denotes the additive inverse in the ring and the second minus the additive inverse in the module. Using this and denoting repeated addition by a multiplication by a positive integer allows identifying abelian groups with modules over the ring of integers.
+Any ring homomorphism induces a structure of a module: if f : R → S is a ring homomorphism, then S is a left module over R by the multiplication: rs = f(r)s. If R is commutative or if f(R) is contained in the center of S, the ring S is called a R-algebra. In particular, every ring is an algebra over the integers.
+Constructions[edit]
+Direct product[edit]
+Main article: Direct product of rings
+Let R and S be rings. Then the product R × S can be equipped with the following natural ring structure:
+
+(r1, s1) + (r2, s2) = (r1 + r2, s1 + s2)
+(r1, s1) ⋅ (r2, s2) = (r1 ⋅ r2, s1 ⋅ s2)
+
+for every r1, r2 in R and s1, s2 in S. The ring R × S with the above operations of addition and multiplication and the multiplicative identity 
+
+
+
+(
+1
+,
+1
+)
+
+
+{\displaystyle (1,1)}
+
+ is called the direct product of R with S. The same construction also works for an arbitrary family of rings: if 
+
+
+
+
+R
+
+i
+
+
+
+
+{\displaystyle R_{i}}
+
+ are rings indexed by a set I, then 
+
+
+
+
+∏
+
+i
+∈
+I
+
+
+
+R
+
+i
+
+
+
+
+{\displaystyle \prod _{i\in I}R_{i}}
+
+ is a ring with componentwise addition and multiplication.
+Let R be a commutative ring and 
+
+
+
+
+
+
+
+a
+
+
+
+1
+
+
+,
+⋯
+,
+
+
+
+a
+
+
+
+n
+
+
+
+
+
+{\displaystyle \scriptstyle {\mathfrak {a}}_{1},\cdots ,{\mathfrak {a}}_{n}}
+
+ be ideals such that 
+
+
+
+
+
+
+a
+
+
+
+i
+
+
++
+
+
+
+a
+
+
+
+j
+
+
+=
+(
+1
+)
+
+
+{\displaystyle {\mathfrak {a}}_{i}+{\mathfrak {a}}_{j}=(1)}
+
+ whenever 
+
+
+
+i
+≠
+j
+
+
+{\displaystyle i\neq j}
+
+. Then the Chinese remainder theorem says there is a canonical ring isomorphism:
+
+
+
+
+
+R
+
+/
+
+
+(
+∩
+
+
+
+a
+
+
+
+i
+
+
+)
+
+≃
+∏
+R
+
+/
+
+
+
+
+a
+
+
+
+i
+
+
+,
+
+x
+↦
+(
+x
+
+ mod 
+
+
+
+
+a
+
+
+
+1
+
+
+,
+…
+,
+x
+
+ mod 
+
+
+
+
+a
+
+
+
+n
+
+
+)
+
+
+{\displaystyle R/\left(\cap {\mathfrak {a}}_{i}\right)\simeq \prod R/{\mathfrak {a}}_{i},\quad x\mapsto (x{\text{ mod }}{\mathfrak {a}}_{1},\ldots ,x{\text{ mod }}{\mathfrak {a}}_{n})}
+
+.
+
+A "finite" direct product may also be viewed as a direct sum of ideals.[29] Namely, let 
+
+
+
+
+R
+
+i
+
+
+,
+1
+≤
+i
+≤
+n
+
+
+{\displaystyle R_{i},1\leq i\leq n}
+
+ be rings, 
+
+
+
+
+R
+
+i
+
+
+→
+R
+=
+∏
+
+R
+
+i
+
+
+
+
+{\displaystyle R_{i}\to R=\prod R_{i}}
+
+ the inclusions with the images 
+
+
+
+
+
+
+a
+
+
+
+i
+
+
+
+
+{\displaystyle {\mathfrak {a}}_{i}}
+
+ (in particular 
+
+
+
+
+
+
+a
+
+
+
+i
+
+
+
+
+{\displaystyle {\mathfrak {a}}_{i}}
+
+ are rings though not subrings). Then 
+
+
+
+
+
+
+a
+
+
+
+i
+
+
+
+
+{\displaystyle {\mathfrak {a}}_{i}}
+
+ are ideals of R and
+
+
+
+
+
+R
+=
+
+
+
+a
+
+
+
+1
+
+
+⊕
+⋯
+⊕
+
+
+
+a
+
+
+
+n
+
+
+,
+
+
+
+
+a
+
+
+
+i
+
+
+
+
+
+a
+
+
+
+j
+
+
+=
+0
+,
+i
+≠
+j
+,
+
+
+
+
+a
+
+
+
+i
+
+
+2
+
+
+⊆
+
+
+
+a
+
+
+
+i
+
+
+
+
+{\displaystyle R={\mathfrak {a}}_{1}\oplus \cdots \oplus {\mathfrak {a}}_{n},\quad {\mathfrak {a}}_{i}{\mathfrak {a}}_{j}=0,i\neq j,\quad {\mathfrak {a}}_{i}^{2}\subseteq {\mathfrak {a}}_{i}}
+
+
+
+as a direct sum of abelian groups (because for abelian groups finite products are the same as direct sums). Clearly the direct sum of such ideals also defines a product of rings that is isomorphic to R. Equivalently, the above can be done through central idempotents. Assume R has the above decomposition. Then we can write
+
+
+
+
+
+1
+=
+
+e
+
+1
+
+
++
+⋯
++
+
+e
+
+n
+
+
+,
+
+
+e
+
+i
+
+
+∈
+
+
+
+a
+
+
+
+i
+
+
+.
+
+
+{\displaystyle 1=e_{1}+\cdots +e_{n},\quad e_{i}\in {\mathfrak {a}}_{i}.}
+
+
+
+By the conditions on 
+
+
+
+
+
+
+a
+
+
+
+i
+
+
+
+
+{\displaystyle {\mathfrak {a}}_{i}}
+
+, one has that 
+
+
+
+
+e
+
+i
+
+
+
+
+{\displaystyle e_{i}}
+
+ are central idempotents and 
+
+
+
+
+e
+
+i
+
+
+
+e
+
+j
+
+
+=
+0
+,
+i
+≠
+j
+
+
+{\displaystyle e_{i}e_{j}=0,i\neq j}
+
+ (orthogonal). Again, one can reverse the construction. Namely, if one is given a partition of 1 in orthogonal central idempotents, then let 
+
+
+
+
+
+
+a
+
+
+
+i
+
+
+=
+R
+
+e
+
+i
+
+
+
+
+{\displaystyle {\mathfrak {a}}_{i}=Re_{i}}
+
+, which are two-sided ideals. If each 
+
+
+
+
+e
+
+i
+
+
+
+
+{\displaystyle e_{i}}
+
+ is not a sum of orthogonal central idempotents,[30] then their direct sum is isomorphic to R.
+An important application of an infinite direct product is the construction of a projective limit of rings (see below). Another application is a restricted product of a family of rings (cf. adele ring).
+Polynomial ring[edit]
+Main article: Polynomial ring
+Given a symbol t (called a variable) and a commutative ring R, the set of polynomials
+
+
+
+
+
+R
+[
+t
+]
+=
+
+{
+
+a
+
+n
+
+
+
+t
+
+n
+
+
++
+
+a
+
+n
+−
+1
+
+
+
+t
+
+n
+−
+1
+
+
++
+⋯
++
+
+a
+
+1
+
+
+t
++
+
+a
+
+0
+
+
+∣
+n
+≥
+0
+,
+
+a
+
+j
+
+
+∈
+R
+}
+
+
+
+{\displaystyle R[t]=\left\{a_{n}t^{n}+a_{n-1}t^{n-1}+\dots +a_{1}t+a_{0}\mid n\geq 0,a_{j}\in R\right\}}
+
+
+
+forms a commutative ring with the usual addition and multiplication, containing R as a subring. It is called the polynomial ring over R. More generally, the set 
+
+
+
+R
+[
+
+t
+
+1
+
+
+,
+…
+,
+
+t
+
+n
+
+
+]
+
+
+{\displaystyle R[t_{1},\ldots ,t_{n}]}
+
+ of all polynomials in variables 
+
+
+
+
+t
+
+1
+
+
+,
+…
+,
+
+t
+
+n
+
+
+
+
+{\displaystyle t_{1},\ldots ,t_{n}}
+
+ forms a commutative ring, containing 
+
+
+
+R
+[
+
+t
+
+i
+
+
+]
+
+
+{\displaystyle R[t_{i}]}
+
+ as subrings.
+If R is an integral domain, then 
+
+
+
+R
+[
+t
+]
+
+
+{\displaystyle R[t]}
+
+ is also an integral domain; its field of fractions is the field of rational functions. If R is a noetherian ring, then 
+
+
+
+R
+[
+t
+]
+
+
+{\displaystyle R[t]}
+
+ is a noetherian ring. If R is a unique factorization domain, then 
+
+
+
+R
+[
+t
+]
+
+
+{\displaystyle R[t]}
+
+ is a unique factorization domain. Finally, R is a field if and only if 
+
+
+
+R
+[
+t
+]
+
+
+{\displaystyle R[t]}
+
+ is a principal ideal domain.
+Let 
+
+
+
+R
+⊆
+S
+
+
+{\displaystyle R\subseteq S}
+
+ be commutative rings. Given an element x of S, one can consider the ring homomorphism
+
+
+
+
+
+R
+[
+t
+]
+→
+S
+,
+
+f
+↦
+f
+(
+x
+)
+
+
+{\displaystyle R[t]\to S,\quad f\mapsto f(x)}
+
+
+
+(i.e., the substitution). If S=R[t] and x=t, then f(t)=f. Because of this, the polynomial f is often also denoted by 
+
+
+
+f
+(
+t
+)
+
+
+{\displaystyle f(t)}
+
+. The image of the map 
+
+
+
+f
+↦
+f
+(
+x
+)
+
+
+{\displaystyle f\mapsto f(x)}
+
+ is denoted by 
+
+
+
+R
+[
+x
+]
+
+
+{\displaystyle R[x]}
+
+; it is the same thing as the subring of S generated by R and x.
+Example: 
+
+
+
+k
+[
+
+t
+
+2
+
+
+,
+
+t
+
+3
+
+
+]
+
+
+{\displaystyle k[t^{2},t^{3}]}
+
+ denotes the image of the homomorphism
+
+
+
+
+
+k
+[
+x
+,
+y
+]
+→
+k
+[
+t
+]
+,
+
+f
+↦
+f
+(
+
+t
+
+2
+
+
+,
+
+t
+
+3
+
+
+)
+.
+
+
+{\displaystyle k[x,y]\to k[t],\,f\mapsto f(t^{2},t^{3}).}
+
+
+
+In other words, it is the subalgebra of 
+
+
+
+k
+[
+t
+]
+
+
+{\displaystyle k[t]}
+
+ generated by t2 and t3.
+Example: let f be a polynomial in one variable; i.e., an element in a polynomial ring R. Then 
+
+
+
+f
+(
+x
++
+h
+)
+
+
+{\displaystyle f(x+h)}
+
+ is an element in 
+
+
+
+R
+[
+h
+]
+
+
+{\displaystyle R[h]}
+
+ and 
+
+
+
+f
+(
+x
++
+h
+)
+−
+f
+(
+x
+)
+
+
+{\displaystyle f(x+h)-f(x)}
+
+ is divisible by h in that ring. The result of substituting zero to h in 
+
+
+
+(
+f
+(
+x
++
+h
+)
+−
+f
+(
+x
+)
+)
+
+/
+
+h
+
+
+{\displaystyle (f(x+h)-f(x))/h}
+
+ is 
+
+
+
+
+f
+′
+
+(
+x
+)
+
+
+{\displaystyle f'(x)}
+
+, the derivative of f at x.
+The substitution is a special case of the universal property of a polynomial ring. The property states: given a ring homomorphism 
+
+
+
+ϕ
+:
+R
+→
+S
+
+
+{\displaystyle \phi :R\to S}
+
+ and an element x in S there exists a unique ring homomorphism 
+
+
+
+
+
+ϕ
+¯
+
+
+:
+R
+[
+t
+]
+→
+S
+
+
+{\displaystyle {\overline {\phi }}:R[t]\to S}
+
+ such that 
+
+
+
+
+
+ϕ
+¯
+
+
+(
+t
+)
+=
+x
+
+
+{\displaystyle {\overline {\phi }}(t)=x}
+
+ and 
+
+
+
+
+
+ϕ
+¯
+
+
+
+
+{\displaystyle {\overline {\phi }}}
+
+ restricts to 
+
+
+
+ϕ
+
+
+{\displaystyle \phi }
+
+.[31] For example, choosing a basis, a symmetric algebra satisfies the universal property and so is a polynomial ring.
+To give an example, let S be the ring of all functions from R to itself; the addition and the multiplication are those of functions. Let x be the identity function. Each r in R defines a constant function, giving rise to the homomorphism 
+
+
+
+R
+→
+S
+
+
+{\displaystyle R\to S}
+
+. The universal property says that this map extends uniquely to
+
+
+
+
+
+R
+[
+t
+]
+→
+S
+,
+
+f
+↦
+
+
+f
+¯
+
+
+
+
+{\displaystyle R[t]\to S,\quad f\mapsto {\overline {f}}}
+
+
+
+(t maps to x) where 
+
+
+
+
+
+f
+¯
+
+
+
+
+{\displaystyle {\overline {f}}}
+
+ is the polynomial function defined by f. The resulting map is injective if and only if R is infinite.
+Given a non-constant monic polynomial f in 
+
+
+
+R
+[
+t
+]
+
+
+{\displaystyle R[t]}
+
+, there exists a ring S containing R such that f is a product of linear factors in 
+
+
+
+S
+[
+t
+]
+
+
+{\displaystyle S[t]}
+
+.[32]
+Let k be an algebraically closed field. The Hilbert's Nullstellensatz (theorem of zeros) states that there is a natural one-to-one correspondence between the set of all prime ideals in 
+
+
+
+k
+[
+
+t
+
+1
+
+
+,
+…
+,
+
+t
+
+n
+
+
+]
+
+
+{\displaystyle k[t_{1},\ldots ,t_{n}]}
+
+ and the set of closed subvarieties of 
+
+
+
+
+k
+
+n
+
+
+
+
+{\displaystyle k^{n}}
+
+. In particular, many local problems in algebraic geometry may be attacked through the study of the generators of an ideal in a polynomial ring. (cf. Gröbner basis.)
+There are some other related constructions. A formal power series ring 
+
+
+
+R
+[
+
+[
+t
+]
+
+]
+
+
+{\displaystyle R[\![t]\!]}
+
+ consists of formal power series
+
+
+
+
+
+
+∑
+
+0
+
+
+∞
+
+
+
+a
+
+i
+
+
+
+t
+
+i
+
+
+,
+
+
+a
+
+i
+
+
+∈
+R
+
+
+{\displaystyle \sum _{0}^{\infty }a_{i}t^{i},\quad a_{i}\in R}
+
+
+
+together with multiplication and addition that mimic those for convergent series. It contains 
+
+
+
+R
+[
+t
+]
+
+
+{\displaystyle R[t]}
+
+ as a subring. Note a formal power series ring does not have the universal property of a polynomial ring; a series may not converge after a substitution. The important advantage of a formal power series ring over a polynomial ring is that it is local (in fact, complete).
+Matrix ring and endomorphism ring[edit]
+Main articles: Matrix ring and Endomorphism ring
+Let R be a ring (not necessarily commutative). The set of all square matrices of size n with entries in R forms a ring with the entry-wise addition and the usual matrix multiplication. It is called the matrix ring and is denoted by Mn(R). Given a right R-module 
+
+
+
+U
+
+
+{\displaystyle U}
+
+, the set of all R-linear maps from U to itself forms a ring with addition that is of function and multiplication that is of composition of functions; it is called the endomorphism ring of U and is denoted by 
+
+
+
+
+End
+
+R
+
+
+⁡
+(
+U
+)
+
+
+{\displaystyle \operatorname {End} _{R}(U)}
+
+.
+As in linear algebra, a matrix ring may be canonically interpreted as an endomorphism ring: 
+
+
+
+
+End
+
+R
+
+
+⁡
+(
+
+R
+
+n
+
+
+)
+≃
+
+M
+
+n
+
+
+⁡
+(
+R
+)
+
+
+{\displaystyle \operatorname {End} _{R}(R^{n})\simeq \operatorname {M} _{n}(R)}
+
+. This is a special case of the following fact: If 
+
+
+
+f
+:
+
+⊕
+
+1
+
+
+n
+
+
+U
+→
+
+⊕
+
+1
+
+
+n
+
+
+U
+
+
+{\displaystyle f:\oplus _{1}^{n}U\to \oplus _{1}^{n}U}
+
+ is an R-linear map, then f may be written as a matrix with entries 
+
+
+
+
+f
+
+i
+j
+
+
+
+
+{\displaystyle f_{ij}}
+
+ in 
+
+
+
+S
+=
+
+End
+
+R
+
+
+⁡
+(
+U
+)
+
+
+{\displaystyle S=\operatorname {End} _{R}(U)}
+
+, resulting in the ring isomorphism:
+
+
+
+
+
+
+End
+
+R
+
+
+⁡
+(
+
+⊕
+
+1
+
+
+n
+
+
+U
+)
+→
+
+M
+
+n
+
+
+⁡
+(
+S
+)
+,
+
+f
+↦
+(
+
+f
+
+i
+j
+
+
+)
+.
+
+
+{\displaystyle \operatorname {End} _{R}(\oplus _{1}^{n}U)\to \operatorname {M} _{n}(S),\quad f\mapsto (f_{ij}).}
+
+
+
+Any ring homomorphism R → S induces Mn(R) → Mn(S); in fact, any ring homomorphism between matrix rings arises in this way.[33]
+Schur's lemma says that if U is a simple right R-module, then 
+
+
+
+
+End
+
+R
+
+
+⁡
+(
+U
+)
+
+
+{\displaystyle \operatorname {End} _{R}(U)}
+
+ is a division ring.[34] If 
+
+
+
+
+U
+=
+
+⨁
+
+i
+=
+1
+
+
+r
+
+
+
+U
+
+i
+
+
+⊕
+
+m
+
+i
+
+
+
+
+
+
+
+{\displaystyle \displaystyle U=\bigoplus _{i=1}^{r}U_{i}^{\oplus m_{i}}}
+
+ is a direct sum of mi-copies of simple R-modules 
+
+
+
+
+U
+
+i
+
+
+
+
+{\displaystyle U_{i}}
+
+, then
+
+
+
+
+
+
+End
+
+R
+
+
+⁡
+(
+U
+)
+≃
+
+⨁
+
+1
+
+
+r
+
+
+
+M
+
+
+m
+
+i
+
+
+
+
+⁡
+(
+
+End
+
+R
+
+
+⁡
+(
+
+U
+
+i
+
+
+)
+)
+
+
+{\displaystyle \operatorname {End} _{R}(U)\simeq \bigoplus _{1}^{r}\operatorname {M} _{m_{i}}(\operatorname {End} _{R}(U_{i}))}
+
+.
+
+The Artin–Wedderburn theorem states any semisimple ring (cf. below) is of this form.
+A ring R and the matrix ring Mn(R) over it are Morita equivalent: the category of right modules of R is equivalent to the category of right modules over Mn(R).[33] In particular, two-sided ideals in R correspond in one-to-one to two-sided ideals in Mn(R).
+Examples:
+
+The automorphisms of the projective line over a ring are given by homographies from the 2 x 2 matrix ring.
+
+Limits and colimits of rings[edit]
+Let Ri be a sequence of rings such that Ri is a subring of Ri+1 for all i. Then the union (or filtered colimit) of Ri is the ring 
+
+
+
+
+
+
+lim
+
+
+
+
+→
+
+
+
+
+
+⁡
+
+R
+
+i
+
+
+
+
+{\displaystyle \varinjlim R_{i}}
+
+ defined as follows: it is the disjoint union of all Ri's modulo the equivalence relation 
+
+
+
+x
+∼
+y
+
+
+{\displaystyle x\sim y}
+
+ if and only if 
+
+
+
+x
+=
+y
+
+
+{\displaystyle x=y}
+
+ in Ri for sufficiently large i.
+Examples of colimits:
+
+A polynomial ring in infinitely many variables: 
+
+
+
+R
+[
+
+t
+
+1
+
+
+,
+
+t
+
+2
+
+
+,
+⋯
+]
+=
+
+
+
+lim
+
+
+
+
+→
+
+
+
+
+
+⁡
+R
+[
+
+t
+
+1
+
+
+,
+
+t
+
+2
+
+
+,
+⋯
+,
+
+t
+
+m
+
+
+]
+.
+
+
+{\displaystyle R[t_{1},t_{2},\cdots ]=\varinjlim R[t_{1},t_{2},\cdots ,t_{m}].}
+
+
+The algebraic closure of finite fields of the same characteristic 
+
+
+
+
+
+
+
+F
+
+¯
+
+
+
+p
+
+
+=
+
+
+
+lim
+
+
+
+
+→
+
+
+
+
+
+⁡
+
+
+F
+
+
+
+p
+
+m
+
+
+
+
+.
+
+
+{\displaystyle {\overline {\mathbf {F} }}_{p}=\varinjlim \mathbf {F} _{p^{m}}.}
+
+
+The field of formal Laurent series over a field k: 
+
+
+
+k
+(
+
+(
+t
+)
+
+)
+=
+
+
+
+lim
+
+
+
+
+→
+
+
+
+
+
+⁡
+
+t
+
+−
+m
+
+
+k
+[
+
+[
+t
+]
+
+]
+
+
+{\displaystyle k(\!(t)\!)=\varinjlim t^{-m}k[\![t]\!]}
+
+ (it is the field of fractions of the formal power series ring 
+
+
+
+k
+[
+
+[
+t
+]
+
+]
+
+
+{\displaystyle k[\![t]\!]}
+
+.)
+The function field of an algebraic variety over a field k is 
+
+
+
+
+
+
+lim
+
+
+
+
+→
+
+
+
+
+
+⁡
+k
+[
+U
+]
+
+
+{\displaystyle \varinjlim k[U]}
+
+ where the limit runs over all the coordinate rings 
+
+
+
+k
+[
+U
+]
+
+
+{\displaystyle k[U]}
+
+ of nonempty open subsets U (more succinctly it is the stalk of the structure sheaf at the generic point.)
+
+Any commutative ring is the colimit of finitely generated subrings.
+A projective limit (or a filtered limit) of rings is defined as follows. Suppose we're given a family of rings 
+
+
+
+
+R
+
+i
+
+
+
+
+{\displaystyle R_{i}}
+
+, i running over positive integers, say, and ring homomorphisms 
+
+
+
+
+R
+
+j
+
+
+→
+
+R
+
+i
+
+
+,
+j
+≥
+i
+
+
+{\displaystyle R_{j}\to R_{i},j\geq i}
+
+ such that 
+
+
+
+
+R
+
+i
+
+
+→
+
+R
+
+i
+
+
+
+
+{\displaystyle R_{i}\to R_{i}}
+
+ are all the identities and 
+
+
+
+
+R
+
+k
+
+
+→
+
+R
+
+j
+
+
+→
+
+R
+
+i
+
+
+
+
+{\displaystyle R_{k}\to R_{j}\to R_{i}}
+
+ is 
+
+
+
+
+R
+
+k
+
+
+→
+
+R
+
+i
+
+
+
+
+{\displaystyle R_{k}\to R_{i}}
+
+ whenever 
+
+
+
+k
+≥
+j
+≥
+i
+
+
+{\displaystyle k\geq j\geq i}
+
+. Then 
+
+
+
+
+
+
+lim
+
+
+
+
+←
+
+
+
+
+
+⁡
+
+R
+
+i
+
+
+
+
+{\displaystyle \varprojlim R_{i}}
+
+ is the subring of 
+
+
+
+∏
+
+R
+
+i
+
+
+
+
+{\displaystyle \prod R_{i}}
+
+ consisting of 
+
+
+
+(
+
+x
+
+n
+
+
+)
+
+
+{\displaystyle (x_{n})}
+
+ such that 
+
+
+
+
+x
+
+j
+
+
+
+
+{\displaystyle x_{j}}
+
+ maps to 
+
+
+
+
+x
+
+i
+
+
+
+
+{\displaystyle x_{i}}
+
+ under 
+
+
+
+
+R
+
+j
+
+
+→
+
+R
+
+i
+
+
+,
+j
+≥
+i
+
+
+{\displaystyle R_{j}\to R_{i},j\geq i}
+
+.
+For an example of a projective limit, see § Completion.
+Localization[edit]
+The localization generalizes the construction of the field of fractions of an integral domain to an arbitrary ring and modules. Given a (not necessarily commutative) ring R and a subset S of R, there exists a ring 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+ together with the ring homomorphism 
+
+
+
+R
+→
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R\to R[S^{-1}]}
+
+ that "inverts" S; that is, the homomorphism maps elements in S to unit elements in 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+, and, moreover, any ring homomorphism from R that "inverts" S uniquely factors through 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+.[35] The ring 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+ is called the localization of R with respect to S. For example, if R is a commutative ring and f an element in R, then the localization 
+
+
+
+R
+[
+
+f
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[f^{-1}]}
+
+ consists of elements of the form 
+
+
+
+r
+
+/
+
+
+f
+
+n
+
+
+,
+
+r
+∈
+R
+,
+
+n
+≥
+0
+
+
+{\displaystyle r/f^{n},\,r\in R,\,n\geq 0}
+
+ (to be precise, 
+
+
+
+R
+[
+
+f
+
+−
+1
+
+
+]
+=
+R
+[
+t
+]
+
+/
+
+(
+t
+f
+−
+1
+)
+.
+
+
+{\displaystyle R[f^{-1}]=R[t]/(tf-1).}
+
+)[36]
+The localization is frequently applied to a commutative ring R with respect to the complement of a prime ideal (or a union of prime ideals) in R. In that case 
+
+
+
+S
+=
+R
+−
+
+
+p
+
+
+
+
+{\displaystyle S=R-{\mathfrak {p}}}
+
+, one often writes 
+
+
+
+
+R
+
+
+p
+
+
+
+
+
+{\displaystyle R_{\mathfrak {p}}}
+
+ for 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+. 
+
+
+
+
+R
+
+
+p
+
+
+
+
+
+{\displaystyle R_{\mathfrak {p}}}
+
+ is then a local ring with the maximal ideal 
+
+
+
+
+
+p
+
+
+
+R
+
+
+p
+
+
+
+
+
+{\displaystyle {\mathfrak {p}}R_{\mathfrak {p}}}
+
+. This is the reason for the terminology "localization". The field of fractions of an integral domain R is the localization of R at the prime ideal zero. If 
+
+
+
+
+
+p
+
+
+
+
+{\displaystyle {\mathfrak {p}}}
+
+ is a prime ideal of a commutative ring R, then the field of fractions of 
+
+
+
+R
+
+/
+
+
+
+p
+
+
+
+
+{\displaystyle R/{\mathfrak {p}}}
+
+ is the same as the residue field of the local ring 
+
+
+
+
+R
+
+
+p
+
+
+
+
+
+{\displaystyle R_{\mathfrak {p}}}
+
+ and is denoted by 
+
+
+
+k
+(
+
+
+p
+
+
+)
+
+
+{\displaystyle k({\mathfrak {p}})}
+
+.
+If M is a left R-module, then the localization of M with respect to S is given by a change of rings 
+
+
+
+M
+[
+
+S
+
+−
+1
+
+
+]
+=
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+⊗
+
+R
+
+
+M
+
+
+{\displaystyle M[S^{-1}]=R[S^{-1}]\otimes _{R}M}
+
+.
+The most important properties of localization are the following: when R is a commutative ring and S a multiplicatively closed subset
+
+
+
+
+
+
+
+p
+
+
+↦
+
+
+p
+
+
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle {\mathfrak {p}}\mapsto {\mathfrak {p}}[S^{-1}]}
+
+ is a bijection between the set of all prime ideals in R disjoint from S and the set of all prime ideals in 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+.[37]
+
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+=
+
+
+
+lim
+
+
+
+
+→
+
+
+
+
+
+⁡
+R
+[
+
+f
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]=\varinjlim R[f^{-1}]}
+
+, f running over elements in S with partial ordering given by divisibility.[38]
+The localization is exact:
+
+
+
+
+
+0
+→
+
+M
+′
+
+[
+
+S
+
+−
+1
+
+
+]
+→
+M
+[
+
+S
+
+−
+1
+
+
+]
+→
+
+M
+″
+
+[
+
+S
+
+−
+1
+
+
+]
+→
+0
+
+
+{\displaystyle 0\to M'[S^{-1}]\to M[S^{-1}]\to M''[S^{-1}]\to 0}
+
+ is exact over 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+ whenever 
+
+
+
+0
+→
+
+M
+′
+
+→
+M
+→
+
+M
+″
+
+→
+0
+
+
+{\displaystyle 0\to M'\to M\to M''\to 0}
+
+ is exact over R.
+
+
+Conversely, if 
+
+
+
+0
+→
+
+M
+
+
+m
+
+
+′
+
+→
+
+M
+
+
+m
+
+
+
+→
+
+M
+
+
+m
+
+
+″
+
+→
+0
+
+
+{\displaystyle 0\to M'_{\mathfrak {m}}\to M_{\mathfrak {m}}\to M''_{\mathfrak {m}}\to 0}
+
+ is exact for any maximal ideal 
+
+
+
+
+
+m
+
+
+
+
+{\displaystyle {\mathfrak {m}}}
+
+, then 
+
+
+
+0
+→
+
+M
+′
+
+→
+M
+→
+
+M
+″
+
+→
+0
+
+
+{\displaystyle 0\to M'\to M\to M''\to 0}
+
+ is exact.
+A remark: localization is no help in proving a global existence. One instance of this is that if two modules are isomorphic at all prime ideals, it does not follow that they are isomorphic. (One way to explain this is that the localization allows one to view a module as a sheaf over prime ideals and a sheaf is inherently a local notion.)
+
+In category theory, a localization of a category amounts to making some morphisms isomorphisms. An element in a commutative ring R may be thought of as an endomorphism of any R-module. Thus, categorically, a localization of R with respect to a subset S of R is a functor from the category of R-modules to itself that sends elements of S viewed as endomorphisms to automorphisms and is universal with respect to this property. (Of course, R then maps to 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+ and R-modules map to 
+
+
+
+R
+[
+
+S
+
+−
+1
+
+
+]
+
+
+{\displaystyle R[S^{-1}]}
+
+-modules.)
+Completion[edit]
+Let R be a commutative ring, and let I be an ideal of R. The completion of R at I is the projective limit 
+
+
+
+
+
+
+R
+^
+
+
+
+=
+
+
+
+lim
+
+
+
+
+←
+
+
+
+
+
+⁡
+R
+
+/
+
+
+I
+
+n
+
+
+
+
+{\displaystyle {\hat {R}}=\varprojlim R/I^{n}}
+
+; it is a commutative ring. The canonical homomorphisms from R to the quotients 
+
+
+
+R
+
+/
+
+
+I
+
+n
+
+
+
+
+{\displaystyle R/I^{n}}
+
+ induce a homomorphism 
+
+
+
+R
+→
+
+
+
+R
+^
+
+
+
+
+
+{\displaystyle R\to {\hat {R}}}
+
+. The latter homomorphism is injective if R is a noetherian integral domain and I is a proper ideal, or if R is a noetherian local ring with maximal ideal I, by Krull's intersection theorem.[39] The construction is especially useful when I is a maximal ideal.
+The basic example is the completion Zp of Z at the principal ideal (p) generated by a prime number p; it is called the ring of p-adic integers. The completion can in this case be constructed also from the p-adic absolute value on Q. The p-adic absolute value on Q is a map 
+
+
+
+x
+↦
+
+|
+
+x
+
+|
+
+
+
+{\displaystyle x\mapsto |x|}
+
+ from Q to R given by 
+
+
+
+
+|
+
+n
+
+
+|
+
+
+p
+
+
+=
+
+p
+
+−
+
+v
+
+p
+
+
+(
+n
+)
+
+
+
+
+{\displaystyle |n|_{p}=p^{-v_{p}(n)}}
+
+ where 
+
+
+
+
+v
+
+p
+
+
+(
+n
+)
+
+
+{\displaystyle v_{p}(n)}
+
+ denotes the exponent of p in the prime factorization of a nonzero integer n into prime numbers (we also put 
+
+
+
+
+|
+
+0
+
+
+|
+
+
+p
+
+
+=
+0
+
+
+{\displaystyle |0|_{p}=0}
+
+ and 
+
+
+
+
+|
+
+m
+
+/
+
+n
+
+
+|
+
+
+p
+
+
+=
+
+|
+
+m
+
+
+|
+
+
+p
+
+
+
+/
+
+
+|
+
+n
+
+
+|
+
+
+p
+
+
+
+
+{\displaystyle |m/n|_{p}=|m|_{p}/|n|_{p}}
+
+). It defines a distance function on Q and the completion of Q as a metric space is denoted by Qp. It is again a field since the field operations extend to the completion. The subring of Qp consisting of elements x with 
+
+
+
+
+|
+
+x
+
+
+|
+
+
+p
+
+
+≤
+1
+
+
+{\displaystyle |x|_{p}\leq 1}
+
+ is isomorphic to Zp.
+Similarly, the formal power series ring 
+
+
+
+R
+[
+
+[
+t
+]
+
+]
+
+
+{\displaystyle R[{[t]}]}
+
+ is the completion of 
+
+
+
+R
+[
+t
+]
+
+
+{\displaystyle R[t]}
+
+ at 
+
+
+
+(
+t
+)
+
+
+{\displaystyle (t)}
+
+ (see also Hensel's lemma)
+A complete ring has much simpler structure than a commutative ring. This owns to the Cohen structure theorem, which says, roughly, that a complete local ring tends to look like a formal power series ring or a quotient of it. On the other hand, the interaction between the integral closure and completion has been among the most important aspects that distinguish modern commutative ring theory from the classical one developed by the likes of Noether. Pathological examples found by Nagata led to the reexamination of the roles of Noetherian rings and motivated, among other things, the definition of excellent ring.
+Rings with generators and relations[edit]
+The most general way to construct a ring is by specifying generators and relations. Let F be a free ring (i.e., free algebra over the integers) with the set X of symbols; i.e., F consists of polynomials with integral coefficients in noncommuting variables that are elements of X. A free ring satisfies the universal property: any function from the set X to a ring R factors through F so that 
+
+
+
+F
+→
+R
+
+
+{\displaystyle F\to R}
+
+ is the unique ring homomorphism. Just as in the group case, every ring can be represented as a quotient of a free ring.[40]
+Now, we can impose relations among symbols in X by taking a quotient. Explicitly, if E is a subset of F, then the quotient ring of F by the ideal generated by E is called the ring with generators X and relations E. If we used a ring, say, A as a base ring instead of Z, then the resulting ring will be over A. For example, if 
+
+
+
+E
+=
+{
+x
+y
+−
+y
+x
+∣
+x
+,
+y
+∈
+X
+}
+
+
+{\displaystyle E=\{xy-yx\mid x,y\in X\}}
+
+, then the resulting ring will be the usual polynomial ring with coefficients in A in variables that are elements of X (It is also the same thing as the symmetric algebra over A with symbols X.)
+In the category-theoretic terms, the formation 
+
+
+
+S
+↦
+
+the free ring generated by the set 
+
+S
+
+
+{\displaystyle S\mapsto {\text{the free ring generated by the set }}S}
+
+ is the left adjoint functor of the forgetful functor from the category of rings to Set (and it is often called the free ring functor.)
+Let A, B be algebras over a commutative ring R. Then the tensor product of R-modules 
+
+
+
+A
+
+⊗
+
+R
+
+
+B
+
+
+{\displaystyle A\otimes _{R}B}
+
+ is a R-module. We can turn it to a ring by extending linearly 
+
+
+
+(
+x
+⊗
+u
+)
+(
+y
+⊗
+v
+)
+=
+x
+y
+⊗
+u
+v
+
+
+{\displaystyle (x\otimes u)(y\otimes v)=xy\otimes uv}
+
+. See also: tensor product of algebras, change of rings.
+Special kinds of rings[edit]
+Domains[edit]
+A nonzero ring with no nonzero zero-divisors is called a domain. A commutative domain is called an integral domain. The most important integral domains are principal ideals domains, PID for short, and fields. A principal ideal domain is an integral domain in which every ideal is principal. An important class of integral domains that contain a PID is a unique factorization domain (UFD), an integral domain in which every nonunit element is a product of prime elements (an element is prime if it generates a prime ideal.) The fundamental question in algebraic number theory is on the extent to which the ring of (generalized) integers in a number field, where an "ideal" admits prime factorization, fails to be a PID.
+Among theorems concerning a PID, the most important one is the structure theorem for finitely generated modules over a principal ideal domain. The theorem may be illustrated by the following application to linear algebra.[41] Let V be a finite-dimensional vector space over a field k and 
+
+
+
+f
+:
+V
+→
+V
+
+
+{\displaystyle f:V\to V}
+
+ a linear map with minimal polynomial q. Then, since 
+
+
+
+k
+[
+t
+]
+
+
+{\displaystyle k[t]}
+
+ is a unique factorization domain, q factors into powers of distinct irreducible polynomials (i.e., prime elements):
+
+
+
+
+
+q
+=
+
+p
+
+1
+
+
+
+e
+
+1
+
+
+
+
+.
+.
+.
+
+p
+
+s
+
+
+
+e
+
+s
+
+
+
+
+.
+
+
+{\displaystyle q=p_{1}^{e_{1}}...p_{s}^{e_{s}}.}
+
+
+
+Letting 
+
+
+
+t
+⋅
+v
+=
+f
+(
+v
+)
+
+
+{\displaystyle t\cdot v=f(v)}
+
+, we make V a k[t]-module. The structure theorem then says V is a direct sum of cyclic modules, each of which is isomorphic to the module of the form 
+
+
+
+k
+[
+t
+]
+
+/
+
+(
+
+p
+
+i
+
+
+
+k
+
+j
+
+
+
+
+)
+
+
+{\displaystyle k[t]/(p_{i}^{k_{j}})}
+
+. Now, if 
+
+
+
+
+p
+
+i
+
+
+(
+t
+)
+=
+t
+−
+
+λ
+
+i
+
+
+
+
+{\displaystyle p_{i}(t)=t-\lambda _{i}}
+
+, then such a cyclic module (for 
+
+
+
+
+p
+
+i
+
+
+
+
+{\displaystyle p_{i}}
+
+) has a basis in which the restriction of f is represented by a Jordan matrix. Thus, if, say, k is algebraically closed, then all 
+
+
+
+
+p
+
+i
+
+
+
+
+{\displaystyle p_{i}}
+
+'s are of the form 
+
+
+
+t
+−
+
+λ
+
+i
+
+
+
+
+{\displaystyle t-\lambda _{i}}
+
+ and the above decomposition corresponds to the Jordan canonical form of f.
+In algebraic geometry, UFDs arise because of smoothness. More precisely, a point in a variety (over a perfect field) is smooth if the local ring at the point is a regular local ring. A regular local ring is a UFD.[42]
+The following is a chain of class inclusions that describes the relationship between rings, domains and fields:
+
+Commutative rings ⊃ integral domains ⊃ integrally closed domains ⊃unique factorization domains ⊃ principal ideal domains ⊃ Euclidean domains ⊃ fields
+
+Division ring[edit]
+A division ring is a ring such that every non-zero element is a unit. A commutative division ring is a field. A prominent example of a division ring that is not a field is the ring of quaternions. Any centralizer in a division ring is also a division ring. In particular, the center of a division ring is a field. It turned out that every finite domain (in particular finite division ring) is a field; in particular commutative (the Wedderburn's little theorem).
+Every module over a division ring is a free module (has a basis); consequently, much of linear algebra can be carried out over a division ring instead of a field.
+The study of conjugacy classes figures prominently in the classical theory of division rings. Cartan famously asked the following question: given a division ring D and a proper sub-division-ring S that is not contained in the center, does each inner automorphism of D restrict to an automorphism of S? The answer is negative: this is the Cartan–Brauer–Hua theorem.
+A cyclic algebra, introduced by L. E. Dickson, is a generalization of a quaternion algebra.
+Semisimple rings[edit]
+A ring is called a semisimple ring if it is semisimple as a left module (or right module) over itself; i.e., a direct sum of simple modules. A ring is called a semiprimitive ring if its Jacobson radical is zero. (The Jacobson radical is the intersection of all maximal left ideals.) A ring is semisimple if and only if it is artinian and is semiprimitive.
+An algebra over a field k is artinian if and only if it has finite dimension. Thus, a semisimple algebra over a field is necessarily finite-dimensional, while a simple algebra may have infinite dimension; e.g., the ring of differential operators.
+Any module over a semisimple ring is semisimple. (Proof: any free module over a semisimple ring is clearly semisimple and any module is a quotient of a free module.)
+Examples of semisimple rings:
+
+A matrix ring over a division ring is semisimple (actually simple).
+The group ring 
+
+
+
+k
+[
+G
+]
+
+
+{\displaystyle k[G]}
+
+ of a finite group G over a field k is semisimple if the characteristic of k does not divide the order of G. (Maschke's theorem)
+The Weyl algebra (over a field) is a simple ring; it is not semisimple since it has infinite dimension and thus not artinian.
+Clifford algebras are semisimple.
+
+Semisimplicity is closely related to separability. An algebra A over a field k is said to be separable if the base extension 
+
+
+
+A
+
+⊗
+
+k
+
+
+F
+
+
+{\displaystyle A\otimes _{k}F}
+
+ is semisimple for any field extension 
+
+
+
+F
+
+/
+
+k
+
+
+{\displaystyle F/k}
+
+. If A happens to be a field, then this is equivalent to the usual definition in field theory (cf. separable extension.)
+Central simple algebra and Brauer group[edit]
+Main article: Central simple algebra
+For a field k, a k-algebra is central if its center is k and is simple if it is a simple ring. Since the center of a simple k-algebra is a field, any simple k-algebra is a central simple algebra over its center. In this section, a central simple algebra is assumed to have finite dimension. Also, we mostly fix the base field; thus, an algebra refers to a k-algebra. The matrix ring of size n over a ring R will be denoted by 
+
+
+
+
+R
+
+n
+
+
+
+
+{\displaystyle R_{n}}
+
+.
+The Skolem–Noether theorem states any automorphism of a central simple algebra is inner.
+Two central simple algebras A and B are said to be similar if there are integers n and m such that 
+
+
+
+A
+
+⊗
+
+k
+
+
+
+k
+
+n
+
+
+≈
+B
+
+⊗
+
+k
+
+
+
+k
+
+m
+
+
+
+
+{\displaystyle A\otimes _{k}k_{n}\approx B\otimes _{k}k_{m}}
+
+.[43] Since 
+
+
+
+
+k
+
+n
+
+
+
+⊗
+
+k
+
+
+
+k
+
+m
+
+
+≃
+
+k
+
+n
+m
+
+
+
+
+{\displaystyle k_{n}\otimes _{k}k_{m}\simeq k_{nm}}
+
+, the similarity is an equivalence relation. The similarity classes 
+
+
+
+[
+A
+]
+
+
+{\displaystyle [A]}
+
+ with the multiplication 
+
+
+
+[
+A
+]
+[
+B
+]
+=
+[
+A
+
+⊗
+
+k
+
+
+B
+]
+
+
+{\displaystyle [A][B]=[A\otimes _{k}B]}
+
+ form an abelian group called the Brauer group of k and is denoted by 
+
+
+
+Br
+⁡
+(
+k
+)
+
+
+{\displaystyle \operatorname {Br} (k)}
+
+. By the Artin–Wedderburn theorem, a central simple algebra is the matrix ring of a division ring; thus, each similarity class is represented by a unique division ring.
+For example, 
+
+
+
+Br
+⁡
+(
+k
+)
+
+
+{\displaystyle \operatorname {Br} (k)}
+
+ is trivial if k is a finite field or an algebraically closed field (more generally quasi-algebraically closed field; cf. Tsen's theorem). 
+
+
+
+Br
+⁡
+(
+
+R
+
+)
+
+
+{\displaystyle \operatorname {Br} (\mathbb {R} )}
+
+ has order 2 (a special case of the theorem of Frobenius). Finally, if k is a nonarchimedean local field (e.g., 
+
+
+
+
+
+Q
+
+
+p
+
+
+
+
+{\displaystyle \mathbb {Q} _{p}}
+
+), then 
+
+
+
+Br
+⁡
+(
+k
+)
+=
+
+Q
+
+
+/
+
+
+Z
+
+
+
+{\displaystyle \operatorname {Br} (k)=\mathbb {Q} /\mathbb {Z} }
+
+ through the invariant map.
+Now, if F is a field extension of k, then the base extension 
+
+
+
+−
+
+⊗
+
+k
+
+
+F
+
+
+{\displaystyle -\otimes _{k}F}
+
+ induces 
+
+
+
+Br
+⁡
+(
+k
+)
+→
+Br
+⁡
+(
+F
+)
+
+
+{\displaystyle \operatorname {Br} (k)\to \operatorname {Br} (F)}
+
+. Its kernel is denoted by 
+
+
+
+Br
+⁡
+(
+F
+
+/
+
+k
+)
+
+
+{\displaystyle \operatorname {Br} (F/k)}
+
+. It consists of 
+
+
+
+[
+A
+]
+
+
+{\displaystyle [A]}
+
+ such that 
+
+
+
+A
+
+⊗
+
+k
+
+
+F
+
+
+{\displaystyle A\otimes _{k}F}
+
+ is a matrix ring over F (i.e., A is split by F.) If the extension is finite and Galois, then 
+
+
+
+Br
+⁡
+(
+F
+
+/
+
+k
+)
+
+
+{\displaystyle \operatorname {Br} (F/k)}
+
+ is canonically isomorphic to 
+
+
+
+
+H
+
+2
+
+
+(
+Gal
+⁡
+(
+F
+
+/
+
+k
+)
+,
+
+k
+
+∗
+
+
+)
+
+
+{\displaystyle H^{2}(\operatorname {Gal} (F/k),k^{*})}
+
+.[44]
+Azumaya algebras generalize the notion of central simple algebras to a commutative local ring.
+Valuation ring[edit]
+Main article: valuation ring
+If K is a field, a valuation v is a group homomorphism from the multiplicative group K* to a totally ordered abelian group G such that, for any f, g in K with f + g nonzero, v(f + g) ≥ min{v(f), v(g)}. The valuation ring of v is the subring of K consisting of zero and all nonzero f such that v(f) ≥ 0.
+Examples:
+
+The field of formal Laurent series 
+
+
+
+k
+(
+
+(
+t
+)
+
+)
+
+
+{\displaystyle k(\!(t)\!)}
+
+ over a field k comes with the valuation v such that v(f) is the least degree of a nonzero term in f; the valuation ring of v is the formal power series ring 
+
+
+
+k
+[
+
+[
+t
+]
+
+]
+
+
+{\displaystyle k[\![t]\!]}
+
+.
+More generally, given a field k and a totally ordered abelian group G, let 
+
+
+
+k
+(
+
+(
+G
+)
+
+)
+
+
+{\displaystyle k(\!(G)\!)}
+
+ be the set of all functions from G to k whose supports (the sets of points at which the functions are nonzero) are well ordered. It is a field with the multiplication given by convolution:
+
+
+
+
+
+(
+f
+∗
+g
+)
+(
+t
+)
+=
+
+∑
+
+s
+∈
+G
+
+
+f
+(
+s
+)
+g
+(
+t
+−
+s
+)
+
+
+{\displaystyle (f*g)(t)=\sum _{s\in G}f(s)g(t-s)}
+
+.
+
+
+
+
+It also comes with the valuation v such that v(f) is the least element in the support of f. The subring consisting of elements with finite support is called the group ring of G (which makes sense even if G is not commutative). If G is the ring of integers, then we recover the previous example (by identifying f with the series whose n-th coefficient is f(n).)
+
+See also: Novikov ring and uniserial ring.
+Rings with extra structure[edit]
+A ring may be viewed as an abelian group (by using the addition operation), with extra structure: namely, ring multiplication. In the same way, there are other mathematical objects which may be considered as rings with extra structure. For example:
+
+An associative algebra is a ring that is also a vector space over a field K such that the scalar multiplication distributes over the ring multiplication. For instance, the set of n-by-n matrices over the real field R has dimension n2 as a real vector space.
+A ring R is a topological ring if its set of elements R is given a topology which makes the addition map ( 
+
+
+
++
+:
+R
+×
+R
+→
+R
+
+
+
+{\displaystyle +:R\times R\to R\,}
+
+) and the multiplication map ( 
+
+
+
+⋅
+:
+R
+×
+R
+→
+R
+
+
+
+{\displaystyle \cdot :R\times R\to R\,}
+
+) to be both continuous as maps between topological spaces (where X × X inherits the product topology or any other product in the category). For example, n-by-n matrices over the real numbers could be given either the Euclidean topology, or the Zariski topology, and in either case one would obtain a topological ring.
+A λ-ring is a commutative ring R together with operations λn: R → R that are like n-th exterior powers:
+
+
+
+
+
+
+
+
+
+λ
+
+n
+
+
+(
+x
++
+y
+)
+=
+
+∑
+
+0
+
+
+n
+
+
+
+λ
+
+i
+
+
+(
+x
+)
+
+λ
+
+n
+−
+i
+
+
+(
+y
+)
+
+
+{\displaystyle \lambda ^{n}(x+y)=\sum _{0}^{n}\lambda ^{i}(x)\lambda ^{n-i}(y)}
+
+.
+
+
+For example, Z is a λ-ring with 
+
+
+
+
+λ
+
+n
+
+
+(
+x
+)
+=
+
+
+
+(
+
+
+x
+n
+
+
+)
+
+
+
+
+
+{\displaystyle \lambda ^{n}(x)={\binom {x}{n}}}
+
+, the binomial coefficients. The notion plays a central rule in the algebraic approach to the Riemann–Roch theorem.
+
+Some examples of the ubiquity of rings[edit]
+Many different kinds of mathematical objects can be fruitfully analyzed in terms of some associated ring.
+Cohomology ring of a topological space[edit]
+To any topological space X one can associate its integral cohomology ring
+
+
+
+
+
+
+H
+
+∗
+
+
+(
+X
+,
+
+Z
+
+)
+=
+
+⨁
+
+i
+=
+0
+
+
+∞
+
+
+
+H
+
+i
+
+
+(
+X
+,
+
+Z
+
+)
+,
+
+
+{\displaystyle H^{*}(X,\mathbb {Z} )=\bigoplus _{i=0}^{\infty }H^{i}(X,\mathbb {Z} ),}
+
+
+
+a graded ring. There are also homology groups 
+
+
+
+
+H
+
+i
+
+
+(
+X
+,
+
+Z
+
+)
+
+
+{\displaystyle H_{i}(X,\mathbb {Z} )}
+
+ of a space, and indeed these were defined first, as a useful tool for distinguishing between certain pairs of topological spaces, like the spheres and tori, for which the methods of point-set topology are not well-suited. Cohomology groups were later defined in terms of homology groups in a way which is roughly analogous to the dual of a vector space. To know each individual integral homology group is essentially the same as knowing each individual integral cohomology group, because of the universal coefficient theorem. However, the advantage of the cohomology groups is that there is a natural product, which is analogous to the observation that one can multiply pointwise a k-multilinear form and an l-multilinear form to get a (k + l)-multilinear form.
+The ring structure in cohomology provides the foundation for characteristic classes of fiber bundles, intersection theory on manifolds and algebraic varieties, Schubert calculus and much more.
+Burnside ring of a group[edit]
+To any group is associated its Burnside ring which uses a ring to describe the various ways the group can act on a finite set. The Burnside ring's additive group is the free abelian group whose basis are the transitive actions of the group and whose addition is the disjoint union of the action. Expressing an action in terms of the basis is decomposing an action into its transitive constituents. The multiplication is easily expressed in terms of the representation ring: the multiplication in the Burnside ring is formed by writing the tensor product of two permutation modules as a permutation module. The ring structure allows a formal way of subtracting one action from another. Since the Burnside ring is contained as a finite index subring of the representation ring, one can pass easily from one to the other by extending the coefficients from integers to the rational numbers.
+Representation ring of a group ring[edit]
+To any group ring or Hopf algebra is associated its representation ring or "Green ring". The representation ring's additive group is the free abelian group whose basis are the indecomposable modules and whose addition corresponds to the direct sum. Expressing a module in terms of the basis is finding an indecomposable decomposition of the module. The multiplication is the tensor product. When the algebra is semisimple, the representation ring is just the character ring from character theory, which is more or less the Grothendieck group given a ring structure.
+Function field of an irreducible algebraic variety[edit]
+To any irreducible algebraic variety is associated its function field. The points of an algebraic variety correspond to valuation rings contained in the function field and containing the coordinate ring. The study of algebraic geometry makes heavy use of commutative algebra to study geometric concepts in terms of ring-theoretic properties. Birational geometry studies maps between the subrings of the function field.
+Face ring of a simplicial complex[edit]
+Every simplicial complex has an associated face ring, also called its Stanley–Reisner ring. This ring reflects many of the combinatorial properties of the simplicial complex, so it is of particular interest in algebraic combinatorics. In particular, the algebraic geometry of the Stanley–Reisner ring was used to characterize the numbers of faces in each dimension of simplicial polytopes.
+Category theoretical description[edit]
+Main article: Category of rings
+Every ring can be thought of as a monoid in Ab, the category of abelian groups (thought of as a monoidal category under the tensor product of 
+
+
+
+
+
+Z
+
+
+
+
+{\displaystyle {\mathbb {Z} }}
+
+-modules). The monoid action of a ring R on an abelian group is simply an R-module. Essentially, an R-module is a generalization of the notion of a vector space – where rather than a vector space over a field, one has a "vector space over a ring".
+Let (A, +) be an abelian group and let End(A) be its endomorphism ring (see above). Note that, essentially, End(A) is the set of all morphisms of A, where if f is in End(A), and g is in End(A), the following rules may be used to compute f + g and f · g:
+
+(f + g)(x) = f(x) + g(x)
+(f · g)(x) = f(g(x))
+
+where + as in f(x) + g(x) is addition in A, and function composition is denoted from right to left. Therefore, associated to any abelian group, is a ring. Conversely, given any ring, (R, +, · ), (R, +) is an abelian group. Furthermore, for every r in R, right (or left) multiplication by r gives rise to a morphism of (R, +), by right (or left) distributivity. Let A = (R, +). Consider those endomorphisms of A, that "factor through" right (or left) multiplication of R. In other words, let EndR(A) be the set of all morphisms m of A, having the property that m(r · x) = r · m(x). It was seen that every r in R gives rise to a morphism of A: right multiplication by r. It is in fact true that this association of any element of R, to a morphism of A, as a function from R to EndR(A), is an isomorphism of rings. In this sense, therefore, any ring can be viewed as the endomorphism ring of some abelian X-group (by X-group, it is meant a group with X being its set of operators).[45] In essence, the most general form of a ring, is the endomorphism group of some abelian X-group.
+Any ring can be seen as a preadditive category with a single object. It is therefore natural to consider arbitrary preadditive categories to be generalizations of rings. And indeed, many definitions and theorems originally given for rings can be translated to this more general context. Additive functors between preadditive categories generalize the concept of ring homomorphism, and ideals in additive categories can be defined as sets of morphisms closed under addition and under composition with arbitrary morphisms.
+Generalization[edit]
+Algebraists have defined structures more general than rings by weakening or dropping some of ring axioms.
+Rng[edit]
+A rng is the same as a ring, except that the existence of a multiplicative identity is not assumed.[46]
+Nonassociative ring[edit]
+A nonassociative ring is an algebraic structure that satisfies all of the ring axioms but the associativity and the existence of a multiplicative identity. A notable example is a Lie algebra. There exists some structure theory for such algebras that generalizes the analogous results for Lie algebras and associative algebras.[citation needed]
+Semiring[edit]
+A semiring is obtained by weakening the assumption that (R,+) is an abelian group to the assumption that (R,+) is a commutative monoid, and adding the axiom that 0 · a = a · 0 = 0 for all a in R (since it no longer follows from the other axioms).
+Example: a tropical semiring.
+Other ring-like objects[edit]
+Ring object in a category[edit]
+Let C be a category with finite products. Let pt denote a terminal object of C (an empty product). A ring object in C is an object R equipped with morphisms 
+
+
+
+R
+×
+R
+
+
+
+
+→
+
+
+a
+
+
+
+
+R
+
+
+{\displaystyle R\times R{\stackrel {a}{\to }}R}
+
+ (addition), 
+
+
+
+R
+×
+R
+
+
+
+
+→
+
+
+m
+
+
+
+
+R
+
+
+{\displaystyle R\times R{\stackrel {m}{\to }}R}
+
+ (multiplication), 
+
+
+
+pt
+
+
+
+
+→
+
+
+0
+
+
+
+
+R
+
+
+{\displaystyle \operatorname {pt} {\stackrel {0}{\to }}R}
+
+ (additive identity), 
+
+
+
+R
+
+
+
+
+→
+
+
+i
+
+
+
+
+R
+
+
+{\displaystyle R{\stackrel {i}{\to }}R}
+
+ (additive inverse), and 
+
+
+
+pt
+
+
+
+
+→
+
+
+1
+
+
+
+
+R
+
+
+{\displaystyle \operatorname {pt} {\stackrel {1}{\to }}R}
+
+ (multiplicative identity) satisfying the usual ring axioms. Equivalently, a ring object is an object R equipped with a factorization of its functor of points 
+
+
+
+
+h
+
+R
+
+
+=
+Hom
+⁡
+(
+−
+,
+R
+)
+:
+
+C
+
+op
+
+
+→
+
+S
+e
+t
+s
+
+
+
+{\displaystyle h_{R}=\operatorname {Hom} (-,R):C^{\operatorname {op} }\to \mathbf {Sets} }
+
+ through the category of rings: 
+
+
+
+
+C
+
+op
+
+
+→
+
+R
+i
+n
+g
+s
+
+
+
+
+
+⟶
+
+
+
+forgetful
+
+
+
+
+
+
+S
+e
+t
+s
+
+
+
+{\displaystyle C^{\operatorname {op} }\to \mathbf {Rings} {\stackrel {\textrm {forgetful}}{\longrightarrow }}\mathbf {Sets} }
+
+.
+Ring scheme[edit]
+In algebraic geometry, a ring scheme over a base scheme S is a ring object in the category of S-schemes. One example is the ring scheme Wn over Spec Z, which for any commutative ring A returns the ring Wn(A) of p-isotypic Witt vectors of length n over A.[47]
+Ring spectrum[edit]
+In algebraic topology, a ring spectrum is a spectrum X together with a multiplication 
+
+
+
+μ
+:
+X
+∧
+X
+→
+X
+
+
+{\displaystyle \mu \colon X\wedge X\to X}
+
+ and a unit map 
+
+
+
+S
+→
+X
+
+
+{\displaystyle S\to X}
+
+ from the sphere spectrum S, such that the ring axiom diagrams commute up to homotopy. In practice, it is common to define a ring spectrum as a monoid object in a good category of spectra such as the category of symmetric spectra.
+See also[edit]
+
+
+
+Wikibooks has a book on the topic of: Abstract Algebra/Rings
+
+
+
+
+Algebra over a commutative ring
+Algebraic structure
+Categorical ring
+Category of rings
+Glossary of ring theory
+Nonassociative ring
+Ring theory
+Ring of sets
+Semiring
+Spectrum of a ring
+Simplicial commutative ring
+
+
+Special types of rings:
+
+
+Boolean ring
+Commutative ring
+Dedekind ring
+Differential ring
+Division ring (skew field)
+Exponential ring
+Field
+Finite ring
+Integral domain
+Lie ring
+Local ring
+Noetherian and artinian rings
+Ordered ring
+Principal ideal domain (PID)
+Reduced ring
+Regular ring
+Ring of periods
+Ring theory
+SBI ring
+Unique factorization domain (UFD)
+Valuation ring and discrete valuation ring
+Zero ring
+
+
+Notes[edit]
+
+^ a: Some authors only require that a ring be a semigroup under multiplication; that is, do not require that there be a multiplicative identity (1). See the section Notes on the definition for more details.
+^ b: Elements which do have multiplicative inverses are called units, see Lang 2002, §II.1, p. 84.
+^ c: The closure axiom is already implied by the condition that +/• be a binary operation. Some authors therefore omit this axiom. Lang 2002
+^ d: The transition from the integers to the rationals by adding fractions is generalized by the quotient field.
+^ e: Many authors include commutativity of rings in the set of ring axioms (see above) and therefore refer to "commutative rings" as just "rings".
+
+Citations[edit]
+
+
+^ This means that the two operations are defined and produce a result in R for all ordered pairs of elements of R.
+^ Nicolas Bourbaki (1970). "§I.8". Algebra. Springer-Verlag. 
+^ Saunders MacLane; Garrett Birkhoff (1967). Algebra. AMS Chelsea. p. 85. 
+^ Serge Lang (2002). Algebra (Third ed.). Springer-Verlag. p. 83. 
+^ The existence of 1 is not assumed by some authors; here, the term "rng" is used if existence of a multiplicative identity is not assumed. See next subsection
+^ I. M. Isaacs, Algebra: A Graduate Course, AMS, 1994, p. 160.
+^ The development of Ring Theory
+^ Kleiner 1998, p. 27.
+^ Hilbert 1897.
+^ Why is a ring called a "ring"? - MathOverflow
+^ Cohn, Harvey (1980), Advanced Number Theory, New York: Dover Publications, p. 49, ISBN 978-0-486-64023-5 
+^ Fraenkel, pp. 143–145
+^ Jacobson (2009), p. 86, footnote 1.
+^ Fraenkel, p. 144, axiom R8).
+^ a b Noether, p. 29.
+^ Fraenkel, p. 144, axiom R7).
+^ Van der Waerden, 1930.
+^ Zariski and Samuel, 1958.
+^ Artin, p. 346.
+^ Atiyah and MacDonald, p. 1.
+^ Bourbaki, p. 96.
+^ Eisenbud, p. 11.
+^ Lang, p. 83.
+^ Gardner and Wiegandt 2003.
+^ Wilder 1965, p. 176.
+^ Rotman 1998, p. 7.
+^ This is the definition of Bourbaki. Some other authors such as Lang require a zero divisor to be nonzero.
+^ In the unital case, like addition and multiplication, the multiplicative identity must be restricted from the original ring. The definition is also equivalent to requiring the set-theoretic inclusion is a ring homomorphism.
+^ Cohn 2003, Theorem 4.5.1
+^ such a central idempotent is called centrally primitive.
+^ Jacobson 1974, Theorem 2.10
+^ Bourbaki & Algèbre commutative, Ch 5. §1, Lemma 2
+^ a b Cohn 2003, 4.4
+^ Lang 2002, Ch. XVII. Proposition 1.1.
+^ Cohn 1995, Proposition 1.3.1.
+^ Eisenbud 2004, Exercise 2.2
+^ Milne 2012, Proposition 6.4
+^ Milne 2012, The end of Chapter 7
+^ Atiyah and Macdonald, Theorem 10.17 and its corollaries.
+^ Cohn 1995, pg. 242.
+^ Lang 2002, Ch XIV, §2
+^ Weibel, Ch 1, Theorem 3.8
+^ Milne & CFT, Ch IV, §2
+^ Serre, J-P ., Applications algébriques de la cohomologie des groupes, I, II, Séminaire Henri Cartan, 1950/51 [1]
+^ Jacobson (2009), p. 162, Theorem 3.2.
+^ Jacobson 2009.
+^ Serre, p. 44.
+
+
+References[edit]
+General references[edit]
+
+
+Artin, Michael (1991). Algebra. Prentice-Hall. 
+Atiyah, Michael; Macdonald, Ian G. (1969). Introduction to commutative algebra. Addison–Wesley. 
+Bourbaki, N. (1998). Algebra I, Chapters 1-3. Springer. 
+Cohn, Paul Moritz (2003), Basic algebra: groups, rings, and fields, Springer, ISBN 978-1-85233-587-8 .
+Eisenbud, David (1995). Commutative algebra with a view toward algebraic geometry. Springer. 
+Gardner, J.W.; Wiegandt, R. (2003). Radical Theory of Rings. Chapman & Hall/CRC Pure and Applied Mathematics. ISBN 0824750330. 
+Herstein, I. N. (1994) [reprint of the 1968 original]. Noncommutative rings. Carus Mathematical Monographs. 15. With an afterword by Lance W. Small. Mathematical Association of America. ISBN 0-88385-015-X. 
+Jacobson, Nathan (2009). Basic algebra. 1 (2nd ed.). Dover. ISBN 978-0-486-47189-1. 
+Jacobson, Nathan (1964). "Structure of rings". American Mathematical Society Colloquium Publications (Revised ed.). 37. 
+Jacobson, Nathan (1943). "The Theory of Rings". American Mathematical Society Mathematical Surveys. I. 
+Kaplansky, Irving (1974), Commutative rings (Revised ed.), University of Chicago Press, ISBN 0-226-42454-5, MR 0345945 .
+Lam, Tsit Yuen (2001). A first course in noncommutative rings. Graduate Texts in Mathematics. 131 (2nd ed.). Springer. ISBN 0-387-95183-0. 
+Lam, Tsit Yuen (2003). Exercises in classical ring theory. Problem Books in Mathematics (2nd ed.). Springer. ISBN 0-387-00500-5. 
+Lam, Tsit Yuen (1999). Lectures on modules and rings. Graduate Texts in Mathematics. 189. Springer. ISBN 0-387-98428-3. 
+Lang, Serge (2002), Algebra, Graduate Texts in Mathematics, 211 (Revised third ed.), New York: Springer-Verlag, ISBN 978-0-387-95385-4, MR 1878556, Zbl 0984.00001 .
+Matsumura, Hideyuki (1989). Commutative Ring Theory. Cambridge Studies in Advanced Mathematics (2nd ed.). Cambridge University Press. ISBN 978-0-521-36764-6. 
+Milne, J. "A primer of commutative algebra". 
+Rotman, Joseph (1998), Galois Theory (2nd ed.), Springer, ISBN 0-387-98541-7 .
+van der Waerden, Bartel Leendert (1930), Moderne Algebra. Teil I, Die Grundlehren der mathematischen Wissenschaften, 33, Springer, ISBN 978-3-540-56799-8, MR0009016 MR0037277 MR0069787 MR0122834 MR0177027 MR0263581 .
+Wilder, Raymond Louis (1965). Introduction to Foundations of Mathematics. Wiley. 
+Zariski, Oscar; Samuel, Pierre (1958). Commutative Algebra. 1. Van Nostrand. 
+
+
+Special references[edit]
+
+
+Balcerzyk, Stanisław; Józefiak, Tadeusz (1989), Commutative Noetherian and Krull rings, Mathematics and its Applications, Chichester: Ellis Horwood Ltd., ISBN 978-0-13-155615-7 .
+Balcerzyk, Stanisław; Józefiak, Tadeusz (1989), Dimension, multiplicity and homological methods, Mathematics and its Applications, Chichester: Ellis Horwood Ltd., ISBN 978-0-13-155623-2 .
+Ballieu, R. (1947). "Anneaux finis; systèmes hypercomplexes de rang trois sur un corps commutatif". Ann. Soc. Sci. Bruxelles. I (61): 222–227. 
+Berrick, A. J.; Keating, M. E. (2000). An Introduction to Rings and Modules with K-Theory in View. Cambridge University Press. 
+Cohn, Paul Moritz (1995), Skew Fields: Theory of General Division Rings, Encyclopedia of Mathematics and its Applications, 57, Cambridge University Press, ISBN 9780521432177 .
+Eisenbud, David (1995), Commutative algebra. With a view toward algebraic geometry., Graduate Texts in Mathematics, 150, Springer, ISBN 978-0-387-94268-1, MR 1322960 .
+Gilmer, R.; Mott, J. (1973). "Associative Rings of Order". Proc. Japan Acad. 49: 795–799. doi:10.3792/pja/1195519146. 
+Harris, J. W.; Stocker, H. (1998). Handbook of Mathematics and Computational Science. Springer. 
+Jacobson, Nathan (1945), "Structure theory of algebraic algebras of bounded degree", Annals of Mathematics, Annals of Mathematics, 46 (4): 695–707, doi:10.2307/1969205, ISSN 0003-486X, JSTOR 1969205 .
+Knuth, D. E. (1998). The Art of Computer Programming. Vol. 2: Seminumerical Algorithms (3rd ed.). Addison–Wesley. 
+Korn, G. A.; Korn, T. M. (2000). Mathematical Handbook for Scientists and Engineers. Dover. 
+Milne, J. "Class field theory". 
+Nagata, Masayoshi (1962) [1975 reprint], Local rings, Interscience Tracts in Pure and Applied Mathematics, 13, Interscience Publishers, ISBN 978-0-88275-228-0, MR 0155856 .
+Pierce, Richard S. (1982). Associative algebras. Graduate Texts in Mathematics. 88. Springer. ISBN 0-387-90693-2. 
+Serre, Jean-Pierre (1979), Local fields, Graduate Texts in Mathematics, 67, Springer .
+Springer, Tonny A. (1977), Invariant theory, Lecture Notes in Mathematics, 585, Springer .
+Weibel, Charles. "The K-book: An introduction to algebraic K-theory". 
+Zariski, Oscar; Samuel, Pierre (1975). Commutative algebra. Graduate Texts in Mathematics. 28-29. Springer. ISBN 0-387-90089-6. 
+
+
+Primary sources[edit]
+
+
+Fraenkel, A. (1914). "Über die Teiler der Null und die Zerlegung von Ringen". J. reine angew. Math. 145: 139–176. 
+Hilbert, David (1897). "Die Theorie der algebraischen Zahlkörper". Jahresbericht der Deutschen Mathematiker Vereinigung. 4. 
+Noether, Emmy (1921). "Idealtheorie in Ringbereichen". Math. Annalen. 83: 24–66. doi:10.1007/bf01464225. 
+
+
+Historical references[edit]
+
+
+History of ring theory at the MacTutor Archive
+Garrett Birkhoff and Saunders Mac Lane (1996) A Survey of Modern Algebra, 5th ed. New York: Macmillian.
+Bronshtein, I. N. and Semendyayev, K. A. (2004) Handbook of Mathematics, 4th ed. New York: Springer-Verlag ISBN 3-540-43491-7.
+Faith, Carl (1999) Rings and things and a fine array of twentieth century associative algebra. Mathematical Surveys and Monographs, 65. American Mathematical Society ISBN 0-8218-0993-8.
+Itô, K. editor (1986) "Rings." §368 in Encyclopedic Dictionary of Mathematics, 2nd ed., Vol. 2. Cambridge, MA: MIT Press.
+Israel Kleiner (1996) "The Genesis of the Abstract Ring Concept", American Mathematical Monthly 103: 417–424 doi:10.2307/2974935
+Kleiner, I. (1998) "From numbers to rings: the early history of ring theory", Elemente der Mathematik 53: 18–35.
+B. L. van der Waerden (1985) A History of Algebra, Springer-Verlag,
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Ring_(mathematics)&oldid=816805772"					Categories: Algebraic structuresRing theoryHidden categories: All articles with unsourced statementsArticles with unsourced statements from November 2013

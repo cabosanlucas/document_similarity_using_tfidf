@@ -1,0 +1,1737 @@
+
+jpeg
+
+filename extension
+
+
+
+jxr1
+hdp2
+wdp2
+
+
+
+
+
+internet media type
+
+
+
+imagevndmsphoto
+imagejxr3
+
+
+
+
+
+developed
+microsoft itut isoiec
+
+
+initial release
+april 2009
+
+
+latest release
+
+012012 itut 2012 edition isoiec
+january 2012 years 201201
+
+
+
+type format
+graphics file format
+
+
+contained
+tiff
+
+
+standard
+itut t832 012012
+isoiec 2919922012
+
+
+open format
+license
+
+
+website
+itut t832 012012
+isoiec 291992 2012
+
+
+jpeg jpeg extended range5 stillimage compression standard file format continuous tone photographic images based technology originally developed patented microsoft name photo formerly windows media photo6 supports lossy lossless compression preferred image format ecma388 open paper specification documents
+support format available adobe flash player adobe sumatra windows imaging component framework windows vista windows windows internet explorer internet explorer internet explorer pale moon 272789as august 2014 still cameras shoot photos jpeg format
+
+
+
+contents
+
+
+history
+description
+
+capabilities
+container format
+compression algorithm
+
+
+software support
+licensing
+also
+references
+external links
+
+
+
+historyedit
+microsoft first announced windows media photo winhec 200610 renamed photo november year july 2007 joint photographic experts group microsoft announced photo consideration become jpeg standard known jpeg xr1112 march 2009 jpeg given final approval itut recommendation t832 starting april 2009 became available itut prepublished form1 june 2009 passed isoiec final draft international standard fdis ballot resulting final approval international standard isoiec 2919921314 itut updated publication corrigendum approved december 20091 isoiec issued edition similar corrections september 201015
+2010 completion image coding specification itut isoiec also published motion format specification itut t833 isoiec 291993 conformance test itut t834 isoiec 291994 reference software itut t835 isoiec 291995 jpeg 2011 published technical report describing workflow architecture jpeg images applications itut tsup2 isoiec 291991
+descriptionedit
+capabilitiesedit
+jpeg image file format offers several improvements jpeg including16
+
+
+
+better compression
+jpeg file format supports higher compression ratios comparison jpeg encoding image equivalent quality
+
+
+
+
+
+
+lossless compression
+jpeg also supports lossless compression signal processing steps jpeg lossless lossy coding makes lossless mode simple support enables trimming bits lossless compressed image produce lossy compressed image
+
+
+
+
+
+
+tile structure support
+jpeg coded image segmented tile regions data region decoded separately enables rapid access parts image without needing decode entire image type tiling referred soft tiling used tile region structuring changed without fully decoding image without introducing additional distortion
+
+
+
+
+
+
+support color accuracy
+
+
+
+
+
+
+jpeg supports wide variety image color representations addition conventional 8bitpersample formally ycbcr encoding typically used original jpeg standard
+
+
+
+
+
+
+support images using color space jpeg includes internal conversion ycgco color space supports variety depth color representation packing schemes used without accompanying alpha channel shape masking semitransparency support much higher precision typically used image coding include
+
+bitdepth packings bits pixel using bits channel bits blue bits green
+bits component sometimes called true color packed bits pixel
+bits component packed representation several higherprecision varieties color representation known deep color
+bits component integers fixedpoint numbers halfprecision floatingpoint numbers packed bits
+bits component fixedpoint numbers fullprecision floating point numbers packed bits lossless coding supported excessively high precision
+
+
+
+
+
+
+
+
+jpeg also supports 16bit component 64bit pixel integer cmyk color model17
+
+
+
+
+
+
+16bit 32bit fixed point color component codings also supported jpeg encodings mostsignificant bits color channel treated providing additional headroom room beyond range values represents nominal blacktowhite signal range
+
+
+
+
+
+
+moreover 16bit 32bit floating point color component codings supported jpeg cases image interpreted floating point data although jpeg encoding decoding steps performed using integer operations simplify compression processing
+
+
+
+
+
+
+sharedexponent floating point color format known rgbe radiance also supported enabling faithful storage high dynamic range images
+
+
+
+
+
+
+addition cmyk formats jpeg also supports grayscale multichannel color encodings arbitrary number channels
+
+
+
+
+
+
+color representations cases transformed internal color representation transformation entirely reversible color transformation step introduce distortion thus lossless coding modes supported
+
+
+
+
+
+
+transparency support
+alpha channel present represent transparency alpha blending overlay capability enabled
+
+
+
+
+
+
+compresseddomain image modification
+jpeg full decoding image unnecessary converting image lossless lossy encoding reducing fidelity lossy encoding reducing encoded image resolution
+
+
+
+
+
+
+full decoding also unnecessary certain editing operations cropping horizontal vertical flips cardinal rotations
+
+
+
+
+
+
+tile structure access image regions also changed without full decoding without introducing distortion
+
+
+
+
+
+
+metadata support
+jpeg image file optionally contain embedded color profile achieve consistent color representation across multiple devices
+
+
+
+
+
+
+exif metadata formats also supported
+
+
+
+container formatedit
+file container format used store jpeg image data specified annex jpeg standard tifflike format using table image file directory tags jpeg file contains image data optional alpha channel data metadata optional metadata stored rdfxml optional exif metadata tags image data contiguous selfcontained chunk data optional alpha channel present compressed separate image record enabling decoding image data independently transparency data applications support transparency alternatively jpeg also supports interleaved alpha channel format alpha channel data encoded together image data single compressed codestream
+tiffbased format inherits limitations tiff format including filesize limit according photo specification addressed future update18
+work started jpeg committee enable jpeg image coding within file storage format enabling jpip protocol allows interactive browsing networked images13 additionally motion jpeg specification approved standard motion video compression march 201019
+compression algorithmedit
+
+
+
+
+comparison jpeg 2000 jpeg jpeg
+
+
+jpeg design120 conceptually similar jpeg source image optionally converted lumachroma colorspace chroma planes optionally subsampled plane divided fixedsize blocks blocks transformed frequency domain frequency coefficients quantized entropy coded major differences include following
+
+jpeg supports depths bits jpeg supports depths bits jpeg also supports lossless lossy compression floatingpoint image data representing floatingpoint values ieee 754like format encoding though integers rgbe imagery
+jfif typical image encoding practices specify linear transformation ycbcr slightly lossy practice roundoff error jpeg specifies lossless colorspace transformation given
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle ugrleftlceil frac v2rightrceil
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle ygleftlceil frac u2rightrceil
+
+
+
+
+
+
+jpeg uses blocks frequency transformation jpeg primarily uses block transforms transformations also defined special cases involving chroma subsampling encoder options include yuv444 yuv422 yuv420 monochrome yonly21
+jpeg uses single transformation stage jpeg applies core transform twolevel hierarchical fashion within macroblock regions gives transform waveletlike multiresolution hierarchy improves compression capability
+frequency transformation used jpeg slightly lossy roundoff error jpeg uses type integer transform employing lifting scheme22 required transform called photo core transform resembles lossless exactly invertible fact particular realization larger family binaryfriendly multiplierless transforms called bindct23
+jpeg allows optional overlap prefiltering step called photo overlap transform core transform stages22 filter operates blocks offset samples direction core transform blocks purpose improve compression capability reduce blockboundary artifacts bitrates high bitrates artifacts typically problem prefiltering omitted reduce encoding decoding time overlap filtering constructed using integer operations following lifting scheme also lossless appropriately combined jpegxr form lapped transform24
+jpeg image coefficients blocks predicted applying prediction left neighbor transform block coeffients predicted jpeg blocks grouped macroblocks samples coefficients blocks macroblock passed another level frequency transformation leaving three types coefficients entropy coded macroblock coefficients called macroblocklevel coefficients called lowpass lowerlevel coefficients called prediction coefficient values across transform blocks applied coefficients additional column coefficients well
+jpeg supports encoding image decomposing smaller individual rectangular tile area regions tile area decoded independently areas picture allows fast access spatial areas pictures without decoding entire picture
+jpeg entropy coding phase adaptive complex jpegs involving coefficient prediction scheme adaptive coefficient reordering contrast jpegs fixed zigzag ordering form adaptive huffman coding coefficients
+jpeg uses single quantization step size dcac component color plane image jpeg allows selection quantization step sizes tile region basis allows lowpass quantization step sizes vary macroblock macroblock
+encoding phases except quantization lossless jpeg lossless quantization coefficients equal true jpeg jpeg defines separate lossless mode implemented libjpeg therefore widely supported
+
+photo bitstream specification claims photo offers image quality comparable jpeg2000 computational memory performance closely comparable jpeg delivers lossy compressed image better perceptive quality jpeg less half file size lossless compressed images typically times smaller original uncompressed data
+software supportedit
+reference software implementation jpeg published itut recommendation t835 isoiec international standard 291995
+following notable software products natively support jpeg
+
+
+product name
+publisher
+read support
+write support
+
+
+
+capture later
+phase
+
+
+
+
+
+corel paint shop later
+corel
+
+
+
+
+
+fast picture viewer
+axel rietschin software developments
+
+
+
+
+
+imagemagick
+imagemagick studio
+
+
+
+
+
+internet explorer
+microsoft
+
+
+2829
+
+
+microsoft expression design
+microsoft
+
+
+
+
+
+microsoft expression media
+microsoft
+
+
+
+
+
+microsoft image composite editor
+microsoft
+
+
+
+
+
+pale moon browser
+moonchild productions
+
+
+
+
+
+photoline
+computerinsel
+
+
+
+
+
+serif photoplus
+serif europe
+
+
+
+
+
+windows live photo gallery
+microsoft
+
+
+
+
+
+windows photo gallery
+microsoft
+
+
+
+
+
+windows photo viewer
+microsoft
+
+
+
+
+
+xara designer
+xara group limited
+
+
+
+
+
+xnview
+pierreemmanuel gougelet
+
+
+3435
+
+
+zoner photo studio later
+zoner software
+
+
+
+
+
+following notable software support jpeg plugin
+
+
+product name
+publisher
+plugin name
+plugin publisher
+read support
+write support
+
+
+
+adobe photoshop cs2cs5cs6
+adobe systems
+jpeg file format plugin photoshop
+microsoft corporation
+
+
+3637
+
+
+gimp
+gimp development team
+jpeg plugin gimp
+hausner
+
+
+
+
+
+irfanview later
+irfan skiljan
+version
+irfan skiljan
+
+
+
+
+
+paintnet
+rick brewster
+jpeg plugin paintnet
+hausner
+
+
+
+
+
+quick look
+apple
+jpeg plugin quick look
+hoary
+
+
+
+
+
+following apis software frameworks support jpeg used software provide jpeg support users
+
+
+product name
+publisher
+read support
+write support
+
+
+
+adobe integrated runtime
+adobe systems
+
+
+
+
+
+adobe flash player
+adobe systems
+
+
+
+
+
+integrated performance primitives
+intel
+
+
+4344
+
+
+leadtools
+lead technologies
+
+
+
+
+
+windows imaging component
+microsoft
+
+
+
+
+
+2011 video game rage employs jpeg compression compress textures46
+licensingedit
+microsoft patents technology jpeg microsoft representative stated january 2007 interview order encourage adoption photo specification made available microsoft open specification promise asserts microsoft allows implementation specification free file suits patented technology implementation47 reportedly stated josh weisberg director microsofts rich media group august 2010 microsoft made resulting jpeg standard available community promise48
+july 2010 reference software implement jpeg standard published itut recommendation t835 international standard isoiec 291995 microsoft included publications list specifications covered community promise48
+april 2013 microsoft released open source jpeg library licence4950 resolved licensing issues library implemented software packages distributed popular open source licences general public license previously released photo device porting kit51 incompatible
+alsoedit
+
+jpeg image format used lossy compression jpeg lossy comparable
+jpeg 2000 improvement intended replace jpeg jpeg committee 2000
+format lossless compression jpeg lossless comparable
+webp format lossy lossless compression proposed google 2010
+better portable graphics proposal fabrice bellard 2014 based hevc
+
+referencesedit
+
+
+recommendation t832 012012 information technology jpeg image coding system part image coding specification international telecommunication union standardization sector itut january 2012 retrieved 2014
+microsoft device porting specification microsoft corporation november 2006 retrieved november 2009
+provisional standard media type registry iana december 2014 retrieved january 2015
+bill crow november 2006 introducing microsoft developer network blogs bill crows blog microsoft corporation retrieved october 2009
+bill crow july 2007 industry standardization photo microsoft developer network blogs bill crows blog microsoft corporation retrieved august 2011
+photo version windows media photo digital preservation library congress 20080219 retrieved 20140313
+matthewu 20140131 jxrlib codeplex retrieved 20140315 jpeg format replaces photowindows media™ photo format windows windows image component accompanies internet explorer redistributable packages downlevel versions windows
+platform update windows service pack windows server 2008 microsoft knowledge base 20130202 2670838 retrieved 20140316
+pale moon release notes moonchild productions
+microsoft shows jpeg rival
+microsofts photo technology considered standardization jpeg microsoft corporation july 2007 retrieved july 2007
+jpeg 2000 digital cinema successes proposed standardization jpeg join photographic experts group july 2007 archived original march 2009 retrieved july 2009
+sharpe louis july 2009 press release 49th sardinia meeting joint photographic experts group archived original september 2009 retrieved october 2009
+isoiec 2919922009 information technology jpeg image coding system part image coding specification international organization standardization international electrotechnical commission august 2009 retrieved december 2009
+isoiec 2919922010 information technology jpeg image coding system part image coding specification international organization standardization international electrotechnical commission september 2010 retrieved december 2010
+bill crow july 2009 jpeg international standard microsoft developer network blogs bill crows blog microsoft corporation retrieved october 2009
+crow bill june 2006 pixel formats part unsigned integers bill crows digital imaging photography blog microsoft developer network retrieved october 2009
+windows media photo specification retrieved 20161005
+jpeg launches innovations group book jpeg 2000 suite published jpegorg march 2010 archived original september 2010
+srinivasan regunathan sullivan photo image coding technology digital photography spie applications digital image processing spie proceedings volume 6696 paper 66960a september 2007
+jpeg device porting specification jpegxrdpkspec10doc microsoft 2013 retrieved 20140315
+srinivasan sullivan regunathan malvar lowcomplexity hierarchical lapped transform lossytolossless image coding jpeg photo spie applications digital image processing xxxi spie proceedings volume 7073 paper 70730c august 2008
+liang trac tran 2001 fast multiplierless approximations lifting scheme ieee transactions signal processing 3032–3044 doi10110978969511
+tran trac liang chengjie 2003 lapped transform timedomain postfiltering ieee transactions signal processing 1557–1571 doi101109tsp2003811222
+corel paint shop pro® photo introduces integrated support microsoft photo format november 2007 retrieved july 2011
+fastpictureviewers format compatibility chart
+imagemagick image formatssite imagemagick studio retrieved 2013
+image support microsoft corporation 2010 retrieved 2010
+olivier frank april 2010 benefits gpupowered html5 microsoft corporation retrieved 2010
+crow bill march 2007 expression design includes photo support microsoft corporation retrieved june 2010
+microsoft research image composite editor microsoft research retrieved march 2011
+pale moon released retrieved march 2017
+advanced features photo import xara group retrieved september 2010
+gougelet pierre formats retrieved september 2010
+gougelet pierre addedchanged features xnview retrieved 2011
+photo plugins photoshop released bill crows digital imaging photography blog msdn blogs december 2007 retrieved december 2007
+jpeg file format plugin photoshop microsoft research january 2013 retrieved april 2013
+jpeg plugin gimp
+httpwwwirfanviewcompluginshtm
+jpeg plugin paintnet
+jpeg plugin quick look
+flash player release notes adobe labs july 2011 retrieved july 2011 permanent dead link
+product brief intel integrated performance primitives 2010
+jpeg codec support intel introduction features advantages august 2010
+leadtools jpegxr image compression leadtools retrieved july 2011
+carmack john october 2010 john carmack discusses rage iphoneipadipod bethesda blog zenimax media retrieved march 2011
+stephen shankland january 2007 vista give photo format exposure cnet retrieved march 2007
+microsoft community promise retrieved july 2011
+jpeg photoshop plugin source code microsoft april 2013 retrieved july 2013
+jxrlib jpegxr library microsoft april 2013 retrieved april 2013
+photo device porting microsoft december 2006 archived original february 2013 retrieved august 2007
+
+
+external linksedit
+
+links standardization publication pages
+
+
+itut publications
+
+itut tsup2 032011 jpeg system architecture
+itut t832 032009 updated 122009 jpeg image coding specification
+itut t833 092010 jpeg motion format
+itut t834 012010 jpeg conformance testing
+itut t835 012010 jpeg reference software
+
+
+isoiec publications
+
+isoiec 291991 2011 jpeg system architecture
+isoiec 291992 2010 jpeg image coding specification
+isoiec 291993 2010 jpeg motion format
+isoiec 291994 2010 jpeg conformance testing
+isoiec 291995 2010 jpeg reference software
+
+
+
+
+links information microsoft
+
+
+bill crows digital imaging photography blog msdn blogs
+download photo feature spec microsoft download center microsoft november 2006 retrieved march 2012
+download windows imaging component microsoft download center microsoft november 2009 retrieved march 2012
+jpeg codec overview february 2012 retrieved march 2012
+jpeg photoshop plugin source code april 2013 retrieved april 2013
+jpeg plugin photoshop windows microsoft research june 2013
+
+
+links information others
+
+
+joris evers 2006 microsoft shows jpeg rival cnet retrieved april 2016
+week media podcast photo featuring microsofts photo program manager bill crow
+comparison jpeg 2000 moscow state university graphics media august 2006
+
+
+
+
+
+
+
+
+
+
+
+
+graphics file formats
+
+
+
+raster
+
+
+
+
+anim
+apng
+
+
+
+bsave
+
+
+
+
+
+
+
+
+fits
+flic
+flif
+
+
+hdri
+hevc
+icer
+icns
+
+
+ilbm
+jbig
+jbig2
+
+jpeg
+jpeg 2000
+jpegls
+jpeg
+
+
+miff
+nrrd
+
+
+
+
+
+pictor
+
+
+
+qtvr
+
+
+
+jpeghdr
+logluv tiff
+
+
+
+
+tiff
+
+tiffep
+tiffit
+
+
+
+wbmp
+webp
+
+
+
+
+
+
+
+
+
+
+
+
+
+ciff
+
+
+
+
+
+
+vector
+
+
+
+
+
+
+
+
+
+gerber
+hvif
+iges
+pgml
+
+
+
+
+
+
+
+
+
+compound
+
+
+
+
+djvu
+
+
+pict
+
+
+xaml
+
+
+
+
+
+related
+
+
+
+exchangeable image file format exif
+extensible metadata platform
+
+
+
+
+
+
+
+
+category
+comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+multimedia compression container formats
+
+
+
+video
+compression
+
+
+
+
+isoiec
+
+
+
+mjpeg
+motion jpeg 2000
+mpeg1
+mpeg2
+
+part
+
+
+mpeg4
+
+part 2asp
+part 10avc
+
+
+mpegh
+
+part 2hevc
+
+
+
+
+
+
+
+itut
+
+
+
+h120
+h261
+h262
+h263
+h264
+h265
+
+
+
+
+
+smpte
+
+
+
+
+
+
+
+
+
+
+
+
+alliance open media
+
+
+
+
+
+
+
+
+
+others
+
+
+
+apple video
+
+bink
+cinepak
+daala
+dirac
+
+
+ffv1
+huffyuv
+indeo
+lagarith
+microsoft video
+lossless
+video
+pixlet
+prores
+prores 4444
+quicktime
+
+animation
+graphics
+
+
+realvideo
+rtvideo
+sheervideo
+smacker
+sorenson video spark
+theora
+thor
+
+
+
+
+
+
+
+yuls
+
+
+
+
+
+
+
+
+audio
+compression
+
+
+
+
+isoiec
+
+
+
+mpeg1 layer
+mpeg1 layer
+
+multichannel
+
+
+mpeg1 layer
+
+
+heaac
+aacld
+
+
+mpeg surround
+mpeg4
+mpeg4
+mpeg4
+mpeg4 hvxc
+mpeg4 celp
+mpegd usac
+mpegh audio
+
+
+
+
+
+itut
+
+
+
+g711 alaw µlaw
+g718
+g719
+g722
+g7221
+g7222
+g723
+g7231
+g726
+g728
+g729
+g7291
+
+
+
+
+
+ietf
+
+
+
+opus
+ilbc
+
+
+
+
+
+3gpp
+
+
+
+
+amrwb
+amrwb
+evrc
+evrcb
+
+gsmhr
+gsmfr
+gsmefr
+
+
+
+
+
+others
+
+
+
+acelp
+
+
+alac
+asao
+atrac
+celt
+codec2
+
+
+flac
+isac
+monkeys audio
+
+
+true audio
+
+
+
+musepack
+optimfrog
+
+qcelp
+rcelp
+realaudio
+rtaudio
+
+
+silk
+siren
+
+speex
+svopc
+twinvq
+vmrwb
+vorbis
+vselp
+wavpack
+
+
+aptx
+
+
+
+
+
+
+
+
+image
+compression
+
+
+
+
+
+itut ietf
+
+
+
+ccitt group
+
+heif
+hevc
+jbig
+jbig2
+jpeg
+jpeg 2000
+jpeg
+lossless jpeg
+
+tiff
+tiffep
+tiffit
+
+
+
+
+
+others
+
+
+
+apng
+
+djvu
+
+flif
+icer
+
+
+qtvr
+wbmp
+webp
+
+
+
+
+
+
+
+
+containers
+
+
+
+
+isoiec
+
+
+
+mpeges
+
+mpegpes
+
+
+mpegps
+mpegts
+base media file format
+mpeg4 part
+motion jpeg 2000
+mpeg21 part
+mpeg media transport
+
+
+
+
+
+itut
+
+
+
+h2220
+t802
+
+
+
+
+
+ietf
+
+
+
+
+
+
+
+
+
+others
+
+
+
+
+
+
+aiff
+
+
+
+bink
+
+smacker
+
+
+
+divx media format
+
+flash video
+
+
+m2ts
+matroska
+
+webm
+
+
+
+
+quicktime file format
+ratdvd
+realmedia
+riff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+collaborations
+
+
+
+netvc
+mpegla
+
+
+
+
+
+
+compression methods methods compression software codecs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlejpegxroldid815553467 categories high dynamic range file formatsgraphics file formatsmicrosoft windows multimedia technologyopen formatscomputer file formatsitut recommendationslossy compression algorithmsisoiec 29199image compressionhidden categories articles dead external linksarticles dead external links april 2017articles permanently dead external linksuse dates july 2013

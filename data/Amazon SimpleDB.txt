@@ -1,0 +1,612 @@
+
+
+
+
+SimpleDB Logo
+
+
+Amazon SimpleDB is a distributed database written in Erlang[1] by Amazon.com. It is used as a web service in concert with Amazon Elastic Compute Cloud (EC2) and Amazon S3 and is part of Amazon Web Services. It was announced on December 13, 2007.[2]
+As with EC2 and S3, Amazon charges fees for SimpleDB storage, transfer, and throughput over the Internet. On December 1, 2008, Amazon introduced new pricing with Free Tier[3] for 1 GB of data & 25 machine hours. Transfer to other Amazon Web Services is free of charge.[4]
+
+
+
+Contents
+
+
+1 Limitations
+
+1.1 Store limitations
+1.2 Query limitations
+
+
+2 Features
+
+2.1 Conditional Put and Delete
+2.2 Consistent Read
+
+
+3 Relationship to DynamoDB
+4 See also
+5 References
+6 External links
+
+
+
+Limitations[edit]
+
+
+
+
+
+
+This section may rely excessively on sources too closely associated with the subject, potentially preventing the article from being verifiable and neutral. Please help improve it by replacing them with more appropriate citations to reliable, independent, third-party sources. (May 2016) (Learn how and when to remove this template message)
+
+
+
+SimpleDB provides eventual consistency, which is a weaker form of consistency, compared to other database management systems. This is often considered a limitation, because it is harder to reason about, which makes it harder to write correct programs that make use of SimpleDB. This limitation is the result of a fundamental design trade-off. By foregoing consistency, the system is able to achieve two other highly desirable properties:
+
+availability – components of the system may fail, but the service will continue to operate correctly.
+partition tolerance – components in the system are connected to one another by a computer network. If components are not able to contact one another using the network (a condition known as a network partition), operation of the system will continue.
+
+Component failures are assumed to be inevitable; thus, both of these properties were deemed necessary in order to provide a reliable web service. The CAP theorem states that it is not possible for a system to exhibit these properties along with consistency; thus, the designers needed to settle for a weaker form of consistency.
+Published limitations:[5]
+Store limitations[edit]
+
+
+
+
+
+
+This section may rely excessively on sources too closely associated with the subject, potentially preventing the article from being verifiable and neutral. Please help improve it by replacing them with more appropriate citations to reliable, independent, third-party sources. (May 2016) (Learn how and when to remove this template message)
+
+
+
+
+
+Attribute
+Maximum
+
+
+domains
+250 active domains per account. More can be requested by filling out a form.[6]
+
+
+size of each domain
+10 GB
+
+
+attributes per domain
+1,000,000,000
+
+
+attributes per item
+256 attributes
+
+
+size per attribute
+1024 bytes
+
+
+Query limitations[edit]
+
+
+Attribute
+Maximum
+
+
+items returned in a query response
+2500 items
+
+
+seconds a query may run
+5 seconds
+
+
+attribute names per query predicate
+1 attribute name
+
+
+comparisons per predicate
+22 operators
+
+
+predicates per query expression
+20 predicates
+
+
+Features[edit]
+Conditional Put and Delete[edit]
+Conditional put and conditional delete are new operations that were added in February 2010. They address a problem that arises when accessing SimpleDB concurrently. Consider a simple program that uses SimpleDB to store a counter, i.e. a number that can be incremented. The program must do three things:
+
+Retrieve the current value of the counter from SimpleDB.
+Add one to the value.
+Store the new value in the same place as the old value in SimpleDB.
+
+If this program runs while no other programs access SimpleDB, it will work correctly; however, it is often desirable for software applications (particularly web applications) to access the same data concurrently. When the same data is accessed concurrently, a race condition arises, which would result in undetectable data loss.
+Continuing the previous example, consider two processes, A and B, running the same program. Suppose SimpleDB services requests for data, as described in step 1, from both A and B. A and B see the same value. Let's say that the current value of the counter is 0. Because of steps 2 and 3, A will try to store 1. B will try to do the same; thus, the final counter value will be 1, even though the expected final counter value is 2, because the system attempted two increment operations, one by A, and another by B.
+This problem can be solved by the use of conditional put. Suppose we change step 3 as follows: instead of unconditionally storing the new value, the program asks SimpleDB to store the new value only if the value that it currently holds is the same as the value that was retrieved in step 1. Then, we can be sure that the counter's value actually increases. This introduces some additional complexity; if SimpleDB was not able to store the new value because the current value was not as expected, the program must repeat steps 1-3 until the conditional put operation actually changes the stored value.
+Consistent Read[edit]
+Consistent read was a new feature that was released at the same time as conditional put and conditional delete. As the name suggests, consistent read addresses problems that arise due to SimpleDB's eventual consistency model (See the Limitations section). Consider the following sequence of operations:
+
+Program A stores some data in SimpleDB.
+Immediately after, A requests the data it just stored.
+
+SimpleDB's eventual consistency guarantee does not allow us to say that the data retrieved in step 2 reflects the updates that were made in step 1. Eventual consistency only guarantees that step 2 reflects the complete set of updates in step 1, or none of those updates. Consistent read can be used to ensure that the data retrieved in step 2 reflect changes in step 1.
+The reason that inconsistent results can arise when the consistent read operation is not used is that SimpleDB stores data in multiple locations (for availability), and the new data in step 1 might not be written at all locations when SimpleDB receives the data request in step 2. In that case, it is possible that the data request in step 2 is serviced at one of the locations where the new data has not been written.
+Amazon discourages the use of consistent read, unless it is required for correctness. The reason for this recommendation is that the rate at which consistent read operations are serviced is lower than for regular reads.
+Relationship to DynamoDB[edit]
+
+
+
+
+
+
+This section may rely excessively on sources too closely associated with the subject, potentially preventing the article from being verifiable and neutral. Please help improve it by replacing them with more appropriate citations to reliable, independent, third-party sources. (May 2016) (Learn how and when to remove this template message)
+
+
+
+There has been some talk of SimpleDB being superseded by DynamoDB (it is no longer being "iterated on",[7] though Amazon does not plan to remove it). DynamoDB appears to be its successor.[8]
+See also[edit]
+
+Amazon DynamoDB
+Structured storage
+BigTable
+NoSQL
+
+References[edit]
+
+
+^ What You Need To Know About Amazon SimpleDB
+^ Amazon SimpleDB- Limited Beta
+^ SimpleDB - Free Tier - A shift in AWS pricing Archived 2008-12-25 at the Wayback Machine.
+^ Amazon SimpleDB official home page
+^ "Limits", SimpleDB Developer Guide, Amazon  (API latest version).
+^ Request to Increase Allocation of Amazon SimpleDB Domains. Aws.amazon.com. Retrieved on 2013-08-09.
+^ https://forums.aws.amazon.com/thread.jspa?threadID=96141&tstart=0
+^ http://aws.amazon.com/dynamodb/faqs/#How_does_Amazon_DynamoDB_differ_from_Amazon_SimpleDB_Which_should_I_use Dynamo created " to address the limitations of SimpleDB."
+
+
+External links[edit]
+
+Amazon SimpleDB official home page
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Amazon
+
+
+
+People
+
+
+
+
+Current
+
+
+
+Jeff Bezos
+Tony Hsieh
+Werner Vogels
+Gregg Zehr
+
+
+
+
+
+Former
+
+
+
+Rick Dalzell
+Brian McBride
+Ram Shriram
+Tom Szkutak
+Brian Valentine
+Christopher North
+
+
+
+
+
+
+
+
+Facilities
+
+
+
+Doppler
+Day 1
+HQ2
+
+
+
+
+
+Products
+and services
+
+
+
+
+Websites
+
+
+
+A9.com
+AbeBooks
+Amazon.com
+Alexa Internet
+Book Depository
+BookFinder
+China
+Curse
+Digital Photography Review
+Fresh
+Goodreads
+IMDb
+
+Box Office Mojo
+Withoutabox
+
+
+Junglee.com
+Local
+Marketplace
+Payments
+Twitch.tv
+Wireless
+Woot.com
+Zappos
+Souq.com
+
+
+
+
+
+Web services
+
+
+
+AMI
+CloudFront
+DynamoDB
+EBS
+EC2
+MTurk
+Neptune
+Product Advertising API
+RDS
+S3
+SES
+SimpleDB
+SQS
+VPC
+Silk
+Glacier
+Storywriter
+
+
+
+
+
+Digital
+
+
+
+Alexa
+Appstore
+Audible
+ComiXology
+Amazon Drive
+Video
+Prime
+
+Key
+
+
+Kindle Store
+Music
+Reflexive Entertainment
+Fire OS
+Amazon Digital Game Store
+
+
+
+
+
+Devices
+
+
+
+Blink Home
+Cloud Cam
+Dash buttons
+Dash wand
+Echo
+
+Show
+
+
+Kindle
+Kindle Fire
+
+Fire HD
+Fire HDX
+
+
+Fire TV
+
+Stick
+
+
+Fire Phone
+
+
+
+
+
+Technology
+
+
+
+1-Click
+Amazon Game Studios
+Amazon Robotics
+Carbonado
+Dynamo
+Graphiq
+Gurupa
+Lab126
+Double Helix Games
+Obidos
+Liquavista
+
+
+
+
+
+Publishing
+
+
+
+Amazon Publishing
+Amazon Studios
+Breakthrough Novel Award
+Best Books of the Year
+Kindle Direct Publishing
+
+
+
+
+
+Retail
+
+
+
+Amazon Books
+Amazon Go
+Whole Foods Market
+
+
+
+
+
+Logistics
+
+
+
+Amazon Air
+Amazon Prime Air
+
+
+
+
+
+Former
+
+
+
+43 Things
+Askville
+Amapedia
+Amie Street (Songza)
+CDNow
+Diapers.com
+Endless.com
+Lexcycle
+LivingSocial
+LoveFilm
+Mobipocket
+PlanetAll
+Sellaband
+Shelfari
+
+
+
+
+
+
+
+
+Other
+
+
+
+Amazon Light
+ASIN
+Controversies (tax)
+Fishbowl
+Locker
+Perfect 10, Inc. v. Amazon.com, Inc.
+Statistically improbable phrase
+Vine
+List of Amazon brands
+List of Amazon locations
+List of mergers and acquisitions by Amazon
+List of Amazon products and services
+LibraryThing
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Cloud computing
+
+
+
+Applications
+
+
+
+Box
+Google
+
+G Suite
+Docs, Sheets and Slides
+
+
+HP Cloud (closed)
+Microsoft Online
+Rackspace
+Salesforce
+Zoho
+
+
+
+
+
+Platforms
+
+
+
+Alpha7
+Amazon
+AppScale
+Box
+Bluemix
+Cloud Foundry
+Cocaine (PaaS)
+Engine Yard
+eXo Platform
+Helion
+GE Predix
+Google App Engine
+GreenQloud
+Heroku
+Inktank
+Jelastic
+Mendix
+Microsoft Azure
+OutSystems
+openQRM
+OpenShift
+PythonAnywhere
+RightScale
+Force.com
+SAP Cloud Platform
+VMware vCloud Air
+WaveMaker
+
+
+
+
+
+Infrastructure
+
+
+
+Amazon
+Abiquo Enterprise Edition
+CloudStack
+CtrlS
+DigitalOcean
+EMC Atmos
+Eucalyptus
+Fujitsu
+GoGrid
+Google Cloud Platform
+GreenButton
+GreenQloud
+IBM cloud computing
+iland
+Joyent
+Lunacloud
+Nimbula
+Nimbus
+OpenNebula
+OpenStack
+OrionVM
+Rackspace Cloud
+SoftLayer
+Zadara Storage
+libvirt
+libguestfs
+OVirt
+Virtual Machine Manager
+Wakame-vdc
+Virtual Private Cloud OnDemand
+
+
+
+
+
+Technologies
+
+
+
+Cloud database
+Data centers
+Distributed file system for cloud
+Hardware virtualization
+Internet
+Networking
+Security
+Structured storage
+Virtual appliance
+Web APIs
+Virtual private cloud
+
+
+
+
+
+
+
+
+ Category
+ Commons
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Amazon_SimpleDB&oldid=816128451"					Categories: Document-oriented databasesAmazon Web ServicesCloud databasesDatabase-related software for LinuxDistributed data storesHidden categories: Webarchive template wayback linksArticles lacking reliable references from May 2016All articles lacking reliable references

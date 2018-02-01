@@ -1,0 +1,3438 @@
+"Linear transformation" redirects here. For fractional linear transformations, see Möbius transformation.
+Not to be confused with linear function.
+In mathematics, a linear map (also called a linear mapping, linear transformation or, in some contexts, linear function) is a mapping V → W between two modules (including vector spaces) that preserves (in the sense defined below) the operations of addition and scalar multiplication.
+An important special case is when V = W, in which case the map is called a linear operator,[1] or an endomorphism of V. Sometimes the term linear function has the same meaning as linear map, while in analytic geometry it does not.
+A linear map always maps linear subspaces onto linear subspaces (possibly of a lower dimension);[2] for instance it maps a plane through the origin to a plane, straight line or point. Linear maps can often be represented as matrices, and simple examples include rotation and reflection linear transformations.
+In the language of abstract algebra, a linear map is a module homomorphism. In the language of category theory it is a morphism in the category of modules over a given ring.
+
+
+
+Contents
+
+
+1 Definition and first consequences
+2 Examples
+3 Matrices
+4 Examples of linear transformation matrices
+5 Forming new linear maps from given ones
+6 Endomorphisms and automorphisms
+7 Kernel, image and the rank–nullity theorem
+8 Cokernel
+
+8.1 Index
+
+
+9 Algebraic classifications of linear transformations
+10 Change of basis
+11 Continuity
+12 Applications
+13 See also
+14 Notes
+15 References
+
+
+
+Definition and first consequences[edit]
+Let 
+
+
+
+V
+
+
+{\displaystyle V}
+
+ and 
+
+
+
+W
+
+
+{\displaystyle W}
+
+ be vector spaces over the same field 
+
+
+
+
+K
+
+.
+
+
+{\displaystyle \mathbf {K} .}
+
+ A function 
+
+
+
+f
+:
+V
+→
+W
+
+
+{\displaystyle f:V\to W}
+
+ is said to be a linear map if for any two vectors 
+
+
+
+
+u
+
+,
+
+v
+
+∈
+V
+
+
+{\displaystyle \mathbf {u} ,\mathbf {v} \in V}
+
+ and any scalar 
+
+
+
+c
+∈
+
+K
+
+,
+
+
+{\displaystyle c\in \mathbf {K} ,}
+
+ the following two conditions are satisfied:
+
+
+
+
+
+
+f
+(
+
+u
+
++
+
+v
+
+)
+=
+f
+(
+
+u
+
+)
++
+f
+(
+
+v
+
+)
+
+
+{\displaystyle f(\mathbf {u} +\mathbf {v} )=f(\mathbf {u} )+f(\mathbf {v} )}
+
+
+additivity / operation of addition
+
+
+
+
+
+
+f
+(
+c
+
+u
+
+)
+=
+c
+f
+(
+
+u
+
+)
+
+
+{\displaystyle f(c\mathbf {u} )=cf(\mathbf {u} )}
+
+
+homogeneity of degree 1 / operation of scalar multiplication
+
+
+Thus, a linear map is said to be operation preserving. In other words, it does not matter whether you apply the linear map before or after the operations of addition and scalar multiplication.
+This is equivalent to requiring the same for any linear combination of vectors, i.e. that for any vectors 
+
+
+
+
+
+u
+
+
+1
+
+
+,
+…
+,
+
+
+u
+
+
+n
+
+
+∈
+V
+
+
+{\displaystyle \mathbf {u} _{1},\ldots ,\mathbf {u} _{n}\in V}
+
+ and scalars 
+
+
+
+
+c
+
+1
+
+
+,
+…
+,
+
+c
+
+n
+
+
+∈
+
+K
+
+,
+
+
+{\displaystyle c_{1},\ldots ,c_{n}\in \mathbf {K} ,}
+
+ the following equality holds:[3][4]
+
+
+
+
+
+f
+(
+
+c
+
+1
+
+
+
+
+u
+
+
+1
+
+
++
+⋯
++
+
+c
+
+n
+
+
+
+
+u
+
+
+n
+
+
+)
+=
+
+c
+
+1
+
+
+f
+(
+
+
+u
+
+
+1
+
+
+)
++
+⋯
++
+
+c
+
+n
+
+
+f
+(
+
+
+u
+
+
+n
+
+
+)
+.
+
+
+{\displaystyle f(c_{1}\mathbf {u} _{1}+\cdots +c_{n}\mathbf {u} _{n})=c_{1}f(\mathbf {u} _{1})+\cdots +c_{n}f(\mathbf {u} _{n}).}
+
+
+
+Denoting the zero elements of the vector spaces 
+
+
+
+V
+
+
+{\displaystyle V}
+
+ and 
+
+
+
+W
+
+
+{\displaystyle W}
+
+ by 
+
+
+
+
+
+0
+
+
+V
+
+
+
+
+{\displaystyle \mathbf {0} _{V}}
+
+ and 
+
+
+
+
+
+0
+
+
+W
+
+
+
+
+{\displaystyle \mathbf {0} _{W}}
+
+ respectively, it follows that 
+
+
+
+f
+(
+
+
+0
+
+
+V
+
+
+)
+=
+
+
+0
+
+
+W
+
+
+.
+
+
+{\displaystyle f(\mathbf {0} _{V})=\mathbf {0} _{W}.}
+
+ Let 
+
+
+
+c
+=
+0
+
+
+{\displaystyle c=0}
+
+ and 
+
+
+
+
+v
+
+∈
+V
+
+
+{\displaystyle \mathbf {v} \in V}
+
+ in the equation for homogeneity of degree 1:
+
+
+
+
+
+f
+(
+
+
+0
+
+
+V
+
+
+)
+=
+f
+(
+0
+
+v
+
+)
+=
+0
+f
+(
+
+v
+
+)
+=
+
+
+0
+
+
+W
+
+
+.
+
+
+{\displaystyle f(\mathbf {0} _{V})=f(0\mathbf {v} )=0f(\mathbf {v} )=\mathbf {0} _{W}.}
+
+
+
+Occasionally, 
+
+
+
+V
+
+
+{\displaystyle V}
+
+ and 
+
+
+
+W
+
+
+{\displaystyle W}
+
+ can be considered to be vector spaces over different fields. It is then necessary to specify which of these ground fields is being used in the definition of "linear". If 
+
+
+
+V
+
+
+{\displaystyle V}
+
+ and 
+
+
+
+W
+
+
+{\displaystyle W}
+
+ are considered as spaces over the field 
+
+
+
+
+K
+
+
+
+{\displaystyle \mathbf {K} }
+
+ as above, we talk about 
+
+
+
+
+K
+
+
+
+{\displaystyle \mathbf {K} }
+
+-linear maps. For example, the conjugation of complex numbers is an 
+
+
+
+
+R
+
+
+
+{\displaystyle \mathbf {R} }
+
+-linear map 
+
+
+
+
+C
+
+→
+
+C
+
+
+
+{\displaystyle \mathbf {C} \to \mathbf {C} }
+
+, but it is not 
+
+
+
+
+C
+
+
+
+{\displaystyle \mathbf {C} }
+
+-linear.
+A linear map 
+
+
+
+V
+→
+
+K
+
+
+
+{\displaystyle V\to \mathbf {K} }
+
+ with 
+
+
+
+
+K
+
+
+
+{\displaystyle \mathbf {K} }
+
+ viewed as a vector space over itself, is called a linear functional.[5]
+These statements generalize to any left-module 
+
+
+
+
+
+
+R
+
+
+M
+
+
+{\displaystyle _{R}M}
+
+ over a ring 
+
+
+
+R
+
+
+{\displaystyle R}
+
+ without modification, and to any right-module upon reversing of the scalar multiplication.
+Examples[edit]
+
+The zero map x ↦ 0 between two left-modules (or two right-modules) over the same ring is always linear.
+The identity map on any module is a linear operator.
+Any homothecy centered in the origin of a vector space, 
+
+
+
+v
+↦
+c
+v
+
+
+{\displaystyle v\mapsto cv}
+
+ where c is a scalar, is a linear operator. This does not hold in general for modules, where such a map might only be semilinear.
+For real numbers, the map x ↦ x2 is not linear.
+For real numbers, the map x ↦ x + 1 is not linear (but is an affine transformation; y = x + 1 is a linear equation, as the term is used in analytic geometry.)
+If A is a real m × n matrix, then A defines a linear map from Rn to Rm by sending the column vector x ∈ Rn to the column vector Ax ∈ Rm. Conversely, any linear map between finite-dimensional vector spaces can be represented in this manner; see the following section.
+Differentiation defines a linear map from the space of all differentiable functions to the space of all functions. It also defines a linear operator on the space of all smooth functions.
+The (definite) integral over some interval I is a linear map from the space of all real-valued integrable functions on I to R
+The (indefinite) integral (or antiderivative) with a fixed starting point defines a linear map from the space of all real-valued integrable functions on R to the space of all real-valued, differentiable, functions on R. Without a fixed starting point, an exercise in group theory will show that the antiderivative maps to the quotient space of the differentiables over the equivalence relation, "differ by a constant", which yields an identity class of the constant valued functions 
+
+
+
+
+
+(
+ 
+∫
+
+:
+ 
+I
+(
+ℜ
+)
+→
+ 
+D
+(
+ℜ
+)
+
+/
+
+ℜ
+ 
+)
+
+
+
+
+{\displaystyle \textstyle \left(\ \int \!:\ I(\Re )\to \ D(\Re )/\Re \ \right)}
+
+.
+If V and W are finite-dimensional vector spaces over a field F, then functions that send linear maps f : V → W to dimF(W) × dimF(V) matrices in the way described in the sequel are themselves linear maps (indeed linear isomorphisms).
+The expected value of a random variable (which is in fact a function, and as such a member of a vector space) is linear, as for random variables X and Y we have E[X + Y] = E[X] + E[Y] and E[aX] = aE[X], but the variance of a random variable is not linear.
+
+Matrices[edit]
+Main article: Transformation matrix
+If V and W are finite-dimensional vector spaces and a basis is defined for each vector space, then every linear map from V to W can be represented by a matrix.[6] This is useful because it allows concrete calculations. Matrices yield examples of linear maps: if A is a real m × n matrix, then f(x) = Ax describes a linear map Rn → Rm (see Euclidean space).
+Let {v1, ..., vn} be a basis for V. Then every vector v in V is uniquely determined by the coefficients c1, ..., cn in the field R:
+
+
+
+
+
+
+c
+
+1
+
+
+
+
+v
+
+
+1
+
+
++
+⋯
++
+
+c
+
+n
+
+
+
+
+v
+
+
+n
+
+
+.
+
+
+{\displaystyle c_{1}\mathbf {v} _{1}+\cdots +c_{n}\mathbf {v} _{n}.}
+
+
+
+If f : V → W is a linear map,
+
+
+
+
+
+f
+(
+
+c
+
+1
+
+
+
+
+v
+
+
+1
+
+
++
+⋯
++
+
+c
+
+n
+
+
+
+
+v
+
+
+n
+
+
+)
+=
+
+c
+
+1
+
+
+f
+(
+
+
+v
+
+
+1
+
+
+)
++
+⋯
++
+
+c
+
+n
+
+
+f
+(
+
+
+v
+
+
+n
+
+
+)
+,
+
+
+{\displaystyle f(c_{1}\mathbf {v} _{1}+\cdots +c_{n}\mathbf {v} _{n})=c_{1}f(\mathbf {v} _{1})+\cdots +c_{n}f(\mathbf {v} _{n}),}
+
+
+
+which implies that the function f is entirely determined by the vectors f(v1), ..., f(vn). Now let {w1, ..., wm} be a basis for W. Then we can represent each vector f(vj) as
+
+
+
+
+
+f
+(
+
+
+v
+
+
+j
+
+
+)
+=
+
+a
+
+1
+j
+
+
+
+
+w
+
+
+1
+
+
++
+⋯
++
+
+a
+
+m
+j
+
+
+
+
+w
+
+
+m
+
+
+.
+
+
+{\displaystyle f(\mathbf {v} _{j})=a_{1j}\mathbf {w} _{1}+\cdots +a_{mj}\mathbf {w} _{m}.}
+
+
+
+Thus, the function f is entirely determined by the values of aij. If we put these values into an m × n matrix M, then we can conveniently use it to compute the vector output of f for any vector in V. To get M, every column j of M is a vector
+
+
+
+
+
+(
+
+a
+
+1
+j
+
+
+,
+.
+.
+.
+,
+
+a
+
+m
+j
+
+
+
+)
+
+T
+
+
+
+
+{\displaystyle (a_{1j},...,a_{mj})^{\text{T}}}
+
+
+
+corresponding to f(vj) as defined above. To define it more clearly, for some column j that corresponds to the mapping f(vj),
+
+
+
+
+
+
+M
+
+=
+
+
+(
+
+
+
+
+
+
+
+a
+
+1
+j
+
+
+
+
+
+
+
+
+
+
+
+.
+
+
+
+
+
+
+
+∗
+
+
+
+.
+
+
+
+∗
+
+
+
+
+
+
+
+.
+
+
+
+
+
+
+
+
+
+
+a
+
+m
+j
+
+
+
+
+
+
+
+)
+
+
+
+
+{\displaystyle \mathbf {M} ={\begin{pmatrix}&&&a_{1j}&&\\&&&.&&\\&*&&.&&*\\&&&.&&\\&&&a_{mj}&&\end{pmatrix}}}
+
+
+
+where M is the matrix of f. The symbol ∗ denotes that there are other columns which together with column j make up a total of n columns of M. In other words, every column j = 1, ..., n has a corresponding vector f(vj) whose coordinates a1j, ..., amj are the elements of column j. A single linear map may be represented by many matrices. This is because the values of the elements of a matrix depend on the bases chosen.
+The matrices of a linear transformation can be represented visually:
+
+Matrix for 
+
+
+
+T
+
+
+{\displaystyle T}
+
+ relative to 
+
+
+
+B
+
+
+{\displaystyle B}
+
+: 
+
+
+
+A
+
+
+{\displaystyle A}
+
+
+Matrix for 
+
+
+
+T
+
+
+{\displaystyle T}
+
+ relative to 
+
+
+
+
+B
+′
+
+
+
+{\displaystyle B'}
+
+: 
+
+
+
+
+A
+′
+
+
+
+{\displaystyle A'}
+
+
+Transition matrix from 
+
+
+
+
+B
+′
+
+
+
+{\displaystyle B'}
+
+ to 
+
+
+
+B
+
+
+{\displaystyle B}
+
+: 
+
+
+
+P
+
+
+{\displaystyle P}
+
+
+Transition matrix from 
+
+
+
+B
+
+
+{\displaystyle B}
+
+ to 
+
+
+
+
+B
+′
+
+
+
+{\displaystyle B'}
+
+: 
+
+
+
+
+P
+
+−
+1
+
+
+
+
+{\displaystyle P^{-1}}
+
+
+
+
+Such that starting in the bottom left corner 
+
+
+
+[
+
+
+
+v
+→
+
+
+
+
+]
+
+
+B
+′
+
+
+
+
+
+{\displaystyle [{\vec {v}}]_{B'}}
+
+ and looking for the bottom right corner 
+
+
+
+[
+T
+(
+
+
+
+v
+→
+
+
+
+)
+
+]
+
+
+B
+′
+
+
+
+
+
+{\displaystyle [T({\vec {v}})]_{B'}}
+
+, one would left-multiply—that is, 
+
+
+
+
+A
+′
+
+[
+
+
+
+v
+→
+
+
+
+
+]
+
+
+B
+′
+
+
+
+=
+[
+T
+(
+
+
+
+v
+→
+
+
+
+)
+
+]
+
+
+B
+′
+
+
+
+
+
+{\displaystyle A'[{\vec {v}}]_{B'}=[T({\vec {v}})]_{B'}}
+
+. The equivalent method would be the "longer" method going clockwise from the same point such that 
+
+
+
+[
+
+
+
+v
+→
+
+
+
+
+]
+
+
+B
+′
+
+
+
+
+
+{\displaystyle [{\vec {v}}]_{B'}}
+
+ is left-multiplied with 
+
+
+
+
+P
+
+−
+1
+
+
+A
+P
+
+
+{\displaystyle P^{-1}AP}
+
+, or 
+
+
+
+
+P
+
+−
+1
+
+
+A
+P
+[
+
+
+
+v
+→
+
+
+
+
+]
+
+
+B
+′
+
+
+
+=
+[
+T
+(
+
+
+
+v
+→
+
+
+
+)
+
+]
+
+
+B
+′
+
+
+
+
+
+{\displaystyle P^{-1}AP[{\vec {v}}]_{B'}=[T({\vec {v}})]_{B'}}
+
+.
+Examples of linear transformation matrices[edit]
+In two-dimensional space R2 linear maps are described by 2 × 2 real matrices. These are some examples:
+
+rotation by 90 degrees counterclockwise:
+
+
+
+
+
+
+A
+
+=
+
+
+(
+
+
+
+0
+
+
+−
+1
+
+
+
+
+1
+
+
+0
+
+
+
+)
+
+
+
+
+{\displaystyle \mathbf {A} ={\begin{pmatrix}0&-1\\1&0\end{pmatrix}}}
+
+
+
+
+rotation by angle θ counterclockwise:
+
+
+
+
+
+
+A
+
+=
+
+
+(
+
+
+
+cos
+⁡
+θ
+
+
+−
+sin
+⁡
+θ
+
+
+
+
+sin
+⁡
+θ
+
+
+cos
+⁡
+θ
+
+
+
+)
+
+
+
+
+{\displaystyle \mathbf {A} ={\begin{pmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \end{pmatrix}}}
+
+
+
+
+reflection against the x axis:
+
+
+
+
+
+
+A
+
+=
+
+
+(
+
+
+
+1
+
+
+0
+
+
+
+
+0
+
+
+−
+1
+
+
+
+)
+
+
+
+
+{\displaystyle \mathbf {A} ={\begin{pmatrix}1&0\\0&-1\end{pmatrix}}}
+
+
+
+
+reflection against the y axis:
+
+
+
+
+
+
+A
+
+=
+
+
+(
+
+
+
+−
+1
+
+
+0
+
+
+
+
+0
+
+
+1
+
+
+
+)
+
+
+
+
+{\displaystyle \mathbf {A} ={\begin{pmatrix}-1&0\\0&1\end{pmatrix}}}
+
+
+
+
+scaling by 2 in all directions:
+
+
+
+
+
+
+A
+
+=
+
+
+(
+
+
+
+2
+
+
+0
+
+
+
+
+0
+
+
+2
+
+
+
+)
+
+
+
+
+{\displaystyle \mathbf {A} ={\begin{pmatrix}2&0\\0&2\end{pmatrix}}}
+
+
+
+
+horizontal shear mapping:
+
+
+
+
+
+
+A
+
+=
+
+
+(
+
+
+
+1
+
+
+m
+
+
+
+
+0
+
+
+1
+
+
+
+)
+
+
+
+
+{\displaystyle \mathbf {A} ={\begin{pmatrix}1&m\\0&1\end{pmatrix}}}
+
+
+
+
+squeeze mapping:
+
+
+
+
+
+
+A
+
+=
+
+
+(
+
+
+
+k
+
+
+0
+
+
+
+
+0
+
+
+1
+
+/
+
+k
+
+
+
+)
+
+
+
+
+{\displaystyle \mathbf {A} ={\begin{pmatrix}k&0\\0&1/k\end{pmatrix}}}
+
+
+
+
+projection onto the y axis:
+
+
+
+
+
+
+A
+
+=
+
+
+(
+
+
+
+0
+
+
+0
+
+
+
+
+0
+
+
+1
+
+
+
+)
+
+
+.
+
+
+{\displaystyle \mathbf {A} ={\begin{pmatrix}0&0\\0&1\end{pmatrix}}.}
+
+
+
+
+
+Forming new linear maps from given ones[edit]
+The composition of linear maps is linear: if f : V → W and g : W → Z are linear, then so is their composition g ∘ f : V → Z. It follows from this that the class of all vector spaces over a given field K, together with K-linear maps as morphisms, forms a category.
+The inverse of a linear map, when defined, is again a linear map.
+If f1 : V → W and f2 : V → W are linear, then so is their pointwise sum f1 + f2 (which is defined by (f1 + f2)(x) = f1(x) + f2(x)).
+If f : V → W is linear and a is an element of the ground field K, then the map af, defined by (af)(x) = a(f(x)), is also linear.
+Thus the set L(V, W) of linear maps from V to W itself forms a vector space over K, sometimes denoted Hom(V, W). Furthermore, in the case that V = W, this vector space (denoted End(V)) is an associative algebra under composition of maps, since the composition of two linear maps is again a linear map, and the composition of maps is always associative. This case is discussed in more detail below.
+Given again the finite-dimensional case, if bases have been chosen, then the composition of linear maps corresponds to the matrix multiplication, the addition of linear maps corresponds to the matrix addition, and the multiplication of linear maps with scalars corresponds to the multiplication of matrices with scalars.
+Endomorphisms and automorphisms[edit]
+Main articles: Endomorphism and Automorphism
+A linear transformation f: V → V is an endomorphism of V; the set of all such endomorphisms End(V) together with addition, composition and scalar multiplication as defined above forms an associative algebra with identity element over the field K (and in particular a ring). The multiplicative identity element of this algebra is the identity map id: V → V.
+An endomorphism of V that is also an isomorphism is called an automorphism of V. The composition of two automorphisms is again an automorphism, and the set of all automorphisms of V forms a group, the automorphism group of V which is denoted by Aut(V) or GL(V). Since the automorphisms are precisely those endomorphisms which possess inverses under composition, Aut(V) is the group of units in the ring End(V).
+If V has finite dimension n, then End(V) is isomorphic to the associative algebra of all n × n matrices with entries in K. The automorphism group of V is isomorphic to the general linear group GL(n, K) of all n × n invertible matrices with entries in K.
+Kernel, image and the rank–nullity theorem[edit]
+Main articles: Kernel (linear operator), Image (mathematics), and Rank of a matrix
+If f : V → W is linear, we define the kernel and the image or range of f by
+
+
+
+
+
+
+
+
+
+
+ker
+
+⁡
+(
+f
+)
+
+
+
+=
+{
+
+x
+∈
+V
+:
+f
+(
+x
+)
+=
+0
+
+}
+
+
+
+
+im
+⁡
+(
+f
+)
+
+
+
+=
+{
+
+w
+∈
+W
+:
+w
+=
+f
+(
+x
+)
+,
+x
+∈
+V
+
+}
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}\operatorname {\ker } (f)&=\{\,x\in V:f(x)=0\,\}\\\operatorname {im} (f)&=\{\,w\in W:w=f(x),x\in V\,\}\end{aligned}}}
+
+
+
+ker(f) is a subspace of V and im(f) is a subspace of W. The following dimension formula is known as the rank–nullity theorem:
+
+
+
+
+
+dim
+⁡
+(
+ker
+⁡
+(
+f
+)
+)
++
+dim
+⁡
+(
+im
+⁡
+(
+f
+)
+)
+=
+dim
+⁡
+(
+V
+)
+.
+
+
+{\displaystyle \dim(\ker(f))+\dim(\operatorname {im} (f))=\dim(V).}
+
+[7]
+
+The number dim(im(f)) is also called the rank of f and written as rank(f), or sometimes, ρ(f); the number dim(ker(f)) is called the nullity of f and written as null(f) or ν(f). If V and W are finite-dimensional, bases have been chosen and f is represented by the matrix A, then the rank and nullity of f are equal to the rank and nullity of the matrix A, respectively.
+Cokernel[edit]
+Main article: Cokernel
+A subtler invariant of a linear transformation 
+
+
+
+f
+:
+V
+→
+W
+
+
+{\displaystyle f:V\to W}
+
+ is the cokernel, which is defined as
+
+
+
+
+
+
+c
+o
+k
+e
+r
+
+
+f
+:=
+W
+
+/
+
+f
+(
+V
+)
+=
+W
+
+/
+
+
+i
+m
+
+(
+f
+)
+.
+
+
+{\displaystyle \mathrm {coker} \,f:=W/f(V)=W/\mathrm {im} (f).}
+
+
+
+This is the dual notion to the kernel: just as the kernel is a subspace of the domain, the co-kernel is a quotient space of the target. Formally, one has the exact sequence
+
+
+
+
+
+0
+→
+ker
+⁡
+f
+→
+V
+→
+W
+→
+
+c
+o
+k
+e
+r
+
+
+f
+→
+0.
+
+
+{\displaystyle 0\to \ker f\to V\to W\to \mathrm {coker} \,f\to 0.}
+
+
+
+These can be interpreted thus: given a linear equation f(v) = w to solve,
+
+the kernel is the space of solutions to the homogeneous equation f(v) = 0, and its dimension is the number of degrees of freedom in a solution, if it exists;
+the co-kernel is the space of constraints that must be satisfied if the equation is to have a solution, and its dimension is the number of constraints that must be satisfied for the equation to have a solution.
+
+The dimension of the co-kernel and the dimension of the image (the rank) add up to the dimension of the target space. For finite dimensions, this means that the dimension of the quotient space W/f(V) is the dimension of the target space minus the dimension of the image.
+As a simple example, consider the map f: R2 → R2, given by f(x, y) = (0, y). Then for an equation f(x, y) = (a, b) to have a solution, we must have a = 0 (one constraint), and in that case the solution space is (x, b) or equivalently stated, (0, b) + (x, 0), (one degree of freedom). The kernel may be expressed as the subspace (x, 0) < V: the value of x is the freedom in a solution – while the cokernel may be expressed via the map W → R, 
+
+
+
+(
+a
+,
+b
+)
+↦
+(
+a
+)
+:
+
+
+{\displaystyle (a,b)\mapsto (a):}
+
+ given a vector (a, b), the value of a is the obstruction to there being a solution.
+An example illustrating the infinite-dimensional case is afforded by the map f: R∞ → R∞, 
+
+
+
+{
+
+a
+
+n
+
+
+}
+↦
+{
+
+b
+
+n
+
+
+}
+
+
+{\displaystyle \{a_{n}\}\mapsto \{b_{n}\}}
+
+ with b1 = 0 and bn + 1 = an for n > 0. Its image consists of all sequences with first element 0, and thus its cokernel consists of the classes of sequences with identical first element. Thus, whereas its kernel has dimension 0 (it maps only the zero sequence to the zero sequence), its co-kernel has dimension 1. Since the domain and the target space are the same, the rank and the dimension of the kernel add up to the same sum as the rank and the dimension of the co-kernel ( 
+
+
+
+
+ℵ
+
+0
+
+
++
+0
+=
+
+ℵ
+
+0
+
+
++
+1
+
+
+{\displaystyle \aleph _{0}+0=\aleph _{0}+1}
+
+ ), but in the infinite-dimensional case it cannot be inferred that the kernel and the co-kernel of an endomorphism have the same dimension (0 ≠ 1). The reverse situation obtains for the map h: R∞ → R∞, 
+
+
+
+{
+
+a
+
+n
+
+
+}
+↦
+{
+
+c
+
+n
+
+
+}
+
+
+{\displaystyle \{a_{n}\}\mapsto \{c_{n}\}}
+
+ with cn = an + 1. Its image is the entire target space, and hence its co-kernel has dimension 0, but since it maps all sequences in which only the first element is non-zero to the zero sequence, its kernel has dimension 1.
+Index[edit]
+For a linear operator with finite-dimensional kernel and co-kernel, one may define index as:
+
+
+
+
+
+
+i
+n
+d
+
+
+f
+:=
+dim
+⁡
+ker
+⁡
+f
+−
+dim
+⁡
+
+c
+o
+k
+e
+r
+
+
+f
+,
+
+
+{\displaystyle \mathrm {ind} \,f:=\dim \ker f-\dim \mathrm {coker} \,f,}
+
+
+
+namely the degrees of freedom minus the number of constraints.
+For a transformation between finite-dimensional vector spaces, this is just the difference dim(V) − dim(W), by rank–nullity. This gives an indication of how many solutions or how many constraints one has: if mapping from a larger space to a smaller one, the map may be onto, and thus will have degrees of freedom even without constraints. Conversely, if mapping from a smaller space to a larger one, the map cannot be onto, and thus one will have constraints even without degrees of freedom.
+The index of an operator is precisely the Euler characteristic of the 2-term complex 0 → V → W → 0. In operator theory, the index of Fredholm operators is an object of study, with a major result being the Atiyah–Singer index theorem.[8]
+Algebraic classifications of linear transformations[edit]
+No classification of linear maps could hope to be exhaustive. The following incomplete list enumerates some important classifications that do not require any additional structure on the vector space.
+Let V and W denote vector spaces over a field, F. Let T: V → W be a linear map.
+
+T is said to be injective or a monomorphism if any of the following equivalent conditions are true:
+
+T is one-to-one as a map of sets.
+kerT = {0V}
+T is monic or left-cancellable, which is to say, for any vector space U and any pair of linear maps R: U → V and S: U → V, the equation TR = TS implies R = S.
+T is left-invertible, which is to say there exists a linear map S: W → V such that ST is the identity map on V.
+
+
+T is said to be surjective or an epimorphism if any of the following equivalent conditions are true:
+
+T is onto as a map of sets.
+coker T = {0W}
+T is epic or right-cancellable, which is to say, for any vector space U and any pair of linear maps R: W → U and S: W → U, the equation RT = ST implies R = S.
+T is right-invertible, which is to say there exists a linear map S: W → V such that TS is the identity map on W.
+
+
+T is said to be an isomorphism if it is both left- and right-invertible. This is equivalent to T being both one-to-one and onto (a bijection of sets) or also to T being both epic and monic, and so being a bimorphism.
+If T: V → V is an endomorphism, then:
+
+If, for some positive integer n, the n-th iterate of T, Tn, is identically zero, then T is said to be nilpotent.
+If T2 = T, then T is said to be idempotent
+If T = kI, where k is some scalar, then T is said to be a scaling transformation or scalar multiplication map; see scalar matrix.
+
+
+
+Change of basis[edit]
+Main articles: Basis (linear algebra) and Change of basis
+Given a linear map which is an endomorphism whose matrix is A, in the basis B of the space it transforms vector coordinates [u] as [v] = A[u]. As vectors change with the inverse of B (vectors are contravariant) its inverse transformation is [v] = B[v'].
+Substituting this in the first expression
+
+
+
+
+
+B
+[
+
+v
+′
+
+]
+=
+A
+B
+[
+
+u
+′
+
+]
+
+
+{\displaystyle B[v']=AB[u']}
+
+
+
+hence
+
+
+
+
+
+[
+
+v
+′
+
+]
+=
+
+B
+
+−
+1
+
+
+A
+B
+[
+
+u
+′
+
+]
+=
+
+A
+′
+
+[
+
+u
+′
+
+]
+.
+
+
+{\displaystyle [v']=B^{-1}AB[u']=A'[u'].}
+
+
+
+Therefore, the matrix in the new basis is A′ = B−1AB, being B the matrix of the given basis.
+Therefore, linear maps are said to be 1-co 1-contra -variant objects, or type (1, 1) tensors.
+Continuity[edit]
+Main article: Discontinuous linear map
+A linear transformation between topological vector spaces, for example normed spaces, may be continuous. If its domain and codomain are the same, it will then be a continuous linear operator. A linear operator on a normed linear space is continuous if and only if it is bounded, for example, when the domain is finite-dimensional.[9] An infinite-dimensional domain may have discontinuous linear operators.
+An example of an unbounded, hence discontinuous, linear transformation is differentiation on the space of smooth functions equipped with the supremum norm (a function with small values can have a derivative with large values, while the derivative of 0 is 0). For a specific example, sin(nx)/n converges to 0, but its derivative cos(nx) does not, so differentiation is not continuous at 0 (and by a variation of this argument, it is not continuous anywhere).
+Applications[edit]
+A specific application of linear maps is for geometric transformations, such as those performed in computer graphics, where the translation, rotation and scaling of 2D or 3D objects is performed by the use of a transformation matrix. Linear mappings also are used as a mechanism for describing change: for example in calculus correspond to derivatives; or in relativity, used as a device to keep track of the local transformations of reference frames.
+Another application of these transformations is in compiler optimizations of nested-loop code, and in parallelizing compiler techniques.
+See also[edit]
+
+
+
+Wikibooks has a book on the topic of: Linear Algebra/Linear Transformations
+
+
+
+Affine transformation
+Linear equation
+Bounded operator
+Antilinear map
+Semilinear map
+Continuous linear operator
+Bent function
+
+Notes[edit]
+
+
+
+^ Linear transformations of V into V are often called linear operators on V Rudin 1976, p. 207
+^ Rudin 1991, p. 14
+Here are some properties of linear mappings 
+
+
+
+Λ
+:
+X
+→
+Y
+
+
+{\displaystyle \Lambda :X\to Y}
+
+ whose proofs are so easy that we omit them; it is assumed that 
+
+
+
+A
+⊂
+X
+
+
+{\displaystyle A\subset X}
+
+ and 
+
+
+
+B
+⊂
+Y
+
+
+{\displaystyle B\subset Y}
+
+:
+(a) 
+
+
+
+Λ
+0
+=
+0.
+
+
+{\displaystyle \Lambda 0=0.}
+
+
+(b) If A is a subspace (or a convex set, or a balanced set) the same is true of 
+
+
+
+Λ
+(
+A
+)
+
+
+{\displaystyle \Lambda (A)}
+
+
+(c) If B is a subspace (or a convex set, or a balanced set) the same is true of 
+
+
+
+
+Λ
+
+−
+1
+
+
+(
+B
+)
+
+
+{\displaystyle \Lambda ^{-1}(B)}
+
+
+(d) In particular, the set:
+
+
+
+
+
+Λ
+
+−
+1
+
+
+(
+{
+0
+}
+)
+=
+{
+x
+∈
+X
+:
+Λ
+x
+=
+0
+}
+=
+
+N
+
+(
+Λ
+)
+
+
+{\displaystyle \Lambda ^{-1}(\{0\})=\{x\in X:\Lambda x=0\}={N}(\Lambda )}
+
+
+is a subspace of X, called the null space of 
+
+
+
+Λ
+
+
+{\displaystyle \Lambda }
+
+.
+^ Rudin 1991, p. 14. Suppose now that X and Y are vector spaces over the same scalar field. A mapping 
+
+
+
+Λ
+:
+X
+→
+Y
+
+
+{\displaystyle \Lambda :X\to Y}
+
+ is said to be linear if 
+
+
+
+Λ
+(
+α
+x
++
+β
+y
+)
+=
+α
+Λ
+x
++
+β
+Λ
+y
+
+
+{\displaystyle \Lambda (\alpha x+\beta y)=\alpha \Lambda x+\beta \Lambda y}
+
+ for all 
+
+
+
+x
+,
+y
+∈
+X
+
+
+{\displaystyle x,y\in X}
+
+ and all scalars 
+
+
+
+α
+
+
+{\displaystyle \alpha }
+
+ and 
+
+
+
+β
+
+
+{\displaystyle \beta }
+
+. Note that one often writes 
+
+
+
+Λ
+x
+
+
+{\displaystyle \Lambda x}
+
+, rather than 
+
+
+
+Λ
+(
+x
+)
+
+
+{\displaystyle \Lambda (x)}
+
+, when 
+
+
+
+Λ
+
+
+{\displaystyle \Lambda }
+
+ is linear.
+^ Rudin 1976, p. 206. A mapping A of a vector space X into a vector space Y is said to be a linear transformation if: 
+
+
+
+A
+(
+
+
+
+x
+
+
+
+1
+
+
++
+
+
+
+x
+
+
+
+2
+
+
+)
+=
+A
+
+
+
+x
+
+
+
+1
+
+
++
+A
+
+
+
+x
+
+
+
+2
+
+
+,
+A
+(
+c
+
+
+x
+
+
+)
+=
+c
+A
+
+
+x
+
+
+
+
+{\displaystyle A({\bf {x}}_{1}+{\bf {x}}_{2})=A{\bf {x}}_{1}+A{\bf {x}}_{2},A(c{\bf {x}})=cA{\bf {x}}}
+
+ for all 
+
+
+
+
+
+x
+
+
+,
+
+
+
+x
+
+
+
+1
+
+
+,
+
+
+
+x
+
+
+
+2
+
+
+∈
+X
+
+
+{\displaystyle {\bf {x}},{\bf {x}}_{1},{\bf {x}}_{2}\in X}
+
+ and all scalars c. Note that one often writes 
+
+
+
+A
+
+
+x
+
+
+
+
+{\displaystyle A{\bf {x}}}
+
+ instead of 
+
+
+
+A
+(
+
+
+x
+
+
+)
+
+
+{\displaystyle A({\bf {x}})}
+
+ if A is linear.
+^ Rudin 1991, p. 14. Linear mappings of X onto its scalar field are called linear functionals.
+^ Rudin 1976, p. 210
+Suppose 
+
+
+
+{
+
+
+
+x
+
+
+
+1
+
+
+,
+…
+,
+
+
+
+x
+
+
+
+n
+
+
+}
+
+
+{\displaystyle \{{\bf {x}}_{1},\ldots ,{\bf {x}}_{n}\}}
+
+ and 
+
+
+
+{
+
+
+
+y
+
+
+
+1
+
+
+,
+…
+,
+
+
+
+y
+
+
+
+m
+
+
+}
+
+
+{\displaystyle \{{\bf {y}}_{1},\ldots ,{\bf {y}}_{m}\}}
+
+ are bases of vector spaces X and Y, respectively. Then every 
+
+
+
+A
+∈
+L
+(
+X
+,
+Y
+)
+
+
+{\displaystyle A\in L(X,Y)}
+
+ determines a set of numbers 
+
+
+
+
+a
+
+i
+,
+j
+
+
+
+
+{\displaystyle a_{i,j}}
+
+ such that
+
+
+
+
+A
+
+
+
+x
+
+
+
+j
+
+
+=
+
+∑
+
+i
+=
+1
+
+
+m
+
+
+
+a
+
+i
+,
+j
+
+
+
+
+
+y
+
+
+
+i
+
+
+
+
+
+
+
+(
+1
+≤
+j
+≤
+n
+)
+.
+
+
+{\displaystyle A{\bf {x}}_{j}=\sum _{i=1}^{m}a_{i,j}{\bf {y}}_{i}\;\;\;\;\;(1\leq j\leq n).}
+
+
+It is convenient to represent these numbers in a rectangular array of m rows and n columns, called an m by n matrix:
+
+
+
+
+[
+A
+]
+=
+
+
+[
+
+
+
+
+a
+
+1
+,
+1
+
+
+
+
+
+a
+
+1
+,
+2
+
+
+
+
+…
+
+
+
+a
+
+1
+,
+n
+
+
+
+
+
+
+
+a
+
+2
+,
+1
+
+
+
+
+
+a
+
+2
+,
+2
+
+
+
+
+…
+
+
+
+a
+
+2
+,
+n
+
+
+
+
+
+
+…
+…
+
+
+…
+…
+
+
+…
+…
+
+
+…
+
+
+
+
+
+a
+
+m
+,
+1
+
+
+
+
+
+a
+
+m
+,
+2
+
+
+
+
+…
+
+
+
+a
+
+m
+,
+n
+
+
+
+
+
+]
+
+
+
+
+{\displaystyle [A]={\begin{bmatrix}a_{1,1}&a_{1,2}&\ldots &a_{1,n}\\a_{2,1}&a_{2,2}&\ldots &a_{2,n}\\\ldots \ldots &\ldots \ldots &\ldots \ldots &\ldots \\a_{m,1}&a_{m,2}&\ldots &a_{m,n}\end{bmatrix}}}
+
+
+Observe that the coordinates 
+
+
+
+
+a
+
+i
+,
+j
+
+
+
+
+{\displaystyle a_{i,j}}
+
+ of the vector 
+
+
+
+A
+
+
+
+x
+
+
+
+j
+
+
+
+
+{\displaystyle A{\bf {x}}_{j}}
+
+ (with respect to the basis 
+
+
+
+{
+
+
+
+y
+
+
+
+1
+
+
+,
+…
+,
+
+
+
+y
+
+
+
+m
+
+
+}
+
+
+{\displaystyle \{{\bf {y}}_{1},\ldots ,{\bf {y}}_{m}\}}
+
+) appear in the jth column of 
+
+
+
+[
+A
+]
+
+
+{\displaystyle [A]}
+
+. The vectors 
+
+
+
+A
+
+
+
+x
+
+
+
+j
+
+
+
+
+{\displaystyle A{\bf {x}}_{j}}
+
+ are therefore sometimes called the column vectors of 
+
+
+
+[
+A
+]
+
+
+{\displaystyle [A]}
+
+. With this terminology, the range of A is spanned by the column vectors of 
+
+
+
+[
+A
+]
+
+
+{\displaystyle [A]}
+
+.
+^ Horn & Johnson 2013, 0.2.3 Vector spaces associated with a matrix or linear transformation, p. 6
+^ Nistor, Victor (2001) [1994], "Index theory", in Hazewinkel, Michiel, Encyclopedia of Mathematics, Springer Science+Business Media B.V. / Kluwer Academic Publishers, ISBN 978-1-55608-010-4 : "The main question in index theory is to provide index formulas for classes of Fredholm operators ... Index theory has become a subject on its own only after M. F. Atiyah and I. Singer published their index theorems"
+^ Rudin 1991, p. 15
+1.18 Theorem Let 
+
+
+
+Λ
+
+
+{\displaystyle \Lambda }
+
+ be a linear functional on a topological vector space X. Assume 
+
+
+
+Λ
+x
+≠
+0
+
+
+{\displaystyle \Lambda x\neq 0}
+
+ for some 
+
+
+
+x
+∈
+X
+
+
+{\displaystyle x\in X}
+
+. Then each of the following four properties implies the other three:
+(a) 
+
+
+
+Λ
+
+
+{\displaystyle \Lambda }
+
+ is continuous
+(b) The null space 
+
+
+
+N
+(
+Λ
+)
+
+
+{\displaystyle N(\Lambda )}
+
+ is closed.
+(c) 
+
+
+
+N
+(
+Λ
+)
+
+
+{\displaystyle N(\Lambda )}
+
+ is not dense in X.
+(d) 
+
+
+
+Λ
+
+
+{\displaystyle \Lambda }
+
+ is bounded in some neighbourhood V of 0.
+
+
+
+References[edit]
+
+Halmos, Paul R. (1974). Finite-Dimensional Vector Spaces. New York: Springer-Verlag. ISBN 0-387-90093-4. 
+Horn, Roger A.; Johnson, Charles R. (2013). Matrix Analysis (Second ed.). Cambridge University Press. ISBN 978-0-521-83940-2. 
+Lang, Serge (1987), Linear Algebra (Third ed.), New York: Springer-Verlag, ISBN 0-387-96412-6 
+Rudin, Walter (1976). Principles of Mathematical Analysis (Third ed.). McGraw-Hill. ISBN 0-07-085613-3. 
+Rudin, Walter (1991). Functional Analysis (Second ed.). McGraw-Hill. ISBN 0-07-054236-8. 
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Linear algebra
+
+
+
+Basic concepts
+
+
+
+Scalar
+Vector
+Vector space
+Scalar multiplication
+Vector projection
+Linear span
+Linear map
+Linear projection
+Linear independence
+Linear combination
+Basis
+Column space
+Row space
+Orthogonality
+Kernel
+Eigenvalues and eigenvectors
+Outer product
+Inner product space
+Dot product
+Transpose
+Gram–Schmidt process
+Linear equations
+
+
+
+
+
+
+
+
+Vector algebra
+
+
+
+Cross product
+Triple product
+Seven-dimensional cross product
+
+
+
+
+
+Multilinear algebra
+
+
+
+Geometric algebra
+Exterior algebra
+Bivector
+Multivector
+
+
+
+
+
+Matrices
+
+
+
+Block
+Decomposition
+Invertible
+Minor
+Multiplication
+Rank
+Transformation
+Cramer's rule
+Gaussian elimination
+
+
+
+
+
+Algebraic constructions
+
+
+
+Dual
+Direct sum
+Function space
+Quotient
+Subspace
+Tensor product
+
+
+
+
+
+Numerical
+
+
+
+Floating point
+Matrix Laboratory
+Numerical stability
+Basic Linear Algebra Subprograms (BLAS)
+Sparse matrix
+Comparison of linear algebra libraries
+Comparison of numerical analysis software
+
+
+
+
+
+
+
+
+ Category
+ Outline
+ Portal
+ Wikibook
+ Wikiversity
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Tensors
+
+
+
+
+Glossary of tensor theory
+
+
+
+Scope
+
+
+
+
+Mathematics
+
+
+
+coordinate system
+multilinear algebra
+Euclidean geometry
+tensor algebra
+dyadic algebra
+differential geometry
+exterior calculus
+tensor calculus
+
+
+
+
+
+
+
+
+Physics
+Engineering
+
+
+
+
+
+
+continuum mechanics
+electromagnetism
+transport phenomena
+general relativity
+computer vision
+
+
+
+
+
+
+
+
+Notation
+
+
+
+index notation
+multi-index notation
+Einstein notation
+Ricci calculus
+Penrose graphical notation
+Voigt notation
+abstract index notation
+tetrad (index notation)
+Van der Waerden notation
+
+
+
+
+
+Tensor definitions
+
+
+
+tensor (intrinsic definition)
+tensor field
+tensor density
+tensors in curvilinear coordinates
+mixed tensor
+antisymmetric tensor
+symmetric tensor
+tensor operator
+tensor bundle
+
+
+
+
+
+Operations
+
+
+
+tensor product
+exterior product
+tensor contraction
+transpose (2nd-order tensors)
+raising and lowering indices
+Hodge star operator
+covariant derivative
+exterior derivative
+exterior covariant derivative
+Lie derivative
+
+
+
+
+
+Related abstractions
+
+
+
+dimension
+basis
+vector, vector space
+multivector
+covariance and contravariance of vectors
+linear transformation
+matrix
+spinor
+Cartan formalism (physics)
+differential form
+exterior form
+connection form
+geodesic
+manifold
+fiber bundle
+Levi-Civita connection
+affine connection
+
+
+
+
+
+Notable tensors
+
+
+
+
+Mathematics
+
+
+
+Kronecker delta
+Levi-Civita symbol
+metric tensor
+nonmetricity tensor
+Christoffel symbols
+Ricci curvature
+Riemann curvature tensor
+Weyl tensor
+torsion tensor
+
+
+
+
+
+Physics
+
+
+
+moment of inertia
+angular momentum tensor
+spin tensor
+Cauchy stress tensor
+stress–energy tensor
+EM tensor
+gluon field strength tensor
+Einstein tensor
+metric tensor (GR)
+
+
+
+
+
+
+
+
+Mathematicians
+
+
+
+Leonhard Euler
+Carl Friedrich Gauss
+Augustin-Louis Cauchy
+Hermann Grassmann
+Gregorio Ricci-Curbastro
+Tullio Levi-Civita
+Jan Arnoldus Schouten
+Bernhard Riemann
+Elwin Bruno Christoffel
+Woldemar Voigt
+Élie Cartan
+Hermann Weyl
+Albert Einstein
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Linear_map&oldid=810224077"					Categories: Abstract algebraFunctions and mappingsLinear algebraTransformation (function)

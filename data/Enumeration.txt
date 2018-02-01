@@ -1,0 +1,513 @@
+For enumeration types in programming languages, see enumerated type.
+An enumeration is a complete, ordered listing of all the items in a collection. The term is commonly used in mathematics and computer science to refer to a listing of all of the elements of a set. The precise requirements for an enumeration (for example, whether the set must be finite, or whether the list is allowed to contain repetitions) depend on the discipline of study and the context of a given problem.
+Some sets can be enumerated by means of a natural ordering (such as 1, 2, 3, 4, ... for the set of positive integers), but in other cases it may be necessary to impose a (perhaps arbitrary) ordering. In some contexts, such as enumerative combinatorics, the term enumeration is used more in the sense of counting – with emphasis on determination of the number of elements that a set contains, rather than the production of an explicit listing of those elements.
+
+
+
+Contents
+
+
+1 Enumeration in combinatorics
+2 Enumeration in set theory
+
+2.1 Enumeration as listing
+2.2 Enumeration in countable vs. uncountable context
+
+2.2.1 Examples
+2.2.2 Properties
+
+
+2.3 Ordinal enumeration
+2.4 Enumeration as comparison of cardinalities
+
+
+3 Enumeration in computability theory
+4 See also
+5 References
+6 External links
+
+
+
+Enumeration in combinatorics[edit]
+Main article: Enumerative combinatorics
+In combinatorics, enumeration means counting, i.e., determining the exact number of elements of finite sets, usually grouped into infinite families, such as the family of sets each consisting of all permutations of some finite set. There are flourishing subareas in many branches of mathematics concerned with enumerating in this sense objects of special kinds. For instance, in partition enumeration and graph enumeration the objective is to count partitions or graphs that meet certain conditions.
+Enumeration in set theory[edit]
+In set theory, the notion of enumeration has a broader sense, and does not require the set being enumerated to be finite.
+Enumeration as listing[edit]
+When an enumeration is used in an ordered list context, we impose some sort of ordering structure requirement on the index set. While we can make the requirements on the ordering quite lax in order to allow for great generality, the most natural and common prerequisite is that the index set be well-ordered. According to this characterization, an ordered enumeration is defined to be a surjection (an onto relationship) with a well-ordered domain. This definition is natural in the sense that a given well-ordering on the index set provides a unique way to list the next element given a partial enumeration.
+Enumeration in countable vs. uncountable context[edit]
+The most common use of enumeration in set theory occurs in the context where infinite sets are separated into those that are countable and those that are not. In this case, an enumeration is merely an enumeration with domain ω, the ordinal of the natural numbers. This definition can also be stated as follows:
+
+As a surjective mapping from 
+
+
+
+
+N
+
+
+
+{\displaystyle \mathbb {N} }
+
+ (the natural numbers) to S (i.e., every element of S is the image of at least one natural number). This definition is especially suitable to questions of computability and elementary set theory.
+
+We may also define it differently when working with finite sets. In this case an enumeration may be defined as follows:
+
+As a bijective mapping from S to an initial segment of the natural numbers. This definition is especially suitable to combinatorial questions and finite sets; then the initial segment is {1,2,...,n} for some n which is the cardinality of S.
+
+In the first definition it varies whether the mapping is also required to be injective (i.e., every element of S is the image of exactly one natural number), and/or allowed to be partial (i.e., the mapping is defined only for some natural numbers). In some applications (especially those concerned with computability of the set S), these differences are of little importance, because one is concerned only with the mere existence of some enumeration, and an enumeration according to a liberal definition will generally imply that enumerations satisfying stricter requirements also exist.
+Enumeration of finite sets obviously requires that either non-injectivity or partiality is accepted, and in contexts where finite sets may appear one or both of these are inevitably present.
+Examples[edit]
+
+The natural numbers are enumerable by the function f(x) = x. In this case 
+
+
+
+f
+:
+
+N
+
+→
+
+N
+
+
+
+{\displaystyle f:\mathbb {N} \to \mathbb {N} }
+
+ is simply the identity function.
+
+
+
+
+
+Z
+
+
+
+{\displaystyle \mathbb {Z} }
+
+, the set of integers is enumerable by
+
+
+
+
+
+
+
+
+f
+(
+x
+)
+:=
+
+
+{
+
+
+
+−
+(
+x
++
+1
+)
+
+/
+
+2
+,
+
+
+
+if 
+
+x
+
+ is odd
+
+
+
+
+
+x
+
+/
+
+2
+,
+
+
+
+if 
+
+x
+
+ is even
+
+.
+
+
+
+
+
+
+
+
+{\displaystyle f(x):={\begin{cases}-(x+1)/2,&{\mbox{if }}x{\mbox{ is odd}}\\x/2,&{\mbox{if }}x{\mbox{ is even}}.\end{cases}}}
+
+
+
+
+
+
+
+
+
+f
+:
+
+N
+
+→
+
+Z
+
+
+
+{\displaystyle f:\mathbb {N} \to \mathbb {Z} }
+
+ is a bijection since every natural number corresponds to exactly one integer. The following table gives the first few values of this enumeration:
+
+
+x
+0
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+ƒ(x)
+0
+−1
+1
+−2
+2
+−3
+3
+−4
+4
+
+
+
+All (non empty) finite sets are enumerable. Let S be a finite set with n > 0 elements and let K = {1,2,...,n}. Select any element s in S and assign ƒ(n) = s. Now set S' = S − {s} (where − denotes set difference). Select any element s'  ∈ S' and assign ƒ(n − 1) = s' . Continue this process until all elements of the set have been assigned a natural number. Then 
+
+
+
+f
+:
+K
+→
+S
+
+
+{\displaystyle f:K\to S}
+
+ is an enumeration of S.
+The real numbers have no countable enumeration as proved by Cantor's diagonal argument and Cantor's first uncountability proof.
+
+Properties[edit]
+
+There exists an enumeration for a set (in this sense) if and only if the set is countable.
+If a set is enumerable it will have an uncountable infinity of different enumerations, except in the degenerate cases of the empty set or (depending on the precise definition) sets with one element. However, if one requires enumerations to be injective and allows only a limited form of partiality such that if ƒ(n) is defined then ƒ(m) must be defined for all m < n, then a finite set of N elements has exactly N! enumerations.
+An enumeration e of a set S with domain 
+
+
+
+
+N
+
+
+
+{\displaystyle \mathbb {N} }
+
+ induces a well-order ≤ on that set defined by s ≤ t if and only if min e−1(s) ≤ min e−1(t). Although the order may have little to do with the underlying set, it is useful when some order of the set is necessary.
+
+Ordinal enumeration[edit]
+In set theory, there is a more general notion of an enumeration than the characterization requiring the domain of the listing function to be an initial segment of the Natural numbers where the domain of the enumerating function can assume any ordinal. Under this definition, an enumeration of a set S is any surjection from an ordinal α onto S. The more restrictive version of enumeration mentioned before is the special case where α is a finite ordinal or the first limit ordinal ω. This more generalized version extends the aforementioned definition to encompass transfinite listings.
+Under this definition, the first uncountable ordinal 
+
+
+
+
+ω
+
+1
+
+
+
+
+{\displaystyle \omega _{1}}
+
+ can be enumerated by the identity function on 
+
+
+
+
+ω
+
+1
+
+
+
+
+{\displaystyle \omega _{1}}
+
+ so that these two notions do not coincide. More generally, it is a theorem of ZF that any well-ordered set can be enumerated under this characterization so that it coincides up to relabeling with the generalized listing enumeration. If one also assumes the Axiom of Choice, then all sets can be enumerated so that it coincides up to relabeling with the most general form of enumerations.
+Since set theorists work with infinite sets of arbitrarily large cardinalities, the default definition among this group of mathematicians of an enumeration of a set tends to be any arbitrary α-sequence exactly listing all of its elements. Indeed, in Jech's book, which is a common reference for set theorists, an enumeration is defined to be exactly this. Therefore, in order to avoid ambiguity, one may use the term finitely enumerable or denumerable to denote one of the corresponding types of distinguished countable enumerations.
+Enumeration as comparison of cardinalities[edit]
+Formally, the most inclusive definition of an enumeration of a set S is any surjection from an arbitrary index set I onto S. In this broad context, every set S can be trivially enumerated by the identity function from S onto itself. If one does not assume the axiom of choice or one of its variants, S need not have any well-ordering. Even if one does assume the axiom of choice, S need not have any natural well-ordering.
+This general definition therefore lends itself to a counting notion where we are interested in "how many" rather than "in what order." In practice, this broad meaning of enumeration is often used to compare the relative sizes or cardinalities of different sets. If one works in Zermelo–Fraenkel set theory without the axiom of choice, one may want to impose the additional restriction that an enumeration must also be injective (without repetition) since in this theory, the existence of a surjection from I onto S need not imply the existence of an injection from S into I.
+Enumeration in computability theory[edit]
+In computability theory one often considers countable enumerations with the added requirement that the mapping from 
+
+
+
+
+N
+
+
+
+{\displaystyle \mathbb {N} }
+
+ (set of all natural numbers) to the enumerated set must be computable. The set being enumerated is then called recursively enumerable (or computably enumerable in more contemporary language), referring to the use of recursion theory in formalizations of what it means for the map to be computable.
+In this sense, a subset of the natural numbers is computably enumerable if it is the range of a computable function. In this context, enumerable may be used to mean computably enumerable. However, these definitions characterize distinct classes since there are uncountably many subsets of the natural numbers that can be enumerated by an arbitrary function with domain ω and only countably many computable functions. A specific example of a set with an enumeration but not a computable enumeration is the complement of the halting set.
+Furthermore, this characterization illustrates a place where the ordering of the listing is important. There exists a computable enumeration of the halting set, but not one that lists the elements in an increasing ordering. If there were one, then the halting set would be decidable, which is provably false. In general, being recursively enumerable is a weaker condition than being a decidable set.
+See also[edit]
+
+Ordinal number
+Enumerative definition
+Sequence
+
+References[edit]
+
+Jech, Thomas (2002). Set theory, third millennium edition (revised and expanded). Springer. ISBN 3-540-44085-2. 
+
+External links[edit]
+
+ The dictionary definition of enumeration at Wiktionary
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Mathematical logic
+
+
+
+General
+
+
+
+Formal language
+Formation rule
+Formal proof
+Formal semantics
+Well-formed formula
+Set
+Element
+Class
+Classical logic
+Axiom
+Rule of inference
+Relation
+Theorem
+Logical consequence
+Type theory
+Symbol
+Syntax
+Theory
+
+
+
+
+
+Systems
+
+
+
+Formal system
+Deductive system
+Axiomatic system
+Hilbert style systems
+Natural deduction
+Sequent calculus
+
+
+
+
+
+Traditional logic
+
+
+
+Proposition
+Inference
+Argument
+Validity
+Cogency
+Syllogism
+Square of opposition
+Venn diagram
+
+
+
+
+
+
+Propositional
+calculus
+Boolean logic
+
+
+
+
+Boolean functions
+Propositional calculus
+Propositional formula
+Logical connectives
+Truth tables
+Many-valued logic
+
+
+
+
+
+Predicate logic
+
+
+
+First-order
+Quantifiers
+Predicate
+Second-order
+Monadic predicate calculus
+
+
+
+
+
+Naive set theory
+
+
+
+Set
+Empty set
+Element
+Enumeration
+Extensionality
+Finite set
+Infinite set
+Subset
+Power set
+Countable set
+Uncountable set
+Recursive set
+Domain
+Codomain
+Image
+Map
+Function
+Relation
+Ordered pair
+
+
+
+
+
+Set theory
+
+
+
+Foundations of mathematics
+Zermelo–Fraenkel set theory
+Axiom of choice
+General set theory
+Kripke–Platek set theory
+Von Neumann–Bernays–Gödel set theory
+Morse–Kelley set theory
+Tarski–Grothendieck set theory
+
+
+
+
+
+Model theory
+
+
+
+Model
+Interpretation
+Non-standard model
+Finite model theory
+Truth value
+Validity
+
+
+
+
+
+Proof theory
+
+
+
+Formal proof
+Deductive system
+Formal system
+Theorem
+Logical consequence
+Rule of inference
+Syntax
+
+
+
+
+
+Computability
+theory
+
+
+
+Recursion
+Recursive set
+Recursively enumerable set
+Decision problem
+Church–Turing thesis
+Computable function
+Primitive recursive function
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Enumeration&oldid=813673374"					Categories: Enumerative combinatoricsMathematical logic

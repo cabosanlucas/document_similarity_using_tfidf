@@ -1,0 +1,824 @@
+packet switching method grouping data transmitted digital network packets composed header payload data header used networking hardware direct packet destination payload extracted used application software packet switching primary basis data communications computer networks worldwide
+early 1960s american computer scientist paul baran developed concept distributed adaptive message block switching goal provide faulttolerant efficient routing method telecommunication messages part research program rand corporation funded department defense1 concept contrasted contradicted thenestablished principles preallocation network bandwidth largely fortified development telecommunications bell system concept found little resonance among network implementers independent work british computer scientist donald davies national physical laboratory united kingdom 1965 davies credited coining modern name packet switching inspiring numerous packet switching networks decade following including incorporation concept early arpanet united states23
+
+
+multiplexing
+
+
+
+
+
+analog modulation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+circuit mode
+constant bandwidth
+
+
+
+
+
+
+
+
+sdma
+polarization
+spatial
+
+
+
+
+
+
+
+statistical multiplexing
+variable bandwidth
+
+
+
+
+
+
+packet switching
+dynamic tdma
+fhss
+dsss
+ofdma
+scfdm
+mcss
+
+
+
+
+
+related topics
+
+
+
+
+channel access methods
+media access control
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+contents
+
+
+concept
+history
+connectionless connectionoriented modes
+packet switching networks
+frame relay
+packetswitched networks
+
+early networks
+
+appletalk
+arpanet
+bnrnet
+cyclades
+decnet
+ddx1
+cost
+epss
+geis
+6110 ipsanet
+6111 ipxspx
+6112 merit network
+6113
+6114 octopus
+6115 philips research
+6116
+6117
+6118 retd
+6119 scannet
+6120 sita
+6121 systems network architecture
+6122 telenet
+6123 tymnet
+6124
+
+
+
+
+austpac
+connnet
+datanet
+datapac
+datexp
+eirpac
+hipanet
+iberpac
+janet
+6210
+6211 transpac
+6212 venusp
+6213 venepaq
+
+
+internet
+
+csnet
+internet2
+nsfnet
+nsfnet regional networks
+national lambdarail
+transpac transpac2 transpac3
+highspeed backbone network service vbns
+
+
+
+
+also
+references
+
+bibliography
+
+
+reading
+external links
+
+
+
+conceptedit
+
+
+
+
+animation demonstrating data packet switching across network
+
+
+simple definition packet switching
+
+routing transferring data means addressed packets channel occupied transmission packet upon completion transmission channel made available transfer traffic45
+
+packet switching features delivery variable rate data streams realized sequences packets computer network allocates transmission resources needed using statistical multiplexing dynamic bandwidth allocation techniques traverse network nodes switches routers packets received buffered queued transmitted stored forwarded resulting variable latency throughput depending link capacity traffic load network
+packet switching contrasts another principal networking paradigm circuit switching method preallocates dedicated network bandwidth specifically communication session constant rate latency nodes cases billable services cellular communication services circuit switching characterized unit connection time even data transferred packet switching characterized unit information transmitted characters packets messages
+packet mode communication implemented without intermediate forwarding nodes packet switches routers packets normally forwarded intermediate network nodes asynchronously using firstin firstout buffering forwarded according scheduling discipline fair queuing traffic shaping differentiated guaranteed quality service weighted fair queuing leaky bucket case shared physical medium radio 10base5 packets delivered according multiple access scheme
+historyedit
+information history internet
+late 1950s force established wide area network semiautomatic ground environment sage radar defense system sought system might survive nuclear attack enable response thus diminishing attractiveness first strike advantage enemies6
+leonard kleinrock conducted early research queueing theory published book related field digital message switching without packets 19617
+concept switching small blocks data first explored independently paul baran rand corporation starting late 1950s subsequently donald davies national physical laboratory uk8910
+baran developed concept distributed adaptive message block switching research rand corporation force communications networks could survive nuclear wars11 first presented force summer 1961 briefing b2656 later published rand report p2626 196212 finally report 3420 196413 report p2626 described general architecture largescale distributed survivable communications network work focuses three ideas decentralized network multiple paths points dividing user messages message blocks delivery messages store forward switching
+donald davies national physical laboratory developed similar message routing concept 1965 called packet switching accessible name barans terminology proposed building nationwide network uk14 gave talk proposal 1966 person ministry defence told barans work member davies team roger scantlebury lawrence roberts 1967 symposium operating system principles suggested arpanet15 davies chosen parameters original network design baran packet size 1024 bits 1966 davies proposed network built laboratory serve needs prove feasibility packet switching pilot experiment 19671617 data communications network entered service 196918
+building earlier work queueing theory leonard kleinrock subsequently carried theoretical work model performance packetswitched networks underpinned development arpanet team also carried simulation work packet networks18
+1974 vint cerf kahn published specifications transmission control protocol internetworking protocol sharing resources using packetswitching among nodes19 monolithic protocol later layered atop internet protocol
+french cyclades network designed louis pouzin early 1970s first make hosts responsible reliable delivery data rather centralized service network
+connectionless connectionoriented modesedit
+packet switching classified connectionless packet switching also known datagram switching connectionoriented packet switching also known virtual circuit switching
+examples connectionless protocols ethernet internet protocol user datagram protocol connectionoriented protocols include frame relay multiprotocol label switching mpls transmission control protocol
+connectionless mode packet includes complete addressing information packets routed individually sometimes resulting different paths outoforder delivery packet labeled destination address source address port numbers also labeled sequence number packet precludes need dedicated path help packet find destination means much information needed packet header therefore larger information needs looked powerhungry contentaddressable memory packet dispatched different routes potentially system much work every packet connectionoriented system connection setup less information applications requirements destination original messagedata reassembled correct order based packet sequence number thus virtual connection also known virtual circuit byte stream provided enduser transport layer protocol although intermediate network nodes provides connectionless network layer service
+connectionoriented transmission requires setup phase involved node packet transferred establish parameters communication packets include connection identifier rather address information negotiated endpoints delivered order error checking address information transferred node connection setup phase route destination discovered entry added switching table network node connection passes signaling protocols used allow application specify requirements discover link parameters acceptable values service parameters negotiated routing packet requires node look connection table packet header small needs contain code information length timestamp sequence number different different packets
+packet switching networksedit
+packet switching used optimize channel capacity available digital telecommunication networks computer networks minimize transmission latency time takes data pass across network increase robustness communication
+bestknown packet switching internet local area networks internet implemented internet protocol suite using variety link layer technologies example ethernet frame relay common newer mobile phone technologies gprs imode also packet switching
+notable packet switching despite based packet switching methods provided virtual circuits user virtual circuits carry variablelength packets 1978 provided first international commercial packet switching network international packet switched service ipss asynchronous transfer mode also virtual circuit technology uses fixedlength cell relay connection oriented packet switching
+datagram packet switching also called connectionless networking connections established technologies multiprotocol label switching mpls resource reservation protocol rsvp create virtual circuits datagram networks virtual circuits especially useful building robust failover mechanisms allocating bandwidth delaysensitive applications
+mpls predecessors well called fast packet technologies mpls indeed called without cells20 modern routers however require technologies able forward variablelength packets multigigabit speeds across network
+frame relayedit
+frame relay provide connectionoriented operations provides network layer model whereas frame relay provides level data link layer another major difference frame relay requires handshake communicating parties user packets transmitted frame relay define handshakes define operations inside packet network operates usernetworkinterface thus network provider free procedure wishes inside network specify limited retransmission procedures link layer protocol lapb provides conventional hdlctype link management procedures frame relay modified version isdns layer protocol lapd lapb integrity operations pertain nodes link endtoend retransmissions must carried higher layer protocols protocol part protocol suite consists lower three layers model widely used packet switching networks 1980s early 1990s provide standardized interface packet networks implementations used within network well connectionoriented features made setup cumbersome inefficient frame relay operates principally layer model however address field data link connection dlci used network layer minimum procedures thus rids many layer encumbrances still dlci beyond nodetonode layer link protocol simplicity frame relay makes faster efficient frame relay data link layer protocol like define internal network routing operations packet ids—the virtual circuit virtual channel numbers correlated network addresses true frame relays dlci done network provider frame relay virtue network layer procedures connectionoriented layer using hdlclapdlapb asynchronous balanced mode sabm connections typically established communication session feature allowing limited amount traffic passed across without connectionoriented handshake frame relay used interconnect lans across wide area networks however well frame relay supplanted internet protocol network layer asynchronous transfer mode versions multiprotocol label switching mpls layer typical configuration version mpls uyless black related protocols ieee computer society 1991 uyless black frame relay networks mcgrawhill 1998 uyless black mpls label switching networks prentice hall 2001 uyless black volume prentice hall 1995
+packetswitched networksedit
+information history internet
+history packetswitched networks divided three overlapping eras early networks introduction model many postal telephone telegraph companies introduced networks interfaces internet era2122
+early networksedit
+research packet switching national physical laboratory began proposal widearea network 19652 localarea network 196623 arpanet funding secured 1966 taylor planning began 1967 hired larry roberts network arpanet sita became operational 1969 introduction 197324 twenty different network technologies developed fundamental differences involved division functions tasks hosts edge network network core datagram system hosts responsibility ensure orderly delivery packets user datagram protocol example datagram protocol virtual call system network guarantees sequenced delivery data host results simpler host interface less functionality datagram model protocol suite uses network type
+appletalkedit
+appletalk proprietary suite networking protocols developed apple 1985 apple macintosh computers primary protocol used apple devices 1980s 1990s appletalk included features allowed local area networks established without requirement centralized router server appletalk system automatically assigned addresses updated distributed namespace configured required internetwork routing plugnplay system2526
+appletalk versions also released compatibles apple iigs appletalk support available networked printers especially laser printers file servers routers appletalk support terminated 2009 replaced tcpip protocols25
+arpanetedit
+arpanet progenitor network internet first network tcpip suite using packet switching technologies
+bnrnetedit
+bnrnet network bell northern research developed internal initially host designed support many hosts later made major contributions ccitt project27
+cycladesedit
+cyclades packet switching network french research network designed directed louis pouzin first demonstrated 1973 developed explore alternatives early arpanet design support network research generally first network make hosts responsible reliable delivery data rather network using unreliable datagrams associated endtoend protocol mechanisms concepts network influenced later arpanet architecture2829
+decnetedit
+decnet suite network protocols created digital equipment corporation originally released 1975 order connect pdp11 minicomputers evolved first peertopeer network architectures thus transforming networking powerhouse 1980s initially built three layers later 1982 evolved sevenlayer osicompliant networking protocol decnet protocols designed entirely digital equipment corporation however decnet phase later open standards published specifications several implementations developed outside including linux30
+ddx1edit
+experimental network nippon mixed circuit switching packet switching succeeded ddx231
+cost iiedit
+european informatics network project link several national networks became operational 1976citation needed
+epssedit
+experimental packet switching system epss experiment post office first public packet switching network began operating 1977 based protocols defined academic community 197532 ferranti supplied hardware software handling link control messages acknowledgements flow control different networks3334
+geisedit
+general electric information services geis general electric major international provider information services company originally designed telephone network serve internal albeit continentwide voice telephone network
+1965 instigation warner sinback data network based voicephone network designed connect four computer sales service centers schenectady york chicago phoenix facilitate computer timesharing service apparently worlds first commercial online service addition selling computers centers computer service bureaus offering batch processing services lost money beginning sinback highlevel marketing manager given turning business around decided timesharing system based kemneys work dartmouth—which used computer loan ge—could profitable warner right
+going international years later geis created network data center near cleveland ohio little published internal details network though stated tymshare copied geis system create network tymnet design hierarchical redundant communication links
+ipsanetedit
+ipsanet semiprivate network constructed sharp associates serve timesharing customers became operational 1976
+ipxspxedit
+internetwork packet exchange sequenced packet exchange novell networking protocols derived xerox network systems protocols respectively used primarily networks using novell netware operating systems37
+merit networkedit
+merit network independent nonprofit 501c3 corporation governed michigans public universities38 formed 1966 michigan educational research information triad explore computer networking three michigans public universities means help states educational economic development39 initial support state michigan national science foundation packetswitched network first demonstrated december 1971 interactive host host connection made mainframe computer systems university michigan arbor wayne state university detroit40 october 1972 connections mainframe michigan state university east lansing completed triad next several years addition host host interactive connections network enhanced support terminal host connections host host batch connections remote submission remote printing batch file transfer interactive file transfer gateways tymnet telenet public data networks host attachments gateways data networks ethernet attached hosts eventually tcpip additional public universities michigan join network4041 stage merits role nsfnet project starting mid1980s
+npledit
+1965 donald davies national physical laboratory united kingdom designed proposed national data network based packet switching proposal taken nationally 1967 pilot experiment demonstrated feasibility packet switched networks1617
+1969 begun building mark packetswitched network meet needs multidisciplinary laboratory prove technology operational conditions421843 1976 computers terminal devices attached44 added network replaced 1986 followed arpanet first networks world packet switching4546 interconnected early 1970s
+octopusedit
+octopus local network lawrence livermore national laboratory connected sundry hosts interactive terminals various computer peripherals including bulk storage system
+philips researchedit
+philips research laboratories redhill surrey developed packet switching network internal datagram network single switching node
+pupedit
+parc universal packet earliest internetwork protocol suites created researchers xerox parc mid1970s entire suite provided routing packet delivery well higher level functions reliable byte stream along numerous applications developments xerox network systems xns51
+rcpedit
+experimental network created french used gain experience packet switching technology specification transpac frozen virtualcircuit network contrast cyclades based datagrams emphasised terminal host terminal terminal connection cyclades concerned hosttohost communication transpac introduced network influenced specification
+retdedit
+especial transmisión datos network developed compañía telefónica nacional españa became operational 1972 thus first public network
+scannetedit
+experimental packetswitched nordic telecommunication network scannet implemented nordic technical libraries 1970s included first nordic electronic journal extemplo libraries also among first ones universities accommodate microcomputers public early 1980s
+sita hlnedit
+sita consortium airlines high level network became operational 1969 time arpanet carried interactive traffic messageswitching traffic many nonacademic networks little published
+systems network architectureedit
+systems network architecture ibms proprietary networking architecture created 1974 customer could acquire hardware software lease private lines common carrier construct private network60
+telenetedit
+telenet first fcclicensed public data network united states founded former arpa ipto director larry roberts means making arpanet technology public tried interest buying technology monopolys reaction incompatible future bolt beranack newman provided financing initially used arpanet technology changed host interface terminal interface telenet designed protocols helped standardize ccitt telenet incorporated 1973 started operations 1975 went public 1979 sold gte6162
+tymnetedit
+tymnet international data communications network headquartered jose utilized virtual call packet switched technology used snasdlc ascii interfaces connect host computers servers thousands large companies educational institutions government agencies users typically connected dialup connections dedicated async connections business consisted large public network supported dialup users private network business allowed government agencies large companies mostly banks airlines build dedicated networks private networks often connected gateways public network reach locations private network tymnet also connected dozens public networks internationally x25x75 gateways interesting note tymnet named tyme another employee suggested name
+xnsedit
+xerox network systems protocol suite promulgated xerox provided routing packet delivery well higher level functions reliable stream remote procedure calls developed parc universal packet pup6566
+eraedit
+kinds networks datapac transpac initially implemented external interface older networks telenet tymnet modified provide host interface addition older host connection schemes datapac developed bell northern research joint venture bell canada common carrier northern telecom telecommunications equipment supplier northern telecom sold several datapac clones foreign ptts including deutsche bundespost x121 allowed interconnection national networks user host could call host foreign network including dnic remote network part destination addresscitation needed
+austpacedit
+austpac australian public network operated telstra started telecom australia early 1980s austpac australias first public packetswitched data network supporting applications online betting financial applications—the australian office made austpac—and remote terminal access academic institutions maintained connections austpac midlate 1990s cases access dialup terminal linking permanent node networkcitation needed
+connnetedit
+connnet packetswitched data network operated southern england telephone company serving state connecticut67citation needed
+datanet 1edit
+datanet public switched data network operated dutch telecom known strictly speaking datanet referred network connected users leased lines using x121 dnic 2041 name also referred public service telepad using dnic 2049 main videotex service used network modified devices infrastructure name datanet used services well although name incorrect services managed people within department contributed confusion68
+datapacedit
+datapac first operational network 1976 covered major canadian cities eventually extended smaller centrescitation needed
+datexpedit
+deutsche bundespost operated national network germany technology acquired northern telecomcitation needed
+eirpacedit
+eirpac irish public switched data network supporting launched 1984 replacing euronet eirpac eircom697071
+hipanetedit
+hitachi designed private network system sale turnkey package multinational organizations addition providing packet switching message switching software also included messages buffered nodes adjacent sending receiving terminals switched virtual calls supported logical ports originating terminal could menu predefined destination terminals
+iberpacedit
+iberpac spanish public packetswitched network providing services iberpac telefonicacitation needed
+janetedit
+janet academic research network linking universities higher education establishments publicly funded research laboratories73 network based mainly 4000 series switches links mbits final phase converted based network janet network grew 1970s srcnet later called sercnet network74
+pssedit
+packet switch stream post office later become british telecom national network dnic 2342 british telecom renamed global network service name name remained better known also included public dialup access various interstream gateways services telexcitation needed
+transpacedit
+transpac national network france developed locally time datapac canada development done french influenced experimental network began operation 197875 served commercial users minitel began consumers76
+venuspedit
+venusp international network operated april 1982 march 2006 subscription peak 1999 venusp connected networks countries77
+venepaqedit
+venepaq national public network venezuela cantv allow direct connection dial connections provides nationalwide access cost provides national international access venepaq allow connection kbits kbits direct connections 1200 2400 9600 bits dial connections
+internet eraedit
+
+
+internet
+
+
+
+opte project visualization routing paths portion internet
+
+
+
+
+
+general
+
+
+
+access
+censorship
+democracy
+digital divide
+digital rights
+freedom information
+history internet
+internet phenomena
+neutrality
+pioneers
+privacy
+sociology
+usage
+
+
+
+
+
+
+
+
+
+governance
+
+
+
+icann
+
+internet engineering task force
+
+internet governance forum
+internet society
+
+
+
+
+
+
+
+
+
+information infrastructure
+
+
+
+domain name system
+hypertext transfer protocol
+internet exchange point
+internet protocol
+internet protocol suite
+internet service provider
+address
+internet message access protocol
+simple mail transfer protocol
+
+
+
+
+
+
+
+
+
+services
+
+
+
+blogs
+
+microblogging
+
+
+email
+
+file sharing
+file transfer
+games
+instant messaging
+podcasts
+shopping
+television
+voice
+world wide
+
+search
+
+
+
+
+
+
+
+
+
+
+
+guides
+
+
+
+book
+index
+outline
+
+
+
+
+
+
+
+internet portal
+
+
+
+
+
+
+
+
+
+
+
+
+
+internet connectivity made available anyone could subscription distinctions national networks blurred user longer network identifiers dnic older technologies circuit switching resurfaced names fast packet switching researchers created experimental networks complement existing internetcitation needed
+csnetedit
+computer science network csnet computer network funded national science foundation began operation 1981 purpose extend networking benefits computer science departments academic research institutions could directly connected arpanet funding authorization limitations played significant role spreading awareness access national networking major milestone path development global internet7879
+internet2edit
+internet2 notforprofit united states computer networking consortium members research education communities industry government80 internet2 community partnership qwest built first internet2 network called abilene 1998 prime investor national lambdarail project81 2006 internet2 announced partnership level communications launch brand nationwide network boosting capacity gbits gbits82 october 2007 internet2 officially retired abilene refers higher capacity network internet2 network
+nsfnetedit
+
+
+
+
+nsfnet traffic 1991 nsfnet backbone nodes shown regional networks traffic volume depicted purple zero bytes white billion bytes visualization ncsa using traffic data provided merit network
+
+
+main article nsfnet
+national science foundation network nsfnet program coordinated evolving projects sponsored national science foundation beginning 1985 promote advanced research education networking united states83 nsfnet also name given several nationwide backbone networks operating speeds kbits mbits mbits constructed support nsfs networking initiatives 19851995 initially created link researchers nations nsffunded supercomputing centers public funding private industry partnerships developed major part internet backbone
+nsfnet regional networksedit
+addition five supercomputer centers nsfnet provided connectivity eleven regional networks networks many smaller regional campus networks united states nsfnet regional networks were8485
+
+barrnet area regional research network palo alto california
+cerfnet california education research federation network diego california serving california nevada
+cicnet committee institutional cooperation network merit network arbor michigan later part upgrade argonne national laboratory outside chicago serving universities university chicago illinois indiana michigan minnesota ohio wisconsin
+meritmichnet arbor michigan serving michigan formed 1966 still operation 201686
+midnet lincoln nebraska serving arkansas iowa kansas missouri nebraska oklahoma south dakota
+nearnet england academic research network cambridge massachusetts added part upgrade serving connecticut maine massachusetts hampshire rhode island vermont established late 1988 operated contract assumed responsibility nearnet july 199387
+northwestnet seattle washington serving alaska idaho montana north dakota oregon washington founded 198788
+nysernet york state education research network ithaca york
+jvncnet john neumann national supercomputer center network princeton jersey serving delaware jersey
+sesquinet sesquicentennial network houston texas founded 150th anniversary state texas
+suranet southeastern universities research association network college park maryland later part upgrade atlanta georgia serving alabama florida georgia kentucky louisiana maryland mississippi north carolina south carolina tennessee virginia west virginia sold 1994
+westnet salt lake city utah boulder colorado serving arizona colorado mexico utah wyoming
+
+national lambdarailedit
+national lambdarail launched september 2003 12000mile highspeed national computer network owned operated research education community runs fiberoptic lines first transcontinental gigabit ethernet network operates high aggregate capacity tbits high gbits bitrate plans gbits8990 upgrade never took place ceased operations march 2014
+transpac transpac2 transpac3edit
+transpac2 transpac3 continuations transpac project highspeed international internet service connecting research education networks asiapacific region us9192 transpac part nsf’s international research network connections irnc program93
+highspeed backbone network service vbnsedit
+highspeed backbone network service vbns came line april 1995 part national science foundation sponsored project provide highspeed interconnection nsfsponsored supercomputing centers select access points united states94 network engineered operated telecommunications cooperative agreement 1998 vbns grown connect universities research engineering institutions national points presence mbits oc3c mbits oc12c mbits links oc12c backbone substantial engineering feat time vbns installed first ever production oc48c gbits links february 1999 went upgrade entire backbone oc48c95
+june 1999 worldcom introduced vbns allowed attachments vbns network organizations approved receiving support nsf96 expiration agreement vbns largely transitioned providing service government universities research centers migrated internet2 educational backbone january 2006 verizon merged97 vbns became service verizon business98
+alsoedit
+
+circuit switching
+compuserve
+message switching
+multibearer network
+optical burst switching
+packet radio
+public data network
+public switched data network
+store forward
+timedriven switching bufferless approach packet switching
+transmission delay
+virtual circuit
+virtual private network
+
+referencesedit
+
+
+paul baran distributed communications volume i–xi rand corporation research report august 1964
+roberts lawrence november 1978 evolution packet switching retrieved september 2017 almost immediately 1965 meeting donald davies conceived details storeandforward packet switching system
+kirstein peter july 1998 early experiences arpanet internet university college london retrieved august 2017
+martin weik fiber optics standard dictionary springer science business media 2012 1219 pages isbn 1461560233 retrieved 20150804
+national telecommunication information administration telecommunications glossary telecommunications terms published government institutes 1997 pages isbn 1461732328 volume 1037 part federal standard retrieved 20150804
+stewart bill 20000107 paul baran invents packet switching living internet retrieved 20080508
+isaacson walter 2014 innovators group hackers geniuses geeks created digital revolution simon schuster
+abbate jane 2000 inventing internet press isbn 0262261332
+inductee details donald watts davies national inventors hall fame retrieved september 2017
+inductee details paul baran national inventors hall fame retrieved september 2017
+baran paul 1960 reliable digital communications using unreliable network repeater nodes rand corporation retrieved july 2016
+baran paul 1962 rand paper p2626
+distributed communications
+davies march 1986 oral history davies interviewed martin campbellkelly national physical laboratory charles babbage institute university minnesota minneapolis retrieved july 2014
+gillies james cailliau robert 2000 born story world wide oxford university press isbn 0192862073
+coffman odlyzco optical fiber telecommunications systems impairments published academic press 2002 1022 pages optics photonics isbn 0080513190 edited kaminow retrieved 20150815
+steil council foreign relations technological innovation economic performance published princeton university press 2002 pagesisbn 0691090912 retrieved 20150815
+hempstead worthington 2005 encyclopedia 20thcentury technology routledge
+vinton cerf robert kahn 1974 protocol packet network intercommunication ieee transactions communications 637–648 doi101109tcom19741092259 archived original march 2016
+interview author mplsbased article pildush
+moore roger august 2006 temporary index collection papers packetswitching 1970s retrieved september 2017
+kirstein peter 1973 survey present planned general purpose european data computer networks retrieved september 2017
+survey capabilities packet switching networks 1975 retrieved september 2017 research packet switching networks british national physical laboratory predates arpanet commenced 1966
+taylor steve metzler 2008 vint cerf tcpip long coming
+history macintosh networking alan oppenheimer macworld expo january 2004
+inside appletalk second edition gursharan sidhu richard andrews alan oppenheiner addisonwesley 1989 isbn 0201550210
+martel cunningham grushcow network canadian experience packet switching technology ifip congress 1974 10–14
+technical history cyclades technical histories internet network protocols computer science department university texas austin
+cyclades experience results impacts zimmermann proc ifip77 congress toronto august 1977 465–469
+digital equipment corporation nineteen fiftyseven present digital equipment corporation 1978 page retrieved september 2013
+wood david 1975 survey capabilities packet switching networks proceedings symposium computer networks
+davies howard bressan beatrice 2010 history international research networking people made happen john wiley sons isbn 352732710x
+bright smith michael 1973 experimental packet switching project post office proceedings nato advanced study institute computer communication networks sussex united kingdom noordhoff international publishing 435–44
+pearson wilkin 1974 design aspects public packet switching network proceedings iccc 199–213
+kirstein peter 1973 survey present planned general purpose european data computer networks proceedings nato advanced study institute computer communication networks sussex united kingdom noordhoff international publishing
+schwartz mischa boorstyn rober pickholtz raymond november 1972 terminaloriented computercommunication networks proceedings ieee 1408–23 doi101109proc19728912
+maintaining compatibility migration tcpip netware network rich novell march 1998 retrieved september 2013
+merit receives administrative services agreement university michigan
+chronicle merits early history john mulcahy 1989 merit network arbor michigan
+merit network timeline 1970–1979 merit network arbor michigan
+merit network timeline 1980–1989 merit network arbor michigan
+scantlebury wilkinson 1974 national physical laboratory data communications network proceedings iccc 223–228
+ward mark october 2009 celebrating years news
+national physical laboratory data communications netowrk 1974 retrieved september 2017
+donald davies thocpnet
+donald davies internethalloffameorg
+mendicino samuel 1972 1970 octopus lawrence radiation laboratory network computer networks englewood cliffs prenticehall 95–100
+pehrson david 1970 engineering view octopus computer network
+fletcher john 1975 principles design octopus computer network
+burnett sethi packet switching philips research laboratories computer networks northholland publishing company 341–348 doi1010160376507577900101
+david boggs john shoch edward taft robert metcalfe april 1980 internetwork architecture ieee transactions communications 612–624 doi101109tcom19801094684
+després 1974 experimental packetswitched data transmission service french proceedings iccc 171–85
+bache matras 1976 fundamental choices development experimental packetswitching data transmission service french proceedings iccc 311–16
+bache guillou layec long matras 1976 experimental packetswitched data transmission service french history connections control proceedings iccc
+alarcia herrera 1974 ctnes packet switching network applications proceedings iccc 163–170
+cuenca 1980 public packet switching data communications network eight years operating experience conference record ieee 3931–3935
+lavandera luis 1980 architecture protocols performance retd conference record ieee 2841–2845
+haarala arjariitta libraries players local level
+chretien konig rech 1973 sita network proceedings nato advanced study institute computer communication networks sussex united kingdom noordhoff international publishing 373–396
+sundstrom schultz 1980 1980 snas first years 19741980 proceedings iccc 578–585
+electronic post switching data timothy johnson scientist 1976
+mathison roberts walker history telenet commercialization packet switching communications magazine ieee 2012
+tymes tymnet terminal oriented communication network proceedings sjcc 1971 211–16
+tymes april 1981 routing flow control tymnet ieee transactions communications com29 392–98
+xerox system integration standard internet transport protocols xerox stamford 1981
+chapter xerox network systems version communications programming concepts international business machines october 1997
+maidasani dinesh 200906 straight point networking laxmi publications limited isbn 9788131805299 check date values date help
+steneker graduation report data services network electrical engineering 1991 chapter page retrieved june 2011
+telecommunications directory gale research 2000 isbn 9780787633523
+gareth locksley 1990 single european market information communication technologies belhaven press isbn 9781852931018
+eircom department agriculture food mark henry department agriculture food eircom department finance eircom office revenue commissioners office information commissioner retrieved 2017
+tomaru kato yamaguchi 1980 private packet network application worldwide integrated communication network proceedings iccc 517–22
+19842014 years janet network disc retrieved september 2017
+national research council national research network review committee leonard kleinrock 1988 toward national research network national academies maint explicit link
+virtual circuits transpac france preinternet data networking
+epstein nadine 19860309 voila minitel york times
+kddi close venusp international public data communications service kddi november 2005 retrieved september 2013
+internet—from modest beginnings website retrieved september 2011
+douglas comer october 1983 history overview csnet communications association computing machinery 747–753 doi101145358413358423
+internet2 retrieved 20090626
+optical networking next generation marguerite reardon cnet news october 2004
+speedy internet2 gets boost anick jesdanun usatodaycom october 2007 retrieved june 2009
+nsfnet partnership changed world site event held celebrate nsfnet november 2007
+retiring nsfnet backbone service chronicling susan harris elise gerich connexions april 1996
+nsfnet community panel presentation slides doug gale moderator nsfnet partnership changed world november 2007
+merit–who part early years 19641983 eric aupperle merit network library tech 1998
+operate nearnet news july 1993
+northwestnet northwestnet user services internet resource guide northwestnet academic computing consortium march 1992 accessed july 2012
+michael feldman october 2008 national lambdarail opens business hpcwire retrieved june 2013
+national lambdarail september 2013
+international transpac2 inaugurated wire april 2005
+transpac website retrieved september 2013
+transpac3 asiaus high performance international networking international research network connections program irnc national science foundation october 2011 retrieved september 2013
+solicitation 9352 network access point manager routing arbiter regional network providers high speed backbone network services provider nsfnet nrensm program 1993
+vbns fathers internet john jamison randy nicklas greg miller kevin thompson rick wilder laura cunningham chuck song ieee spectrun volume issue july 1998 3846
+worldcom introduces next generation vbns higher education research organizations verizon business news june 1999
+verizon close merger creating stronger competitor advanced communications services verizon business news january 2006
+vbns httpwwwverizonbusinesscom home solutions government federal government contract vehicles fts2001 bridge products
+
+
+bibliographyedit
+
+leonard kleinrock information flow large communication nets cambridge 1961 proposal thesis
+leonard kleinrock information flow large communication nets quarterly progress report july 1961
+leonard kleinrock communication nets stochastic message flow delay mcgrawhill york 1964
+paul baran distributed communications volumes rand corporation research documents august 1964
+
+paul baran distributed communications introduction distributed communications network rand memorandum rm3420pr august 1964
+
+
+paul baran distributed communications networks ieee transactions communications systems cs12 march 1964
+davies bartlett scantlebury wilkinson digital communications network computers giving rapid response remote terminals symposium operating systems principles october 1967
+scantlebury wilkinson bartlett design message switching centre digital communication network ifip 1968
+larry roberts merrill toward cooperative network timeshared computers fall afips conference october 1966
+lawrence roberts evolution packet switching proceedings ieee november 1978
+
+readingedit
+
+abbate janet 2000 inventing internet press isbn 9780262511155
+hafner katie wizards stay late simon schuster 1996 52–67
+norberg arthur oneill judy transforming computer technology information processing pentagon 19621982 johns hopkins university 1996
+
+external linksedit
+
+oral history interview paul baran charles babbage institute university minnesota minneapolis baran describes working environment rand well initial interest survivable communications evolution writing distribution elevenvolume work distributed communications baran discusses interaction group arpa responsible later development arpanet
+data communications network video 1970s
+packet switching history design site reviewed baran roberts kleinrock
+paul baran origins internet
+brief history internet
+hobbes internet timeline robert hobbes zakon zakon group
+articles packet switching 1970s
+introduction packet switched networks phrack 05388
+
+article based material taken free online dictionary computing prior november 2008 incorporated relicensing terms gfdl version later
+
+
+
+
+
+
+
+
+
+
+
+telecommunications
+
+
+
+history
+
+
+
+
+beacon
+broadcasting
+cable protection system
+cable
+communications satellite
+computer network
+drums
+electrical telegraph
+
+heliographs
+hydraulic telegraph
+internet
+mass media
+mobile phone
+optical telecommunication
+optical telegraphy
+pager
+photophone
+prepay mobile phone
+radio
+radiotelephone
+satellite communications
+semaphore
+smartphone
+smoke signals
+telecommunications history
+telautograph
+telegraphy
+teleprinter teletype
+telephone
+telephone cases
+television
+timeline communication technology
+undersea telegraph line
+videoconferencing
+videophone
+videotelephony
+whistled language
+
+
+
+
+
+pioneers
+
+
+
+edwin howard armstrong
+john logie baird
+paul baran
+alexander graham bell
+bernerslee
+jagadish chandra bose
+vint cerf
+claude chappe
+donald davies
+forest
+philo farnsworth
+reginald fessenden
+elisha gray
+erna schneider hoover
+charles
+hedy lamarr
+innocenzo manzetti
+guglielmo marconi
+antonio meucci
+radia perlman
+alexander stepanovich popov
+johann philipp reis
+nikola tesla
+camille tissot
+alfred vail
+charles wheatstone
+vladimir zworykin
+
+
+
+
+
+transmission
+media
+
+
+
+coaxial cable
+fiberoptic communication
+
+optical fiber
+
+
+freespace optical communication
+molecular communication
+radio waves
+transmission line
+
+
+
+
+
+network topology
+switching
+
+
+
+links
+nodes
+terminal node
+network switching circuit
+packet
+telephone exchange
+
+
+
+
+
+multiplexing
+
+
+
+spacedivision
+frequencydivision
+timedivision
+polarizationdivision
+orbital angularmomentum
+codedivision
+
+
+
+
+
+networks
+
+
+
+arpanet
+bitnet
+cellular network
+computer
+cyclades
+ethernet
+fidonet
+internet
+isdn
+
+mobile
+
+network
+public switched telephone
+radio
+telecommunications equipment
+television
+telex
+
+wireless
+world wide
+
+
+
+
+
+
+
+
+category
+portal
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlepacketswitchingoldid817536016 categories computer networkinghistory internetnetwork protocolspackets information technologyhidden categories errors datescs1 maint explicit alall articles unsourced statementsarticles unsourced statements february 2011

@@ -1,0 +1,627 @@
+
+step
+
+filename extension
+step
+
+
+magic number
+iso1030321
+
+
+developed
+
+
+
+initial release
+1994
+
+
+website
+specification
+
+
+stepfile widely usedcitation needed data exchange form step 10303 represent objects computeraided design related information ascii structure stepfile easy read typically instance line format stepfile defined 1030321 clear text encoding exchange structure1
+1030321 defines encoding mechanism representing data conforming particular schema express data modeling language specified 1030311 stepfile also called p21file step physical file file extensions step indicate file contains data conforming step application protocols extension used purposes2
+
+
+
+contents
+
+
+history
+1030321 building blocks
+
+example
+header section
+data section
+
+
+also
+references
+
+
+
+historyedit
+details take note
+
+first edition 10303211994 bugs corrected technical corrigendum therefore recommended users study second edition instead
+second edition 10303212002 included corrigendum extensions several data sections
+third edition 10303212016 added anchor reference signature sections support external references support compressed exchange structures zipbased archive digital signatures utf8 character encoding3
+part defined conformance classes differ encode complex entity instances
+
+conformance class always used enforce socalled internal mapping compact
+conformance class used practice always enforces external mapping theory would allow better interoperability since postprocessor know handle supertypes know specified subtypes
+
+
+edition part enforces socalled short names optional edition practice however short names rarely used
+edition allows multiple data sections used practice however implementations single data section edition encoding
+
+1030321 building blocksedit
+exampleedit
+typical example looks like
+
+iso1030321
+header
+filedescription
+description minimal ap214 example single part
+implementationlevel
+filename
+name demo
+timestamp 20031227t115753
+author lothar klein
+organization lksoft
+preprocessorversion
+originatingsystem idastep
+authorization
+fileschema automotivedesign 10303
+endsec
+data
+10organizationo0001lksoftcompany
+11productdefinitioncontextpart definition12manufacturing
+12applicationcontextmechanical design
+13applicationprotocoldefinitionautomotivedesign200312
+14productdefinition01511
+15productdefinitionformation116
+16producta0001test part
+17productrelatedproductcategorypart16
+18productcontext12
+19appliedorganizationassignment102016
+20organizationroleid owner
+endsec
+endiso1030321
+
+header sectionedit
+seen example file split sections following initial keyword iso1030321
+header section fixed structure consisting groups given order except data fields timestamp fileschema fields contain empty strings
+
+filedescription
+
+description
+implementationlevel version conformance option file possible versions original standard back 1994 technical corrigendum 1995 second edition conformance option either internal external mapping complex entity instances often find value value enforcing external mapping also possible rarely used values indicate extended stepfiles defined 2001 standard several data sections multiple schemas filepopulation support
+
+
+filename
+
+name exchange structure correspond name file file system reflect data file strict rule field
+timestamp indicates time file created time given international data time format 8601 20031227t115753 december 2003 minutes noon time
+author name mailing address person creating exchange structure
+organization organization person belongs
+preprocessorversion name system version produces stepfile
+originatingsystem name system version originally created information contained stepfile
+authorization name mailing address person authorized file
+
+
+fileschema specifies several express schema governing information data sections first edition files express schema together optional asn1 object identifier schema version listed second edition files specify several express schema
+
+last three header groups valid second edition files
+
+filepopulation indicating valid population entity instances conforms express schemas done collecting data several datasections referenced instances data sections
+
+governingschema express schema indicated population belongs validated
+determinationmethod figure instances belong population three methods predefined sectionboundary includeallcompatible includereferenced
+governedsections data sections whose entity instances fully belongs population
+concept filepopulation close schemainstance sdai unfortunately standardization process possible come agreement merge concepts therefore jsdai adds attributes filepopulation intelligent comments cover missing information schemainstance supported import export
+
+
+sectionlanguage allows assignment default language either specific data section needed express schemas provide capability specify language string attributes entities name description given
+sectioncontext provide capability specify additional context information single data sections used stepaps indicate conformance class covered particular data section
+
+data sectionedit
+data section contains application data according specific express schema encoding data follows simple principles
+
+instance name every entity instance exchange structure given unique name form 1234 instance name must consist positive number typically smaller instance name valid locally within stepfile content exported system instance names different instances instance name also used reference entity instances attribute values aggregate members referenced instance defined current instance
+instances single entity data types represented writing name entity capital letters followed attribute values defined order within parentheses 16product
+instances complex entity data types represented step file using either internal mapping external mapping
+
+external mapping always used complex entity instance consist leaf entity case single entity instance values given independently alphabetical order defined entity values grouped together parentheses
+internal mapping used default conformance option complex entity instance consists leaf entity encoding similar single entity instance additional order given subtype definition
+
+
+mapping attribute values
+
+explicit attributes mapped inverse derived redeclared attributes listed since values deduced ones
+unset attribute values given
+explicit attributes redeclared derived subtype encoded position supertype attribute
+
+
+mapping data types
+
+enumeration boolean logical values given capital letters leading trailing true
+string values given characters code greater special encoding used character sets defined 8859 10646 supported note typical west european unicode character sets cannot directly taken stepfile strings decoded special
+integers real values used identical typical programming languages
+binary values sequences encoded hexadecimal surrounded double quotes leading character indicating number unused bits followed uppercase hexadecimal encoding data important note entire binary value encoded single hexadecimal number highest order bits first character lowest order bits last
+elements aggregates list array given parentheses separated
+care taken select data types based defined data types name defined data type gets mapped
+
+
+also mapping express java details thisclarification needed
+
+alsoedit
+
+industry foundation classes
+iges
+file format
+
+referencesedit
+
+
+
+10303212002 industrial automation systems integration product data representation exchange part implementation methods clear text encoding exchange structure
+tc184sc4 secretary cumulative list resolutions resolution stuttgart germany june 2003 registration mimetypes
+10303212016 industrial automation systems integration product data representation exchange part implementation methods clear text encoding exchange structure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleiso1030321oldid811834350 categories 10303hidden categories articles unsourced statementsarticles unsourced statements october 2014wikipedia articles needing clarification january 2014

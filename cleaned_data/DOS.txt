@@ -1,0 +1,475 @@
+article family operating systems concept disk operating system type attack uses disambiguation
+
+
+
+
+freedos screenshot showing command line interface directory structure version information
+
+
+dɔːs1 family disk operating systems2 primarily consisting msdos rebranded version name introduced 1981 well later compatible systems manufacturers drdos 1988 romdos 1989 ptsdos 1993 freedos 1998 msdos dominated x86based compatible market 1981 1995
+dozens operating systems also acronym including mainframe dos360 1966 others apple apple prodos atari commodore trsdos amigados
+
+
+
+contents
+
+
+history
+
+origins
+decline
+continued
+
+embedded systems
+emulation
+
+
+
+
+design
+
+boot sequence
+file system
+
+drive naming scheme
+reserved device names
+
+
+memory management
+windows
+
+
+user interface
+
+terminate stay resident
+
+
+software
+also
+references
+reading
+external links
+
+
+
+historyedit
+information comparison operating systems timeline operating systems
+originsedit
+separately sold msdos predecessor 86dos resembled digital researchs cpm—the dominant disk operating system 8bit intel 8080 zilog microcomputers—but instead intel 8086 16bit processors
+introduced built intel 8088 microprocessor needed operating system seeking 8088compatible build initially approached microsoft bill gates possibly believing microsoft owned microsoft softcard allowed apple sent digital research meeting however initial negotiations broke digital research wished sell royalty basis sought single license change name digital research founder gary kildall refused withdrew34
+approached bill gates gates turn approached seattle computer products programmer paterson developed variant cpm80 intended internal product testing scps 16bit intel 8086 card s100 system initially named qdos quick dirty operating system made commercially available 86dos microsoft purchased 86dos allegedly 50000 became microsoft disk operating system msdos introduced 19815
+within year microsoft licensed msdos companies6 supplied operating system hardware sometimes names microsoft later required msdos name exception variant continued develop version digital research became aware operating system similar sold name insisted upon threatened legal action responded offering agreement would give consumers choice cpm86 kildalls 8086 version sidebyside cost almost sales faded msdos becoming marketed operating system compatibles3
+microsoft originally sold msdos original equipment manufacturers oems major reason early compatible structured separation system specific device driver code iosys kernel msdossys microsoft provided adaptation allowed oems customize device driver code particular system early 1990s adhered standards microsoft began selling msdos retail msdos
+mid1980s microsoft developed multitasking version dos78 version generally referred european msdos developed licensed several european companies version supports preemptive multitasking shared memory device helper services executable format executables none features used later versions used form basis kernel version distinct widely released developed based upon
+digital research attempted regain market lost cpm86 initially concurrent flexos plus compatible msdos cpm86 software later multiuser compatible msdos cpm86 software compatible msdos software digital research bought novell became novell later part caldera names opendos drdos 702703 lineo devicelogics
+gordon letwin wrote 1995 first wrote onetime throwaway product intended keep happy theyd languages9 microsoft expected would interim solution xenix company planned time improve msdos would almost indistinguishable singleuser xenix xedos would also motorola 68000 zilog z8000 lsi11 would upwardly compatible xenix byte 1983 described multiuser msdos future1011
+however want replace dos12 began selling unix microsoft began developing alternative9 companies later series disagreements successor operating systems windows13 split development systems result14 last retail version msdos msdos msdos became part windows last retail version 2000 revision though later develop oems internal
+freedos project began june 1994 microsoft announced would longer sell support msdos hall posted manifesto proposing development opensource replacement within weeks programmers including villani norman joined project kernel commandcom command line interpreter shell core utilities created pooling code written found available several official prerelease distributions freedos freedos distribution released september 2006 made available general public license freedos require license fees royalties1516
+declineedit
+main article history microsoft windows
+early versions microsoft windows separate version dos17 early 1990s windows graphical shell heavy systems 1995 windows bundled standalone operating system require separate license windows windows followed took default kernel though msdos component remained compatibility windows msdos component could without starting windows181920 longer required windows majority users stopped using directly
+continued useedit
+
+
+
+
+dosbox
+
+
+available systems 2012 freedos drdos romdos ptsdos rxdos real32 computer manufacturers including dell sell computers freedos operating system2122
+embedded systemsedit
+doss structure accessing hardware directly makes ideal embedded devices final versions drdos still aimed market23 romdos used embedded system canon powershot 7024
+emulationedit
+linux possible copies many clones dosemu linuxnative virtual machine running programs near native speed number emulators running various versions unix microsoft windows dosbox2526 dosbox designed legacy gaming kings quest doom modern operating systems1725
+designedit
+msdostype operating systems machines intel compatible cpus mainly compatibles machinedependent versions msdos produced many nonibmcompatible x86based machines variations relabelling microsoft distribution manufacturers name versions specifically designed work nonibmpccompatible hardware long application programs used apis instead direct hardware access could thereby also nonibmpc compatible machines 1985 digital research also version concurrent motorola 68000 cpus original freedos kernel dosc derived dosnt also motorola cpus early 1990s systems resembled architecture applications binary compatible incompatible instruction sets nonx86cpus however applications written highlevel languages could ported easily
+singleuser singletasking operating system basic kernel functions nonreentrant program time functionality allow program execute time kernel provides various functions programs application program interface like character file management memory management program loading termination
+default provides primitive ability shell scripting batch files filename extension text files created text editor executed fashion compiled programs line batch file command batch files also make several internal commands goto conditional statements27 gosub simple arithmetic supported commandcom well thirdparty shells like 4dos however real form programming usually enabled
+operating system offers application programming interface allows development characterbased applications accessing hardware graphics cards printers mice required programmers access hardware directly usually resulting application device drivers hardware peripheral hardware manufacturers would release specifications ensure device drivers popular applications available28
+boot sequenceedit
+
+bootstrap loader pccompatible computers boot sector located track zero first sector disk bios load sector memory address 0000h7c00h typically check signature offset 1feh sector considered valid bios next physical disk otherwise jump load address certain registers
+loaded boot sector happens master boot record found partitioned media relocate 0000h0600h memory29 otherwise step skipped code scan partition table located within sector active partition modern mbrs check offset 1beh10hn whereas mbrs simply check value found load first sector corresponding partition holds volume boot record volume memory 0000h7c00h similar fashion loaded bios pass execution loaded portion certain registers
+sector content loaded 0000h7c00h constitutes vbrs operating system specific cannot exchanged different versions general exact behaviour differs different versions versions would load whole iosysibmbiocom file memory 0000h0600h30 work sectors stored consecutive order disk later issues would locate store contents first entries root directory 0000h0500h happen reflect correct boot files recorded would load first consecutive sectors iosysibmbiocom file memory 0070h0000h also take care preserve contents disk parameter table finally passes control loaded portion jumping entry point certain registers considerable differences different versions
+modern versions loaded first sectors iosysibmbiocom file memory loaded portion contains another boot loader load remainder memory using root directory information stored 0000h0500h versions file contents still need stored consecutive order disk older versions still loaded whole step skipped
+system initialization code initial builtin device drivers load kernel located msdossys msdos systems memory well windows system initialization code builtin device drivers kernel combined single iosys file msdossys used text configuration file
+configsys file read parse configuration parameters shell variable specifies location shell defaults commandcom
+shell loaded executed
+startup batch file autoexecbat shell3132
+
+system files loaded boot sector must contiguous first directory entries33 removing adding file likely render media unbootable however possible replace shell method used start execution dedicated applications faster limitation apply version system files located anywhere root directory need contiguous therefore system files simply copied disk provided boot sector compatible already
+system files named ibmbiocom instead iosys ibmdoscom instead msdossys older versions used drbiossys drbdossys instead
+starting msdos binary system files iosys msdossys combined single file iosys whilst msdossys became configuration file similar configsys autoexecbat msdossys bootgui directive boot process stop command processor typically commandcom loaded instead executing wincom automatically
+file systemedit
+uses filesystem supports filenames characters filename characters extension starting hierarchical directories supported directory name also format maximum directory path length characters internal current directory structure tables maintains including drive name maximum length fully qualified filename supports characters using format drivepathfilenameext followed null byte
+uses file allocation table filesystem originally fat12 supported 4078 clusters drive added support fat16 used 16bit allocation entries supported 65518 clusters drive added support fat16b removed drive limit could support finally msdos component windows added support fat32 used 32bit allocation entries could support hard drives beyond
+starting file redirector support added initially used support networking later used support cdrom drives mscdex also preliminary installable file system support unused removed
+drive naming schemeedit
+main article drive letter assignment
+drives referred identifying letters standard practice reserve floppy drives systems floppy drive assigns letters drive prompting user swap disks programs alternate access facilitates copying floppy floppy program floppy accessing data another hard drives originally assigned letters could support active partition drive support hard drives became available developed first assigning drive letter drives active primary partition making second pass drives allocate letters logical drives extended partition third pass give nonactive primary partitions names additional partitions existed contained dossupported file system lastly allocates letters optical disc drives disks hardware letter assignments usually occur order drivers loaded drivers instruct assign different letter drivers network drives example typically assign letters nearer alphabet34
+applications drive letters directly unlike directory unixlike systems disrupted adding hardware needs drive letter example addition hard drive primary partition preexisting hard drive contains logical drives extended partitions drive assigned letter previously assigned extended partition logical drives moreover even adding hard drive logical drives extended partition would still disrupt letters disks optical drives problem persisted microsofts dosbased versions windows replaced versions based line preserves letters existing drives user changes them34 problem worked around defining subst drive installing program logical drive assignment drive would changed batch whenever application starts versions concurrent well multiuser system manager real32 reserved drive letter automatically assigned corresponding load drive whenever application starts
+reserved device namesedit
+main article device file
+reserved device names cannot used filenames regardless extension occupied builtin character devices restrictions also affect several windows versions cases causing crashes security vulnerabilities35
+reserved names console auxiliary prn36 printer lister introduced 86dos 86dos added except continued supported versions msdos drdos ever since also available versions msdos whereas versions msdos already used lpt1 first line printer com1 first serial communication device instead introduced addition lpt1 lpt2 well com1 com3 hewlettpackards msdos portable plus also supported alias lpt2 82164a alias com23738 also supported plotters3738 otherwise com2 lpt2 lpt3 clock still named clock issues msdos 211393738 clock device introduced com3 com4 added multitasking msdos supported keybd screen higher multiuser support idle device dynamic idle detection saving power improve multitasking lpt4 optional builtin driver fourth line printer supported versions drdos since config constitutes real mode manager msdos 7080
+typically defaults com1 lpt1 defaults changed versions point serial parallel devices373840 reconfigurable well3738
+filenames ended colon conventionally indicate device names colon actually part name builtin device drivers colons necessary typed cases example
+
+
+echo achieves nothing
+
+still possible create files directories using reserved device names direct editing directory data structures disk sectors naming starting file name space sometimes used viruses hacking programs obscure files users know access locations
+information parallel port serial port
+memory managementedit
+main article memory management
+originally designed intel 80868088 processor therefore could directly access maximum architecture maximum known conventional memory available upper reserved
+specifications developed allow access additional memory first expanded memory specification originally allowed memory addon card accessed page frame reserved upper memory area 80386 later systems could virtual 8086 mode mode memory manager like emm386 create expanded memory extended memory without need addon card second specification extended memory specification 80286 later systems provided copy data extended memory access 65520byte high memory area directly first megabyte memory upper memory block area generally support provided himemsys mode memory manager like qemm 386max also supported
+starting could directly take advantage loading kernel code disk buffers doshigh statement configsys also allowed available umbs dosumb statement configsys
+windowsedit
+also virtual machine
+emulation windows runs much native applications access drives services even hosts clipboard services drivers file systems forth reside host system emulation needs provide translation layer converts calls windows system calls translation layer generally also converts bios calls virtualizes common port accesses many programs commonly
+windows virtual machine provided winoldap winoldap creates virtual machine based programs file system state windows loaded graphics mode character graphic captured window applications windows clipboard accessing extra published calls winoldap paste text winoldap graphics
+emulated windows based upon although default configuration configsys autoexecbat alternate files sessionbysession basis possible load drivers files access host system although typically thirdparty
+later emulation provided doskrnl file represents combined ibmbiocom ibmdoscom system calls passed windowing services programs environment bulk utilities provided bound applications directory windows applications using modified copy windows winos2 modifications allow windows programs seamlessly desktop start winos2 desktop similar starting windows
+allows drive vmdisk real like msdos makes bootable floppy disk number drivers creates special image booted full access system provides drivers hardware disk access cdrom drives driver
+windows 2000 vista emulation provided virtual machine ntvdm files reside ntiosys ntbiosys usual virtual machine provided ntvdm character input passed console session launched program allows features pipes redirection windows emulation 2000 similar virtual machine loaded handled os2ssexe os2exe
+64bit versions windows support ntvdm cannot 16bit applications directly thirdparty emulators dosbox used programs
+user interfaceedit
+systems utilize command line interface programs started entering filename command prompt systems include several programs system utilities provides additional commands dont correspond programs internal commands41
+attempt provide userfriendly environment numerous software manufacturers wrote file management programs provided users menu andor iconbased interfaces microsoft windows notable example eventually resulting microsoft windows becoming selfcontained program loader replacing mostused pccompatible program loader text user interface programs included norton commander navigator volkov commander quarterdesk desqview sidekick graphical user interface programs included digital researchs graphics environment manager originally written geos
+eventually manufacturers major systems began include environment managers msdosibm included shell42 released next year included viewmax based upon gem43
+terminate stay residentedit
+main article terminate stay resident
+multitasking operating system however provide terminate stay resident function allowed programs remain resident memory programs could hook system timer andor keyboard interrupts allow tasks background invoked time preempting current running program effectively implementing simple form multitasking programspecific basis print command implement background print spooling borland sidekick popup personal information manager also used technique
+terminate stay resident programs also used provide additional features available default programs like doskey provided command line editing facilities beyond available commandcom programs like microsoft cdrom extensions mscdex provided access files cdrom disks
+tsrs could even perform rudimentary form task switching example shareware program back forth 199044 hotkey save state currentlyrunning program disk load another program switch hence possible switch back forth programs albeit slowly disk access required back forth could enable background processing however needed desqview least
+softwareedit
+information categorydos software
+
+
+
+
+arachne browser
+
+
+dominant pccompatible platform many notable programs written included
+
+4dos much improved replacement shell
+arachne 16bit graphical browser
+basiclanguage interpreters basica gwbasic replicate basic interpreter environment commonly found 8bit computers
+dbase earliest database programs
+djgpp 32bit dpmi port
+harvard graphics earliest presentation graphics design programs
+lotus protected mode spreadsheet program heavy corporate markets credited success pc45
+microsoft macro assembler microsoft codeview part microsoft development software
+norton commander xtree file management utilities
+norton utilities collection disk system utilities
+tools collection disk system utilities
+pkzip compression utility quickly became standard file compression
+procomm qmodem telix modem communication programs
+qemm 386max memory management utilities
+sidekick popup personal information manager
+turbo pascal turbo basic turbo turbo assembler part borlands integrated development environment
+vern buergs popular list utility displays content files ascii
+wordperfect word processor currently produced windows platform
+wordstar early word processor used unique controlkey sequences replicated many editors
+
+alsoedit
+
+list operating systems
+commandcom command line interpreter windows
+msdos
+vgacompatible text mode base dos’s compatibles
+
+referencesedit
+
+
+dictionarycom
+murdock everett 1988 easy easyway downloadable books isbn 0923178007
+rolander rest story bill gates beat gary kildall part scoble show interview interview scoble robert archived original 20071104
+bove tony 2005 microsoft starch press 9–11 isbn 159327064x
+bellis mary unusual history msdos microsoft operating system retrieved 20080902
+freiberger paul 19820823 bill gates microsoft personal computer infoworld retrieved 20150129
+know wasnt microsofts first unix multitasking operating system
+larry ostermans biography
+letwin gordon 19950817 whats happening newsgroup composos2advocacy usenet ddfvkog4mlablwpicom retrieved 20131106
+morgan chris january 1982 operating systems rosetta stones byte retrieved 20131019
+fiedler ryan october 1983 unix tutorial part unix microcomputer marketplace byte retrieved 20150130
+howitt doran 19841210 unix single user infoworld retrieved 20150207
+pollack andrew 19910727 microsoft widens split software york times retrieved 20080902
+brinkley joel 19990528 executive describes price pressure microsoft york times retrieved 20080902
+hall 20020325 past present future freedos project archived original 20120529 retrieved 20080614
+hall 20060923 history freedos freedosorg archived original 20070527 retrieved 20070528
+bannan james 20061013 coax retro games play vista retrieved 20080703
+finding windows smart computing march 1996 archived original 20040707 retrieved 20080712
+chen raymond 20071224 role msdos windows thing site home msdn blogs archived original 20140205 retrieved 20140205
+description restarting computer msdos mode supportmicrosoftcom 20070119 archived original 20140205 retrieved 20140205
+hall 20070713 halls blog 2007 archived original 20121025 retrieved 20080612
+dell featuring freedos archived original 20080319 retrieved 20080614
+drdos embedded retrieved 20080926
+datalight selected canons line digital still cameras business wire 19990824 retrieved 20080926
+dosbox information retrieved 20080518
+dosemu home 20070505 retrieved 20080703
+batch file help computerhopecom retrieved 20080910
+matczynski michael zingtech guide game programmer retrieved 20080902
+master boot record 090912 dewassoccom
+reverseengineering part boot sector pagetablecom 090912 pagetablecom
+configsys commands 090913 academicevergreenedu
+kozierok charles 2001 boot process guide retrieved 20080902
+misctxt archived original 20100629 090912 arlwustledu
+drive letter assignment choosing primary logical partitions guide 20010417 retrieved 20120404
+microsoft windows msdos device name vulnerability archived original 20110725 retrieved 20080902
+device names definition magazine retrieved 20080902
+hewlettpackard technical reference manual portable plus corvallis hewlettpackard company portable computer division august 1985 4555990001 retrieved 20161127
+hewlettpackard technical reference manual portable plus portable computer division corvallis hewlettpackard company december 1986 august 1985 4555990006 archived original 20161128 retrieved 20161127
+paterson microsoft 20131219 1983 microsoft msdosv20sourceskeliotxt msdosv20sourcehrddrvasm computer history museum microsoft retrieved 20140325 publishers claim would msdos actually msdos mixture altos msdos televideo
+paul matthias 19971002 caldera opendos 701702 update alpha ibmbiocom readmetxt archived original 20031004 retrieved 20090329
+murdock everett easy easyway downloadable books 7–12 isbn 0923178023
+murdock everett easy easyway downloadable books isbn 0923178023
+dvorak john anis nick 1991 dvoraks guide performance osborne mcgrawhill 442–444
+version archived says 1990 progressive solutions
+darrow barbara 20020201 whatever happened lotus archived original 20090109 retrieved 20080712
+
+
+readingedit
+
+corp january 1984 “ibm release cloth bound retail hard board box” edition corp item number 6183946
+corp january 1984 “disk operating system users guide release 210” edition microsoft corp pages including colour illustrations item number 6183947
+corp january 1984 “disk operating system manual release 210” edition microsoft corp looseleaf pages ring folder item 6183940
+
+external linksedit
+
+origins articles manuals paterson
+timeline windows versions wayback machine archived 20071028
+hardware limit archived original 20100815 retrieved 20100829 maint unfit link
+batfiles batch file programming handbook
+
+
+
+
+
+
+
+
+
+
+
+
+operating systems
+
+
+
+general
+
+
+
+advocacy
+comparison
+forensic engineering
+history
+hobbyist development
+list
+timeline
+usage share
+
+
+
+
+
+kernel
+
+
+
+
+architectures
+
+
+
+exokernel
+hybrid
+microkernel
+monolithic
+rump kernel
+unikernel
+
+
+
+
+
+components
+
+
+
+device driver
+loadable kernel module
+microkernel
+user space
+
+
+
+
+
+
+
+
+process management
+
+
+
+
+concepts
+
+
+
+context switch
+interrupt
+
+process
+process control block
+realtime
+thread
+timesharing
+
+
+
+
+
+scheduling
+algorithms
+
+
+
+computer multitasking
+fixedpriority preemptive
+multilevel feedback queue
+preemptive
+roundrobin
+shortest next
+
+
+
+
+
+
+
+
+memory management
+resource protection
+
+
+
+error
+general protection fault
+memory protection
+paging
+protection ring
+segmentation fault
+virtual memory
+
+
+
+
+
+storage access
+file systems
+
+
+
+boot loader
+defragmentation
+device file
+file attribute
+inode
+journal
+partition
+virtual file system
+virtual tape library
+
+
+
+
+
+list
+
+
+
+amigaos
+android
+beos
+
+chrome
+
+
+
+haiku
+illumos
+includeos
+
+linux
+macintosh
+
+classic
+macos
+
+
+minix
+morphos
+musicsp
+nemesis
+
+openvms
+orvyl
+
+
+pick
+
+reactos
+risc
+rstse
+rsx11
+rt11
+solaris
+tops10tops20
+
+unix
+visi
+vmcms
+
+windows
+xinu
+
+
+
+
+
+
+miscellaneous concepts
+
+
+
+
+computer network
+
+live
+live
+shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitledosoldid818310596 categories compatiblesamerican inventionsdisk operating systemshidden categories webarchive template wayback linkscs1 maint unfit

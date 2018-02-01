@@ -1,0 +1,362 @@
+
+
+
+
+Horde groupware is an open-source web application.
+
+
+In computing, a web application or web app is a client–server computer program in which the client (including the user interface and client-side logic) runs in a web browser.[1] Common web applications include webmail, online retail sales, online auctions, wikis, instant messaging services and many other functions.
+
+
+
+Contents
+
+
+1 Definition and similar terms
+
+1.1 Mobile web applications
+
+
+2 History
+3 Interface
+4 Structure
+5 Business use
+6 Development
+7 Applications
+8 See also
+9 References
+10 External links
+
+
+
+Definition and similar terms[edit]
+The general distinction between a dynamic web page of any kind and a "web application" is unclear. Web sites most likely to be referred to as "web applications" are those which have similar functionality to a desktop software application, or to a mobile app. HTML5 introduced explicit language support for making applications that are loaded as web pages, but can store data locally and continue to function while offline.
+Single-page applications are more application-like because they reject the more typical web paradigm of moving between distinct pages with different URLs. Single-page frameworks like Sencha Touch and AngularJS might be used to speed development of such a web app for a mobile platform.
+Mobile web applications[edit]
+Further information: Multiple phone web-based application framework
+There are several ways of targeting mobile devices when making a web application:
+
+Responsive web design can be used to make a web application - whether a conventional web site or a single-page application viewable on small screens and work well with touchscreens.
+Progressive Web Apps are a hybrid of regular web pages (or websites) and a mobile application.
+Native apps or "mobile apps" run directly on a mobile device, just as a conventional software application runs directly on a desktop computer, without a web browser (and potentially without the need for Internet connectivity); these are typically written in Java (for Android devices) or Objective C or Swift (for iOS devices). Recently, frameworks like React Native, Flutter and Xamarin allow the development of native apps for all platforms using languages other than each standard native language.
+Hybrid apps embed a mobile web site inside a native app, possibly using a hybrid framework like Apache Cordova and Ionic or Appcelerator Titanium. This allows development using web technologies (and possibly directly copying code from an existing mobile web site) while also retaining certain advantages of native apps (e.g. direct access to device hardware, offline operation, app store visibility).
+
+History[edit]
+In earlier computing models like client–server, the processing load for the application was shared between code on the server and code installed on each client locally. In other words, an application had its own pre-compiled client program which served as its user interface and had to be separately installed on each user's personal computer. An upgrade to the server-side code of the application would typically also require an upgrade to the client-side code installed on each user workstation, adding to the support cost and decreasing productivity. In addition, both the client and server components of the application were usually tightly bound to a particular computer architecture and operating system and porting them to others was often prohibitively expensive for all but the largest applications. (Today, of course, native apps for mobile devices are also hobbled by some or all of the foregoing issues.)
+In contrast, web applications use web documents written in a standard format such as HTML and JavaScript, which are supported by a variety of web browsers. Web applications can be considered as a specific variant of client–server software where the client software is downloaded to the client machine when visiting the relevant web page, using standard procedures such as HTTP. Client web software updates may happen each time the web page is visited. During the session, the web browser interprets and displays the pages, and acts as the universal client for any web application.
+In the early days of the Web, each individual web page was delivered to the client as a static document, but the sequence of pages could still provide an interactive experience, as user input was returned through web form elements embedded in the page markup. However, every significant change to the web page required a round trip back to the server to refresh the entire page.
+In 1995, Netscape introduced a client-side scripting language called JavaScript allowing programmers to add some dynamic elements to the user interface that ran on the client side. So instead of sending data to the server in order to generate an entire web page, the embedded scripts of the downloaded page can perform various tasks such as input validation or showing/hiding parts of the page.
+In 1996, Macromedia introduced Flash, a vector animation player that could be added to browsers as a plug-in to embed animations on the web pages. It allowed the use of a scripting language to program interactions on the client side with no need to communicate with the server.
+In 1999, the "web application" concept was introduced in the Java language in the Servlet Specification version 2.2. [2.1?].[2][3] At that time both JavaScript and XML had already been developed, but Ajax had still not yet been coined and the XMLHttpRequest object had only been recently introduced on Internet Explorer 5 as an ActiveX object.[4]
+In 2005, the term Ajax was coined, and applications like Gmail started to make their client sides more and more interactive. A web page script is able to contact the server for storing/retrieving data without downloading an entire web page.
+In 2011, HTML5 was finalized, which provides graphic and multimedia capabilities without the need of client side plug-ins. HTML5 also enriched the semantic content of documents. The APIs and document object model (DOM) are no longer afterthoughts, but are fundamental parts of the HTML5 specification. WebGL API paved the way for advanced 3D graphics based on HTML5 canvas and JavaScript language. These have significant importance in creating truly platform and browser independent rich web applications.
+Interface[edit]
+Through Java, JavaScript, DHTML, Flash, Silverlight and other technologies, application-specific methods such as drawing on the screen, playing audio, and access to the keyboard and mouse are all possible. Many services have worked to combine all of these into a more familiar interface that adopts the appearance of an operating system. General purpose techniques such as drag and drop are also supported by these technologies. Web developers often use client-side scripting to add functionality, especially to create an interactive experience that does not require page reloading. Recently, technologies have been developed to coordinate client-side scripting with server-side technologies such as ASP.NET, J2EE, Perl/Plack and PHP.
+Ajax, a web development technique using a combination of various technologies, is an example of technology which creates a more interactive experience.
+Structure[edit]
+Applications are usually broken into logical chunks called "tiers", where every tier is assigned a role.[5] Traditional applications consist only of 1 tier, which resides on the client machine, but web applications lend themselves to an n-tiered approach by nature.[5] Though many variations are possible, the most common structure is the three-tiered application.[5] In its most common form, the three tiers are called presentation, application and storage, in this order. A web browser is the first tier (presentation), an engine using some dynamic Web content technology (such as ASP, CGI, ColdFusion, Dart, JSP/Java, Node.js, PHP, Python or Ruby on Rails) is the middle tier (application logic), and a database is the third tier (storage).[5] The web browser sends requests to the middle tier, which services them by making queries and updates against the database and generates a user interface.
+For more complex applications, a 3-tier solution may fall short, and it may be beneficial to use an n-tiered approach, where the greatest benefit is breaking the business logic, which resides on the application tier, into a more fine-grained model.[5] Another benefit may be adding an integration tier that separates the data tier from the rest of tiers by providing an easy-to-use interface to access the data.[5] For example, the client data would be accessed by calling a "list_clients()" function instead of making an SQL query directly against the client table on the database. This allows the underlying database to be replaced without making any change to the other tiers.[5]
+There are some who view a web application as a two-tier architecture. This can be a "smart" client that performs all the work and queries a "dumb" server, or a "dumb" client that relies on a "smart" server.[5] The client would handle the presentation tier, the server would have the database (storage tier), and the business logic (application tier) would be on one of them or on both.[5] While this increases the scalability of the applications and separates the display and the database, it still doesn't allow for true specialization of layers, so most applications will outgrow this model.[5]
+Business use[edit]
+An emerging strategy for application software companies is to provide web access to software previously distributed as local applications. Depending on the type of application, it may require the development of an entirely different browser-based interface, or merely adapting an existing application to use different presentation technology. These programs allow the user to pay a monthly or yearly fee for use of a software application without having to install it on a local hard drive. A company which follows this strategy is known as an application service provider (ASP), and ASPs are currently receiving much attention in the software industry.
+Security breaches on these kinds of applications are a major concern because it can involve both enterprise information and private customer data. Protecting these assets is an important part of any web application and there are some key operational areas that must be included in the development process.[6] This includes processes for authentication, authorization, asset handling, input, and logging and auditing. Building security into the applications from the beginning can be more effective and less disruptive in the long run.
+Cloud Computing model web applications are software as a service (SaaS). There are business applications provided as SaaS for enterprises for fixed or usage dependent fee. Other web applications are offered free of charge, often generating income from advertisements shown in web application interface.
+Development[edit]
+Main article: Web application development
+Writing a web application is often simplified by open source software[relevant? – discuss] such as Django, Ruby on Rails or Symfony called web application frameworks. These frameworks facilitate rapid application development by allowing a development team to focus on the parts of their application which are unique to their goals without having to resolve common development issues such as user management.[7] While many of these frameworks are open source, this is by no means a requirement.
+The use of web application frameworks can often reduce the number of errors in a program, both by making the code simpler, and by allowing one team to concentrate on the framework while another focuses on a specified use case. In applications which are exposed to constant hacking attempts on the Internet, security-related problems can be caused by errors in the program. Frameworks can also promote the use of best practices[8] such as GET after POST.
+In addition, there is potential for the development of applications on Internet operating systems, although currently there are not many viable platforms that fit this model.
+Applications[edit]
+Examples of browser applications are simple office software (word processors, online spreadsheets, and presentation tools), but can also include more advanced applications such as project management, computer-aided design, video editing and point-of-sale.
+See also[edit]
+
+
+Internet portal
+
+
+
+Software as a service (SaaS)
+Web 2.0
+Web Engineering
+Web services
+Web Sciences
+Web widget
+Single-page application
+Ajax (programming)
+Web development tools
+Browser game
+
+References[edit]
+
+
+
+^ Nations, Daniel. "Web Applications". About.com. Retrieved 20 January 2014. 
+^ Alex Chaffee (2000-08-17). "What is a web application (or "webapp")?". Retrieved 2008-07-27. 
+^ James Duncan Davidson, Danny Coward (1999-12-17). Java Servlet Specification ("Specification") Version: 2.2 Final Release. Sun Microsystems. pp. 43–46. Retrieved 2008-07-27. 
+^ "Dynamic HTML and XML: The XMLHttpRequest Object". Apple Inc. Retrieved 2008-06-25. 
+^ a b c d e f g h i j Jeremy Petersen. "Benefits of using the n-tiered approach for web applications". 
+^ "Top Tips for Secure App Development". Dell.com. Retrieved 2012-06-22. 
+^ Multiple (wiki). "Web application framework". Docforge. Retrieved 2010-03-06. 
+^ Multiple (wiki). "Framework". Docforge. Retrieved 2010-03-06. 
+
+
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to Internet applications.
+
+
+
+HTML5 Draft recommendation, changes to HTML and related APIs to ease authoring of web-based applications.
+The Other Road Ahead — An article arguing that the future lies on the server, not rich interfaces on the client
+Web Applications at Curlie (based on DMOZ)
+Web Applications Working Group at the World Wide Web Consortium (W3C)
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Web interfaces
+
+
+
+Server-side
+
+
+
+
+Protocols
+
+
+
+HTTP
+CGI
+SCGI
+FCGI
+AJP
+WSRP
+WebSocket
+
+
+
+
+
+Server APIs
+
+
+
+C NSAPI
+C ASAPI
+C ISAPI
+COM ASP
+Java servlet
+
+container
+
+
+CLI OWIN
+ASP.NET Handler
+Python WSGI
+Ruby Rack
+JavaScript JSGI
+Perl PSGI
+Lua WSAPI
+Portlet
+
+container
+
+
+
+
+
+
+
+Apache modules
+
+
+
+mod_jk
+mod_lisp
+mod_mono
+mod_parrot
+mod_perl
+mod_php
+mod_proxy
+mod_python
+mod_wsgi
+mod_ruby
+Phusion Passenger
+
+
+
+
+
+Topics
+
+
+
+Web resource vs. Web service
+Open API
+Webhook
+Application server
+
+comparison
+
+
+Scripting
+
+
+
+
+
+
+
+
+Client-side
+
+
+
+
+Browser APIs
+
+
+
+C NPAPI
+
+LiveConnect
+XPConnect
+
+
+C NPRuntime
+C PPAPI
+
+NaCl
+
+
+ActiveX
+BHO
+XBAP
+WebAssembly
+
+
+
+
+
+Web APIs
+
+
+
+
+W3C
+
+
+
+Audio
+Canvas
+CORS
+DOM
+DOM events
+EME
+File
+Geolocation
+IndexedDB
+MSE
+SSE
+SVG
+Video
+WebRTC
+WebSocket
+Web messaging
+Web storage
+Web worker
+XMLHttpRequest
+
+
+
+
+
+Khronos
+
+
+
+WebCL
+WebGL
+
+
+
+
+
+Others
+
+
+
+Gears
+Web SQL Database (formerly W3C)
+
+
+
+
+
+
+
+
+Topics
+
+
+
+Ajax vs. DHTML
+Mashup
+Web IDL
+Scripting
+
+
+
+
+
+
+
+
+Topics
+
+
+
+Dynamic web page
+Open Web Platform
+Rich Internet application
+Web application
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+LCCN: sh2012001728
+NDL: 01058852
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Web_application&oldid=816022358"					Categories: Software architectureWeb applicationsWeb developmentUser interface techniquesHidden categories: Wikipedia articles that may have off-topic sectionsArticles with DMOZ linksWikipedia articles with LCCN identifiers

@@ -1,0 +1,661 @@
+
+
+
+This article contains special characters. Without proper rendering support, you may see question marks, boxes, or other symbols.
+
+
+
+
+
+
+Midnight Commander using box-drawing characters in terminal emulator
+
+
+Box-drawing characters, also known as line-drawing characters, are a form of semigraphics widely used in text user interfaces to draw various geometric frames and boxes. In graphical user interfaces, these characters are much less useful as it is more simple and appropriate to draw lines and rectangles directly with graphical APIs. Box-drawing characters work only with monospaced fonts; however, they are still useful for plaintext comments on websites.
+Used along with box-drawing characters are block elements, shade characters, and terminal graphic characters. These can be used for filling regions of the screen and portraying drop shadows.
+
+
+
+Contents
+
+
+1 Encodings
+
+1.1 Unicode
+1.2 DOS
+1.3 Unix, CP/M, BBS
+1.4 Historical
+
+
+2 Examples
+3 See also
+4 References
+
+
+
+Encodings[edit]
+Unicode[edit]
+Unicode includes 128 such characters.[1] In many Unicode fonts only the subset that is also available in the IBM PC character set (see below) will exist, due to it being defined as part of the WGL4 character set.
+
+
+
+
+Unicode box-drawing symbols. A rendering showing all 128 symbols (as they should appear in the adjacent chart)
+
+
+
+
+Box Drawing[1]
+Official Unicode Consortium code chart (PDF)
+
+
+ 
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+
+
+U+250x
+─
+━
+│
+┃
+┄
+┅
+┆
+┇
+┈
+┉
+┊
+┋
+┌
+┍
+┎
+┏
+
+
+U+251x
+┐
+┑
+┒
+┓
+└
+┕
+┖
+┗
+┘
+┙
+┚
+┛
+├
+┝
+┞
+┟
+
+
+U+252x
+┠
+┡
+┢
+┣
+┤
+┥
+┦
+┧
+┨
+┩
+┪
+┫
+┬
+┭
+┮
+┯
+
+
+U+253x
+┰
+┱
+┲
+┳
+┴
+┵
+┶
+┷
+┸
+┹
+┺
+┻
+┼
+┽
+┾
+┿
+
+
+U+254x
+╀
+╁
+╂
+╃
+╄
+╅
+╆
+╇
+╈
+╉
+╊
+╋
+╌
+╍
+╎
+╏
+
+
+U+255x
+═
+║
+╒
+╓
+╔
+╕
+╖
+╗
+╘
+╙
+╚
+╛
+╜
+╝
+╞
+╟
+
+
+U+256x
+╠
+╡
+╢
+╣
+╤
+╥
+╦
+╧
+╨
+╩
+╪
+╫
+╬
+╭
+╮
+╯
+
+
+U+257x
+╰
+╱
+╲
+╳
+╴
+╵
+╶
+╷
+╸
+╹
+╺
+╻
+╼
+╽
+╾
+╿
+
+
+Notes
+
+1.^ As of Unicode version 10.0
+
+
+
+
+DOS[edit]
+The hardware code page of the original IBM PC supplied the following box-drawing characters, in what DOS now calls code page 437. This subset of the Unicode box-drawing characters is thus far more popular and likely to be rendered correctly:
+
+
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+
+
+B
+
+
+
+│
+┤
+╡
+╢
+╖
+╕
+╣
+║
+╗
+╝
+╜
+╛
+┐
+
+
+C
+└
+┴
+┬
+├
+─
+┼
+╞
+╟
+╚
+╔
+╩
+╦
+╠
+═
+╬
+╧
+
+
+D
+╨
+╤
+╥
+╙
+╘
+╒
+╓
+╫
+╪
+┘
+┌
+
+
+
+
+
+
+
+Their number is further limited to 22 on those code pages that replace the 18 "single/double hybrid" characters with other, usually alphabetic, characters (such as code page 850):
+
+
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+
+
+B
+
+
+
+│
+┤
+
+
+
+
+╣
+║
+╗
+╝
+
+
+┐
+
+
+C
+└
+┴
+┬
+├
+─
+┼
+
+
+╚
+╔
+╩
+╦
+╠
+═
+╬
+
+
+
+D
+
+
+
+
+
+
+
+
+
+┘
+┌
+
+
+
+
+
+
+
+Note: The non-double characters are the "thin" ones (U+2500, U+2502), not the "wide" ones (U+2501, U+2503).
+Some OEM DOS computers supported other character sets, for example the Hewlett-Packard HP 110 / HP Portable and HP 110 Plus / HP Portable Plus, where in a modified version of the character set box-drawing characters were added in reserved areas of their normal HP Roman-8 character set.[2][3]
+
+
+[2][3]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+
+
+8
+
+
+
+
+╝
+╗
+╔
+╚
+╣
+╩
+╦
+╠
+═
+║
+╬
+
+
+
+9
+
+
+
+
+┘
+┐
+┌
+└
+┤
+┴
+┬
+├
+─
+│
+┼
+
+
+
+Unix, CP/M, BBS[edit]
+On many Unix systems and early dial-up bulletin board systems the only common standard for box-drawing characters was the VT100 alternate character set (see also: DEC Special Graphics). The escape sequence Esc ( 0 switched the codes for lower-case ASCII letters to draw this set, and the sequence Esc ( B switched back:
+
+
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+
+
+6
+
+
+
+
+
+
+
+
+
+
+┘
+┐
+┌
+└
+┼
+
+
+
+7
+
+─
+
+
+├
+┤
+┴
+┬
+│
+
+
+
+
+
+
+
+
+
+A Bash script that displays all of the semigraphic characters:
+
+
+$ for i in 6a 6b 6c 6d 6e 71 74 75 76 77 78; do
+>    printf "0x$i \x$i \x1b(0\x$i\x1b(B\n"
+> done
+
+0x6a j ┘
+0x6b k ┐
+0x6c l ┌
+0x6d m └
+0x6e n ┼
+0x71 q ─
+0x74 t ├
+0x75 u ┤
+0x76 v ┴
+0x77 w ┬
+0x78 x │
+
+On some terminals, these characters are not available at all, and the complexity of the escape sequences discouraged their use, so often only ASCII characters that approximate box-drawing characters are used, such as - (hyphen-minus), | (vertical bar), _ (underscore), = (equal sign) and + (plus sign) in a kind of ASCII art fashion.
+Modern Unix terminal emulators use Unicode and thus have access to the line-drawing characters listed above.
+Historical[edit]
+Many microcomputers of the 1970s and 1980s had their own proprietary character sets, which also included box-drawing characters. Some of these sets, such as Commodore's PETSCII, include box-drawing symbols with no corresponding Unicode character.
+
+
+
+
+ZX81 semigraphics
+
+
+The Sinclair ZX80, ZX81 and Spectrum included a set of text semigraphics with block elements and dithering patterns.
+The BBC Micro could utilise the Teletext 7-bit character set, which had 128 box-drawing characters, whose code points were shared with the regular alphanumeric and punctuation characters. Control characters were used to switch between regular text and box drawing.[4]
+MouseText is a set of display characters for the Apple IIc, IIe, and IIgs that includes box-drawing characters.
+The CP/M Plus character set used on various Amstrad computers of the CPC, PCW and Spectrum families included a rich set of line-drawing characters as well:[5][6][7]
+
+
+[5]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+
+
+8
+
+╧
+╟
+╚
+╤
+║
+╔
+╠
+╢
+╝
+═
+╩
+╗
+╣
+╦
+╬
+
+
+9
+
+╵
+╶
+└
+╷
+│
+┌
+├
+╴
+┘
+─
+┴
+┐
+┤
+┬
+┼
+
+
+Some recent embedded systems also use proprietary character sets, usually extensions to ISO 8859 character sets, which include box-drawing characters or other special symbols.
+The World System Teletext (WST) uses pixel-drawing characters for some graphics. A character cell is divided in 2×3 regions, and 26 = 64 code positions are allocated for all possible combinations of "pixels".[8] However, these characters are not included in the Unicode standard.
+Examples[edit]
+Sample diagrams made out of the standard box-drawing characters, using a monospaced font:
+
+┌─┬┐  ╔═╦╗  ╓─╥╖  ╒═╤╕
+│ ││  ║ ║║  ║ ║║  │ ││
+├─┼┤  ╠═╬╣  ╟─╫╢  ╞═╪╡
+└─┴┘  ╚═╩╝  ╙─╨╜  ╘═╧╛
+┌───────────────────┐
+│  ╔═══╗ Some Text  │▒
+│  ╚═╦═╝ in the box │▒
+╞═╤══╩══╤═══════════╡▒
+│ ├──┬──┤           │▒
+│ └──┴──┘           │▒
+└───────────────────┘▒
+ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+
+See also[edit]
+
+
+
+Wikimedia Commons has media related to Text mode box drawing.
+
+
+
+Unicode symbols
+Dingbat
+Box Drawing (Unicode Block)
+Block Elements (Unicode Block)
+Geometric Shapes (Unicode Block)
+List of Unicode characters
+Text-based (computing)
+Text semigraphics
+ASCII art and ANSI art
+MouseText
+
+References[edit]
+
+
+
+^ Box Drawing U+2500-U+257F, The Unicode Standard Code Charts
+^ a b Hewlett-Packard - Technical Reference Manual - Portable PLUS (1 ed.). Corvallis, OR, USA: Hewlett-Packard Company, Portable Computer Division. August 1985. 45559-90001. Retrieved 2016-11-27. 
+^ a b Hewlett-Packard - Technical Reference Manual - Portable PLUS (PDF) (2 ed.). Portable Computer Division, Corvallis, OR, USA: Hewlett-Packard Company. December 1986 [August 1985]. 45559-90006. Archived (PDF) from the original on 2016-11-27. Retrieved 2016-11-27. 
+^ Broadcast Teletext Specification, September 1976 (as HTML or scans of original document)
+^ a b "Appendix II: CP/M Plus character sets / II.1 The complete character set (Language 0)". Spectrum +3 CP/M Plus manual (User Manual). Archived from the original on 2009-10-15. Retrieved 2017-07-10.  [1]
+^ Elliott, John (2015-04-04). "Amstrad Extended BIOS Internals". Archived from the original on 2017-07-15. Retrieved 2017-07-15. 
+^ "Amstrad CP/M Plus character set". Archived from the original on 2017-07-15. Retrieved 2017-07-15. 
+^ Wiels. "TeleText - Het Protocol" (in Dutch). Mosaic characters. Archived from the original on 2017-12-21. Retrieved 2017-12-21. 
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Box-drawing_character&oldid=816542039"					Categories: UnicodeHidden categories: CS1 Dutch-language sources (nl)

@@ -1,0 +1,269 @@
+For other uses, see URL (disambiguation).
+A Uniform Resource Locator (URL), colloquially termed a web address,[1] is a reference to a web resource that specifies its location on a computer network and a mechanism for retrieving it. A URL is a specific type of Uniform Resource Identifier (URI),[2] although many people use the two terms interchangeably.[3][a] URLs occur most commonly to reference web pages (http), but are also used for file transfer (ftp), email (mailto), database access (JDBC), and many other applications.
+Most web browsers display the URL of a web page above the page in an address bar. A typical URL could have the form http://www.example.com/index.html, which indicates a protocol (http), a hostname (www.example.com), and a file name (index.html).
+
+
+
+Contents
+
+
+1 History
+2 Syntax
+3 Internationalized URL
+4 Protocol-relative URLs
+5 See also
+6 Notes
+7 Citations
+8 References
+9 External links
+
+
+
+History
+Uniform Resource Locators were defined in RFC 1738 in 1994 by Tim Berners-Lee, the inventor of the World Wide Web, and the URI working group of the Internet Engineering Task Force (IETF),[6] as an outcome of collaboration started at the IETF Living Documents Birds of a feather session in 1992.[7][8]
+The format combines the pre-existing system of domain names (created in 1985) with file path syntax, where slashes are used to separate directory and filenames. Conventions already existed where server names could be prefixed to complete file paths, preceded by a double slash (//).[9]
+Berners-Lee later expressed regret at the use of dots to separate the parts of the domain name within URIs, wishing he had used slashes throughout,[9] and also said that, given the colon following the first component of a URI, the two slashes before the domain name were unnecessary.[10]
+An early (1993) draft of the HTML Specification[11] referred to "Universal" Resource Locators. This was dropped some time between June 1994 (RFC 1630) and October 1994 (draft-ietf-uri-url-08.txt).[12]
+Syntax
+Main article: Uniform Resource Identifier § Syntax
+Every HTTP URL conforms to the syntax of a generic URI. A generic URI is of the form:
+
+ scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]
+
+It comprises:
+
+The scheme, consisting of a sequence of characters beginning with a letter and followed by any combination of letters, digits, plus (+), period (.), or hyphen (-). Although schemes are case-insensitive, the canonical form is lowercase and documents that specify schemes must do so with lowercase letters. It is followed by a colon (:). Examples of popular schemes include http(s), ftp, mailto, file, data, and irc. URI schemes should be registered with the Internet Assigned Numbers Authority (IANA), although non-registered schemes are used in practice.[b]
+Two slashes (//): This is required by some schemes and not required by some others. When the authority component (explained below) is absent, the path component cannot begin with two slashes.[14]
+An authority part, comprising:
+
+An optional authentication section of a user name and password, separated by a colon, followed by an at symbol (@)
+A "host", consisting of either a registered name (including but not limited to a hostname), or an IP address. IPv4 addresses must be in dot-decimal notation, and IPv6 addresses must be enclosed in brackets ([ ]).[15][c]
+An optional port number, separated from the hostname by a colon
+
+
+A path, which contains data, usually organized in hierarchical form, that appears as a sequence of segments separated by slashes. Such a sequence may resemble or map exactly to a file system path, but does not always imply a relation to one.[17] The path must begin with a single slash (/) if an authority part was present, and may also if one was not, but must not begin with a double slash. The path is always defined, though the defined path may be empty (zero length), therefore no trailing slash.
+
+
+
+Query delimiter
+Example
+
+
+Ampersand (&)
+key1=value1&key2=value2
+
+
+Semicolon (;)[d][incomplete short citation]
+key1=value1;key2=value2
+
+
+
+An optional query, separated from the preceding part by a question mark (?), containing a query string of non-hierarchical data. Its syntax is not well defined, but by convention is most often a sequence of attribute–value pairs separated by a delimiter.
+An optional fragment, separated from the preceding part by a hash (#). The fragment contains a fragment identifier providing direction to a secondary resource, such as a section heading in an article identified by the remainder of the URI. When the primary resource is an HTML document, the fragment is often an id attribute of a specific element, and web browsers will scroll this element into view.
+
+A web browser will usually dereference a URL by performing an HTTP request to the specified host, by default on port number 80. URLs using the https scheme require that requests and responses will be made over a secure connection to the website.
+Internationalized URL
+Internet users are distributed throughout the world using a wide variety of languages and alphabets and expect to be able to create URLs in their own local alphabets. An Internationalized Resource Identifier (IRI) is a form of URL that includes Unicode characters. All modern browsers support IRIs. The parts of the URL requiring special treatment for different alphabets are the domain name and path.[19][20]
+The domain name in the IRI is known as an Internationalized Domain Name (IDN). Web and Internet software automatically convert the domain name into punycode usable by the Domain Name System; for example, the Chinese URL http://例子.卷筒纸 becomes http://xn--fsqu00a.xn--3lr804guic/. The xn-- indicates that the character was not originally ASCII.[21]
+The URL path name can also be specified by the user in the local writing system. If not already encoded, it is converted to UTF-8, and any characters not part of the basic URL character set are escaped as hexadecimal using percent-encoding; for example, the Japanese URL http://example.com/引き割り.html becomes http://example.com/%E5%BC%95%E3%81%8D%E5%89%B2%E3%82%8A.html. The target computer decodes the address and displays the page.[19]
+Protocol-relative URLs 
+Protocol-relative links (PRL), also known as protocol-relative URLs (PRURL), are URLs that have no protocol specified. For example, //example.com will use the protocol of the current page, either HTTP or HTTPS.[22][23]
+See also
+
+
+CURIE (Compact URI)
+Use of slashes in networking
+Fragment identifier
+Internationalized resource identifier (IRI)
+Semantic URL
+Typosquatting
+URL normalization
+
+
+Notes
+
+
+
+^ A URL implies the means to access an indicated resource and is denoted by a protocol or an access mechanism, which is not true of every URI.[4][3] Thus http://www.example.com is a URL, while www.example.com is not.[5]
+^ The procedures for registering new URI schemes were originally defined in 1999 by RFC 2717, and are now defined by RFC 7595, published in June 2015.[13]
+^ For URIs relating to resources on the World Wide Web, some web browsers allow .0 portions of dot-decimal notation to be dropped or raw integer IP addresses to be used.[16]
+^ Historic RFC 1866 (obsoleted by RFC 2854) encourages CGI authors to support ';' in addition to '&'.[18]
+
+
+
+Citations
+
+
+^ W3C (2009).
+^ RFC 3986 (2005).
+^ a b Joint W3C/IETF URI Planning Interest Group (2002).
+^ RFC 2396 (1998).
+^ Miessler, Daniel. "The Difference Between URLs and URIs". 
+^ W3C (1994).
+^ IETF (1992).
+^ Berners-Lee (1994).
+^ a b Berners-Lee (2000).
+^ BBC News (2009).
+^ Berners-Lee, Tim; Connolly, Daniel (March 1993). Hypertext Markup Language (draft RFCxxx) (Technical report). p. 28. 
+^ Berners-Lee, T; Masinter, L; McCahill, M (October 1994). Uniform Resource Locators (URL) (Technical report).  cited in Ang, C.S.; Martin, D.C. (January 1995). Constituent Component Interface++ (Technical report). UCSF Library and Center for Knowledge Management. 
+^ IETF (2015).
+^ RFC 3986 (2005), §3.
+^ RFC 3986 (2005), §3.2.2.
+^ Lawrence (2014).
+^ RFC 2396 (1998), §3.3.
+^ RFC 1866 (1995), §8.2.1.
+^ a b W3C (2008).
+^ W3C (2014).
+^ IANA (2003).
+^ J. D. Glaser (2013). Secure Development for Mobile Apps: How to Design and Code Secure Mobile Applications with PHP and JavaScript. CRC Press. p. 193. Retrieved 12 October 2015. 
+^ Steven M. Schafer (2011). HTML, XHTML, and CSS Bible. John Wiley & Sons. p. 124. Retrieved 12 October 2015. 
+
+
+References
+
+
+"Berners-Lee "sorry" for slashes". BBC News. 2009-10-14. Retrieved 2010-02-14. 
+"Living Documents BoF Minutes". World Wide Web Consortium. 18 March 1992. Retrieved 2011-12-26. 
+Berners-Lee, Tim (21 March 1994). "Uniform Resource Locators (URL): A Syntax for the Expression of Access Information of Objects on the Network". World Wide Web Consortium. Retrieved 13 September 2015. 
+Berners-Lee, Tim; Masinter, Larry; McCahill, Mark (August 1998). "Uniform Resource Locators (URL)". Internet Engineering Task Force. Retrieved 31 August 2015. 
+Berners-Lee, Tim (2015) [2000]. "Why the //, #, etc?". Frequently asked questions. World Wide Web Consortium. Retrieved 2010-02-03. 
+Connolly, Dan; Sperberg-McQueen, C. M., eds. (21 May 2009). "Web addresses in HTML 5". World Wide Web Consortium. Retrieved 13 September 2015. 
+Internet Assigned Numbers Authority (14 February 2003). "Completion of IANA Selection of IDNA Prefix". IETF-Announce mailing list. Retrieved 3 September 2015. 
+Berners-Lee, Tim; Fielding, Roy; Masinter, Larry (August 1998). "Uniform Resource Identifiers (URI): Generic Syntax". Internet Engineering Task Force. Retrieved 31 August 2015. 
+Hansen, T.; Hardie, T. (June 2015). Thaler, D., ed. "Guidelines and Registration Procedures for URI Schemes". Internet Engineering Task Force. ISSN 2070-1721. 
+Mealling, M.; Denenberg, R., eds. (August 2002). "Report from the Joint W3C/IETF URI Planning Interest Group: Uniform Resource Identifiers (URIs), URLs, and Uniform Resource Names (URNs): Clarifications and Recommendations". World Wide Web Consortium. Retrieved 13 September 2015. 
+Berners-Lee, Tim; Fielding, Roy; Masinter, Larry (January 2005). "Uniform Resource Identifiers (URI): Generic Syntax". Internet Engineering Task Force. Retrieved 31 August 2015. 
+"An Introduction to Multilingual Web Addresses". 9 May 2008. Retrieved 11 January 2015. 
+Phillip, A. (2014). "What is Happening with "International URLs"". World Wide Web Consortium. Retrieved 11 January 2015. 
+
+
+External links
+
+URL specification at WHATWG
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Hypermedia
+
+
+
+Basics
+
+
+
+Hypertext
+Hyperlink
+Hypertext fiction
+Hypervideo
+Adaptive hypermedia
+
+educational
+authoring
+
+
+Hyperlinks in virtual worlds
+
+
+
+
+
+Resource identifiers
+
+
+
+Uniform resource identifier
+Internationalized resource identifier
+Uniform resource name
+Uniform resource locator
+Extensible resource identifier
+Persistent uniform resource locator
+Semantic URL
+
+
+
+
+
+Concepts
+
+
+
+anchor text
+click path
+Domain name
+click here
+Copyright aspects of hyperlinking and framing
+deep linking
+Fat link
+Fragment identifier
+Hostname
+Hypertext
+Inline linking
+inbound link/backlink
+HTTP referer
+image map
+Internal link
+Internet bookmark
+linkback
+Link relation
+Link rot
+Object hyperlinking
+Path
+Screen hotspot
+Source tracking
+transclusion
+URI scheme
+URL normalization
+URL redirection
+Website
+Web page
+XML namespace
+
+
+
+
+
+Technology
+
+
+
+CURIE
+Hypertext Transfer Protocol
+XLink
+
+
+
+
+
+See also
+
+
+
+Digital poetry
+History of hypertext
+Interactive novel
+Interactive fiction
+Timeline of hypertext technology
+Copyright aspects of hyperlinking and framing
+World Wide Web
+Domain Application Protocol
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=URL&oldid=806670845"					Categories: Uniform Resource LocatorIdentifiersComputer-related introductions in 1994Hidden categories: Wikipedia indefinitely semi-protected pagesArticles needing more detailed referencesUse dmy dates from May 2011Pages using RFC magic links

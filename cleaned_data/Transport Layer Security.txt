@@ -1,0 +1,5944 @@
+transport layer security predecessor secure sockets layer prohibited cryptographic protocols provide communications security computer network1 several versions protocols find widespread applications browsing email internet faxing instant messaging voice voip websites able secure communications servers browsers
+protocol aims primarily provide privacy data integrity communicating computer applications13 secured connections client browser server wikipediaorg following properties
+
+connection private secure symmetric cryptography used encrypt data transmitted keys symmetric encryption generated uniquely connection based shared secret negotiated start session handshake server client negotiate details encryption algorithm cryptographic keys first byte data transmitted algorithm negotiation shared secret secure negotiated secret unavailable eavesdroppers cannot obtained even attacker places middle connection reliable attacker modify communications negotiation without detected
+identity communicating parties authenticated using publickey cryptography authentication made optional generally required least parties typically server
+connection ensures integrity message transmitted includes message integrity check using message authentication code prevent undetected loss alteration data transmission3
+
+addition properties careful configuration provide additional privacyrelated properties forward secrecy ensuring future disclosure encryption keys cannot used decrypt communications recorded past2
+supports many different methods exchanging keys encrypting data authenticating message integrity algorithm result secure configuration involves many configurable parameters choices provide privacyrelated properties described list exchange authentication cipher security data integrity tables
+attempts made subvert aspects communications security seeks provide protocol revised several times address security threats security developers browsers also revised products defend potential security weaknesses discovered tlsssl support history browsers3
+protocol comprises layers record handshake protocols
+proposed internet engineering task force ietf standard first defined 1999 updated 5246 august 2008 6176 march 2011 builds earlier specifications 1994 1995 1996 developed netscape communications4 adding https protocol navigator browser
+
+
+
+contents
+
+
+description
+history development
+
+secure network programming
+
+
+
+
+draft
+
+
+digital certificates
+
+certificate authorities
+
+
+algorithm
+
+exchange agreement
+cipher
+data integrity
+
+
+applications adoption
+
+websites
+browsers
+libraries
+uses
+
+
+security
+
+
+
+
+attacks tlsssl
+
+renegotiation attack
+downgrade attacks freak attack logjam attack
+crossprotocol attacks drown
+beast attack
+crime breach attacks
+timing attacks padding
+poodle attack
+attacks
+truncation attack
+6410 unholy attack
+6411 sweet32 attack
+6412 implementation errors heartbleed berserk attack cloudflare
+6413 survey websites vulnerable attacks
+
+
+forward secrecy
+dealing maninthemiddle attacks
+
+certificate pinning
+perspectives project
+dnschain
+
+
+
+
+protocol details
+
+handshake
+
+basic handshake
+clientauthenticated handshake
+resumed handshake
+
+7131 session
+7132 session tickets
+
+
+
+
+record
+
+handshake protocol
+alert protocol
+changecipherspec protocol
+application protocol
+
+
+
+
+support namebased virtual servers
+standards
+
+primary standards
+extensions
+informational rfcs
+
+
+also
+references
+reading
+external links
+
+
+
+descriptionedit
+clientserver applications protocol communicate across network designed prevent eavesdropping tampering
+since applications communicate either without necessary client indicate server setup connection5 main ways achieving different port number connections example port https another mechanism client make protocolspecific request server switch connection example making starttls request using mail news protocols
+client server agreed negotiate stateful connection using handshaking procedure6 protocols handshake asymmetric cipher establish cipher settings also sessionspecific shared communication encrypted using symmetric cipher handshake client server agree various parameters used establish connections security
+
+handshake begins client connects tlsenabled server requesting secure connection client presents list supported cipher suites ciphers hash functions
+list server picks cipher hash function also supports notifies client decision
+server usually provides identification form digital certificate certificate contains server name trusted certificate authority vouches authenticity certificate servers public encryption
+client confirms validity certificate proceeding
+generate session keys used secure connection client either
+
+encrypts random number servers public sends result server server able decrypt private parties random number generate unique session subsequent encryption decryption data session
+uses diffie–hellman exchange securely generate random unique session encryption decryption additional property forward secrecy servers private disclosed future cannot used decrypt current session even session intercepted recorded third party
+
+
+
+concludes handshake begins secured connection encrypted decrypted session connection closes steps fails handshake fails connection created
+neatly single layer model tcpip model78 runs reliable transport protocol tcp9 would imply transport layer serves encryption higher layers normally function presentation layer however applications generally transport layer78 even though applications using must actively control initiating handshakes handling exchanged authentication certificates9
+history developmentedit
+
+
+defined
+
+
+protocol
+year
+
+
+
+
+
+
+
+1995
+
+
+
+1996
+
+
+
+1999
+
+
+
+2006
+
+
+
+2008
+
+
+
+
+
+
+secure network programmingedit
+early research efforts towards transport layer security included secure network programming application programming interface 1993 explored approach secure transport layer closely resembling berkeley sockets facilitate retrofitting preexisting network applications security measures10
+30edit
+netscape developed original protocols11 version never publicly released serious security flaws protocol version released february 1995 contained number security flaws necessitated design version 3012 released 1996 version represented complete redesign protocol produced paul kocher working netscape engineers phil karlton alan freier reference implementation christopher allen dierks consensus development newer versions ssltls based 1996 draft published ietf historical document 6101
+taher elgamal chief scientist netscape communications 1995 1998 described father ssl1314
+2014 found vulnerable poodle attack affects block ciphers nonblock cipher supported also feasibly broken used 3015
+prohibited 2011 6176 also later prohibited june 2015 7568
+10edit
+first defined 2246 january 1999 upgrade version written christopher allen dierks consensus development stated differences protocol dramatic significant enough preclude interoperability include means implementation downgrade connection thus weakening security161–2
+11edit
+defined 4346 april 200617 update version significant differences version include
+
+added protection cipherblock chaining attacks
+
+implicit initialization vector replaced explicit
+change handling padding errors
+
+
+support iana registration parameters162
+
+12edit
+defined 5246 august 2008 based earlier specification major differences include
+
+md5sha1 combination pseudorandom function replaced sha256 option cipher suite specified prfs
+md5sha1 combination finished message hash replaced sha256 option cipher suite specific hash algorithms however size hash finished message must still least bits18
+md5sha1 combination digitally signed element replaced single hash negotiated handshake defaults sha1
+enhancement clients servers ability specify hashes signature algorithms accept
+expansion support authenticated encryption ciphers used mainly galoiscounter mode mode advanced encryption standard encryption
+extensions definition advanced encryption standard cipher suites added162
+
+versions refined 6176 march 2011 removing backward compatibility sessions never negotiate secure sockets layer version
+draftedit
+july 2017update working draft details provisional incomplete1920 based earlier specification major differences include
+
+removing support weak lesserused named elliptic curves ellipticcurve cryptography
+removing support sha224 cryptographic hash functions
+requiring digital signatures even previous configuration used
+integrating hkdf semiephemeral proposal
+replacing resumption tickets
+supporting 1rtt handshakes initial support 0rtt roundtrip delay time
+dropping support many insecure obsolete features including compression renegotiation nonaead ciphers static static exchange custom groups point format negotiation change cipher spec protocol hello message unix time length field input aead ciphers
+prohibiting negotiation backwards compatibility
+integrating session hash
+deprecating record layer version number freezing number improved backwards compatibility
+moving securityrelated algorithm details appendix specification relegating clientkeyshare appendix
+addition chacha20 stream cipher poly1305 message authentication code
+addition ed25519 ed448 digital signature algorithms
+addition x25519 x448 exchange protocols
+
+network security services cryptography library developed mozilla used browser firefox enabled default february 201721 added firefox release version disabled default compatibility issues users22
+google chrome default version short time 2017 removed default incompatible middleboxes blue coat proxies23
+pale moon enabled version released july 201724 ietf hackathon took place singapore group worked adapting open source applications 132526 group made individuals japan united kingdom mauritius hackersmu team26
+digital certificatesedit
+main article public certificate
+digital certificate certifies ownership public named subject certificate indicates certain expected usages allows others relying parties rely upon signatures assertions made private corresponds certified public
+certificate authoritiesedit
+main article certificate authority
+typically relies trusted thirdparty certificate authorities establish authenticity certificates trust usually anchored list certificates distributed user agent software27 modified relying party
+according netcraft monitors active certificates marketleading symantec since beginning survey verisign authentication services business unit purchased symantec symantec currently accounts third certificates valid certificates used million busiest websites counted netcraft28
+consequence choosing x509 certificates certificate authorities public infrastructure necessary verify relation certificate owner well generate sign administer validity certificates convenient verifying identities trust 2013 mass surveillance disclosures made widely known certificate authorities weak point security standpoint allowing maninthemiddle attacks mitm2930
+algorithmedit
+also cipher suite
+exchange agreementedit
+client server begin exchange information protected must securely exchange agree upon encryption cipher encrypting data cipher among methods used exchangeagreement public private keys generated denoted tlsrsa handshake protocol diffie–hellman tlsdh ephemeral diffie–hellman tlsdhe elliptic curve diffie–hellman tlsecdh ephemeral elliptic curve diffie–hellman tlsecdhe anonymous diffie–hellman tlsdhanon1 preshared tlspsk31 secure remote password tlssrp32
+tlsdhanon tlsecdhanon agreement methods authenticate server user hence rarely used vulnerable maninthemiddle attack tlsdhe tlsecdhe provide forward secrecy
+public certificates used exchangeagreement also vary size publicprivate encryption keys used exchange hence robustness security provided july 2013 google announced would longer 1024 public keys would switch instead 2048 keys increase security encryption provides users encryption strength directly related size333
+
+
+exchangeagreement authentication
+
+algorithm
+
+
+
+
+
+
+draft
+status
+
+
+
+
+
+
+
+
+
+defined rfcs
+
+
+dhrsa
+
+
+
+
+
+
+
+
+dhersa forward secrecy
+
+
+
+
+
+
+
+
+ecdhrsa
+
+
+
+
+
+
+
+
+ecdhersa forward secrecy
+
+
+
+
+
+
+
+
+dhdss
+
+
+
+
+
+
+
+
+dhedss forward secrecy
+
+
+
+
+
+no34
+
+
+ecdhecdsa
+
+
+
+
+
+
+
+
+ecdheecdsa forward secrecy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pskrsa
+
+
+
+
+
+
+
+
+dhepsk forward secrecy
+
+
+
+
+
+
+
+
+ecdhepsk forward secrecy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+srpdss
+
+
+
+
+
+
+
+
+srprsa
+
+
+
+
+
+
+
+
+kerberos
+
+
+
+
+
+
+
+
+dhanon insecure
+
+
+
+
+
+
+
+
+ecdhanon insecure
+
+
+
+
+
+
+
+
+gost 341094 3410200135
+
+
+
+
+
+
+proposed drafts
+
+
+cipheredit
+also cipher suite block cipher cipher security summary
+
+
+cipher security publicly known feasible attacks
+
+cipher
+protocol version
+status
+
+
+type
+algorithm
+nominal strength bits
+
+
+
+
+
+
+
+
+
+
+draft
+
+
+block cipher
+
+mode operation
+gcm36n
+
+
+
+
+
+secure
+secure
+defined rfcs
+
+
+ccm37n
+
+
+
+
+secure
+secure
+
+
+cbcn
+
+
+depends mitigations
+secure
+secure
+
+
+
+camellia gcm38n
+
+
+
+
+
+secure
+secure
+
+
+camellia cbc39n
+
+
+depends mitigations
+secure
+secure
+
+
+
+aria gcm40n
+
+
+
+
+
+secure
+secure
+
+
+aria cbc40n
+
+
+depends mitigations
+secure
+secure
+
+
+
+seed cbc41n
+
+
+
+depends mitigations
+secure
+secure
+
+
+
+3des cbcn
+112n
+insecure
+insecure
+insecure
+insecure
+insecure
+
+
+
+gost 2814789 cnt35n
+
+
+
+insecure
+insecure
+insecure
+
+defined 4357
+
+
+idea cbcn
+
+insecure
+insecure
+insecure
+insecure
+
+
+removed
+
+
+cbcn
+
+insecure
+insecure
+insecure
+insecure
+
+
+
+
+040n
+insecure
+insecure
+insecure
+
+
+
+forbidden later
+
+
+cbcn
+040n
+insecure
+insecure
+insecure
+
+
+
+
+
+stream cipher
+chacha20poly130546n
+
+
+
+
+
+secure
+secure
+defined rfcs
+
+
+rc4n
+
+insecure
+insecure
+insecure
+insecure
+insecure
+
+prohibited versions 7465
+
+
+040n
+insecure
+insecure
+insecure
+
+
+
+
+
+none
+nulln
+
+
+insecure
+insecure
+insecure
+insecure
+insecure
+defined rfcs
+
+
+
+notes
+
+
+
+
+5746 must implemented renegotiation flaw would otherwise break protocol
+libraries implement fixes listed 5746 violates specification ietf cannot change unlike fortunately current libraries implement disregard violation causes
+beast attack breaks block ciphers ciphers used unless mitigated client andor server browsers
+poodle attack breaks block ciphers ciphers used unless mitigated client andor server browsers
+aead ciphers used
+ciphers attacked lucky thirteen attack library written carefully eliminate timing side channels
+sweet32 attack breaks block ciphers block size bits42
+although length 3des bits effective security strength 3des bits43 recommended minimum bits44
+idea removed 1245
+bits strength cipher suites designed operate reduced lengths comply regulations export cryptographic software containing certain strong encryption algorithms export cryptography united states weak suites forbidden later
+versions prohibited 7465 attacks weaken break used ssltls
+authentication encryption
+
+
+
+data integrityedit
+message authentication code used data integrity hmac used mode block ciphers stream ciphers aead used authenticated encryption mode mode
+
+data integrity
+
+algorithm
+
+
+
+
+
+
+draft
+status
+
+
+hmacmd5
+
+
+
+
+
+
+defined rfcs
+
+
+hmacsha1
+
+
+
+
+
+
+
+
+hmacsha256384
+
+
+
+
+
+
+
+
+aead
+
+
+
+
+
+
+
+
+gost 2814789 imit35
+
+
+
+
+
+
+proposed drafts
+
+
+gost 34119435
+
+
+
+
+
+
+
+
+applications adoptionedit
+applications design usually implemented transport layer protocols encrypting protocolrelated data protocols http smtp nntp xmpp
+historically used primarily reliable transport protocols transmission control protocol however also implemented datagramoriented transport protocols user datagram protocol datagram congestion control protocol dccp usage standardized independently using term datagram transport layer security dtls
+websitesedit
+prominent securing world wide traffic website browser encoded http protocol secure http traffic constitutes https protocol47
+
+website protocol support
+
+protocol
+version
+website
+support48
+security4849
+
+
+
+
+insecure
+
+
+
+
+insecure50
+
+
+
+
+depends ciphern client mitigationsn
+
+
+
+
+depends ciphern client mitigationsn
+
+
+
+
+depends ciphern client mitigationsn
+
+
+
+draft
+
+
+
+
+
+notes
+
+
+
+
+cipher table
+browsers attacks tlsssl sections
+
+
+
+browsersedit
+information comparison browsers
+april 2016update latest versions major browsers support enabled default however supported microsoft operating systems support latest version additionally many operating systems currently support multiple versions changed according microsofts internet explorer support lifecycle policy beginning january 2016 current version internet explorer available supported operating system receive technical support security updates page goes list latest supported version date operating system next critical date would operating system reaches life stage microsofts windows lifecycle fact sheet
+still problems several browser versions
+
+supported disabled default internet explorer server 2012 internet explorer server 200851
+
+mitigations known attacks enough
+
+mitigations poodle attack browsers already prevent fallback however mitigation needs supported clients also servers disabling implementation antipoodle record splitting denying ciphers required
+
+google chrome complete tlsfallbackscsv implemented since version fallback disabled since version disabled default since version support dropped since version
+mozilla firefox complete support dropped since version disabled default fallback disabled since version tlsfallbackscsv implemented since version disabled default tlsfallbackscsv implemented since
+internet explorer partial version disabled default since april 2015 version older still vulnerable poodle
+opera complete tlsfallbackscsv implemented since version antipoodle record splitting effective clientside implementation implemented since version disabled default since version support dropped since version
+safari complete later ciphers fallback denied means recommended well support dropped 1011 later
+
+
+mitigation attacks
+
+google chrome disabled except fallback since version disabled since chrome
+firefox disabled except fallback since version firefox disabled default
+opera disabled except fallback since version disabled since opera
+internet explorer windows server 2008 windows server 2012 priority lowest also disable except fallback registry settings internet explorer mobile windows phone disable except fallback enabled algorithm works edge disable completely august 2016
+
+
+mitigation freak attack
+
+android browser android older still vulnerable freak attack
+internet explorer mobile still vulnerable freak attack
+google chrome internet explorer desktop safari desktop mobile opera mobile freak mitigations place
+mozilla firefox platforms google chrome windows affected freak
+
+
+
+
+
+tlsssl support history browsers
+
+browser
+version
+platforms
+protocols
+protocols
+certificate support
+vulnerabilities fixedn
+protocol selection user
+
+
+
+insecure
+insecure
+
+
+
+proposed
+
+
+sha2
+
+ecdsa
+
+beastn
+crimen
+poodle sslv3n
+rc4n
+freak5556
+logjam
+
+
+google chrome
+chrome android
+
+
+
+windows
+
+linux
+android
+
+chrome
+disabled default
+enabled default
+
+
+
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+
+vulnerable
+https
+vulnerable
+vulnerable
+vulnerable
+except windows
+vulnerable
+yesn
+
+
+10–20
+no62
+enabled default
+
+
+
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+vulnerable
+httpsspdy
+vulnerable
+vulnerable
+vulnerable
+except windows
+vulnerable
+yesn
+
+
+
+
+enabled default
+
+
+
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+mitigated
+
+vulnerable
+vulnerable
+vulnerable
+except windows
+vulnerable
+yesn
+
+
+22–25
+
+enabled default
+
+yes64
+no64656667
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+mitigated
+vulnerable
+vulnerable
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+26–29
+
+enabled default
+
+
+
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+mitigated
+vulnerable
+vulnerable
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+30–32
+
+enabled default
+
+
+yes656667
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+mitigated
+vulnerable
+vulnerable
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+33–37
+
+enabled default
+
+
+
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+mitigated
+partly mitigated
+
+lowest priority
+707172
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+
+
+enabled default
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+partly mitigated
+lowest priority
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+
+
+disabled default
+6973
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+mitigated
+
+lowest priority
+vulnerable
+except windows
+vulnerable
+yesn
+
+
+
+
+disabled default
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+mitigated
+lowest priority
+mitigated
+vulnerable
+yesn
+
+
+
+
+disabled default
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+mitigated
+fallback
+1574
+mitigated
+vulnerable
+yesn
+
+
+44–47
+
+no75
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+affected
+fallback
+
+mitigated
+mitigated76
+temporary
+
+
+
+
+
+
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+affected
+disabled defaultn 167778
+mitigated
+mitigated
+temporary
+
+
+
+50–53
+
+
+
+
+
+
+
+desktop
+
+
+affected
+mitigated
+affected
+disabled defaultn 167778
+mitigated
+mitigated
+temporary
+
+
+
+54–62
+
+
+
+
+
+
+disabled default experimental
+
+desktop
+
+
+affected
+mitigated
+affected
+disabled defaultn 167778
+mitigated
+mitigated
+temporary
+
+
+
+google android browser
+
+android 20–21 22–223
+
+enabled default
+
+
+
+
+unknown
+
+
+unknown
+unknown
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+android 23–237 30–326 40–404
+
+enabled default
+
+
+
+
+unknown
+yes53
+since android 3080
+unknown
+unknown
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+android 41–431 44–444
+
+enabled default
+
+disabled default81
+disabled default81
+
+unknown
+
+yes54
+unknown
+unknown
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+android 50–502
+
+enabled default
+
+yes8182
+yes8182
+
+unknown
+
+
+unknown
+unknown
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+android 51–511
+
+
+citation needed
+
+
+
+
+unknown
+
+
+unknown
+unknown
+affected
+fallback
+
+mitigated
+mitigated
+
+
+
+android 60–601 70–712
+
+
+citation needed
+
+
+
+
+unknown
+
+
+unknown
+unknown
+affected
+disabled default
+mitigated
+mitigated
+
+
+
+android
+
+
+
+
+
+
+
+unknown
+
+
+unknown
+unknown
+affected
+disabled default
+mitigated
+mitigated
+
+
+
+browser
+version
+platforms
+insecure
+insecure
+
+
+
+proposed
+certificate
+sha2 certificate
+ecdsa certificate
+beast
+crime
+poodle sslv3
+
+freak
+logjam
+protocol selection user
+
+
+mozilla firefox
+firefox mobile
+
+
+windows
+
+linux
+android
+
+firefox
+maemo
+
+
+windows
+
+linux
+enabled default
+
+enabled default
+
+yes84
+
+
+
+
+yes53
+
+affected
+
+affected
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+
+enabled default
+enabled default
+
+
+
+
+
+
+
+affected
+affected
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+
+disabled default
+8486
+enabled default
+
+
+
+
+
+
+yes54
+affected
+affected
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+
+disabled default
+enabled default
+
+
+
+
+
+
+
+affected
+affected
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+8–10
+
+no86
+enabled default
+
+
+
+
+
+
+
+affected
+affected
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+11–14
+
+enabled default
+
+
+
+
+
+
+
+affected
+vulnerable
+spdy63
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+15–22
+170–17010
+
+enabled default
+
+
+
+
+
+
+
+affected
+mitigated
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+17011
+
+enabled default
+
+
+
+
+
+
+
+affected
+mitigated
+vulnerable
+lowest priority
+8788
+affected
+vulnerable
+yesn
+
+
+
+
+enabled default
+
+disabled default
+
+
+
+
+
+
+affected
+mitigated
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+2500
+240–2410
+
+enabled default
+
+disabled default
+disabled default
+
+
+
+
+
+affected
+mitigated
+vulnerable
+vulnerable
+affected
+vulnerable
+yesn
+
+
+2501
+2411
+
+enabled default
+
+disabled default
+disabled default
+
+
+
+
+affected
+mitigated
+vulnerable
+lowest priority
+8788
+affected
+vulnerable
+yesn
+
+
+27–33
+310–312
+
+enabled default
+
+yes9192
+yes9392
+
+
+
+
+affected
+mitigated
+vulnerable
+lowest priority
+affected
+vulnerable
+yesn
+
+
+
+313–317
+
+disabled default
+9495
+
+
+
+
+
+
+
+affected
+mitigated
+mitigated
+
+lowest priority
+affected
+vulnerable
+yesn
+
+
+
+
+disabled default
+
+
+
+
+
+
+
+affected
+mitigated
+mitigated
+lowest priority
+affected
+mitigated98
+yesn
+
+
+36–38
+
+
+disabled default
+
+
+
+
+
+
+
+affected
+mitigated
+mitigated
+fallback
+1599
+affected
+vulnerable
+yesn
+
+
+381–388
+
+disabled default
+
+
+
+
+
+
+
+affected
+mitigated
+mitigated
+fallback
+
+affected
+mitigated98
+yesn
+
+
+39–43
+
+no100
+
+
+
+
+
+
+
+affected
+mitigated
+affected
+fallback
+
+affected
+mitigated98
+yesn
+
+
+44–48
+450–459
+
+
+
+
+
+
+
+
+
+affected
+mitigated
+affected
+disabled defaultn 16101102103104
+affected
+mitigated
+yesn
+
+
+49–56
+520524
+
+
+
+
+
+
+disabled default experimental105
+
+
+
+affected
+mitigated
+affected
+disabled defaultn
+affected
+mitigated
+yesn
+
+
+
+
+
+browser
+version
+platforms
+insecure
+insecure
+
+
+
+proposed
+certificate
+sha2 certificate
+ecdsa certificate
+beast
+crime
+poodle sslv3
+
+freak
+logjam
+protocol selection user
+
+
+microsoft internet explorer
+
+
+windows
+
+ssltls support
+
+
+
+
+
+
+
+
+
+
+
+
+support
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+
+yes108
+
+
+
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+unknown
+
+
+
+windows
+
+solaris hpux
+enabled default
+enabled default
+disabled default
+
+
+
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+yesn
+
+
+
+windows 2000n
+enabled default
+enabled default
+disabled default
+
+
+
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+yesn
+
+
+
+windows
+enabled default
+enabled default
+disabled default
+
+
+
+
+
+23109
+
+mitigated
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+yesn
+
+
+
+server 2003n
+enabled default
+enabled default
+disabled default
+
+
+
+
+
+23109
+
+mitigated
+affected
+vulnerable
+vulnerable
+mitigated
+
+mitigated
+
+yesn
+
+
+
+windows
+disabled default
+
+enabled default
+yes114
+
+
+
+
+
+23109
+
+mitigated
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+yesn
+
+
+
+server 2003n
+disabled default
+
+enabled default
+yes114
+
+
+
+
+
+23109
+
+mitigated
+affected
+vulnerable
+vulnerable
+mitigated
+
+mitigated
+
+yesn
+
+
+
+windows vista
+disabled default
+enabled default
+
+
+
+
+
+
+yes54
+mitigated
+affected
+vulnerable
+vulnerable
+mitigated
+
+mitigated
+
+yesn
+
+
+
+
+server 2008
+disabled default
+enabled default
+
+disabled default51
+kb4019276
+disabled default51
+kb4019276
+
+
+
+yes54
+mitigated
+affected
+vulnerable
+vulnerable
+mitigated
+
+mitigated
+
+yesn
+
+
+
+windows
+disabled default
+enabled default
+
+disabled default
+
+disabled default
+
+
+
+
+
+mitigated
+affected
+vulnerable
+lowest priority
+117n
+mitigated
+
+mitigated
+
+yesn
+
+
+server 2008
+
+
+
+windows
+disabled default
+enabled default
+
+disabled default
+
+disabled default
+
+
+
+
+
+mitigated
+affected
+vulnerable
+lowest priority
+117n
+mitigated
+
+mitigated
+
+yesn
+
+
+
+server 2012
+disabled default
+enabled default
+
+disabled default
+
+disabled default
+
+
+
+
+
+mitigated
+affected
+vulnerable
+lowest priority
+117n
+mitigated
+
+mitigated
+
+yesn
+
+
+
+windows
+disabled default
+disabled default
+
+
+yes119
+yes119
+
+
+
+
+mitigated
+affected
+mitigated
+
+disabled default123
+mitigated
+
+mitigated
+
+yesn
+
+
+server 2008
+
+
+
+windows
+disabled default
+disabled default
+
+
+yes119
+yes119
+
+
+
+
+mitigated
+affected
+mitigated
+
+disabled defaultn
+mitigated
+
+mitigated
+
+yesn
+
+
+server 2012
+
+
+microsoft edgen
+fallback
+internet explorern
+
+edge
+windows v1507
+disabled default
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+
+windows ltsb 2015 v1507n
+disabled default
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+
+edge
+windows v1511
+disabled default
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+
+edge
+windows v1607
+no125
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+
+windows lstb 2016 v1607
+no125
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+
+server 2016
+v1607 ltsb
+no125
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+
+edge
+windows v1703
+
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+
+edge
+windows v1709
+
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+
+server 2016
+v1709
+no125
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+yesn
+
+
+microsoft internet explorer mobile
+
+
+windows phone
+disabled default
+
+enabled default
+
+
+citation needed
+
+citation needed
+
+
+citation needed
+
+yes80
+unknown
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+party toolsn
+
+
+
+windows phone
+disabled default
+enabled default
+
+disabled default
+
+disabled default
+
+
+
+citation needed
+
+yes128
+mitigated
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+party toolsn
+
+
+
+windows phone
+disabled default
+enabled default
+
+yes129
+yes129
+
+
+citation needed
+
+
+mitigated
+affected
+vulnerable
+fallback
+15130131
+vulnerable
+vulnerable
+party toolsn
+
+
+microsoft edge
+
+edge
+windows mobile v1511
+disabled default
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+
+
+
+edge
+windows mobile v1607
+no125
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+
+
+
+edge
+windows mobile v1703
+
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+
+
+
+edge
+windows mobile v1709
+
+disabled default
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+disabled defaultn
+mitigated
+mitigated
+
+
+
+browser
+version
+platforms
+insecure
+insecure
+
+
+
+proposed
+certificate
+sha2 certificate
+ecdsa certificate
+beast
+crime
+poodle sslv3
+
+freak
+logjam
+protocol selection user
+
+
+opera browser
+opera mobile
+prepresto presto
+
+
+windows
+
+linux
+android
+symbian
+maemo
+windows mobile
+ssltls support133
+
+
+
+yes134
+
+
+
+
+
+
+
+
+support
+vulnerable
+unknown
+unknown
+
+
+
+
+
+yes135
+
+
+
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+unknown
+unknown
+unknown
+
+
+
+enabled default
+enabled default
+yes136
+
+
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+unknown
+unknown
+yesn
+
+
+
+enabled default
+enabled default
+yes136
+
+
+
+
+yes53
+
+vulnerable
+affected
+vulnerable
+vulnerable
+unknown
+unknown
+yesn
+
+
+
+enabled default
+enabled default
+
+disabled default
+
+
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+unknown
+unknown
+yesn
+
+
+
+disabled default
+
+enabled default
+
+
+
+
+since
+desktop
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+unknown
+unknown
+yesn
+
+
+10–1152
+no139
+enabled default
+
+disabled default
+disabled default
+
+
+
+desktop
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+unknown
+unknown
+yesn
+
+
+1160–1164
+
+enabled default
+
+disabled default
+disabled default
+
+
+desktop
+
+
+mitigated
+
+affected
+vulnerable
+vulnerable
+unknown
+unknown
+yesn
+
+
+12–1214
+
+disabled default
+
+
+disabled default
+disabled default
+
+
+desktop
+
+
+mitigated
+affected
+mitigated
+
+vulnerable
+unknown
+mitigated142
+yesn
+
+
+1215–1217
+
+disabled default
+
+disabled default
+disabled default
+
+
+desktop
+
+
+mitigated
+affected
+mitigated
+partly mitigated
+143144
+unknown
+mitigated142
+yesn
+
+
+1218
+
+disabled default
+
+yes145
+yes145
+
+
+desktop
+
+yes145
+mitigated
+affected
+mitigated
+disabled defaultn 16145
+mitigated145
+mitigated142
+yesn
+
+
+opera browser
+opera mobile
+webkit blink
+
+14–16
+windows
+
+linux
+android
+
+enabled default
+
+yes148
+no148
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+mitigated
+vulnerable
+vulnerable
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+17–19
+
+enabled default
+
+yes149
+yes149
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+mitigated
+vulnerable
+vulnerable
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+20–24
+
+enabled default
+
+
+
+
+
+desktop
+needs sha2 compatible os53
+needs compatible os54
+affected
+mitigated
+partly mitigated
+
+lowest priority
+
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+
+
+enabled default
+
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+mitigated
+
+lowest priority
+vulnerable
+except windows
+vulnerable
+temporary
+
+
+
+
+
+disabled default
+
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+mitigated
+
+lowest priority
+vulnerable
+except windows
+vulnerable
+yesn
+desktop
+
+
+
+
+disabled default
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+mitigated
+lowest priority
+mitigated
+vulnerable
+yesn
+desktop
+
+
+
+
+disabled default
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+mitigated
+fallback
+1574
+mitigated
+mitigated142
+yesn
+desktop
+
+
+31–34
+
+no75
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+affected
+fallback
+1574
+mitigated
+mitigated
+temporary
+
+
+
+
+
+
+
+
+
+
+
+desktop
+
+needs compatible os54
+affected
+mitigated
+affected
+disabled defaultn 167778
+mitigated
+mitigated
+temporary
+
+
+
+37–40
+
+
+
+
+
+
+
+desktop
+
+
+affected
+mitigated
+affected
+disabled defaultn 167778
+mitigated
+mitigated
+temporary
+
+
+
+41–48
+
+
+
+
+
+
+disabled default experimental
+
+desktop
+
+
+affected
+mitigated
+affected
+disabled defaultn 167778
+mitigated
+mitigated
+temporary
+
+
+
+browser
+version
+platforms
+insecure
+insecure
+
+
+
+proposed
+certificate
+sha2 certificate
+ecdsa certificate
+beast
+crime
+poodle sslv3
+
+freak
+logjam
+protocol selection user
+
+
+apple safari
+
+
+
+no155
+
+
+
+
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+
+
+
+
+
+
+
+since
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+vista
+
+
+
+
+
+
+since
+
+yes80
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+
+
+
+
+
+
+
+
+yes53
+yes54
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+
+
+
+
+
+
+
+
+
+yes54
+mitigated
+
+affected
+mitigated
+
+vulnerable
+
+mitigated
+
+vulnerable
+
+
+
+
+
+
+
+
+yes162
+yes162
+
+
+
+
+mitigated
+
+affected
+mitigated
+
+vulnerable
+
+mitigated
+
+vulnerable
+
+
+
+8–10
+1010
+
+
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+
+lowest priority
+163n
+mitigated
+
+mitigated
+
+
+
+
+
+
+1011
+
+
+
+
+
+
+
+
+
+mitigated
+affected
+affected
+lowest priority
+mitigated
+mitigated
+
+
+
+
+
+macos 1012
+
+
+
+
+
+
+
+
+
+mitigated
+affected
+affected
+disabled defaultn
+mitigated
+mitigated
+
+
+
+
+macos 1013
+
+
+
+
+
+
+
+
+
+mitigated
+affected
+affected
+disabled defaultn
+mitigated
+mitigated
+
+
+
+apple safari
+mobile
+
+
+iphone
+no168
+
+
+
+
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+iphone
+
+
+
+
+
+
+yes169
+
+since
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+
+
+
+
+yes165
+yes165
+
+
+
+
+vulnerable
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+
+
+
+
+
+
+
+
+
+yes170
+mitigated
+
+affected
+vulnerable
+vulnerable
+vulnerable
+vulnerable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mitigated
+affected
+mitigated
+
+lowest priority
+172n
+mitigated
+
+mitigated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mitigated
+affected
+affected
+lowest priority
+mitigated
+mitigated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mitigated
+affected
+affected
+disabled defaultn
+mitigated
+mitigated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mitigated
+affected
+affected
+disabled defaultn
+mitigated
+mitigated
+
+
+
+browser
+version
+platforms
+insecure
+insecure
+
+
+
+proposed
+
+
+sha2
+ecdsa
+beastn
+crimen
+poodle sslv3n
+rc4n
+freak5556
+logjam
+protocol selection user
+
+
+protocols
+protocols
+certificate support
+vulnerabilities fixed
+
+
+
+
+color note
+significance
+
+
+browser version
+platform
+
+
+browser version
+operating system
+future release development
+
+
+browser version
+operating system
+current latest release
+
+
+browser version
+operating system
+former release still supported
+
+
+browser version
+operating system
+former release longterm support still active less months
+
+
+browser version
+operating system
+former release longer supported
+
+
+
+operating system
+mixed unspecified
+
+
+operating system version
+minimum required operating system version current latest version browser
+
+
+operating system
+longer supported operating system
+
+
+
+notes
+
+
+
+browser mitigations vulnerable known attacks note actual security depends factors negotiated cipher encryption strength cipher table
+whether user administrator choose protocols used several attacks beast vulnerable poodle vulnerable avoided
+whether normal distinguished indicators green lock icon green address
+record splitting
+disabling header compression httpsspdy
+
+
+complete mitigations disabling antipoodle record splitting antipoodle record splitting effective clientside implementation valid according specification however also cause compatibility issues problems serverside implementations
+partial mitigations disabling fallback tlsfallbackscsv disabling cipher suites mode operation server also supports tlsfallbackscsv poodle attack fail combination server browser connections server support tlsfallbackscsv support still vulnerable disabling cipher suites mode operation cipher suites available attacks become easier
+disabling manually poodle attack fail
+
+
+
+
+complete mitigation disabling cipher suites
+partial mitigations keeping compatibility systems setting priority lower
+
+
+google chrome chromium supports version added dropped version support added dropped chrome 29575859
+uses implementation provided boringssl android windows60 linux google switching library used chrome boringssl completely
+configure enablingdisabling protocols settingoption menu name dependent browsers
+configure maximum minimum version enabling protocols commandline option
+tlsfallbackscsv implemented68 fallback disabled since version 3969
+addition tlsfallbackscsv disabling fallback disabled default69
+configure minimum version enabling protocols chromeflags73 maximum version configured commandline option
+cipher suites available cipher suites used fallback
+ciphersuites disabled default
+uses implementation provided firefox firefox supports despite bundled supporting since firefox enabled enabled default issues firefox support disabled default enabled default firefox release
+configure maximum minimum version enabling protocols aboutconfig
+disabled default94 addition fallback disabled since version 3496 tlsfallbackscsv implemented since 3139497
+uses implementation microsoft windows operating system provided schannel security support provider disabled default ie11106107
+windows supports windows supports windows windows supports
+windows well server 2003 older support weak ciphers like 3des box110 weak ciphers schannel version used also microsoft products running like office windows update windows server 2003 manually update support ciphers kb948963111
+ms13095 ms14049 2003 xp64 32bit
+internet explorer support announcement115
+disabled except fallback cipher suites available cipher suites used fallback118
+fallback sites blocked default internet explorer protected mode120121 disabled default internet explorer since april 2015122
+edge formerly known project spartan based fork internet explorer rendering engine
+except windows ltsb 2015 longtermsupportbranch124
+could disabled registry editing need party tools this126
+opera added support presto previous support disabled default except version 9132 enabled default
+disabled default remotely since october 2014141
+support opera chrome opera migrated chromium backend opera android based chromium webkit146 opera based chromium blink147
+tlsfallbackscsv implemented150
+enabled default mitigations known vulnerabilities beast poodle implemented141
+addition tlsfallbackscsv antipoodle record splitting implemented141
+addition tlsfallbackscsv antipoodle record splitting disabled default73
+configure minimum version enabling protocols operaflags73 maximum version configured commandline option
+safari uses operating system implementation windows vista 7151 unknown version152 safari last version available windows securetransport support 12153 qualys report simulates safari connecting 12154
+september 2013 apple implemented beast mitigation mountain lion turned default resulting safari still theoretically vulnerable beast attack platform156157 beast mitigation enabled default 1085 updated february 2014158
+apple removed support protocols mitigate poodle159160 leaves also completely broken attacks
+mobile safari thirdparty software utilizing system uiwebview library operating system implementation supports 50165166167
+
+
+librariesedit
+main article comparison implementations
+programming libraries free open source software
+
+boringssl fork openssl chromechromium android well google applications
+botan bsdlicensed cryptographic library written
+cryptocomply family fips 1402 validated encryption modules designed simplify fips 1402 certification requirements
+cryptlib portable open source cryptography library includes tlsssl implementation
+delphi programmers library called indy utilizes openssl
+gnutls free implementation lgpl licensed
+java secure socket extension java implementation included java runtime environment supports java although disabled default client enabled default server175 java supports enabled client server default176
+libressl fork openssl openbsd project
+matrixssl dual licensed implementation
+mbed previously polarssl tiny library implementation embedded devices designed ease
+network security services fips validated open source library
+openssl free implementation license extensions
+schannel implementation microsoft windows part package
+secure transport implementation used part packages
+wolfssl previously cyassl embedded ssltls library strong focus speed size
+
+
+library support tlsssl
+
+implementation
+insecure
+insecure
+
+
+
+
+draft
+
+
+botan
+
+no177
+
+
+
+
+
+
+cryptocomply
+
+disabled default
+
+
+
+
+
+
+cryptlib
+
+enabled default
+
+
+
+
+
+
+gnutls
+
+disabled default178
+
+
+
+
+
+
+java secure socket extension
+
+disabled default179
+
+
+
+
+
+
+libressl
+no180
+no181
+
+
+
+
+
+
+matrixssl
+
+disabled default compile time182
+
+
+
+
+
+
+mbed previously polarssl
+
+disabled default183
+
+
+
+
+
+
+network security services
+
+disabled default184
+
+yes185
+yes186
+
+
+
+openssl
+no187
+enabled default
+
+yes188
+yes188
+
+
+
+bsafe189
+
+
+
+
+
+
+
+
+schannel 2003190
+disabled default msie
+enabled default
+enabled default msie
+
+
+
+
+
+schannel vista191
+disabled default
+enabled default
+
+
+
+
+
+
+schannel 2008191
+disabled default
+enabled default
+
+disabled default kb401927651
+disabled default kb401927651
+
+
+
+schannel 2008 r2192
+disabled default
+disabled default msie
+
+enabled default msie
+enabled default msie
+
+
+
+schannel 2012192
+disabled default
+enabled default
+
+disabled default
+disabled default
+
+
+
+schannel 2012 v1507 v1511192
+disabled default
+disabled default msie
+
+
+
+
+
+
+schannel v1607 2016125
+
+disabled default
+
+
+
+
+
+
+secure transport 102–108
+
+
+
+
+
+
+
+
+secure transport 109–1010
+
+
+
+yesc
+yesc
+
+
+
+secure transport 1011
+
+
+
+
+
+
+
+
+sharkssl
+
+disabled default
+
+
+
+
+
+
+wolfssl previously cyassl
+
+disabled default193
+
+
+
+yes194
+
+
+implementation
+insecure
+insecure
+
+
+
+
+draft
+
+
+
+
+client hello supported even though supported disabled backward compatibilities
+serverside implementation ssltls protocol still supports processing received v2compatible client hello messages195
+secure transport discontinued discontinued 1011 available later later196197
+
+
+paper presented 2012 conference computer communications security198 showed applications used libraries correctly leading vulnerabilities according authors
+
+root cause vulnerabilities terrible design apis underlying libraries instead expressing highlevel security properties network tunnels confidentiality authentication apis expose lowlevel details protocol application developers consequence developers often apis incorrectly misinterpreting misunderstanding manifold parameters options side effects return values
+
+usesedit
+simple mail transfer protocol smtp also protected applications public certificates verify identity endpoints
+also used tunnel entire network stack create case openvpn openconnect many vendors marry tlss encryption authentication capabilities authorization also substantial development since late 1990s creating client technology outside browser enable support clientserver applications compared traditional ipsec technologies inherent advantages firewall traversal make easier administer large remoteaccess populations
+also standard method protect session initiation protocol application signaling used provide authentication encryption signaling associated voip sipbased applicationscitation needed
+securityedit
+20edit
+flawed variety ways199
+
+identical cryptographic keys used message authentication encryption secrets larger encryption keys messages remain tamper resistant even encryption keys broken4
+weak construction uses hash function secret prefix making vulnerable length extension attacks
+protection handshake meaning maninthemiddle downgrade attack undetected
+uses connection close indicate data means truncation attacks possible attacker simply forges leaving recipient unaware illegitimate data message fixes problem explicit closure alert
+assumes single service fixed domain certificate clashes standard feature virtual hosting servers means websites practically impaired using
+
+disabled default beginning internet explorer 7200 mozilla firefox 2201 opera 95202 safari sends clienthello mozilla firefox finds server unable complete handshake attempt fall back using clienthello format maximize likelihood successfully handshaking older servers203 support weak 40bit 56bit ciphers removed completely opera version 10204205
+30edit
+improved upon adding sha1–based ciphers support certificate authentication
+security standpoint considered less desirable cipher suites weaker derivation process half master established fully dependent hash function resistant collisions therefore considered secure master established depends sha1 derivation process currently considered weak reason implementations cannot validated fips 1402206
+october 2014 vulnerability design reported makes mode operation vulnerable padding attack poodle attack
+tlsedit
+variety security measures
+
+protection downgrade protocol previous less secure version weaker cipher suite
+numbering subsequent application records sequence number using sequence number message authentication codes macs
+using message digest enhanced keyholder check hmac construction used cipher suites specified 2104 used different hashbased
+message ends handshake finished sends hash exchanged handshake messages seen parties
+pseudorandom function splits input data half processes different hashing algorithm sha1 xors together create provides protection even algorithms found vulnerable
+
+attacks tlsssledit
+significant attacks tlsssl listed
+note february 2015 ietf issued informational rfc207 summarizing various known attacks tlsssl
+renegotiation attackedit
+vulnerability renegotiation procedure discovered august 2009 lead plaintext injection attacks current versions tls208 example allows attacker hijack https connection splice requests beginning conversation client server attacker cant actually decrypt client–server communication different typical maninthemiddle attack shortterm servers stop allowing renegotiation typically require changes unless client certificate authentication used vulnerability renegotiation indication extension proposed require client server include verify information previous handshakes renegotiation handshakes209 extension become proposed standard assigned number 5746 implemented several libraries210211212
+downgrade attacks freak attack logjam attackedit
+main articles freak logjam computer security
+protocol downgrade attack also called version rollback attack tricks server negotiating connections previous versions sslv2 long since abandoned insecure
+previous modifications original protocols like false start213 adopted enabled google chrome214 snap start reportedly introduced limited protocol downgrade attacks215 allowed modifications cipher suite list sent client server attacker might succeed influencing cipher suite selection attempt downgrade cipher suite negotiated either weaker symmetric encryption algorithm weaker exchange216 paper presented association computing machinery conference computer communications security 2012 demonstrated false start extension risk certain circumstances could allow attacker recover encryption keys offline access encrypted data217
+encryption downgrade attacks force servers clients negotiate connection using cryptographically weak keys 2014 maninthemiddle attack called freak discovered affecting openssl stack default android browser safari browsers218 attack involved tricking servers negotiating connection using cryptographically weak encryption keys
+logjam security exploit discovered 2015 exploits option using legacy exportgrade 512bit diffie–hellman groups dating back 1990s219 forces susceptible servers downgrade cryptographically weak 512bit diffie–hellman groups attacker deduce keys client server determine using diffie–hellman exchange
+crossprotocol attacks drownedit
+main article drown attack
+drown attack exploit attacks servers supporting contemporary ssltls protocol suites exploiting support obsolete insecure sslv2 protocol leverage attack connections using uptodate protocols would otherwise secure220221 drown exploits vulnerability protocols used configuration server rather specific implementation error full details drown announced march 2016 together patch exploit time 81000 million popular websites among protected websites vulnerable drown attack221
+beast attackedit
+september 2011 researchers thai duong juliano rizzo demonstrated proof concept called beast browser exploit ssltls222 using java applet violate origin policy constraints longknown cipher block chaining vulnerability 10223224 attacker observing consecutive ciphertext blocks test plaintext block equal choosing next plaintext block works equal practical exploits previously demonstrated vulnerability originally discovered phillip rogaway225 2002 vulnerability attack fixed 2006 seen wide adoption prior attack demonstration
+stream cipher immune beast attack therefore widely used mitigate beast attack server side however 2013 researchers found weaknesses thereafter enabling server side longer recommended226
+chrome firefox vulnerable beast attack61227 however mozilla updated libraries mitigate beastlike attacks used mozilla firefox google chrome implement servers broken implementation specification stop working result228
+microsoft released security bulletin ms12006 january 2012 fixed beast vulnerability changing windows secure channel schannel component transmits encrypted network packets server end229 users internet explorer prior version older versions windows windows windows windows server 2008 restrict higher
+apple fixed beast vulnerability implementing split turning default mavericks released october 2013230
+crime breach attacksedit
+main articles crime breach
+authors beast attack also creators later crime attack allow attacker recover content cookies data compression used along tls231232 used recover content secret authentication cookies allows attacker perform session hijacking authenticated session
+crime attack presented general attack could work effectively large number protocols including limited applicationlayer protocols spdy http exploits spdy demonstrated largely mitigated browsers servers crime exploit http compression mitigated even though authors crime warned vulnerability might even widespread spdy compression combined 2013 instance crime attack http compression dubbed breach announced based crime attack breach attack extract login tokens email addresses sensitive information encrypted traffic little seconds depending number bytes extracted provided attacker tricks victim visiting malicious link able inject content valid pages user visiting wireless network control attacker233 versions risk breach regardless encryption algorithm cipher used234 unlike previous instances crime successfully defended turning compression spdy header compression breach exploits http compression cannot realistically turned virtually servers rely upon improve data transmission speeds users233 known limitation susceptible chosenplaintext attack applicationlayer data meant protect
+timing attacks paddingedit
+earlier versions vulnerable padding oracle attack discovered 2002 novel variant called lucky thirteen attack published 2013
+experts44 also recommended avoiding tripledes since last supported ciphers developed support program using windows ssltls library like internet explorer windows tripledes since deprecated discussion attacks makes difficult support version program using library
+released encryptthenmac extension specification released 7366235 lucky thirteen attack mitigated using aesgcm ciphers aescbc remains vulnerablecitation needed
+poodle attackedit
+main article poodle
+october 2014 google researchers published vulnerability design makes mode operation vulnerable padding attack cve20143566 named attack poodle padding oracle downgraded legacy encryption average attackers need make requests reveal byte encrypted messages50
+although vulnerability exists clients servers support major browsers voluntarily downgrade handshakes newer versions fail unless provide option user administrator disable user administrator socitation needed therefore maninthemiddle first conduct version rollback attack exploit vulnerability50
+general graceful security degradation sake interoperability difficult carry cannot exploited challenging especially domains fragmentation high236
+december 2014 variant poodle announced impacts implementations properly enforce padding byte requirements237
+attacksedit
+main article security
+despite existence attacks broke security cipher suites based still considered secure prior 2013 based used 2011 suite actually recommended work around beast attack238 forms attack disclosed march 2013 conclusively demonstrated feasibility breaking suggesting good workaround beast49 attack scenario proposed alfardan bernstein paterson poettering schuldt used newly discovered statistical biases table239 recover parts plaintext large number encryptions240241 attack requires encryptions break unveiled july 2013 later described feasible accompanying presentation usenix security symposium august 2013242243 july 2015 subsequent improvements attack make increasingly practical defeat security rc4encrypted tls244
+many modern browsers designed defeat beast attacks except safari earlier earlier windows browsers longer good choice ciphers affected beast attack past become popular choice protection44 mozilla microsoft recommend disabling possible245246 7465 prohibits cipher suites versions
+september 2015 microsoft google mozilla announced cipher suites would disabled default browsers microsoft edge internet explorer windows 78110 firefox chrome early 2016247248249
+truncation attackedit
+logout truncation attack blocks victims account logout requests user unknowingly remains logged service request sign sent attacker injects unencrypted message data sender close connection server therefore doesnt receive logout request unaware abnormal termination250
+published july 2013251252 attack causes services gmail hotmail display page informs user successfully signedout ensuring users browser maintains authorization service allowing attacker subsequent access browser access take control users loggedin account attack rely installing malware victims computer attackers need place victim server setting rogue wireless hotspot250 vulnerability also requires access victims computer another possibility using data connection false data stream protocol rules exchanging closenotify alerts adhered file truncated
+unholy attackedit
+attack discovered mid2016 exploits weaknesses proxy autodiscovery protocol wpad expose user attempting reach tlsenabled link253 disclosure violate users privacy website accessed also urls sometimes used authenticate users document sharing services offered google dropbox also work sending user security token thats included attacker obtains urls able gain full access victims account data
+exploit works almost browsers operating systems
+sweet32 attackedit
+sweet32 attack breaks 64bit block ciphers used mode used exploiting birthday attack either maninthemiddle attack injection malicious javascript page purpose maninthemiddle attack javascript injection allow attacker capture enough traffic mount birthday attack254
+implementation errors heartbleed berserk attack cloudflare bugedit
+main articles heartbleed cloudbleed
+heartbleed serious vulnerability specific implementation ssltls popular openssl cryptographic software library affecting versions 101f weakness reported april 2014 allows attackers steal private keys servers normally protected255 heartbleed allows anyone internet read memory systems protected vulnerable versions openssl software compromises secret private keys associated public certificates used identify service providers encrypt traffic names passwords users actual content allows attackers eavesdrop communications steal data directly services users impersonate services users256 vulnerability caused buffer overread openssl software rather defect protocol specification
+september 2014 variant daniel bleichenbachers pkcs1 signature forgery vulnerability257 announced intel security advanced threat research attack dubbed berserk result incomplete asn1 length decoding public signatures implementations allows maninthemiddle attack forging public signature258
+february 2015 media reported hidden preinstallation superfish adware lenovo notebooks259 researcher found trusted root certificate affected lenovo machines insecure keys could easily accessed using company name komodia passphrase260 komodia library designed intercept clientside tlsssl traffic parental control surveillance also used numerous adware programs including superfish often surreptitiously installed unbeknownst computer user turn potentially unwanted programs installed corrupt root certificate allowing attackers completely control traffic confirm false websites authentic
+2016 reported dozens danish httpsprotected websites belonging visa vulnerable attacks allowing hackers inject malicious code forged content browsers visitors261 attacks worked implementation used affected servers incorrectly reused random numbers nonces intended used ensuring handshake unique261
+february 2017 implementation error caused single mistyped character code used parse html created buffer overflow error cloudflare servers similar effects heartbleed discovered 2014 overflow error widely known cloudbleed allowed unauthorized third parties read data memory programs running servers—data otherwise protected tls262
+survey websites vulnerable attacksedit
+october 2016update trustworthy internet movement estimate ratio websites vulnerable attacks48
+
+survey vulnerabilities popular websites
+
+attacks
+security
+
+
+insecure
+depends
+secure
+
+
+
+renegotiation attack
+
+support insecure renegotiation
+
+support
+
+support secure renegotiation
+
+support
+
+
+attacks
+
+support suites
+
+support suites used modern browsers
+
+support suites
+
+support
+
+
+
+crime attack
+
+vulnerable
+
+
+
+
+
+heartbleed
+
+vulnerable
+
+
+
+
+
+changecipherspec injection attack
+
+vulnerable exploitable
+
+vulnerable exploitable
+
+vulnerable
+
+unknown
+
+
+poodle attack
+original poodle included
+
+vulnerable exploitable
+
+
+vulnerable
+
+unknown
+
+
+protocol downgrade
+
+tlsfallbackscsv supported
+
+
+tlsfallbackscsv supported
+
+unknown
+
+
+forward secrecyedit
+main article forward secrecy
+forward secrecy property cryptographic systems ensures session derived public private keys compromised private keys compromised future263 without forward secrecy servers private compromised future tlsencrypted sessions using server certificate compromised also past sessions used well provided course past sessions intercepted stored time transmission264 implementation provide forward secrecy requiring ephemeral diffie–hellman exchange establish session keys notable implementations exclusively gmail google https services openssl265 however many clients servers supporting including browsers servers configured implement restrictions266267 practice unless service uses diffie–hellman exchange implement forward secrecy encrypted traffic service decrypted third party obtains servers master private means court order268
+even diffie–hellman exchange implemented serverside session management mechanisms impact forward secrecy session tickets extension causes session protected aes128cbcsha256 regardless negotiated parameters including forward secrecy ciphersuites longlived session ticket keys defeat attempt implement forward secrecy269270271 stanford university research 2014 also found 473802 servers surveyed servers deploying ephemeral diffie–hellman exchange support forward secrecy using weak diffie–hellman parameters weak parameter choices could potentially compromise effectiveness forward secrecy servers sought provide272
+since late 2011 google provided forward secrecy default users gmail service along google docs encrypted search among services273 since november 2013 twitter provided forward secrecy users service274 june 2016update tlsenabled websites configured cipher suites provide forward secrecy modern browsers48
+dealing maninthemiddle attacksedit
+main article maninthemiddle attack
+certificate pinningedit
+main article http public pinning
+detect block many kinds maninthemiddle attacks certificate pinning sometimes called pinning accurately called public pinning275 client pinning adds extra step beyond normal x509 certificate validation obtaining servers certificate standard client checks public keys servers certificate chain hashes public keys server name typically public hashes bundled application example google chrome includes public hashes googlecom certificate detected fraudulent certificates 2011 chromium enforce hardcoded pins since mozilla introduced public pinning firefox browser276
+systems client hopes first time obtains servers certificate trustworthy stores later sessions server client checks servers certificate stored certificate guard later mitm attacks
+perspectives projectedit
+perspectives project277 operates network notaries clients detect sites certificate changed nature maninthemiddle attacks place attacker destination single specific target perspectives would warn target certificate delivered browser match certificate seen perspectives perspectives users different times places network notaries multitude perspectives makes possible target detect attack even certificate appears completely valid projects effs observatory also make notaries similar reporters discovering maninthemiddle attacks
+dnschainedit
+dnschain278 relies security blockchains provide distribute public keys uses secure connection dnschain server public keys stored block chain become accessible secure channel
+protocol detailsedit
+protocol exchanges records—which encapsulate data exchanged specific format record compressed padded appended message authentication code encrypted depending state connection record content type field designates type data encapsulated length field version field data encapsulated control procedural messages simply application data needed transferred specifications cipher suite keys required exchange application data agreed upon handshake client requesting data server responding requests protocol therefore defines structure payloads transferred procedure establish monitor transfer
+handshakeedit
+connection starts record encapsulates control protocol—the handshake messaging protocol content type protocol used exchange information required sides exchange actual application data defines format messages order exchange vary according demands client server—ie several possible procedures connection initial exchange results successful connection parties ready transfer application data alert message specified
+basic handshakeedit
+typical connection example follows illustrating handshake server client authenticated certificate
+
+negotiation phase
+
+client sends clienthello message specifying highest protocol version supports random number list suggested cipher suites suggested compression methods client attempting perform resumed handshake send session client applicationlayer protocol negotiation include list supported application protocols http2
+server responds serverhello message containing chosen protocol version random number ciphersuite compression method choices offered client confirm allow resumed handshakes server send session chosen protocol version highest client server support example client supports version server supports version version selected version selected
+server sends certificate message depending selected cipher suite omitted server279
+server sends serverkeyexchange message depending selected cipher suite omitted server message sent dhanon ciphersuites1
+server sends serverhellodone message indicating done handshake negotiation
+client responds clientkeyexchange message contain premastersecret public nothing depends selected cipher premastersecret encrypted using public server certificate
+client server random numbers premastersecret compute common secret called master secret data connection derived master secret client servergenerated random values passed carefully designed pseudorandom function
+
+
+client sends changecipherspec record essentially telling server everything tell authenticated encrypted encryption parameters present server certificate changecipherspec recordlevel protocol content type
+
+finally client sends authenticated encrypted finished message containing hash previous handshake messages
+server attempt decrypt clients finished message verify hash decryption verification fails handshake considered failed connection torn
+
+
+finally server sends changecipherspec telling client everything tell authenticated encrypted encryption negotiated
+
+server sends authenticated encrypted finished message
+client performs decryption verification
+
+
+application phase point handshake complete application protocol enabled content type application messages exchanged client server also authenticated optionally encrypted exactly like finished message otherwise content type return client authenticate
+
+clientauthenticated handshakeedit
+following full example shows client authenticated addition server example using certificates exchanged peers
+
+negotiation phase
+
+client sends clienthello message specifying highest protocol version supports random number list suggested cipher suites compression methods
+server responds serverhello message containing chosen protocol version random number cipher suite compression method choices offered client server also send session part message perform resumed handshake
+server sends certificate message depending selected cipher suite omitted server279
+server sends serverkeyexchange message depending selected cipher suite omitted server message sent dhanon ciphersuites1
+server requests certificate client connection mutually authenticated using certificaterequest message
+server sends serverhellodone message indicating done handshake negotiation
+client responds certificate message contains clients certificate
+client sends clientkeyexchange message contain premastersecret public nothing depends selected cipher premastersecret encrypted using public server certificate
+client sends certificateverify message signature previous handshake messages using clients certificates private signature verified using clients certificates public lets server know client access private certificate thus owns certificate
+client server random numbers premastersecret compute common secret called master secret data connection derived master secret client servergenerated random values passed carefully designed pseudorandom function
+
+
+client sends changecipherspec record essentially telling server everything tell authenticated encrypted encryption negotiated changecipherspec recordlevel protocol type
+
+finally client sends encrypted finished message containing hash previous handshake messages
+server attempt decrypt clients finished message verify hash decryption verification fails handshake considered failed connection torn
+
+
+finally server sends changecipherspec telling client everything tell authenticated encrypted encryption negotiated
+
+server sends encrypted finished message
+client performs decryption verification
+
+
+application phase point handshake complete application protocol enabled content type application messages exchanged client server also encrypted exactly like finished message
+
+resumed handshakeedit
+public operations relatively expensive terms computational power provides secure shortcut handshake mechanism avoid operations resumed sessions resumed sessions implemented using session session tickets
+apart performance benefit resumed sessions also used single signon guarantees original session resumed session originate client particular importance tlsssl protocol would otherwise suffer maninthemiddle attack attacker could intercept contents secondary data connections280
+session idsedit
+ordinary full handshake server sends session part serverhello message client associates session servers address port client connects server session shortcut handshake server session maps cryptographic parameters previously negotiated specifically master secret sides must master secret resumed handshake fail prevents eavesdropper using session random data clienthello serverhello messages virtually guarantee generated connection keys different previous connection rfcs type handshake called abbreviated handshake also described literature restart handshake
+
+negotiation phase
+
+client sends clienthello message specifying highest protocol version supports random number list suggested cipher suites compression methods included message session previous connection
+server responds serverhello message containing chosen protocol version random number cipher suite compression method choices offered client server recognizes session sent client responds session client uses recognize resumed handshake performed server recognize session sent client sends different value session tells client resumed handshake performed point client server master secret random data generate data used connection
+
+
+server sends changecipherspec record essentially telling client everything tell encrypted changecipherspec recordlevel protocol type
+
+finally server sends encrypted finished message containing hash previous handshake messages
+client attempt decrypt servers finished message verify hash decryption verification fails handshake considered failed connection torn
+
+
+finally client sends changecipherspec telling server everything tell encrypted
+
+client sends encrypted finished message
+server performs decryption verification
+
+
+application phase point handshake complete application protocol enabled content type application messages exchanged client server also encrypted exactly like finished message
+
+session ticketsedit
+5077 extends session tickets instead session defines resume session without requiring sessionspecific state stored server
+using session tickets server stores sessionspecific state session ticket sends session ticket client storing client resumes session sending session ticket server server resumes session according sessionspecific state ticket session ticket encrypted authenticated server server verifies validity using contents
+particular weakness method openssl always limits encryption authentication security transmitted session ticket aes128cbcsha256 matter parameters negotiated actual session270 means state information session ticket well protected session particular concern openssls storage keys applicationwide context sslctx life application allowing rekeying aes128cbcsha256 session tickets without resetting applicationwide openssl context uncommon errorprone often requires manual administrative intervention271269
+recordedit
+general format records
+
+
+
+byte
+byte
+byte
+byte
+
+
+byte
+
+content type
+
+
+
+bytes
+
+version
+length
+
+
+major
+minor
+bits
+bits
+
+
+bytes
+
+protocol messages
+
+
+bytes
+
+optional
+
+
+bytes
+
+padding block ciphers
+
+
+
+content type
+field identifies record layer protocol type contained record
+
+
+content types
+
+
+
+type
+
+
+0x14
+
+changecipherspec
+
+
+0x15
+
+alert
+
+
+0x16
+
+handshake
+
+
+0x17
+
+application
+
+
+0x18
+
+heartbeat
+
+
+
+version
+field identifies major minor version contained message clienthello message need highest version supported client
+
+
+versions
+
+major
+version
+minor
+version
+version type
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+length
+
+
+length protocol messages padding exceed bytes
+protocol messages
+messages identified protocol field note field encrypted depending state connection
+padding
+message authentication code computed protocol message additional material included note field encrypted included entirely depending state connection
+padding present records cipher algorithms parameters negotiated handshaked confirmed sending cipherstatechange record signalling parameters take effect records sent peer
+
+handshake protocoledit
+messages exchanged setup session based record unless error warning occurs needs signaled alert protocol record encryption mode session modified another record changecipherspec protocol
+
+
+
+byte
+byte
+byte
+byte
+
+
+byte
+
+
+
+
+
+bytes
+
+version
+length
+
+
+major
+minor
+bits
+bits
+
+
+bytes
+
+message type
+handshake message data length
+
+
+bits 2316
+bits
+bits
+
+
+bytes
+
+handshake message data
+
+
+bytes
+
+message type
+handshake message data length
+
+
+bits 2316
+bits
+bits
+
+
+bytes
+
+handshake message data
+
+
+
+message type
+field identifies handshake message type
+
+
+
+message types
+
+
+code
+description
+
+
+
+hellorequest
+
+
+
+clienthello
+
+
+
+serverhello
+
+
+
+newsessionticket
+
+
+
+certificate
+
+
+
+serverkeyexchange
+
+
+
+certificaterequest
+
+
+
+serverhellodone
+
+
+
+certificateverify
+
+
+
+clientkeyexchange
+
+
+
+finished
+
+
+
+handshake message data length
+3byte field indicating length handshake data including header
+
+note multiple handshake messages combined within record
+alert protocoledit
+record normally sent normal handshaking application exchanges however message sent time handshake closure session used signal fatal error session closed immediately sending record record used give reason closure alert level flagged warning remote decide close session decides session reliable enough needs remote also send signal
+
+
+
+byte
+byte
+byte
+byte
+
+
+byte
+
+
+
+
+
+bytes
+
+version
+length
+
+
+major
+minor
+
+
+
+
+bytes
+
+level
+description
+
+
+
+bytes
+
+optional
+
+
+bytes
+
+padding block ciphers
+
+
+
+level
+field identifies level alert level fatal sender close session immediately otherwise recipient decide terminate session sending fatal alert closing session immediately sending alert records optional however missing session closure session resumed automatically handshakes
+normal closure session termination transported application preferably alerted least close notify alert type simple warning level prevent automatic resume session signalling explicitly normal closure secure session effectively closing transport layer useful prevent detect attacks like attempts truncate securely transported data intrinsically predetermined length duration recipient secured data expect
+
+
+alert level types
+
+code
+level type
+connection state
+
+
+
+warning
+connection security unstable
+
+
+
+fatal
+connection security compromised unrecoverable error occurred
+
+
+
+description
+field identifies type alert sent
+
+
+alert description types
+
+code
+description
+level types
+note
+
+
+
+close notify
+warningfatal
+
+
+
+
+unexpected message
+fatal
+
+
+
+
+record
+fatal
+possibly implementation payload tampered firewall rule ftps server
+
+
+
+decryption failed
+fatal
+reserved
+
+
+
+record overflow
+fatal
+
+
+
+
+decompression failure
+fatal
+
+
+
+
+handshake failure
+fatal
+
+
+
+
+certificate
+warningfatal
+reserved
+
+
+
+certificate
+warningfatal
+
+
+
+
+unsupported certificate
+warningfatal
+certificate server authentication usage enabled presented client certificate
+
+
+
+certificate revoked
+warningfatal
+
+
+
+
+certificate expired
+warningfatal
+check server certificate expire also check certificate chain presented expired
+
+
+
+certificate unknown
+warningfatal
+
+
+
+
+illegal parameter
+fatal
+
+
+
+
+unknown certificate authority
+fatal
+
+
+
+
+access denied
+fatal
+client certificate presented blank certificate message sslv3 certificate alert server configured require
+
+
+
+decode error
+fatal
+
+
+
+
+decrypt error
+warningfatal
+
+
+
+
+export restriction
+fatal
+reserved
+
+
+
+protocol version
+fatal
+
+
+
+
+insufficient security
+fatal
+
+
+
+
+internal error
+fatal
+
+
+
+
+inappropriate fallback
+fatal
+
+
+
+
+user canceled
+fatal
+
+
+
+
+renegotiation
+warning
+
+
+
+
+unsupported extension
+warning
+
+
+
+
+certificate unobtainable
+warning
+
+
+
+
+unrecognized name
+warningfatal
+clients server name indicator specified hostname supported server
+
+
+
+certificate status response
+fatal
+
+
+
+
+certificate hash value
+fatal
+
+
+
+
+unknown identity used tlspsk tlssrp
+fatal
+
+
+
+
+application protocol
+fatal
+clients alpn contain serversupported protocols
+
+
+changecipherspec protocoledit
+
+
+
+byte
+byte
+byte
+byte
+
+
+byte
+
+
+
+
+
+bytes
+
+version
+length
+
+
+major
+minor
+
+
+
+
+byte
+
+protocol type
+
+
+
+
+protocol type
+currently
+
+application protocoledit
+
+
+
+byte
+byte
+byte
+byte
+
+
+byte
+
+
+
+
+
+bytes
+
+version
+length
+
+
+major
+minor
+bits
+bits
+
+
+bytes
+
+application data
+
+
+bytes
+
+optional
+
+
+bytes
+
+padding block ciphers
+
+
+
+length
+length application data excluding protocol header including padding trailers
+
+bytes sha1based hmac bytes md5based hmac
+padding
+variable length last byte contains padding length
+
+support namebased virtual serversedit
+application protocol point view belongs lower layer although tcpip model coarse show means handshake usually except starttls case performed application protocol start namebased virtual server feature provided application layer cohosted virtual servers share certificate server select send certificate immediately clienthello message problem hosting environments means either sharing certificate among customers using different address
+known workarounds provided x509
+
+virtual servers belong domain wildcard certificate used281 besides loose host name selection might problem common agreement match wildcard certificates different rules applied depending application protocol software used282
+every virtual host name subjectaltname extension major problem certificate needs reissued whenever virtual server added
+
+provide server name 4366 transport layer security extensions allow clients include server name indication extension extended clienthello message extension hints server immediately name client wishes connect server select appropriate certificate send clients
+2817 also documents method implement namebased virtual hosting upgrading http http11 upgrade header normally securely implement http within main http scheme avoids forking space reduces number used ports however implementations currently support
+standardsedit
+primary standardsedit
+current approved version version specified
+
+5246 transport layer security protocol version
+
+current standard replaces former versions considered obsolete
+
+2246 protocol version
+4346 transport layer security protocol version
+
+well never standardized considered obsolete
+
+internet draft 1995 version
+6101 secure sockets layer protocol version
+
+extensionsedit
+rfcs subsequently extended
+extensions include
+
+2595 using imap pop3 acap specifies extension imap pop3 acap services allow server client transportlayer security provide private authenticated communication internet
+2712 addition kerberos cipher suites transport layer security 40bit cipher suites defined memo appear purpose documenting fact cipher suite codes already assigned
+2817 upgrading within http11 explains upgrade mechanism http11 initiate transport layer security existing connection allows unsecured secured http traffic share well known port case http rather https
+2818 http distinguishes secured traffic insecure traffic different server port
+3207 smtp service extension secure smtp transport layer security specifies extension smtp service allows smtp server client transportlayer security provide private authenticated communication internet
+3268 ciphersuites adds advanced encryption standard cipher suites previously existing symmetric ciphers
+3546 transport layer security extensions adds mechanism negotiating protocol extensions session initialisation defines extensions made obsolete 4366
+3749 transport layer security protocol compression methods specifies framework compression methods deflate compression method
+3943 transport layer security protocol compression using lempelzivstac
+4132 addition camellia cipher suites transport layer security
+4162 addition seed cipher suites transport layer security
+4217 securing
+4279 preshared ciphersuites transport layer security adds three sets cipher suites protocol support authentication based preshared keys
+
+extensions include
+
+4347 datagram transport layer security specifies variant works datagram protocols
+4366 transport layer security extensions describes specific extensions generic extension mechanism
+4492 elliptic curve cryptography cipher suites transport layer security
+4680 handshake message supplemental data
+4681 user mapping extension
+4785 preshared ciphersuites null encryption transport layer security
+5054 using secure remote password protocol authentication defines tlssrp ciphersuites
+5077 transport layer security session resumption without serverside state
+5081 using openpgp keys transport layer security authentication obsoleted 6091
+
+extensions include
+
+5288 galois counter mode cipher suites
+5289 elliptic curve cipher suites sha256384 galois counter mode
+5746 transport layer security renegotiation indication extension
+5878 transport layer security authorization extensions
+5932 camellia cipher suites
+6066 transport layer security extensions extension definitions includes server name indication ocsp stapling
+6091 using openpgp keys transport layer security authentication
+6176 prohibiting secure sockets layer version
+6209 addition aria cipher suites transport layer security
+6347 datagram transport layer security version
+6367 addition camellia cipher suites transport layer security
+6460 suite profile transport layer security
+6655 aesccm cipher suites transport layer security
+7027 elliptic curve cryptography brainpool curves transport layer security
+7251 aesccm elliptic curve cryptography cipher suites
+7301 transport layer security applicationlayer protocol negotiation extension
+7366 encryptthenmac transport layer security datagram transport layer security dtls
+7465 prohibiting cipher suites
+7507 fallback signaling cipher suite value scsv preventing protocol downgrade attacks
+7568 deprecating secure sockets layer version
+7627 transport layer security session hash extended master secret extension
+7685 transport layer security clienthello padding extension
+
+encapsulations include
+
+5216 eaptls authentication protocol
+
+informational rfcsedit
+
+7457 summarizing known attacks transport layer security datagram dtls
+7525 recommendations secure transport layer security datagram transport layer security dtls
+
+alsoedit
+
+
+cryptography portal
+
+
+
+applicationlayer protocol negotiation extension used spdy false start
+bullrun decryption program secret antiencryption program national security agency
+cecpq1 postquantum cipher transport layer security
+ring file
+multiplexed transport layer security
+obfuscated
+quic quick internet connections designed provide security protection equivalent tlsssl quics main goal improve perceived performance connectionoriented applications currently using
+rdrand
+servergated cryptography
+acceleration
+tcpcrypt
+transport layer security channel proposed protocol extension improves browser security selfsigned browser certificates
+wireless transport layer security
+http strict transport security hsts
+
+referencesedit
+
+
+dierks rescorla august 2008 transport layer security protocol version
+intercepted today decrypted tomorrow netcraft 20130625
+gothard peter google updates certificates 2048bit encryption computing incisive media retrieved september 2013
+freier karlton kocher august 2011 secure sockets layer protocol version
+ssltls instantsslcom retrieved 20130220
+ssltls detail microsoft technet updated july 2003
+hooper howard 2012 ccnp security 642648 official cert guide cisco press isbn 9780132966382 retrieved august 2015
+httpssecuritystackexchangecoma93338
+dierks rescorla august 2008 introduction 5246 httpstoolsietforghtmlrfc5246section1
+thomas raghuram bindignavle shaowen simon interface secure network programming proceedings usenix summer technical conference june 1994
+protocol netscape corporation 2007 archived original june 1997
+rescorla 2001
+messmer ellen father taher elgamal finds fastmoving projects middle east network world archived original 2014 retrieved 2014
+greene father says despite attacks security linchpin lots life left network world archived original 2014 retrieved 2014
+poodle sslv3 vulnerability cve20143566 retrieved october 2014
+polk mckay terry chokhani santosh april 2014 guidelines selection configuration transport layer security implementations national institute standards technology archived original 20140508 retrieved 20140507 maint uses authors parameter link
+dierks rescorla april 2006 transport layer security protocol version 4346
+dierks rescorla august 2008 finished 5246 httpstoolsietforghtmlrfc5246section749
+draftietftlstls1322 transport layer security protocol version
+draftietftlstls13latest
+release notes mozilla developer network february 2017
+enable default bugzillamozilla october 2016 retrieved october 2017
+proxysg interrupt connections clients using access sites also using bluetouch online 2017 retrieved september 2017
+pale moon 2740 released pale moon forum july 2017 retrieved september 2017
+ietf hackathon
+ietf internet engineering task force 20171112 ietf hackathon presentations awards retrieved 20171114
+scott 2013 alternatives certification authorities secure conference asia pacific retrieved september 2016
+counting certificates netcraft 2015
+enforcement appliance subverts wired 20100403
+research suggests governments fake certificates 20100324
+eronen 4279 preshared ciphersuites transport layer security internet engineering task force retrieved september 2013
+taylor 5054 using secure remote password protocol authentication internet engineering task force retrieved december 2014
+value 2048bit encryption encryption length matters searchsecurity retrieved 20171218
+sean turner september 2015 consensus remove
+draftchudovcryptoprocptls04 gost 2814789 cipher suites transport layer security
+5288 5289
+6655 7251
+6367
+5932 6367
+6209
+4162
+practical insecurity 64bit block ciphers collision attacks http openvpn 20161028 retrieved 20170608
+nist special publication 80057 recommendation management part general revised 20070308 archived original june 2014 retrieved 20140703
+qualys labs ssltls deployment best practices retrieved june 2015
+5469
+7905
+http https retrieved 20150212
+october 2017 pulse survey implementation popular websites qualys retrieved december 2017
+ivanr broken qualsys security labs retrieved 20130730
+bodo möller thai duong krzysztof kotowicz poodle bites exploiting fallback retrieved 20141015
+update support windows server 2008 retrieved 20170719
+browsers support extended validation display indicator symantec retrieved 20140728
+sha256 compatibility retrieved 20150612
+compatibility retrieved 20150613
+tracking freak attack retrieved 20150308
+freak factoring export keys retrieved 20150308
+google 20120529 channel update retrieved 20110601
+google 20120821 stable channel update retrieved 20120822
+chromium project 20130530 chromium implementation
+chromium project boringssl retrieved 20150905
+chrome stable release chrome releases google 20111025 retrieved 20150201
+revision chrome 100648127 release retrieved 20140619
+imperialviolet crime 20120922 retrieved 20141018
+ssltls overview 20080806 retrieved 20130329
+chromium issue 90392 20080806 retrieved 20130628
+issue 23503030 merge 219882 20130903 retrieved 20130919
+issue 278370 unable submit client certificates windows 20130823 retrieved 20131003
+möller bodo 20141014 poodle bites exploiting fallback google online security blog google blogspot retrieved 20141028
+update sslv3 chrome securitydev google 20141031 retrieved 20141104
+stable channel update mozilla developer network google 20140220 retrieved 20141114
+changelog chrome 3301750117 google google retrieved 20141114
+issue 318442 update 3153 nspr 4102 retrieved 20141114
+issue 693963003 minimum version control aboutflags finch gate code review retrieved 20150122
+issue 375342 drop support retrieved 20150522
+issue 436391 info life sslversionfallbackmin sslversionmin policy documentation retrieved 20150419
+issue 490240 increase minimum size 1024 bits tracking retrieved 20150529
+intent deprecate retrieved 20151221
+update sha1 certificates chrome 20151218 retrieved 20151221
+sslsocket android developers retrieved 20150311
+browsers work universal retrieved 20150615
+sslsocket android developers retrieved 20151217
+android behavior changes android developers retrieved 20150311
+android behavior changes
+security firefox 20080806 retrieved 20090331
+attack tlsprotected communications mozilla security blog mozilla 20110927 retrieved 20150201
+introduction retrieved 20140619
+3153 release notes mozilla developer network mozilla retrieved 20140713
+mfsa 2013103 miscellaneous network security services vulnerabilities mozilla mozilla retrieved 20140713
+565047 rfc4346 implement 4346 retrieved 20131029
+480514 implement support 5246 retrieved 20131029
+733647 implement 4346 gecko firefox thunderbird default retrieved 20131204
+firefox notes desktop 20140204 retrieved 20140204
+861266 implement 5246 gecko firefox thunderbird default retrieved 20131118
+poodle attack mozilla blog mozilla 20141014 retrieved 20141028
+firefox notes mozilla mozillaorg 20141201 retrieved 20150403
+1083058 pref control version fallback bugzillamozillaorg retrieved 20141106
+1036737 support draftietftlsdowngradescsv geckofirefox bugzillamozillaorg retrieved 20141029
+1166031 update 3191 bugzillamozillaorg retrieved 20150529
+1088915 stop offering first handshakes bugzillamozillaorg retrieved 20141104
+firefox notes mozilla mozillaorg 20150630 retrieved 20150703
+google microsoft mozilla drop encryption chrome edge firefox next year venturebeat 20150901 retrieved 20150905
+intent ship disabled default firefox retrieved 20151018
+allowed whitelisted sites reverted retrieved 20151102
+firefox notes mozilla mozillaorg 20160126 retrieved 20160309
+1342082 disable ff52 release retrieved 20170329
+microsoft 20120905 secure channel retrieved 20121018
+microsoft 20090227 mstlsp appendix retrieved 20090319
+browsers support sslv2 retrieved 20140619
+sha2 windows windows blog site home technet blogs 20100930 retrieved 20140729
+cipher suites microsoft
+httpssupportmicrosoftcomkb948963
+vulnerability schannel could allow security feature bypass 3046049 20150310 retrieved 20150311
+vulnerability schannel could allow information disclosure 3061518 20150512 retrieved 20150522
+https security improvements internet explorer retrieved 20131029
+microsoft support lifecycle microsoft
+windows adds support tlsv11 tlsv12 ieinternals site home msdn blogs retrieved 20131029
+thomlinson matt 20141111 hundreds millions microsoft customers benefit bestinclass encryption microsoft security retrieved 20141114
+microsoft security advisory update disabling
+microsoft 20130924 ie11 changes retrieved 20131101
+february 2015 security updates internet explorer 20150211 retrieved 20150211
+update turns setting disable fallback protected mode sites default internet explorer retrieved 20150211
+vulnerability could allow information disclosure 20150414 retrieved 20150414
+microsoft edge team 20160809 disabled microsoft edge internet explorer microsoft
+foley mary windows enterprise users wont microsofts edge browser zdnet
+schannel changes windows windows server 2016 microsoft 20170321 retrieved 20170329
+poodle vulnerability secure windo… windows phone development hacking developers
+version used windows phone secure http connections microsoft retrieved 20141107
+qualys labs projects user agent capabilities unknown
+platform security microsoft 20140625 retrieved 20141107
+release notes important issues windows preview microsoft 20130624 retrieved 20141104
+w81ie11 qualys community retrieved 20141104
+opera windows changelog
+opera series retrieved 20140920
+opera series retrieved 20140920
+opera series retrieved 20140920
+changelog opera windows retrieved 20140619
+changelog opera beta windows retrieved 20140619
+specifications supported opera retrieved 20140619
+opera opera beta windows changelog retrieved 20140619
+opera 1160 problems secure servers 20111211 archived original 20120118
+security changes opera poodle attacks 20141015 retrieved 20141028
+unjam logjam 20150609 retrieved 20150611
+advisory encryption protocol vulnerable certain brute force attacks 20130404 retrieved 20141114
+precariousness 20130320 archived original 20131112 retrieved 20141117
+opera opera mail security update 20160216 retrieved 20160217
+devopera opera android 20130521 retrieved 20140923
+devopera introducing opera computers fast release cycle 20130702 retrieved 20140923
+chrome 26–29
+chrome later
+chrome later
+adrian dimcev common browserslibrariesservers associated cipher suites implemented cipher suites project
+apple 20090610 features retrieved 20090610
+curl patch support replace deprecated functions securetransport
+qualys report googlecouk simulation safari
+apple secures mavericks release esecurity planet 20131025 retrieved 20140623
+ristic ivan beast still threat qualyscom
+ristić ivan 20131031 apple enabled beast mitigations mavericks retrieved 20131107
+ristić ivan 20140226 apple finally releases patch beast retrieved 20140701
+security update 2014005
+security content
+security update 2015002 retrieved 20150309
+security content mavericks v109 retrieved 20140620
+user agent capabilities safari 1010 qualsys labs retrieved 20150307
+security content yosemite v10104 security update 2015005 retrieved 20150703
+apple 20111014 technical note tn2287 interoperability issues retrieved 20121210
+liebowitz matt 20111013 apple issues huge software security patches nbcnewscom retrieved 20121210
+info security 20120416 adventures uiwebviews retrieved 20121210 section https ssltls
+secure transport reference retrieved 20140623 ksslprotocol2 deprecated
+iphone mobile safari gets enhanced security certificate visualization iphone blog 20090331 archived original 20090403
+qualys labs projects user agent capabilities safari
+schurtertom 20131011 soap request fails randomly server works ios7 retrieved 20140105
+user agent capabilities safari qualsys labs retrieved 20150307
+security content retrieved 20150309
+security content retrieved 20150703
+oracle java cryptography architecture oracle providers documentation retrieved 20120816
+oracle security enhancements retrieved 20150225
+version 11113 20150111 botan 20150111 retrieved 20150116
+gnutlsdevel gnutls released 20150408 retrieved 20150416
+java™ development update release notes retrieved 20150122
+openbsd released 20141101 retrieved 20150120
+libressl released 20150923 retrieved 20150924
+matrixssl news archived original 20150214 retrieved 20141109
+mbed released 20150710 retrieved 20150714
+release notes mozilla developer network mozilla retrieved 20150506
+release notes mozilla developer network mozilla retrieved 20121027
+3151 release notes mozilla developer network mozilla retrieved 20130810
+openssl series release notes retrieved 20161002
+major changes openssl 100h openssl 2012 20120314 archived original january 2015 retrieved 20150120
+bsafe technical specification comparison tables
+cipher suites microsoft windows 2003
+schannel cipher suites microsoft windows vista
+cipher suites schannel windows 2008r2 2012
+wolfssl wolfssl released 20150820 retrieved 20150825
+wolfssl wolfssl tls13 support 20170213 retrieved 20170213
+release notes mozilla developer network mozilla retrieved 20160619
+technical note tn2287 interoperability issues developer library apple retrieved 20120503
+qualys labs projects user agent capabilities
+georgiev martin iyengar subodh jana suman anubhai rishita boneh shmatikov vitaly 2012 dangerous code world validating certificates nonbrowser software proceedings 2012 conference computer communications security 38–49 isbn 9781450316514 maint multiple names authors list link
+joris claessens valentin danny cock bart preneel joos vandewalle 2002 security todays online electronic banking systems computers security 253–265 doi101016s0167404802003127
+lawrence eric 20051022 ieblog upcoming https improvements internet explorer beta msdn blogs retrieved 20071125
+bugzillamozilla 236933 disable ssl2 weak ciphers mozilla corporation retrieved 20071125
+opera windows changelog operacom disabled weak ciphers
+firefox still sends sslv2 handshake even though protocol disabled 20080911
+opera windows changelog operacom removed support weak ciphers
+pettersen yngve 20070430 years opera implementers notes opera software archived original october 2007 retrieved 20071125
+national institute standards technology december 2010 implementation guidance fips 1402 cryptographic module validation program archived original november 2010
+7457 summarizing known attacks transport layer security datagram dtls
+cve20093555
+eric rescorla 20091105 understanding renegotiation attack educated guesswork retrieved 20091127
+sslctxsetoptions securerenegotiation openssl docs 20100225 retrieved 20101118
+gnutls 2100 released gnutls release notes 20100625 retrieved 20110724
+3126 release notes release notes 20100303 archived original march 2012 retrieved 20110724
+langley modadugu moeller 20100602 transport layer security false start internet engineering task force ietf retrieved 20130731
+gruener wolfgang false start google proposes faster chrome supports already archived original 20101007 retrieved 20110309
+smith brian limited rollback attacks false start snap start retrieved 20110309
+dimcev adrian false start random ssltls retrieved 20110309
+mavrogiannopoulos nikos vercautern frederik velichkov vesselin preneel bart 2012 crossprotocol attack protocol proceedings 2012 conference computer communications security 62–72 isbn 9781450316514
+smack state machine attacks
+goodin 20150520 httpscrippling attack threatens tens thousands mail servers technica
+leyden john march 2016 onethird https websites open drown attack register retrieved 20160302
+million https websites imperiled decryption attack technica retrieved 20160302
+thai duong juliano rizzo 20110513 come ninjas
+goodin 20110919 hackers break encryption used millions sites
+combinator comments issue 20110920
+security ciphersuites ssltls problems countermeasures 20040520 archived original 20120630
+ristic ivan 2013 beast still threat retrieved october 2014
+attack tlsprotected communications mozilla security blog mozilla 20110927 retrieved 20150201
+brian smith 20110930 cve20113389 rizzoduong chosen plaintext attack beast ssltls facilitated websockets
+vulnerability ssltls could allow information disclosure 2643584 20120110
+ristic ivan 2013 apple enabled beast mitigations mavericks retrieved october 2014
+goodin 20120913 crack internets foundation trust allows https session hijacking technica retrieved 20130731
+dennis fisher september 2012 crime attack uses compression ratio requests side channel hijack secure sessions threatpost archived original september 2012 retrieved 20120913
+goodin august 2013 gone seconds attack plucks secrets httpsprotected pages technica condé nast retrieved august 2013
+leyden john august 2013 step breach attack developed read encrypted data register retrieved august 2013
+gutmann september 2014 encryptthenmac transport layer security datagram transport layer security dtls
+hagai barel poodle flaw retrieved october 2014
+langley adam december 2014 poodle bites retrieved 20141208
+security safest ciphers beast exploit read immune server fault
+pouyan sepehrdad serge vaudenay martin vuagnoux 2011 discovery exploitation biases lecture notes computer science 6544 74–91 doi10100797836421957475
+green matthew attack week kind broken cryptography engineering retrieved march 2013
+nadhem alfardan bernstein kenny paterson bertram poettering jacob schuldt security royal holloway university london retrieved march 2013 maint multiple names authors list link
+alfardan nadhem bernstein daniel paterson kenneth poettering bertram schuldt jacob july 2013 security retrieved september 2013
+alfardan nadhem bernstein daniel paterson kenneth poettering bertram schuldt jacob august 2013 security 22nd usenix security symposium retrieved september 2013 plaintext recovery attacks feasible although truly practical
+goodin oncetheoretical crypto attack https verges practicality technical conde nast retrieved july 2015
+mozilla security server side recommended configurations mozilla retrieved 20150103
+security advisory 2868725 recommendation disable microsoft 20131112 retrieved 20131204
+ending support cipher microsoft edge internet explorer microsoft edge team september 2015
+langley adam 2015 intent deprecate
+barnes richard 2015 intent ship disabled default firefox
+john leyden august 2013 gmail outlookcom evoting pwned stage cryptododge hack register retrieved august 2013
+blackhat briefings black 2013 retrieved august 2013
+smyth pironti alfredo 2013 truncating connections violate beliefs applications usenix workshop offensive technologies retrieved february 2016
+goodin attack bypasses https protection macs windows linux technica condé nast retrieved july 2016
+goodin august 2016 https openvpn face attack decrypt secret cookies technica retrieved august 2016
+called heartbleed washington post 20140409
+heartbleed vulnerability april 2014 comodo group
+bleichenbacher daniel august 2006 bleichenbachers signature forgery based implementation error archived original 20141216
+berserk intel security advanced threat research september 2014
+goodin february 2015 lenovo ship maninthemiddle adware breaks https connections technica retrieved december 2017
+valsorda filippo 20150220 komodiasuperfish validation broken filippoio
+goodin forbidden attack makes dozens https visa sites vulnerable tampering technica retrieved 2016
+clark estes adam everything need know cloudbleed latest internet security disaster gizmodo retrieved 20170224
+diffie whitfield oorschot paul wiener michael june 1992 authentication authenticated exchanges designs codes cryptography 107–125 doi101007bf00124891 retrieved 20080211
+discussion mailing list october 2007
+protecting data long term forward secrecy retrieved 20121105
+bernat vincent ssltls perfect forward secrecy retrieved 20121105
+labs deploying forward secrecy qualyscom 20130625 retrieved 20130710
+ristic ivan 20130805 labs deploying forward secrecy qualsys retrieved 20130831
+langley adam june 2013 botch forward secrecy imperialvioletorg
+daignière florent secrets whitepaper presenting security implications deployment session tickets 5077 implemented openssl matta consulting limited retrieved august 2013
+daignière florent secrets everyone forgot tell matta consulting limited retrieved august 2013
+huang adhikarla boneh jackson 2014 experimental study forward secrecy deployments ieee internet computing ieee 43–51 retrieved october 2015
+protecting data long term forward secrecy google retrieved 20140307
+hoffmanandrews jacob forward secrecy twitter twitter retrieved 20140307
+certificate pinning warning link broken
+public pinning released firefox
+perspectives project
+dnschain
+certificates currently x509 6091 also specifies openpgpbased certificates
+chris 20090218 vsftpd210 released using session resume ftps data connection authentication scarybeastsecurity blogspotcom retrieved 20120517
+wildcard certificate overview retrieved 20150702
+namedbased virtual hosts tackle problem retrieved 20120517
+
+
+readingedit
+
+wagner david schneier bruce november 1996 analysis protocol second usenix workshop electronic commerce proceedings usenix press 29–40
+eric rescorla 2001 designing building secure systems united states addisonwesley isbn 0201615983
+stephen thomas 2000 essentials securing york wiley isbn 0471383546
+bard gregory 2006 challenging feasible blockwiseadaptive chosenplaintext attack international association cryptologic research retrieved 20110923
+canvel brice password interception ssltls channel retrieved 20070420
+ietf multiple authors change renegotiation retrieved 20091211
+creating vpns ipsec ssltls linux journal article rami rosen
+polk mckay kerry chokhani santosh april 2014 guidelines selection configuration transport layer security implementations national institute standards technology archived original 20140508 retrieved 20140507
+abdou abdelrahman oorschot paul august 2017 server location verification server location pinning augmenting authentication transactions privacy security dead link
+
+external linksedit
+
+
+
+wikimedia commons media related
+
+
+specifications standards section older links
+
+5246 transport layer security protocol version
+ietf internet engineering task force workgroup
+
+
+version intolerance
+
+
+version intolerance
+version intolerance
+
+
+
+
+
+owasp transport layer protection cheat sheet
+talk ssltls tries explain things terms people might understand
+foundation security
+renegotiation vulnerability ietf tools
+trustworthy internet movement pulse survey tlsssl implementation popular websites
+generate
+handshake works browser
+
+article based material taken free online dictionary computing prior november 2008 incorporated relicensing terms gfdl version later
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+protocols technologies
+
+
+
+transport layer security secure sockets layer tlsssl
+datagram transport layer security dtls
+certification authority authorization
+dnsbased authentication named entities dane
+https
+http public pinning hpkp
+http strict transport security hsts
+ocsp stapling
+perfect forward secrecy
+server name indication
+starttls
+applicationlayer protocol negotiation alpn
+
+
+
+
+
+publickey infrastructure
+
+
+
+automated certificate management environment acme
+certificate authority
+cabrowser forum
+certificate policy
+certificate revocation list
+domainvalidated certificate
+extended validation certificate
+online certificate status protocol ocsp
+public certificate
+publickey cryptography
+public infrastructure
+root certificate
+selfsigned certificate
+
+
+
+
+
+also
+
+
+
+domain name system security extensions dnssec
+internet protocol security ipsec
+secure shell
+
+
+
+
+
+history
+
+
+
+export cryptography united states
+servergated cryptography
+
+
+
+
+
+implementations
+
+
+
+bouncy castle
+boringssl
+botan
+cryptocomply safelogic
+cryptlib
+gnutls
+jsse
+libressl
+matrixssl
+mbed
+
+openssl
+bsafe
+schannel
+ssleay
+stunnel
+wolfssl
+
+
+
+
+
+notaries
+
+
+
+certificate transparency
+convergence
+https everywhere observatory
+perspectives project
+
+
+
+
+
+vulnerabilities
+
+
+
+
+theory
+
+
+
+maninthemiddle attack
+padding oracle attack
+
+
+
+
+
+cipher
+
+
+
+mitzvah attack
+
+
+
+
+
+protocol
+
+
+
+beast
+breach
+crime
+drown
+logjam
+poodle regards
+
+
+
+
+
+implementation
+
+
+
+certificate authority compromise
+random number generator attacks
+freak
+goto fail
+heartbleed
+lucky thirteen attack
+poodle regards
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+virtual private networking
+
+
+
+communications protocol
+
+
+
+sstp
+ipsec
+l2tp
+l2tpv3
+pptp
+split tunneling
+ssltls
+opportunistic tcpcrypt
+
+
+
+
+
+free software
+
+
+
+cloudvpn
+freelan
+freeswan
+libreswan
+
+openconnect
+openiked
+openswan
+openvpn
+social
+softether
+strongswan
+tcpcrypt
+tinc
+vtun
+shadowsocks
+
+
+
+
+
+vendordriven protocols
+
+
+
+layer forwarding protocol
+directaccess
+
+
+
+
+
+proprietary software
+
+
+
+avast secureline
+check point vpn1
+cisco systems client
+logmein hamachi
+microsoft forefront unified access gateway
+
+
+
+
+
+risk vectors
+
+
+
+contentcontrol software
+deep content inspection
+deep packet inspection
+address blocking
+network enumeration
+stateful firewall
+reset
+blocking
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+browsers
+
+
+
+
+
+
+comparison
+
+lightweight
+
+
+history
+list
+
+unix
+
+
+timeline
+usage share
+
+
+
+
+
+
+
+
+
+features
+
+
+
+filtering
+augmented browsing
+bookmarks
+
+bookmarklet
+live bookmark
+smart bookmarks
+
+
+browser extension
+browser security
+browser synchronizer
+
+comparison
+
+
+cookies
+download manager
+favicon
+incremental search
+plugin
+privacy mode
+tabs
+universal edit button
+
+
+
+
+
+standards
+
+
+
+acid tests
+cascading style sheets
+html
+html5
+javascript
+mathml
+
+webgl
+xhtml
+
+
+
+
+
+protocols
+
+
+
+http
+https
+ocsp
+spdy
+ssltls
+websocket
+wpad
+
+
+
+
+
+related topics
+
+
+
+browserchoiceeu
+
+iloo
+internet suite
+maninthebrowser
+mobile
+offline reader
+
+pwn2own
+rich internet application
+sitespecific browser
+widget
+world wide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+desktop
+
+
+
+
+
+
+
+blinkbased
+
+
+
+chromium
+
+brave
+chrome
+dragon
+opera
+qupzilla
+sleipnir
+slimjet
+srware iron
+browser
+vivaldi
+yandex browser
+sputnik
+safezone
+
+
+
+
+
+
+
+geckobased
+
+
+
+pogo
+avant
+camino
+firefox
+
+conkeror
+icecat
+icedragon
+swiftfox
+swiftweasel
+tenfourfox
+timberwolf
+browser
+waterfox
+browser
+
+
+galeon
+ghostzilla
+kmeleon
+kazehakase
+kirix strata
+lotus symphony
+lunascape
+mozilla
+
+beonex communicator
+classilla
+netscape
+seamonkey
+
+
+
+
+
+
+
+tridentbased
+
+
+
+explorer
+avant
+deepnet explorer
+greenbrowser
+internet explorer
+lunascape
+maxthon
+mediabrowser
+menubox
+neoplanet
+netcaptor
+slimbrowser
+spacetime
+ultrabrowser
+webbie
+browser
+
+
+
+
+
+webkitbased
+
+
+
+arora
+avant
+dooble
+epic
+flock
+fluid
+icab
+konqueror
+lunascape
+maxthon
+midori
+omniweb
+origyn browser
+otter browser
+qtweb
+rekonq
+safari
+shiira
+slimboat
+surf
+torch
+uzbl
+epiphany
+webpositive
+xombrero
+
+
+
+
+
+textbased
+
+
+
+elinks
+emacsw3
+line mode browser
+links
+lynx
+
+
+
+
+
+
+
+
+
+
+basilisk
+abaco
+amaya
+arachne
+arena
+charon
+dillo
+
+gazelle
+hotjava
+home page reader
+ibrowse
+kidzui
+microsoft edge
+mosaic
+mothra
+netpositive
+netsurf
+pale moon
+qihoo secure browser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mobile
+
+
+
+
+
+
+
+blinkbased
+
+
+
+android browser
+chromium
+
+brave
+chrome android
+opera mobile
+silk
+
+
+firefox focus android
+opera mini android
+
+
+
+
+
+geckobased
+
+
+
+firefox android
+microb
+minimo
+waterfox
+
+
+
+
+
+prestobased
+
+
+
+opera mini extrememini modes
+
+
+
+
+
+tridentbased
+
+
+
+maxthon
+
+
+
+
+
+webkitbased
+
+
+
+bolt
+dolphin browser
+chrome
+coast browser
+firefox
+firefox focus
+opera mini turbonormal modes
+maxthon
+mercury browser
+nokia browser symbian
+rockmelt
+safari
+steel
+
+
+
+
+
+
+
+
+
+blazer
+browser
+deepfish
+ibisbrowser
+internet explorer mobile
+iris browser
+konqueror embedded
+microsoft edge
+netfront
+skweezer
+skyfire
+teashark
+thunderhawk
+browser
+vision
+winwap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+television video game console
+
+
+
+
+
+
+
+geckobased
+
+
+
+kylo
+
+
+
+
+
+prestobased
+
+
+
+internet channel
+
+
+
+
+
+webkitbased
+
+
+
+google
+nintendo internet browser
+nintendo browser
+netfront
+steam overlay
+internet browser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+software longer development shown italics
+
+
+category
+commons
+internet portal
+software portal
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitletransportlayersecurityoldid817651795 categories transport layer securityapplication layer protocolscryptographic protocolsecommerceinternet protocolsinternet securityinternet standardssecure communicationhidden categories pages using magic linkscs1 maint uses authors parametercs1 maint multiple names authors listarticles containing potentially dated statements july 2017all articles containing potentially dated statementsarticles containing potentially dated statements april 2016all articles unsourced statementsarticles unsourced statements august 2016articles unsourced statements january 2015articles unsourced statements december 2013articles unsourced statements december 2016articles unsourced statements february 2015articles containing potentially dated statements october 2016articles containing potentially dated statements june 2016all articles dead external linksarticles dead external links december 2017commons category without link wikidata

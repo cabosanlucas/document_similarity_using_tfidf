@@ -1,0 +1,868 @@
+The Common Criteria for Information Technology Security Evaluation (abbreviated as Common Criteria or CC) is an international standard (ISO/IEC 15408) for computer security certification. It is currently in version 3.1 revision 5.[1]
+Common Criteria is a framework in which computer system users can specify their security functional and assurance requirements (SFRs and SARs respectively) through the use of Protection Profiles (PPs), vendors can then implement and/or make claims about the security attributes of their products, and testing laboratories can evaluate the products to determine if they actually meet the claims. In other words, Common Criteria provides assurance that the process of specification, implementation and evaluation of a computer security product has been conducted in a rigorous and standard and repeatable manner at a level that is commensurate with the target environment for use.[2]
+Common Criteria is used as the basis for a Government driven certification scheme and typically evaluations are conducted for the use of Federal Government agencies and critical infrastructure.[clarification needed]
+
+
+
+Contents
+
+
+1 Key concepts
+2 History
+3 Testing organizations
+4 Mutual recognition arrangement
+5 Issues
+
+5.1 Requirements
+5.2 Value of certification
+5.3 Criticisms
+
+
+6 Alternative approaches
+7 List of acronyms
+8 See also
+9 References
+10 External links
+
+
+
+Key concepts[edit]
+Common Criteria evaluations are performed on computer security products and systems.
+
+Target Of Evaluation (TOE) – the product or system that is the subject of the evaluation.
+
+The evaluation serves to validate claims made about the target. To be of practical use, the evaluation must verify the target's security features. This is done through the following:
+
+Protection Profile (PP) – a document, typically created by a user or user community, which identifies security requirements for a class of security devices (for example, smart cards used to provide digital signatures, or network firewalls) relevant to that user for a particular purpose. Product vendors can choose to implement products that comply with one or more PPs, and have their products evaluated against those PPs. In such a case, a PP may serve as a template for the product's ST (Security Target, as defined below), or the authors of the ST will at least ensure that all requirements in relevant PPs also appear in the target's ST document. Customers looking for particular types of products can focus on those certified against the PP that meets their requirements.
+Security Target (ST) – the document that identifies the security properties of the target of evaluation. The ST may claim conformance with one or more PPs. The TOE is evaluated against the SFRs (Security Functional Requirements. Again, see below) established in its ST, no more and no less. This allows vendors to tailor the evaluation to accurately match the intended capabilities of their product. This means that a network firewall does not have to meet the same functional requirements as a database management system, and that different firewalls may in fact be evaluated against completely different lists of requirements. The ST is usually published so that potential customers may determine the specific security features that have been certified by the evaluation.
+Security Functional Requirements (SFRs) – specify individual security functions which may be provided by a product. The Common Criteria presents a standard catalogue of such functions. For example, a SFR may state how a user acting a particular role might be authenticated. The list of SFRs can vary from one evaluation to the next, even if two targets are the same type of product. Although Common Criteria does not prescribe any SFRs to be included in an ST, it identifies dependencies where the correct operation of one function (such as the ability to limit access according to roles) is dependent on another (such as the ability to identify individual roles).
+
+The evaluation process also tries to establish the level of confidence that may be placed in the product's security features through quality assurance processes:
+
+Security Assurance Requirements (SARs) – descriptions of the measures taken during development and evaluation of the product to assure compliance with the claimed security functionality. For example, an evaluation may require that all source code is kept in a change management system, or that full functional testing is performed. The Common Criteria provides a catalogue of these, and the requirements may vary from one evaluation to the next. The requirements for particular targets or types of products are documented in the ST and PP, respectively.
+Evaluation Assurance Level (EAL) – the numerical rating describing the depth and rigor of an evaluation. Each EAL corresponds to a package of security assurance requirements (SARs, see above) which covers the complete development of a product, with a given level of strictness. Common Criteria lists seven levels, with EAL 1 being the most basic (and therefore cheapest to implement and evaluate) and EAL 7 being the most stringent (and most expensive). Normally, an ST or PP author will not select assurance requirements individually but choose one of these packages, possibly 'augmenting' requirements in a few areas with requirements from a higher level. Higher EALs do not necessarily imply "better security", they only mean that the claimed security assurance of the TOE has been more extensively verified.
+
+So far, most PPs and most evaluated STs/certified products have been for IT components (e.g., firewalls, operating systems, smart cards). Common Criteria certification is sometimes specified for IT procurement. Other standards containing, e.g., interoperation, system management, user training, supplement CC and other product standards. Examples include the ISO/IEC 17799 (Or more properly BS 7799-1, which is now ISO/IEC 27002) or the German IT-Grundschutzhandbuch.
+Details of cryptographic implementation within the TOE are outside the scope of the CC. Instead, national standards, like FIPS 140-2 give the specifications for cryptographic modules, and various standards specify the cryptographic algorithms in use.
+More recently, PP authors are including cryptographic requirements for CC evaluations that would typically be covered by FIPS 140-2 evaluations, broadening the bounds of the CC through scheme-specific interpretations.
+Some national evaluation schemes are phasing out EAL-based evaluations and only accept products for evaluation that claim strict conformance with an approved PP. The United States currently only allows PP-based evaluations. Canada is in the process of phasing out EAL-based evaluations.
+History[edit]
+CC originated out of three standards:
+
+ITSEC – The European standard, developed in the early 1990s by France, Germany, the Netherlands and the UK. It too was a unification of earlier work, such as the two UK approaches (the CESG UK Evaluation Scheme aimed at the defence/intelligence market and the DTI Green Book aimed at commercial use), and was adopted by some other countries, e.g. Australia.
+CTCPEC – The Canadian standard followed from the US DoD standard, but avoided several problems and was used jointly by evaluators from both the U.S. and Canada. The CTCPEC standard was first published in May 1993.
+TCSEC – The United States Department of Defense DoD 5200.28 Std, called the Orange Book and parts of the Rainbow Series. The Orange Book originated from Computer Security work including the Anderson Report, done by the National Security Agency and the National Bureau of Standards (the NBS eventually became NIST) in the late 1970s and early 1980s. The central thesis of the Orange Book follows from the work done by Dave Bell and Len LaPadula for a set of protection mechanisms.
+
+CC was produced by unifying these pre-existing standards, predominantly so that companies selling computer products for the government market (mainly for Defence or Intelligence use) would only need to have them evaluated against one set of standards. The CC was developed by the governments of Canada, France, Germany, the Netherlands, the UK, and the U.S.
+Testing organizations[edit]
+All testing laboratories must comply with ISO 17025, and certification bodies will normally be approved against either ISO/IEC Guide 65 or BS EN 45011.
+The compliance with ISO 17025 is typically demonstrated to a National approval authority:
+
+In Canada, the Standards Council of Canada (SCC) under Program for the Accreditation of Laboratories (PALCAN) accredits Common Criteria Evaluation Facilities (CCEF)
+In France, the Comité français d'accréditation (COFRAC) accredits Common Criteria evaluation facilities, commonly called Centre d'évaluation de la sécurité des technologies de l'information (CESTI). Evaluations are done according to norms and standards specified by the Agence nationale de la sécurité des systèmes d'information (ANSSI).
+In the UK the United Kingdom Accreditation Service (UKAS) accredits Commercial Evaluation Facilities (CLEF)
+In the US, the National Institute of Standards and Technology (NIST) National Voluntary Laboratory Accreditation Program (NVLAP) accredits Common Criteria Testing Laboratories (CCTL)
+In Germany, the Bundesamt für Sicherheit in der Informationstechnik (BSI)
+In Spain, the National Cryptologic Center (CCN) accredits Common Criteria Testing Laboratories operating in the Spanish Scheme.
+In The Netherlands, the Netherlands scheme for Certification in the Area of IT Security (NSCIB) accredits IT Security Evaluation Facilities (ITSEF).
+
+Characteristics of these organizations were examined and presented at ICCC 10.[3]
+Mutual recognition arrangement[edit]
+As well as the Common Criteria standard, there is also a sub-treaty level Common Criteria MRA (Mutual Recognition Arrangement), whereby each party thereto recognizes evaluations against the Common Criteria standard done by other parties. Originally signed in 1998 by Canada, France, Germany, the United Kingdom and the United States, Australia and New Zealand joined 1999, followed by Finland, Greece, Israel, Italy, the Netherlands, Norway and Spain in 2000. The Arrangement has since been renamed Common Criteria Recognition Arrangement (CCRA) and membership continues to expand. Within the CCRA only evaluations up to EAL 2 are mutually recognized (Including augmentation with flaw remediation). The European countries within the former ITSEC agreement typically recognize higher EALs as well. Evaluations at EAL5 and above tend to involve the security requirements of the host nation's government.
+In September 2012, a majority of members of the CCRA produced a vision statement whereby mutual recognition of CC evaluated products will be lowered to EAL 2 (Including augmentation with flaw remediation). Further, this vision indicates a move away from assurance levels altogether and evaluations will be confined to conformance with Protection Profiles that have no stated assurance level. This will be achieved through technical working groups developing worldwide PPs, and as yet a transition period has not been fully determined.
+On July 2, 2014, a new CCRA was ratified per the goals outlined within the 2012 vision statement. Major changes to the Arrangement include:
+
+Recognition of evaluations against only a collaborative Protection Profile (cPP) or Evaluation Assurance Levels 1 through 2 and ALC_FLR.
+The emergence of international Technical Communities (iTC), groups of technical experts charged with the creation of cPPs.
+A transition plan from the previous CCRA, including recognition of certificates issued under the previous version of the Arrangement.
+
+Issues[edit]
+Requirements[edit]
+Common Criteria is very generic; it does not directly provide a list of product security requirements or features for specific (classes of) products: this follows the approach taken by ITSEC, but has been a source of debate to those used to the more prescriptive approach of other earlier standards such as TCSEC and FIPS 140-2.
+Value of certification[edit]
+Common Criteria certification cannot guarantee security, but it can ensure that claims about the security attributes of the evaluated product were independently verified. In other words, products evaluated against a Common Criteria standard exhibit a clear chain of evidence that the process of specification, implementation, and evaluation has been conducted in a rigorous and standard manner.
+Various Microsoft Windows versions, including Windows Server 2003 and Windows XP, have been certified, but security patches to address security vulnerabilities are still getting published by Microsoft for these Windows systems. This is possible because the process of obtaining a Common Criteria certification allows a vendor to restrict the analysis to certain security features and to make certain assumptions about the operating environment and the strength of threats faced by the product in that environment. Additionally, the CC recognizes a need to limit the scope of evaluation in order to provide cost-effective and useful security certifications, such that evaluated products are examined to a level of detail specified by the assurance level or PP. Evaluations activities are therefore only performed to a certain depth, use of time, and resources and offer reasonable assurance for the intended environment.
+In the Microsoft case, the assumptions include A.PEER:
+
+"Any other systems with which the TOE communicates are assumed to be under the same management control and operate under the same security policy constraints. The TOE is applicable to networked or distributed environments only if the entire network operates under the same constraints and resides within a single management domain. There are no security requirements that address the need to trust external systems or the communications links to such systems."
+
+This assumption is contained in the Controlled Access Protection Profile (CAPP) to which their products adhere. Based on this and other assumptions, which may not be realistic for the common use of general-purpose operating systems, the claimed security functions of the Windows products are evaluated. Thus they should only be considered secure in the assumed, specified circumstances, also known as the evaluated configuration.
+Whether you run Microsoft Windows in the precise evaluated configuration or not, you should apply Microsoft's security patches for the vulnerabilities in Windows as they continue to appear. If any of these security vulnerabilities are exploitable in the product's evaluated configuration, the product's Common Criteria certification should be voluntarily withdrawn by the vendor. Alternatively, the vendor should re-evaluate the product to include application of patches to fix the security vulnerabilities within the evaluated configuration. Failure by the vendor to take either of these steps would result in involuntary withdrawal of the product's certification by the certification body of the country in which the product was evaluated.
+The certified Microsoft Windows versions remain at EAL4+ without including the application of any Microsoft security vulnerability patches in their evaluated configuration. This shows both the limitation and strength of an evaluated configuration.
+Criticisms[edit]
+In August 2007, Government Computing News (GCN) columnist William Jackson critically examined Common Criteria methodology and its US implementation by the Common Criteria Evaluation and Validation Scheme (CCEVS).[4] In the column executives from the security industry, researchers, and representatives from the National Information Assurance Partnership (NIAP) were interviewed. Objections outlined in the article include:
+
+Evaluation is a costly process (often measured in hundreds of thousands of US dollars) – and the vendor's return on that investment is not necessarily a more secure product.
+Evaluation focuses primarily on assessing the evaluation documentation, not on the actual security, technical correctness or merits of the product itself. For U.S. evaluations, only at EAL5 and higher do experts from the National Security Agency participate in the analysis; and only at EAL7 is full source code analysis required.
+The effort and time necessary to prepare evaluation evidence and other evaluation-related documentation is so cumbersome that by the time the work is completed, the product in evaluation is generally obsolete.
+Industry input, including that from organizations such as the Common Criteria Vendor's Forum, generally has little impact on the process as a whole.
+
+In a 2006 research paper, computer specialist David A. Wheeler suggested that the Common Criteria process discriminates against Free and Open Source Software (FOSS)-centric organizations and development models.[5] Common Criteria assurance requirements tend to be inspired by the traditional waterfall software development methodology. In contrast, much FOSS software is produced using modern agile paradigms. Although some have argued that both paradigms do not align well,[6] others have attempted to reconcile both paradigms.[7] Political scientist Jan Kallberg raised concerns over the lack of control over the actual production of the products once they are certified, the absence of a permanently staffed organizational body that monitors compliance, and the idea that the trust in the Common Criteria IT-security certifications will be maintained across geopolitical boundaries.[8]
+Alternative approaches[edit]
+Throughout the lifetime of CC, it has not been universally adopted even by the creator nations, with, in particular, cryptographic approvals being handled separately, such as by the Canadian / US implementation of FIPS-140, and the CESG Assisted Products Scheme (CAPS)[9] in the UK.
+The UK has also produced a number of alternative schemes when the timescales, costs and overheads of mutual recognition have been found to be impeding the operation of the market:
+
+The CESG System Evaluation (SYSn) and Fast Track Approach (FTA) schemes for assurance of government systems rather than generic products and services, which have now been merged into the CESG Tailored Assurance Service (CTAS) [10]
+The CESG Claims Tested Mark (CCT Mark), which is aimed at handling less exhaustive assurance requirements for products and services in a cost and time efficient manner
+
+In early 2011, NSA/CSS published a paper by Chris Salter, which proposed a Protection Profile oriented approach towards evaluation. In this approach, communities of interest form around technology types which in turn develop protection profiles that define the evaluation methodology for the technology type.[11] The objective is a more robust evaluation. There is some concern that this may have a negative impact on mutual recognition.[12]
+In Sept of 2012, the Common Criteria published a Vision Statement implementing to a large extent Chris Salter's thoughts from the previous year. Key elements of the Vision included:
+
+Technical Communities will be focused on authoring Protection Profiles (PP) that support their goal of reasonable, comparable, reproducible and cost-effective evaluation results
+Evaluations should be done against these PP's if possible; if not mutual recognition of Security Target evaluations would be limited to EAL2
+
+List of acronyms[edit]
+
+
+CC
+Common Criteria
+
+
+EAL
+Evaluation Assurance Level
+
+
+IT
+Information Technology
+
+
+PP
+Protection Profile
+
+
+SAR
+Security Assurance Requirement
+
+
+SF
+Security Function
+
+
+SFR
+Security Functional Requirement
+
+
+SFP
+Security Function Policy
+
+
+SOF
+Strength of Function
+
+
+ST
+Security Target
+
+
+TOE
+Target of Evaluation
+
+
+TSP
+TOE Security Policy
+
+
+TSF
+TOE Security Functionality
+
+
+TSC
+TSF Scope of Control
+
+
+TSFI
+TSF Interface
+
+
+See also[edit]
+
+Bell-LaPadula model
+Usability testing
+ISO 9241
+ISO/IEC 27001
+Verification and Validation
+Information Assurance
+China Compulsory Certificate
+FIPS 140-2
+Evaluation Assurance Level
+
+References[edit]
+
+
+^ "The Common Criteria". 
+^ "Common Criteria - Communication Security Establishment". 
+^ "Common Criteria Schemes Around the World" (PDF). 
+^ Under Attack: Common Criteria has loads of critics, but is it getting a bum rap Government Computer News, retrieved 2007-12-14
+^ Free-Libre / Open Source Software (FLOSS) and Software Assurance
+^ Wäyrynen, J., Bodén, M., and Boström, G., Security Engineering and eXtreme Programming: An Impossible Marriage?
+^ Beznosov, Konstantin and Kruchten, Philippe, Towards Agile Security Assurance, retrieved 2007-12-14
+^ Common Criteria meets Realpolitik – Trust, Alliances, and Potential Betrayal
+^ "CAPS: CESG Assisted Products Scheme". Archived from the original on August 1, 2008. 
+^ Infosec Assurance and Certification Services (IACS) Archived February 20, 2008, at the Wayback Machine.
+^ "Common Criteria Reforms: Better Security Products Through Increased Cooperation with Industry" (PDF). Archived from the original (PDF) on April 17, 2012. 
+^ "Common Criteria "Reforms"—Sink or Swim-- How should Industry Handle the Revolution Brewing with Common Criteria?". 
+
+
+External links[edit]
+
+The official website of the Common Criteria Project
+The Common Criteria standard documents
+Compliance evaluation in the United States
+List of Common Criteria evaluated products
+Towards Agile Security Assurance
+Important Common Criteria Acronyms
+Common Criteria Users Forum
+Additional Common Criteria Information on Google Knol
+OpenCC Project – free Apache license CC docs, templates and tools
+Common Criteria Quick Reference Card
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+List of International Electrotechnical Commission standards
+
+
+
+IEC standards
+
+
+
+IEC 60027
+IEC 60034
+IEC 60038
+IEC 60062
+IEC 60063
+IEC 60068
+IEC 60112
+IEC 60228
+IEC 60269
+IEC 60297
+IEC 60309
+IEC 60320
+IEC 60364
+IEC 60446
+IEC 60559
+IEC 60601
+IEC 60870
+
+IEC 60870-5
+IEC 60870-6
+
+
+IEC 60906-1
+IEC 60908
+IEC 60929
+IEC 60958
+
+AES3
+S/PDIF
+
+
+IEC 61030
+IEC 61131
+
+IEC 61131-3
+
+
+IEC 61158
+IEC 61162
+IEC 61334
+IEC 61346
+IEC 61355
+IEC 61400
+IEC 61499
+IEC 61508
+IEC 61511
+IEC 61850
+IEC 61851
+IEC 61883
+IEC 61960
+IEC 61968
+IEC 61970
+IEC 62014-4
+IEC 62056
+IEC 62061
+IEC 62196
+IEC 62262
+IEC 62264
+IEC 62304
+IEC 62325
+IEC 62351
+IEC 62365
+IEC 62366
+IEC 62379
+IEC 62386
+IEC 62455
+IEC 62680
+IEC 62682
+IEC 62700
+
+
+
+
+
+ISO/IEC standards
+
+
+
+ISO/IEC 646
+ISO/IEC 2022
+ISO/IEC 4909
+ISO/IEC 5218
+ISO/IEC 6429
+ISO/IEC 6523
+ISO/IEC 7810
+ISO/IEC 7811
+ISO/IEC 7812
+ISO/IEC 7813
+ISO/IEC 7816
+ISO/IEC 7942
+ISO/IEC 8613
+ISO/IEC 8632
+ISO/IEC 8652
+ISO/IEC 8859
+ISO/IEC 9126
+ISO/IEC 9293
+ISO/IEC 9592
+ISO/IEC 9593
+ISO/IEC 9899
+ISO/IEC 9945
+ISO/IEC 9995
+ISO/IEC 10021
+ISO/IEC 10116
+ISO/IEC 10165
+ISO/IEC 10179
+ISO/IEC 10646
+ISO/IEC 10967
+ISO/IEC 11172
+ISO/IEC 11179
+ISO/IEC 11404
+ISO/IEC 11544
+ISO/IEC 11801
+ISO/IEC 12207
+ISO/IEC 13250
+ISO/IEC 13346
+ISO/IEC 13522-5
+ISO/IEC 13568
+ISO/IEC 13818
+ISO/IEC 14443
+ISO/IEC 14496
+ISO/IEC 14882
+ISO/IEC 15288
+ISO/IEC 15291
+ISO/IEC 15408
+ISO/IEC 15444
+ISO/IEC 15445
+ISO/IEC 15504
+ISO/IEC 15511
+ISO/IEC 15693
+ISO/IEC 15897
+ISO/IEC 15938
+ISO/IEC 16262
+ISO/IEC 17024
+ISO/IEC 17025
+ISO/IEC 18000
+ISO/IEC 18004
+ISO/IEC 18014
+ISO/IEC 19752
+ISO/IEC 19757
+ISO/IEC 19770
+ISO/IEC 19788
+ISO/IEC 20000
+ISO/IEC 21000
+ISO/IEC 21827
+ISO/IEC 23000
+ISO/IEC 23003
+ISO/IEC 23008
+ISO/IEC 23270
+ISO/IEC 23360
+ISO/IEC 24707
+ISO/IEC 24727
+ISO/IEC 24744
+ISO/IEC 24752
+ISO/IEC 26300
+ISO/IEC 27000
+ISO/IEC 27000-series
+ISO/IEC 27002
+ISO/IEC 27040
+ISO/IEC 29119
+ISO/IEC 33001
+ISO/IEC 38500
+ISO/IEC 42010
+ISO/IEC 80000
+
+
+
+
+
+Related
+
+
+
+International Electrotechnical Commission
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Common_Criteria&oldid=798059715"					Categories: Computer security standardsEvaluation of computersISO standardsHidden categories: Webarchive template wayback linksWikipedia articles needing clarification from August 2015

@@ -1,0 +1,1389 @@
+
+freebsd
+
+
+
+
+
+freebsd bootloader ascii logo
+
+
+
+developer
+freebsd project
+
+
+family
+unixlike
+
+
+working state
+active
+
+
+source model
+open source
+
+
+initial release
+november 1993 years 19931101
+
+
+latest release
+july 2017 months 20170726
+
+
+marketing target
+desktop workstation server embedded systems
+
+
+package manager
+
+
+
+platforms
+ia32 x8664 64bit sparc powerpc mips
+
+
+kernel type
+monolithic dynamically loadable modules
+
+
+userland
+
+
+
+default user interface
+commandline interface
+
+
+license
+freebsd license freebsd documentation license
+
+
+official website
+wwwfreebsdorg
+
+
+freebsd free opensource unixlike operating system descended research unix berkeley software distribution although legal reasons freebsd cannot unix trademark direct descendant historically also called unix berkeley unix first version freebsd released 1993 2005 freebsd widely used opensource distribution accounting threequarters installed systems running opensource derivatives2
+freebsd similarities linux major differences scope licensing freebsd maintains complete operating system project delivers kernel device drivers userland utilities documentation opposed linux delivering kernel drivers relying thirdparties system software3 freebsd source code generally released permissive license opposed copyleft used linux
+freebsd project includes security team overseeing software shipped base distribution wide range additional thirdparty applications installed using pkgng package management system freebsd ports directly compiling source code permissive licensing terms much freebsds code base become integral part operating systems juniper junos apples darwin base macos watchos tvos operating systems apple pfsense nintendo switch system software456 operating systems running sonys playstation playstation
+
+
+
+contents
+
+
+history
+
+background
+birth freebsd
+lawsuit
+
+
+features
+
+uses
+networking
+storage
+security
+portability
+thirdparty software
+jails
+virtualization
+compatibility layers
+kernel
+documentation support
+installers
+
+
+development
+
+governance structure
+branches
+foundation
+
+
+license
+logo
+derivatives
+version history
+also
+references
+
+citations
+sources
+
+
+external links
+
+
+
+historyedit
+main article history freebsd
+backgroundedit
+freebsds roots back university california berkeley university acquired unix source license students university started modify improve unix called modified version berkeley unix implementing features tcpip virtual memory unix file system project founded 1976 bill since contained code unix recipients license first order bsd9
+june 1989 networking release simply net1 first public version released releasing net1 keith bostic developer suggested replacing code freelyredistributable code original license work replacing code began months much code replaced however files containing code remained kernel developers decided release networking release net2 without files net2 released 19919
+birth freebsdedit
+1992 several months release net2 william jolitz lynne jolitz wrote replacements missing files ported intel 80386based microprocessors called operating system 386bsd released 386bsd anonymous server9 development flow 386bsd slow period neglect group 386bsd users decided branch create freebsd could keep operating system date june 1993 name freebsd chosen project10 first version freebsd released november 1993119
+early days projects inception company named walnut creek cdrom upon suggestion freebsd developers agreed release operating system cdrom addition company employed jordan hubbard david greenman freebsd servers sponsored freebsd conferences published freebsdrelated books including complete freebsd greg lehey 1997 freebsd walnut creeks successful product company later renamed freebsd mall later ixsystems121314
+today freebsd used many companies nokia juniper networks netapp build product1516 certain parts apples operating system based freebsd17 playstation operating system also borrows certain components freebsd18 playstation operating system derived freebsd netflix20 whatsapp21 flightaware22 also examples successful heavily networkoriented companies running freebsd
+lawsuitedit
+386bsd freebsd derived 1992s release15 january 1992 bsdi started release bsd386 later called bsdos operating system similar freebsd based 1992s release filed lawsuit bsdi alleged distribution source code violation license agreements lawsuit settled court exact terms disclosed became public bsdi would migrate source base newer 44bsdlite sources although involved litigation suggested freebsd also move 44bsdlite23 freebsd released november 1994 first version freebsd without code att24
+featuresedit
+
+
+
+
+freebsd startup console login prompt
+
+
+usesedit
+general purpose operating system freebsd used various scenarios25
+
+servers
+freebsd contains significant collection serverrelated software base system ports collection possible configure freebsd mail server server firewall server server router among applications
+
+
+desktop
+window system installed default available freebsd ports collection number desktop environments gnome xfce lightweight window managers openbox fluxbox also available freebsd26
+
+
+embedded systems
+although explicitly focuses ia32 x8664 platforms freebsd also supports others powerpc mips lesser degree
+
+networkingedit
+freebsds tcpip stack based 42bsd implementation tcpip greatly contributed widespread adoption protocols27 freebsd also supports ipv628 sctp ipsec wireless networking wifi29 ipv6 ipsec stacks taken kame project30 also freebsd supports appletalk protocols considered planned drop support upcoming freebsd 11031
+freebsd support common address redundancy protocol carp imported openbsd project carp allows multiple nodes share addresses nodes goes nodes still serve requests32
+storageedit
+freebsd several unique features related storage soft updates protect consistency filesystem widely used bsds event system crash33 filesystem snapshots allow image filesystem instant time efficiently created34 snapshots allow reliable backup live filesystem geom modular framework provides raid levels currently full disk encryption journaling concatenation caching access networkbacked storage geom allows building complex storage solutions combining chaining mechanisms35 freebsd provides frameworks data encryption gbde geli gbde geli operate disk level gbde written poulhenning kamp distributed twoclause license geli alternative gbde written pawel jakub dawidek first appeared freebsd 603637
+onward freebsd supports filesystem previously open source filesystem first developed microsystems oracle acquired became proprietary product however freebsd project still developing improving implementation openzfs project38
+securityedit
+freebsd provides several securityrelated features including access control lists acls39 security event auditing extended file system attributes mandatory access controls mac40 finegrained capabilities41 security enhancements developed trustedbsd project project founded robert watson goal implementing concepts common criteria information technology security evaluation orange book project ongoing many extensions integrated freebsd42 project supported variety organizations including darpa network associates laboratories safeport network services university pennsylvania yahoo mcafee research sparta apple computer ncircle network security google university cambridge computer laboratory others43
+project also ported nsas flaskte implementation selinux freebsd work includes development openbsm open source implementation suns basic security module audit file format supports extensive security audit system shipped part freebsd infrastructure work freebsd performed part trustedbsd project included geom openpam41
+components trustedbsd project eventually folded main sources freebsd addition many features fully matured find operating systems example openpam adopted netbsd44 moreover trustedbsd framework adopted apple macos45
+freebsd ships three different firewall packages ipfw ipfilter ipfw freebsds native firewall taken openbsd ipfilter ported freebsd darren reed46
+taken openbsd openssh program included default install openssh free implementation protocol replacement telnet unlike telnet openssh encrypts information including username password47
+november 2012 freebsd security team announced hackers gained unauthorized access projects servers servers turned immediately research demonstrated first unauthorized access hackers occurred september apparently hackers gained access servers stealing keys developers exploiting operating system hacked servers part infrastructure used build thirdparty software packages freebsd security team checked integrity binary packages announced unauthorized change made binary packages stated cant guarantee integrity packages downloaded september november484950
+portabilityedit
+freebsd ported variety instruction architectures freebsd project organizes architectures tiers characterize level support provided tier architectures mature fully supported tier architectures undergoing major development tier architectures experimental longer active development tier architectures support
+march 2016update freebsd ported following architectures51
+
+
+architecture
+support level52
+notes
+
+
+ia32
+tier
+referred i386
+
+
+x8664
+tier
+referred amd64
+
+
+pc9801
+tier
+referred pc98 support removed 12current53
+
+
+sparc
+tier
+64bit architecture
+
+
+powerpc powerpc64
+tier
+
+
+
+
+tier
+
+
+
+ia64
+tier
+unsupported
+
+
+mips
+tier
+
+
+
+riscv
+tier
+
+
+
+esa390
+tier
+referred s390
+
+
+alpha
+tier
+support discontinued
+
+
+mips support mostly aimed embedded systems however freebsdarm runs number singleboard computers including beaglebone black raspberry pi5455 wandboard56
+thirdparty softwareedit
+details topic freebsd ports
+
+
+
+
+screenshot freebsd
+
+
+freebsd software repository 26000 applications developed third parties examples include windowing systems browsers email clients office suites forth general project develop software framework allow programs installed known ports collection applications either compiled source ports provided licensing terms allow downloaded precompiled binaries packages57 ports collection supports current stable branches freebsd older releases supported work correctly uptodate ports collection58
+ports makefile automatically fetch desired applications source code either local remote repository unpack system apply patches compile it359 depending size source code compiling take long time gives user control process result ports also package counterparts precompiled binaries giving user choice although method faster user fewer customisation options57
+freebsd version introduced package manager replacement previously used package tools60 functionally similar linux distributions allows installation upgrading removal ports packages addition packagekit also used access ports collection
+jailsedit
+main article freebsd jail
+first introduced freebsd version jails security mechanism implementation operatingsystemlevel virtualization enables user multiple instances guest operating system freebsd host enhanced version traditional chroot mechanism process runs within jail unable access resources outside every jail hostname address possible multiple jails time kernel shared among hence software supported freebsd kernel within jail61
+virtualizationedit
+main article bhyve
+bhyve virtualization solution introduced freebsd bhyve allows user number guest operating systems freebsd openbsd linux microsoft windows62 simultaneously operating systems illumos planned bhyve written neel natu peter grehan announced 2011 bsdcan conference first time main difference bhyve freebsd jails jails operating systemlevel virtualization therefore limited freebsd guests bhyve type hypervisor limited freebsd guests636465 comparison bhyve similar technology whereas jails closer containers solaris zones
+virtualbox qemu available freebsd
+compatibility layersedit
+software runs linux freebsd using optional builtin compatibility layer hence linux binaries freebsd including proprietary applications distributed binary form compatibility layer emulation linuxs system call interface implemented freebsds kernel hence linux executable images shared libraries treated freebsds native executable images shared libraries66 additionally freebsd provides compatibility layers several unixlike operating systems addition linux bsdos svr466 however common users compile programs directly freebsd67
+noticeable performance penalty native freebsd programs noted running linux binaries cases even perform smoothly linux6869 however layer altogether seamless linux binaries unusable partially usable freebsd support system calls version 2618 available since freebsd release freebsd 64bit linux binaries70
+freebsd implemented number microsoft windows native ndis kernel interfaces allow freebsd windowsonly network drivers7172
+kerneledit
+freebsds kernel provides support essential tasks managing processes communication booting filesystems freebsd monolithic kernel73 modular design different parts kernel drivers designed modules user load unload modules time74 default scheduler freebsd since version supports smt75 freebsd kernel also scalable event notification interface named kqueue ported bsdderivatives openbsd netbsd76 kernel threading introduced freebsd using threading model model works well theory7778 hard implement operating systems support although freebsds implementation model worked perform well version onward freebsd started using threading model called libthr78
+documentation supportedit
+freebsds documentation consists handbooks manual pages mailing list archives faqs variety articles mainly maintained freebsd documentation project freebsds documentation translated several languages79 official documentation released freebsd documentation license permissive noncopyleft free documentation license compatible fdl80 freebsds documentation described highquality8182
+freebsd project maintains variety mailing lists83 among popular mailing lists freebsdquestions general questions freebsdhackers place asking technical questions84
+since 2004 york city users group database provides dmesg information collection computers laptops workstations singleboard computers embedded systems virtual machines running freebsd85
+installersedit
+version freebsd used sysinstall program main installer written jordan hubbard uses text user interface divided number menus screens used configure control installation process also used install ports packages alternative commandline interface86
+sysinstall utility considered deprecated favor bsdinstall installer introduced freebsd bsdinstall lightweight replacement sysinstall written according osnews lost features gaining others much flexible design ultimately significant improvement6187
+developmentedit
+freebsd developed volunteer team located around world developers internet communication many person addition local user groups sponsored attended users annual conference called bsdcon held usenix bsdcon freebsdspecific deals technical aspects operating systems including openbsd netbsd88 addition bsdcon three annual conferences eurobsdcon asiabsdcon bsdcan take place europe japan canada respectively899091
+governance structureedit
+main article freebsd core team
+freebsd project around committers developers commit access master source code repositories develop debug enhance part system developers volunteers developers paid companies15 several kinds committers including source committers base operating system committers documentation site authors ports third party application porting infrastructure every years freebsd committers select 9member freebsd core team responsible overall project direction setting enforcing project rules approving commiters granting commit access number responsibilities officially assigned development teams freebsd core team example responsibility managing ports collection delegated ports management team92
+addition developers freebsd thousands contributors contributors also volunteers outside freebsd project submit patches consideration committers dont direct access freebsds source code repository committers evaluate contributors submissions decide accept reject contributor submits highquality patches often asked become committer92
+branchesedit
+freebsd developers maintain least branches simultaneous development current branch always represents bleeding edge freebsd development stable branch freebsd created major version number release every months feature sufficiently stable mature likely backported merge current freebsd developer slang stable branch933
+foundationedit
+
+
+last week donated million dollars freebsd foundation supports open source operating system helped millions programmers pursue passions bring ideas life
+actually people started using freebsd late didn’t much money living government housing freebsd helped lift poverty main reasons yahoo using freebsd operating system choice years later brian build whatsapp used freebsd keep servers running still
+announcing donation shine light good work done freebsd foundation hope others also help move project forward we’ll benefit freebsd continue give people opportunity gave lift immigrant kids poverty help startups build something successful even transformative
+
+koum
+main article freebsd foundation
+freebsd development supported part freebsd foundation foundation nonprofit organization accepts donations fund freebsd development funding used sponsor developers specific activities purchase hardware network infrastructure provide travel grants developer summits provide legal support freebsd project94
+november 2014 freebsd foundation received million donation koum cofounder whatsapp largest single donation foundation since inception december 2016 koum donated another thousand dollars95 koum freebsd user since late 1990s whatsapp uses freebsd servers96
+licenseedit
+freebsd released variety open source licenses kernel code newly created code released twoclause license allows everyone redistribute freebsd wish license approved free software foundation97 open source initiative98 free software open source license respectively free software foundation described license permissive noncopyleft free software license compatible parts released three fourclause licenses well beerware license device drivers include binary blob99 atheros freebsd versions 72100 code contributed projects licensed lgpl cddl101 code licensed cddl clearly separated code liberal licenses make easy users embedded device manufacturers permissive free software licenses clangbsd aims replace dependencies freebsd base system replacing compiler collection bsdlicensed llvmclang compiler clangbsd became selfhosting april 2010102
+logoedit
+
+
+
+
+freebsds mascot generic daemon also known beastie
+
+
+many years freebsds logo generic daemon also called beastie distorted pronunciation first appearing 1976 unix tshirts purchased bell labs popular versions daemon drawn animation director john lasseter beginning 1984103104 several freebsdspecific versions later drawn tatsumi hosokawa105
+however beastie unique freebsd lithographic terms lasseter graphic line often requires screened four color photo offset printing process faithful reproduction physical surfaces paper also daemon thought graphically detailed smooth size scaling aesthetically overdependent multiple color gradations making hard reliably reproduce simple standardized logo three colors much less monochrome worries competition held logo designed anton gural still echoing daemon released october 2005106107108 however announced robert watson freebsd project seeking logo mascot freebsd project continue beastie mascot106
+name freebsd coined david greenman june 1993 suggested names bsdfree86 free86bsd109 freebsds slogan power serve trademark freebsd foundation110
+derivativesedit
+details topic list products based freebsd
+
+
+
+
+pcbsd version operating system known trueos
+
+
+number software distributions based freebsd including
+
+openserver server
+trueos previously known pcbsd aimed home users workstations freenaslike server version trueos pico embedded devices
+desktopbsd desktoporiented operating system originally based
+ghostbsd matebased distribution also offers desktop environments
+freesbie live
+frenzy live
+hardenedbsd exploit mitigation hardening development
+m0n0wall firewall
+opnsense firewall
+pfsense firewall
+freenas networkattached storage devices
+nas4free networkattached storage devices
+authservzilux network servers storage
+
+distributions minor changes compared original freebsd base system main difference original freebsd come preinstalled preconfigured software specific cases compared linux distributions binary compatible kernel also basic tools compilers libraries coming different applications configurations branding
+besides distributions independent operating systems based freebsd dragonfly fork freebsd aiming different multiprocessor synchronization strategy chosen freebsd development microkernel features111 stay compatible freebsd huge differences kernel basic userland midnightbsd fork freebsd borrowing heavily nextstep particularly user interface department
+darwin core apple macos includes virtual file system network stack derived freebsd virtual file system network stack components userspace also freebsdderived17112
+subscription services directly based freebsd
+
+whatsapp113 processes million concurrent connections server113
+
+embedded devices embedded device operating systems based freebsd include
+
+isilons onefs operating system
+netapps data ontap superseded ontap loader proprietary kernelspace module
+netflixs open connect appliance114115 handle content delivery
+playstation orbis os19116117
+panasas panfs parallel file system118
+
+parts freebsd also used playstation 3119
+version historyedit
+main article history freebsd
+
+
+legend
+version
+older version still supported
+current stable version
+latest preview version
+future release
+
+
+
+
+version
+release date
+supported
+significant changes
+
+
+version longer supported
+november 1993
+
+
+
+first official release
+ports collection
+
+
+
+
+version longer supported
+1994
+
+
+
+outstanding bugs import 386bsd
+addition ported applications xfree86 xview interviews nntp
+
+
+
+
+version longer supported
+november 1994
+
+
+
+replace code base bsdlite satisfy terms bsdi lawsuit settlement
+installer boot manager
+loadable filesystems support filesystems msdos unionfs kernfs
+imported loadable kernel modules netbsd
+
+
+
+
+version longer supported
+july 1996
+
+
+
+
+version longer supported
+february 1997
+
+
+
+
+version longer supported
+march 1997
+
+
+
+replaced malloc phkmalloc
+full linux emulation
+
+
+
+
+version longer supported
+november 1998
+
+
+
+dummynet traffic shaping
+
+
+
+
+version longer supported
+october 1998
+
+
+
+symmetric multiprocessing
+common access method scsi system
+vesa video modes
+
+
+
+
+version longer supported
+february 1999
+
+
+
+initial device support
+pluggable authentication modules
+
+
+
+
+version longer supported
+1999
+
+
+
+
+version longer supported
+september 1999
+
+
+
+
+version longer supported
+december 1999
+
+
+
+netgraph
+raid5 support vinum
+
+
+
+
+version longer supported
+june 2000
+
+
+
+
+version longer supported
+july 2000
+
+
+
+
+version longer supported
+march 2000
+
+
+
+ipv6 support ipsec kame applications also updated support ipv6
+openssh integrated base system
+emulator svr4 binary files
+
+
+
+
+version longer supported
+july 2000
+
+
+
+kqueue
+
+
+
+
+version longer supported
+november 2000
+
+
+
+
+version longer supported
+november 2000
+
+
+
+
+version longer supported
+
+
+
+
+
+version longer supported
+
+
+
+
+
+version longer supported
+
+
+
+
+
+version longer supported
+
+
+
+
+
+version longer supported
+
+
+
+
+
+version longer supported
+april 2003
+march 2004
+
+
+basic firewire
+basic hyperthreading support
+inkernel cryptographic framework imported openbsd
+
+
+
+
+version longer supported
+
+
+
+
+
+version longer supported
+2004
+2006
+
+
+usb2 support
+added portschanges portsupdating freebsd ports
+
+
+
+
+version longer supported
+january 2005
+january 2007
+
+
+
+version longer supported
+january 2003
+june 2003
+
+
+support ultrasparc ia64 processors
+support changes kernel locking release kernel giant lock
+geom
+kernel scheduled entities
+mandatory access control imported trustedbsd
+bluetooth
+acpi
+
+
+
+
+version longer supported
+june 2003
+february 2004
+
+
+experimental support amd64
+experimental thread libraries multithreaded processing
+experimental scheduler
+
+
+
+
+version longer supported
+november 2004
+october 2006
+
+
+altq
+addition debugging framework
+import openbsd
+binary compatibility interface native execution ndis drivers
+replace xfree86 xorg
+cryptography enabled default base
+
+
+
+
+version longer supported
+2005
+october 2006
+
+
+import common address redundancy protocol openbsd
+
+
+
+
+version longer supported
+november 2005
+
+
+
+performance monitoring counters support
+wifi stack
+geli
+network bridging
+nanobsd utility
+ndis driver support
+
+
+
+
+version longer supported
+2006
+
+
+
+keyboard multiplexer
+filesystem stability
+bluetooth autoconfiguration
+additional ethernet raid drivers
+
+
+
+
+version longer supported
+january 2007
+2008
+
+
+support xbox architecture
+openbsm audit subsystem
+freebsdupdate binary updates security fixes errata patches
+
+
+
+
+version longer supported
+february 2008
+april 2009
+
+
+
+
+reference implementation sctp
+support architecture
+support intel high definition audio
+replacing phkmalloc jemalloc
+drop support alpha
+tmpfs
+
+
+
+
+version longer supported
+january 2009
+february 2011
+
+
+dtrace
+scheduler made default scheduler i386 amd64 platforms
+
+
+
+
+version longer supported
+november 2009
+
+
+
+sata support
+
+
+
+
+version longer supported
+july 2010
+july 2012
+
+
+guest support
+high availability storage
+native nfsv4 support
+
+
+
+
+version longer supported
+february 2011
+
+
+
+support
+
+
+
+
+version longer supported
+april 2012
+april 2014
+
+
+
+version longer supported
+june 2013
+august 2015
+
+
+
+version longer supported
+january 2012
+march 2013
+
+
+capsicum capabilitybased security mechanism
+softupdatesjournal
+updated version
+bsdinstall system installation program
+rctl flexible resource limits mechanism
+graid flexible software raid implementation
+virtio drivers
+
+
+
+
+version longer supported
+december 2012
+december 2014
+
+
+pkgng
+kernel scsi target layer subsystem
+
+
+
+
+version longer supported
+september 2013
+december 2014
+
+
+bsdconfig system configuration utility
+
+
+
+
+version longer supported
+july 2014
+december 2016
+
+
+virtual terminal implementation
+
+
+
+
+version longer supported
+january 2014
+february 2015
+
+
+bhyve hypervisor
+clang replaced supported architectures
+iscsi stack
+nand framework
+bind replaced ldns unbound base system
+root file system
+added support raspberry
+
+
+
+
+version longer supported
+november 2014
+december 2016120
+
+
+virtualization improvements freebsdi386 guests bhyve boot
+uefi boot amd64
+support lite protocol 3828
+performance improvements
+support armv6
+autofsbased automounter
+
+
+
+
+version longer supported
+august 2015
+december 2016120
+
+
+linux compatibility version updated support centos ports
+code updated match linux 3813 allowing multiple simultaneous servers
+reliability performance improvements
+gnome resolvconf versions updated
+several enhancements freebsdarm support
+
+
+
+
+older version still supported
+april 2016
+april 2018120
+
+
+support 64bit linux binaries compatibility layer
+booting uefi
+automatic rootonzfs uefi installations
+gnome xorg server live versions updated
+
+
+
+
+current stable version
+october 2017121
+october 2018122
+
+
+support emmc storage intel kaby lake devices
+driver capable intel i217 i218 i219 chips
+openssh gnome xorgserver updated
+fsckffs8 utility finds alternate superblocks
+
+
+
+
+version longer supported
+october 2016123
+november 2017
+
+
+version netmap124
+
+
+
+
+current stable version
+july 2017125
+
+
+
+
+version
+release date
+supported
+significant changes
+
+
+alsoedit
+
+
+free software portal
+
+
+
+bapp commonly used software freebsd
+descendants
+comparison operating systems
+comparison operating system kernels
+comparison operating systems
+computer systems research group
+patch kde2 freebsd
+marshall kirk mckusick
+sakura hypermedia desktop
+securityfocused operating system
+usage share operating systems
+
+referencesedit
+citationsedit
+
+
+freebsd 111release announcement freebsdorg july 2017 retrieved july 2017
+usage survey report certification group october 2005 retrieved december 2010
+chisnall david january 2006 free unix family informitcom retrieved december 2013
+hackers know nintendo switch wololonet march 2017 retrieved march 2017
+marc sauter andreas sebayang michael wieczorek march 2017 nintendo switch test klack egal nintendo switch review click matter german golem media gmbh archived original march 2017 retrieved march 2017 interesting thing operating system based classic linux android freebsd latter also takes sony basis system playstation avoids nintendo’s licensing requirements linux kernel easily nvidia’s proprietary graphics driver maint multiple names authors list link
+bhartiya swapnil nintendo switch introduces concept consoles
+httpdocdlplaystationnetdocps3oss
+httpdocdlplaystationnetdocps4oss
+open sources voices open source revolution oreilly media archived original december 2013 retrieved september 2014
+june national freebsd freebsd foundation retrieved november 2017
+lucas 2007
+brief history freebsd freebsdorg retrieved january 2009
+bruce company history freebsd mall retrieved august 2014
+johnson dwight report comdexwalnut creek cdrom freebsd slackware linux today retrieved august 2014
+lucas 2007
+pohlmann frank july 2005 freebsd developerworks archived original september 2013
+kernel programming guide overview apple
+licenses software used playstation®3 console retrieved august 2010
+michael larabel june 2013 sonys playstation running modified freebsd phoronix retrieved august 2013
+httpslistsfreebsdorgpipermailfreebsdstable2012june068129html
+httpswwwfreebsdfoundationorgpress2013julnewsletterwhatsapp
+httpflightawarecomaboutcodefreebsdrvt
+lehey 2003
+release information freebsd project retrieved september 2014
+welcome freebsd freebsd project retrieved september 2014
+penguin tries freebsd desktop operating system osemotions retrieved march 2017
+mckusick marshall 2005 section design implementation freebsd operating system isbn 0201702452
+farrokhi babak network configuration—ipv6 freebsd packt archived original december 2013 retrieved december 2013
+leffler freebsd wireless netwokring support bsdcan archived original december 2013 retrieved december 2013
+overview kame project kame project retrieved august 2014
+smirnoff gleb october 2013 heads axing appletalk ipxspx freebsdstable mailing list retrieved august 2014
+carp4 freebsd documentation project retrieved october 2013
+mckusick marshall nevilleneil george 2005 soft updates design implementation freebsd operating system isbn 0201702452
+lucas 2007
+lucas 2007 disk tricks geom
+geli8 freebsd project retrieved august 2014
+kamp poulhenning gbde—geom based disk encryption usenix archived original december 2013 retrieved august 2014
+sean michael kerner february 2011 freebsd expands support without oracle datamation archived original december 2013 retrieved december 2013
+freebsd access control lists onlamp retrieved december 2013
+trustedbsd framework extensible kernel access control freebsd usenix retrieved september 2014
+trustedbsd adding trusted operating system features freebsd retrieved september 2014
+trustedbsd adding trusted operating system features freebsd usenix retrieved september 2014
+trustedbsd project trustedbsd project retrieved august 2014
+openpam3 netbsd project retrieved september 2014
+authentication authorization permissions guide developerapplecom apple retrieved september 2014
+lucas 2007
+lucas 2007
+hackers obtained access freebsd servers honline retrieved august 2014
+hackers break freebsd project servers using stolen keys computer world retrieved august 2014
+freebsd servers hacked techeye retrieved august 2014
+freebsdsupported platforms freebsdorg retrieved march 2016
+committers guide freebsd documentation project
+yoshihiro takahashi january 2017 freebsdpc98 japanese retrieved january 2017
+freebsd raspberry also raspbiansoftware build
+raspberry software rapidly maturing osnews
+freebsdarm retrieved november 2014
+lucas
+chapter installing applications packages ports freebsdorg retrieved january 2009
+asami satoshi freebsd ports collection usenix retrieved december 2013
+larabel michael freebsd still working nextgen package manager phoronix retrieved august 2014
+family freebsd osnews retrieved august 2014
+whats freebsd wikifreebsdorg retrieved september 2015
+schenkeveld paul hypervisor fosdem retrieved august 2014
+larabel michael state freebsds bhyve virtualization phoronix retrieved august 2014
+grehan peter introduction bhyve retrieved august 2014
+mcewen gordon setting linux compatibility freebsd archived original november 2006 retrieved december 2013
+lehey 2003
+tiemann brian 2006 freebsd compares operating systems freebsd unleashed isbn 0672328755
+michael larabel freebsd faster platform linux gaming linux phoronix retrieved august 2014
+freebsd 103release announcement freebsd project april 2016 retrieved april 2016
+bill paul january 2004 project evil evil continues freebsdcurrent mailing list
+chisnall david july 2005 project evil windows network drivers freebsd ping wales archived original november 2005 retrieved october 2013
+mckusick nevilleneil 2004 chapter design overview freebsd
+michael lucas 2007
+roberson jeff modern scheduler freebsd usenix retrieved august 2014
+lemon jonathan kqueue–a generic scalable event notification facility usenix retrieved august 2014
+thread models semantics solaris linux thread model department computer science engineering university multan pakistan retrieved september 2014
+lucas 2007
+lucas 2007
+various licenses comments project retrieved august 2014
+lehey 2003
+free unix family informit retrieved august 2014
+listsfreebsdorg mailing lists retrieved september 2014
+lehey 2003
+dmesgd dmesgdnycbugorg nycbug retrieved december 2015
+sysinstall8 freebsd pages retrieved september 2014
+2012 year retrospective osnews retrieved august 2014
+lehey 2003
+eurobsdcon 2014 eurobsdcon retrieved august 2014
+asiabsdcon 2014 asiabsdcon retrieved august 2014
+bsdcan conference bsdcan retrieved february 2015
+lucas 2007
+lucas 2007 372375
+overview freebsd foundation retrieved 2016
+foundation announces uranium donor freebsd foundation retrieved december 2016
+updated freebsd foundation announces generous donation fundraising milestone freebsd foundation retrieved november 2014
+various licenses comments project retrieved august 2014
+2clause license open source initiative retrieved august 2014
+watson robert october 2006 binary blobs freebsd freebsdquestions mailing list retrieved october 2013
+freebsd copyright legal information freebsdorg retrieved april 2013
+contents stable9cddlcontribopensolarisopensolarislicense freebsd project retrieved august 2014
+clangbsd selfhosting need testers osnewscom april 2010 retrieved april 2013
+usenix mckusickcom retrieved december 2007
+saving unix devnull minnietuhsorg retrieved december 2007
+daemon freebsdorg retrieved december 2007
+freebsd logo design competition osnews retrieved november 2013
+kuriyama february 2005 freebsd logo design competition freebsdannounce mailing list retrieved november 2013
+final result freebsd logo design competition freebsdorg 2005 archived original october 2012 retrieved march 2007
+greenman david freebsd archives freebsd project retrieved august 2014
+freebsd logo freebsd project retrieved august 2014
+dillon matthew july 2003 announcing dragonfly freebsdcurrent mailing list retrieved july 2007
+porting unixlinux applications overview apple
+million 2011 whatsapp blog retrieved august 2014
+netflix 2012 open connect appliance deployment guide
+long scott june 2012 netflixs peering appliance uses freebsd freebsdstable mailing list retrieved june 2012
+matthew humphries june 2013 runs modified version freebsd operating system retrieved october 2013
+clark jack sonys playstation open source freebsd truth theregistercouk retrieved november 2013
+smith lyle 20171108 panasas announces nextgen activestor scaleout solution storage reviews
+alex rosenberg december 2013 freebsd handbook retrieved january 2016
+freebsd security information life freebsd project retrieved october 2016
+freebsd 104release announcement freebsd project retrieved october 2017
+freebsd security information life freebsd project retrieved october 2017
+freebsd 110release announcement freebsd project retrieved october 2016
+whats freebsd freebsd project retrieved march 2015
+freebsd 111release announcement freebsd project retrieved july 2017
+
+
+sourcesedit
+
+
+negus christopher caen francois 2008 unix toolbox 1000 commands freebsd openbsd netbsd first wiley isbn 0470376031
+lavigne 2004 hacks first oreilly media isbn 0596006799
+lucas michael november 2007 absolute freebsd second starch press isbn 1593271514
+lavigne lehey greg reed jeremy december 2007 best freebsd basics first reed media services isbn 0979034221
+hong bryan april 2008 building server freebsd first starch press isbn 9781593271459
+tiemann brian urban michael june 2006 freebsd unleashed first sams isbn 0672328755
+korff yanek hope paco potter bruce march 2005 mastering freebsd openbsd security first oreilly media isbn 0596006268
+lehey greg april 2003 complete freebsd fourth oreilly media isbn 0596005164
+mckusick marshall nevilleneil george august 2004 design implementation freebsd operating system first addison–wesley isbn 0201702452
+mittelstaedt december 2000 freebsd corporate networkers guide first addison–wesley isbn 0201704811
+stokely murray chern march 2004 freebsd handbook volume user guide third freebsd mall isbn 1571763279
+stokely murray september 2004 freebsd handbook volume admin guide third freebsd mall isbn 1571763287
+
+
+external linksedit
+
+
+
+wikimedia commons media related freebsd
+
+
+
+official website
+freebsd distrowatch
+
+
+
+
+
+
+
+
+
+
+
+
+freebsd project
+
+
+
+freebsd
+
+
+
+freebsd core team
+freebsd documentation license
+freebsd foundation
+freebsd ports
+history
+
+
+
+
+
+subsystems
+
+
+
+busdma
+geom
+ipfw
+freebsd jail
+netgraph
+openpam
+openbsm
+
+soft updates
+scheduler
+bhyve
+highly available storage
+portsnap
+kqueue
+geom raid5
+geli
+moused
+vinum volume manager
+
+
+
+
+
+people
+
+
+
+jordan hubbard
+poulhenning kamp
+mike karels
+laurie
+leffler
+marshall kirk mckusick
+diomidis spinellis
+robert watson
+lavigne
+
+
+
+
+
+derivatives
+
+
+
+
+opensource
+
+
+
+
+
+darwin
+
+
+desktopbsd
+dragonfly
+freenas
+freesbie
+ghostbsd
+kylin
+midnightbsd
+m0n0wall
+
+opnsense
+pfsense
+
+
+trueos
+gnukfreebsd
+gentoofreebsd
+
+
+
+
+
+proprietary
+
+
+
+junos
+macos tvos watchos
+nintendo switch
+playstation
+playstation
+playstation vita
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+berkeley software distribution
+
+
+
+people
+
+
+
+fabry
+keith bostic
+marshall kirk mckusick
+michael karels
+bill
+samuel leffler
+jordan hubbard
+theo raadt
+poulhenning kamp
+lynne william jolitz
+
+
+
+
+
+derivatives
+
+
+
+
+active
+
+
+
+freebsd
+openbsd
+netbsd
+dragonfly
+trueos
+junos
+darwin
+ps3ps4pspps vita operating system
+nintendo switch operating system
+full list
+
+
+
+
+
+discontinued
+
+
+
+386bsd
+bsdos
+sunos
+ultrix
+
+
+
+
+
+
+
+
+companies
+
+
+
+sleepycat software
+walnut creek cdrom
+berkeley software design
+ixsystems
+
+
+
+
+
+topics
+
+
+
+comparison
+history
+licensing
+daemon
+computer systems research group
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+unix unixlike operating systems
+
+
+
+
+
+
+
+
+386bsd
+
+freebsd
+netbsd
+openbsd
+dragonfly
+
+
+nextstep
+darwin
+
+macos
+
+
+
+sunos
+ultrix
+
+
+coherent
+
+linux
+
+android
+chrome
+
+
+lynxos
+minix
+
+
+blackberry
+
+
+research unix
+system
+
+
+
+hpux
+illumos
+irix
+openserver
+solaris
+tru64 unix
+unixware
+
+
+xenix
+
+
+
+
+
+
+
+
+
+category
+commons
+book
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlefreebsdoldid817714597 categories freebsd1993 softwarearm operating systemscomputing platformslightweight unixlike systemspowerpc operating systemssoftware using licensehidden categories maint multiple names authors listcs1 germanlanguage sources decs1 japaneselanguage sources jagood articlesuse dates september 2017articles containing potentially dated statements march 2016all articles containing potentially dated statementspages using magic links

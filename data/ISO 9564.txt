@@ -1,0 +1,646 @@
+
+
+
+
+
+
+This article relies too much on references to primary sources. Please improve this by adding secondary or tertiary sources. (October 2016) (Learn how and when to remove this template message)
+
+
+
+
+
+
+Contents
+
+
+1 Part 1: Basic principles and requirements for PINs in card-based systems
+
+1.1 Basic principles
+1.2 PIN entry devices
+1.3 Smart card readers
+1.4 Other specific PIN control requirements
+
+1.4.1 PIN length
+1.4.2 PIN selection
+1.4.3 PIN issuance and delivery
+1.4.4 PIN encryption
+
+1.4.4.1 Format 0
+1.4.4.2 Format 1
+1.4.4.3 Format 2
+1.4.4.4 Format 3
+1.4.4.5 Extended PIN blocks
+
+
+
+
+
+
+2 Part 2: Approved algorithms for PIN encipherment
+3 Part 3 (withdrawn)
+4 Part 4: Requirements for PIN handling in eCommerce for Payment Transactions
+5 Notes
+6 References
+
+
+
+ISO 9564 is an international standard for personal identification number (PIN) management and security in financial services.
+The PIN is used to verify the identity of a customer (the user of a bank card) within an electronic funds transfer system, and (typically) to authorize the transfer or withdrawal of funds. Therefore, it is important to protect PINs against unauthorized disclosure or misuse. Modern banking systems require interoperability between a variety of PIN entry devices, smart cards, card readers, card issuers, acquiring banks and retailers – including transmission of PINs between those entities – so a common set of rules for handling and securing PINs is required, both to ensure technical compatibility and a mutually agreed level of security. ISO 9564 provides principles and techniques to meet these requirements.
+ISO 9564 comprises three parts,[Note 1] under the general title of Financial services — Personal Identification Number (PIN) management and security.
+Part 1: Basic principles and requirements for PINs in card-based systems[edit]
+ISO 9564-1:2011[1] specifies the basic principles and techniques of secure PIN management. It includes both general principles and specific requirements.
+Basic principles[edit]
+The basic principles of PIN management include:
+
+PIN management functions shall be implemented in software and hardware in such a way that the functionality cannot be modified without detection, and that the data cannot be obtained or misused.
+Encrypting the same PIN with the same key but for a different bank account shall not predictably give the same cipher text.
+Security of the PIN encryption shall depend on secrecy of the key, not secrecy of the algorithm.
+The PIN must always be stored encrypted or physically secured.
+Only the customer (i.e. the user of a card) and/or authorized card issuer staff shall be involved with PIN selection or issuing. Where card issuer staff are involved, appropriate strictly enforced procedures shall be used.
+A stored encrypted PIN shall be protected from substitution.
+A PIN shall be revoked if it is compromised, or suspected to be.
+The card issuer shall be responsible for PIN verification.
+The customer shall be advised of the importance of keeping the PIN secret.
+
+PIN entry devices[edit]
+The standard specifies some characteristics required or recommended of PIN entry devices (also known as PIN pads), i.e. the device into which the customer enters the PIN, including:
+
+All PIN entry devices shall allow entry of the digits zero to nine. Numeric keys may also have letters printed on them, e.g. as per E.161. These letters are only for the customers' convenience; internally, the PIN entry device only handles digits. (E.g. the standard does not support multi-tap or similar.) The standard also recommends that customers should be warned that not all devices may have letters.
+The PIN entry device shall be physically secured so that it is not feasible to modify its operation or extract PINs or encryption keys from it.
+The PIN entry device should be designed or installed so as to prevent other people from observing the PIN as it is entered.
+The keyboard layout should be standardized, with consistent and unambiguous labels for function keys, such as "enter", "clear" (this entry) and "cancel" (the transaction). The standard also recommends specific colours for function keys: green for "enter", yellow for "clear", red for "cancel".
+
+Smart card readers[edit]
+A PIN may be stored in a secure smart card, and verified offline by that card. The PIN entry device and the reader used for the card that will verify the PIN may be integrated into a single physically secure unit, but they do not need to be.
+Additional requirements that apply to smart card readers include:
+
+The card reader should be constructed in such a way as to prevent someone monitoring the communications to the card by inserting a monitoring device into the card slot.
+If the PIN entry device and the card reader are not both part of an integrated secure unit, then the PIN shall be encrypted while it is transmitted from the PIN entry device to the card reader.
+
+Other specific PIN control requirements[edit]
+Other specific requirements include:
+
+All hardware and software used for PIN processing shall be implemented such that:
+
+Their correct functioning can be assured.
+They cannot be modified or accessed without detection.
+The data cannot be inappropriately accessed, modified or misused.
+The PIN cannot be determined by a brute-force search.
+
+
+The PIN shall not be communicated verbally. In particular bank personnel shall never ask the customer to disclose the PIN, nor recommend a PIN value.
+PIN encryption keys should not be used for any other purpose.
+
+PIN length[edit]
+The standard specifies that PINs shall be from four to twelve digits long, noting that longer PINs are more secure but harder to use. It also suggests that the issuer should not assign PINs longer than six digits.
+PIN selection[edit]
+There are three methods of selecting or generating a PIN:
+
+assigned derived PIN
+The card issuer generates the PIN by applying some cryptographic function to the account number or other value associated with the customer.
+
+
+assigned random PIN
+The card issuer generates a PIN value using a random number generator.
+
+
+customer selected PIN
+The customer selects the PIN value.
+
+PIN issuance and delivery[edit]
+The standard includes requirements for keeping the PIN secret while transmitting it, after generation, from the issuer to the customer. These include:
+
+The PIN is never available to the card issuing staff.
+The PIN can only be displayed or printed for the customer in an appropriately secure manner. One method is a PIN mailer, an envelope designed so that it can be printed without the PIN being visible (even at printing time) until the envelope is opened. A PIN mailer must also be constructed so that any prior opening will be obvious to the customer, who will then be aware that the PIN may have been disclosed.
+The PIN shall never appear where it can be associated with a customer's account. For example, a PIN mailer must not include the account number, but only sufficient information for its physical delivery (e.g. name and address). The PIN and the associated card shall not be mailed together, nor at the same time.
+
+PIN encryption[edit]
+To protect the PIN during transmission from the PIN entry device to the verifier, the standard requires that the PIN be encrypted, and specifies several formats that may be used. In each case, the PIN is encoded into a PIN block, which is then encrypted by an "approved algorithm", according to part 2 of the standard).
+The PIN block formats are:
+Format 0[edit]
+The PIN block is constructed by XOR-ing two 64-bit fields: the plain text PIN field and the account number field, both of which comprise 16 four-bit nibbles.
+The plain text PIN field is:
+
+one nibble with the value of 0, which identifies this as a format 0 block
+one nibble encoding the length N of the PIN
+N nibbles, each encoding one PIN digit
+14−N nibbles, each holding the "fill" value 15 (i.e. 11112)
+
+The account number field is:
+
+four nibbles with the value of zero
+12 nibbles containing the right-most 12 digits of the primary account number (PAN), excluding the check digit
+
+Format 1[edit]
+This format should be used where no PAN is available. The PIN block is constructed by concatenating the PIN with a transaction number thus:
+
+one nibble with the value of 1, which identifies this as a format 1 block
+one nibble encoding the length N of the PIN
+N nibbles, each encoding one PIN digit
+14−N nibbles encoding a unique value, which may be a transaction sequence number, time stamp or random number
+
+Format 2[edit]
+Format 2 is for local use with off-line systems only, e.g. smart cards. The PIN block is constructed by concatenating the PIN with a filler value thus:
+
+one nibble with the value of 2, which identifies this as a format 2 block
+one nibble encoding the length N of the PIN
+N nibbles, each encoding one PIN digit
+14−N nibbles, each holding the "fill" value 15 (i.e. 11112)
+
+(Except for the format value in the first nibble, this is identical to the plain text PIN field of format 0.)
+Format 3[edit]
+Format 3 is the same as format 0, except that the "fill" digits are random values from 10 to 15, and the first nibble (which identifies the block format) has the value 3.
+Extended PIN blocks[edit]
+Formats 0 to 3 are all suitable for use with the Triple Data Encryption Algorithm, as they correspond to its 64-bit block size. However the standard allows for other encryption algorithms with larger block sizes, e.g. the Advanced Encryption Standard has a block size of 128 bits. In such cases the PIN must be encoding into an extended PIN block, the format of which is defined in a 2015 amendment to ISO 9564-1.[2]
+Part 2: Approved algorithms for PIN encipherment[edit]
+ISO 9564-2:2014[3] specifies which encryption algorithms may be used for encrypting PINs. The approved algorithms are:
+
+Triple Data Encryption Algorithm
+RSA;
+Advanced Encryption Standard
+
+Part 3 (withdrawn)[edit]
+ISO 9564-3 Part 3: Requirements for offline PIN handling in ATM and POS systems,[4] most recently published in 2003, was withdrawn in 2011 and its contents merged into part 1.
+Part 4: Requirements for PIN handling in eCommerce for Payment Transactions[edit]
+
+
+
+
+This section needs expansion. You can help by adding to it. (October 2016)
+
+
+
+ISO 9564-4:2016[5] defines minimum security requirements and practices for the use of PINs and PIN entry devices in electronic commerce.
+Notes[edit]
+
+
+
+^ Parts 1, 2 and 4. Part 3 was withdrawn in 2011.
+
+
+
+References[edit]
+
+
+
+^ ISO 9564-1:2011 Financial services — Personal Identification Number (PIN) management and security — Part 1: Basic principles and requirements for PINs in card-based systems
+^ ISO 9564-1:2011/Amd 1:2015 Financial services — Personal Identification Number (PIN) management and security — Part 1: Basic principles and requirements for PINs in card-based systems AMENDMENT 1
+^ ISO 9564-2:2014 Financial services — Personal Identification Number (PIN) management and security — Part 2: Approved algorithms for PIN encipherment
+^ ISO 9564-3:2003 Banking — Personal Identification Number management and security — Part 3: Requirements for offline PIN handling in ATM and POS systems
+^ ISO 9564-4:2016 Financial services — Personal Identification Number (PIN) management and security — Part 4: Requirements for PIN handling in eCommerce for Payment Transactions
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_9564&oldid=751471104"					Categories: ISO standardsFinancial technologyHidden categories: Articles lacking reliable references from October 2016All articles lacking reliable referencesArticles to be expanded from October 2016All articles to be expandedArticles using small message boxes

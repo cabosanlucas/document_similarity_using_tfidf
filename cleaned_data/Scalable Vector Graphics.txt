@@ -1,0 +1,1756 @@
+redirects uses disambiguation
+
+scalable vector graphics
+
+
+
+
+filename extensions
+svgz
+
+
+internet media type
+imagesvgxml12
+
+
+uniform type identifier
+publicsvgimage
+
+
+developed
+
+
+
+initial release
+september 2001 years 20010904
+
+
+latest release
+
+second edition
+august 2011 years 20110816
+
+
+
+type format
+vector graphics
+
+
+extended
+
+
+
+standard
+
+
+
+open format
+
+
+
+website
+wwww3orggraphicssvg
+
+
+scalable vector graphics xmlbased vector image format twodimensional graphics support interactivity animation specification open standard developed world wide consortium since 1999
+images behaviors defined text files means searched indexed scripted compressed files images created edited text editor well drawing software
+major modern browsers—including mozilla firefox internet explorer google chrome opera safari microsoft edge—have rendering support
+
+
+
+contents
+
+
+overview
+
+printing
+scripting animation
+compression
+
+
+development history
+
+version
+version
+mobile profiles
+
+differences nonmobile
+
+
+related work
+
+
+functionality
+
+example
+
+
+
+
+native browser support
+plugin browser support
+mobile support
+
+
+online converters
+application support
+also
+references
+external links
+
+
+
+overviewedit
+
+
+
+
+image illustrates difference bitmap vector images bitmap image composed fixed pixels vector image composed fixed shapes picture scaling bitmap reveals pixels scaling vector image preserves shapes
+
+
+development within world wide consortium since 1999 competing proposals vector graphics languages submitted consortium 1998 early working group decided develop commercial submissions create markup language informed really based them3
+allows three types graphic objects vector graphic shapes paths outlines consisting straight lines curves bitmap images text graphical objects grouped styled transformed composited previously rendered objects feature includes nested transformations clipping paths alpha masks filter effects template objects drawings interactive include animation defined elements scripting accesses document object model uses styling javascript scripting text including internationalization localization appearing plain text within enhances accessibility graphics4
+specification updated version 2011 mobile profiles tiny basic meant mobile devices reduced computational display capabilities5 scalable vector graphics became candidate recommendation september 2016 incorporates several features addition tiny
+printingedit
+though specification primarily focuses vector graphics markup language design includes basic capabilities page description language like adobes contains provisions rich graphics compatible styling purposes information needed place glyph image chosen location printed page7
+scripting animationedit
+main article animation
+drawings dynamic interactive timebased modifications elements described smil programmed scripting language ecmascript javascript explicitly recommends smil standard animation svg8
+rich event handlers onmouseover onclick assigned graphical object
+compressionedit
+images contain many repeated fragments text well suited lossless data compression algorithms image compressed industry standard gzip algorithm referred svgz image uses corresponding svgz filename extension conforming viewers display compressed images9 svgz file typically percent original size10 provides svgz files test conformance11
+development historyedit
+developed working group starting 1998 competing vector graphics submissions received year
+
+schematics cclrc
+pgml adobe netscape
+autodesk hewlettpackard macromedia microsoft
+hyper graphics markup language orange pcsl
+webcgm boeing cclrc inso jisc xerox
+drawml excosoft3
+
+working group chaired time chris lilley
+version 1xedit
+
+became recommendation september 200112
+became recommendation january 200313 specification modularized order allow subsets defined profiles apart little difference
+
+tiny basic mobile profiles became recommendations january 2003 described profiles 1114
+
+
+tiny became recommendation december 200815 initially drafted profile planned full since dropped favor later refactored standalone specification
+second edition includes errata clarifications features original released august 20114
+
+version 2xedit
+
+completely rework draft integration features html5 woffcitation needed
+
+mobile profilesedit
+industry demand mobile profiles introduced tiny svgt basic svgb
+subsets full standard mainly intended user agents limited capabilities particular tiny defined highly restricted mobile devices cellphones support styling scripting17 basic defined higherlevel mobile devices smartphones
+2003 3gpp international telecommunications standards group adopted tiny mandatory vector graphics media format nextgeneration phones svgt required vector graphics format support svgb optional multimedia messaging service packetswitched streaming service181920 laterwhen added required format vector graphics 3gpp multimedia subsystem ims21
+differences nonmobile svgedit
+neither mobile profile includes support full document object model basic optional support scripting fully compatible subsets full standard graphics still rendered devices support mobile profiles22
+svgt adds microdom μdom styling scripting17
+related workedit
+mpeg4 part standard lightweight application scene representation laser simple aggregation format based tiny23 developed mpeg isoiec jtc1sc29wg11 published isoiec 1449620200624 capabilities enhanced mpeg4 part features mobile services dynamic updates binary encoding stateofart font representation25 also accommodated mpeg4 part extensible mpeg4 textual format textual representation mpeg4 multimedia content using xml26
+functionalityedit
+specification defines functional areas feature sets13
+
+paths
+simple compound shape outlines drawn curved straight lines filled outlined used clipping path paths compact coding
+example “move precedes initial numeric coordinates “line precedes point line drawn command letters precede data used draw various bézier elliptical curves used close path
+cases absolute coordinates follow capital letter commands relative coordinates used equivalent lowercase letters27
+basic shapes
+straightline paths paths made series connected straightline segments polylines well closed polygons circles ellipses drawn rectangles roundcornered rectangles also standard elements28
+text
+unicode character text included file expressed character data many visual effects possible specification automatically handles bidirectional text composing combination english arabic text example vertical text chinese historically written characters along curved path text around edge great seal united states29
+painting
+shapes filled andor outlined painted color gradient pattern fills opaque degree transparency
+markers lineend features arrowheads symbols appear vertices polygon30
+color
+colors applied visible elements either directly fill stroke properties colors specified css2 using names like black blue hexadecimal 22ff00 decimal like rgb255255127 percentages form rgb1001005031
+gradients patterns
+shapes filled outlined solid colors color gradients repeating patterns color gradients linear radial circular involve number colors well repeats opacity gradients also specified patterns based predefined raster vector graphic objects repeated andor directions gradients patterns animated scripted32
+since 2008 discussion3334 among professional users either gradient meshes preferably diffusion curves could usefully added specification said simple representation using diffusion curves capable representing even subtle shading effects35 diffusion curve images comparable quality coding efficiency gradient meshes simpler create according several artists used tools captured bitmaps fully automatically36 current draft includes gradient meshes37
+clipping masking compositing
+graphic elements including text paths basic shapes combinations used outlines define inside outside regions painted colors gradients patterns independently fully opaque clipping paths semitransparent masks composited together calculate color opacity every pixel final image using alpha blending38
+filter effects39
+
+main article filter effects
+
+interactivity
+images interact users many ways addition hyperlinks mentioned part image made receptive user interface events changes focus mouse clicks scrolling zooming image pointer keyboard document events event handlers start stop alter animations well trigger scripts response events40
+linking
+images contain hyperlinks documents using xlink view element fragment identifier urls link files change visible area document allows creating specific view states used zoom inout specific area limit view specific element helpful creating sprites xlink support combination element also allow linking reusing internal external elements allows less markup makes cleaner code41
+scripting
+aspects document accessed manipulated using scripts similar html default scripting language ecmascript closely related javascript defined document object model objects every element attribute scripts enclosed script elements response pointer events keyboard events document events required42
+animation
+
+main article animation
+
+content animated using builtin animation elements animate animatemotion animatecolor content animated manipulating using ecmascript scripting languages builtin timers animation designed compatible current future versions synchronized multimedia integration language smil animations continuous loop repeat respond user events mentioned above43
+fonts
+html text reference external font files system fonts required font files exist machine file rendered text appear intended overcome limitation text displayed font required glyphs defined font referenced text element44
+metadata
+accord w3cs semantic initiative allows authors provide metadata content main facility metadata element document described using dublin core metadata properties title creatorauthor subject description metadata schemas also used addition defines title desc elements authors also provide plaintext descriptive material within image help indexing searching retrieval number means45
+
+document define components including shapes gradients repeatedly images also contain raster graphics jpeg images images
+exampleedit
+
+code produce shapes shown image excluding grid
+
+
+version10 encodingutf8
+xmlnshttpwwww3org2000svg version11
+rect width200 height200 filllime strokewidth4 strokepink
+circle cx125 cy125 fillorange
+polyline points50150 50200 200200 200100 strokered strokewidth4 fillnone
+line x150 y150 x2200 y2200 strokeblue strokewidth4
+
+
+webedit
+
+
+
+
+exported kompasgraphic wikidata
+
+
+limited lack support older versions internet explorer many sites serve images wikipedia also provide images raster format either automatically http content negotiation allowing user directly choose file
+google announced august 2010 started index content whether standalone files embedded html users would begin content listed among search results46 announced december 2010 google image search would also begin indexing files47 site announced option restrict image searches files february 201148
+native browser supportedit
+konqueror first browser support release version february 200449 2011 major desktop browsers many minor ones level support browsers implementations complete comparison layout engines details
+earlier versions firefox versions 3650 well smattering nowoutdated browsers capable displaying graphics needed embedded object iframe elements display integrated parts html webpage instead using standard integrating images img51 however images included xhtml pages using namespaces52
+bernerslee inventor world wide critical earlier versions internet explorer failure support svg53
+
+opera since support tiny specification opera includes basic support full opera partial tiny support also supports svgz compressed
+browsers based gecko layout engine firefox flock camino seamonkey incomplete support full specification since 2005 mozilla site overview modules supported firefox54 modules progress development55 gecko included firefox adds support specification including filters56
+pale moon uses goanna layout engine fork gecko engine supports
+browsers based webkit apples safari google chrome omni groups omniweb incomplete support full specification since 200657
+amaya partial support
+internet explorer older versions support svg5859 released march 2011 supports basic feature set60 ie10 extended support adding filters61
+microsoft edge supports much 1162
+maxthon cloud browser also supports svgcitation needed
+
+several advantages native full support plugins needed freely mixed content single document rendering scripting become considerably reliable63
+plugin browser supportedit
+internet explorer including major browser provide native support older require plugin render content number plugins available assist including
+
+ample opensource javascript framework provides partial support smil style scripting internet explorer dependent plugins relies presence alternative vector graphics format internet explorer
+batik widely deployed java plugin64
+google chrome frame google support elements supported webkit including partially discontinued
+gpac targets svgt 126566
+adobe viewer adobe systems plugin supports 10116768 discontinued
+corel viewer69 discontinued
+raphaël another javascript library takes advantage intersection vmls svgs features create vector graphics animate
+renesis player internet explorer examotion gmbh supports discontinued70
+web71 javascript library developers targeted internet explorer dependent presence installed adobe flash plugin client machine provides partial support animation smil fonts video audio style scripting72
+
+january 2010 senior manager internet explorer team microsoft announced official blog microsoft requested join working group order take part ensuring future versions spec meet needs developers users although plans support internet explorer mentioned time73 internet explorer beta supported basic feature based recommendation functionality implemented document structure interactivity scripting styling inline presentation elements attributes interfaces implemented include basic shapes colors filling gradients patterns paths text74
+mobile supportedit
+tiny svgt mobile profiles svgt includes features found including nonscaling strokes supported implementations opera firefox webkit shared code bases desktop mobile browsers increased svgt also increased
+support limited svgt older limited smart phones primarily limited respective operating system adobe flash lite optionally supported tiny since version open 2005 conference demonstrated mobile implementation tiny connected limited device configuration cldc platform75
+mobiles opera mobile well iphones built browser also include support however even though used webkit engine android builtin browser support prior honeycomb76 prior firefox mobile 40b2 beta android first browser running android support default77
+level tiny support available varies mobile mobile depending engine installed many newer mobile products support additional features beyond tiny like gradient opacity sometimes referred svgt though standard
+rims blackberry builtin support tiny since version 5078 support continues webkitbased blackberry torch browser
+nokias platform builtin support example icons generally rendered using platforms engine nokia also scalable vector graphics expert group defines java presentation manipulation implemented platform edition feature pack onward80 series phones also support nokia 6280
+sony ericsson phones beginning k700 release date support tiny phones beginning k750 also support features opacity gradients phones sony ericsson java platform8 support
+windows phone supported since version
+also supported various mobile devices motorola samsung siemens mobilebenqsiemens esvg rendering library mainly written embedded devices available mobile platforms8182
+online convertersedit
+incomplete list applications convert files raster image formats process known rasterization raster images process known image tracing vectorization without need installing desktop software browser plugin
+
+autotracerorg83 online raster image vectorizer using autotrace library jpeg upload limit
+fileformatinfo84 converts jpeg tiff output resolution specified batch processing upload limit
+onlineconvert85 converts tofrom jpeg tiff wbmp webp batch processing output image size customizable conversion handled potrace86
+svgconv87 converts jpeg tiff allows user customize output like image size background color batch processing features converting multiple files single step upload limit 10mb
+svg2android88 converts android vectordrawable introduced
+free online converter89 converts raster images tracing converting raster images converter convert forms objects blackandwhite images vector graphics form conversion handled potrace86
+
+application supportedit
+images produced vector graphics editor inkscape adobe illustrator adobe flash professional coreldraw rendered common raster image formats using software inkscape uses builtin potrace import raster image formats8690
+software programmed render images using library librsvg used gnome since 2000 batik images also rendered desired popular image format using imagemagick free commandline utility also uses librsvg hood
+uses include embedding word processing libreoffice desktop publishing scribus plotting graphs gnuplot importing paths gimp blender microsoft office 2016 added support importing editing images january 2017 uniform type identifier used apple publicsvgimage conforms publicimage publicxml
+alsoedit
+
+
+scalable vector graphics
+
+
+
+
+sxbl
+working group
+filter effects
+precision graphics markup language
+vector markup language
+xhtmlmathmlsvg
+animation
+comparison layout engines
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+canvas element
+comparison graphics file formats
+comparison rastertovector conversion software
+comparison vector graphics editors
+computer graphics
+computer graphics metafile
+image file formats
+resolution independence
+files mediawiki commons helpsvg
+
+referencesedit
+
+
+media type registration imagesvgxml retrieved february 2014
+media types retrieved february 2014
+secret origin world wide consortium december 2007 retrieved january 2011
+scalable vector graphics second edition
+capin tolga mobile profiles tiny basic retrieved january 2017
+scalable vector graphics retrieved january 2017
+alex danilo fujisawa 2002 page description language svgopenorg retrieved february 2010
+paul festa january 2003 releases scripting standard caveat cnet retrieved february 2010
+wwww3orgtrsvg11conformhtmlconformingsvgviewers states implementations must correctly support gzipencoded rfc1952 deflateencoded rfc1951 data streams content type including script files images
+saving compressed svgz zone adobe systems july 2009 retrieved february 2010
+example devw3orgsvgprofiles11f2testharnesshtmlobjectconformviewers01thtml
+ferraiolo september 2001 scalable vector graphics specification world wide consortium retrieved february 2010
+ferraiolo august 2011 scalable vector graphics specification world wide consortium retrieved april 2016
+capin tolga june 2009 mobile profiles tiny basic world wide consortium retrieved october 2010
+andersson december 2008 scalable vector graphics tiny specification world wide consortium retrieved february 2010
+dengler patrick july 2010 getting report working group facetoface 24th june 2010 microsoft developer network microsoft retrieved august 2010
+tiny scalable vector graphics tiny specification 20081222 retrieved 20140305
+3gpp multimedia messaging streaming services version march 2003 open 2003 retrieved october 2009
+3gpp multimedia messaging service media formats codecs release 3gpp 26140 v520 200212 technical specification zipped 3gpp january 2003 retrieved february 2010
+generation partnership project technical specification group services system aspects multimedia messaging service media formats codecs release zipped 3gpp 26140 v520 200212 3gpp march 2003 retrieved february 2010
+3gpp specification detail 3gpp 26141 multimedia system messaging presence media formats codecs 3gpp december 2009 retrieved february 2010
+listing phones support svgorg archived original july 2008 retrieved october 2010
+concolato cyril july 2005 mpeg4 laser white paper international organization standardization retrieved august 2010
+isoiec 14496202008 information technology coding audiovisual objects part lightweight application scene representation laser simple aggregation format international organization standardization retrieved october 2009
+laser mpeg standard rich media services retrieved april 2010
+chiariglione leonardo march 2005 riding media bits bits bytes retrieved october 2009
+specification paths world wide consortium january 2003 retrieved october 2009
+specification basic shapes world wide consortium january 2003 retrieved october 2009
+specification text world wide consortium january 2003 retrieved october 2009
+specification painting filling stroking marker symbols world wide consortium january 2003 retrieved october 2009
+specification color world wide consortium january 2003 retrieved october 2009
+specification gradients patterns world wide consortium january 2003 retrieved october 2009
+20081117 2008 retrieved 2009 priorities layout diffusion curves make sure work well
+propositions next spec march 2009 retrieved 2009 indeed plan gradient capabilities next version looking diffusion curves think meet needs diffusion curves seems really great idea
+rusin zack 2008 freedom beauty open retrieved 2009
+orzan alexandrina bousseau adrien winnemöller holger barla pascal thollot joëlle salesin david 2008 diffusion curves vector representation smoothshaded images transactions graphics proceedings siggraph 2008 retrieved 2009
+scalable vector graphics editors draft june 2013 2013 retrieved september 2013
+specification clipping masking compositing world wide consortium january 2003 retrieved october 2009
+specification filter effects world wide consortium january 2003 retrieved october 2009
+specification interactivity world wide consortium january 2003 retrieved october 2009
+specification linking world wide consortium january 2003 retrieved october 2009
+specification scripting world wide consortium january 2003 retrieved october 2009
+specification animation world wide consortium january 2003 retrieved october 2009
+specification fonts world wide consortium january 2003 retrieved october 2009
+specification metadata world wide consortium retrieved october 2009
+stanescu bogdan sarapata john august 2010 google indexes webmaster central blog google retrieved september 2010
+googleimages google december 2010 retrieved february 2011
+singhal amit february 2011 week search 21111 google retrieved february 2011
+streichardt andreas september 2003 conquers vectors ksvg news retrieved february 2012
+276431 external loaded mozillainconsistent citations
+lusotec february 2009 image shown firefox mozilladevtechsvg google groups retrieved february 2010
+brettz9 august 2008 html introduction mozilla developer center mozilla retrieved february 2010
+svensson peter september 2008 creator spots flaw internet explorer msnbc associated press retrieved february 2010
+firefox mozilla developer center mozilla october 2009 retrieved february 2010
+mozilla status mozilla retrieved february 2010
+mgjbot january 2008 improvements firefox mozilla developer center mozilla retrieved february 2010
+webkit status webkit january 2010 retrieved february 2010
+windows internet explorer expert zone chat june 2008 microsoft june 2008 retrieved october 2010
+schiller jeff february 2010 support retrieved february 2010
+whats internet explorer microsoft developer network microsoft march 2011 retrieved march 2011
+windows internet explorer center microsoft retrieved august 2014
+httpsdevelopermicrosoftcomenusmicrosoftedgeplatformstatus
+ready plugin free browsing msdn 2014 retrieved 20140305
+download batik apache software foundation january 2008 archived original 20121113 retrieved february 2010
+features gpac multimedia open source project gpac march 2014 archived original march 2014 retrieved march 2014
+gpac released gpac multimedia open source project gpac december 2008 archived original march 2014 retrieved march 2014
+adobe viewer download area adobe systems archived original 20121221 retrieved october 2009
+adobe viewer life announcement adobe systems archived original 20121221 retrieved february 2010
+corel viewer corel corporation archived original 20100214 retrieved february 2010
+renesis player fast easy smart examotion gmbh archived original 20090228 retrieved 2009
+svgweb scalable vector graphics browsers using flash google code march 2014 archived original march 2014 retrieved march 2014
+clarke gavin june 2009 google slip internet explorer register register archived original march 2014 retrieved march 2014
+dengler patrick january 2010 microsoft joins working group msdn blogs microsoft archived original march 2014 retrieved march 2014
+internet explorer beta guide developers microsoft developer network microsoft september 2010 archived original march 2014 retrieved september 2010
+open 2005 conference exhibition proceedings cartoon oriented user interfaces svgopenorg retrieved august 2010
+browser doesnt render images google retrieved january 2011
+firefox mobile 40b2 beta android supports images android issue 1376 20101216 retrieved 20140129
+support retrieved october 2011
+blackberry torch html5 developer scorecard sencha retrieved october 2011
+product info s60com archived original october 2007 retrieved october 2009
+jezic damir 15–17 july 2002 embedded systems zurich 2002 svgopenorg retrieved april 2012
+esvg intesis intelligent embedded software 2010 retrieved 20140129
+reinhardt tobias converts raster images vector graphics autotracerorg retrieved 20140130 tool using fantastic autotrace library developed martin weber
+fileformatinfo raster image conversion fileformatinfo
+free online file converter onlineconvertcom retrieved 20140129
+selinger peter 2001–2013 potrace transforming bitmaps vector graphics sourceforge project potrace retrieved 20140129
+secundus blasius 2012 svgconv free online converter retrieved 20140130
+novák juraj android vectordrawable juraj novák
+online image converter format image format onlineconvertingcom retrieved 20150209
+vectorizetrace inkscape wiki 2012 retrieved 20140129
+
+
+external linksedit
+
+find aboutscalable vector graphicsat wikipedias sister projects
+
+definitions wiktionary
+media wikimedia commons
+textbooks wikibooks
+learning resources wikiversity
+data wikidata
+discussion metawiki
+documentation mediawiki
+
+
+
+page specifications list implementations
+primer primer draft auspices interest group
+scalable vector graphics curlie based dmoz
+
+
+
+
+
+
+
+
+
+
+
+
+world wide consortium
+
+
+
+products
+standards
+
+
+
+
+recommendations
+
+
+
+aria
+canonical
+
+
+
+geolocation
+html html5
+
+jsonld
+linked data notifications
+mathml
+micropub
+
+
+
+
+schema
+sisr
+skos
+smil
+soap
+srgs
+
+ssml
+
+scxml
+sparql
+timed text
+voicexml
+storage
+wsdl
+webmention
+xforms
+xhtml
+xhtmlrdfa
+xinclude
+xlink
+
+base
+encryption
+events
+information
+namespace
+schema
+signature
+
+xpath
+xpath
+xpointer
+xproc
+xquery
+
+xslfo
+xslt elements
+
+
+
+
+
+notes
+
+
+
+xades
+xhtmlsmil
+
+
+
+
+
+
+working drafts
+
+
+
+ccxml
+curie
+
+inkml
+
+
+smil timesheets
+sxbl
+wicd
+xfdl
+xframes
+
+xmlhttprequest
+
+
+
+
+
+guidelines
+
+
+
+content accessibility guidelines
+
+
+
+
+
+initiative
+
+
+
+multimodal interaction activity
+markup validation service
+accessibility initiative
+webplatform
+
+
+
+
+
+deprecated
+
+
+
+chtml
+hdml
+jsss
+pgml
+
+xhtmlmathmlsvg
+
+
+
+
+
+
+
+
+organizations
+
+
+
+
+
+
+
+advisory committee
+world wide foundation
+
+
+
+
+
+elected groups
+
+
+
+advisory board
+technical architecture group
+
+
+
+
+
+working groups
+
+
+
+
+html
+geolocation
+social
+
+hypertext application technology whatwg
+platform
+
+
+
+
+
+closed groups
+
+
+
+device description ddwg
+webont semantic activity
+
+
+
+
+
+
+
+
+software
+
+
+
+
+
+
+
+cern httpd
+libwww
+
+
+
+
+
+browsers
+
+
+
+line mode 1990–
+arena 1993–98
+agora 1994–97
+argo 1994–97
+amaya browsereditor 1996–2012
+
+
+
+
+
+
+
+
+conferences
+
+
+
+international world wide conference iw3c
+
+steering committee iw3c2
+first conference www1 1994
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vector graphics markup languages file formats
+
+
+
+type
+
+
+
+
+
+
+
+
+asymptote
+
+drawingml
+graphics layout engine
+geogebra
+hvif
+metapost
+pgftikz
+pgml
+pstricks
+remote imaging protocol
+
+
+
+
+
+
+
+
+xaml
+
+
+
+
+
+
+
+
+
+
+3dmlw
+3dxml
+asymptote
+collada
+
+geogebra
+iges
+
+opengex
+
+step
+
+
+vrml
+
+xaml
+
+xvrml
+
+
+
+
+
+
+
+
+also
+
+
+
+web3d
+web3d consortium
+linden scripting language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+graphics file formats
+
+
+
+raster
+
+
+
+
+anim
+apng
+
+
+
+bsave
+
+
+
+
+
+
+
+
+fits
+flic
+flif
+
+
+hdri
+hevc
+icer
+icns
+
+
+ilbm
+jbig
+jbig2
+
+jpeg
+jpeg 2000
+jpegls
+jpeg
+
+
+miff
+nrrd
+
+
+
+
+
+pictor
+
+
+
+qtvr
+
+
+
+jpeghdr
+logluv tiff
+
+
+
+
+tiff
+
+tiffep
+tiffit
+
+
+
+wbmp
+webp
+
+
+
+
+
+
+
+
+
+
+
+
+
+ciff
+
+
+
+
+
+
+vector
+
+
+
+
+
+
+
+
+
+gerber
+hvif
+iges
+pgml
+
+
+
+
+
+
+
+
+
+compound
+
+
+
+
+djvu
+
+
+pict
+
+
+xaml
+
+
+
+
+
+related
+
+
+
+exchangeable image file format exif
+extensible metadata platform
+
+
+
+
+
+
+
+
+category
+comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+plugins
+
+
+
+
+
+
+adobe viewer
+batik
+corel viewer
+esvg
+gpac
+librsvg
+renesis
+
+
+
+
+
+
+applications italics discontinued
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+interfaces
+
+
+
+serverside
+
+
+
+
+protocols
+
+
+
+http
+
+scgi
+fcgi
+
+wsrp
+websocket
+
+
+
+
+
+server apis
+
+
+
+nsapi
+asapi
+isapi
+
+java servlet
+
+container
+
+
+owin
+aspnet handler
+python wsgi
+ruby rack
+javascript jsgi
+perl psgi
+wsapi
+portlet
+
+container
+
+
+
+
+
+
+
+apache modules
+
+
+
+modjk
+modlisp
+modmono
+modparrot
+modperl
+modphp
+modproxy
+modpython
+modwsgi
+modruby
+phusion passenger
+
+
+
+
+
+topics
+
+
+
+resource service
+open
+webhook
+application server
+
+comparison
+
+
+scripting
+
+
+
+
+
+
+
+
+clientside
+
+
+
+
+browser apis
+
+
+
+npapi
+
+liveconnect
+xpconnect
+
+
+npruntime
+ppapi
+
+nacl
+
+
+activex
+
+xbap
+webassembly
+
+
+
+
+
+apis
+
+
+
+
+
+
+
+
+audio
+canvas
+cors
+
+events
+
+file
+geolocation
+indexeddb
+
+
+
+video
+webrtc
+websocket
+messaging
+storage
+worker
+xmlhttprequest
+
+
+
+
+
+khronos
+
+
+
+webcl
+webgl
+
+
+
+
+
+others
+
+
+
+gears
+database formerly
+
+
+
+
+
+
+
+
+topics
+
+
+
+ajax dhtml
+mashup
+
+scripting
+
+
+
+
+
+
+
+
+topics
+
+
+
+dynamic page
+open platform
+rich internet application
+application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+browsers
+
+
+
+
+
+
+comparison
+
+lightweight
+
+
+history
+list
+
+unix
+
+
+timeline
+usage share
+
+
+
+
+
+
+
+
+
+features
+
+
+
+filtering
+augmented browsing
+bookmarks
+
+bookmarklet
+live bookmark
+smart bookmarks
+
+
+browser extension
+browser security
+browser synchronizer
+
+comparison
+
+
+cookies
+download manager
+favicon
+incremental search
+plugin
+privacy mode
+tabs
+universal edit button
+
+
+
+
+
+standards
+
+
+
+acid tests
+cascading style sheets
+html
+html5
+javascript
+mathml
+
+webgl
+xhtml
+
+
+
+
+
+protocols
+
+
+
+http
+https
+ocsp
+spdy
+ssltls
+websocket
+wpad
+
+
+
+
+
+related topics
+
+
+
+browserchoiceeu
+
+iloo
+internet suite
+maninthebrowser
+mobile
+offline reader
+
+pwn2own
+rich internet application
+sitespecific browser
+widget
+world wide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+desktop
+
+
+
+
+
+
+
+blinkbased
+
+
+
+chromium
+
+brave
+chrome
+dragon
+opera
+qupzilla
+sleipnir
+slimjet
+srware iron
+browser
+vivaldi
+yandex browser
+sputnik
+safezone
+
+
+
+
+
+
+
+geckobased
+
+
+
+pogo
+avant
+camino
+firefox
+
+conkeror
+icecat
+icedragon
+swiftfox
+swiftweasel
+tenfourfox
+timberwolf
+browser
+waterfox
+browser
+
+
+galeon
+ghostzilla
+kmeleon
+kazehakase
+kirix strata
+lotus symphony
+lunascape
+mozilla
+
+beonex communicator
+classilla
+netscape
+seamonkey
+
+
+
+
+
+
+
+tridentbased
+
+
+
+explorer
+avant
+deepnet explorer
+greenbrowser
+internet explorer
+lunascape
+maxthon
+mediabrowser
+menubox
+neoplanet
+netcaptor
+slimbrowser
+spacetime
+ultrabrowser
+webbie
+browser
+
+
+
+
+
+webkitbased
+
+
+
+arora
+avant
+dooble
+epic
+flock
+fluid
+icab
+konqueror
+lunascape
+maxthon
+midori
+omniweb
+origyn browser
+otter browser
+qtweb
+rekonq
+safari
+shiira
+slimboat
+surf
+torch
+uzbl
+epiphany
+webpositive
+xombrero
+
+
+
+
+
+textbased
+
+
+
+elinks
+emacsw3
+line mode browser
+links
+lynx
+
+
+
+
+
+
+
+
+
+
+basilisk
+abaco
+amaya
+arachne
+arena
+charon
+dillo
+
+gazelle
+hotjava
+home page reader
+ibrowse
+kidzui
+microsoft edge
+mosaic
+mothra
+netpositive
+netsurf
+pale moon
+qihoo secure browser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mobile
+
+
+
+
+
+
+
+blinkbased
+
+
+
+android browser
+chromium
+
+brave
+chrome android
+opera mobile
+silk
+
+
+firefox focus android
+opera mini android
+
+
+
+
+
+geckobased
+
+
+
+firefox android
+microb
+minimo
+waterfox
+
+
+
+
+
+prestobased
+
+
+
+opera mini extrememini modes
+
+
+
+
+
+tridentbased
+
+
+
+maxthon
+
+
+
+
+
+webkitbased
+
+
+
+bolt
+dolphin browser
+chrome
+coast browser
+firefox
+firefox focus
+opera mini turbonormal modes
+maxthon
+mercury browser
+nokia browser symbian
+rockmelt
+safari
+steel
+
+
+
+
+
+
+
+
+
+blazer
+browser
+deepfish
+ibisbrowser
+internet explorer mobile
+iris browser
+konqueror embedded
+microsoft edge
+netfront
+skweezer
+skyfire
+teashark
+thunderhawk
+browser
+vision
+winwap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+television video game console
+
+
+
+
+
+
+
+geckobased
+
+
+
+kylo
+
+
+
+
+
+prestobased
+
+
+
+internet channel
+
+
+
+
+
+webkitbased
+
+
+
+google
+nintendo internet browser
+nintendo browser
+netfront
+steam overlay
+internet browser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+software longer development shown italics
+
+
+category
+commons
+internet portal
+software portal
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh2002004644
+46584808
+cb14487634q data
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlescalablevectorgraphicsoldid818041712 categories computer file formatsgraphics file formatshtml5open formatspage description markup languagesscalable vector graphicsvector graphics markup languagesworld wide consortium standardsxml markup languagescomputerrelated introductions 2001hidden categories dates february 2014all articles unsourced statementsarticles unsourced statements october 2017all articles vague ambiguous timevague ambiguous time october 2017articles unsourced statements march 2015articles dmoz linkswikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiersarticles example code

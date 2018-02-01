@@ -1,0 +1,830 @@
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (August 2008) (Learn how and when to remove this template message)
+
+
+
+
+Windows NT
+
+
+
+
+Developer
+Microsoft
+
+
+Written in
+C, C++, and Assembly language[1]
+
+
+Working state
+Current
+
+
+Source model
+Closed source / Shared source
+
+
+Initial release
+July 27, 1993; 24 years ago (1993-07-27)
+(as Windows NT 3.1)
+
+
+Latest release
+1709 (10.0.16299.125) (December 12, 2017; 21 days ago (2017-12-12)) [±]
+
+
+Latest preview
+RS4 (10.0.17063) (December 19, 2017; 14 days ago (2017-12-19)) [±]
+
+
+Update method
+Windows Update, Windows Server Update Services
+
+
+Platforms
+IA-32, x86-64, DEC Alpha, MIPS, PowerPC, ARM, Itanium
+
+
+Kernel type
+Hybrid
+
+
+Default user interface
+Graphical (Windows shell)
+
+
+License
+Depending on version, edition or customer choice: Trialware, commercial software, volume licensing, OEM-only, SaaS, S+S[a]
+
+
+Official website
+www.microsoft.com/windows/
+
+
+Windows NT is a family of operating systems produced by Microsoft, the first version of which was released in July 1993. It is a processor-independent, multiprocessing, multi-user operating system.
+The first version of Windows NT was Windows NT 3.1 and was produced for workstations and server computers. It was intended to complement consumer versions of Windows that were based on MS-DOS (including Windows 1.0 through Windows 3.1x). Gradually, the Windows NT family was expanded into Microsoft's general-purpose operating system product line for all personal computers, deprecating the Windows 9x family.
+"NT" formerly expanded to "New Technology" but no longer carries any specific meaning. Starting with Windows 2000,[2] "NT" was removed from the product name and is only included in the product version string.[3]
+NT was the first purely 32-bit version of Windows, whereas its consumer-oriented counterparts, Windows 3.1x and Windows 9x, were 16-bit/32-bit hybrids. It is a multi-architecture operating system. Initially, it supported several instruction set architectures, including IA-32, MIPS, DEC Alpha, PowerPC and later Itanium. The latest versions support x86 (more specifically IA-32 and x64) and ARM. Major features of the Windows NT family include Windows Shell, Windows API, Native API, Active Directory, Group Policy, Hardware Abstraction Layer, NTFS, BitLocker, Windows Store, Windows Update, and Hyper-V.
+
+
+
+Contents
+
+
+1 Naming
+2 Major features
+3 Development
+4 Releases
+5 Programming language
+6 Supported platforms
+
+6.1 32-bit platforms
+6.2 64-bit platforms
+
+
+7 Hardware requirements
+8 See also
+9 Notes
+10 References
+11 External links
+
+
+
+Naming[edit]
+It has been suggested that Dave Cutler intended the initialism "WNT" as a play on VMS, incrementing each letter by one.[4] However, the project was originally intended as a follow-on to OS/2 and was referred to as "NT OS/2" before receiving the Windows brand.[5] One of the original NT developers, Mark Lucovsky, states that the name was taken from the original target processor—the Intel i860, code-named N10 ("N-Ten").[6] A 1998 question-and-answer session with Bill Gates, reveal that the letters were previously expanded to "New Technology" but no longer carry any specific meaning.[7] The letters were dropped from the names of releases from Windows 2000 and later, though Microsoft described that product as being "Built on NT Technology".[2][8]
+Major features[edit]
+A main design goal of NT was hardware and software portability. Various versions of NT family operating systems have been released for a variety of processor architectures, initially IA-32, MIPS, and DEC Alpha, with PowerPC, Itanium, x86-64 and ARM supported in later releases. The idea was to have a common code base with a custom Hardware Abstraction Layer (HAL) for each platform. However, support for MIPS, Alpha, and PowerPC was later dropped in Windows 2000. Broad software compatibility was achieved with support for several API "personalities", including Windows API, POSIX,[9] and OS/2 APIs[10] – the latter two were phased out starting with Windows XP.[11] Partial MS-DOS compatibility was achieved via an integrated DOS Virtual Machine – although this feature is being phased out in the x86-64 architecture.[12] NT supported per-object (file, function, and role) access control lists allowing a rich set of security permissions to be applied to systems and services. NT supported Windows network protocols, inheriting the previous OS/2 LAN Manager networking, as well as TCP/IP networking (for which Microsoft would implement a TCP/IP stack derived at first from a STREAMS-based stack from Spider Systems, then later rewritten in-house).[13]
+Windows NT 3.1 was the first version of Windows to use 32-bit flat virtual memory addressing on 32-bit processors. Its companion product, Windows 3.1, used segmented addressing and switches from 16-bit to 32-bit addressing in pages.
+Windows NT 3.1 featured a core kernel providing a system API, running in supervisor mode (ring 0 in x86; referred to in Windows NT as "kernel mode" on all platforms), and a set of user-space environments with their own APIs which included the new Win32 environment, an OS/2 1.3 text-mode environment and a POSIX environment. The full preemptive multitasking kernel could interrupt running tasks to schedule other tasks, without relying on user programs to voluntarily give up control of the CPU, as in Windows 3.1 Windows applications (although MS-DOS applications were preemptively multitasked in Windows starting with Windows 1.0).
+Notably, in Windows NT 3.x, several I/O driver subsystems, such as video and printing, were user-mode subsystems. In Windows NT 4, the video, server, and printer spooler subsystems were moved into kernel mode. Windows NT's first GUI was strongly influenced by (and programmatically compatible with) that from Windows 3.1; Windows NT 4's interface was redesigned to match that of the brand new Windows 95, moving from the Program Manager to the Windows shell design.
+NTFS, a journaled, secure file system, was created for NT. Windows NT also allows for other installable file systems; starting with versions 3.1, NT could be installed on FAT or HPFS file systems.[14]
+Windows NT introduced its own driver model, the Windows NT driver model, and is incompatible with older driver frameworks. With Windows 2000, the Windows NT driver model was enhanced to become the Windows Driver Model, which was first introduced with Windows 98, but was based on the NT driver model.[15] Windows Vista added native support for the Windows Driver Foundation, which is also available for Windows XP, Windows Server 2003 and to an extent, Windows 2000.
+Development[edit]
+
+
+
+
+Original Windows NT wordmark
+
+
+Microsoft decided to create a portable operating system, compatible with OS/2 and POSIX and supporting multiprocessing, in October 1988.[16] When development started in November 1989, Windows NT was to be known as OS/2 3.0,[17] the third version of the operating system developed jointly by Microsoft and IBM. To ensure portability, initial development was targeted at the Intel i860XR RISC processor, switching to the MIPS R3000 in late 1989, and then the Intel i386 in 1990.[18] Microsoft also continued parallel development of the DOS-based and less resource-demanding Windows environment, resulting in the release of Windows 3.0 in May 1990. Windows 3 was eventually so successful that Microsoft decided to change the primary application programming interface for the still unreleased NT OS/2 (as it was then known) from an extended OS/2 API to an extended Windows API. This decision caused tension between Microsoft and IBM and the collaboration ultimately fell apart. IBM continued OS/2 development alone while Microsoft continued work on the newly renamed Windows NT. Though neither operating system would immediately be as popular as Microsoft's MS-DOS or Windows products, Windows NT would eventually be far more successful than OS/2.
+Microsoft hired a group of developers from Digital Equipment Corporation led by Dave Cutler to build Windows NT, and many elements of the design reflect earlier DEC experience with Cutler's VMS[19] and RSX-11, but also an unreleased object-based operating system developed by Dave Cutler for DEC Prism.[20] The operating system was designed to run on multiple instruction set architectures and multiple hardware platforms within each architecture. The platform dependencies are largely hidden from the rest of the system by a kernel mode module called the HAL (Hardware Abstraction Layer).
+Windows NT's kernel mode code further distinguishes between the "kernel", whose primary purpose is to implement processor- and architecture-dependent functions, and the "executive". This was designed as a modified microkernel, as the Windows NT kernel was influenced by the Mach microkernel developed at Carnegie Mellon University,[21] but does not meet all of the criteria of a pure microkernel. Both the kernel and the executive are linked together into the single loaded module ntoskrnl.exe; from outside this module there is little distinction between the kernel and the executive. Routines from each are directly accessible, as for example from kernel-mode device drivers.
+API sets in the Windows NT family are implemented as subsystems atop the publicly undocumented "native" API; this allowed the late adoption of the Windows API (into the Win32 subsystem). Windows NT was one of the earliest operating systems to use Unicode internally.
+Releases[edit]
+See also: List of Microsoft Windows versions
+
+Windows NT releases
+
+Version
+Marketing name
+Editions
+Release date
+Build number
+
+
+3.1
+Windows NT 3.1
+Workstation (named just Windows NT), Advanced Server
+July 27, 1993
+528
+
+
+3.5
+Windows NT 3.5
+Workstation, Server
+September 21, 1994
+807
+
+
+3.51
+Windows NT 3.51
+Workstation, Server
+May 30, 1995
+1057
+
+
+4.0
+Windows NT 4.0
+Workstation, Server, Server Enterprise Edition, Terminal Server, Embedded
+July 29, 1996
+1381
+
+
+5.0
+Windows 2000
+Professional, Server, Advanced Server
+February 17, 2000
+2195
+
+
+Datacenter Server
+September 26, 2000
+
+
+5.1
+Windows XP
+Home, Professional, Media Center (original, 2004 & 2005), Tablet PC (original and 2005), Starter, Embedded, Home N, Professional N
+October 25, 2001
+2600
+
+
+Windows Fundamentals for Legacy PCs
+N/A
+July 8, 2006
+
+
+5.2
+Windows XP
+64-bit Edition Version 2003[22]
+March 28, 2003
+3790
+
+
+Windows Server 2003
+Standard, Enterprise, Datacenter, Web, Storage, Small Business Server, Compute Cluster
+April 24, 2003
+
+
+Windows XP
+Professional x64 Edition
+April 25, 2005
+
+
+Windows Server 2003 R2
+Standard, Enterprise, Datacenter, Web, Storage, Small Business Server, Compute Cluster
+December 6, 2005
+
+
+Windows Home Server
+N/A
+July 16, 2007
+
+
+6.0
+Windows Vista
+Starter, Home Basic, Home Premium, Business, Enterprise, Ultimate, Home Basic N, Business N
+
+
+Business: November 30, 2006
+Consumer: January 30, 2007
+
+
+
+
+6000 (RTM)
+6001 (SP1)
+6002 (SP2)
+
+
+
+
+Windows Server 2008
+Foundation, Standard, Enterprise, Datacenter, Web Server, HPC Server, Itanium-Based Systems[23]
+February 27, 2008
+
+
+6001 (RTM)
+6002 (SP2)
+
+
+
+
+6.1[24]
+Windows 7
+Starter, Home Basic, Home Premium, Professional, Enterprise, Ultimate[25]
+October 22, 2009[26]
+
+
+7600 (RTM)
+7601 (SP1)
+
+
+
+
+Windows Server 2008 R2
+Foundation, Standard, Enterprise, Datacenter, Web Server, HPC Server, Itanium-Based Systems
+October 22, 2009[27]
+
+
+7600 (RTM)
+7601 (SP1)
+
+
+
+
+Windows Home Server 2011
+N/A
+April 6, 2011
+
+
+7600 (RTM)
+
+
+
+
+6.2
+Windows 8[28]
+Windows 8, Windows 8 Pro, Windows 8 Enterprise, Windows RT[29]
+October 26, 2012[30]
+9200
+
+
+Windows Server 2012[31]
+Foundation, Essentials, Standard, Datacenter[32]
+September 4, 2012
+9200
+
+
+6.3[33]
+Windows 8.1
+Windows 8.1, Windows 8.1 Pro, Windows 8.1 Enterprise, Windows RT 8.1
+October 18, 2013
+9600[34]
+
+
+Windows Server 2012 R2
+Foundation, Essentials, Standard, Datacenter
+October 18, 2013
+9600
+
+
+10.0[35]
+Windows 10
+Home, Pro, Pro Education, Enterprise, Education, Windows 10 S, IoT Core, Mobile, Mobile Enterprise[36][37]
+July 29, 2015
+
+
+10240 (TH1)
+10586 (TH2)
+14393 (RS1)
+15063 (RS2)
+16299 (RS3)
+
+
+
+
+Windows Server 2016
+Essentials, Standard, Datacenter, Multipoint Premium Server, Storage Server, Hyper-V Server
+September 26, 2016
+
+
+14393 (RS1)
+16299 (RS3)[38]
+
+
+
+
+Windows NT 3.1 to 3.51 incorporated the Program Manager and File Manager from the Windows 3.1x series. Windows NT 4.0 onwards replaced those programs with Windows Explorer (including a taskbar and Start menu), which originally appeared in Windows 95.
+The first release was given version number 3.1 to match the contemporary 16-bit Windows; magazines of that era claimed the number was also used to make that version seem more reliable than a ".0" release. Also the Novell IPX protocol was apparently licensed only to 3.1 versions of Windows software.[citation needed]
+The NT version number is not now generally used for marketing purposes, but is still used internally, and said to reflect the degree of changes to the core of the operating system.[39] However, for application compatibility reasons, Microsoft kept the major version number as 6 in releases following Vista,[40] but changed it later to 10 in Windows 10.[35] The build number is an internal identifier used by Microsoft's developers and beta testers.
+Programming language[edit]
+Windows NT is written in C and C++, with a very small amount written in assembly language.[41] C is mostly used for the kernel code while C++ is mostly used for user-mode code. Assembly language is avoided where possible because it would impede portability.[42]
+Supported platforms[edit]
+32-bit platforms[edit]
+In order to prevent Intel x86-specific code from slipping into the operating system by developers used to developing on x86 chips, Windows NT 3.1 was initially developed using non-x86 development systems and then ported to the x86 architecture. This work was initially based on the Intel i860-based Dazzle system and, later, the MIPS R4000-based Jazz platform. Both systems were designed internally at Microsoft.[43]
+Windows NT 3.1 was released for Intel x86 PC compatible, PC-98, DEC Alpha, and ARC-compliant MIPS platforms. Windows NT 3.51 added support for the PowerPC processor in 1995, specifically PReP-compliant systems such as the IBM Power Series desktops/laptops and Motorola PowerStack series; but despite meetings between Michael Spindler and Bill Gates, not on the Power Macintosh as the PReP compliant Power Macintosh project failed to ship.
+Intergraph Corporation ported Windows NT to its Clipper architecture and later announced intention to port Windows NT 3.51 to Sun Microsystems' SPARC architecture,[44] but neither version was sold to the public as a retail product.
+Only two of the Windows NT 4.0 variants (IA-32 and Alpha) have a full set of service packs available. All of the other ports done by third parties (Motorola, Intergraph, etc.) have few, if any, publicly available updates.
+Windows NT 4.0 was the last major release to support Alpha, MIPS, or PowerPC, though development of Windows 2000 for Alpha continued until August 1999, when Compaq stopped support for Windows NT on that architecture; and then three days later Microsoft also canceled their AlphaNT program, even though the Alpha NT 5 (Windows 2000) release had reached RC2 (build 2128).[45]
+Microsoft announced on January 5, 2011 that the next major version of the Windows NT family will include support for the ARM architecture. Microsoft demonstrated a preliminary version of Windows (version 6.2.7867) running on an ARM-based computer at the 2011 Consumer Electronics Show.[46] This eventually led to the commercial release of the Windows 8-derived Windows RT on October 26, 2012, and the implementation of NT over CE on Windows Phone 8.
+According to Microsoft, it is a common misconception that the Xbox and Xbox 360 use a modified Windows 2000 kernel, for the Xbox operating system was built from scratch but implements a subset of Windows APIs.[47]
+64-bit platforms[edit]
+The 64-bit versions of Windows NT were originally intended to run on Itanium and DEC Alpha; the latter was used internally at Microsoft during early development of 64-bit Windows.[48][49] This continued for some time after Microsoft publicly announced that it was cancelling plans to ship 64-bit Windows for Alpha.[50] Because of this, Alpha versions of Windows NT are 32-bit only.
+While Windows 2000 only supports Intel IA-32 (32-bit), Windows XP, Server 2003, Server 2008 and Server 2008 R2 each have one edition dedicated to Itanium-based systems.[51][52][53] In comparison with Itanium, Microsoft adopted x64 on a greater scale: every version of Windows since Windows XP (which has a dedicated x64 edition),[54] has x64 editions.[51][55]
+Hardware requirements[edit]
+The minimum hardware specification required to run each release of the professional workstation version of Windows NT has been fairly slow-moving until the 6.0 Vista release, which requires a minimum of 15 GB of free disk space, a 10-fold increase in free disk space alone over the previous version.
+
+Windows NT minimum hardware requirements
+
+Windows version
+CPU
+RAM
+Free disk space
+
+
+NT 3.1
+i386, 25 MHz
+12 MB
+90 MB
+
+
+NT 3.1 Advanced Server
+i386, 25 MHz
+16 MB
+90 MB
+
+
+NT 3.5 Workstation[56]
+i386, 25 MHz
+12 MB
+90 MB
+
+
+NT 3.5 Server[56]
+i386, 25 MHz
+16 MB
+90 MB
+
+
+NT 3.51 Workstation[56]
+i386, 25 MHz
+12 MB
+90 MB
+
+
+NT 3.51 Server[56]
+i386, 25 MHz
+16 MB
+90 MB
+
+
+NT 4.0 Workstation[57]
+i486, 25 MHz
+12 MB
+124 MB
+
+
+NT 4.0 Server[57]
+i486, 25 MHz
+16 MB
+124 MB
+
+
+2000 Professional[58]
+Pentium, 133 MHz
+32 MB
+650 MB
+
+
+2000 Server[58]
+Pentium, 133 MHz
+128 MB
+650 MB
+
+
+XP[59]
+Pentium, 233 MHz
+64 MB
+1.5 GB
+
+
+Server 2003[60]
+133 MHz
+128 MB
+1.5 GB
+
+
+Vista Home Basic[61]
+800 MHz
+512 MB
+20 GB
+
+
+Vista (other editions)[61]
+1 GHz
+1 GB
+40 GB
+
+
+7 for IA-32[62]
+1 GHz
+1 GB
+16 GB
+
+
+7 for x64[62]
+1 GHz
+2 GB
+20 GB
+
+
+8 for IA-32[63]
+1 GHz with NX bit, SSE2, PAE
+1 GB
+16 GB
+
+
+8 for x64[63]
+1 GHz with NX bit, SSE2, PAE
+2 GB
+20 GB
+
+
+8.1 for IA-32[63]
+1 GHz with NX bit, SSE2, PAE
+1 GB
+16 GB
+
+
+8.1 for x64[63]
+1 GHz with NX bit, SSE2, PAE, CMPXCHG16b, PrefetchW and LAHF/SAHF
+2 GB
+20 GB
+
+
+10 for IA-32[64]
+1 GHz with NX bit, SSE2, PAE
+1 GB
+16 GB
+
+
+10 for x64[64]
+1 GHz with NX bit, SSE2, PAE, CMPXCHG16b, PrefetchW and LAHF/SAHF
+2 GB
+20 GB
+
+
+See also[edit]
+
+Architecture of Windows NT
+F6 disk
+Windows Server domain
+ReactOS (an open source project with the goal of providing binary- and device driver-level compatibility with Windows NT)
+Windows NT startup process
+Windows Preinstallation Environment
+Microsoft Servers
+
+Notes[edit]
+
+
+
+^ For more information on how Microsoft licenses its products, see Microsoft Software Assurance, DreamSpark, DreamSpark Premium, BizSpark, MSDN § Software subscriptions, Microsoft TechNet § Subscriptions and downloads and client access license.
+
+
+
+References[edit]
+
+
+^ Lextrait, Vincent (January 2010). "The Programming Languages Beacon" (v10.0 ed.). Retrieved January 4, 2010. 
+^ a b "Microsoft Renames Windows NT 5.0 Product Line to Windows 2000; Signals Evolution of Windows NT Technology Into Mainstream" (Press release). Microsoft. October 27, 1998. 
+^ "OperatingSystem.VersionString Property". MSDN. Microsoft. Retrieved November 10, 2014. 
+^ Zachary, G Pascal (1994). Show Stopper!: The Breakneck Race to Create Windows NT and the Next Generation at Microsoft. Free Press. ISBN 978-0-02-935671-5. 
+^ "Microsoft Windows NT OS/2 Design Workbook". American history. Smithsonian. Retrieved March 17, 2017. 
+^ Thurrott, Paul. "History of Windows Server 2003: The Road To Gold". Win super site. 
+^ Gates, Bill (June 5, 1998). "Q&A: Protecting children from information on the Internet". Archived from the original on May 26, 2001. Retrieved June 26, 2005. 
+^ "Windows 2000 is a name that reflects NT's continued move to the technology mainstream". Microsoft.com. October 27, 1998. Retrieved November 13, 2011. 
+^ "Paul Thurrott's SuperSite for Windows". Win super site. Retrieved November 24, 2010. 
+^ "28 – OS/2 Compatibility", MS Windows NT 4 Workstation (resource kit), Microsoft, retrieved November 24, 2010 
+^ "POSIX and OS/2 are not supported in Windows XP or in Windows Server 2003". Support. Microsoft. November 5, 2007. Retrieved November 24, 2010. 
+^ "x64 editions deployment". Retrieved November 24, 2010. 
+^ Barr, Adam (June 19, 2001), "Microsoft, TCP/IP, Open Source, and Licensing", Kuro5hin, retrieved February 22, 2013 
+^ "File Systems". TechNet. Microsoft. Retrieved November 24, 2010. 
+^ "WDM – NT Drivers" (FAQ). CMKrnl. 
+^ Cutler, Dave, "Preface", in Russinovich, Mark; Solomon, David A, Microsoft Windows Internals (fourth ed.), Microsoft Press, ISBN 0-7356-1917-4 .
+^ Pollack, Andrew (July 27, 1991), "Microsoft Widens Its Split With IBM Over Software", The New York Times, retrieved September 2, 2008 
+^ Thurrott, Paul (January 24, 2003). "Windows Server 2003: The Road To Gold". Win super site. Retrieved January 5, 2010. 
+^ Russinovich, Mark (November 30, 1998). "Windows NT and VMS: The Rest of the Story". IT Pro. Retrieved January 2, 2018. 
+^ Neil Rieck. ""Windows-NT" is "VMS Reimplemented" (sort of)". Retrieved August 25, 2015. 
+^ "Supporting Windows NT and 2000 Workstation and Server". Technology network. Prentice Hall. December 1, 1999. ISBN 978-0-13-083068-5. Retrieved August 29, 2011. 
+^ "Microsoft Releases Windows XP 64-Bit Edition Version 2003 to Manufacturing". March 2003. Retrieved January 14, 2008. 
+^ "Overview of Editions". Windows Server 2008. Microsoft. Retrieved May 18, 2009. 
+^ "Operating System Versioning". Microsoft Developer Network. Microsoft. May 20, 2009. Retrieved July 6, 2009. 
+^ LeBlanc, Brandon (February 4, 2009). "A closer look at the Windows 7 SKUs". Blogging Windows. Microsoft. Retrieved February 5, 2009. 
+^ Rothman, Wilson (June 2, 2009). "Windows 7 To Be Released October 22". Gizmodo. Retrieved June 6, 2009. 
+^ "Product Roadmap". Windows Server 2008. Microsoft. Retrieved May 18, 2009. 
+^ "Windows", Developer network, Microsoft 
+^ LeBlanc, Brandon (April 16, 2012). "Announcing the Windows 8 Editions". Blogging Windows. Microsoft. Retrieved April 17, 2012. 
+^ "Windows 8 will be available on…". Microsoft. July 18, 2012. Retrieved July 18, 2012. 
+^ "Windows server 8 named Windows server 2012", Windows valley .
+^ "Windows Server 2012 Editions". Server cloud. Retrieved July 8, 2012. 
+^ "Microsoft's Windows Blue looks to be named Windows 8.1", ZDNet 
+^ Warren, Tom (August 24, 2013). "Windows 8.1 is ready for its October 17th release". The Verge. Vox Media. 
+^ a b Thurrott, Paul (November 22, 2014). "Microsoft Confirms that Windows 10 will also be Version 10 Internally". SuperSite for Windows. Penton Media. 
+^ Prophet, Tony (May 13, 2015). "Introducing Windows 10 Editions". Microsoft. 
+^ Foley, Mary Jo (July 27, 2016). "Microsoft to add new Windows 10 Pro Education edition to its line-up". ZDNet. CBS Interactive. 
+^ "Windows Server, version 1709 available for download!". Microsoft Technet. Microsoft. 
+^ Russinovich, Mark; Solomon, David (December 2001), "Windows XP: Kernel Improvements Create a More Robust, Powerful, and Scalable OS", MSDN mag, Developer network, Microsoft, archived from the original on April 24, 2003, retrieved December 19, 2006 
+^ "Why 7?". Windows Team Blog. Microsoft. October 14, 2008. Retrieved March 30, 2012. 
+^ "Windows NT System Overview". TechNet. Microsoft. Retrieved November 24, 2010. 
+^ Chen, Raymond (September 28, 2016). "One Dev Question with Raymond Chen - What Programming Language is Windows Written In?". Channel 9. Microsoft. 
+^ Lucovsky, Mark (August 9, 2000). "Windows: A Software Engineering Odyssey". Retrieved November 2, 2006. 
+^ "Intergraph Announces Port of Windows NT to SPARC Architecture". The Florida SunFlash. July 7, 1993. 
+^ Petreley, Nicholas (September 3, 1999). "Can Linux break Intel's hold on the market?". CNN. 
+^ Warren, Tom (January 5, 2011). "Microsoft demonstrates early build of Windows 8". winrumors.com. Archived from the original on January 9, 2011. 
+^ Gandhi, Shaheen. "Xbox Team: The Xbox Operating System". Archived from the original on December 20, 2008. 
+^ Thurott, Paul (December 15, 1999). "Road to Gold: A Look at the Development of Windows 2000". Retrieved January 2, 2018. 
+^ Chen, Raymond (August 2008). "Windows Confidential". Technology network. Microsoft. 
+^ Thurott, Paul (June 21, 2000). "Windows 2000 Reportedly Returning to Alpha Platform". Retrieved January 2, 2018. UPDATE: Compaq has apparently denied that any work is being done on Windows 2000/64 for the Alpha. 
+^ a b "Comparison of Windows Server 2003 Editions". Microsoft TechNet. Microsoft. Retrieved October 14, 2011. 
+^ "Windows Server 2008 for Itanium-Based Systems Feature Support". Microsoft TechNet. Microsoft. Retrieved October 14, 2011. 
+^ "Windows Server 2008 R2 for Itanium-Based Systems". Windows Server Editions. Microsoft. Retrieved October 14, 2011. 
+^ "Microsoft Windows XP 64-Bit Edition". Microsoft TechNet. Microsoft. August 15, 2001. Retrieved October 14, 2011. 
+^ "A description of the x64-based versions of Windows Server 2003 and of Windows XP Professional x64 Edition". Microsoft Support Center. Microsoft. Retrieved October 14, 2011. 
+^ a b c d "Windows NT 3.5x Setup Troubleshooting Guide (MSKB 139733)". Microsoft. November 1, 2006. Archived from the original on June 22, 2014. 
+^ a b "Info: Windows NT 4.0 Setup Troubleshooting Guide". Microsoft. October 31, 2006. Archived from the original on March 20, 2014. 
+^ a b "System requirements for Microsoft Windows 2000 operating systems". Support. Microsoft. November 13, 2007. Retrieved September 10, 2017. 
+^ "System requirements for Microsoft Windows XP operating systems". Support. Microsoft. September 14, 2007. Retrieved August 10, 2017. 
+^ "Windows Server 2003, Standard Edition: System requirements". Microsoft. January 21, 2005. Retrieved January 11, 2013. 
+^ a b "System requirements for Microsoft Windows Vista". Support. Microsoft. November 13, 2007. Retrieved September 10, 2017. 
+^ a b "Windows 7 system requirements". Support. Microsoft. Retrieved September 10, 2017. 
+^ a b c d "Windows 8 system requirements". Support. Microsoft. Retrieved September 10, 2017. 
+^ a b "Windows 10 Specifications & Systems Requirements". microsoft.com. Microsoft. Retrieved September 10, 2017. 
+
+
+External links[edit]
+
+Windows (official page), Microsoft .
+Russinovich, Mark, "Windows NT and VMS: The Rest of the Story", Win 2000 (discussion of ancestry of NT), archived from the original on May 3, 2002 .
+A Brief History of the Windows NT Operating System (fact sheet), Microsoft PressPass, 1998, archived from the original on June 10, 2004 .
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Microsoft Windows family
+
+
+
+
+
+
+Components
+History
+Timeline
+Criticism
+
+
+
+
+
+DOS-based
+
+
+
+Windows 1.0
+Windows 2.0
+Windows 2.1x
+Windows 3.0
+Windows 3.1x
+
+
+
+
+
+
+
+
+Windows 9x
+
+
+
+Windows 95 (Development)
+Windows 98
+Windows ME
+
+
+
+
+
+Windows NT
+
+
+
+
+
+
+
+Windows NT 3.1
+Windows NT 3.5
+Windows NT 3.51
+Windows NT 4.0
+Windows 2000
+
+
+
+
+
+Client versions
+
+
+
+Windows XP
+
+editions
+x64
+Media Center
+Fundamentals
+
+
+Windows Vista
+
+editions
+
+
+Windows 7
+
+editions
+
+
+Windows 8
+
+editions
+RT
+
+
+8.1
+Windows 10
+
+editions
+version history
+
+
+
+
+
+
+
+Windows Server
+
+
+
+Server 2003
+
+Home Server
+
+
+Server 2008
+
+EBS 2008
+HPC Server 2008
+
+
+Server 2008 R2
+
+Home Server 2011
+
+
+Server 2012
+Server 2012 R2
+Server 2016
+MultiPoint Server
+Server Essentials
+
+
+
+
+
+Specialized
+
+
+
+Windows Preinstallation Environment
+
+
+
+
+
+
+
+
+Windows Embedded
+
+
+
+Embedded Compact
+
+CE 5.0
+Embedded CE 6.0
+Embedded Compact 7
+
+
+Embedded Automotive
+Embedded Industry
+
+
+
+
+
+Windows Mobile
+
+
+
+Pocket PC 2000
+Pocket PC 2002
+Mobile 2003
+Mobile 5.0
+Mobile 6.0
+Mobile 6.1
+Mobile 6.5
+
+
+
+
+
+Windows Phone
+
+
+
+Phone 7
+Phone 8
+Phone 8.1
+Windows 10 Mobile
+
+
+
+
+
+Cancelled
+
+
+
+Cairo
+Nashville
+Neptune
+Odyssey
+
+
+
+
+
+
+
+
+ List of versions
+ Comparison
+ Book
+ Category
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+WorldCat Identities
+VIAF: 182742783
+LCCN: n92070862
+GND: 4297586-4
+BNF: cb12341116p (data)
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Windows_NT&oldid=818323678"					Categories: 1993 softwareMicrosoft WindowsWindows NTAdvanced RISC ComputingHidden categories: Wikipedia indefinitely move-protected pagesUse mdy dates from January 2018Articles needing additional references from August 2008All articles needing additional referencesPages using deprecated image syntaxAll articles with unsourced statementsArticles with unsourced statements from July 2008Wikipedia articles with VIAF identifiersWikipedia articles with LCCN identifiersWikipedia articles with GND identifiersWikipedia articles with BNF identifiers

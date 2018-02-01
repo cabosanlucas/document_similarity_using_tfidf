@@ -1,0 +1,2916 @@
+ansi code redirects uses ansi disambiguation
+
+
+
+
+
+
+
+article multiple issues please help improve discuss issues talk page learn remove template messages
+
+
+
+
+
+
+
+article needs additional citations verification please help improve article adding citations reliable sources unsourced material challenged removed january 2017 learn remove template message
+
+
+
+
+
+
+
+
+
+article technical readers understand please help improve make understandable nonexperts without removing technical details june 2016 learn remove template message
+
+
+
+
+
+learn remove template message
+
+
+
+ansi escape sequences standard inband signaling control cursor location color options video text terminals certain sequences bytes starting embedded text terminal looks interprets commands character codes
+ansi sequences introduced 1970s replace vendorspecific sequences became widespread computer equipment market early 1980s used nascent bulletin board systems offer improved displays compared earlier systems lacking cursor movement primary reason became standard adopted manufacturers
+although hardware text terminals become increasingly rare 21st century relevance ansi standard persists terminal emulators interpret least ansi escape sequences output text notable exception win32 console microsoft windows windows update th21
+
+
+
+contents
+
+
+history
+platform support
+
+windows
+
+
+escape sequences
+sequences
+select graphic rendition parameters
+bracketed paste mode
+colors
+
+
+8bit
+24bit
+
+
+examples
+
+example shell scripting
+
+
+invalid ambiguous sequences
+also
+notes
+references
+external links
+
+
+
+historyedit
+almost manufacturers video terminals added vendorspecific escape sequences perform operations placing cursor arbitrary positions screen example vt52 terminal allowed cursor placed location screen sending character character characters representing numerical values equal location plus thus starting ascii space character avoiding control characters
+sequences different different terminals elaborate libraries termcap utilities tput created programs could work terminal addition many terminals required sending numbers column binary values characters programming languages systems ascii internally often difficult impossible turn number correct character
+ansi standard attempted address problems making command terminals would requiring numeric information transmitted ascii numbers first standard series ecma48 adopted 1976 continuation series character coding standards first ecma6 1965 7bit standard originates name ansi escape sequence dates 1979 ansi adopted ansi x364 ansi x3l2 committee collaborated ecma committee produce nearly identical standards standards merged international standard 64292 1994 ansi withdrew standard favor international standard
+first popular video terminal support sequences digital vt100 introduced 19783 model successful market sparked variety vt100 clones among earliest popular much affordable zenith 19794 others included qume qvt108 televideo tvi970 wyse wy99gt well optional vt100 vt103 ansi modes varying degrees compatibility many brands popularity gradually software especially bulletin board systems assuming escape sequences worked leading almost terminals emulator programs supporting
+1981 ansi x364 adopted government fips publication later government stopped duplicating industry standards fips withdrawn5
+ecma48 updated several times currently edition 1991 also adopted standard isoiec 6429
+platform supportedit
+widespread ansi bulletin boards online services almost universal platform support 1980s cases took form terminal emulator xterm unix terminal zterm macos many communication programs although increasing support standard text output many operating systems
+unix amigaos included ansi support widespread ansi programs running platforms unixlike operating systems could produce ansi codes libraries termcap curses used many pieces software update display libraries supposed support nonansi terminals well rarely tested nowadays unlikely workcitation needed many games shell scripts colored prompts directly write ansi sequences thus cannot used terminal interpret
+amigaos interprets ansi code sequences text output screen amigaos printer driver also interprets extensions proprietary amigaos translates codes required particular printer actually attached6
+spite popularity ansi codes universally supported support builtin original classic atari used command system adapted vt52 expansions color support7
+windows dosedit
+msdos support ansi escape sequences control characters interpreted underlying bios making almostnb impossible kind fullscreen application display effects done bios calls notoriously slow directly manipulating hardware
+introduced ability device driver ansi escape sequences facto standard ansisys others like ansicom8 nansisys9 ansiplusexe used well considerably faster bypass bios slowness fact installed default made software rarely take advantage instead applications continued directly manipulate hardware text display neededcitation needed ansisys similar drivers continued work windows windows ntderived systems 16bit legacy programs executing ntvdm
+win32 console support ansi escape sequences replacements additions console window softwares formerly michael meffords ansicom jason hoods ansicon10 maximus5s conemu interpreted ansi escape sequences printed programs python package11 internally interpreted ansi escape sequences text printed translating calls manipulate color cursor position make easier port python code using ansi windows
+2016 windows threshold microsoft unexpectedly started supporting ansi escape sequences console making porting software remote access unix much easier
+escape sequencesedit
+sequences different lengths sequences start ascii character 0x1b followed second byte range 0x40–0x5f ascii a–z1253a
+standard says 8bit environments twobyte sequences merged single byte 0x80–0x9f range details control codes1254a however modern devices codes often used purposes parts utf8 cp1252 characters 2byte sequence used
+codes besides commonly produce similar identical effects control sequences output
+
+ansi escape sequences complete list
+
+sequence
+
+name
+effect
+
+
+
+0x8e
+single shift
+select single character alternative character sets xterm selects character selects character set13
+
+
+
+0x8f
+single shift three
+
+
+
+0x90
+device control string
+controls device xterm uses sequence include defining userdefined keys requesting setting termcapterminfo data13
+
+
+
+0x9b
+control sequence introducer
+useful sequences next section ends ascii 0x40 0x7e12
+
+
+
+0x9c
+string terminator
+terminates strings controls including sos1283143
+
+
+
+0x9d
+operating system command
+starts control string operating system sequences similar sequences limited integer arguments general control sequences terminated st128389 xterm also terminated bel13 example xterm window title 0this window title
+
+
+
+0x98
+start string
+takes argument string text terminated uses string control sequences defined application1283283128 privacy discipline128394 functions implemented arguments ignored xterm13
+
+
+
+0x9e
+privacy message
+
+
+
+0x9f
+application program command
+
+
+
+
+reset initial state
+resets device original state include applicable reset graphic rendition clear tabulation stops reset default font
+
+
+pressing special keys keyboard well outputting many xterm sequences often produces sequence sent terminal computer though user typed
+
+sequencesedit
+followed number including none parameter bytes range 0x30–0x3f ascii number intermediate bytes range 0x20–0x2f ascii space finally single final byte range 0x40–0x7e ascii a–za–z1254
+common sequences parameters series semicolonseparated numbers missing numbers treated acts like middle number parameters escm acts like reset code sequences treat order make missing parameters usefulf42 bytes digits semicolon seem usedcitation needed
+subset arrangements declared private terminal manufacturers could insert sequences without conflicting standard includes parameter bytes final bytes 0x70–0x7f examples vt320 sequences csi25h csi25l turn cursor onoff
+behavior terminal undefined case sequence contains character outside range 0x20–0x7e illegal characters either control characters range 0–0x1f 0x7f bytes high possible responses ignore byte process immediately furthermore whether continue sequence abort immediately ignore rest itcitation needed
+
+ansi control sequences complete list
+
+code
+name
+effect
+
+
+
+
+
+cursor
+moves cursor
+
+
+
+
+
+
+displaystyle
+
+default cells given direction cursor already edge screen effect
+
+
+
+
+
+cursor
+
+
+
+
+
+cursor forward
+
+
+
+
+
+cursor back
+
+
+
+cursor next line
+moves cursor beginning line
+
+
+
+
+
+
+displaystyle
+
+default lines ansisys
+
+
+
+cursor previous line
+moves cursor beginning line
+
+
+
+
+
+
+displaystyle
+
+default lines ansisys
+
+
+
+cursor horizontal absolute
+moves cursor column
+
+
+
+
+
+
+displaystyle
+
+default ansisys
+
+
+
+
+
+cursor position
+moves cursor
+
+
+
+
+
+
+displaystyle
+
+column
+
+
+
+
+
+
+displaystyle
+
+values 1based default left corner omitted sequence synonym well 171h
+
+
+
+
+
+erase display
+clears part screen
+
+
+
+
+
+
+displaystyle
+
+missing clear cursor screen
+
+
+
+
+
+
+displaystyle
+
+clear cursor beginning screen
+
+
+
+
+
+
+displaystyle
+
+clear entire screen moves cursor upper left ansisys
+
+
+
+
+
+
+displaystyle
+
+clear entire screen delete lines saved scrollback buffer feature added xterm supported terminal applications
+
+
+
+
+
+erase line
+erases part line
+
+
+
+
+
+
+displaystyle
+
+zero missing clear cursor line
+
+
+
+
+
+
+displaystyle
+
+clear cursor beginning line
+
+
+
+
+
+
+displaystyle
+
+clear entire line cursor position change
+
+
+
+
+
+scroll
+scroll whole page
+
+
+
+
+
+
+displaystyle
+
+default lines lines added bottom ansisys
+
+
+
+
+
+scroll
+scroll whole page
+
+
+
+
+
+
+displaystyle
+
+default lines lines added ansisys
+
+
+
+
+
+horizontal vertical position
+
+
+
+
+
+
+select graphic rendition
+sets parameters including text color zero parameters separated semicolon none treated reset normal
+
+
+
+
+
+port
+enable serial port usually local serial printer
+
+
+
+
+
+port
+disable serial port usually local serial printer
+
+
+
+
+
+device status report
+reports cursor position application though typed keyboard escnmr
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+displaystyle
+
+column
+
+
+
+
+
+save cursor position
+saves cursor positionstate
+
+
+
+
+
+restore cursor position
+restores cursor positionstate
+
+
+select graphic rendition parametersedit
+
+
+code
+effect
+note
+
+
+
+reset normal
+attributes
+
+
+
+bold increased intensity
+
+
+
+
+faint decreased intensity
+widely supported
+
+
+
+italic
+widely supported sometimes treated inverse
+
+
+
+underline
+
+
+
+
+slow blink
+less minute
+
+
+
+rapid blink
+msdos ansisys minute widely supported
+
+
+
+reverse video
+swap foreground background colors
+
+
+
+conceal
+widely supported
+
+
+
+crossedout
+characters legible marked deletion widely supported
+
+
+
+primarydefault font
+
+
+
+11–19
+alternative font
+select alternative font
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+fraktur
+hardly ever supported
+
+
+
+bold double underline
+bold widely supported double underline hardly ever supported
+
+
+
+normal color intensity
+neither bold faint
+
+
+
+italic fraktur
+
+
+
+
+underline
+singly doubly underlined
+
+
+
+blink
+
+
+
+
+inverse
+
+
+
+
+reveal
+conceal
+
+
+
+crossed
+
+
+
+30–37
+foreground color
+color table
+
+
+
+foreground color
+next arguments 2rgb
+
+
+
+default foreground color
+implementation defined according standard
+
+
+40–47
+background color
+color table
+
+
+
+background color
+next arguments 2rgb
+
+
+
+default background color
+implementation defined according standard
+
+
+
+framed
+
+
+
+
+encircled
+
+
+
+
+overlined
+
+
+
+
+framed encircled
+
+
+
+
+overlined
+
+
+
+
+ideogram underline right side line
+hardly ever supported
+
+
+
+ideogram double underline
+double line right side
+
+
+
+ideogram overline left side line
+
+
+
+ideogram double overline
+double line left side
+
+
+
+ideogram stress marking
+
+
+
+ideogram attributes
+reset effects 60–64
+
+
+90–97
+bright foreground color
+aixterm standard
+
+
+100–107
+bright background color
+aixterm standard
+
+
+bracketed paste modeedit
+terminal running bracketed paste mode text pasted terminal surrounded sequence indicates programs support text within pasted treated specially example command keypresses vim14
+sequence 2004h echoed terminal enables bracketed paste mode 2004l disables
+colorsedit
+bitedit
+original specification colors gave names parameters 3037 selected foreground color 4047 selected background quite terminals implemented bold code brighter color rather different font thus providing additional foreground colors usually could background colors though sometimes inverse video code would allow examples black letters white background esc3047m esc31m bright esc131m reset colors defaults esc3949m supported terminals reset attributes esc0m later terminals added ability directly specify bright colors 9097 100107
+hardware started using 8bit dacs several pieces software assigned 24bit color numbers names chart shows values sent common hardware softwarecitation needed
+
+
+name
+code
+code
+vganb
+cmdnb
+terminalapp
+putty
+mirc
+xterm
+
+ubuntunb
+
+
+black
+
+
+
+
+
+
+
+
+
+17000
+12800
+1945433
+18700
+12700
+20500
+25500
+2225643
+
+
+green
+
+
+01700
+01280
+3718836
+01870
+01470
+02050
+02550
+5718174
+
+
+yellow
+
+
+170850nb
+1281280
+17317339
+1871870
+2521270
+2052050
+2552550
+2551996
+
+
+blue
+
+
+00170
+00128
+7346225
+00187
+00127
+0023815
+00255
+0111184
+
+
+magenta
+
+
+1700170
+1280128
+21156211
+1870187
+1560156
+2050205
+2550255
+11838113
+
+
+cyan
+
+
+0170170
+0128128
+51187200
+0187187
+0147147
+0205205
+0255255
+44181233
+
+
+white
+
+
+170170170
+192192192
+203204205
+187187187
+210210210
+229229229
+255255255
+204204204
+
+
+bright black
+
+
+858585
+128128128
+129131131
+858585
+127127127
+127127127
+
+128128128
+
+
+bright
+
+
+2558585
+25500
+2525731
+2558585
+25500
+25500
+
+25500
+
+
+bright green
+
+
+8525585
+02550
+4923134
+8525585
+02520
+02550
+144238144
+02550
+
+
+bright yellow
+
+
+25525585
+2552550
+23423635
+25525585
+2552550
+2552550
+255255224
+2552550
+
+
+bright blue
+
+
+8585255
+00255
+8851255
+8585255
+00252
+929225516
+173216230
+00255
+
+
+bright magenta
+
+
+25585255
+2550255
+24953248
+25585255
+2550255
+2550255
+
+2550255
+
+
+bright cyan
+
+
+85255255
+0255255
+20240240
+85255255
+0255255
+0255255
+224255255
+0255255
+
+
+bright white
+
+
+255255255
+255255255
+233235235
+255255255
+255255255
+255255255
+
+255255255
+
+
+8bitedit
+256color lookup tables became common graphic cards escape sequences added select predefined colorscitation needed
+
+385n select foreground color
+485n select background color
+standard colors 30–37
+high intensity colors 90–97
+16231 cube colors
+232255 grayscale black white steps
+
+itus t416 information technology open document architecture interchange format character content architectures17 uses separator characters instead
+
+385n select foreground color
+485n select background color
+
+
+
+256color mode foreground esc385m background esc485m
+
+
+standard colors
+highintensity colors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+colors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+grayscale colors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+24bitedit
+true color graphic cards bits color became common xterm13 kdes konsole18 well libvte based terminals19 including gnome terminal support iso86133 24bit foreground background color settingbetter source needed20
+
+382rgb select foreground color
+482rgb select background color
+
+itus t416 information technology open document architecture interchange format character content architectures21 adopted isoiec international standard 86136 gives alternative version seems less supported
+
+382colorspaceidrgbunusedcs tolerancecolorspace 0cieluv 1cielabm select foreground color
+482colorspaceidrgbunusedcs tolerancecolorspace 0cieluv 1cielabm select background color
+
+note uses otherwise reserved character separate suboptions source confusion realworld implementations also documents using second parameter specify colors using cyanmagentayellow scheme cyanmagentayellowblack latter using position marked unused examples black component
+also note many implementation recognize separator erroneously forget color space identifier parameter hence shift position remaining ones
+examplesedit
+clears screen devices locates cursor position upper left corner
+makes text green msdos normally green would dark dull green wish enable bold sequence would make bright green combined msdos ansisys uses bold state make character bright also blink state 1003h render background bright mode msdos ansisys support codes 90–97 100–107 directly
+reassigns send keyboard buffer string enter command line would display contents current directory msdos ansisys sometimes used ansi bombs privateuse code indicated letter using nonstandard extension include stringvalued parameter following letter standard would consider sequence letter
+saves cursor position using sequence restore position current cursor position sequence save numbers move different cursor position using sequence sequence cursor position return terminals require sequences instead widely supported
+example shell scriptingedit
+ansi escape codes often used unix unixlike terminals provide syntax highlighting example compatible terminals following list command colorcodes file directory names type
+color
+users employ escape codes scripts including part standard output standard error example following command embellishes output make command displaying lines containing words starting warn reverse video words starting bright yellow dark background letter case ignored representations codes highlighted22
+
+make sbwarnx1b7mx1b0mi sberrx1b9341 mx1b0mi
+
+following bash function flashes terminal alternately sending reverse normal video mode codes user presses key23
+
+flasher true printf sleep printf read break done
+
+used alert programmer lengthy command terminates make flasher
+
+printf 033c
+
+reset console similar command reset modern linux systems however work even older linux systems nonlinux unix variants
+invalid ambiguous sequences useedit
+
+linux console uses change palette hardcoded application hang terminals however appending ignored linux form proper ignorable sequence terminalscitation needed
+linux console certain function keys generate sequences form char sequence terminate
+versions terminator generate modifiers char f1–f4 pressed modifiers faulty behavior copied gnome terminalcitation needed
+xterm replies column asked cursor position modifiers pressed modifiers collide case avoided using private modifier reflected responseclarification needed
+many terminals prepend character typed creates ambiguity uppercase letters symbols would form codesclarification needed
+konsole generates modifiers char f1–f4 pressed modifiersclarification needed
+
+alsoedit
+
+ansi
+control character
+advanced video attribute terminal assembler recreator avatar
+isoiec
+
+notesedit
+
+
+
+screen display could replaced drawing entire screens contents bottom scrolling previous screen sufficiently erase text user would scrolling hardware cursor would left bottom early batch files achieved rudimentary full screen displays
+typical colors used booting leaving text mode used 16entry color table colors different egavga graphic modes
+windows
+color name rgbtxt color database light prefixed bright colors
+virtual terminals etcvtrgb
+terminals based compatible hardware ansisys running normal intensity foreground color rendered orange rgbi monitors contained hardware modify dark yellow color orangebrown color reducing green component ansi example
+
+
+
+referencesedit
+
+
+
+grehan oisin 20160204 windows v1511 console host enhancements retrieved 20160210
+historical version ecma48
+williams paul 2006 digitals video terminals vt100net retrieved 20110817
+heathkit company 1979 heathkit catalog 1979 heathkit company archived original 20120113 retrieved 20111104
+withdrawn fips listed number
+amiga printer command definitions commodore retrieved 20130710
+using ckermit
+mefford michael 19890207 ansicom download magazine retrieved 20110810
+kegel auer eric 19990228 nansi nnansi ansi drivers msdos kegels hostel retrieved 20110810
+hood jason 2005 process ansi escape sequences windows console programs jason hoods home page retrieved 20130509
+colorama python package index retrieved 20130817
+standard ecma48 control functions coded character sets fifth ecma international june 1991
+xterm control sequences invisibleislandnet 20140113 retrieved 20140413
+httpscirwinblogbracketedpaste
+changed 00205 july 2004 patch 2004712 xfree86 44999
+changed 00255 july 2004 patch 2004712 xfree86 44999
+t416 information technology open document architecture interchange format character content architectures
+colorspacespl copy 256colors2pl xterm dated 19990711 20061206
+libvtes report patches gnome bugzilla 20140404 retrieved 20160605
+readmemorecolors 20100422
+t416 information technology open document architecture interchange format character content architectures
+chapter system tips debianorg
+vt100net digital vt100 user guide retrieved 20150119
+bash notification commands done different retrieved 20150119
+
+
+
+external linksedit
+
+standard ecma48 control functions coded character sets edition june 1991 european computer manufacturers association geneva 1991 also published standard isoiec 6429
+vt100net documents
+ansisys ansi terminal emulation escape sequences wayback machine archived february 2006
+xterm escape sequences
+aixterm escape sequences
+collection escape sequences terminals vaguely compliant ecma48 friends
+ansi escape sequences
+itut t416 0393 information technology open document architecture interchange format character content architectures
+
+
+
+
+
+
+
+
+
+
+
+
+character encodings
+
+
+
+early telecommunications
+
+
+
+ascii
+isoiec
+isoiec 6937
+
+bcdic
+baudot code
+morse code
+
+telegraph code
+wabun code
+
+
+special telegraphy codes
+
+nonlatin
+chinese
+cyrillic
+
+
+needle telegraph codes
+
+
+
+
+
+isoiec 8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bibliographic
+
+
+
+ansel
+5426 54262 5427 5428 6438 6861 6862 10585 10586 10754 11822
+marc8
+
+
+
+
+
+national standards
+
+
+
+armscii
+brascii
+11643
+elot
+gost 10859
+18030
+hkscs
+iscii
+0201
+0208
+0212
+0213
+koi7
+9566
+1001
+pascii
+
+tis620
+tscii
+viscii
+yuscii
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isoiec 2022
+
+
+
+
+
+
+cccii
+
+
+
+
+
+macos code pages
+scripts
+
+
+
+arabic
+celtic
+centeuro
+chinesesimp euccn
+chinesetrad big5
+croatian
+cyrillic
+devanagari
+dingbats
+esperanto
+farsi
+gaelic
+greek
+gujarati
+gurmukhi
+hebrew
+iceland
+japanese shiftjis
+korean euckr
+latin1
+roman
+romanian
+sámi
+symbol
+thai tis620
+turkish
+ukrainian
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+855872
+
+
+
+
+
+
+
+
+86417248
+
+866808
+
+
+
+87411611162
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9501370
+
+
+
+1034
+1039
+1040
+1041
+1042
+1043
+1044
+1046
+1086
+1088
+1092
+1093
+1098
+1108
+1109
+1114
+1115
+1116
+1117
+1118
+1119
+1125848
+1126
+1127
+1131849
+1139
+1167
+1168
+1300
+1351
+1361
+1362
+1363
+1372
+1373
+1374
+1375
+1380
+1381
+1385
+1386
+1391
+1392
+1393
+1394
+kamenický
+mazovia
+cwi2
+koi8
+
+iran system
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+921901
+922902
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1004
+1006
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1029
+1036
+1089
+1111
+1124
+11291163
+1133
+1350
+1382
+1383
+
+
+
+
+
+apple macintosh
+emulations
+
+
+
+1275
+1280
+1281
+1282
+1283
+1284
+1285
+1286
+
+
+
+
+
+adobe emulations
+
+
+
+1038
+1276
+1277
+
+
+
+
+
+emulations
+
+
+
+1020
+1021
+1023
+1090
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1287
+1288
+
+
+
+
+
+emulations
+
+
+
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+
+
+
+
+
+windows code pages
+
+
+
+cergs
+8741162 tis620
+932943 shift
+9361386
+9501370 big5
+9491363 euckr
+1169
+1174
+extended latin8
+1200 utf16le
+1201 utf16be
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1261
+1270
+54936 gb18030
+
+
+
+
+
+ebcdic code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+371140
+
+
+
+
+
+
+
+
+
+
+
+
+2731141
+
+
+
+2771142
+2781143
+
+2801144
+
+
+
+2841145
+2851146
+
+
+
+
+
+
+2971147
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42016804
+
+
+424861612712
+
+
+5001148
+
+
+
+
+
+
+
+838838
+
+87011101153
+8711149
+87549719067
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9301390
+
+9331364
+9351388
+9371371
+9391399
+1001
+1002
+1003
+1005
+1007
+1024
+10251154
+10261155
+1027
+1028
+1030
+1031
+1032
+1033
+1037
+1047
+1068
+1069
+1070
+1071
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1087
+1091
+1097
+11121156
+1113
+11221157
+11231158
+11301164
+1132
+1136
+1137
+1150
+1151
+1152
+1159
+1165
+1166
+1278
+1279
+1303
+1364
+1376
+1377
+
+keis
+
+
+
+
+
+platform specific
+
+
+
+acorn
+adobe standard
+apple
+atascii
+atari
+bics
+casio calculators
+
+
+radix50
+mcsnrcs
+international
+elwrojunior
+fieldata
+
+geos
+0338
+roman extension
+roman8
+roman9
+focal
+
+lics
+lmbcs
+
+
+next
+
+petscii
+sharp calculators
+calculators
+trs80
+ventura international
+ventura symbol
+wiscii
+xccs
+zx80
+zx81
+spectrum
+
+
+
+
+
+unicode isoiec 10646
+
+
+
+utf1
+utf7
+utf8
+utf16 utf16leutf16be ucs2
+utf32 utf32leutf32be ucs4
+utfebcdic
+18030
+bocu1
+cesu8
+scsu
+
+
+
+
+
+miscellaneous code pages
+
+
+
+abicomp
+
+arib stdb24
+cork
+
+inis
+inis8
+johab
+
+
+
+
+seascii
+tace16
+tron
+utf5
+utf6
+wtf8
+
+
+
+
+
+related topics
+
+
+
+code page
+control character
+ccsid
+character encodings html
+charset detection
+unification
+hardware
+6429iec 6429ansi x364
+mojibake
+
+
+
+
+
+
+character sets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards ecma international
+
+
+
+application interfaces
+
+
+
+ansi escape code
+common language infrastructure
+office open
+openxps
+
+
+
+
+
+file systems tape
+
+
+
+advanced intelligent tape
+
+
+super
+holographic versatile disc
+linear tapeopen ultrium1
+
+
+
+
+
+
+file systems disk
+
+
+
+cdrom
+file system cdfs
+
+
+fat12
+fat16
+fat16b
+
+
+
+
+ultra density optical
+universal media disc
+
+
+
+
+
+graphics
+
+
+
+universal
+
+
+
+
+
+programming languages
+
+
+
+ccli
+
+eiffel
+javascript ecmascript
+
+
+
+
+
+radio link interfaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ecma35
+
+
+
+
+
+
+list ecma standards 1961 present
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+list international electrotechnical commission standards
+
+
+
+standards
+
+
+
+60027
+60034
+60038
+60062
+60063
+60068
+60112
+60228
+60269
+60297
+60309
+60320
+60364
+60446
+60559
+60601
+60870
+
+608705
+608706
+
+
+609061
+60908
+60929
+60958
+
+aes3
+spdif
+
+
+61030
+61131
+
+611313
+
+
+61158
+61162
+61334
+61346
+61355
+61400
+61499
+61508
+61511
+61850
+61851
+61883
+61960
+61968
+61970
+620144
+62056
+62061
+62196
+62262
+62264
+62304
+62325
+62351
+62365
+62366
+62379
+62386
+62455
+62680
+62682
+62700
+
+
+
+
+
+isoiec standards
+
+
+
+isoiec
+isoiec 2022
+isoiec 4909
+isoiec 5218
+isoiec 6429
+isoiec 6523
+isoiec 7810
+isoiec 7811
+isoiec 7812
+isoiec 7813
+isoiec 7816
+isoiec 7942
+isoiec 8613
+isoiec 8632
+isoiec 8652
+isoiec 8859
+isoiec 9126
+isoiec 9293
+isoiec 9592
+isoiec 9593
+isoiec 9899
+isoiec 9945
+isoiec 9995
+isoiec 10021
+isoiec 10116
+isoiec 10165
+isoiec 10179
+isoiec 10646
+isoiec 10967
+isoiec 11172
+isoiec 11179
+isoiec 11404
+isoiec 11544
+isoiec 11801
+isoiec 12207
+isoiec 13250
+isoiec 13346
+isoiec 135225
+isoiec 13568
+isoiec 13818
+isoiec 14443
+isoiec 14496
+isoiec 14882
+isoiec 15288
+isoiec 15291
+isoiec 15408
+isoiec 15444
+isoiec 15445
+isoiec 15504
+isoiec 15511
+isoiec 15693
+isoiec 15897
+isoiec 15938
+isoiec 16262
+isoiec 17024
+isoiec 17025
+isoiec 18000
+isoiec 18004
+isoiec 18014
+isoiec 19752
+isoiec 19757
+isoiec 19770
+isoiec 19788
+isoiec 20000
+isoiec 21000
+isoiec 21827
+isoiec 23000
+isoiec 23003
+isoiec 23008
+isoiec 23270
+isoiec 23360
+isoiec 24707
+isoiec 24727
+isoiec 24744
+isoiec 24752
+isoiec 26300
+isoiec 27000
+isoiec 27000series
+isoiec 27002
+isoiec 27040
+isoiec 29119
+isoiec 33001
+isoiec 38500
+isoiec 42010
+isoiec 80000
+
+
+
+
+
+related
+
+
+
+international electrotechnical commission
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleansiescapecodeoldid817465021 categories computer standardsecma standardsansi standardstext user interfacehidden categories articles needing additional references january 2017all articles needing additional referenceswikipedia articles technical june 2016all articles technicalarticles needing expert attention june 2016all articles needing expert attentionarticles multiple maintenance issuesuse dates 2012all articles unsourced statementsarticles unsourced statements july 2014articles unsourced statements august 2011articles unsourced statements november 2010articles unsourced statements july 2015articles unsourced statements october 2010articles unsourced statements september 2013all articles lacking reliable referencesarticles lacking reliable references september 2013articles unsourced statements january 2017articles unsourced statements december 2010wikipedia articles needing clarification november 2010webarchive template wayback links

@@ -1,0 +1,1815 @@
+For geodesics on the Earth, see Geodesics on an ellipsoid. For geodesics in general relativity, see Geodesics in general relativity. For other uses, see Geodesic (disambiguation).
+
+
+
+
+A geodesic triangle on the sphere. The geodesics are great circle arcs.
+
+
+
+
+Geodesy
+
+
+
+
+
+Fundamentals
+
+
+
+
+
+Geodesy
+Geodynamics
+Geomatics
+Cartography
+History
+
+
+
+
+
+Concepts
+
+
+
+
+
+Geographical distance
+Geoid
+Figure of the Earth
+Geodetic datum
+Geodesic
+Geographic coordinate system
+Horizontal position representation
+Latitude / Longitude
+Map projection
+Reference ellipsoid
+Satellite geodesy
+Spatial reference system
+
+
+
+
+
+Technologies
+
+
+
+
+Global Navigation Satellite System (GNSS)
+Global Positioning System (GPS)
+GLONASS (Russian)
+BeiDou (BDS) (Chinese)
+Galileo (European)
+
+Indian Regional Navigation
+Satellite System (IRNSS) (India)
+
+Quasi-Zenith Satellite System (QZSS) (Japan)
+Legenda (satellite system)
+
+
+
+
+Standards (History)
+
+
+
+
+
+NGVD 29
+Sea Level Datum 1929
+
+
+OSGB36
+Ordnance Survey Great Britain 1936
+
+
+SK-42
+Systema Koordinat 1942 goda
+
+
+ED50
+European Datum 1950
+
+
+SAD69
+South American Datum 1969
+
+
+GRS 80
+Geodetic Reference System 1980
+
+
+NAD 83
+North American Datum 1983
+
+
+WGS 84
+World Geodetic System 1984
+
+
+NAVD 88
+N. American Vertical Datum 1988
+
+
+ETRS89
+European Terrestrial Reference
+System 1989
+
+
+GCJ-02
+Chinese obfuscated datum 2002
+
+
+
+International Terrestrial Reference System
+Spatial Reference System Identifier (SRID)
+Universal Transverse Mercator (UTM)
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+In differential geometry, a geodesic (/ˌdʒiːəˈdɛsɪk, ˌdʒiːoʊ-, -ˈdiː-, -zɪk/[1][2]) is a generalization of the notion of a "straight line" to "curved spaces". The term "geodesic" comes from geodesy, the science of measuring the size and shape of Earth; in the original sense, a geodesic was the shortest route between two points on the Earth's surface, namely, a segment of a great circle. The term has been generalized to include measurements in much more general mathematical spaces; for example, in graph theory, one might consider a geodesic between two vertices/nodes of a graph.
+In the presence of an affine connection, a geodesic is defined to be a curve whose tangent vectors remain parallel if they are transported along it. If this connection is the Levi-Civita connection induced by a Riemannian metric, then the geodesics are (locally) the shortest path between points in the space.
+Geodesics are of particular importance in general relativity. Timelike geodesics in general relativity describe the motion of free falling test particles.
+
+
+
+Contents
+
+
+1 Introduction
+
+1.1 Examples
+
+
+2 Metric geometry
+3 Riemannian geometry
+
+3.1 Calculus of variations
+
+
+4 Affine geodesics
+
+4.1 Existence and uniqueness
+4.2 Geodesic flow
+4.3 Geodesic spray
+4.4 Affine and projective geodesics
+
+
+5 Computational methods
+6 Applications
+7 See also
+8 References
+9 Further reading
+10 External links
+
+
+
+Introduction[edit]
+The shortest path between two points in a curved space can be found by writing the equation for the length of a curve (a function f from an open interval of R to the manifold), and then minimizing this length using the calculus of variations. This has some minor technical problems, because there is an infinite dimensional space of different ways to parameterize the shortest path. It is simpler to demand not only that the curve locally minimizes length but also that it is parameterized "with constant velocity", meaning that the distance from f(s) to f(t) along the geodesic is proportional to |s−t|. Equivalently, a different quantity may be defined, termed the energy of the curve; minimizing the energy leads to the same equations for a geodesic (here "constant velocity" is a consequence of minimisation). Intuitively, one can understand this second formulation by noting that an elastic band stretched between two points will contract its length, and in so doing will minimize its energy. The resulting shape of the band is a geodesic.
+In Riemannian geometry geodesics are not the same as "shortest curves" between two points, though the two concepts are closely related. The difference is that geodesics are only locally the shortest distance between points, and are parameterized with "constant velocity". Going the "long way round" on a great circle between two points on a sphere is a geodesic but not the shortest path between the points. The map t → t2 from the unit interval to itself gives the shortest path between 0 and 1, but is not a geodesic because the velocity of the corresponding motion of a point is not constant.
+Geodesics are commonly seen in the study of Riemannian geometry and more generally metric geometry. In general relativity, geodesics describe the motion of point particles under the influence of gravity alone. In particular, the path taken by a falling rock, an orbiting satellite, or the shape of a planetary orbit are all geodesics in curved space-time. More generally, the topic of sub-Riemannian geometry deals with the paths that objects may take when they are not free, and their movement is constrained in various ways.
+This article presents the mathematical formalism involved in defining, finding, and proving the existence of geodesics, in the case of Riemannian and pseudo-Riemannian manifolds. The article geodesic (general relativity) discusses the special case of general relativity in greater detail.
+Examples[edit]
+
+
+
+
+A geodesic on a triaxial ellipsoid.
+
+
+The most familiar examples are the straight lines in Euclidean geometry. On a sphere, the images of geodesics are the great circles. The shortest path from point A to point B on a sphere is given by the shorter arc of the great circle passing through A and B. If A and B are antipodal points, then there are infinitely many shortest paths between them. Geodesics on an ellipsoid behave in a more complicated way than on a sphere; in particular, they are not closed in general (see figure).
+Metric geometry[edit]
+In metric geometry, a geodesic is a curve which is everywhere locally a distance minimizer. More precisely, a curve γ : I → M from an interval I of the reals to the metric space M is a geodesic if there is a constant v ≥ 0 such that for any t ∈ I there is a neighborhood J of t in I such that for any t1, t2 ∈ J we have
+
+
+
+
+
+d
+(
+γ
+(
+
+t
+
+1
+
+
+)
+,
+γ
+(
+
+t
+
+2
+
+
+)
+)
+=
+v
+
+|
+
+t
+
+1
+
+
+−
+
+t
+
+2
+
+
+|
+
+.
+
+
+{\displaystyle d(\gamma (t_{1}),\gamma (t_{2}))=v\left|t_{1}-t_{2}\right|.}
+
+
+
+This generalizes the notion of geodesic for Riemannian manifolds. However, in metric geometry the geodesic considered is often equipped with natural parameterization, i.e. in the above identity v = 1 and
+
+
+
+
+
+d
+(
+γ
+(
+
+t
+
+1
+
+
+)
+,
+γ
+(
+
+t
+
+2
+
+
+)
+)
+=
+
+|
+
+t
+
+1
+
+
+−
+
+t
+
+2
+
+
+|
+
+.
+
+
+{\displaystyle d(\gamma (t_{1}),\gamma (t_{2}))=\left|t_{1}-t_{2}\right|.}
+
+
+
+If the last equality is satisfied for all t1, t2 ∈ I, the geodesic is called a minimizing geodesic or shortest path.
+In general, a metric space may have no geodesics, except constant curves. At the other extreme, any two points in a length metric space are joined by a minimizing sequence of rectifiable paths, although this minimizing sequence need not converge to a geodesic.
+Riemannian geometry[edit]
+In a Riemannian manifold M with metric tensor g, the length of a continuously differentiable curve γ : [a,b] → M is defined by
+
+
+
+
+
+L
+(
+γ
+)
+=
+
+∫
+
+a
+
+
+b
+
+
+
+
+
+g
+
+γ
+(
+t
+)
+
+
+(
+
+
+
+γ
+˙
+
+
+
+(
+t
+)
+,
+
+
+
+γ
+˙
+
+
+
+(
+t
+)
+)
+
+
+
+d
+t
+.
+
+
+{\displaystyle L(\gamma )=\int _{a}^{b}{\sqrt {g_{\gamma (t)}({\dot {\gamma }}(t),{\dot {\gamma }}(t))}}\,dt.}
+
+
+
+The distance d(p, q) between two points p and q of M is defined as the infimum of the length taken over all continuous, piecewise continuously differentiable curves γ : [a,b] → M such that γ(a) = p and γ(b) = q. With this definition of distance, geodesics in a Riemannian manifold are then the locally distance-minimizing paths.
+The minimizing curves of L in a small enough open set of M can be obtained by techniques of calculus of variations. Typically, one introduces the following action or energy functional
+
+
+
+
+
+E
+(
+γ
+)
+=
+
+
+1
+2
+
+
+
+∫
+
+a
+
+
+b
+
+
+
+g
+
+γ
+(
+t
+)
+
+
+(
+
+
+
+γ
+˙
+
+
+
+(
+t
+)
+,
+
+
+
+γ
+˙
+
+
+
+(
+t
+)
+)
+
+d
+t
+.
+
+
+{\displaystyle E(\gamma )={\frac {1}{2}}\int _{a}^{b}g_{\gamma (t)}({\dot {\gamma }}(t),{\dot {\gamma }}(t))\,dt.}
+
+
+
+For a piecewise 
+
+
+
+
+C
+
+1
+
+
+
+
+{\displaystyle C^{1}}
+
+ curve (more generally, a 
+
+
+
+
+W
+
+1
+,
+2
+
+
+
+
+{\displaystyle W^{1,2}}
+
+ curve), the Cauchy–Schwarz inequality gives
+
+
+
+
+
+L
+(
+γ
+
+)
+
+2
+
+
+≤
+2
+(
+b
+−
+a
+)
+E
+(
+γ
+)
+
+
+{\displaystyle L(\gamma )^{2}\leq 2(b-a)E(\gamma )}
+
+
+
+with equality if and only if 
+
+
+
+g
+(
+
+γ
+′
+
+,
+
+γ
+′
+
+)
+
+
+{\displaystyle g(\gamma ',\gamma ')}
+
+ is equal to a constant a.e. It happens that minimizers of 
+
+
+
+E
+(
+γ
+)
+
+
+{\displaystyle E(\gamma )}
+
+ also minimize 
+
+
+
+L
+(
+γ
+)
+
+
+{\displaystyle L(\gamma )}
+
+, because they turn out to be affinely parameterized, and the inequality is an equality. The usefulness of this approach is that the problem of seeking minimizers of E is a more robust variational problem. Indeed, E is a "convex function" of 
+
+
+
+γ
+
+
+{\displaystyle \gamma }
+
+, so that within each isotopy class of "reasonable functions", one ought to expect existence, uniqueness, and regularity of minimizers. In contrast, "minimizers" of the functional 
+
+
+
+L
+(
+γ
+)
+
+
+{\displaystyle L(\gamma )}
+
+ are generally not very regular, because arbitrary reparameterizations are allowed.
+The Euler–Lagrange equations of motion for the functional E are then given in local coordinates by
+
+
+
+
+
+
+
+
+
+d
+
+2
+
+
+
+x
+
+λ
+
+
+
+
+d
+
+t
+
+2
+
+
+
+
+
++
+
+Γ
+
+μ
+ν
+
+
+λ
+
+
+
+
+
+d
+
+x
+
+μ
+
+
+
+
+d
+t
+
+
+
+
+
+
+d
+
+x
+
+ν
+
+
+
+
+d
+t
+
+
+
+=
+0
+,
+
+
+{\displaystyle {\frac {d^{2}x^{\lambda }}{dt^{2}}}+\Gamma _{\mu \nu }^{\lambda }{\frac {dx^{\mu }}{dt}}{\frac {dx^{\nu }}{dt}}=0,}
+
+
+
+where 
+
+
+
+
+Γ
+
+μ
+ν
+
+
+λ
+
+
+
+
+{\displaystyle \Gamma _{\mu \nu }^{\lambda }}
+
+ are the Christoffel symbols of the metric. This is the geodesic equation, discussed below.
+Calculus of variations[edit]
+Techniques of the classical calculus of variations can be applied to examine the energy functional E. The first variation of energy is defined in local coordinates by
+
+
+
+
+
+δ
+E
+(
+γ
+)
+(
+φ
+)
+=
+
+
+
+
+
+∂
+
+∂
+t
+
+
+
+|
+
+
+t
+=
+0
+
+
+E
+(
+γ
++
+t
+φ
+)
+.
+
+
+{\displaystyle \delta E(\gamma )(\varphi )=\left.{\frac {\partial }{\partial t}}\right|_{t=0}E(\gamma +t\varphi ).}
+
+
+
+The critical points of the first variation are precisely the geodesics. The second variation is defined by
+
+
+
+
+
+
+δ
+
+2
+
+
+E
+(
+γ
+)
+(
+φ
+,
+ψ
+)
+=
+
+
+
+
+
+
+∂
+
+2
+
+
+
+∂
+s
+
+∂
+t
+
+
+
+|
+
+
+s
+=
+t
+=
+0
+
+
+E
+(
+γ
++
+t
+φ
++
+s
+ψ
+)
+.
+
+
+{\displaystyle \delta ^{2}E(\gamma )(\varphi ,\psi )=\left.{\frac {\partial ^{2}}{\partial s\,\partial t}}\right|_{s=t=0}E(\gamma +t\varphi +s\psi ).}
+
+
+
+In an appropriate sense, zeros of the second variation along a geodesic γ arise along Jacobi fields. Jacobi fields are thus regarded as variations through geodesics.
+By applying variational techniques from classical mechanics, one can also regard geodesics as Hamiltonian flows. They are solutions of the associated Hamilton equations, with (pseudo-)Riemannian metric taken as Hamiltonian.
+Affine geodesics[edit]
+See also: Geodesics in general relativity
+A geodesic on a smooth manifold M with an affine connection ∇ is defined as a curve γ(t) such that parallel transport along the curve preserves the tangent vector to the curve, so
+
+
+
+
+
+
+
+
+
+
+∇
+
+
+
+γ
+˙
+
+
+
+
+
+
+
+γ
+˙
+
+
+
+=
+0
+
+
+{\displaystyle \nabla _{\dot {\gamma }}{\dot {\gamma }}=0}
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+(1)
+
+
+
+
+
+at each point along the curve, where 
+
+
+
+
+
+
+γ
+˙
+
+
+
+
+
+{\displaystyle {\dot {\gamma }}}
+
+ is the derivative with respect to 
+
+
+
+t
+
+
+{\displaystyle t}
+
+. More precisely, in order to define the covariant derivative of 
+
+
+
+
+
+
+γ
+˙
+
+
+
+
+
+{\displaystyle {\dot {\gamma }}}
+
+ it is necessary first to extend 
+
+
+
+
+
+
+γ
+˙
+
+
+
+
+
+{\displaystyle {\dot {\gamma }}}
+
+ to a continuously differentiable vector field in an open set. However, the resulting value of (1) is independent of the choice of extension.
+Using local coordinates on M, we can write the geodesic equation (using the summation convention) as
+
+
+
+
+
+
+
+
+
+d
+
+2
+
+
+
+γ
+
+λ
+
+
+
+
+d
+
+t
+
+2
+
+
+
+
+
++
+
+Γ
+
+μ
+ν
+
+
+λ
+
+
+
+
+
+d
+
+γ
+
+μ
+
+
+
+
+d
+t
+
+
+
+
+
+
+d
+
+γ
+
+ν
+
+
+
+
+d
+t
+
+
+
+=
+0
+ 
+,
+
+
+{\displaystyle {\frac {d^{2}\gamma ^{\lambda }}{dt^{2}}}+\Gamma _{\mu \nu }^{\lambda }{\frac {d\gamma ^{\mu }}{dt}}{\frac {d\gamma ^{\nu }}{dt}}=0\ ,}
+
+
+
+where 
+
+
+
+
+γ
+
+μ
+
+
+=
+
+x
+
+μ
+
+
+∘
+γ
+(
+t
+)
+
+
+{\displaystyle \gamma ^{\mu }=x^{\mu }\circ \gamma (t)}
+
+ are the coordinates of the curve γ(t) and 
+
+
+
+
+Γ
+
+μ
+ν
+
+
+λ
+
+
+
+
+{\displaystyle \Gamma _{\mu \nu }^{\lambda }}
+
+ are the Christoffel symbols of the connection ∇. This is an ordinary differential equation for the coordinates. It has a unique solution, given an initial position and an initial velocity. Therefore, from the point of view of classical mechanics, geodesics can be thought of as trajectories of free particles in a manifold. Indeed, the equation 
+
+
+
+
+∇
+
+
+
+γ
+˙
+
+
+
+
+
+
+
+γ
+˙
+
+
+
+=
+0
+
+
+{\displaystyle \nabla _{\dot {\gamma }}{\dot {\gamma }}=0}
+
+ means that the acceleration of the curve has no components in the direction of the surface (and therefore it is perpendicular to the tangent plane of the surface at each point of the curve). So, the motion is completely determined by the bending of the surface. This is also the idea of general relativity where particles move on geodesics and the bending is caused by the gravity.
+Existence and uniqueness[edit]
+The local existence and uniqueness theorem for geodesics states that geodesics on a smooth manifold with an affine connection exist, and are unique. More precisely:
+
+For any point p in M and for any vector V in TpM (the tangent space to M at p) there exists a unique geodesic 
+
+
+
+γ
+
+
+
+{\displaystyle \gamma \,}
+
+ : I → M such that
+
+
+
+
+
+γ
+(
+0
+)
+=
+p
+
+
+
+{\displaystyle \gamma (0)=p\,}
+
+ and
+
+
+
+
+
+
+
+γ
+˙
+
+
+
+(
+0
+)
+=
+V
+,
+
+
+{\displaystyle {\dot {\gamma }}(0)=V,}
+
+
+
+
+where I is a maximal open interval in R containing 0.
+
+In general, I may not be all of R as for example for an open disc in R2. The proof of this theorem follows from the theory of ordinary differential equations, by noticing that the geodesic equation is a second-order ODE. Existence and uniqueness then follow from the Picard–Lindelöf theorem for the solutions of ODEs with prescribed initial conditions. γ depends smoothly on both p and V.
+Geodesic flow[edit]
+Geodesic flow is a local R-action on the tangent bundle TM of a manifold M defined in the following way
+
+
+
+
+
+
+G
+
+t
+
+
+(
+V
+)
+=
+
+
+
+
+γ
+˙
+
+
+
+
+V
+
+
+(
+t
+)
+
+
+{\displaystyle G^{t}(V)={\dot {\gamma }}_{V}(t)}
+
+
+
+where t ∈ R, V ∈ TM and 
+
+
+
+
+γ
+
+V
+
+
+
+
+{\displaystyle \gamma _{V}}
+
+ denotes the geodesic with initial data 
+
+
+
+
+
+
+
+γ
+˙
+
+
+
+
+V
+
+
+(
+0
+)
+=
+V
+
+
+{\displaystyle {\dot {\gamma }}_{V}(0)=V}
+
+. Thus, Gt(V) = exp(tV) is the exponential map of the vector tV. A closed orbit of the geodesic flow corresponds to a closed geodesic on M.
+On a (pseudo-)Riemannian manifold, the geodesic flow is identified with a Hamiltonian flow on the cotangent bundle. The Hamiltonian is then given by the inverse of the (pseudo-)Riemannian metric, evaluated against the canonical one-form. In particular the flow preserves the (pseudo-)Riemannian metric 
+
+
+
+g
+
+
+{\displaystyle g}
+
+, i.e.
+
+
+
+
+
+g
+(
+
+G
+
+t
+
+
+(
+V
+)
+,
+
+G
+
+t
+
+
+(
+V
+)
+)
+=
+g
+(
+V
+,
+V
+)
+.
+
+
+
+{\displaystyle g(G^{t}(V),G^{t}(V))=g(V,V).\,}
+
+
+
+In particular, when V is a unit vector, 
+
+
+
+
+γ
+
+V
+
+
+
+
+{\displaystyle \gamma _{V}}
+
+ remains unit speed throughout, so the geodesic flow is tangent to the unit tangent bundle. Liouville's theorem implies invariance of a kinematic measure on the unit tangent bundle.
+Geodesic spray[edit]
+The geodesic flow defines a family of curves in the tangent bundle. The derivatives of these curves define a vector field on the total space of the tangent bundle, known as the geodesic spray.
+More precisely, an affine connection gives rise to a splitting of the double tangent bundle TTM into horizontal and vertical bundles:
+
+
+
+
+
+T
+T
+M
+=
+H
+⊕
+V
+.
+
+
+{\displaystyle TTM=H\oplus V.}
+
+
+
+The geodesic spray is the unique horizontal vector field W satisfying
+
+
+
+
+
+
+π
+
+∗
+
+
+
+W
+
+v
+
+
+=
+v
+
+
+
+{\displaystyle \pi _{*}W_{v}=v\,}
+
+
+
+at each point v ∈ TM; here π∗ : TTM → TM denotes the pushforward (differential) along the projection π : TM → M associated to the tangent bundle.
+More generally, the same construction allows one to construct a vector field for any Ehresmann connection on the tangent bundle. For the resulting vector field to be a spray (on the deleted tangent bundle TM \ {0}) it is enough that the connection be equivariant under positive rescalings: it need not be linear. That is, (cf. Ehresmann connection#Vector bundles and covariant derivatives) it is enough that the horizontal distribution satisfy
+
+
+
+
+
+
+H
+
+λ
+X
+
+
+=
+d
+(
+
+S
+
+λ
+
+
+
+)
+
+X
+
+
+
+H
+
+X
+
+
+
+
+
+{\displaystyle H_{\lambda X}=d(S_{\lambda })_{X}H_{X}\,}
+
+
+
+for every X ∈ TM \ {0} and λ > 0. Here d(Sλ) is the pushforward along the scalar homothety 
+
+
+
+
+S
+
+λ
+
+
+:
+X
+↦
+λ
+X
+.
+
+
+{\displaystyle S_{\lambda }:X\mapsto \lambda X.}
+
+ A particular case of a non-linear connection arising in this manner is that associated to a Finsler manifold.
+Affine and projective geodesics[edit]
+Equation (1) is invariant under affine reparameterizations; that is, parameterizations of the form
+
+
+
+
+
+t
+↦
+a
+t
++
+b
+
+
+{\displaystyle t\mapsto at+b}
+
+
+
+where a and b are constant real numbers. Thus apart from specifying a certain class of embedded curves, the geodesic equation also determines a preferred class of parameterizations on each of the curves. Accordingly, solutions of (1) are called geodesics with affine parameter.
+An affine connection is determined by its family of affinely parameterized geodesics, up to torsion (Spivak 1999, Chapter 6, Addendum I). The torsion itself does not, in fact, affect the family of geodesics, since the geodesic equation depends only on the symmetric part of the connection. More precisely, if 
+
+
+
+∇
+,
+
+
+
+∇
+¯
+
+
+
+
+
+{\displaystyle \nabla ,{\bar {\nabla }}}
+
+ are two connections such that the difference tensor
+
+
+
+
+
+D
+(
+X
+,
+Y
+)
+=
+
+∇
+
+X
+
+
+Y
+−
+
+
+
+
+∇
+¯
+
+
+
+
+X
+
+
+Y
+
+
+{\displaystyle D(X,Y)=\nabla _{X}Y-{\bar {\nabla }}_{X}Y}
+
+
+
+is skew-symmetric, then 
+
+
+
+∇
+
+
+{\displaystyle \nabla }
+
+ and 
+
+
+
+
+
+
+∇
+¯
+
+
+
+
+
+{\displaystyle {\bar {\nabla }}}
+
+ have the same geodesics, with the same affine parameterizations. Furthermore, there is a unique connection having the same geodesics as 
+
+
+
+∇
+
+
+{\displaystyle \nabla }
+
+, but with vanishing torsion.
+Geodesics without a particular parameterization are described by a projective connection.
+Computational methods[edit]
+Efficient solvers for the minimal geodesic problem on surfaces posed as Eikonal equations can be found in [3] [4]
+Applications[edit]
+
+
+
+
+This section needs expansion. You can help by adding to it. (June 2014)
+
+
+
+Geodesics serve as the basis to calculate:
+
+geodesic airframes; see geodesic airframe or geodetic airframe
+geodesic structures – for example geodesic domes
+horizontal distances on or near Earth; see Earth geodesics
+mapping images on surfaces, for rendering; see UV mapping
+robot motion planning (e.g., when painting car parts); see Shortest path problem
+
+See also[edit]
+
+
+Basic introduction to the mathematics of curved spacetime
+Clairaut's relation
+Differential geometry of curves
+Hopf–Rinow theorem
+Intrinsic metric
+Isotropic line
+Jacobi field
+Zoll surface
+
+
+References[edit]
+
+
+
+^ "geodesic – definition of geodesic in English from the Oxford dictionary". OxfordDictionaries.com. Retrieved 2016-01-20. 
+^ "geodesic". Merriam-Webster Dictionary. 
+^ R. Kimmel, A. Amir, and A. M. Bruckstein. Finding shortest paths on surfaces using level sets propagation. IEEE Trans. on Pattern Analysis and Machine Intelligence (PAMI), 17(6):635–640, 1995.
+^ R. Kimmel and J. A. Sethian. Computing Geodesic Paths on Manifolds in the Proceedings of National Academy of Sciences, 95(15):8431–8435, July, 1998.
+
+
+
+
+Spivak, Michael (1999), A Comprehensive introduction to differential geometry (Volume 2), Houston, TX: Publish or Perish, ISBN 978-0-914098-71-3 
+
+Further reading[edit]
+
+
+
+
+
+
+This article includes a list of references, but its sources remain unclear because it has insufficient inline citations. Please help to improve this article by introducing more precise citations. (July 2014) (Learn how and when to remove this template message)
+
+
+
+
+Adler, Ronald; Bazin, Maurice; Schiffer, Menahem (1975), Introduction to General Relativity (2nd ed.), New York: McGraw-Hill, ISBN 978-0-07-000423-8 . See chapter 2.
+Abraham, Ralph H.; Marsden, Jerrold E. (1978), Foundations of mechanics, London: Benjamin-Cummings, ISBN 978-0-8053-0102-1 . See section 2.7.
+Jost, Jürgen (2002), Riemannian Geometry and Geometric Analysis, Berlin, New York: Springer-Verlag, ISBN 978-3-540-42627-1 . See section 1.4.
+Kobayashi, Shoshichi; Nomizu, Katsumi (1996), Foundations of Differential Geometry, Vol. 1 (New ed.), Wiley-Interscience, ISBN 0-471-15733-3 .
+Landau, L. D.; Lifshitz, E. M. (1975), Classical Theory of Fields, Oxford: Pergamon, ISBN 978-0-08-018176-9 . See section 87.
+Misner, Charles W.; Thorne, Kip; Wheeler, John Archibald (1973), Gravitation, W. H. Freeman, ISBN 978-0-7167-0344-0 
+Ortín, Tomás (2004), Gravity and strings, Cambridge University Press, ISBN 978-0-521-82475-0 . Note especially pages 7 and 10.
+Volkov, Yu.A. (2001) [1994], "Geodesic line", in Hazewinkel, Michiel, Encyclopedia of Mathematics, Springer Science+Business Media B.V. / Kluwer Academic Publishers, ISBN 978-1-55608-010-4 .
+Weinberg, Steven (1972), Gravitation and Cosmology: Principles and Applications of the General Theory of Relativity, New York: John Wiley & Sons, ISBN 978-0-471-92567-5 . See chapter 3.
+
+External links[edit]
+
+Geodesics Revisited — Introduction to geodesics including two ways of derivation of the equation of geodesic with applications in geometry (geodesic on a sphere and on a torus), mechanics (brachistochrone) and optics (light beam in inhomogeneous medium).
+Geodesics on a parametric surface -- sage interact — Interactive SageMath worksheet to calculate and illustrate geodesics on parametric surfaces.
+Totally geodesic submanifold at the Manifold Atlas
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Tensors
+
+
+
+
+Glossary of tensor theory
+
+
+
+Scope
+
+
+
+
+Mathematics
+
+
+
+coordinate system
+multilinear algebra
+Euclidean geometry
+tensor algebra
+dyadic algebra
+differential geometry
+exterior calculus
+tensor calculus
+
+
+
+
+
+
+
+
+Physics
+Engineering
+
+
+
+
+
+
+continuum mechanics
+electromagnetism
+transport phenomena
+general relativity
+computer vision
+
+
+
+
+
+
+
+
+Notation
+
+
+
+index notation
+multi-index notation
+Einstein notation
+Ricci calculus
+Penrose graphical notation
+Voigt notation
+abstract index notation
+tetrad (index notation)
+Van der Waerden notation
+
+
+
+
+
+Tensor definitions
+
+
+
+tensor (intrinsic definition)
+tensor field
+tensor density
+tensors in curvilinear coordinates
+mixed tensor
+antisymmetric tensor
+symmetric tensor
+tensor operator
+tensor bundle
+
+
+
+
+
+Operations
+
+
+
+tensor product
+exterior product
+tensor contraction
+transpose (2nd-order tensors)
+raising and lowering indices
+Hodge star operator
+covariant derivative
+exterior derivative
+exterior covariant derivative
+Lie derivative
+
+
+
+
+
+Related abstractions
+
+
+
+dimension
+basis
+vector, vector space
+multivector
+covariance and contravariance of vectors
+linear transformation
+matrix
+spinor
+Cartan formalism (physics)
+differential form
+exterior form
+connection form
+geodesic
+manifold
+fiber bundle
+Levi-Civita connection
+affine connection
+
+
+
+
+
+Notable tensors
+
+
+
+
+Mathematics
+
+
+
+Kronecker delta
+Levi-Civita symbol
+metric tensor
+nonmetricity tensor
+Christoffel symbols
+Ricci curvature
+Riemann curvature tensor
+Weyl tensor
+torsion tensor
+
+
+
+
+
+Physics
+
+
+
+moment of inertia
+angular momentum tensor
+spin tensor
+Cauchy stress tensor
+stress–energy tensor
+EM tensor
+gluon field strength tensor
+Einstein tensor
+metric tensor (GR)
+
+
+
+
+
+
+
+
+Mathematicians
+
+
+
+Leonhard Euler
+Carl Friedrich Gauss
+Augustin-Louis Cauchy
+Hermann Grassmann
+Gregorio Ricci-Curbastro
+Tullio Levi-Civita
+Jan Arnoldus Schouten
+Bernhard Riemann
+Elwin Bruno Christoffel
+Woldemar Voigt
+Élie Cartan
+Hermann Weyl
+Albert Einstein
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Geodesic&oldid=818456867"					Categories: Geodesic (mathematics)Hidden categories: Articles to be expanded from June 2014All articles to be expandedArticles using small message boxesArticles lacking in-text citations from July 2014All articles lacking in-text citations

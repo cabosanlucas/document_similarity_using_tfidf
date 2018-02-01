@@ -1,0 +1,1456 @@
+redirects uses disambiguation
+
+portable document format
+
+
+adobe icon
+
+
+
+filename extension
+pdf1
+
+
+internet media type
+
+
+
+applicationpdf2
+applicationxpdf
+applicationxbzpdf
+applicationxgzpdf
+
+
+
+
+
+type code
+including single space
+
+
+uniform type identifier
+comadobepdf
+
+
+magic number
+
+
+
+developed
+
+
+
+initial release
+june 1993 years 19930615
+
+
+latest release
+
+
+
+
+
+extended
+pdfa pdfe pdfua pdfvt pdfx
+
+
+standard
+320002
+
+
+open format
+
+
+
+website
+wwwisoorgstandard63534html
+
+
+portable document format file format developed 1990s present documents including text formatting images manner independent application software hardware operating systems34 based postscript language file encapsulates complete description fixedlayout flat document including text fonts vector graphics raster images information needed display standardized open format 32000 2008 require royalties implementation
+today files contain variety content besides flat text graphics including logical structuring elements interactive elements annotations formfields layers rich media including video content three dimensional objects using various data formats56 specification also provides encryption digital signatures file attachments metadata enable workflows requiring features
+
+
+
+contents
+
+
+history standardization
+technical foundations
+
+postscript
+
+
+technical overview
+
+file structure
+imaging model
+
+vector graphics
+raster images
+text
+
+3231 fonts
+3232 standard type fonts standard fonts
+3233 encodings
+
+
+transparency
+
+
+interactive elements
+
+acroforms
+
+3311 forms data format
+3312 forms data format xfdf
+
+
+adobe forms architecture
+
+
+logical structure accessibility
+optional content groups layers
+security signatures
+
+usage rights
+
+
+file attachments
+metadata
+usage restrictions monitoring
+default display settings
+
+
+intellectual property
+technical issues
+
+accessibility
+viruses exploits
+
+
+content
+software
+
+editing
+annotation
+
+
+
+also
+references
+reading
+external links
+
+
+
+history standardizationedit
+main article history portable document format
+adobe systems made specification available free charge 1993 early years popular mainly desktop publishing workflows competed variety formats djvu envoy common ground digital paper farallon replica even adobes postscript format
+proprietary format controlled adobe released open standard july 2008 published international organization standardization 320001200878 time control specification passed committee volunteer industry experts 2008 adobe published public patent license 320001 granting royaltyfree rights patents owned adobe necessary make sell distribute compliant implementations9
+sixth edition specification became 320001 includes proprietary technologies defined adobe adobe forms architecture javascript extension acrobat referenced 320001 normative indispensable full implementation 320001 specification proprietary technologies standardized specification published adobe’s website1011121314 many also supported popular thirdparty implementations
+july 2017 320002 published 320002 include proprietary technologies normative references15
+technical foundationsedit
+combines three technologies
+
+subset postscript page description programming language generating layout graphics
+fontembeddingreplacement system allow fonts travel documents
+structured storage system bundle elements associated content single file data compression appropriate
+
+postscriptedit
+postscript page description language interpreter generate image process requiring many resources handle graphics standard features programming languages loop commands largely based postscript simplified remove flow control features like graphics commands lineto remain
+often postscriptlike code generated source postscript file graphics commands output postscript code collected tokenized files graphics fonts document refers also collected everything compressed single file therefore entire postscript world fonts layout measurements remains intact
+document format several advantages postscript
+
+contains tokenized interpreted results postscript source code direct correspondence changes items page description changes resulting page appearance
+version supports graphic transparency postscript
+postscript interpreted programming language implicit global state instructions accompanying description page affect appearance following page therefore preceding pages postscript document must processed determine correct appearance given page whereas page document unaffected others result viewers allow user quickly jump final pages long document whereas postscript viewer needs process pages sequentially able display destination page unless optional postscript document structuring conventions carefully complied
+
+technical overviewedit
+file structureedit
+file 7bit ascii file except certain elements binary content file starts header containing magic number version format pdf17 format subset carousel object structure format16 tree file consists primarily objects eight types17
+
+boolean values representing true false
+numbers
+strings enclosed within parentheses contain 8bit characters
+names starting forward slash
+arrays ordered collections objects enclosed within square brackets
+dictionaries collections objects indexed names enclosed within double pointy brackets
+streams usually containing large amounts data compressed binary
+null object
+
+furthermore comments introduced percent sign comments contain 8bit characters
+objects either direct embedded another object indirect indirect objects numbered object number generation number defined endobj keywords index table also called crossreference table marked xref keyword follows main body gives byte offset indirect object start file18 design allows efficient random access objects file also allows small changes made without rewriting entire file incremental update beginning version indirect objects also located special streams known object streams technique reduces size files large numbers small indirect objects especially useful tagged
+file trailer introduced trailer keyword contains
+
+dictionary
+offset start crossreference table table starting xref keyword
+endoffile marker
+
+dictionary contains
+
+reference root object tree structure also known catalog
+count indirect objects crossreference table
+optional information
+
+layouts files nonlinear optimized linear optimized nonlinear files consume less disk space linear counterparts though slower access portions data required assemble pages document scattered throughout file linear files also called optimized optimized files constructed manner enables read browser plugin without waiting entire file download since written disk linear page order fashion19 files optimized using adobe acrobat software qpdf
+imaging modeledit
+basic design graphics represented similar postscript except transparency added
+graphics deviceindependent cartesian coordinate system describe surface page page description matrix scale rotate skew graphical elements concept graphics state collection graphical parameters changed saved restored page description version graphics state properties important
+
+current transformation matrix determines coordinate system
+clipping path
+color space
+alpha constant component transparency
+
+vector graphicsedit
+postscript vector graphics constructed paths paths usually composed lines cubic bézier curves also constructed outlines text unlike postscript allow single path text outlines lines curves paths stroked filled clipping strokes fills color graphics state including patterns
+supports several types patterns simplest tiling pattern piece artwork specified drawn repeatedly colored tiling pattern colors specified pattern object uncolored tiling pattern defers color specification time pattern drawn beginning also shading pattern draws continuously varying colors seven types shading pattern simplest axial shade type radial shade type
+raster imagesedit
+raster images called image xobjects represented dictionaries associated stream dictionary describes properties image stream contains image data less commonly raster image embedded directly page description inline image images typically filtered compression purposes image filters supported include general purpose filters
+
+ascii85decode filter used stream 7bit ascii
+asciihexdecode similar ascii85decode less compact
+flatedecode commonly used filter based deflate algorithm defined 1951 deflate also used gzip file formats among others introduced groups predictor functions compact zlibdeflate compression predictor tiff specification predictors filters specification 2083
+lzwdecode filter based compression groups predictor functions compact compression predictor tiff specification predictors filters specification
+runlengthdecode simple compression method streams repetitive data using runlength encoding algorithm imagespecific filters
+dctdecode lossy filter based jpeg standard
+ccittfaxdecode lossless bilevel blackwhite filter based group group ccitt itut compression standard defined itut
+jbig2decode lossy lossless bilevel blackwhite filter based jbig2 standard introduced
+jpxdecode lossy lossless filter based jpeg 2000 standard introduced
+
+normally image content embedded file allows image data stored external files external streams alternate images standardized subsets including pdfa pdfx prohibit features
+textedit
+text represented text elements page content streams text element specifies characters drawn certain positions characters specified using encoding selected font resource
+fontsedit
+font object description digital typeface either describe characteristics typeface include embedded font file latter case called embedded font former called unembedded font font files embedded based widely used standard digital font formats type compressed variant truetype beginning opentype additionally supports type variant components font described graphic operators
+standard type fonts standard fontsedit
+fourteen typefaces known standard fonts special significance documents
+
+times regular italic bold bold italic
+courier regular oblique bold bold oblique
+helvetica regular oblique bold bold oblique
+symbol
+zapf dingbats
+
+fonts sometimes called base fourteen fonts20 fonts suitable substitute fonts metrics available readers guaranteed available reader display correctly system installed21 fonts substituted embedded
+encodingsedit
+within text strings characters shown using character codes integers glyphs current font using encoding number predefined encodings including winansi macroman large number encodings east asian languages font builtin encoding although winansi macroman encodings derived historical properties windows macintosh operating systems fonts using encodings work equally well platform specify predefined encoding fonts builtin encoding provide lookup table differences predefined builtin encoding recommended truetype fonts22 encoding mechanisms designed type fonts rules applying truetype fonts complex
+large fonts fonts nonstandard glyphs special encodings identityh horizontal writing identityv vertical used fonts necessary provide tounicode table semantic information characters preserved
+transparencyedit
+original imaging model like postscripts opaque object drawn page completely replaced anything previously marked location imaging model extended allow transparency transparency used objects interact previously marked objects produce blending effects addition transparency done means extensions designed ignored products written earlier specifications result files small amount transparency might view acceptably older viewers files making extensive transparency could viewed incorrectly older viewer without warning
+transparency extensions based concepts transparency groups blending modes shape alpha model closely aligned features adobe illustrator version blend modes based used adobe photoshop time specification published formulas calculating blend modes kept secret adobe since published23
+concept transparency group specification independent existing notions group layer applications adobe illustrator groupings reflect logical relationships among objects meaningful editing objects part imaging model
+interactive elementsedit
+files contain interactive elements annotations form fields video rich media
+rich media term used describe file including interactive content embedded linked within file
+interactive forms mechanism forms file format
+currently supports different methods integrating data forms formats today coexist specification24252627
+
+acroforms also known acrobat forms introduced format specification included later specifications
+adobe forms architecture forms introduced format specification adobe forms compatible acroforms28 deprecated
+
+acroformsedit
+acroforms introduced format acroforms permit using objects text boxes radio buttons code javascript
+alongside standard action types interactive forms acroforms support submitting resetting importing data submit action transmits names values selected interactive form fields specified uniform resource locator interactive form field names values submitted following formats depending settings action’s exportformat submitpdf xfdf flags24
+
+html form format html specification since html since
+forms data format
+forms data format xfdf external forms data format specification version supported since replaced form submission format defined
+entire document submitted rather individual fields values defined
+
+acroforms keep form field values external standalone files containing keyvalue pairs external files forms data format forms data format xfdf files293031 usage rights signatures define rights import form data files xfdf text csvtsv formats export form data files xfdf formats24
+forms data format fdfedit
+
+forms data format
+
+filename extension
+
+
+
+internet media type
+applicationvndfdf32
+
+
+type code
+
+
+
+developed
+adobe systems
+
+
+initial release
+1996 1996
+
+
+extended
+
+
+
+extended
+xfdf
+
+
+standard
+3200022017
+
+
+open format
+
+
+
+forms data format based uses syntax essentially file structure much simpler since body document consists required object forms data format defined specification since forms data format used submitting form data server receiving response incorporating interactive form also used export form data standalone files imported back corresponding interactive form
+beginning used define container annotations separate document apply typically encapsulates information x509 certificates requests certificates directory settings timestamp server settings embedded files network transmission31 uses mime content type applicationvndfdf filename extension uses file type fdf24
+forms data format xfdfedit
+
+forms data format xfdf
+
+filename extension
+xfdf
+
+
+internet media type
+applicationvndadobexfdf33
+
+
+type code
+xfdf
+
+
+developed
+adobe systems
+
+
+initial release
+july 2003 200307 referenced
+
+
+latest release
+
+
+august 2009 years 200908
+
+
+
+extended
+
+
+
+standard
+19444134
+
+
+website
+xfdf specification
+
+
+forms data format xfdf version forms data format xfdf implements subset containing forms annotations xfdf equivalents entries dictionary status encoding javascript pages keys embeddedfdfs differences target addition xfdf allow spawning addition pages based given data done using file xfdf specification referenced included specification later versions described separately forms data format specification30 specification allowed form submissions format replaced submissions xfdf format specification xfdf conforms standard
+december 2016 xfdf isoiec standard formal name 1944412016 document management forms data format part 320002 xfdf 3035 standard normative reference 320002
+xfdf used form data submitted server modifications made sent back form data imported interactive form also used export form data standalone files imported back corresponding interactive form
+adobe forms architecture xfaedit
+adobe systems introduced proprietary format forms adobe forms architecture adobe forms compatible 32000s acroforms feature processors handle content specification referenced 320001 external proprietary specification entirely deprecated 320002
+logical structure accessibilityedit
+tagged clause 32000 includes document structure semantics information enable reliable text extraction accessibility technically speaking tagged stylized format builds logical structure framework introduced tagged defines standard structure types attributes allow page content text graphics images extracted reused purposes36
+tagged required situations file intended print since feature optional since rules tagged relatively vague 320001 support tagged amongst consuming devices including assistive technology uneven time37 320002 however includes improved discussion tagged anticipated facilitate
+isostandardized subset specifically targeted accessibility pdfua first published 2012
+optional content groups layersedit
+introduction version 2003 came concept layers layers formally known optional content groups ocgs refer sections content document selectively viewed hidden document authors consumers capability useful drawings layered artwork maps multilanguage documents basically consists optional content properties dictionary added document root dictionary contains array optional content groups ocgs describing information individually displayed suppressed plus optional content configuration dictionaries give status displayed suppressed given ocgs
+security signaturesedit
+file encrypted security digitally signed authentication however since sha1 collision discovered making format digital signatures using sha1 shown insecure38
+standard security provided acrobat consists different methods different passwords user password encrypts file prevents opening owner password specifies operations restricted even document decrypted include modifying printing copying text graphics document adding modifying text notes acroform fields user password encrypts file owner password instead relying client software respect restrictions owner password easily removed software including free online services39 thus restrictions document author places document secure cannot assured file distributed warning displayed applying restrictions using adobe acrobat software create edit files
+even without removing password freeware open source readers ignore permission protections allow user print make copy excerpts text document limited password protection404142
+number commercial solutions offer robust means information rights management restrict document access also reliably enforce permissions ways standard security handler not43
+usage rightsedit
+beginning usage rights signatures used enable additional interactive features available default particular viewer application signature used validate permissions granted bona fide granting authority example used allow user24
+
+save document along modified form andor annotation data
+import form data files xfdf text csvtsv formats
+export form data files xfdf formats
+submit form data
+instantiate pages named page templates
+apply digital signature existing digital signature form field
+create delete modify copy import export annotations
+
+example adobe systems grants permissions enable additional features adobe reader using publickey cryptography adobe reader verifies signature uses certificate adobeauthorized certificate authority application mechanism purposes24
+file attachmentsedit
+files file attachments processors access open save local filesystem
+metadataedit
+files contain types metadata44 first document information dictionary keyvalue fields author title subject creation update dates stored optional info trailer file small fields defined extended additional text values required method deprecated
+support added metadata streams using extensible metadata platform standardsbased extensible metadata used file formats allows metadata attached stream document information embedded illustrations well whole document attaching document catalog using extensible schema
+usage restrictions monitoringedit
+pdfs encrypted password needed view edit contents defines 256bit encryption standard files reference also defines ways third parties define encryption systems
+files digitally signed complete details implementing digital signatures provided 320002
+files also contain embedded restrictions provide controls limit copying editing printing restrictions depend reader software obey security provide limited
+default display settingsedit
+documents contain display settings including page display layout zoom level adobe reader uses settings override users default settings opening document45 free adobe reader cannot remove settings
+intellectual propertyedit
+anyone create applications read write files without royalties adobe systems adobe holds patents licenses royaltyfree developing software complying specification46
+technical issuesedit
+accessibilityedit
+files created specifically accessible disabled people4748495051 file formats 2014update include tags text equivalents captions audio descriptions software automatically produce tagged pdfs feature always enabled default5253 leading screen readers including jaws windoweyes kurzweil 1000 3000 read tagged pdf5455 moreover tagged pdfs reflowed magnified readers visual impairments adding tags older pdfs generated scanned documents present challenges
+significant challenges accessibility documents three distinct views depending documents creation inconsistent three views physical view tags view content view physical view displayed printed people consider document tags view screen readers assistive technologies deliver highquality navigation reading experience users disabilities content view based physical order objects within pdfs content stream displayed software fully support tags view reflow feature adobes reader
+pdfua international standard accessible based 320001 first published 142891 2012 establishes normative language accessible technology
+viruses exploitsedit
+also adobe acrobat security
+attachments carrying viruses first discovered 2001 virus named outlookpdfworm peachy uses microsoft outlook send attachment adobe file activated adobe acrobat acrobat reader56
+time time vulnerabilities discovered various versions adobe reader57 prompting company issue security fixes readers also susceptible aggravating factor reader configured start automatically page embedded file providing vector attack malicious page contains infected file takes advantage vulnerability reader system compromised even browser secure vulnerabilities result standard allowing documents scripted javascript disabling javascript execution reader help mitigate future exploits although protect exploits parts viewing software security experts javascript essential reader security benefit comes disabling javascript outweighs compatibility issues caused58 avoiding file exploits local service convert files another format viewing
+march 2010 security researcher didier stevens reported adobe reader foxit reader exploit runs malicious executable user allows launch asked59
+contentedit
+file often combination vector graphics text bitmap graphics basic types content
+
+text stored content streams text
+vector graphics illustrations designs consist shapes lines
+raster graphics photographs types image
+multimedia objects document
+
+later revisions document also support links inside document page forms javascript initially available plugin acrobat types embedded contents handled using plugins
+supports interactive documents embedded drawings embedded using various data formats6061
+files look similar computer screen different sizes example high resolution raster image takes space resolution typically higher resolution needed printing documents displaying screen things increase size file embedding full fonts especially asiatic scripts storing text graphics
+softwareedit
+details topic list software
+viewers generally provided free charge many versions available variety sources
+many software options creating pdfs including printing capabilities built macos linux distributions libreoffice microsoft office 2007 updated later62 wordperfect scribus numerous print drivers microsoft windows pdftex typesetting system docbook tools applications developed around ghostscript adobe acrobat well adobe indesign adobe framemaker adobe illustrator adobe photoshop googles online office suite google docs also allows uploading saving
+raster image processors rips used convert files raster format suitable imaging onto paper media printers digital production presses prepress process known rasterisation rips capable processing directly include adobe print engine63 adobe systems jaws64 harlequin global graphics
+editingedit
+
+
+
+
+section needs expansion help adding july 2010
+
+
+
+adobe illustrator reads writes seminative format multipage documents dialog opens enabling user select single page edit editing paragraphs text typically disturbs line justification paragraph wrapping multiline text converted individual lines multipage document page edited resaved
+inkscape version later allows editing single page intermediate translation step involving poppler document exported
+scribus allows opening editing multipage document exported
+libreoffice draw apache openoffice draw using plugin pdfimport open edit multipage document exported
+serif pageplus open edit save existing documents well publishing documents created package
+enfocus pitstop plugin acrobat allows manual automatic editing files65 free enfocus browser makes possible edit lowlevel structure pdf66
+dochub free online editing tool used without purchasing anything67
+annotationedit
+also comparison notetaking software
+adobe acrobat example proprietary software allows user annotate highlight notes already created files unix application available free software general public license pdfedit another gpllicensed application native unix environment xournal xournal allows annotating different fonts colours well rule quickly underlining highlighting lines text paragraphs xournal also shape recognition tool squares rectangles circles xournal annotations moved copied pasted freeware foxit reader available microsoft windows macos linux allows annotating documents tracker softwares pdfxchange viewer allows annotations markups without restrictions freeware alternative apples macoss integrated viewer preview also enable annotations freeware skim latter supporting interaction latex synctex pdfsync integration bibdesk reference management software freeware qiqqa create annotation report summarizes annotations notes made across library pdfs
+mobile annotation iannotate branchfire goodreader allow annotation pdfs well exporting summaries annotations
+also annotation systems support annotation documents formats annotate crocodoc webnotes
+cases pdfs expected functionality paper documents annotation required programs accept input mouse responsive enough handwriting input tablet existing solutions include annotator qiqqa
+otheredit
+examples software online services including scribd viewing storing pdfvue online editing zamzar conversion
+1993 jaws raster image processor global graphics became first shipping prepress interpreted natively without conversion another format company released upgrade harlequin capability 199768
+agfagevaert introduced shipped apogee first prepress workflow system based 1997
+many commercial offset printers accepted submission pressready files print source specifically pdfx1a subset variations same69 submission pressready files replacement problematic need receiving collected native working files
+selected native metafile format replacing pict format earlier classic imaging model quartz graphics layer based model common display postscript leading nickname display preview application display files version later safari browser systemlevel support allows applications create documents automatically provided support osstandard printing architecture files exported format according file header taking screenshot versions image also captured later versions save screen captures file though behaviour back desired
+2006 widely accepted standard print format open source development labs printing summit supported print format common unix printing system desktop application projects gnome firefox thunderbird libreoffice openoffice switched emit print jobs pdf70
+desktop printers also support direct printing interpret data without external help currently capable printers also support postscript postscript printers support direct printing
+free software foundation considered high priority projects developing free highquality fully functional libraries programs implement file format associated technologies 32000 standard7172 2011 however project removed list high priority projects maturation poppler library73 enjoyed wider applications evince gnome desktop environment poppler based xpdf7475 code base also commercial development libraries available listed list software
+apache pdfbox project apache software foundation open source java library working documents pdfbox licensed apache license76
+alsoedit
+
+
+software portal
+
+
+
+
+open paper specification
+comparison openxps
+djvu
+pades advanced electronic signature
+document
+formatting objects
+
+
+referencesedit
+
+
+adobe acrobat portable document format file extension used word processor named wordstar used extension printer definition files
+applicationpdf media type 3778 category informational 2004
+adobe systems incorporated reference sixth edition version 2006
+camelot project
+cite error named reference 3d12 invoked never defined help page
+cite error named reference 3d22 invoked never defined help page
+3200012008 document management portable document format part isoorg 20080701 retrieved 20100221
+orion egan 20071205 approved 32000 inquirer inquirer archived original december 2007 retrieved 20071205
+adobe systems incorporated 2008 public patent license 320001 2008 retrieved 20110706
+guide procurement standardsbased elements good practice lockin building open systems making better standards public procurement european commission 20130625 retrieved 20131020 example isoiec 29500 isoiec 26300 32000 document formats reference information accessible parties references proprietary technology brand names incomplete scope dead links
+isotc 171sc meeting report 20110627 standard committee urges adobe systems submit specification forms architecture standardization committee concerned stability specification part reference
+embedding publishing interactive 3dimensional scientificfigures portable document format files retrieved 20131020 implementation standard complete proprietary extensions used
+leonard rosenthol adobe systems 2012 standards retrieved 20131020
+duff johnson 20100610 open standard adobe reader facto standard retrieved 20140119
+320002 document management portable document format part wwwisoorg retrieved 20170728
+pravetz defense love json hate jimpravetzcom
+adobe systems reference
+adobe systems reference 39–40
+adobe developer connection reference adobe extensions specification adobe systems retrieved 20101213
+desktop publishing base fonts definition aboutcom tech
+font aquarium
+reference sixth edition version table
+blend modes addendum
+adobe systems incorporated 20080701 document management portable document format part first edition retrieved 20100219
+knowledge forms data format archived original 20130101 retrieved 20100219
+forms retrieved 20100219
+convert form acroform 2008 retrieved 20100219
+migrating adobe acrobat forms forms retrieved 20100222
+adobe systems incorporated 20071015 using acrobat forms form data retrieved 20100219
+forms data format specification version september 2007 retrieved 20100219
+data exchange specification 20070208 retrieved 20100219
+iana application media types vndfdf retrieved 20100222
+iana application media types vendor tree vndadobexfdf retrieved 20100222
+isocd 194441 document management forms data format part 320002 xfdf retrieved 20170528
+1944412016 document management forms data format part 320002 xfdf wwwisoorg retrieved 20170228
+tagged
+accessible washingtonedu
+shattered broken sha1 practice
+freemypdfcom removes passwords viewable pdfs freemypdfcom
+jeremy kirk adobe admits password protection weaker
+bryan guignard secure
+security overview strengths weaknesses
+security software adobe document protection
+adobe reference version section
+getting familiar adobe reader understanding preferences retrieved 20090422
+developer resources adobecom
+accessibility webaim retrieved 20100424
+clark 20050822 facts opinions accessibility retrieved 20100424
+accessibility documents accessibility center retrieved 20100424
+accessibility standards retrieved 20100424
+accessibility california state university retrieved 20100424
+libreoffice help export retrieved 20120922
+exporting pdfa longterm archiving 20080111
+biersdorfer 20090410 week adobe readers read aloud feature york times retrieved 20100424
+accessing documents assistive technology screen reader users guide adobe retrieved 20100424
+adobe forums announcement attachment virus peachy august 2001
+security bulletins advisories adobe retrieved 20100221
+steve gibson securitynow podcast
+malicious pdfs execute code without vulnerability pcmag
+supported formats adobe 20090714 retrieved 20100221
+acrobat developer center adobe retrieved 20100221
+description 2007 microsoft office suite service pack microsoft retrieved 20090509
+adobe print engine adobecom
+jaws® postscript globalgraphicscom
+preflight edit files acrobat enfocuscom
+enfocus product overview online store enfocuscom
+dochub dochub retrieved 20151212
+harlequin multirip retrieved 20140302
+pressready files anyone interested graphic project commercially printed directly digital files pdfs last checked 20090210
+standard print format linux foundation linux foundation retrieved june 2016
+20140402 note dated 20090210 referred current high priority free software projects source content latter page however changes time
+gnupdf contributors 20071128 goals motivations gnupdforg gnupdf retrieved 20140402 maint uses authors parameter link
+matt 20111006 project leaves high priority projects list mission complete fsforg free software foundation retrieved 20140402
+poppler homepage poppler rendering library based xpdf30 code base last checked 20090210
+xpdf license xpdf licensed general public license version last checked 20120923
+apache pdfbox project retrieved 20090919
+
+
+readingedit
+
+hardy brailsford 2002 mapping displaying structural transformations proceedings 2002 symposium document engineering doceng proceedings 2002 symposium document engineering 95–102 doi101145585058585077 isbn 1581135947
+standards
+
+
+isbn 0321304748
+isbn 0201758393
+isbn 0201615886
+
+
+
+external linksedit
+
+
+
+wikimedia commons media related
+
+
+
+created quora
+association association industry association software developers producing processing files
+adobe summary
+adobe postscript official introductory comparison
+standards transitioning specification facto standard jure standard wayback machine archived april 2011 information pdfe pdfua specification accessible documents file format archived wayback machine
+1900512005 pdfa1 standard published international organization standardization chargeable
+reference adobe extensions specification
+portable document format introduction programmers introduction postscript internals
+camelot paper paper john warnock outlined project created
+everything wanted know afraid recording talk leonard rosenthol adobe systems 2007
+produce xslfo
+excel converter
+
+
+
+
+
+
+
+
+
+
+
+
+graphics file formats
+
+
+
+raster
+
+
+
+
+anim
+apng
+
+
+
+bsave
+
+
+
+
+
+
+
+
+fits
+flic
+flif
+
+
+hdri
+hevc
+icer
+icns
+
+
+ilbm
+jbig
+jbig2
+
+jpeg
+jpeg 2000
+jpegls
+jpeg
+
+
+miff
+nrrd
+
+
+
+
+
+pictor
+
+
+
+qtvr
+
+
+
+jpeghdr
+logluv tiff
+
+
+
+
+tiff
+
+tiffep
+tiffit
+
+
+
+wbmp
+webp
+
+
+
+
+
+
+
+
+
+
+
+
+
+ciff
+
+
+
+
+
+
+vector
+
+
+
+
+
+
+
+
+
+gerber
+hvif
+iges
+pgml
+
+
+
+
+
+
+
+
+
+compound
+
+
+
+
+djvu
+
+
+pict
+
+
+xaml
+
+
+
+
+
+related
+
+
+
+exchangeable image file format exif
+extensible metadata platform
+
+
+
+
+
+
+
+
+category
+comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+multipurpose office document file formats
+
+
+
+editable document formats
+
+
+
+compound document format
+microsoft office formats
+office open
+open document architecture
+opendoc
+opendocument
+openofficeorg
+revisableform text
+rich text format
+uniform office format
+word document
+
+
+
+
+
+fixed document formats
+
+
+
+djvu
+envoy
+open paper specification
+portable document format
+
+
+
+
+
+related topics
+
+
+
+character encoding
+
+ascii
+unicode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ebooks
+
+
+
+formats
+
+
+
+epub
+fictionbook
+cbrcbz
+kindle file format
+mobipocket
+
+plain text
+
+
+
+
+
+
+
+
+reading
+
+
+
+
+devices
+
+
+
+amazon kindle
+barnes noble nook
+bookeen
+elonex ebook
+entourage edge
+hanlin ereader
+iriver story
+kobo ereader
+onyx boox
+plastic logic reader
+pocketbook ereader
+rocket ebook
+softbook
+smartphones
+tablets
+tolino
+
+
+
+
+
+software
+
+
+
+adobe acrobat
+adobe digital editions
+aldiko
+blio
+bluefire reader
+calibre
+fbreader
+google play books
+ibooks
+kindle
+kitabu
+kobo
+lektz
+lucifox
+mantano reader
+okular
+overdrive media console
+snapplify
+stdu viewer
+sumatra
+
+
+
+
+
+
+
+
+editing
+
+
+
+abbyy finereader
+abiword
+adobe indesign
+adobe robohelp
+atlantis word processor
+booktype
+calibre
+calligra author
+exelearning
+help manual
+helpndoc
+ibooks author
+istudio publisher
+latex
+libreoffice
+madcap flare
+oxygen editor
+pageplus
+pages
+quarkxpress
+scrivener
+sigil
+writer2epub
+
+
+
+
+
+vendors
+
+
+
+
+commercial
+
+
+
+amazon kindle store
+baen free library
+barnes noble
+booktrack
+feedbooks
+google play
+ibooks store
+kobo bookstore
+sony reader store
+smashwords
+
+
+
+
+
+noncommercial
+
+
+
+hathitrust
+internet archive
+project gutenberg
+
+australia
+canada
+
+
+wikisource
+
+
+
+
+
+
+
+
+related
+topics
+
+
+
+academic journal publishing reform
+braille ebook
+comparison ebook readers
+comparison ebook reader software
+comparison android ebook reader software
+ebook lending
+electronic publishing
+ibooks author conference
+international digital publishing forum
+kindle single
+opds
+reflowable document
+semantic publishing
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleportabledocumentformatoldid818341928 categories computerrelated introductions 1993adobe systemsdigital presselectronic documentsgraphics file formatsiso standardsoffice document file formatsopen formatspage description languagesvector graphicshidden categories pages reference errorspages broken reference namescs1 maint uses authors parameterarticles containing potentially dated statements 2014all articles containing potentially dated statementsarticles expanded july 2010all articles expandedarticles using small message boxeswebarchive template wayback linkspages using magic links

@@ -1,0 +1,5944 @@
+Transport Layer Security (TLS) – and its predecessor, Secure Sockets Layer (SSL), which is now prohibited from use – are cryptographic protocols that provide communications security over a computer network.[1] Several versions of the protocols find widespread use in applications such as web browsing, email, Internet faxing, instant messaging, and voice over IP (VoIP). Websites are able to use TLS to secure all communications between their servers and web browsers.
+The TLS protocol aims primarily to provide privacy and data integrity between two communicating computer applications.[1]:3 When secured by TLS, connections between a client (e.g., a web browser) and a server (e.g., wikipedia.org) have one or more of the following properties:
+
+The connection is private (or secure) because symmetric cryptography is used to encrypt the data transmitted. The keys for this symmetric encryption are generated uniquely for each connection and are based on a shared secret negotiated at the start of the session (see § TLS handshake). The server and client negotiate the details of which encryption algorithm and cryptographic keys to use before the first byte of data is transmitted (see § Algorithm below). The negotiation of a shared secret is both secure (the negotiated secret is unavailable to eavesdroppers and cannot be obtained, even by an attacker who places themselves in the middle of the connection) and reliable (no attacker can modify the communications during the negotiation without being detected).
+The identity of the communicating parties can be authenticated using public-key cryptography. This authentication can be made optional, but is generally required for at least one of the parties (typically the server).
+The connection ensures integrity because each message transmitted includes a message integrity check using a message authentication code to prevent undetected loss or alteration of the data during transmission.:3
+
+In addition to the properties above, careful configuration of TLS can provide additional privacy-related properties such as forward secrecy, ensuring that any future disclosure of encryption keys cannot be used to decrypt any TLS communications recorded in the past.[2]
+TLS supports many different methods for exchanging keys, encrypting data, and authenticating message integrity (see § Algorithm below). As a result, secure configuration of TLS involves many configurable parameters, and not all choices provide all of the privacy-related properties described in the list above (see the § Key exchange (authentication), § Cipher security, and § Data integrity tables).
+Attempts have been made to subvert aspects of the communications security that TLS seeks to provide and the protocol has been revised several times to address these security threats (see § Security). Developers of web browsers have also revised their products to defend against potential security weaknesses after these were discovered (see TLS/SSL support history of web browsers).[3]
+The TLS protocol comprises two layers: the TLS record and the TLS handshake protocols.
+TLS is a proposed Internet Engineering Task Force (IETF) standard, first defined in 1999 and updated in RFC 5246 (August 2008) and RFC 6176 (March 2011). It builds on the earlier SSL specifications (1994, 1995, 1996) developed by Netscape Communications[4] for adding the HTTPS protocol to their Navigator web browser.
+
+
+
+Contents
+
+
+1 Description
+2 History and development
+
+2.1 Secure Network Programming
+2.2 SSL 1.0, 2.0 and 3.0
+2.3 TLS 1.0
+2.4 TLS 1.1
+2.5 TLS 1.2
+2.6 TLS 1.3 (draft)
+
+
+3 Digital certificates
+
+3.1 Certificate authorities
+
+
+4 Algorithm
+
+4.1 Key exchange or key agreement
+4.2 Cipher
+4.3 Data integrity
+
+
+5 Applications and adoption
+
+5.1 Websites
+5.2 Web browsers
+5.3 Libraries
+5.4 Other uses
+
+
+6 Security
+
+6.1 SSL 2.0
+6.2 SSL 3.0
+6.3 TLS
+6.4 Attacks against TLS/SSL
+
+6.4.1 Renegotiation attack
+6.4.2 Downgrade attacks: FREAK attack and Logjam attack
+6.4.3 Cross-protocol attacks: DROWN
+6.4.4 BEAST attack
+6.4.5 CRIME and BREACH attacks
+6.4.6 Timing attacks on padding
+6.4.7 POODLE attack
+6.4.8 RC4 attacks
+6.4.9 Truncation attack
+6.4.10 Unholy PAC attack
+6.4.11 Sweet32 attack
+6.4.12 Implementation errors: Heartbleed bug, BERserk attack, Cloudflare bug
+6.4.13 Survey of websites vulnerable to attacks
+
+
+6.5 Forward secrecy
+6.6 Dealing with man-in-the-middle attacks
+
+6.6.1 Certificate pinning
+6.6.2 Perspectives Project
+6.6.3 DNSChain
+
+
+
+
+7 Protocol details
+
+7.1 TLS handshake
+
+7.1.1 Basic TLS handshake
+7.1.2 Client-authenticated TLS handshake
+7.1.3 Resumed TLS handshake
+
+7.1.3.1 Session IDs
+7.1.3.2 Session tickets
+
+
+
+
+7.2 TLS record
+
+7.2.1 Handshake protocol
+7.2.2 Alert protocol
+7.2.3 ChangeCipherSpec protocol
+7.2.4 Application protocol
+
+
+
+
+8 Support for name-based virtual servers
+9 Standards
+
+9.1 Primary standards
+9.2 Extensions
+9.3 Informational RFCs
+
+
+10 See also
+11 References
+12 Further reading
+13 External links
+
+
+
+Description[edit]
+Client-server applications use the TLS protocol to communicate across a network in a way designed to prevent eavesdropping and tampering.
+Since applications can communicate either with or without TLS (or SSL), it is necessary for the client to indicate to the server the setup of a TLS connection.[5] One of the main ways of achieving this is to use a different port number for TLS connections, for example port 443 for HTTPS. Another mechanism is for the client to make a protocol-specific request to the server to switch the connection to TLS; for example, by making a STARTTLS request when using the mail and news protocols.
+Once the client and server have agreed to use TLS, they negotiate a stateful connection by using a handshaking procedure.[6] The protocols use a handshake with an asymmetric cipher to establish not only cipher settings but also a session-specific shared key with which further communication is encrypted using a symmetric cipher. During this handshake, the client and server agree on various parameters used to establish the connection's security:
+
+The handshake begins when a client connects to a TLS-enabled server requesting a secure connection and the client presents a list of supported cipher suites (ciphers and hash functions).
+From this list, the server picks a cipher and hash function that it also supports and notifies the client of the decision.
+The server usually then provides identification in the form a digital certificate. The certificate contains the server name, the trusted certificate authority (CA) that vouches for the authenticity of the certificate, and the server's public encryption key.
+The client confirms the validity of the certificate before proceeding.
+To generate the session keys used for the secure connection, the client either:
+
+encrypts a random number with the server's public key and sends the result to the server (which only the server should be able to decrypt with its private key); both parties then use the random number to generate a unique session key for subsequent encryption and decryption of data during the session
+uses Diffie–Hellman key exchange to securely generate a random and unique session key for encryption and decryption that has the additional property of forward secrecy: if the server's private key is disclosed in future, it cannot be used to decrypt the current session, even if the session is intercepted and recorded by a third party.
+
+
+
+This concludes the handshake and begins the secured connection, which is encrypted and decrypted with the session key until the connection closes. If any one of the above steps fails, then the TLS handshake fails and the connection is not created.
+TLS and SSL do not fit neatly into any single layer of the OSI model or the TCP/IP model.[7][8] TLS runs "on top of some reliable transport protocol (e.g., TCP),"[9] which would imply that it is above the transport layer. It serves encryption to higher layers, which is normally the function of the presentation layer. However, applications generally use TLS as if it were a transport layer,[7][8] even though applications using TLS must actively control initiating TLS handshakes and handling of exchanged authentication certificates.[9]
+History and development[edit]
+
+
+Defined
+
+
+Protocol
+Year
+
+
+SSL 1.0
+n/a
+
+
+SSL 2.0
+1995
+
+
+SSL 3.0
+1996
+
+
+TLS 1.0
+1999
+
+
+TLS 1.1
+2006
+
+
+TLS 1.2
+2008
+
+
+TLS 1.3
+TBD
+
+
+Secure Network Programming[edit]
+Early research efforts towards transport layer security included the Secure Network Programming (SNP) application programming interface (API), which in 1993 explored the approach of having a secure transport layer API closely resembling Berkeley sockets, to facilitate retrofitting pre-existing network applications with security measures.[10]
+SSL 1.0, 2.0 and 3.0[edit]
+Netscape developed the original SSL protocols.[11] Version 1.0 was never publicly released because of serious security flaws in the protocol; version 2.0, released in February 1995, contained a number of security flaws which necessitated the design of version 3.0.[12] Released in 1996, SSL version 3.0 represented a complete redesign of the protocol produced by Paul Kocher working with Netscape engineers Phil Karlton and Alan Freier, with a reference implementation by Christopher Allen and Tim Dierks of Consensus Development. Newer versions of SSL/TLS are based on SSL 3.0. The 1996 draft of SSL 3.0 was published by IETF as a historical document in RFC 6101.
+Taher Elgamal, chief scientist at Netscape Communications from 1995 to 1998, has been described as the "father of SSL".[13][14]
+In 2014, SSL 3.0 was found to be vulnerable to the POODLE attack that affects all block ciphers in SSL; and RC4, the only non-block cipher supported by SSL 3.0, is also feasibly broken as used in SSL 3.0.[15]
+SSL 2.0 was prohibited in 2011 by RFC 6176, and SSL 3.0 was also later prohibited in June 2015 by RFC 7568.
+TLS 1.0[edit]
+TLS 1.0 was first defined in RFC 2246 in January 1999 as an upgrade of SSL Version 3.0, and written by Christopher Allen and Tim Dierks of Consensus Development. As stated in the RFC, "the differences between this protocol and SSL 3.0 are not dramatic, but they are significant enough to preclude interoperability between TLS 1.0 and SSL 3.0". TLS 1.0 does include a means by which a TLS implementation can downgrade the connection to SSL 3.0, thus weakening security.[16]:1–2
+TLS 1.1[edit]
+TLS 1.1 was defined in RFC 4346 in April 2006.[17] It is an update from TLS version 1.0. Significant differences in this version include:
+
+Added protection against cipher-block chaining (CBC) attacks.
+
+The implicit initialization vector (IV) was replaced with an explicit IV.
+Change in handling of padding errors.
+
+
+Support for IANA registration of parameters.[16]:2
+
+TLS 1.2[edit]
+TLS 1.2 was defined in RFC 5246 in August 2008. It is based on the earlier TLS 1.1 specification. Major differences include:
+
+The MD5-SHA-1 combination in the pseudorandom function (PRF) was replaced with SHA-256, with an option to use cipher suite specified PRFs.
+The MD5-SHA-1 combination in the finished message hash was replaced with SHA-256, with an option to use cipher suite specific hash algorithms. However the size of the hash in the finished message must still be at least 96 bits.[18]
+The MD5-SHA-1 combination in the digitally signed element was replaced with a single hash negotiated during handshake, which defaults to SHA-1.
+Enhancement in the client's and server's ability to specify which hashes and signature algorithms they accept.
+Expansion of support for authenticated encryption ciphers, used mainly for Galois/Counter Mode (GCM) and CCM mode of Advanced Encryption Standard encryption.
+TLS Extensions definition and Advanced Encryption Standard cipher suites were added.[16]:2
+
+All TLS versions were further refined in RFC 6176 in March 2011, removing their backward compatibility with SSL such that TLS sessions never negotiate the use of Secure Sockets Layer (SSL) version 2.0.
+TLS 1.3 (draft)[edit]
+As of July 2017[update], TLS 1.3 is a working draft, and details are provisional and incomplete.[19][20] It is based on the earlier TLS 1.2 specification. Major differences from TLS 1.2 include:
+
+Removing support for weak and lesser-used named elliptic curves (see elliptic-curve cryptography)
+Removing support for MD5 and SHA-224 cryptographic hash functions
+Requiring digital signatures even when a previous configuration is used
+Integrating HKDF and the semi-ephemeral DH proposal
+Replacing resumption with PSK and tickets
+Supporting 1-RTT handshakes and initial support for 0-RTT (see round-trip delay time)
+Dropping support for many insecure or obsolete features including compression, renegotiation, non-AEAD ciphers, static RSA and static DH key exchange, custom DHE groups, point format negotiation, Change Cipher Spec protocol, Hello message UNIX time, and the length field AD input to AEAD ciphers
+Prohibiting SSL or RC4 negotiation for backwards compatibility
+Integrating use of session hash
+Deprecating use of the record layer version number and freezing the number for improved backwards compatibility
+Moving some security-related algorithm details from an appendix to the specification and relegating ClientKeyShare to an appendix
+Addition of the ChaCha20 stream cipher with the Poly1305 message authentication code
+Addition of the Ed25519 and Ed448 digital signature algorithms
+Addition of the x25519 and x448 key exchange protocols
+
+Network Security Services (NSS), the cryptography library developed by Mozilla and used by its web browser Firefox, enabled TLS 1.3 by default in February 2017.[21] TLS 1.3 was added to Firefox with the release of Version 52 but is disabled by default due to compatibility issues for some users.[22]
+Google Chrome set TLS 1.3 as the default version for a short time in 2017. It then removed it as the default, due to incompatible middleboxes such as Blue Coat web proxies.[23]
+Pale Moon enabled the use of TLS 1.3 as of version 27.4, released in July 2017.[24] During the IETF 100 Hackathon which took place in Singapore, The TLS Group worked on adapting Open Source applications to use TLS 1.3.[25][26] The TLS group was made up of individuals from Japan, United Kingdom, and Mauritius via the hackers.mu team.[26]
+Digital certificates[edit]
+Main article: Public key certificate
+A digital certificate certifies the ownership of a public key by the named subject of the certificate, and indicates certain expected usages of that key. This allows others (relying parties) to rely upon signatures or on assertions made by the private key that corresponds to the certified public key.
+Certificate authorities[edit]
+Main article: Certificate authority
+TLS typically relies on a set of trusted third-party certificate authorities to establish the authenticity of certificates. Trust is usually anchored in a list of certificates distributed with user agent software,[27] and can be modified by the relying party.
+According to Netcraft, who monitors active TLS certificates, the market-leading CA has been Symantec since the beginning of their survey (or VeriSign before the authentication services business unit was purchased by Symantec). Symantec currently accounts for just under a third of all certificates and 44% of the valid certificates used by the 1 million busiest websites, as counted by Netcraft.[28]
+As a consequence of choosing X.509 certificates, certificate authorities and a public key infrastructure are necessary to verify the relation between a certificate and its owner, as well as to generate, sign, and administer the validity of certificates. While this can be more convenient than verifying the identities via a web of trust, the 2013 mass surveillance disclosures made it more widely known that certificate authorities are a weak point from a security standpoint, allowing man-in-the-middle attacks (MITM).[29][30]
+Algorithm[edit]
+See also: Cipher suite
+Key exchange or key agreement[edit]
+Before a client and server can begin to exchange information protected by TLS, they must securely exchange or agree upon an encryption key and a cipher to use when encrypting data (see § Cipher). Among the methods used for key exchange/agreement are: public and private keys generated with RSA (denoted TLS_RSA in the TLS handshake protocol), Diffie–Hellman (TLS_DH), ephemeral Diffie–Hellman (TLS_DHE), Elliptic Curve Diffie–Hellman (TLS_ECDH), ephemeral Elliptic Curve Diffie–Hellman (TLS_ECDHE), anonymous Diffie–Hellman (TLS_DH_anon),[1] pre-shared key (TLS_PSK)[31] and Secure Remote Password (TLS_SRP).[32]
+The TLS_DH_anon and TLS_ECDH_anon key agreement methods do not authenticate the server or the user and hence are rarely used because those are vulnerable to man-in-the-middle attack. Only TLS_DHE and TLS_ECDHE provide forward secrecy.
+Public key certificates used during exchange/agreement also vary in the size of the public/private encryption keys used during the exchange and hence the robustness of the security provided. In July 2013, Google announced that it would no longer use 1024 bit public keys and would switch instead to 2048 bit keys to increase the security of the TLS encryption it provides to its users because the encryption strength is directly related to the key size.[3][33]
+
+
+Key exchange/agreement and authentication
+
+Algorithm
+SSL 2.0
+SSL 3.0
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3
+(Draft)
+Status
+
+
+RSA
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Defined for TLS 1.2 in RFCs
+
+
+DH-RSA
+No
+Yes
+Yes
+Yes
+Yes
+No
+
+
+DHE-RSA (forward secrecy)
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+
+
+ECDH-RSA
+No
+No
+Yes
+Yes
+Yes
+No
+
+
+ECDHE-RSA (forward secrecy)
+No
+No
+Yes
+Yes
+Yes
+Yes
+
+
+DH-DSS
+No
+Yes
+Yes
+Yes
+Yes
+No
+
+
+DHE-DSS (forward secrecy)
+No
+Yes
+Yes
+Yes
+Yes
+No[34]
+
+
+ECDH-ECDSA
+No
+No
+Yes
+Yes
+Yes
+No
+
+
+ECDHE-ECDSA (forward secrecy)
+No
+No
+Yes
+Yes
+Yes
+Yes
+
+
+PSK
+No
+No
+Yes
+Yes
+Yes
+
+
+
+PSK-RSA
+No
+No
+Yes
+Yes
+Yes
+
+
+
+DHE-PSK (forward secrecy)
+No
+No
+Yes
+Yes
+Yes
+
+
+
+ECDHE-PSK (forward secrecy)
+No
+No
+Yes
+Yes
+Yes
+
+
+
+SRP
+No
+No
+Yes
+Yes
+Yes
+
+
+
+SRP-DSS
+No
+No
+Yes
+Yes
+Yes
+
+
+
+SRP-RSA
+No
+No
+Yes
+Yes
+Yes
+
+
+
+Kerberos
+No
+No
+Yes
+Yes
+Yes
+
+
+
+DH-ANON (insecure)
+No
+Yes
+Yes
+Yes
+Yes
+
+
+
+ECDH-ANON (insecure)
+No
+No
+Yes
+Yes
+Yes
+
+
+
+GOST R 34.10-94 / 34.10-2001[35]
+No
+No
+Yes
+Yes
+Yes
+
+Proposed in RFC drafts
+
+
+Cipher[edit]
+See also: Cipher suite, Block cipher, and Cipher security summary
+
+
+Cipher security against publicly known feasible attacks
+
+Cipher
+Protocol version
+Status
+
+
+Type
+Algorithm
+Nominal strength (bits)
+SSL 2.0
+SSL 3.0
+[n 1][n 2][n 3][n 4]
+TLS 1.0
+[n 1][n 3]
+TLS 1.1
+[n 1]
+TLS 1.2
+[n 1]
+TLS 1.3
+(Draft)
+
+
+Block cipher
+with
+mode of operation
+AES GCM[36][n 5]
+256, 128
+N/A
+N/A
+N/A
+N/A
+Secure
+Secure
+Defined for TLS 1.2 in RFCs
+
+
+AES CCM[37][n 5]
+N/A
+N/A
+N/A
+N/A
+Secure
+Secure
+
+
+AES CBC[n 6]
+N/A
+N/A
+Depends on mitigations
+Secure
+Secure
+N/A
+
+
+Camellia GCM[38][n 5]
+256, 128
+N/A
+N/A
+N/A
+N/A
+Secure
+Secure
+
+
+Camellia CBC[39][n 6]
+N/A
+N/A
+Depends on mitigations
+Secure
+Secure
+N/A
+
+
+ARIA GCM[40][n 5]
+256, 128
+N/A
+N/A
+N/A
+N/A
+Secure
+Secure
+
+
+ARIA CBC[40][n 6]
+N/A
+N/A
+Depends on mitigations
+Secure
+Secure
+N/A
+
+
+SEED CBC[41][n 6]
+128
+N/A
+N/A
+Depends on mitigations
+Secure
+Secure
+N/A
+
+
+3DES EDE CBC[n 6][n 7]
+112[n 8]
+Insecure
+Insecure
+Insecure
+Insecure
+Insecure
+N/A
+
+
+GOST 28147-89 CNT[35][n 7]
+256
+N/A
+N/A
+Insecure
+Insecure
+Insecure
+
+Defined in RFC 4357
+
+
+IDEA CBC[n 6][n 7][n 9]
+128
+Insecure
+Insecure
+Insecure
+Insecure
+N/A
+N/A
+Removed from TLS 1.2
+
+
+DES CBC[n 6][n 7][n 9]
+056
+Insecure
+Insecure
+Insecure
+Insecure
+N/A
+N/A
+
+
+040[n 10]
+Insecure
+Insecure
+Insecure
+N/A
+N/A
+N/A
+Forbidden in TLS 1.1 and later
+
+
+RC2 CBC[n 6][n 7]
+040[n 10]
+Insecure
+Insecure
+Insecure
+N/A
+N/A
+N/A
+
+
+Stream cipher
+ChaCha20-Poly1305[46][n 5]
+256
+N/A
+N/A
+N/A
+N/A
+Secure
+Secure
+Defined for TLS 1.2 in RFCs
+
+
+RC4[n 11]
+128
+Insecure
+Insecure
+Insecure
+Insecure
+Insecure
+N/A
+Prohibited in all versions of TLS by RFC 7465
+
+
+040[n 10]
+Insecure
+Insecure
+Insecure
+N/A
+N/A
+N/A
+
+
+None
+Null[n 12]
+–
+N/A
+Insecure
+Insecure
+Insecure
+Insecure
+Insecure
+Defined for TLS 1.2 in RFCs
+
+
+
+Notes
+
+
+
+
+^ a b c d RFC 5746 must be implemented to fix a renegotiation flaw that would otherwise break this protocol.
+^ If libraries implement fixes listed in RFC 5746, this violates the SSL 3.0 specification, which the IETF cannot change unlike TLS. Fortunately, most current libraries implement the fix and disregard the violation that this causes.
+^ a b the BEAST attack breaks all block ciphers (CBC ciphers) used in SSL 3.0 and TLS 1.0 unless mitigated by the client and/or the server. See § Web browsers.
+^ The POODLE attack breaks all block ciphers (CBC ciphers) used in SSL 3.0 unless mitigated by the client and/or the server. See § Web browsers.
+^ a b c d e AEAD ciphers (such as GCM and CCM) can be used in only TLS 1.2.
+^ a b c d e f g h CBC ciphers can be attacked with the Lucky Thirteen attack if the library is not written carefully to eliminate timing side channels.
+^ a b c d e The Sweet32 attack breaks block ciphers with a block size of 64 bits.[42]
+^ Although the key length of 3DES is 168 bits, effective security strength of 3DES is only 112 bits,[43] which is below the recommended minimum of 128 bits.[44]
+^ a b IDEA and DES have been removed from TLS 1.2.[45]
+^ a b c 40 bits strength of cipher suites were designed to operate at reduced key lengths to comply with US regulations about the export of cryptographic software containing certain strong encryption algorithms (see Export of cryptography from the United States). These weak suites are forbidden in TLS 1.1 and later.
+^ Use of RC4 in all versions of TLS is prohibited by RFC 7465. (Due RC4 attacks weaken or break RC4 used in SSL/TLS)
+^ authentication only, no encryption
+
+
+
+Data integrity[edit]
+Message authentication code (MAC) is used for data integrity. HMAC is used for CBC mode of block ciphers and stream ciphers. AEAD is used for authenticated encryption such as GCM mode and CCM mode. 
+
+Data integrity
+
+Algorithm
+SSL 2.0
+SSL 3.0
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3
+(Draft)
+Status
+
+
+HMAC-MD5
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Defined for TLS 1.2 in RFCs
+
+
+HMAC-SHA1
+No
+Yes
+Yes
+Yes
+Yes
+No
+
+
+HMAC-SHA256/384
+No
+No
+No
+No
+Yes
+No
+
+
+AEAD
+No
+No
+No
+No
+Yes
+Yes
+
+
+GOST 28147-89 IMIT[35]
+No
+No
+Yes
+Yes
+Yes
+
+Proposed in RFC drafts
+
+
+GOST R 34.11-94[35]
+No
+No
+Yes
+Yes
+Yes
+
+
+
+Applications and adoption[edit]
+In applications design, TLS is usually implemented on top of Transport Layer protocols, encrypting all of the protocol-related data of protocols such as HTTP, FTP, SMTP, NNTP and XMPP.
+Historically, TLS has been used primarily with reliable transport protocols such as the Transmission Control Protocol (TCP). However, it has also been implemented with datagram-oriented transport protocols, such as the User Datagram Protocol (UDP) and the Datagram Congestion Control Protocol (DCCP), usage of which has been standardized independently using the term Datagram Transport Layer Security (DTLS).
+Websites[edit]
+A prominent use of TLS is for securing World Wide Web traffic between a website and a web browser encoded with the HTTP protocol. This use of TLS to secure HTTP traffic constitutes the HTTPS protocol.[47]
+
+Website protocol support
+
+Protocol
+version
+Website
+support[48]
+Security[48][49]
+
+
+SSL 2.0
+3.9% (−0.2%)
+Insecure
+
+
+SSL 3.0
+13.9% (−0.4%)
+Insecure[50]
+
+
+TLS 1.0
+92.0% (−0.6%)
+Depends on cipher[n 1] and client mitigations[n 2]
+
+
+TLS 1.1
+84.9% (+0.4%)
+Depends on cipher[n 1] and client mitigations[n 2]
+
+
+TLS 1.2
+88.7% (+0.6%)
+Depends on cipher[n 1] and client mitigations[n 2]
+
+
+TLS 1.3
+(Draft)
+N/A
+
+
+
+
+Notes
+
+
+
+
+^ a b c see § Cipher table below
+^ a b c see § Web browsers and § Attacks against TLS/SSL sections
+
+
+
+Web browsers[edit]
+Further information: Comparison of web browsers
+As of April 2016[update], the latest versions of all major web browsers support TLS 1.0, 1.1, and 1.2, and have them enabled by default. However, not all supported Microsoft operating systems support the latest version of IE. Additionally many operating systems currently support multiple versions of IE, but this has changed according to Microsoft's Internet Explorer Support Lifecycle Policy FAQ, "beginning January 12, 2016, only the most current version of Internet Explorer available for a supported operating system will receive technical support and security updates." The page then goes on to list the latest supported version of IE at that date for each operating system. The next critical date would be when an operating system reaches the end of life stage, which is in Microsoft's Windows lifecycle fact sheet.
+There are still problems on several browser versions:
+
+TLS 1.1 and 1.2 supported, but disabled by default: Internet Explorer 10 for Server 2012 and Internet Explorer 9 for Server 2008[51]
+
+Mitigations against known attacks are not enough yet:
+
+Mitigations against POODLE attack: Some browsers already prevent fallback to SSL 3.0; however, this mitigation needs to be supported by not only clients, but also servers. Disabling SSL 3.0 itself, implementation of "anti-POODLE record splitting", or denying CBC ciphers in SSL 3.0 is required.
+
+Google Chrome: Complete (TLS_FALLBACK_SCSV is implemented since version 33, fallback to SSL 3.0 is disabled since version 39, SSL 3.0 itself is disabled by default since version 40. Support of SSL 3.0 itself was dropped since version 44.)
+Mozilla Firefox: Complete (Support of SSL 3.0 itself is dropped since version 39. SSL 3.0 itself is disabled by default and fallback to SSL 3.0 are disabled since version 34, TLS_FALLBACK_SCSV is implemented since version 35. In ESR, SSL 3.0 itself is disabled by default and TLS_FALLBACK_SCSV is implemented since ESR 31.3.)
+Internet Explorer: Partial (Only in version 11, SSL 3.0 is disabled by default since April 2015. Version 10 and older are still vulnerable against POODLE.)
+Opera: Complete (TLS_FALLBACK_SCSV is implemented since version 20, "anti-POODLE record splitting", which is effective only with client-side implementation, is implemented since version 25, SSL 3.0 itself is disabled by default since version 27. Support of SSL 3.0 itself will be dropped since version 31.)
+Safari: Complete (Only on OS X 10.8 and later and iOS 8, CBC ciphers during fallback to SSL 3.0 is denied, but this means it will use RC4, which is not recommended as well. Support of SSL 3.0 itself is dropped on OS X 10.11 and later and iOS 9.)
+
+
+Mitigation against RC4 attacks:
+
+Google Chrome disabled RC4 except as a fallback since version 43. RC4 is disabled since Chrome 48.
+Firefox disabled RC4 except as a fallback since version 36. Firefox 44 disabled RC4 by default.
+Opera disabled RC4 except as a fallback since version 30. RC4 is disabled since Opera 35.
+Internet Explorer for Windows 7 / Server 2008 R2 and for Windows 8 / Server 2012 have set the priority of RC4 to lowest and can also disable RC4 except as a fallback through registry settings. Internet Explorer 11 Mobile 11 for Windows Phone 8.1 disable RC4 except as a fallback if no other enabled algorithm works. Edge and IE 11 disable RC4 completely in August 2016.
+
+
+Mitigation against FREAK attack:
+
+The Android Browser of Android 4 and older are still vulnerable to the FREAK attack.
+Internet Explorer 11 Mobile is still vulnerable to the FREAK attack.
+Google Chrome, Internet Explorer (desktop), Safari (desktop & mobile), and Opera (mobile) have FREAK mitigations in place.
+Mozilla Firefox on all platforms and Google Chrome on Windows were not affected by FREAK.
+
+
+
+
+
+TLS/SSL support history of web browsers
+
+Browser
+Version
+Platforms
+SSL protocols
+TLS protocols
+Certificate Support
+Vulnerabilities fixed[n 1]
+Protocol selection by user
+[n 2]
+
+
+SSL 2.0 (insecure)
+SSL 3.0 (insecure)
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3 (proposed)
+EV
+[n 3][52]
+SHA-2
+[53]
+ECDSA
+[54]
+BEAST[n 4]
+CRIME[n 5]
+POODLE (SSLv3)[n 6]
+RC4[n 7]
+FREAK[55][56]
+Logjam
+
+
+Google Chrome
+(Chrome for Android)
+[n 8]
+[n 9]
+1–9
+Windows (7+)
+OS X (10.9+)
+Linux
+Android (4.1+)
+iOS (9.0+)
+Chrome OS
+Disabled by default
+Enabled by default
+Yes
+No
+No
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+[61]
+Vulnerable
+(HTTPS)
+Vulnerable
+Vulnerable
+Vulnerable
+(except Windows)
+Vulnerable
+Yes[n 10]
+
+
+10–20
+No[62]
+Enabled by default
+Yes
+No
+No
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Vulnerable
+(HTTPS/SPDY)
+Vulnerable
+Vulnerable
+Vulnerable
+(except Windows)
+Vulnerable
+Yes[n 10]
+
+
+21
+No
+Enabled by default
+Yes
+No
+No
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+[63]
+Vulnerable
+Vulnerable
+Vulnerable
+(except Windows)
+Vulnerable
+Yes[n 10]
+
+
+22–25
+No
+Enabled by default
+Yes
+Yes[64]
+No[64][65][66][67]
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Vulnerable
+Vulnerable
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+26–29
+No
+Enabled by default
+Yes
+Yes
+No
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Vulnerable
+Vulnerable
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+30–32
+No
+Enabled by default
+Yes
+Yes
+Yes[65][66][67]
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Vulnerable
+Vulnerable
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+33–37
+No
+Enabled by default
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Partly mitigated
+[n 12]
+Lowest priority
+[70][71][72]
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+38, 39
+No
+Enabled by default
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Partly mitigated
+Lowest priority
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+40
+No
+Disabled by default
+[69][73]
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Mitigated
+[n 13]
+Lowest priority
+Vulnerable
+(except Windows)
+Vulnerable
+Yes[n 14]
+
+
+41, 42
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Mitigated
+Lowest priority
+Mitigated
+Vulnerable
+Yes[n 14]
+
+
+43
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Mitigated
+Only as fallback
+[n 15][74]
+Mitigated
+Vulnerable
+Yes[n 14]
+
+
+44–47
+No
+No[75]
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Not affected
+Only as fallback
+[n 15]
+Mitigated
+Mitigated[76]
+Temporary
+[n 11]
+
+
+48, 49
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Not affected
+Disabled by default[n 16][77][78]
+Mitigated
+Mitigated
+Temporary
+[n 11]
+
+
+50–53
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+Yes
+Not affected
+Mitigated
+Not affected
+Disabled by default[n 16][77][78]
+Mitigated
+Mitigated
+Temporary
+[n 11]
+
+
+54–62
+63
+No
+No
+Yes
+Yes
+Yes
+Disabled by default (Experimental)
+Yes
+(only desktop)
+Yes
+Yes
+Not affected
+Mitigated
+Not affected
+Disabled by default[n 16][77][78]
+Mitigated
+Mitigated
+Temporary
+[n 11]
+
+
+Google Android OS Browser
+[79]
+Android 1.0, 1.1, 1.5, 1.6, 2.0–2.1, 2.2–2.2.3
+No
+Enabled by default
+Yes
+No
+No
+No
+Unknown
+No
+No
+Unknown
+Unknown
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+Android 2.3–2.3.7, 3.0–3.2.6, 4.0–4.0.4
+No
+Enabled by default
+Yes
+No
+No
+No
+Unknown
+Yes[53]
+since Android OS 3.0[80]
+Unknown
+Unknown
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+Android 4.1–4.3.1, 4.4–4.4.4
+No
+Enabled by default
+Yes
+Disabled by default[81]
+Disabled by default[81]
+No
+Unknown
+Yes
+Yes[54]
+Unknown
+Unknown
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+Android 5.0–5.0.2
+No
+Enabled by default
+Yes
+Yes[81][82]
+Yes[81][82]
+No
+Unknown
+Yes
+Yes
+Unknown
+Unknown
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+Android 5.1–5.1.1
+No
+No
+[citation needed]
+Yes
+Yes
+Yes
+No
+Unknown
+Yes
+Yes
+Unknown
+Unknown
+Not affected
+Only as fallback
+[n 15]
+Mitigated
+Mitigated
+No
+
+
+Android 6.0–6.0.1, 7.0–7.1.2, 8.0
+No
+No
+[citation needed]
+Yes
+Yes
+Yes
+No
+Unknown
+Yes
+Yes
+Unknown
+Unknown
+Not affected
+Disabled by default
+Mitigated
+Mitigated
+No
+
+
+Android 8.1
+No
+No
+[83]
+Yes
+Yes
+Yes
+No
+Unknown
+Yes
+Yes
+Unknown
+Unknown
+Not affected
+Disabled by default
+Mitigated
+Mitigated
+No
+
+
+Browser
+Version
+Platforms
+SSL 2.0 (insecure)
+SSL 3.0 (insecure)
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3 (proposed)
+EV certificate
+SHA-2 certificate
+ECDSA certificate
+BEAST
+CRIME
+POODLE (SSLv3)
+RC4
+FREAK
+Logjam
+Protocol selection by user
+
+
+Mozilla Firefox
+(Firefox for mobile)
+[n 17]
+1.0
+Windows (7+)
+OS X (10.9+)
+Linux
+Android (4.0.3+)
+iOS (9.0+)
+Firefox OS
+Maemo
+
+ESR only for:
+Windows (XP SP2+)
+OS X (10.9+)
+Linux
+Enabled by default
+[84]
+Enabled by default
+[84]
+Yes[84]
+No
+No
+No
+No
+Yes[53]
+No
+Not affected
+[85]
+Not affected
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 10]
+
+
+1.5
+Enabled by default
+Enabled by default
+Yes
+No
+No
+No
+No
+Yes
+No
+Not affected
+Not affected
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 10]
+
+
+2
+Disabled by default
+[84][86]
+Enabled by default
+Yes
+No
+No
+No
+No
+Yes
+Yes[54]
+Not affected
+Not affected
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 10]
+
+
+3–7
+Disabled by default
+Enabled by default
+Yes
+No
+No
+No
+Yes
+Yes
+Yes
+Not affected
+Not affected
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 10]
+
+
+8–10
+ESR 10
+No[86]
+Enabled by default
+Yes
+No
+No
+No
+Yes
+Yes
+Yes
+Not affected
+Not affected
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 10]
+
+
+11–14
+No
+Enabled by default
+Yes
+No
+No
+No
+Yes
+Yes
+Yes
+Not affected
+Vulnerable
+(SPDY)[63]
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 10]
+
+
+15–22
+ESR 17.0–17.0.10
+No
+Enabled by default
+Yes
+No
+No
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 10]
+
+
+ESR 17.0.11
+No
+Enabled by default
+Yes
+No
+No
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Vulnerable
+Lowest priority
+[87][88]
+Not affected
+Vulnerable
+Yes[n 10]
+
+
+23
+No
+Enabled by default
+Yes
+Disabled by default
+[89]
+No
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 18]
+
+
+24, 25.0.0
+ESR 24.0–24.1.0
+No
+Enabled by default
+Yes
+Disabled by default
+Disabled by default
+[90]
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Vulnerable
+Vulnerable
+Not affected
+Vulnerable
+Yes[n 18]
+
+
+25.0.1, 26
+ESR 24.1.1
+No
+Enabled by default
+Yes
+Disabled by default
+Disabled by default
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Vulnerable
+Lowest priority
+[87][88]
+Not affected
+Vulnerable
+Yes[n 18]
+
+
+27–33
+ESR 31.0–31.2
+No
+Enabled by default
+Yes
+Yes[91][92]
+Yes[93][92]
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Vulnerable
+Lowest priority
+Not affected
+Vulnerable
+Yes[n 18]
+
+
+34, 35
+ESR 31.3–31.7
+No
+Disabled by default
+[94][95]
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Mitigated
+[n 19]
+Lowest priority
+Not affected
+Vulnerable
+Yes[n 18]
+
+
+ESR 31.8
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Mitigated
+Lowest priority
+Not affected
+Mitigated[98]
+Yes[n 18]
+
+
+36–38
+ESR 38.0
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Mitigated
+Only as fallback
+[n 15][99]
+Not affected
+Vulnerable
+Yes[n 18]
+
+
+ESR 38.1–38.8
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Mitigated
+Only as fallback
+[n 15]
+Not affected
+Mitigated[98]
+Yes[n 18]
+
+
+39–43
+No
+No[100]
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Not affected
+Only as fallback
+[n 15]
+Not affected
+Mitigated[98]
+Yes[n 18]
+
+
+44–48
+ESR 45.0–45.9
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Not affected
+Disabled by default[n 16][101][102][103][104]
+Not affected
+Mitigated
+Yes[n 18]
+
+
+49–56
+ESR 52.0-52.4
+ESR 52.5
+No
+No
+Yes
+Yes
+Yes
+Disabled by default (Experimental)[105]
+Yes
+Yes
+Yes
+Not affected
+Mitigated
+Not affected
+Disabled by default[n 16]
+Not affected
+Mitigated
+Yes[n 18]
+
+
+57
+
+
+Browser
+Version
+Platforms
+SSL 2.0 (insecure)
+SSL 3.0 (insecure)
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3 (proposed)
+EV certificate
+SHA-2 certificate
+ECDSA certificate
+BEAST
+CRIME
+POODLE (SSLv3)
+RC4
+FREAK
+Logjam
+Protocol selection by user
+
+
+Microsoft Internet Explorer
+[n 20]
+1.x
+Windows 3.1, 95, NT,[n 21][n 22]
+Mac OS 7, 8
+No SSL/TLS support
+
+
+2
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+No SSL 3.0 or TLS support
+Vulnerable
+Vulnerable
+Vulnerable
+N/A
+
+
+3
+Yes
+Yes[108]
+No
+No
+No
+No
+No
+No
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+Unknown
+
+
+4, 5
+Windows 3.1, 95, 98, NT,[n 21][n 22]
+Mac OS 7.1, 8, X,
+Solaris, HP-UX
+Enabled by default
+Enabled by default
+Disabled by default
+[108]
+No
+No
+No
+No
+No
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+Yes[n 10]
+
+
+6
+Windows 98, ME, NT,[n 21] 2000[n 22]
+Enabled by default
+Enabled by default
+Disabled by default
+[108]
+No
+No
+No
+No
+No
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+Yes[n 10]
+
+
+6
+Windows XP[n 22]
+Enabled by default
+Enabled by default
+Disabled by default
+No
+No
+No
+No
+Yes
+[n 23][109]
+No
+Mitigated
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+Yes[n 10]
+
+
+6
+Server 2003[n 22]
+Enabled by default
+Enabled by default
+Disabled by default
+No
+No
+No
+No
+Yes
+[n 23][109]
+No
+Mitigated
+Not affected
+Vulnerable
+Vulnerable
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+7, 8
+Windows XP[n 22]
+Disabled by default
+[114]
+Enabled by default
+Yes[114]
+No
+No
+No
+Yes
+Yes
+[n 23][109]
+No
+Mitigated
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+Yes[n 10]
+
+
+7, 8
+Server 2003[n 22]
+Disabled by default
+[114]
+Enabled by default
+Yes[114]
+No
+No
+No
+Yes
+Yes
+[n 23][109]
+No
+Mitigated
+Not affected
+Vulnerable
+Vulnerable
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+7, 8, 9
+Windows Vista
+Disabled by default
+Enabled by default
+Yes
+No
+No
+No
+Yes
+Yes
+Yes[54]
+Mitigated
+Not affected
+Vulnerable
+Vulnerable
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+7, 8[n 24]
+9
+Server 2008
+Disabled by default
+Enabled by default
+Yes
+Disabled by default[51]
+(KB4019276)
+Disabled by default[51]
+(KB4019276)
+No
+Yes
+Yes
+Yes[54]
+Mitigated
+Not affected
+Vulnerable
+Vulnerable
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+8, 9, 10[n 24]
+Windows 7
+Disabled by default
+Enabled by default
+Yes
+Disabled by default
+[116]
+Disabled by default
+[116]
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Vulnerable
+Lowest priority
+[117][n 25]
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+Server 2008 R2
+
+
+10[n 24]
+Windows 8
+Disabled by default
+Enabled by default
+Yes
+Disabled by default
+[116]
+Disabled by default
+[116]
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Vulnerable
+Lowest priority
+[117][n 25]
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+10
+Server 2012
+Disabled by default
+Enabled by default
+Yes
+Disabled by default
+[116]
+Disabled by default
+[116]
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Vulnerable
+Lowest priority
+[117][n 25]
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+11
+Windows 7
+Disabled by default
+Disabled by default
+[n 26]
+Yes
+Yes[119]
+Yes[119]
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+[n 26]
+Disabled by default[123]
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+Server 2008 R2
+
+
+11
+Windows 8.1
+Disabled by default
+Disabled by default
+[n 26]
+Yes
+Yes[119]
+Yes[119]
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+[n 26]
+Disabled by default[n 16]
+Mitigated
+[112]
+Mitigated
+[113]
+Yes[n 10]
+
+
+Server 2012 R2
+
+
+Microsoft Edge[n 27]
+and (as fallback)
+Internet Explorer[n 20]
+IE 11
+Edge 12
+Windows 10 v1507
+Disabled by default
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+IE 11
+Windows 10 LTSB 2015 (v1507)[n 28]
+Disabled by default
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+IE 11
+Edge 13
+Windows 10 v1511
+Disabled by default
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+IE 11
+Edge 14
+Windows 10 v1607
+No[125]
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+IE 11
+Windows 10 LSTB 2016 (v1607)
+No[125]
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+IE 11
+Server 2016
+v1607 (LTSB)
+No[125]
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+IE 11
+Edge 15
+Windows 10 v1703
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+IE 11
+Edge 16
+Windows 10 v1709
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+IE 11
+Server 2016
+v1709 (SAC)
+No[125]
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+Yes[n 10]
+
+
+Microsoft Internet Explorer Mobile
+[n 20]
+7, 9
+Windows Phone 7, 7.5, 7.8
+Disabled by default
+[114]
+Enabled by default
+Yes
+No
+[citation needed]
+No
+[citation needed]
+No
+No
+[citation needed]
+Yes
+Yes[80]
+Unknown
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+Only with 3rd party tools[n 29]
+
+
+10
+Windows Phone 8
+Disabled by default
+Enabled by default
+Yes
+Disabled by default
+[127]
+Disabled by default
+[127]
+No
+No
+[citation needed]
+Yes
+Yes[128]
+Mitigated
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+Only with 3rd party tools[n 29]
+
+
+11
+Windows Phone 8.1
+Disabled by default
+Enabled by default
+Yes
+Yes[129]
+Yes[129]
+No
+No
+[citation needed]
+Yes
+Yes
+Mitigated
+Not affected
+Vulnerable
+Only as fallback
+[n 15][130][131]
+Vulnerable
+Vulnerable
+Only with 3rd party tools[n 29]
+
+
+Microsoft Edge
+[n 27]
+Edge 13
+Windows 10 Mobile v1511
+Disabled by default
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+No
+
+
+Edge 14
+Windows 10 Mobile v1607
+No[125]
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+No
+
+
+Edge 15
+Windows 10 Mobile v1703
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+No
+
+
+Edge 15
+Windows 10 Mobile v1709
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16]
+Mitigated
+Mitigated
+No
+
+
+Browser
+Version
+Platforms
+SSL 2.0 (insecure)
+SSL 3.0 (insecure)
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3 (proposed)
+EV certificate
+SHA-2 certificate
+ECDSA certificate
+BEAST
+CRIME
+POODLE (SSLv3)
+RC4
+FREAK
+Logjam
+Protocol selection by user
+
+
+Opera Browser
+(Opera Mobile)
+(Pre-Presto and Presto)
+[n 30]
+1–2
+Windows
+OS X
+Linux
+Android
+Symbian S60
+Maemo
+Windows Mobile
+No SSL/TLS support[133]
+
+
+3
+Yes[134]
+No
+No
+No
+No
+No
+No
+No
+No
+No SSL 3.0 or TLS support
+Vulnerable
+Unknown
+Unknown
+N/A
+
+
+4
+Yes
+Yes[135]
+No
+No
+No
+No
+No
+No
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Unknown
+Unknown
+Unknown
+
+
+5
+Enabled by default
+Enabled by default
+Yes[136]
+No
+No
+No
+No
+No
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Unknown
+Unknown
+Yes[n 10]
+
+
+6–7
+Enabled by default
+Enabled by default
+Yes[136]
+No
+No
+No
+No
+Yes[53]
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Unknown
+Unknown
+Yes[n 10]
+
+
+8
+Enabled by default
+Enabled by default
+Yes
+Disabled by default
+[137]
+No
+No
+No
+Yes
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Unknown
+Unknown
+Yes[n 10]
+
+
+9
+Disabled by default
+[138]
+Enabled by default
+Yes
+Yes
+No
+No
+since v9.5
+(only desktop)
+Yes
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Unknown
+Unknown
+Yes[n 10]
+
+
+10–11.52
+No[139]
+Enabled by default
+Yes
+Disabled by default
+Disabled by default
+[139]
+No
+Yes
+(only desktop)
+Yes
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Unknown
+Unknown
+Yes[n 10]
+
+
+11.60–11.64
+No
+Enabled by default
+Yes
+Disabled by default
+Disabled by default
+No
+Yes
+(only desktop)
+Yes
+No
+Mitigated
+[140]
+Not affected
+Vulnerable
+Vulnerable
+Unknown
+Unknown
+Yes[n 10]
+
+
+12–12.14
+No
+Disabled by default
+[n 31]
+Yes
+Disabled by default
+Disabled by default
+No
+Yes
+(only desktop)
+Yes
+No
+Mitigated
+Not affected
+Mitigated
+[n 31]
+Vulnerable
+Unknown
+Mitigated[142]
+Yes[n 10]
+
+
+12.15–12.17
+No
+Disabled by default
+Yes
+Disabled by default
+Disabled by default
+No
+Yes
+(only desktop)
+Yes
+No
+Mitigated
+Not affected
+Mitigated
+Partly mitigated
+[143][144]
+Unknown
+Mitigated[142]
+Yes[n 10]
+
+
+12.18
+No
+Disabled by default
+Yes
+Yes[145]
+Yes[145]
+No
+Yes
+(only desktop)
+Yes
+Yes[145]
+Mitigated
+Not affected
+Mitigated
+Disabled by default[n 16][145]
+Mitigated[145]
+Mitigated[142]
+Yes[n 10]
+
+
+Opera Browser
+(Opera Mobile)
+(Webkit and Blink)
+[n 32]
+14–16
+Windows (7+)
+OS X (10.9+)
+Linux
+Android (4.0+)
+No
+Enabled by default
+Yes
+Yes[148]
+No[148]
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Vulnerable
+Vulnerable
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+17–19
+No
+Enabled by default
+Yes
+Yes[149]
+Yes[149]
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Vulnerable
+Vulnerable
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+20–24
+No
+Enabled by default
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+needs SHA-2 compatible OS[53]
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Partly mitigated
+[n 33]
+Lowest priority
+[150]
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+25, 26
+No
+Enabled by default
+[n 34]
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Mitigated
+[n 35]
+Lowest priority
+Vulnerable
+(except Windows)
+Vulnerable
+Temporary
+[n 11]
+
+
+27
+No
+Disabled by default
+[73]
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Mitigated
+[n 36]
+Lowest priority
+Vulnerable
+(except Windows)
+Vulnerable
+Yes[n 37]
+(only desktop)
+
+
+28, 29
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Mitigated
+Lowest priority
+Mitigated
+Vulnerable
+Yes[n 37]
+(only desktop)
+
+
+30
+No
+Disabled by default
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Mitigated
+Only as fallback
+[n 15][74]
+Mitigated
+Mitigated[142]
+Yes[n 37]
+(only desktop)
+
+
+31–34
+No
+No[75]
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Not affected
+Only as fallback
+[n 15][74]
+Mitigated
+Mitigated
+Temporary
+[n 11]
+
+
+35, 36
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+needs ECC compatible OS[54]
+Not affected
+Mitigated
+Not affected
+Disabled by default[n 16][77][78]
+Mitigated
+Mitigated
+Temporary
+[n 11]
+
+
+37–40
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+(only desktop)
+Yes
+Yes
+Not affected
+Mitigated
+Not affected
+Disabled by default[n 16][77][78]
+Mitigated
+Mitigated
+Temporary
+[n 11]
+
+
+41–48
+49
+No
+No
+Yes
+Yes
+Yes
+Disabled by default (Experimental)
+Yes
+(only desktop)
+Yes
+Yes
+Not affected
+Mitigated
+Not affected
+Disabled by default[n 16][77][78]
+Mitigated
+Mitigated
+Temporary
+[n 11]
+
+
+Browser
+Version
+Platforms
+SSL 2.0 (insecure)
+SSL 3.0 (insecure)
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3 (proposed)
+EV certificate
+SHA-2 certificate
+ECDSA certificate
+BEAST
+CRIME
+POODLE (SSLv3)
+RC4
+FREAK
+Logjam
+Protocol selection by user
+
+
+Apple Safari
+[n 38]
+1
+Mac OS X 10.2, 10.3
+No[155]
+Yes
+Yes
+No
+No
+No
+No
+No
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+2–5
+Mac OS X 10.4, 10.5, Win XP
+No
+Yes
+Yes
+No
+No
+No
+since v3.2
+No
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+3–5
+Vista, Win 7
+No
+Yes
+Yes
+No
+No
+No
+since v3.2
+No
+Yes[80]
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+4–6
+Mac OS X 10.6, 10.7
+No
+Yes
+Yes
+No
+No
+No
+Yes
+Yes[53]
+Yes[54]
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+6
+OS X 10.8
+No
+Yes
+Yes
+No
+No
+No
+Yes
+Yes
+Yes[54]
+Mitigated
+[n 39]
+Not affected
+Mitigated
+[n 40]
+Vulnerable
+[n 40]
+Mitigated
+[161]
+Vulnerable
+No
+
+
+7, 9
+OS X 10.9
+No
+Yes
+Yes
+Yes[162]
+Yes[162]
+No
+Yes
+Yes
+Yes
+Mitigated
+[157]
+Not affected
+Mitigated
+[n 40]
+Vulnerable
+[n 40]
+Mitigated
+[161]
+Vulnerable
+No
+
+
+8–10
+OS X 10.10
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+[n 40]
+Lowest priority
+[163][n 40]
+Mitigated
+[161]
+Mitigated
+[164]
+No
+
+
+9, 10
+11
+OS X 10.11
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Not affected
+Lowest priority
+Mitigated
+Mitigated
+No
+
+
+10
+11
+macOS 10.12
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Not affected
+Disabled by default[n 16]
+Mitigated
+Mitigated
+No
+
+
+11
+macOS 10.13
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Not affected
+Disabled by default[n 16]
+Mitigated
+Mitigated
+No
+
+
+Apple Safari
+(mobile)
+[n 41]
+3
+iPhone OS 1, 2
+No[168]
+Yes
+Yes
+No
+No
+No
+No
+No
+No
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+4, 5
+iPhone OS 3, iOS 4
+No
+Yes
+Yes
+No
+No
+No
+Yes[169]
+Yes
+since iOS 4[80]
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+5, 6
+iOS 5, 6
+No
+Yes
+Yes
+Yes[165]
+Yes[165]
+No
+Yes
+Yes
+Yes
+Vulnerable
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+7
+iOS 7
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes[170]
+Mitigated
+[171]
+Not affected
+Vulnerable
+Vulnerable
+Vulnerable
+Vulnerable
+No
+
+
+8
+iOS 8
+No
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Mitigated
+[n 40]
+Lowest priority
+[172][n 40]
+Mitigated
+[173]
+Mitigated
+[174]
+No
+
+
+9
+iOS 9
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Not affected
+Lowest priority
+Mitigated
+Mitigated
+No
+
+
+10
+iOS 10
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Not affected
+Disabled by default[n 16]
+Mitigated
+Mitigated
+No
+
+
+11
+iOS 11
+No
+No
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+Mitigated
+Not affected
+Not affected
+Disabled by default[n 16]
+Mitigated
+Mitigated
+No
+
+
+Browser
+Version
+Platforms
+SSL 2.0 (insecure)
+SSL 3.0 (insecure)
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3 (proposed)
+EV
+[n 3]
+SHA-2
+ECDSA
+BEAST[n 4]
+CRIME[n 5]
+POODLE (SSLv3)[n 6]
+RC4[n 7]
+FREAK[55][56]
+Logjam
+Protocol selection by user
+
+
+SSL protocols
+TLS protocols
+Certificate Support
+Vulnerabilities fixed
+
+
+
+
+Color or Note
+Significance
+
+
+Browser version
+Platform
+
+
+Browser version
+Operating system
+Future release; under development
+
+
+Browser version
+Operating system
+Current latest release
+
+
+Browser version
+Operating system
+Former release; still supported
+
+
+Browser version
+Operating system
+Former release; long-term support still active, but will end in less than 12 months
+
+
+Browser version
+Operating system
+Former release; no longer supported
+
+
+n/a
+Operating system
+Mixed / Unspecified
+
+
+Operating system (Version+)
+Minimum required operating system version (for the current latest version of the browser)
+
+
+Operating system
+No longer supported for this operating system
+
+
+
+Notes
+
+
+
+^ Does the browser have mitigations or is not vulnerable for the known attacks. Note actual security depends on other factors such as negotiated cipher, encryption strength etc (see § Cipher table).
+^ Whether a user or administrator can choose the protocols to be used or not. If yes, several attacks such as BEAST (vulnerable in SSL 3.0 and TLS 1.0) or POODLE (vulnerable in SSL 3.0) can be avoided.
+^ a b Whether EV SSL and DV SSL (normal SSL) can be distinguished by indicators (green lock icon, green address bar, etc.) or not.
+^ a b e.g. 1/n-1 record splitting.
+^ a b e.g. Disabling header compression in HTTPS/SPDY.
+^ a b
+
+Complete mitigations; disabling SSL 3.0 itself, "anti-POODLE record splitting". "Anti-POODLE record splitting" is effective only with client-side implementation and valid according to the SSL 3.0 specification, however, it may also cause compatibility issues due to problems in server-side implementations.
+Partial mitigations; disabling fallback to SSL 3.0, TLS_FALLBACK_SCSV, disabling cipher suites with CBC mode of operation. If the server also supports TLS_FALLBACK_SCSV, the POODLE attack will fail against this combination of server and browser, but connections where the server does not support TLS_FALLBACK_SCSV and does support SSL 3.0 will still be vulnerable. If disabling cipher suites with CBC mode of operation in SSL 3.0, only cipher suites with RC4 are available, RC4 attacks become easier.
+When disabling SSL 3.0 manually, POODLE attack will fail.
+
+
+^ a b
+
+Complete mitigation; disabling cipher suites with RC4.
+Partial mitigations to keeping compatibility with old systems; setting the priority of RC4 to lower.
+
+
+^ Google Chrome (and Chromium) supports TLS 1.0, and TLS 1.1 from version 22 (it was added, then dropped from version 21). TLS 1.2 support has been added, then dropped from Chrome 29.[57][58][59]
+^ Uses the TLS implementation provided by BoringSSL for Android, OS X, and Windows[60] or by NSS for Linux. Google is switching the TLS library used in Chrome to BoringSSL from NSS completely.
+^ a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac ad ae af ag ah ai aj ak al am an ao ap configure enabling/disabling of each protocols via setting/option (menu name is dependent on browsers)
+^ a b c d e f g h i j k l m n o p q configure the maximum and the minimum version of enabling protocols with command-line option
+^ TLS_FALLBACK_SCSV is implemented.[68] Fallback to SSL 3.0 is disabled since version 39.[69]
+^ In addition to TLS_FALLBACK_SCSV and disabling a fallback to SSL 3.0, SSL 3.0 itself is disabled by default.[69]
+^ a b c configure the minimum version of enabling protocols via chrome://flags[73] (the maximum version can be configured with command-line option)
+^ a b c d e f g h i Only when no cipher suites with other than RC4 is available, cipher suites with RC4 will be used as a fallback.
+^ a b c d e f g h i j k l m n o p q r s t u v w x y z aa All RC4 cipher-suites is disabled by default.
+^ Uses the TLS implementation provided by NSS. As of Firefox 22, Firefox supports only TLS 1.0 despite the bundled NSS supporting TLS 1.1. Since Firefox 23, TLS 1.1 can be enabled, but was not enabled by default due to issues. Firefox 24 has TLS 1.2 support disabled by default. TLS 1.1 and TLS 1.2 have been enabled by default in Firefox 27 release.
+^ a b c d e f g h i j k configure the maximum and the minimum version of enabling protocols via about:config
+^ SSL 3.0 itself is disabled by default.[94] In addition, fallback to SSL 3.0 is disabled since version 34,[96] and TLS_FALLBACK_SCSV is implemented since 35.0 and ESR 31.3.[94][97]
+^ a b c IE uses the TLS implementation of the Microsoft Windows operating system provided by the SChannel security support provider. TLS 1.1 and 1.2 are disabled by default until IE11.[106][107]
+^ a b c Windows NT 3.1 supports IE 1–2, Windows NT 3.5 supports IE 1–3, Windows NT 3.51 and Windows NT 4.0 supports IE 1–6
+^ a b c d e f g Windows XP as well as Server 2003 and older support only weak ciphers like 3DES and RC4 out of the box.[110] The weak ciphers of these SChannel version are not only used for IE, but also for other Microsoft products running on this OS, like Office or Windows Update. Only Windows Server 2003 can get a manually update to support AES ciphers by KB948963[111]
+^ a b c d MS13-095 or MS14-049 for 2003 and XP-64 or SP3 for XP (32-bit)
+^ a b c Internet Explorer Support Announcement[115]
+^ a b c RC4 can be disabled except as a fallback (Only when no cipher suites with other than RC4 is available, cipher suites with RC4 will be used as a fallback.)[118]
+^ a b c d Fallback to SSL 3.0 is sites blocked by default in Internet Explorer 11 for Protected Mode.[120][121] SSL 3.0 is disabled by default in Internet Explorer 11 since April 2015.[122]
+^ a b Edge (formerly known as Project Spartan) is based on a fork of the Internet Explorer 11 rendering engine.
+^ Except Windows 10 LTSB 2015 (LongTermSupportBranch)[124]
+^ a b c Could be disabled via registry editing but need 3rd Party tools to do this.[126]
+^ Opera 10 added support for TLS 1.2 as of Presto 2.2. Previous support was for TLS 1.0 and 1.1. TLS 1.1 and 1.2 are disabled by default (except for version 9[132] that enabled TLS 1.1 by default).
+^ a b SSL 3.0 is disabled by default remotely since October 15, 2014[141]
+^ TLS support of Opera 14 and above is same as that of Chrome, because Opera has migrated to Chromium backend (Opera 14 for Android is based on Chromium 26 with WebKit,[146] and Opera 15 and above are based on Chromium 28 and above with Blink[147]).
+^ TLS_FALLBACK_SCSV is implemented.[150]
+^ SSL 3.0 is enabled by default, with some mitigations against known vulnerabilities such as BEAST and POODLE implemented.[141]
+^ In addition to TLS_FALLBACK_SCSV, "anti-POODLE record splitting" is implemented.[141]
+^ In addition to TLS_FALLBACK_SCSV and "anti-POODLE record splitting", SSL 3.0 itself is disabled by default.[73]
+^ a b c configure the minimum version of enabling protocols via opera://flags[73] (the maximum version can be configured with command-line option)
+^ Safari uses the operating system implementation on Mac OS X, Windows (XP, Vista, 7)[151] with unknown version,[152] Safari 5 is the last version available for Windows. OS X 10.8 on have SecureTransport support for TLS 1.1 and 1.2[153] Qualys SSL report simulates Safari 5.1.9 connecting with TLS 1.0 not 1.1 or 1.2[154]
+^ In September 2013, Apple implemented BEAST mitigation in OS X 10.8 (Mountain Lion), but it was not turned on by default resulting in Safari still being theoretically vulnerable to the BEAST attack on that platform.[156][157] BEAST mitigation has been enabled by default from OS X 10.8.5 updated in February 2014.[158]
+^ a b c d e f g h Because Apple removed support for all CBC protocols in SSL 3.0 to mitigate POODLE,[159][160] this leaves only RC4 which is also completely broken by the RC4 attacks in SSL 3.0.
+^ Mobile Safari and third-party software utilizing the system UIWebView library use the iOS operating system implementation, which supports TLS 1.2 as of iOS 5.0.[165][166][167]
+
+
+Libraries[edit]
+Main article: Comparison of TLS implementations
+Most SSL and TLS programming libraries are free and open source software.
+
+BoringSSL, a fork of OpenSSL for Chrome/Chromium and Android as well as other Google applications.
+Botan, a BSD-licensed cryptographic library written in C++.
+CryptoComply: a family of FIPS 140-2 validated encryption modules designed to simplify FIPS 140-2 certification requirements.
+cryptlib: a portable open source cryptography library (includes TLS/SSL implementation)
+Delphi programmers may use a library called Indy which utilizes OpenSSL.
+GnuTLS: a free implementation (LGPL licensed)
+Java Secure Socket Extension: a Java implementation included in the Java Runtime Environment supports TLS 1.1 and 1.2 from Java 7, although is disabled by default for client, and enabled by default for server.[175] Java 8 supports TLS 1.1 and 1.2 enabled on both the client and server by default.[176]
+LibreSSL: a fork of OpenSSL by OpenBSD project.
+MatrixSSL: a dual licensed implementation
+mbed TLS (previously PolarSSL): A tiny SSL library implementation for embedded devices that is designed for ease of use
+Network Security Services: FIPS 140 validated open source library
+OpenSSL: a free implementation (BSD license with some extensions)
+SChannel: an implementation of SSL and TLS Microsoft Windows as part of its package.
+Secure Transport: an implementation of SSL and TLS used in OS X and iOS as part of their packages.
+wolfSSL (previously CyaSSL): Embedded SSL/TLS Library with a strong focus on speed and size.
+
+
+Library support for TLS/SSL
+
+Implementation
+SSL 2.0 (insecure)
+SSL 3.0 (insecure)
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3
+(Draft)
+
+
+Botan
+No
+No[177]
+Yes
+Yes
+Yes
+
+
+
+CryptoComply
+No
+Disabled by default
+Yes
+Yes
+Yes
+Yes
+
+
+cryptlib
+No
+Enabled by default
+Yes
+Yes
+Yes
+
+
+
+GnuTLS
+No[a]
+Disabled by default[178]
+Yes
+Yes
+Yes
+
+
+
+Java Secure Socket Extension
+No[a]
+Disabled by default[179]
+Yes
+Yes
+Yes
+
+
+
+LibreSSL
+No[180]
+No[181]
+Yes
+Yes
+Yes
+
+
+
+MatrixSSL
+No
+Disabled by default at compile time[182]
+Yes
+Yes
+Yes
+
+
+
+mbed TLS (previously PolarSSL)
+No
+Disabled by default[183]
+Yes
+Yes
+Yes
+
+
+
+Network Security Services
+No[b]
+Disabled by default[184]
+Yes
+Yes[185]
+Yes[186]
+
+
+
+OpenSSL
+No[187]
+Enabled by default
+Yes
+Yes[188]
+Yes[188]
+
+
+
+RSA BSAFE[189]
+No
+Yes
+Yes
+Yes
+Yes
+
+
+
+SChannel XP / 2003[190]
+Disabled by default by MSIE 7
+Enabled by default
+Enabled by default by MSIE 7
+No
+No
+
+
+
+SChannel Vista[191]
+Disabled by default
+Enabled by default
+Yes
+No
+No
+
+
+
+SChannel 2008[191]
+Disabled by default
+Enabled by default
+Yes
+Disabled by default (KB4019276)[51]
+Disabled by default (KB4019276)[51]
+
+
+
+SChannel 7 / 2008 R2[192]
+Disabled by default
+Disabled by default in MSIE 11
+Yes
+Enabled by default by MSIE 11
+Enabled by default by MSIE 11
+
+
+
+SChannel 8 / 2012[192]
+Disabled by default
+Enabled by default
+Yes
+Disabled by default
+Disabled by default
+
+
+
+SChannel 8.1 / 2012 R2, 10 v1507 & v1511[192]
+Disabled by default
+Disabled by default in MSIE 11
+Yes
+Yes
+Yes
+
+
+
+SChannel 10 v1607 / 2016[125]
+No
+Disabled by default
+Yes
+Yes
+Yes
+
+
+
+Secure Transport OS X 10.2–10.8 / iOS 1–4
+Yes
+Yes
+Yes
+No
+No
+
+
+
+Secure Transport OS X 10.9–10.10 / iOS 5–8
+No[c]
+Yes
+Yes
+Yes[c]
+Yes[c]
+
+
+
+Secure Transport OS X 10.11 / iOS 9
+No
+No[c]
+Yes
+Yes
+Yes
+
+
+
+SharkSSL
+No
+Disabled by default
+Yes
+Yes
+Yes
+
+
+
+wolfSSL (previously CyaSSL)
+No
+Disabled by default[193]
+Yes
+Yes
+Yes
+Yes[194]
+
+
+Implementation
+SSL 2.0 (insecure)
+SSL 3.0 (insecure)
+TLS 1.0
+TLS 1.1
+TLS 1.2
+TLS 1.3
+(Draft)
+
+
+
+
+^ SSL 2.0 client hello is supported even though SSL 2.0 is not supported or is disabled because of the backward compatibilities.
+^ Server-side implementation of the SSL/TLS protocol still supports processing of received v2-compatible client hello messages.[195]
+^ Secure Transport: SSL 2.0 was discontinued in OS X 10.8. SSL 3.0 was discontinued in OS X 10.11 and iOS 9. TLS 1.1 and 1.2 are available on iOS 5.0 and later, and OS X 10.9 and later.[196][197]
+
+
+A paper presented at the 2012 ACM conference on computer and communications security[198] showed that few applications used some of these SSL libraries correctly, leading to vulnerabilities. According to the authors
+
+"the root cause of most of these vulnerabilities is the terrible design of the APIs to the underlying SSL libraries. Instead of expressing high-level security properties of network tunnels such as confidentiality and authentication, these APIs expose low-level details of the SSL protocol to application developers. As a consequence, developers often use SSL APIs incorrectly, misinterpreting and misunderstanding their manifold parameters, options, side effects, and return values."
+
+Other uses[edit]
+The Simple Mail Transfer Protocol (SMTP) can also be protected by TLS. These applications use public key certificates to verify the identity of endpoints.
+TLS can also be used to tunnel an entire network stack to create a VPN, as is the case with OpenVPN and OpenConnect. Many vendors now marry TLS's encryption and authentication capabilities with authorization. There has also been substantial development since the late 1990s in creating client technology outside of the browser to enable support for client/server applications. When compared against traditional IPsec VPN technologies, TLS has some inherent advantages in firewall and NAT traversal that make it easier to administer for large remote-access populations.
+TLS is also a standard method to protect Session Initiation Protocol (SIP) application signaling. TLS can be used to provide authentication and encryption of the SIP signaling associated with VoIP and other SIP-based applications.[citation needed]
+Security[edit]
+SSL 2.0[edit]
+SSL 2.0 is flawed in a variety of ways:[199]
+
+Identical cryptographic keys are used for message authentication and encryption. (In SSL 3.0, MAC secrets may be larger than encryption keys, so messages can remain tamper resistant even if encryption keys are broken.[4])
+SSL 2.0 has a weak MAC construction that uses the MD5 hash function with a secret prefix, making it vulnerable to length extension attacks.
+SSL 2.0 does not have any protection for the handshake, meaning a man-in-the-middle downgrade attack can go undetected.
+SSL 2.0 uses the TCP connection close to indicate the end of data. This means that truncation attacks are possible: the attacker simply forges a TCP FIN, leaving the recipient unaware of an illegitimate end of data message (SSL 3.0 fixes this problem by having an explicit closure alert).
+SSL 2.0 assumes a single service and a fixed domain certificate, which clashes with the standard feature of virtual hosting in Web servers. This means that most websites are practically impaired from using SSL.
+
+SSL 2.0 is disabled by default, beginning with Internet Explorer 7,[200] Mozilla Firefox 2,[201] Opera 9.5,[202] and Safari. After it sends a TLS "ClientHello", if Mozilla Firefox finds that the server is unable to complete the handshake, it will attempt to fall back to using SSL 3.0 with an SSL 3.0 "ClientHello" in SSL 2.0 format to maximize the likelihood of successfully handshaking with older servers.[203] Support for SSL 2.0 (and weak 40-bit and 56-bit ciphers) has been removed completely from Opera as of version 10.[204][205]
+SSL 3.0[edit]
+SSL 3.0 improved upon SSL 2.0 by adding SHA-1–based ciphers and support for certificate authentication.
+From a security standpoint, SSL 3.0 should be considered less desirable than TLS 1.0. The SSL 3.0 cipher suites have a weaker key derivation process; half of the master key that is established is fully dependent on the MD5 hash function, which is not resistant to collisions and is, therefore, not considered secure. Under TLS 1.0, the master key that is established depends on both MD5 and SHA-1 so its derivation process is not currently considered weak. It is for this reason that SSL 3.0 implementations cannot be validated under FIPS 140-2.[206]
+In October 2014, the vulnerability in the design of SSL 3.0 was reported, which makes CBC mode of operation with SSL 3.0 vulnerable to the padding attack (see #POODLE attack).
+TLS[edit]
+TLS has a variety of security measures:
+
+Protection against a downgrade of the protocol to a previous (less secure) version or a weaker cipher suite.
+Numbering subsequent Application records with a sequence number and using this sequence number in the message authentication codes (MACs).
+Using a message digest enhanced with a key (so only a key-holder can check the MAC). The HMAC construction used by most TLS cipher suites is specified in RFC 2104 (SSL 3.0 used a different hash-based MAC).
+The message that ends the handshake ("Finished") sends a hash of all the exchanged handshake messages seen by both parties.
+The pseudorandom function splits the input data in half and processes each one with a different hashing algorithm (MD5 and SHA-1), then XORs them together to create the MAC. This provides protection even if one of these algorithms is found to be vulnerable.
+
+Attacks against TLS/SSL[edit]
+Significant attacks against TLS/SSL are listed below:
+Note: In February 2015, IETF issued an informational RFC[207] summarizing the various known attacks against TLS/SSL.
+Renegotiation attack[edit]
+A vulnerability of the renegotiation procedure was discovered in August 2009 that can lead to plaintext injection attacks against SSL 3.0 and all current versions of TLS.[208] For example, it allows an attacker who can hijack an https connection to splice their own requests into the beginning of the conversation the client has with the web server. The attacker can't actually decrypt the client–server communication, so it is different from a typical man-in-the-middle attack. A short-term fix is for web servers to stop allowing renegotiation, which typically will not require other changes unless client certificate authentication is used. To fix the vulnerability, a renegotiation indication extension was proposed for TLS. It will require the client and server to include and verify information about previous handshakes in any renegotiation handshakes.[209] This extension has become a proposed standard and has been assigned the number RFC 5746. The RFC has been implemented by several libraries.[210][211][212]
+Downgrade attacks: FREAK attack and Logjam attack[edit]
+Main articles: FREAK and Logjam (computer security)
+A protocol downgrade attack (also called a version rollback attack) tricks a web server into negotiating connections with previous versions of TLS (such as SSLv2) that have long since been abandoned as insecure.
+Previous modifications to the original protocols, like False Start[213] (adopted and enabled by Google Chrome[214]) or Snap Start, reportedly introduced limited TLS protocol downgrade attacks[215] or allowed modifications to the cipher suite list sent by the client to the server. In doing so, an attacker might succeed in influencing the cipher suite selection in an attempt to downgrade the cipher suite negotiated to use either a weaker symmetric encryption algorithm or a weaker key exchange.[216] A paper presented at an Association for Computing Machinery (ACM) conference on computer and communications security in 2012 demonstrated that the False Start extension was at risk: in certain circumstances it could allow an attacker to recover the encryption keys offline and to access the encrypted data.[217]
+Encryption downgrade attacks can force servers and clients to negotiate a connection using cryptographically weak keys. In 2014, a man-in-the-middle attack called FREAK was discovered affecting the OpenSSL stack, the default Android web browser, and some Safari browsers.[218] The attack involved tricking servers into negotiating a TLS connection using cryptographically weak 512 bit encryption keys.
+Logjam is a security exploit discovered in May 2015 that exploits the option of using legacy "export-grade" 512-bit Diffie–Hellman groups dating back to the 1990s.[219] It forces susceptible servers to downgrade to cryptographically weak 512-bit Diffie–Hellman groups. An attacker can then deduce the keys the client and server determine using the Diffie–Hellman key exchange.
+Cross-protocol attacks: DROWN[edit]
+Main article: DROWN attack
+The DROWN attack is an exploit that attacks servers supporting contemporary SSL/TLS protocol suites by exploiting their support for the obsolete, insecure, SSLv2 protocol to leverage an attack on connections using up-to-date protocols that would otherwise be secure.[220][221] DROWN exploits a vulnerability in the protocols used and the configuration of the server, rather than any specific implementation error. Full details of DROWN were announced in March 2016, together with a patch for the exploit. At that time, more than 81,000 of the top 1 million most popular websites were among the TLS protected websites that were vulnerable to the DROWN attack.[221]
+BEAST attack[edit]
+On September 23, 2011 researchers Thai Duong and Juliano Rizzo demonstrated a proof of concept called BEAST (Browser Exploit Against SSL/TLS)[222] using a Java applet to violate same origin policy constraints, for a long-known cipher block chaining (CBC) vulnerability in TLS 1.0:[223][224] an attacker observing 2 consecutive ciphertext blocks C0, C1 can test if the plaintext block P1 is equal to x by choosing the next plaintext block P2 = x ^ C0 ^ C1; due to how CBC works C2 will be equal to C1 if x = P1. Practical exploits had not been previously demonstrated for this vulnerability, which was originally discovered by Phillip Rogaway[225] in 2002. The vulnerability of the attack had been fixed with TLS 1.1 in 2006, but TLS 1.1 had not seen wide adoption prior to this attack demonstration.
+RC4 as a stream cipher is immune to BEAST attack. Therefore, RC4 was widely used as a way to mitigate BEAST attack on the server side. However, in 2013, researchers found more weaknesses in RC4. Thereafter enabling RC4 on server side was no longer recommended.[226]
+Chrome and Firefox themselves are not vulnerable to BEAST attack,[61][227] however, Mozilla updated their NSS libraries to mitigate BEAST-like attacks. NSS is used by Mozilla Firefox and Google Chrome to implement SSL. Some web servers that have a broken implementation of the SSL specification may stop working as a result.[228]
+Microsoft released Security Bulletin MS12-006 on January 10, 2012, which fixed the BEAST vulnerability by changing the way that the Windows Secure Channel (SChannel) component transmits encrypted network packets from the server end.[229] Users of Internet Explorer (prior to version 11) that run on older versions of Windows (Windows 7, Windows 8 and Windows Server 2008 R2) can restrict use of TLS to 1.1 or higher.
+Apple fixed BEAST vulnerability by implementing 1/n-1 split and turning it on by default in OS X Mavericks, released on October 22, 2013.[230]
+ CRIME and BREACH attacks[edit]
+Main articles: CRIME and BREACH
+The authors of the BEAST attack are also the creators of the later CRIME attack, which can allow an attacker to recover the content of web cookies when data compression is used along with TLS.[231][232] When used to recover the content of secret authentication cookies, it allows an attacker to perform session hijacking on an authenticated web session.
+While the CRIME attack was presented as a general attack that could work effectively against a large number of protocols, including but not limited to TLS, and application-layer protocols such as SPDY or HTTP, only exploits against TLS and SPDY were demonstrated and largely mitigated in browsers and servers. The CRIME exploit against HTTP compression has not been mitigated at all, even though the authors of CRIME have warned that this vulnerability might be even more widespread than SPDY and TLS compression combined. In 2013 a new instance of the CRIME attack against HTTP compression, dubbed BREACH, was announced. Based on the CRIME attack a BREACH attack can extract login tokens, email addresses or other sensitive information from TLS encrypted web traffic in as little as 30 seconds (depending on the number of bytes to be extracted), provided the attacker tricks the victim into visiting a malicious web link or is able to inject content into valid pages the user is visiting (ex: a wireless network under the control of the attacker).[233] All versions of TLS and SSL are at risk from BREACH regardless of the encryption algorithm or cipher used.[234] Unlike previous instances of CRIME, which can be successfully defended against by turning off TLS compression or SPDY header compression, BREACH exploits HTTP compression which cannot realistically be turned off, as virtually all web servers rely upon it to improve data transmission speeds for users.[233] This is a known limitation of TLS as it is susceptible to chosen-plaintext attack against the application-layer data it was meant to protect.
+Timing attacks on padding[edit]
+Earlier TLS versions were vulnerable against the padding oracle attack discovered in 2002. A novel variant, called the Lucky Thirteen attack, was published in 2013.
+Some experts[44] also recommended avoiding Triple-DES CBC. Since the last supported ciphers developed to support any program using Windows XP's SSL/TLS library like Internet Explorer on Windows XP are RC4 and Triple-DES, and since RC4 is now deprecated (see discussion of RC4 attacks), this makes it difficult to support any version of SSL for any program using this library on XP.
+A fix was released as the Encrypt-then-MAC extension to the TLS specification, released as RFC 7366.[235] The Lucky Thirteen attack can be mitigated in TLS 1.2 by using only AES_GCM ciphers; AES_CBC remains vulnerable.[citation needed]
+POODLE attack[edit]
+Main article: POODLE
+On October 14, 2014, Google researchers published a vulnerability in the design of SSL 3.0, which makes CBC mode of operation with SSL 3.0 vulnerable to a padding attack (CVE-2014-3566). They named this attack POODLE (Padding Oracle On Downgraded Legacy Encryption). On average, attackers only need to make 256 SSL 3.0 requests to reveal one byte of encrypted messages.[50]
+Although this vulnerability only exists in SSL 3.0 and most clients and servers support TLS 1.0 and above, all major browsers voluntarily downgrade to SSL 3.0 if the handshakes with newer versions of TLS fail unless they provide the option for a user or administrator to disable SSL 3.0 and the user or administrator does so[citation needed]. Therefore, the man-in-the-middle can first conduct a version rollback attack and then exploit this vulnerability.[50]
+In general, graceful security degradation for the sake of interoperability is difficult to carry out in a way that cannot be exploited. This is challenging especially in domains where fragmentation is high.[236]
+On December 8, 2014, a variant of POODLE was announced that impacts TLS implementations that do not properly enforce padding byte requirements.[237]
+RC4 attacks[edit]
+Main article: RC4 § Security
+Despite the existence of attacks on RC4 that broke its security, cipher suites in SSL and TLS that were based on RC4 were still considered secure prior to 2013 based on the way in which they were used in SSL and TLS. In 2011, the RC4 suite was actually recommended as a work around for the BEAST attack.[238] New forms of attack disclosed in March 2013 conclusively demonstrated the feasibility of breaking RC4 in TLS, suggesting it was not a good workaround for BEAST.[49] An attack scenario was proposed by AlFardan, Bernstein, Paterson, Poettering and Schuldt that used newly discovered statistical biases in the RC4 key table[239] to recover parts of the plaintext with a large number of TLS encryptions.[240][241] An attack on RC4 in TLS and SSL that requires 13 × 220 encryptions to break RC4 was unveiled on 8 July 2013 and later described as "feasible" in the accompanying presentation at a USENIX Security Symposium in August 2013.[242][243] In July 2015, subsequent improvements in the attack make it increasingly practical to defeat the security of RC4-encrypted TLS.[244]
+As many modern browsers have been designed to defeat BEAST attacks (except Safari for Mac OS X 10.7 or earlier, for iOS 6 or earlier, and for Windows; see #Web browsers), RC4 is no longer a good choice for TLS 1.0. The CBC ciphers which were affected by the BEAST attack in the past have become a more popular choice for protection.[44] Mozilla and Microsoft recommend disabling RC4 where possible.[245][246] RFC 7465 prohibits the use of RC4 cipher suites in all versions of TLS.
+On September 1, 2015, Microsoft, Google and Mozilla announced that RC4 cipher suites would be disabled by default in their browsers (Microsoft Edge, Internet Explorer 11 on Windows 7/8.1/10, Firefox, and Chrome) in early 2016.[247][248][249]
+Truncation attack[edit]
+A TLS (logout) truncation attack blocks a victim's account logout requests so that the user unknowingly remains logged into a web service. When the request to sign out is sent, the attacker injects an unencrypted TCP FIN message (no more data from sender) to close the connection. The server therefore doesn't receive the logout request and is unaware of the abnormal termination.[250]
+Published in July 2013,[251][252] the attack causes web services such as Gmail and Hotmail to display a page that informs the user that they have successfully signed-out, while ensuring that the user's browser maintains authorization with the service, allowing an attacker with subsequent access to the browser to access and take over control of the user's logged-in account. The attack does not rely on installing malware on the victim's computer; attackers need only place themselves between the victim and the web server (e.g., by setting up a rogue wireless hotspot).[250] This vulnerability also requires access to the victim's computer. Another possibility is when using FTP the data connection can have a false FIN in the data stream, and if the protocol rules for exchanging close_notify alerts is not adhered to a file can be truncated.
+Unholy PAC attack[edit]
+This attack, discovered in mid-2016, exploits weaknesses in the Web Proxy Autodiscovery Protocol (WPAD) to expose the URL that a web user is attempting to reach via a TLS-enabled web link.[253] Disclosure of a URL can violate a user's privacy, not only because of the website accessed, but also because URLs are sometimes used to authenticate users. Document sharing services, such as those offered by Google and Dropbox, also work by sending a user a security token that's included in the URL. An attacker who obtains such URLs may be able to gain full access to a victim's account or data.
+The exploit works against almost all browsers and operating systems.
+Sweet32 attack[edit]
+The Sweet32 attack breaks all 64-bit block ciphers used in CBC mode as used in TLS by exploiting a birthday attack and either a man-in-the-middle attack or injection of a malicious JavaScript into a web page. The purpose of the man-in-the-middle attack or the JavaScript injection is to allow the attacker to capture enough traffic to mount a birthday attack.[254]
+Implementation errors: Heartbleed bug, BERserk attack, Cloudflare bug[edit]
+Main articles: Heartbleed and Cloudbleed
+The Heartbleed bug is a serious vulnerability specific to the implementation of SSL/TLS in the popular OpenSSL cryptographic software library, affecting versions 1.0.1 to 1.0.1f. This weakness, reported in April 2014, allows attackers to steal private keys from servers that should normally be protected.[255] The Heartbleed bug allows anyone on the Internet to read the memory of the systems protected by the vulnerable versions of the OpenSSL software. This compromises the secret private keys associated with the public certificates used to identify the service providers and to encrypt the traffic, the names and passwords of the users and the actual content. This allows attackers to eavesdrop on communications, steal data directly from the services and users and to impersonate services and users.[256] The vulnerability is caused by a buffer over-read bug in the OpenSSL software, rather than a defect in the SSL or TLS protocol specification.
+In September 2014, a variant of Daniel Bleichenbacher's PKCS#1 v1.5 RSA Signature Forgery vulnerability[257] was announced by Intel Security Advanced Threat Research. This attack, dubbed BERserk, is a result of incomplete ASN.1 length decoding of public key signatures in some SSL implementations, and allows a man-in-the-middle attack by forging a public key signature.[258]
+In February 2015, after media reported the hidden pre-installation of Superfish adware on some Lenovo notebooks,[259] a researcher found a trusted root certificate on affected Lenovo machines to be insecure, as the keys could easily be accessed using the company name, Komodia, as a passphrase.[260] The Komodia library was designed to intercept client-side TLS/SSL traffic for parental control and surveillance, but it was also used in numerous adware programs, including Superfish, that were often surreptitiously installed unbeknownst to the computer user. In turn, these potentially unwanted programs installed the corrupt root certificate, allowing attackers to completely control web traffic and confirm false websites as authentic.
+In May 2016, it was reported that dozens of Danish HTTPS-protected websites belonging to Visa Inc. were vulnerable to attacks allowing hackers to inject malicious code and forged content into the browsers of visitors.[261] The attacks worked because the TLS implementation used on the affected servers incorrectly reused random numbers (nonces) that are intended be used only once, ensuring that each TLS handshake is unique.[261]
+In February 2017, an implementation error caused by a single mistyped character in code used to parse HTML created a buffer overflow error on Cloudflare servers. Similar in its effects to the Heartbleed bug discovered in 2014, this overflow error, widely known as Cloudbleed, allowed unauthorized third parties to read data in the memory of programs running on the servers—data that should otherwise have been protected by TLS.[262]
+Survey of websites vulnerable to attacks[edit]
+As of October 2016[update], Trustworthy Internet Movement estimate the ratio of websites that are vulnerable to TLS attacks.[48]
+
+Survey of the TLS vulnerabilities of the most popular websites
+
+Attacks
+Security
+
+
+Insecure
+Depends
+Secure
+Other
+
+
+Renegotiation attack
+1.2% (−0.1%)
+support insecure renegotiation
+0.4% (±0.0%)
+support both
+96.2% (+0.1%)
+support secure renegotiation
+2.2% (±0.0%)
+no support
+
+
+RC4 attacks
+<0.1% (±0.0%)
+support only RC4 suites
+6.0% (−0.3%)
+support RC4 suites used with modern browsers
+28.5% (−0.7%)
+support some RC4 suites
+65.5% (+1.0%)
+no support
+N/A
+
+
+CRIME attack
+2.4% (−0.1%)
+vulnerable
+N/A
+N/A
+N/A
+
+
+Heartbleed
+0.1% (±0.0%)
+vulnerable
+N/A
+N/A
+N/A
+
+
+ChangeCipherSpec injection attack
+0.8% (±0.0%)
+vulnerable and exploitable
+4.7% (−0.2%)
+vulnerable, not exploitable
+92.6% (+0.4%)
+not vulnerable
+1.9% (+0.1%)
+unknown
+
+
+POODLE attack against TLS
+(Original POODLE against SSL 3.0 is not included)
+2.1% (−0.1%)
+vulnerable and exploitable
+N/A
+97.1% (+0.2%)
+not vulnerable
+0.8% (−0.1%)
+unknown
+
+
+Protocol downgrade
+23.2% (−0.4%)
+TLS_FALLBACK_SCSV not supported
+N/A
+67.6% (+0.7%)
+TLS_FALLBACK_SCSV supported
+9.1% (−0.4%)
+unknown
+
+
+Forward secrecy[edit]
+Main article: Forward secrecy
+Forward secrecy is a property of cryptographic systems which ensures that a session key derived from a set of public and private keys will not be compromised if one of the private keys is compromised in the future.[263] Without forward secrecy, if the server's private key is compromised, not only will all future TLS-encrypted sessions using that server certificate be compromised, but also any past sessions that used it as well (provided of course that these past sessions were intercepted and stored at the time of transmission).[264] An implementation of TLS can provide forward secrecy by requiring the use of ephemeral Diffie–Hellman key exchange to establish session keys, and some notable TLS implementations do so exclusively: e.g., Gmail and other Google HTTPS services that use OpenSSL.[265] However, many clients and servers supporting TLS (including browsers and web servers) are not configured to implement such restrictions.[266][267] In practice, unless a web service uses Diffie–Hellman key exchange to implement forward secrecy, all of the encrypted web traffic to and from that service can be decrypted by a third party if it obtains the server's master (private) key; e.g., by means of a court order.[268]
+Even where Diffie–Hellman key exchange is implemented, server-side session management mechanisms can impact forward secrecy. The use of TLS session tickets (a TLS extension) causes the session to be protected by AES128-CBC-SHA256 regardless of any other negotiated TLS parameters, including forward secrecy ciphersuites, and the long-lived TLS session ticket keys defeat the attempt to implement forward secrecy.[269][270][271] Stanford University research in 2014 also found that of 473,802 TLS servers surveyed, 82.9% of the servers deploying ephemeral Diffie–Hellman (DHE) key exchange to support forward secrecy were using weak Diffie–Hellman parameters. These weak parameter choices could potentially compromise the effectiveness of the forward secrecy that the servers sought to provide.[272]
+Since late 2011, Google has provided forward secrecy with TLS by default to users of its Gmail service, along with Google Docs and encrypted search among other services.[273] Since November 2013, Twitter has provided forward secrecy with TLS to users of its service.[274] As of June 2016[update], 51.9% of TLS-enabled websites are configured to use cipher suites that provide forward secrecy to modern web browsers.[48]
+Dealing with man-in-the-middle attacks[edit]
+Main article: Man-in-the-middle attack
+Certificate pinning[edit]
+Main article: HTTP Public Key Pinning
+One way to detect and block many kinds of man-in-the-middle attacks is "certificate pinning", sometimes called "SSL pinning", but more accurately called "public key pinning".[275] A client that does key pinning adds an extra step beyond the normal X.509 certificate validation: After obtaining the server's certificate in the standard way, the client checks the public key(s) in the server's certificate chain against a set of (hashes of) public keys for the server name. Typically the public key hashes are bundled with the application. For example, Google Chrome includes public key hashes for the *.google.com certificate that detected fraudulent certificates in 2011. (Chromium does not enforce the hardcoded key pins.) Since then, Mozilla has introduced public key pinning to its Firefox browser.[276]
+In other systems the client hopes that the first time it obtains a server's certificate it is trustworthy and stores it; during later sessions with that server, the client checks the server's certificate against the stored certificate to guard against later MITM attacks.
+Perspectives Project[edit]
+The Perspectives Project[277] operates network notaries that clients can use to detect if a site's certificate has changed. By their nature, man-in-the-middle attacks place the attacker between the destination and a single specific target. As such, Perspectives would warn the target that the certificate delivered to the web browser does not match the certificate seen from other perspectives – the perspectives of other users in different times and places. Use of network notaries from a multitude of perspectives makes it possible for a target to detect an attack even if a certificate appears to be completely valid. Other projects, such as the EFF's SSL Observatory, also make use of notaries or similar reporters in discovering man-in-the-middle attacks.
+DNSChain[edit]
+DNSChain[278] relies on the security that blockchains provide to distribute public keys. It uses one pin to secure the connection to the DNSChain server itself, after which all other public keys (that are stored in a block chain) become accessible over a secure channel.
+Protocol details[edit]
+The TLS protocol exchanges records—which encapsulate the data to be exchanged in a specific format (see below). Each record can be compressed, padded, appended with a message authentication code (MAC), or encrypted, all depending on the state of the connection. Each record has a content type field that designates the type of data encapsulated, a length field and a TLS version field. The data encapsulated may be control or procedural messages of the TLS itself, or simply the application data needed to be transferred by TLS. The specifications (cipher suite, keys etc.) required to exchange application data by TLS, are agreed upon in the "TLS handshake" between the client requesting the data and the server responding to requests. The protocol therefore defines both the structure of payloads transferred in TLS and the procedure to establish and monitor the transfer.
+TLS handshake[edit]
+When the connection starts, the record encapsulates a "control" protocol—the handshake messaging protocol  (content type 22). This protocol is used to exchange all the information required by both sides for the exchange of the actual application data by TLS. It defines the format of messages and the order of their exchange. These may vary according to the demands of the client and server—i.e., there are several possible procedures to set up the connection. This initial exchange results in a successful TLS connection (both parties ready to transfer application data with TLS) or an alert message (as specified below).
+Basic TLS handshake[edit]
+A typical connection example follows, illustrating a handshake where the server (but not the client) is authenticated by its certificate:
+
+Negotiation phase:
+
+A client sends a ClientHello message specifying the highest TLS protocol version it supports, a random number, a list of suggested cipher suites and suggested compression methods. If the client is attempting to perform a resumed handshake, it may send a session ID. If the client can use Application-Layer Protocol Negotiation, it may include a list of supported application protocols, such as HTTP/2.
+The server responds with a ServerHello message, containing the chosen protocol version, a random number, CipherSuite and compression method from the choices offered by the client. To confirm or allow resumed handshakes the server may send a session ID. The chosen protocol version should be the highest that both the client and server support. For example, if the client supports TLS version 1.1 and the server supports version 1.2, version 1.1 should be selected; version 1.2 should not be selected.
+The server sends its Certificate message (depending on the selected cipher suite, this may be omitted by the server).[279]
+The server sends its ServerKeyExchange message (depending on the selected cipher suite, this may be omitted by the server). This message is sent for all DHE and DH_anon ciphersuites.[1]
+The server sends a ServerHelloDone message, indicating it is done with handshake negotiation.
+The client responds with a ClientKeyExchange message, which may contain a PreMasterSecret, public key, or nothing. (Again, this depends on the selected cipher.) This PreMasterSecret is encrypted using the public key of the server certificate.
+The client and server then use the random numbers and PreMasterSecret to compute a common secret, called the "master secret". All other key data for this connection is derived from this master secret (and the client- and server-generated random values), which is passed through a carefully designed pseudorandom function.
+
+
+The client now sends a ChangeCipherSpec record, essentially telling the server, "Everything I tell you from now on will be authenticated (and encrypted if encryption parameters were present in the server certificate)." The ChangeCipherSpec is itself a record-level protocol with content type of 20.
+
+Finally, the client sends an authenticated and encrypted Finished message, containing a hash and MAC over the previous handshake messages.
+The server will attempt to decrypt the client's Finished message and verify the hash and MAC. If the decryption or verification fails, the handshake is considered to have failed and the connection should be torn down.
+
+
+Finally, the server sends a ChangeCipherSpec, telling the client, "Everything I tell you from now on will be authenticated (and encrypted, if encryption was negotiated)."
+
+The server sends its authenticated and encrypted Finished message.
+The client performs the same decryption and verification.
+
+
+Application phase: at this point, the "handshake" is complete and the application protocol is enabled, with content type of 23. Application messages exchanged between client and server will also be authenticated and optionally encrypted exactly like in their Finished message. Otherwise, the content type will return 25 and the client will not authenticate.
+
+Client-authenticated TLS handshake[edit]
+The following full example shows a client being authenticated (in addition to the server as in the example above) via TLS using certificates exchanged between both peers.
+
+Negotiation Phase:
+
+A client sends a ClientHello message specifying the highest TLS protocol version it supports, a random number, a list of suggested cipher suites and compression methods.
+The server responds with a ServerHello message, containing the chosen protocol version, a random number, cipher suite and compression method from the choices offered by the client. The server may also send a session id as part of the message to perform a resumed handshake.
+The server sends its Certificate message (depending on the selected cipher suite, this may be omitted by the server).[279]
+The server sends its ServerKeyExchange message (depending on the selected cipher suite, this may be omitted by the server). This message is sent for all DHE and DH_anon ciphersuites.[1]
+The server requests a certificate from the client, so that the connection can be mutually authenticated, using a CertificateRequest message.
+The server sends a ServerHelloDone message, indicating it is done with handshake negotiation.
+The client responds with a Certificate message, which contains the client's certificate.
+The client sends a ClientKeyExchange message, which may contain a PreMasterSecret, public key, or nothing. (Again, this depends on the selected cipher.) This PreMasterSecret is encrypted using the public key of the server certificate.
+The client sends a CertificateVerify message, which is a signature over the previous handshake messages using the client's certificate's private key. This signature can be verified by using the client's certificate's public key. This lets the server know that the client has access to the private key of the certificate and thus owns the certificate.
+The client and server then use the random numbers and PreMasterSecret to compute a common secret, called the "master secret". All other key data for this connection is derived from this master secret (and the client- and server-generated random values), which is passed through a carefully designed pseudorandom function.
+
+
+The client now sends a ChangeCipherSpec record, essentially telling the server, "Everything I tell you from now on will be authenticated (and encrypted if encryption was negotiated). " The ChangeCipherSpec is itself a record-level protocol and has type 20 and not 22.
+
+Finally, the client sends an encrypted Finished message, containing a hash and MAC over the previous handshake messages.
+The server will attempt to decrypt the client's Finished message and verify the hash and MAC. If the decryption or verification fails, the handshake is considered to have failed and the connection should be torn down.
+
+
+Finally, the server sends a ChangeCipherSpec, telling the client, "Everything I tell you from now on will be authenticated (and encrypted if encryption was negotiated). "
+
+The server sends its own encrypted Finished message.
+The client performs the same decryption and verification.
+
+
+Application phase: at this point, the "handshake" is complete and the application protocol is enabled, with content type of 23. Application messages exchanged between client and server will also be encrypted exactly like in their Finished message.
+
+Resumed TLS handshake[edit]
+Public key operations (e.g., RSA) are relatively expensive in terms of computational power. TLS provides a secure shortcut in the handshake mechanism to avoid these operations: resumed sessions. Resumed sessions are implemented using session IDs or session tickets.
+Apart from the performance benefit, resumed sessions can also be used for single sign-on, as it guarantees that both the original session and any resumed session originate from the same client. This is of particular importance for the FTP over TLS/SSL protocol, which would otherwise suffer from a man-in-the-middle attack in which an attacker could intercept the contents of the secondary data connections.[280]
+Session IDs[edit]
+In an ordinary full handshake, the server sends a session id as part of the ServerHello message. The client associates this session id with the server's IP address and TCP port, so that when the client connects again to that server, it can use the session id to shortcut the handshake. In the server, the session id maps to the cryptographic parameters previously negotiated, specifically the "master secret". Both sides must have the same "master secret" or the resumed handshake will fail (this prevents an eavesdropper from using a session id). The random data in the ClientHello and ServerHello messages virtually guarantee that the generated connection keys will be different from in the previous connection. In the RFCs, this type of handshake is called an abbreviated handshake. It is also described in the literature as a restart handshake.
+
+Negotiation phase:
+
+A client sends a ClientHello message specifying the highest TLS protocol version it supports, a random number, a list of suggested cipher suites and compression methods. Included in the message is the session id from the previous TLS connection.
+The server responds with a ServerHello message, containing the chosen protocol version, a random number, cipher suite and compression method from the choices offered by the client. If the server recognizes the session id sent by the client, it responds with the same session id. The client uses this to recognize that a resumed handshake is being performed. If the server does not recognize the session id sent by the client, it sends a different value for its session id. This tells the client that a resumed handshake will not be performed. At this point, both the client and server have the "master secret" and random data to generate the key data to be used for this connection.
+
+
+The server now sends a ChangeCipherSpec record, essentially telling the client, "Everything I tell you from now on will be encrypted." The ChangeCipherSpec is itself a record-level protocol and has type 20 and not 22.
+
+Finally, the server sends an encrypted Finished message, containing a hash and MAC over the previous handshake messages.
+The client will attempt to decrypt the server's Finished message and verify the hash and MAC. If the decryption or verification fails, the handshake is considered to have failed and the connection should be torn down.
+
+
+Finally, the client sends a ChangeCipherSpec, telling the server, "Everything I tell you from now on will be encrypted. "
+
+The client sends its own encrypted Finished message.
+The server performs the same decryption and verification.
+
+
+Application phase: at this point, the "handshake" is complete and the application protocol is enabled, with content type of 23. Application messages exchanged between client and server will also be encrypted exactly like in their Finished message.
+
+Session tickets[edit]
+RFC 5077 extends TLS via use of session tickets, instead of session IDs. It defines a way to resume a TLS session without requiring that session-specific state is stored at the TLS server.
+When using session tickets, the TLS server stores its session-specific state in a session ticket and sends the session ticket to the TLS client for storing. The client resumes a TLS session by sending the session ticket to the server, and the server resumes the TLS session according to the session-specific state in the ticket. The session ticket is encrypted and authenticated by the server, and the server verifies its validity before using its contents.
+One particular weakness of this method with OpenSSL is that it always limits encryption and authentication security of the transmitted TLS session ticket to AES128-CBC-SHA256, no matter what other TLS parameters were negotiated for the actual TLS session.[270] This means that the state information (the TLS session ticket) is not as well protected as the TLS session itself. Of particular concern is OpenSSL's storage of the keys in an application-wide context (SSL_CTX), i.e. for the life of the application, and not allowing for re-keying of the AES128-CBC-SHA256 TLS session tickets without resetting the application-wide OpenSSL context (which is uncommon, error-prone and often requires manual administrative intervention).[271][269]
+TLS record[edit]
+This is the general format of all TLS records.
+
+
++
+Byte +0
+Byte +1
+Byte +2
+Byte +3
+
+
+Byte
+0
+Content type
+ 
+
+
+Bytes
+1..4
+Version
+Length
+
+
+(Major)
+(Minor)
+(bits 15..8)
+(bits 7..0)
+
+
+Bytes
+5..(m-1)
+Protocol message(s)
+
+
+Bytes
+m..(p-1)
+MAC (optional)
+
+
+Bytes
+p..(q-1)
+Padding (block ciphers only)
+
+
+
+Content type
+This field identifies the Record Layer Protocol Type contained in this Record.
+
+
+Content types
+
+Hex
+Dec
+Type
+
+
+0x14
+20
+ChangeCipherSpec
+
+
+0x15
+21
+Alert
+
+
+0x16
+22
+Handshake
+
+
+0x17
+23
+Application
+
+
+0x18
+24
+Heartbeat
+
+
+
+Version
+This field identifies the major and minor version of TLS for the contained message. For a ClientHello message, this need not be the highest version supported by the client.
+
+
+Versions
+
+Major
+version
+Minor
+version
+Version type
+
+
+3
+0
+SSL 3.0
+
+
+3
+1
+TLS 1.0
+
+
+3
+2
+TLS 1.1
+
+
+3
+3
+TLS 1.2
+
+
+
+Length
+
+
+The length of Protocol message(s), MAC and Padding, not to exceed 214 bytes (16 KiB).
+Protocol message(s)
+One or more messages identified by the Protocol field. Note that this field may be encrypted depending on the state of the connection.
+MAC and Padding
+A message authentication code computed over the Protocol message, with additional key material included. Note that this field may be encrypted, or not included entirely, depending on the state of the connection.
+No MAC or Padding can be present at end of TLS records before all cipher algorithms and parameters have been negotiated and handshaked and then confirmed by sending a CipherStateChange record (see below) for signalling that these parameters will take effect in all further records sent by the same peer.
+
+Handshake protocol[edit]
+Most messages exchanged during the setup of the TLS session are based on this record, unless an error or warning occurs and needs to be signaled by an Alert protocol record (see below), or the encryption mode of the session is modified by another record (see ChangeCipherSpec protocol below).
+
+
++
+Byte +0
+Byte +1
+Byte +2
+Byte +3
+
+
+Byte
+0
+22
+ 
+
+
+Bytes
+1..4
+Version
+Length
+
+
+(Major)
+(Minor)
+(bits 15..8)
+(bits 7..0)
+
+
+Bytes
+5..8
+Message type
+Handshake message data length
+
+
+(bits 23..16)
+(bits 15..8)
+(bits 7..0)
+
+
+Bytes
+9..(n-1)
+Handshake message data
+
+
+Bytes
+n..(n+3)
+Message type
+Handshake message data length
+
+
+(bits 23..16)
+(bits 15..8)
+(bits 7..0)
+
+
+Bytes
+(n+4)..
+Handshake message data
+
+
+
+Message type
+This field identifies the handshake message type.
+
+
+
+Message types
+
+
+Code
+Description
+
+
+0
+HelloRequest
+
+
+1
+ClientHello
+
+
+2
+ServerHello
+
+
+4
+NewSessionTicket
+
+
+11
+Certificate
+
+
+12
+ServerKeyExchange
+
+
+13
+CertificateRequest
+
+
+14
+ServerHelloDone
+
+
+15
+CertificateVerify
+
+
+16
+ClientKeyExchange
+
+
+20
+Finished
+
+
+
+Handshake message data length
+This is a 3-byte field indicating the length of the handshake data, not including the header.
+
+Note that multiple handshake messages may be combined within one record.
+Alert protocol[edit]
+This record should normally not be sent during normal handshaking or application exchanges. However, this message can be sent at any time during the handshake and up to the closure of the session. If this is used to signal a fatal error, the session will be closed immediately after sending this record, so this record is used to give a reason for this closure. If the alert level is flagged as a warning, the remote can decide to close the session if it decides that the session is not reliable enough for its needs (before doing so, the remote may also send its own signal).
+
+
++
+Byte +0
+Byte +1
+Byte +2
+Byte +3
+
+
+Byte
+0
+21
+ 
+
+
+Bytes
+1..4
+Version
+Length
+
+
+(Major)
+(Minor)
+0
+2
+
+
+Bytes
+5..6
+Level
+Description
+ 
+
+
+Bytes
+7..(p-1)
+MAC (optional)
+
+
+Bytes
+p..(q-1)
+Padding (block ciphers only)
+
+
+
+Level
+This field identifies the level of alert. If the level is fatal, the sender should close the session immediately. Otherwise, the recipient may decide to terminate the session itself, by sending its own fatal alert and closing the session itself immediately after sending it. The use of Alert records is optional, however if it is missing before the session closure, the session may be resumed automatically (with its handshakes).
+Normal closure of a session after termination of the transported application should preferably be alerted with at least the Close notify Alert type (with a simple warning level) to prevent such automatic resume of a new session. Signalling explicitly the normal closure of a secure session before effectively closing its transport layer is useful to prevent or detect attacks (like attempts to truncate the securely transported data, if it intrinsically does not have a predetermined length or duration that the recipient of the secured data may expect).
+
+
+Alert level types
+
+Code
+Level type
+Connection state
+
+
+1
+warning
+connection or security may be unstable.
+
+
+2
+fatal
+connection or security may be compromised, or an unrecoverable error has occurred.
+
+
+
+Description
+This field identifies which type of alert is being sent.
+
+
+Alert description types
+
+Code
+Description
+Level types
+Note
+
+
+0
+Close notify
+warning/fatal
+
+
+
+10
+Unexpected message
+fatal
+
+
+
+20
+Bad record MAC
+fatal
+Possibly a bad SSL implementation, or payload has been tampered with e.g. FTP firewall rule on FTPS server.
+
+
+21
+Decryption failed
+fatal
+TLS only, reserved
+
+
+22
+Record overflow
+fatal
+TLS only
+
+
+30
+Decompression failure
+fatal
+
+
+
+40
+Handshake failure
+fatal
+
+
+
+41
+No certificate
+warning/fatal
+SSL 3.0 only, reserved
+
+
+42
+Bad certificate
+warning/fatal
+
+
+
+43
+Unsupported certificate
+warning/fatal
+e.g. certificate has only Server authentication usage enabled and is presented as a client certificate
+
+
+44
+Certificate revoked
+warning/fatal
+
+
+
+45
+Certificate expired
+warning/fatal
+Check server certificate expire also check no certificate in the chain presented has expired
+
+
+46
+Certificate unknown
+warning/fatal
+
+
+
+47
+Illegal parameter
+fatal
+
+
+
+48
+Unknown CA (Certificate authority)
+fatal
+TLS only
+
+
+49
+Access denied
+fatal
+TLS only – e.g. no client certificate has been presented (TLS: Blank certificate message or SSLv3: No Certificate alert), but server is configured to require one.
+
+
+50
+Decode error
+fatal
+TLS only
+
+
+51
+Decrypt error
+warning/fatal
+TLS only
+
+
+60
+Export restriction
+fatal
+TLS only, reserved
+
+
+70
+Protocol version
+fatal
+TLS only
+
+
+71
+Insufficient security
+fatal
+TLS only
+
+
+80
+Internal error
+fatal
+TLS only
+
+
+86
+Inappropriate Fallback
+fatal
+TLS only
+
+
+90
+User canceled
+fatal
+TLS only
+
+
+100
+No renegotiation
+warning
+TLS only
+
+
+110
+Unsupported extension
+warning
+TLS only
+
+
+111
+Certificate unobtainable
+warning
+TLS only
+
+
+112
+Unrecognized name
+warning/fatal
+TLS only; client's Server Name Indicator specified a hostname not supported by the server
+
+
+113
+Bad certificate status response
+fatal
+TLS only
+
+
+114
+Bad certificate hash value
+fatal
+TLS only
+
+
+115
+Unknown PSK identity (used in TLS-PSK and TLS-SRP)
+fatal
+TLS only
+
+
+120
+No Application Protocol
+fatal
+TLS only, client's ALPN did not contain any server-supported protocols
+
+
+ChangeCipherSpec protocol[edit]
+
+
++
+Byte +0
+Byte +1
+Byte +2
+Byte +3
+
+
+Byte
+0
+20
+ 
+
+
+Bytes
+1..4
+Version
+Length
+
+
+(Major)
+(Minor)
+0
+1
+
+
+Byte
+5
+CCS protocol type
+ 
+
+
+
+CCS protocol type
+Currently only 1.
+
+Application protocol[edit]
+
+
++
+Byte +0
+Byte +1
+Byte +2
+Byte +3
+
+
+Byte
+0
+23
+ 
+
+
+Bytes
+1..4
+Version
+Length
+
+
+(Major)
+(Minor)
+(bits 15..8)
+(bits 7..0)
+
+
+Bytes
+5..(m-1)
+Application data
+
+
+Bytes
+m..(p-1)
+MAC (optional)
+
+
+Bytes
+p..(q-1)
+Padding (block ciphers only)
+
+
+
+Length
+Length of application data (excluding the protocol header and including the MAC and padding trailers)
+MAC
+20 bytes for the SHA-1-based HMAC, 16 bytes for the MD5-based HMAC.
+Padding
+Variable length; last byte contains the padding length.
+
+Support for name-based virtual servers[edit]
+From the application protocol point of view, TLS belongs to a lower layer, although the TCP/IP model is too coarse to show it. This means that the TLS handshake is usually (except in the STARTTLS case) performed before the application protocol can start. In the name-based virtual server feature being provided by the application layer, all co-hosted virtual servers share the same certificate because the server has to select and send a certificate immediately after the ClientHello message. This is a big problem in hosting environments because it means either sharing the same certificate among all customers or using a different IP address for each of them.
+There are two known workarounds provided by X.509:
+
+If all virtual servers belong to the same domain, a wildcard certificate can be used.[281] Besides the loose host name selection that might be a problem or not, there is no common agreement about how to match wildcard certificates. Different rules are applied depending on the application protocol or software used.[282]
+Add every virtual host name in the subjectAltName extension. The major problem being that the certificate needs to be reissued whenever a new virtual server is added.
+
+To provide the server name, RFC 4366 Transport Layer Security (TLS) Extensions allow clients to include a Server Name Indication extension (SNI) in the extended ClientHello message. This extension hints the server immediately which name the client wishes to connect to, so the server can select the appropriate certificate to send to the clients.
+RFC 2817, also documents a method to implement name-based virtual hosting by upgrading HTTP to TLS via an HTTP/1.1 Upgrade header. Normally this is to securely implement HTTP over TLS within the main "http" URI scheme (which avoids forking the URI space and reduces the number of used ports), however, few implementations currently support this.
+Standards[edit]
+Primary standards[edit]
+The current approved version of TLS is version 1.2, which is specified in:
+
+RFC 5246: "The Transport Layer Security (TLS) Protocol Version 1.2".
+
+The current standard replaces these former versions, which are now considered obsolete:
+
+RFC 2246: "The TLS Protocol Version 1.0".
+RFC 4346: "The Transport Layer Security (TLS) Protocol Version 1.1".
+
+As well as the never standardized SSL 2.0 and 3.0, which are considered obsolete:
+
+Internet Draft (1995), SSL Version 2.0
+RFC 6101: "The Secure Sockets Layer (SSL) Protocol Version 3.0".
+
+Extensions[edit]
+Other RFCs subsequently extended TLS.
+Extensions to TLS 1.0 include:
+
+RFC 2595: "Using TLS with IMAP, POP3 and ACAP". Specifies an extension to the IMAP, POP3 and ACAP services that allow the server and client to use transport-layer security to provide private, authenticated communication over the Internet.
+RFC 2712: "Addition of Kerberos Cipher Suites to Transport Layer Security (TLS)". The 40-bit cipher suites defined in this memo appear only for the purpose of documenting the fact that those cipher suite codes have already been assigned.
+RFC 2817: "Upgrading to TLS Within HTTP/1.1", explains how to use the Upgrade mechanism in HTTP/1.1 to initiate Transport Layer Security (TLS) over an existing TCP connection. This allows unsecured and secured HTTP traffic to share the same well known port (in this case, http: at 80 rather than https: at 443).
+RFC 2818: "HTTP Over TLS", distinguishes secured traffic from insecure traffic by the use of a different 'server port'.
+RFC 3207: "SMTP Service Extension for Secure SMTP over Transport Layer Security". Specifies an extension to the SMTP service that allows an SMTP server and client to use transport-layer security to provide private, authenticated communication over the Internet.
+RFC 3268: "AES Ciphersuites for TLS". Adds Advanced Encryption Standard (AES) cipher suites to the previously existing symmetric ciphers.
+RFC 3546: "Transport Layer Security (TLS) Extensions", adds a mechanism for negotiating protocol extensions during session initialisation and defines some extensions. Made obsolete by RFC 4366.
+RFC 3749: "Transport Layer Security Protocol Compression Methods", specifies the framework for compression methods and the DEFLATE compression method.
+RFC 3943: "Transport Layer Security (TLS) Protocol Compression Using Lempel-Ziv-Stac (LZS)".
+RFC 4132: "Addition of Camellia Cipher Suites to Transport Layer Security (TLS)".
+RFC 4162: "Addition of SEED Cipher Suites to Transport Layer Security (TLS)".
+RFC 4217: "Securing FTP with TLS".
+RFC 4279: "Pre-Shared Key Ciphersuites for Transport Layer Security (TLS)", adds three sets of new cipher suites for the TLS protocol to support authentication based on pre-shared keys.
+
+Extensions to TLS 1.1 include:
+
+RFC 4347: "Datagram Transport Layer Security" specifies a TLS variant that works over datagram protocols (such as UDP).
+RFC 4366: "Transport Layer Security (TLS) Extensions" describes both a set of specific extensions and a generic extension mechanism.
+RFC 4492: "Elliptic Curve Cryptography (ECC) Cipher Suites for Transport Layer Security (TLS)".
+RFC 4680: "TLS Handshake Message for Supplemental Data".
+RFC 4681: "TLS User Mapping Extension".
+RFC 4785: "Pre-Shared Key (PSK) Ciphersuites with NULL Encryption for Transport Layer Security (TLS)".
+RFC 5054: "Using the Secure Remote Password (SRP) Protocol for TLS Authentication". Defines the TLS-SRP ciphersuites.
+RFC 5077: "Transport Layer Security (TLS) Session Resumption without Server-Side State".
+RFC 5081: "Using OpenPGP Keys for Transport Layer Security (TLS) Authentication", obsoleted by RFC 6091.
+
+Extensions to TLS 1.2 include:
+
+RFC 5288: "AES Galois Counter Mode (GCM) Cipher Suites for TLS".
+RFC 5289: "TLS Elliptic Curve Cipher Suites with SHA-256/384 and AES Galois Counter Mode (GCM)".
+RFC 5746: "Transport Layer Security (TLS) Renegotiation Indication Extension".
+RFC 5878: "Transport Layer Security (TLS) Authorization Extensions".
+RFC 5932: "Camellia Cipher Suites for TLS"
+RFC 6066: "Transport Layer Security (TLS) Extensions: Extension Definitions", includes Server Name Indication and OCSP stapling.
+RFC 6091: "Using OpenPGP Keys for Transport Layer Security (TLS) Authentication".
+RFC 6176: "Prohibiting Secure Sockets Layer (SSL) Version 2.0".
+RFC 6209: "Addition of the ARIA Cipher Suites to Transport Layer Security (TLS)".
+RFC 6347: "Datagram Transport Layer Security Version 1.2".
+RFC 6367: "Addition of the Camellia Cipher Suites to Transport Layer Security (TLS)".
+RFC 6460: "Suite B Profile for Transport Layer Security (TLS)".
+RFC 6655: "AES-CCM Cipher Suites for Transport Layer Security (TLS)".
+RFC 7027: "Elliptic Curve Cryptography (ECC) Brainpool Curves for Transport Layer Security (TLS)".
+RFC 7251: "AES-CCM Elliptic Curve Cryptography (ECC) Cipher Suites for TLS".
+RFC 7301: "Transport Layer Security (TLS) Application-Layer Protocol Negotiation Extension".
+RFC 7366: "Encrypt-then-MAC for Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)".
+RFC 7465: "Prohibiting RC4 Cipher Suites".
+RFC 7507: "TLS Fallback Signaling Cipher Suite Value (SCSV) for Preventing Protocol Downgrade Attacks".
+RFC 7568: "Deprecating Secure Sockets Layer Version 3.0".
+RFC 7627: "Transport Layer Security (TLS) Session Hash and Extended Master Secret Extension".
+RFC 7685: "A Transport Layer Security (TLS) ClientHello Padding Extension".
+
+Encapsulations of TLS include:
+
+RFC 5216: "The EAP-TLS Authentication Protocol"
+
+Informational RFCs[edit]
+
+RFC 7457: "Summarizing Known Attacks on Transport Layer Security (TLS) and Datagram TLS (DTLS)"
+RFC 7525: "Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)"
+
+See also[edit]
+
+
+Cryptography portal
+
+
+
+Application-Layer Protocol Negotiation – a TLS extension used for SPDY and TLS False Start
+Bullrun (decryption program) – a secret anti-encryption program run by the U.S. National Security Agency
+CECPQ1 – a post-quantum cipher for Transport Layer Security
+Key ring file
+Multiplexed Transport Layer Security
+Obfuscated TCP
+QUIC (Quick UDP Internet Connections) – "...was designed to provide security protection equivalent to TLS/SSL"; QUIC's main goal is to improve perceived performance of connection-oriented web applications that are currently using TCP
+RdRand
+Server-Gated Cryptography
+SSL acceleration
+tcpcrypt
+Transport Layer Security Channel ID – a proposed protocol extension that improves web browser security via self-signed browser certificates
+Wireless Transport Layer Security
+HTTP Strict Transport Security – HSTS
+
+References[edit]
+
+
+^ a b c d e T. Dierks; E. Rescorla (August 2008). "The Transport Layer Security (TLS) Protocol, Version 1.2". 
+^ SSL: Intercepted today, decrypted tomorrow, Netcraft, 2013-06-25.
+^ a b Gothard, Peter. "Google updates SSL certificates to 2048-bit encryption". Computing. Incisive Media. Retrieved 9 September 2013. 
+^ a b A. Freier; P. Karlton; P. Kocher (August 2011). "The Secure Sockets Layer (SSL) Protocol Version 3.0". 
+^ "What is SSL/TLS?". Instantssl.com. Retrieved 2013-02-20. 
+^ "SSL/TLS in Detail". Microsoft TechNet. Updated July 31, 2003.
+^ a b Hooper, Howard (2012). CCNP Security VPN 642-648 Official Cert Guide (2 ed.). Cisco Press. p. 22. ISBN 9780132966382. Retrieved 17 August 2015. 
+^ a b https://security.stackexchange.com/a/93338
+^ a b T. Dierks, E. Rescorla (August 2008). "Introduction". sec. 1. RFC 5246. https://tools.ietf.org/html/rfc5246#section-1. 
+^ Thomas Y. C. Woo, Raghuram Bindignavle, Shaowen Su and Simon S. Lam, SNP: An interface for secure network programming Proceedings USENIX Summer Technical Conference, June 1994
+^ "THE SSL PROTOCOL". Netscape Corporation. 2007. Archived from the original on 14 June 1997. 
+^ Rescorla 2001
+^ Messmer, Ellen. "Father of SSL, Dr. Taher Elgamal, Finds Fast-Moving IT Projects in the Middle East". Network World. Archived from the original on 31 May 2014. Retrieved 30 May 2014. 
+^ Greene, Tim. "Father of SSL says despite attacks, the security linchpin has lots of life left". Network World. Archived from the original on 31 May 2014. Retrieved 30 May 2014. 
+^ "POODLE: SSLv3 vulnerability (CVE-2014-3566)". Retrieved 21 October 2014. 
+^ a b c Polk, Tim; McKay, Terry; Chokhani, Santosh (April 2014). "Guidelines for the Selection, Configuration, and Use of Transport Layer Security (TLS) Implementations" (PDF). National Institute of Standards and Technology. p. 67. Archived from the original (PDF) on 2014-05-08. Retrieved 2014-05-07. CS1 maint: Uses authors parameter (link)
+^ Dierks, T. & E. Rescorla (April 2006). "The Transport Layer Security (TLS) Protocol Version 1.1, RFC 4346". 
+^ T. Dierks, E. Rescorla (August 2008). "Finished". sec. 7.4.9. RFC 5246. https://tools.ietf.org/html/rfc5246#section-7.4.9. 
+^ draft-ietf-tls-tls13-22 – The Transport Layer Security (TLS) Protocol Version 1.3
+^ draft-ietf-tls-tls13-latest
+^ "NSS 3.29 release notes". Mozilla Developer Network. February 2017. 
+^ "Enable TLS 1.3 by default". Bugzilla@Mozilla. 16 October 2016. Retrieved 10 October 2017. 
+^ "ProxySG, ASG and WSS will interrupt SSL connections when clients using TLS 1.3 access sites also using TLS 1.3". BlueTouch Online. 16 May 2017. Retrieved 11 September 2017. 
+^ "Pale Moon 27.4.0 released!". Pale Moon forum. 12 July 2017. Retrieved 11 September 2017. 
+^ "TLS 1.3 IETF 100 Hackathon". 
+^ a b IETF - Internet Engineering Task Force (2017-11-12), IETF Hackathon Presentations and Awards, retrieved 2017-11-14 
+^ Rea, Scott (2013). "Alternatives to Certification Authorities for a Secure Web" (PDF). RSA Conference Asia Pacific. Retrieved 7 September 2016. 
+^ Counting SSL certificates; netcraft; May 13, 2015.
+^ Law Enforcement Appliance Subverts SSL, Wired, 2010-04-03.
+^ New Research Suggests That Governments May Fake SSL Certificates, EFF, 2010-03-24.
+^ P. Eronen, Ed. "RFC 4279: Pre-Shared Key Ciphersuites for Transport Layer Security (TLS)". Internet Engineering Task Force. Retrieved 9 September 2013. 
+^ D. Taylor, Ed. "RFC 5054: Using the Secure Remote Password (SRP) Protocol for TLS Authentication". Internet Engineering Task Force. Retrieved December 21, 2014. 
+^ "The value of 2,048-bit encryption: Why encryption key length matters". SearchSecurity. Retrieved 2017-12-18. 
+^ Sean Turner (September 17, 2015). "Consensus: remove DSA from TLS 1.3". 
+^ a b c d draft-chudov-cryptopro-cptls-04 - GOST 28147-89 Cipher Suites for Transport Layer Security (TLS)
+^ RFC 5288, RFC 5289
+^ RFC 6655, RFC 7251
+^ RFC 6367
+^ RFC 5932, RFC 6367
+^ a b RFC 6209
+^ RFC 4162
+^ "On the Practical (In-)Security of 64-bit Block Ciphers — Collision Attacks on HTTP over TLS and OpenVPN" (PDF). 2016-10-28. Retrieved 2017-06-08. 
+^ "NIST Special Publication 800-57 Recommendation for Key Management — Part 1: General (Revised)" (PDF). 2007-03-08. Archived from the original (PDF) on June 6, 2014. Retrieved 2014-07-03. 
+^ a b c Qualys SSL Labs. "SSL/TLS Deployment Best Practices". Retrieved 2 June 2015. 
+^ RFC 5469
+^ RFC 7905
+^ "Http vs https". Retrieved 2015-02-12. 
+^ a b c d As of October 2, 2017. "SSL Pulse: Survey of the SSL Implementation of the Most Popular Websites". Qualys. Retrieved December 10, 2017. 
+^ a b ivanr. "RC4 in TLS is Broken: Now What?". Qualsys Security Labs. Retrieved 2013-07-30. 
+^ a b c Bodo Möller, Thai Duong & Krzysztof Kotowicz. "This POODLE Bites: Exploiting The SSL 3.0 Fallback" (PDF). Retrieved 2014-10-15. 
+^ a b c d e "Update to add support for TLS 1.1 TLS 1.2 in Windows Server 2008 SP2". Retrieved 2017-07-19. 
+^ "What browsers support Extended Validation (EV) and display an EV indicator?". Symantec. Retrieved 2014-07-28. 
+^ a b c d e f g h i j k l m n o "SHA-256 Compatibility". Retrieved 2015-06-12. 
+^ a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac "ECC Compatibility". Retrieved 2015-06-13. 
+^ a b "Tracking the FREAK Attack". Retrieved 2015-03-08. 
+^ a b "FREAK: Factoring RSA Export Keys". Retrieved 2015-03-08. 
+^ Google (2012-05-29). "Dev Channel Update". Retrieved 2011-06-01. 
+^ Google (2012-08-21). "Stable Channel Update". Retrieved 2012-08-22. 
+^ Chromium Project (2013-05-30). "Chromium TLS 1.2 Implementation". 
+^ "The Chromium Project: BoringSSL". Retrieved 2015-09-05. 
+^ a b "Chrome Stable Release". Chrome Releases. Google. 2011-10-25. Retrieved 2015-02-01. 
+^ "SVN revision log on Chrome 10.0.648.127 release". Retrieved 2014-06-19. 
+^ a b "ImperialViolet – CRIME". 2012-09-22. Retrieved 2014-10-18. 
+^ a b "SSL/TLS Overview". 2008-08-06. Retrieved 2013-03-29. 
+^ a b "Chromium Issue 90392". 2008-08-06. Retrieved 2013-06-28. 
+^ a b "Issue 23503030 Merge 219882". 2013-09-03. Retrieved 2013-09-19. 
+^ a b "Issue 278370: Unable to submit client certificates over TLS 1.2 from Windows". 2013-08-23. Retrieved 2013-10-03. 
+^ Möller, Bodo (2014-10-14). "This POODLE bites: exploiting the SSL 3.0 fallback". Google Online Security blog. Google (via Blogspot). Retrieved 2014-10-28. 
+^ a b c "An update on SSLv3 in Chrome". Security-dev. Google. 2014-10-31. Retrieved 2014-11-04. 
+^ "Stable Channel Update". Mozilla Developer Network. Google. 2014-02-20. Retrieved 2014-11-14. 
+^ "Changelog for Chrome 33.0.1750.117". Google. Google. Retrieved 2014-11-14. 
+^ "Issue 318442: Update to NSS 3.15.3 and NSPR 4.10.2". Retrieved 2014-11-14. 
+^ a b c d e "Issue 693963003: Add minimum TLS version control to about:flags and Finch gate it. – Code Review". Retrieved 2015-01-22. 
+^ a b c "Issue 375342: Drop RC4 Support". Retrieved 2015-05-22. 
+^ a b "Issue 436391: Add info on end of life of SSLVersionFallbackMin & SSLVersionMin policy in documentation". Retrieved 2015-04-19. 
+^ "Issue 490240: Increase minimum DH size to 1024 bits (tracking bug)". Retrieved 2015-05-29. 
+^ a b c d e f "Intent to deprecate: RC4". Retrieved 2015-12-21. 
+^ a b c d e f "An update on SHA-1 certificates in Chrome". 2015-12-18. Retrieved 2015-12-21. 
+^ "SSLSocket | Android Developers". Retrieved 2015-03-11. 
+^ a b c d "What browsers work with Universal SSL". Retrieved 2015-06-15. 
+^ a b c d "SSLSocket | Android Developers". Retrieved 2015-12-17. 
+^ a b "Android 5.0 Behavior Changes | Android Developers". Retrieved 2015-03-11. 
+^ "Android 8.0 Behavior Changes". 
+^ a b c d "Security in Firefox 2". 2008-08-06. Retrieved 2009-03-31. 
+^ "Attack against TLS-protected communications". Mozilla Security Blog. Mozilla. 2011-09-27. Retrieved 2015-02-01. 
+^ a b "Introduction to SSL". MDN. Retrieved 2014-06-19. 
+^ a b "NSS 3.15.3 Release Notes". Mozilla Developer Network. Mozilla. Retrieved 2014-07-13. 
+^ a b "MFSA 2013-103: Miscellaneous Network Security Services (NSS) vulnerabilities". Mozilla. Mozilla. Retrieved 2014-07-13. 
+^ "Bug 565047 – (RFC4346) Implement TLS 1.1 (RFC 4346)". Retrieved 2013-10-29. 
+^ "Bug 480514 – Implement support for TLS 1.2 (RFC 5246)". Retrieved 2013-10-29. 
+^ "Bug 733647 – Implement TLS 1.1 (RFC 4346) in Gecko (Firefox, Thunderbird), on by default". Retrieved 2013-12-04. 
+^ a b "Firefox Notes – Desktop". 2014-02-04. Retrieved 2014-02-04. 
+^ "Bug 861266 – Implement TLS 1.2 (RFC 5246) in Gecko (Firefox, Thunderbird), on by default". Retrieved 2013-11-18. 
+^ a b c "The POODLE Attack and the End of SSL 3.0". Mozilla blog. Mozilla. 2014-10-14. Retrieved 2014-10-28. 
+^ "Firefox — Notes (34.0) — Mozilla". mozilla.org. 2014-12-01. Retrieved 2015-04-03. 
+^ "Bug 1083058 – A pref to control TLS version fallback". bugzilla.mozilla.org. Retrieved 2014-11-06. 
+^ "Bug 1036737 – Add support for draft-ietf-tls-downgrade-scsv to Gecko/Firefox". bugzilla.mozilla.org. Retrieved 2014-10-29. 
+^ a b c "Bug 1166031 – Update to NSS 3.19.1". bugzilla.mozilla.org. Retrieved 2015-05-29. 
+^ "Bug 1088915 – Stop offering RC4 in the first handshakes". bugzilla.mozilla.org. Retrieved 2014-11-04. 
+^ "Firefox — Notes (39.0) — Mozilla". mozilla.org. 2015-06-30. Retrieved 2015-07-03. 
+^ "Google, Microsoft, and Mozilla will drop RC4 encryption in Chrome, Edge, IE, and Firefox next year". VentureBeat. 2015-09-01. Retrieved 2015-09-05. 
+^ "Intent to ship: RC4 disabled by default in Firefox 44". Retrieved 2015-10-18. 
+^ "RC4 is now allowed only on whitelisted sites (Reverted)". Retrieved 2015-11-02. 
+^ "Firefox — Notes (44.0) — Mozilla". mozilla.org. 2016-01-26. Retrieved 2016-03-09. 
+^ "Bug 1342082 – Disable TLS 1.3 for FF52 Release". Retrieved 2017-03-29. 
+^ Microsoft (2012-09-05). "Secure Channel". Retrieved 2012-10-18. 
+^ Microsoft (2009-02-27). "MS-TLSP Appendix A". Retrieved 2009-03-19. 
+^ a b c "What browsers only support SSLv2?". Retrieved 2014-06-19. 
+^ a b c d "SHA2 and Windows – Windows PKI blog – Site Home – TechNet Blogs". 2010-09-30. Retrieved 2014-07-29. 
+^ "TLS Cipher Suites". Microsoft. 
+^ https://support.microsoft.com/kb/948963
+^ a b c d e f g h i "Vulnerability in Schannel Could Allow Security Feature Bypass (3046049)". 2015-03-10. Retrieved 2015-03-11. 
+^ a b c d e f g h i "Vulnerability in Schannel Could Allow Information Disclosure (3061518)". 2015-05-12. Retrieved 2015-05-22. 
+^ a b c d e "HTTPS Security Improvements in Internet Explorer 7". Retrieved 2013-10-29. 
+^ "Microsoft Support Lifecycle". Microsoft. 
+^ a b c d e f "Windows 7 adds support for TLSv1.1 and TLSv1.2 – IEInternals – Site Home – MSDN Blogs". Retrieved 2013-10-29. 
+^ a b c Thomlinson, Matt (2014-11-11). "Hundreds of Millions of Microsoft Customers Now Benefit from Best-in-Class Encryption". Microsoft Security. Retrieved 2014-11-14. 
+^ Microsoft security advisory: Update for disabling RC4
+^ a b c d Microsoft (2013-09-24). "IE11 Changes". Retrieved 2013-11-01. 
+^ "February 2015 security updates for Internet Explorer". 2015-02-11. Retrieved 2015-02-11. 
+^ "Update turns on the setting to disable SSL 3.0 fallback for protected mode sites by default in Internet Explorer 11". Retrieved 2015-02-11. 
+^ "Vulnerability in SSL 3.0 Could Allow Information Disclosure". 2015-04-14. Retrieved 2015-04-14. 
+^ Microsoft Edge Team (2016-08-09). "RC4 is now disabled in Microsoft Edge and Internet Explorer 11". Microsoft. 
+^ Foley, Mary Jo. "Some Windows 10 Enterprise users won't get Microsoft's Edge browser". ZDNet. 
+^ a b c d e f "TLS (Schannel SSP) changes in Windows 10 and Windows Server 2016". Microsoft. 2017-03-21. Retrieved 2017-03-29. 
+^ "POODLE SSL vulnerability – secure your Windo… – Windows Phone 8 Development and Hacking". XDA Developers. 
+^ a b "What TLS version is used in Windows Phone 8 for secure HTTP connections?". Microsoft. Retrieved 2014-11-07. 
+^ "Qualys SSL Labs – Projects / User Agent Capabilities: Unknown". 
+^ a b "Platform Security". Microsoft. 2014-06-25. Retrieved 2014-11-07. 
+^ "Release Notes: Important Issues in Windows 8.1 Preview". Microsoft. 2013-06-24. Retrieved 2014-11-04. 
+^ "W8.1(IE11) vs RC4 | Qualys Community". Retrieved 2014-11-04. 
+^ "Opera 9.0 for Windows Changelog". 
+^ "Opera 2 series". Retrieved 2014-09-20. 
+^ "Opera 3 series". Retrieved 2014-09-20. 
+^ "Opera 4 series". Retrieved 2014-09-20. 
+^ a b "Changelog for Opera 5.x for Windows". Retrieved 2014-06-19. 
+^ "Changelog for Opera [8] Beta 2 for Windows". Retrieved 2014-06-19. 
+^ "Web Specifications Supported in Opera 9". Retrieved 2014-06-19. 
+^ a b "Opera: Opera 10 beta for Windows changelog". Retrieved 2014-06-19. 
+^ "About Opera 11.60 and new problems with some secure servers". 2011-12-11. Archived from the original on 2012-01-18. 
+^ a b c "Security changes in Opera 25; the poodle attacks". 2014-10-15. Retrieved 2014-10-28. 
+^ a b c d "Unjam the logjam". 2015-06-09. Retrieved 2015-06-11. 
+^ "Advisory: RC4 encryption protocol is vulnerable to certain brute force attacks". 2013-04-04. Retrieved 2014-11-14. 
+^ "On the Precariousness of RC4". 2013-03-20. Archived from the original on 2013-11-12. Retrieved 2014-11-17. 
+^ a b c d e "Opera 12 and Opera Mail security update". 2016-02-16. Retrieved 2016-02-17. 
+^ "Dev.Opera — Opera 14 for Android Is Out!". 2013-05-21. Retrieved 2014-09-23. 
+^ "Dev.Opera — Introducing Opera 15 for Computers, and a Fast Release Cycle". 2013-07-02. Retrieved 2014-09-23. 
+^ a b same as Chrome 26–29
+^ a b same as Chrome 30 and later
+^ a b same as Chrome 33 and later
+^ Adrian, Dimcev. "Common browsers/libraries/servers and the associated cipher suites implemented". TLS Cipher Suites Project. 
+^ Apple (2009-06-10). "Features". Retrieved 2009-06-10. 
+^ "Curl: Patch to add TLS 1.1 and 1.2 support & replace deprecated functions in SecureTransport". 
+^ Qualys SSL Report: google.co.uk (simulation Safari 5.1.9 TLS 1.0)
+^ "Apple Secures Mac OS X with Mavericks Release – eSecurity Planet". 2013-10-25. Retrieved 2014-06-23. 
+^ Ristic, Ivan. "Is BEAST Still a Threat?". qualys.com. 
+^ a b Ristić, Ivan (2013-10-31). "Apple enabled BEAST mitigations in OS X 10.9 Mavericks". Retrieved 2013-11-07. 
+^ Ristić, Ivan (2014-02-26). "Apple finally releases patch for BEAST". Retrieved 2014-07-01. 
+^ "About Security Update 2014-005". 
+^ "About the security content of iOS 8.1". 
+^ a b c "About Security Update 2015-002". Retrieved 2015-03-09. 
+^ a b "About the security content of OS X Mavericks v10.9". Retrieved 2014-06-20. 
+^ "User Agent Capabilities: Safari 8 / OS X 10.10". Qualsys SSL Labs. Retrieved 2015-03-07. 
+^ "About the security content of OS X Yosemite v10.10.4 and Security Update 2015-005". Retrieved 2015-07-03. 
+^ a b c Apple (2011-10-14). "Technical Note TN2287 – iOS 5 and TLS 1.2 Interoperability Issues". Retrieved 2012-12-10. 
+^ Liebowitz, Matt (2011-10-13). "Apple issues huge software security patches". NBCNews.com. Retrieved 2012-12-10. 
+^ MWR Info Security (2012-04-16). "Adventures with iOS UIWebviews". Retrieved 2012-12-10. , section "HTTPS (SSL/TLS)"
+^ "Secure Transport Reference". Retrieved 2014-06-23.  kSSLProtocol2 is deprecated in iOS
+^ "iPhone 3.0: Mobile Safari Gets Enhanced Security Certificate Visualization | The iPhone Blog". 2009-03-31. Archived from the original on 2009-04-03. 
+^ "Qualys SSL Labs – Projects / User Agent Capabilities: Safari 7 / iOS 7.1". 
+^ schurtertom (2013-10-11). "SOAP Request fails randomly on one Server but works on an other on iOS7". Retrieved 2014-01-05. 
+^ "User Agent Capabilities: Safari 8 / iOS 8.1.2". Qualsys SSL Labs. Retrieved 2015-03-07. 
+^ "About the security content of iOS 8.2". Retrieved 2015-03-09. 
+^ "About the security content of iOS 8.4". Retrieved 2015-07-03. 
+^ Oracle. "Java Cryptography Architecture Oracle Providers Documentation". Retrieved 2012-08-16. 
+^ Oracle. "JDK 8 Security Enhancements". Retrieved 2015-02-25. 
+^ "Version 1.11.13, 2015-01-11 — Botan". 2015-01-11. Retrieved 2015-01-16. 
+^ "[gnutls-devel] GnuTLS 3.4.0 released". 2015-04-08. Retrieved 2015-04-16. 
+^ "Java™ SE Development Kit 8, Update 31 Release Notes". Retrieved 2015-01-22. 
+^ "OpenBSD 5.6 Released". 2014-11-01. Retrieved 2015-01-20. 
+^ "LibreSSL 2.3.0 Released". 2015-09-23. Retrieved 2015-09-24. 
+^ "MatrixSSL – News". Archived from the original on 2015-02-14. Retrieved 2014-11-09. 
+^ "mbed TLS 2.0.0 released". 2015-07-10. Retrieved 2015-07-14. 
+^ "NSS 3.19 release notes". Mozilla Developer Network. Mozilla. Retrieved 2015-05-06. 
+^ "NSS 3.14 release notes". Mozilla Developer Network. Mozilla. Retrieved 2012-10-27. 
+^ "NSS 3.15.1 release notes". Mozilla Developer Network. Mozilla. Retrieved 2013-08-10. 
+^ "OpenSSL 1.1.0 Series Release Notes". Retrieved 2016-10-02. 
+^ a b "Major changes between OpenSSL 1.0.0h and OpenSSL 1.0.1 [14 Mar 2012]". 2012-03-14. Archived from the original on January 20, 2015. Retrieved 2015-01-20. 
+^ "RSA BSAFE Technical Specification Comparison Tables" (PDF). 
+^ TLS cipher suites in Microsoft Windows XP and 2003
+^ a b SChannel Cipher Suites in Microsoft Windows Vista
+^ a b c TLS Cipher Suites in SChannel for Windows 7, 2008R2, 8, 2012
+^ "[wolfssl] wolfSSL 3.6.6 Released". 2015-08-20. Retrieved 2015-08-25. 
+^ "[wolfssl] wolfSSL TLS1.3 support". 2017-02-13. Retrieved 2017-02-13. 
+^ "NSS 3.24 release notes". Mozilla Developer Network. Mozilla. Retrieved 2016-06-19. 
+^ "Technical Note TN2287: iOS 5 and TLS 1.2 Interoperability Issues". iOS Developer Library. Apple Inc. Retrieved 2012-05-03. 
+^ Qualys SSL Labs – Projects / User Agent Capabilities
+^ Georgiev, Martin and Iyengar, Subodh and Jana, Suman and Anubhai, Rishita and Boneh, Dan and Shmatikov, Vitaly (2012). The most dangerous code in the world: validating SSL certificates in non-browser software. Proceedings of the 2012 ACM conference on Computer and communications security (PDF). pp. 38–49. ISBN 978-1-4503-1651-4. CS1 maint: Multiple names: authors list (link)
+^ Joris Claessens; Valentin Dem; Danny De Cock; Bart Preneel; Joos Vandewalle (2002). "On the Security of Today's Online Electronic Banking Systems". Computers & Security. 21 (3): 253–265. doi:10.1016/S0167-4048(02)00312-7. 
+^ Lawrence, Eric (2005-10-22). "IEBlog: Upcoming HTTPS Improvements in Internet Explorer 7 Beta 2". MSDN Blogs. Retrieved 2007-11-25. 
+^ "Bugzilla@Mozilla — Bug 236933 – Disable SSL2 and other weak ciphers". Mozilla Corporation. Retrieved 2007-11-25. 
+^ "Opera 9.5 for Windows Changelog" at Opera.com: "Disabled SSL v2 and weak ciphers."
+^ "Firefox still sends SSLv2 handshake even though the protocol is disabled". 2008-09-11. 
+^ "Opera 10 for Windows changelog" at Opera.com: "Removed support for SSL v2 and weak ciphers"
+^ Pettersen, Yngve (2007-04-30). "10 years of SSL in Opera — Implementer's notes". Opera Software. Archived from the original on October 12, 2007. Retrieved 2007-11-25. 
+^ National Institute of Standards and Technology (December 2010). "Implementation Guidance for FIPS PUB 140-2 and the Cryptographic Module Validation Program" (PDF). Archived from the original (PDF) on November 6, 2010. 
+^ "RFC 7457 : Summarizing Known Attacks on Transport Layer Security (TLS) and Datagram TLS (DTLS)". 
+^ "CVE – CVE-2009-3555". 
+^ Eric Rescorla (2009-11-05). "Understanding the TLS Renegotiation Attack". Educated Guesswork. Retrieved 2009-11-27. 
+^ "SSL_CTX_set_options SECURE_RENEGOTIATION". OpenSSL Docs. 2010-02-25. Retrieved 2010-11-18. 
+^ "GnuTLS 2.10.0 released". GnuTLS release notes. 2010-06-25. Retrieved 2011-07-24. 
+^ "NSS 3.12.6 release notes". NSS release notes. 2010-03-03. Archived from the original on March 6, 2012. Retrieved 2011-07-24. 
+^ A. Langley; N. Modadugu; B. Moeller (2010-06-02). "Transport Layer Security (TLS) False Start". Internet Engineering Task Force. IETF. Retrieved 2013-07-31. 
+^ Gruener, Wolfgang. "False Start: Google Proposes Faster Web, Chrome Supports It Already". Archived from the original on 2010-10-07. Retrieved 2011-03-09. 
+^ Smith, Brian. "Limited rollback attacks in False Start and Snap Start". Retrieved 2011-03-09. 
+^ Dimcev, Adrian. "False Start". Random SSL/TLS 101. Retrieved 2011-03-09. 
+^ Mavrogiannopoulos, Nikos; Vercautern, Frederik; Velichkov, Vesselin; Preneel, Bart (2012). A cross-protocol attack on the TLS protocol. Proceedings of the 2012 ACM conference on Computer and communications security (PDF). pp. 62–72. ISBN 978-1-4503-1651-4. 
+^ "SMACK: State Machine AttaCKs". 
+^ Goodin, Dan (2015-05-20). "HTTPS-crippling attack threatens tens of thousands of Web and mail servers". Ars Technica. 
+^ Leyden, John (1 March 2016). "One-third of all HTTPS websites open to DROWN attack". The Register. Retrieved 2016-03-02. 
+^ a b "More than 11 million HTTPS websites imperiled by new decryption attack". Ars Technica. Retrieved 2016-03-02. 
+^ Thai Duong & Juliano Rizzo (2011-05-13). "Here Come The ⊕ Ninjas". 
+^ Dan Goodin (2011-09-19). "Hackers break SSL encryption used by millions of sites". 
+^ "Y Combinator comments on the issue". 2011-09-20. 
+^ "Security of CBC Ciphersuites in SSL/TLS: Problems and Countermeasures". 2004-05-20. Archived from the original on 2012-06-30. 
+^ Ristic, Ivan (Sep 10, 2013). "Is BEAST Still a Threat?". Retrieved 8 October 2014. 
+^ "Attack against TLS-protected communications". Mozilla Security Blog. Mozilla. 2011-09-27. Retrieved 2015-02-01. 
+^ Brian Smith (2011-09-30). "(CVE-2011-3389) Rizzo/Duong chosen plaintext attack (BEAST) on SSL/TLS 1.0 (facilitated by websockets −76)". 
+^ "Vulnerability in SSL/TLS Could Allow Information Disclosure (2643584)". 2012-01-10. 
+^ Ristic, Ivan (Oct 31, 2013). "Apple Enabled BEAST Mitigations in OS X 10.9 Mavericks". Retrieved 8 October 2014. 
+^ Dan Goodin (2012-09-13). "Crack in Internet's foundation of trust allows HTTPS session hijacking". Ars Technica. Retrieved 2013-07-31. 
+^ Dennis Fisher (September 13, 2012). "CRIME Attack Uses Compression Ratio of TLS Requests as Side Channel to Hijack Secure Sessions". ThreatPost. Archived from the original on September 15, 2012. Retrieved 2012-09-13. 
+^ a b Goodin, Dan (1 August 2013). "Gone in 30 seconds: New attack plucks secrets from HTTPS-protected pages". Ars Technica. Condé Nast. Retrieved 2 August 2013. 
+^ Leyden, John (2 August 2013). "Step into the BREACH: New attack developed to read encrypted web data". The Register. Retrieved 2 August 2013. 
+^ P. Gutmann (September 2014). "Encrypt-then-MAC for Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)". 
+^ Hagai Bar-El. "Poodle flaw and IoT". Retrieved 15 October 2014. 
+^ Langley, Adam (December 8, 2014). "The POODLE bites again". Retrieved 2014-12-08. 
+^ security – Safest ciphers to use with the BEAST? (TLS 1.0 exploit) I've read that RC4 is immune – Server Fault
+^ Pouyan Sepehrdad; Serge Vaudenay; Martin Vuagnoux (2011). "Discovery and Exploitation of New Biases in RC4". Lecture Notes in Computer Science. 6544: 74–91. doi:10.1007/978-3-642-19574-7_5. 
+^ Green, Matthew. "Attack of the week: RC4 is kind of broken in TLS". Cryptography Engineering. Retrieved March 12, 2013. 
+^ Nadhem AlFardan, Dan Bernstein, Kenny Paterson, Bertram Poettering and Jacob Schuldt. "On the Security of RC4 in TLS". Royal Holloway University of London. Retrieved March 13, 2013. CS1 maint: Multiple names: authors list (link)
+^ AlFardan, Nadhem J.; Bernstein, Daniel J.; Paterson, Kenneth G.; Poettering, Bertram; Schuldt, Jacob C. N. (8 July 2013). "On the Security of RC4 in TLS and WPA" (PDF). Retrieved 2 September 2013. 
+^ AlFardan, Nadhem J.; Bernstein, Daniel J.; Paterson, Kenneth G.; Poettering, Bertram; Schuldt, Jacob C. N. (15 August 2013). On the Security of RC4 in TLS (PDF). 22nd USENIX Security Symposium. p. 51. Retrieved 2 September 2013. Plaintext recovery attacks against RC4 in TLS are feasible although not truly practical 
+^ Goodin, Dan. "Once-theoretical crypto attack against HTTPS now verges on practicality". Ars Technical. Conde Nast. Retrieved 16 July 2015. 
+^ "Mozilla Security Server Side TLS Recommended Configurations". Mozilla. Retrieved 2015-01-03. 
+^ "Security Advisory 2868725: Recommendation to disable RC4". Microsoft. 2013-11-12. Retrieved 2013-12-04. 
+^ "Ending support for the RC4 cipher in Microsoft Edge and Internet Explorer 11". Microsoft Edge Team. September 1, 2015. 
+^ Langley, Adam (Sep 1, 2015). "Intent to deprecate: RC4". 
+^ Barnes, Richard (Sep 1, 2015). "Intent to ship: RC4 disabled by default in Firefox 44". 
+^ a b John Leyden (1 August 2013). "Gmail, Outlook.com and e-voting 'pwned' on stage in crypto-dodge hack". The Register. Retrieved 1 August 2013. 
+^ "BlackHat USA Briefings". Black Hat 2013. Retrieved 1 August 2013. 
+^ Smyth, Ben; Pironti, Alfredo (2013). "Truncating TLS Connections to Violate Beliefs in Web Applications". 7th USENIX Workshop on Offensive Technologies. Retrieved 15 February 2016. 
+^ Goodin, Dan. "New attack bypasses HTTPS protection on Macs, Windows, and Linux". Ars Technica. Condé Nast. Retrieved 28 July 2016. 
+^ Goodin, Dan (August 24, 2016). "HTTPS and OpenVPN face new attack that can decrypt secret cookies". Ars Technica. Retrieved August 24, 2016. 
+^ "Why is it called the 'Heartbleed Bug'?". The Washington Post. 2014-04-09. 
+^ "Heartbleed Bug vulnerability [9 April 2014]". Comodo Group. 
+^ Bleichenbacher, Daniel (August 2006). "Bleichenbacher's RSA signature forgery based on implementation error". Archived from the original on 2014-12-16. 
+^ "BERserk". Intel Security: Advanced Threat Research. September 2014. 
+^ Goodin, Dan (February 19, 2015). "Lenovo PCs ship with man-in-the-middle adware that breaks HTTPS connections". Ars Technica. Retrieved December 10, 2017. 
+^ Valsorda, Filippo (2015-02-20). "Komodia/Superfish SSL validation is broken". Filippo.io. 
+^ a b Goodin, Dan. ""Forbidden attack" makes dozens of HTTPS Visa sites vulnerable to tampering". Ars Technica. Retrieved 26 May 2016. 
+^ Clark Estes, Adam. "Everything You Need to Know About Cloudbleed, the Latest Internet Security Disaster". Gizmodo. Retrieved 2017-02-24. 
+^ Diffie, Whitfield; van Oorschot, Paul C; Wiener, Michael J. (June 1992). "Authentication and Authenticated Key Exchanges". Designs, Codes and Cryptography. 2 (2): 107–125. doi:10.1007/BF00124891. Retrieved 2008-02-11. 
+^ Discussion on the TLS mailing list in October 2007
+^ "Protecting data for the long term with forward secrecy". Retrieved 2012-11-05. 
+^ Bernat, Vincent. "SSL/TLS & Perfect Forward Secrecy". Retrieved 2012-11-05. 
+^ "SSL Labs: Deploying Forward Secrecy". Qualys.com. 2013-06-25. Retrieved 2013-07-10. 
+^ Ristic, Ivan (2013-08-05). "SSL Labs: Deploying Forward Secrecy". Qualsys. Retrieved 2013-08-31. 
+^ a b Langley, Adam (27 June 2013). "How to botch TLS forward secrecy". imperialviolet.org. 
+^ a b Daignière, Florent. "TLS "Secrets": Whitepaper presenting the security implications of the deployment of session tickets (RFC 5077) as implemented in OpenSSL" (PDF). Matta Consulting Limited. Retrieved 7 August 2013. 
+^ a b Daignière, Florent. "TLS "Secrets": What everyone forgot to tell you.." (PDF). Matta Consulting Limited. Retrieved 7 August 2013. 
+^ L.S. Huang; S. Adhikarla; D. Boneh; C. Jackson (2014). "An Experimental Study of TLS Forward Secrecy Deployments". IEEE Internet Computing. IEEE. 18 (6): 43–51. Retrieved 16 October 2015. 
+^ "Protecting data for the long term with forward secrecy". Google. Retrieved 2014-03-07. 
+^ Hoffman-Andrews, Jacob. "Forward Secrecy at Twitter". Twitter. Retrieved 2014-03-07. 
+^ "Certificate Pinning (Warning: The link is broken)".
+^ "Public key pinning released in Firefox"
+^ Perspectives Project
+^ DNSChain
+^ a b These certificates are currently X.509, but RFC 6091 also specifies the use of OpenPGP-based certificates.
+^ Chris (2009-02-18). "vsftpd-2.1.0 released – Using TLS session resume for FTPS data connection authentication". Scarybeastsecurity. blogspot.com. Retrieved 2012-05-17. 
+^ Wildcard SSL Certificate overview, retrieved 2015-07-02 
+^ Named-based SSL virtual hosts: how to tackle the problem (PDF), retrieved 2012-05-17 
+
+
+Further reading[edit]
+
+Wagner, David; Schneier, Bruce (November 1996). "Analysis of the SSL 3.0 Protocol" (PDF). The Second USENIX Workshop on Electronic Commerce Proceedings. USENIX Press. pp. 29–40. 
+Eric Rescorla (2001). SSL and TLS: Designing and Building Secure Systems. United States: Addison-Wesley Pub Co. ISBN 0-201-61598-3. 
+Stephen A. Thomas (2000). SSL and TLS essentials securing the Web. New York: Wiley. ISBN 0-471-38354-6. 
+Bard, Gregory (2006). "A Challenging But Feasible Blockwise-Adaptive Chosen-Plaintext Attack on SSL". International Association for Cryptologic Research (136). Retrieved 2011-09-23. 
+Canvel, Brice. "Password Interception in a SSL/TLS Channel". Retrieved 2007-04-20. 
+IETF Multiple Authors. "RFC of change for TLS Renegotiation". Retrieved 2009-12-11. 
+Creating VPNs with IPsec and SSL/TLS Linux Journal article by Rami Rosen
+Polk, Tim; McKay, Kerry; Chokhani, Santosh (April 2014). "Guidelines for the Selection, Configuration, and Use of Transport Layer Security (TLS) Implementations" (PDF). National Institute of Standards and Technology. Archived from the original (PDF) on 2014-05-08. Retrieved 2014-05-07. 
+Abdou, AbdelRahman; van Oorschot, Paul (August 2017). "Server Location Verification (SLV) and Server Location Pinning: Augmenting TLS Authentication" (PDF). Transactions on Privacy and Security. ACM. [dead link]
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to SSL and TLS.
+
+
+Specifications (see § Standards section for older SSL 2.0, SSL 3.0, TLS 1.0, TLS 1.1 links)
+
+RFC 5246 – The Transport Layer Security (TLS) Protocol Version 1.2
+IETF (Internet Engineering Task Force) TLS Workgroup
+
+
+TLS version intolerance
+
+
+TLS version intolerance
+TLS 1.3 and Version Intolerance
+
+
+Other
+
+
+OWASP: Transport Layer Protection Cheat Sheet
+A talk on SSL/TLS that tries to explain things in terms that people might understand.
+SSL: Foundation for Web Security
+TLS Renegotiation Vulnerability – IETF Tools
+Trustworthy Internet Movement – SSL Pulse – Survey of TLS/SSL implementation of the most popular websites
+How to Generate CSR for SSL
+How TLS Handshake works in browser
+
+This article is based on material taken from the Free On-line Dictionary of Computing prior to 1 November 2008 and incorporated under the "relicensing" terms of the GFDL, version 1.3 or later.
+
+
+
+
+
+
+
+v
+t
+e
+
+
+TLS and SSL
+
+
+
+Protocols and technologies
+
+
+
+Transport Layer Security / Secure Sockets Layer (TLS/SSL)
+Datagram Transport Layer Security (DTLS)
+DNS Certification Authority Authorization (CAA)
+DNS-based Authentication of Named Entities (DANE)
+HTTPS
+HTTP Public Key Pinning (HPKP)
+HTTP Strict Transport Security (HSTS)
+OCSP stapling
+Perfect forward secrecy
+Server Name Indication (SNI)
+STARTTLS
+Application-Layer Protocol Negotiation (ALPN)
+
+
+
+
+
+Public-key infrastructure
+
+
+
+Automated Certificate Management Environment (ACME)
+Certificate authority (CA)
+CA/Browser Forum
+Certificate policy
+Certificate revocation list (CRL)
+Domain-validated certificate (DV)
+Extended Validation Certificate (EV)
+Online Certificate Status Protocol (OCSP)
+Public key certificate
+Public-key cryptography
+Public key infrastructure (PKI)
+Root certificate
+Self-signed certificate
+
+
+
+
+
+See also
+
+
+
+Domain Name System Security Extensions (DNSSEC)
+Internet Protocol Security (IPsec)
+Secure Shell (SSH)
+
+
+
+
+
+History
+
+
+
+Export of cryptography from the United States
+Server-Gated Cryptography
+
+
+
+
+
+Implementations
+
+
+
+Bouncy Castle
+BoringSSL
+Botan
+CryptoComply by SafeLogic
+cryptlib
+GnuTLS
+JSSE
+LibreSSL
+MatrixSSL
+mbed TLS
+NSS
+OpenSSL
+RSA BSAFE
+SChannel
+SSLeay
+stunnel
+wolfSSL
+
+
+
+
+
+Notaries
+
+
+
+Certificate Transparency
+Convergence
+HTTPS Everywhere / SSL Observatory
+Perspectives Project
+
+
+
+
+
+Vulnerabilities
+
+
+
+
+Theory
+
+
+
+Man-in-the-middle attack
+Padding oracle attack
+
+
+
+
+
+Cipher
+
+
+
+Bar mitzvah attack
+
+
+
+
+
+Protocol
+
+
+
+BEAST
+BREACH
+CRIME
+DROWN
+Logjam
+POODLE (in regards to SSL 3.0)
+
+
+
+
+
+Implementation
+
+
+
+Certificate authority compromise
+Random number generator attacks
+FREAK
+goto fail
+Heartbleed
+Lucky Thirteen attack
+POODLE (in regards to TLS 1.0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Virtual private networking
+
+
+
+Communications protocol
+
+
+
+SSTP
+IPsec
+L2TP
+L2TPv3
+PPTP
+Split tunneling
+SSL/TLS
+(Opportunistic: tcpcrypt)
+
+
+
+
+
+Free software
+
+
+
+Cloudvpn
+FreeLAN
+FreeS/WAN
+Libreswan
+n2n
+OpenConnect
+OpenIKED
+Openswan
+OpenVPN
+Social VPN
+SoftEther VPN
+strongSwan
+tcpcrypt
+tinc
+VTun
+Shadowsocks
+
+
+
+
+
+Vendor-driven protocols
+
+
+
+Layer 2 Forwarding Protocol
+DirectAccess
+
+
+
+
+
+Proprietary software
+
+
+
+Avast SecureLine
+Check Point VPN-1
+Cisco Systems VPN Client
+LogMeIn Hamachi
+Microsoft Forefront Unified Access Gateway
+
+
+
+
+
+Risk Vectors
+
+
+
+Content-control software
+Deep content inspection
+Deep packet inspection
+IP address blocking
+Network enumeration
+Stateful firewall
+TCP Reset
+VPN blocking
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Web browsers
+
+
+
+
+
+
+Comparison
+
+lightweight
+
+
+History
+List
+
+for Unix
+
+
+Timeline
+Usage share
+
+
+
+
+
+
+
+
+
+Features
+
+
+
+Ad filtering
+Augmented browsing
+Bookmarks
+
+Bookmarklet
+Live bookmark
+Smart Bookmarks
+
+
+Browser extension
+Browser security
+Browser synchronizer
+
+comparison
+
+
+Cookies
+Download manager
+Favicon
+Incremental search
+Plug-in
+Privacy mode
+Tabs
+Universal Edit Button
+
+
+
+
+
+Web standards
+
+
+
+Acid tests
+Cascading Style Sheets
+HTML
+HTML5
+JavaScript
+MathML
+SVG
+WebGL
+XHTML
+
+
+
+
+
+Protocols
+
+
+
+HTTP
+HTTPS
+OCSP
+SPDY
+SSL/TLS
+WebSocket
+WPAD
+
+
+
+
+
+Related topics
+
+
+
+BrowserChoice.eu
+CRL
+iLoo
+Internet suite
+Man-in-the-browser
+Mobile Web
+Offline reader
+PAC
+Pwn2Own
+Rich Internet application
+Site-specific browser
+Widget
+World Wide Web
+XML
+
+
+
+
+
+
+
+
+
+
+
+
+
+Desktop
+
+
+
+
+
+
+
+Blink-based
+
+
+
+Chromium
+
+Brave
+Chrome
+Dragon
+Opera
+QupZilla
+Sleipnir
+Slimjet
+SRWare Iron
+UC Browser
+Vivaldi
+Yandex Browser
+Sputnik
+SafeZone
+
+
+
+
+
+
+
+Gecko-based
+
+
+
+AT&T Pogo
+Avant
+Camino
+Firefox
+
+Conkeror
+GNU IceCat
+IceDragon
+Swiftfox
+Swiftweasel
+TenFourFox
+Timberwolf
+Tor Browser
+Waterfox
+xB Browser
+
+
+Galeon
+Ghostzilla
+K-Meleon
+Kazehakase
+Kirix Strata
+Lotus Symphony
+Lunascape
+Mozilla
+
+Beonex Communicator
+Classilla
+Netscape
+SeaMonkey
+
+
+
+
+
+
+
+Trident-based
+
+
+
+AOL Explorer
+Avant
+Deepnet Explorer
+GreenBrowser
+Internet Explorer
+Lunascape
+Maxthon
+MediaBrowser
+MenuBox
+NeoPlanet
+NetCaptor
+SlimBrowser
+SpaceTime
+UltraBrowser
+WebbIE
+ZAC Browser
+
+
+
+
+
+WebKit-based
+
+
+
+Arora
+Avant
+Dooble
+Epic
+Flock
+Fluid
+iCab
+Konqueror
+Lunascape
+Maxthon
+Midori
+OmniWeb
+Origyn Web Browser
+Otter Browser
+QtWeb
+rekonq
+Safari
+Shiira
+SlimBoat
+surf
+Torch
+Uzbl
+Epiphany
+WebPositive
+xombrero
+
+
+
+
+
+Text-based
+
+
+
+ELinks
+Emacs/W3
+Line Mode Browser
+Links
+Lynx
+w3m
+
+
+
+
+
+Other
+
+
+
+Basilisk
+abaco
+Amaya
+Arachne
+Arena
+Charon
+Dillo
+eww
+Gazelle
+HotJava
+IBM Home Page Reader
+IBrowse
+KidZui
+Microsoft Edge
+Mosaic
+Mothra
+NetPositive
+NetSurf
+Pale Moon
+Qihoo 360 Secure Browser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mobile
+
+
+
+
+
+
+
+Blink-based
+
+
+
+Android Browser
+Chromium
+
+Brave
+Chrome for Android
+Opera Mobile
+Silk
+
+
+Firefox Focus for Android
+Opera Mini on Android
+
+
+
+
+
+Gecko-based
+
+
+
+Firefox for Android
+MicroB
+Minimo
+Waterfox
+
+
+
+
+
+Presto-based
+
+
+
+Opera Mini (on Extreme/Mini modes)
+
+
+
+
+
+Trident-based
+
+
+
+Maxthon
+
+
+
+
+
+WebKit-based
+
+
+
+BOLT
+Dolphin Browser
+Chrome for iOS
+Coast (web browser)
+Firefox for iOS
+Firefox Focus for iOS
+Opera Mini (Turbo/Normal modes on iOS)
+Maxthon
+Mercury Browser
+Nokia Browser for Symbian
+Rockmelt
+Safari
+Steel
+
+
+
+
+
+Other
+
+
+
+Blazer
+CM Browser
+Deepfish
+ibisBrowser
+Internet Explorer Mobile
+Iris Browser
+Konqueror Embedded
+Microsoft Edge
+NetFront
+Skweezer
+Skyfire
+Teashark
+ThunderHawk
+UC Browser
+Vision
+WinWAP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Television and video game console
+
+
+
+
+
+
+
+Gecko-based
+
+
+
+Kylo
+
+
+
+
+
+Presto-based
+
+
+
+Internet Channel
+
+
+
+
+
+WebKit-based
+
+
+
+Google TV
+Nintendo 3DS Internet Browser
+Nintendo DS & DSi Browser
+NetFront
+Steam Overlay
+Wii U Internet Browser
+
+
+
+
+
+Other
+
+
+
+MSN TV
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Software no longer in development shown in italics
+
+
+ Category
+ Commons
+ Internet portal
+ Software portal
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Transport_Layer_Security&oldid=817651795"					Categories: Transport Layer SecurityApplication layer protocolsCryptographic protocolsE-commerceInternet protocolsInternet securityInternet StandardsSecure communicationHidden categories: Pages using RFC magic linksCS1 maint: Uses authors parameterCS1 maint: Multiple names: authors listArticles containing potentially dated statements from July 2017All articles containing potentially dated statementsArticles containing potentially dated statements from April 2016All articles with unsourced statementsArticles with unsourced statements from August 2016Articles with unsourced statements from January 2015Articles with unsourced statements from December 2013Articles with unsourced statements from December 2016Articles with unsourced statements from February 2015Articles containing potentially dated statements from October 2016Articles containing potentially dated statements from June 2016All articles with dead external linksArticles with dead external links from December 2017Commons category without a link on Wikidata

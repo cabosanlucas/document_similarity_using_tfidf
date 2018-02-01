@@ -1,0 +1,1120 @@
+redirects uses disambiguation
+
+
+
+
+historical example graphical user interface applications common consortiums distribution running window manager terminal xbiff xload graphical manual page browser
+
+
+
+
+
+
+modern example graphical user interface using
+
+
+window system shortened simply windowing system bitmap displays common unixlike computer operating systems
+provides basic framework environment drawing moving windows display device interacting mouse keyboard mandate user interface handled individual programs visual styling xbased environments varies greatly different programs present radically different interfaces
+originated massachusetts institute technology 1984 protocolclarification needed version hence since september 1987 xorg foundation leads project current reference implementation xorg server available free open source software license similar permissive licenses1
+
+
+
+contents
+
+
+purpose abilities
+software architecture
+principles
+user interfaces
+implementations
+
+terminals
+
+
+limitations criticism
+
+user interface issues
+computer accessibility related issues
+network
+client–server separation
+
+
+competitors
+history
+
+predecessors
+origin early development
+consortium consortium
+open group
+xorg xfree86
+xorg foundation
+
+
+nomenclature
+
+terms
+
+
+release history
+also
+notes
+references
+external links
+
+
+
+purpose abilitiesedit
+architectureindependent system remote graphical user interfaces input device capabilities person using networked terminal ability interact display type user input device
+standard distribution complete albeit simple display interface solution delivers standard toolkit protocol stack building graphical user interfaces unixlike operating systems openvms ported many contemporary general purpose operating systems
+provides basic framework primitives building environments drawing moving windows display interacting mouse keyboard touchscreen mandate user interface individual client programs handle programs graphical abilities user interface visual styling xbased environments varies greatly different programs present radically different interfaces
+unlike earlier display protocols specifically designed used network connections rather integral attached display device features network transparency means program running computer somewhere network internet display user interface server running computer network server typically provider graphics resources keyboardmouse events clients meaning server usually running computer front human user client applications anywhere network communicate users computer request rendering graphics content receive events input devices including keyboards mice
+fact term server applied software front user often surprising users accustomed programs clients services remote computers rather remote database resource local users graphic display input devices become resources made available local server local remotely hosted client programs need share users graphics input devices communicate user
+network protocol based command primitives approach allows extensions like operations client application might running different computer still fully accelerated servers display example classic opengl version display lists containing large numbers objects could constructed stored entirely server remote client program rendered sending single glcalllistwhich across network
+provides native support audio several projects exist fill niche also providing transparent network support
+software architectureedit
+details topic window system protocols architecture window system core protocol
+
+
+
+
+simple example server receives input local keyboard mouse displays screen browser terminal emulator users workstation terminal emulator runs remote computer controlled monitored users machine
+
+
+uses client–server model server communicates various client programs server accepts requests graphical output windows sends back user input keyboard mouse touchscreen server function
+
+application displaying window another display system
+system program controlling video output
+dedicated piece hardware
+
+client–server terminology users terminal server applications clients often confuses users terms appear reversed takes perspective application rather enduser provides display services applications server applications services thus clients
+communication protocol server client operates networktransparently client server machine different ones possibly different architectures operating systems client server even communicate securely internet tunneling connection encrypted network session
+client emulate server providing display services clients known nesting opensource clients xnest xephyr support nesting
+client application remote machine user following
+
+local machine open terminal window
+forwarding argument connect remote machine
+request local displayinput service export displayusers machine0 using forwarding enabled
+
+remote client application make connection users local server providing display input user
+alternatively local machine small program connects remote machine starts client application
+practical examples remote clients include
+
+administering remote machine graphically similar using remote desktop single windows
+using client application join large numbers terminal users collaborative workgroups
+running computationally intensive simulation remote machine displaying results local desktop machine
+running graphical software several machines controlled single display keyboard mouse
+
+principlesedit
+1984 scheifler gettys early principles
+
+functionality unless implementor cannot complete real application without
+important decide system decide serve worlds needs rather make system extensible additional needs upwardly compatible fashion
+thing worse generalizing example generalizing examples
+problem completely understood probably best provide solution
+percent desired effect percent work simpler solution also worse better
+isolate complexity much possible
+provide mechanism rather policy particular place user interface policy clients hands
+
+first principle modified design functionality unless know real application require
+largely kept principles sample implementation developed view extension improvement implementation remaining compatible original 1987 protocol
+user interfacesedit
+
+
+
+
+
+
+gnome graphical user interface
+
+
+
+
+
+
+plasma graphical user interface
+
+
+
+
+
+
+
+
+xfce graphical user interface
+
+
+primarily defines protocol graphics primitives deliberately contains specification application userinterface design button menu window titlebar styles instead application software window managers widget toolkits desktop environments applicationspecific graphical user interfaces define provide details result typical interface several different desktop environments become popular among users
+window manager controls placement appearance application windows result desktop interfaces reminiscent microsoft windows apple macintosh examples include gnome xfce radically different controls tiling window manager like wmii ratpoison interfaces sugar chrome eschew desktop metaphor altogether simplifying interfaces specialized applications window managers range sophistication complexity barebones basic window manager supplied evilwm extremely light windowmanager comprehensive desktop environments enlightenment even applicationspecific windowmanagers vertical markets pointofsale
+many users desktop environment aside window manager includes various applications using consistent userinterface popular desktop environments include gnome software compilation xfce unix standard environment common desktop environment freedesktoporg initiative addresses interoperability desktops components needed competitive desktop
+implementationsedit
+xorg implementation canonical implementation owing liberal licensing number variations free open source proprietary appeared commercial unix vendors tended take reference implementation adapt hardware usually customizing adding proprietary extensions
+
+
+
+
+cygwinx running rootless microsoft windows command startx rootless screen shows applications xeyes xclock xterm sharing screen native microsoft windows applications date time calculator
+
+
+2004 xfree86 provided common variant free unixlike systems xfree86 started port 386compatible 1990s become greatest source technical innovation facto standard development3 since 2004 however xorg server fork xfree86 become predominant
+common associate unix servers also exist natively within graphical environments software incs openvms operating system includes version common desktop environment known decwindows standard desktop environmentcitation needed apple originally ported macos form x11app deprecated favor xquartz implementation thirdparty servers apples older operating systems 1990s system included apples macx white pine softwares exodus
+microsoft windows shipped support many thirdparty implementations exist free open source software cygwinx proprietary products exceed xserver reflection xwin32 xming
+also java implementations servers weirdx runs platform supporting swing applet within browsers android server open source java implementation runs android devices
+operating system native windowing system hosts addition system either normal desktop separate host window rootless meaning desktop hidden host windowing environment manages geometry appearance hosted windows within host screen
+terminalsedit
+
+
+
+
+network computing devices ncd88k terminal
+
+
+main article terminal
+terminal thin client runs server architecture became popular building inexpensive terminal parks many users simultaneously large computer server execute application programs clients users terminal much aligned original intention project
+terminals explore network local broadcast domain using display manager control protocol generate list available hosts allowed clients client hosts display manager
+limitation terminals thin clients capable input output keyboard mouse display relevant data assumed exist solely remote server terminal user methods available save load data local peripheral device
+dedicated hardware terminals fallen modern thin client server typically provides functionality lower cost
+limitations criticismedit
+
+
+
+
+
+
+articles criticism controversy section compromise articles neutral point view subject please integrate sections contents article whole rewrite material july 2014
+
+
+
+unixhaters handbook 1994 devoted full chapter problems ideal window system 1990 gajewska manasse mccormack detailed problems protocol recommendations improvement
+user interface issuesedit
+lack design guidelines resulted several vastly different interfaces applications always worked well together interclient communication conventions manual icccm specification client interoperability reputation difficult implement correctly standards efforts motif alleviate problems frustrated users programmers5 graphics programmers generally address consistency application look feel communication coding specific desktop environment specific widget toolkit also avoids deal directly icccm
+also lacks native support userdefined stored procedures server manner news turingcomplete scripting facility various desktop environments thus offer usually mutually incompatible facilities
+computer accessibility related issuesedit
+systems built upon accessibility issues make utilization computer difficult disabled users including right click double click middle click mouseover focus stealing clients deal accessibility issues better others persons accessibility problems locked using however accessibility standard accessibility guidelines within standards process working group accessibility however accessibility needs addressed software projects provide features
+orca project adds accessibility support window system including implementing atspi6 coupled gnomes allow accessibility features implemented programs using gnomegtk apis7 provides different accessibility software including texttospeech converter screen magnifier8 major desktops lxde xfce enlightenment attempt compatible
+networkedit
+
+
+
+
+example tunnelling application
+
+
+client cannot generally detached server reattached another unless code specifically provides emacs common programs ability moving entire session server another generally possible however approaches like virtual network computing xpra allow virtual session reached different servers manner similar screen relation terminals applications toolkits provide related facilities9 workarounds like x11vnc viewers xpras shadow mode nxagent shadow mode also exist make current xserver screen available ability allows user interface mouse keyboard monitor running application switched location another without stopping restarting application
+network traffic server remote clients encrypted default attacker packet sniffer intercept making possible view anything displayed sent users screen common encrypt traffic establish secure shell tunnel communication
+like thin clients using across network bandwidth limitations impede bitmapintensive applications require rapidly updating large portions screen latency animation photo editing even relatively small uncompressed 640x480x24 video stream easily outstrip bandwidth mbits network single client contrast modern versions generally extensions mesa allowing local display local programs graphics optimized bypass network model directly control video card fullscreen video rendered applications applications
+client–server separationedit
+design requires clients server operate separately device independence separation client server incur overhead overhead comes network roundtrip delay time client server latency rather protocol best solutions performance issues depend efficient application design10 common criticism network features result excessive complexity decreased performance used locally
+modern implementations unix domain sockets efficient connections host additionally shared memory mitshm extension employed faster client–server communication11 however programmer must still explicitly activate shared memory extension also necessary provide fallback paths order stay compatible older implementations order communicate nonlocal servers
+competitorsedit
+people attempted writing alternatives replacements historical alternatives include suns news nexts display postscript postscriptbased systems supporting userdefinable displayside procedures lacked current alternatives include
+
+macos mobile counterpart implement windows system known quartz apple bought next used nextstep construct replaced display postscript quartz mike paquette authors quartz explained apple added support features wanted include would bear much resemblance compatible servers anyway12
+android runs linux kernel uses system drawing user interface known surfaceflinger rendering handled
+wayland developed several xorg developers prospective replacement works directly hardware wayland xorg server client rootless13 proprietary port wayland backend raspberry completed 201314 project reached version 2012 like android wayland eglbased
+project canonical goals similar wayland15 intended work mobile devices using chipsets stated goal compatibility android devicedrivers well desktops like android mirunitynext eglbased backwards compatibility clientapplications accomplished xmir
+alternatives attempt avoid overhead working directly hardware projects include directfb16 direct rendering infrastructure aims provide reliable kernellevel interface framebuffer mightcitation needed make efforts redundant
+
+additional ways achieve functional form network transparency feature network transmissibility graphical services include
+
+virtual network computing lowlevel system sends compressed bitmaps across network unix implementation includes server
+remote desktop protocol similar purpose originated microsoft windows ported unixlike systems gotomypc
+citrix xenapp xlike protocol application stack microsoft windows
+tarantella provides javabased remoteguiclient browsers
+
+historyedit
+predecessorsedit
+several bitmap display systems preceded xerox came alto 1973 star 1981 apollo computer came display manager 1981 apple came lisa 1983 macintosh 1984 unix world andrew project 1982 pikes blit terminal 1982
+carnegie mellon university produced remoteaccess application called alto terminal displayed overlapping windows xerox alto made remote hosts typically systems running unix responsible handling windowexposure events refreshing window contents necessary
+derives name successor pre1983 window system called letter preceding english alphabet operating system used network protocol supporting terminal graphics windows server maintaining display lists
+origin early developmentedit
+
+
+
+
+rwsmitbold robert scheifler
+windowathena
+subject window system
+date 1984 0907edt tuesday
+
+spent last couple weeks writing window
+system vs100 stole fair amount code
+surrounded asynchronous rather
+synchronous interface called overall
+performance appears twice
+code seems fairly solid point although
+still deficiencies fixed
+
+stopped using
+actively building applications anyone else using
+seriously consider switching
+ultimate window system believe good
+starting point experimentation right moment
+argus interface
+interface works three existing
+applications text editor argus
+interface primitive window manager
+documentation anyone crazy enough
+volunteer around eventually
+
+anyone interested seeing demo drop
+ne43531 although want call 31945
+first anyone wants code come
+tape anyone interested hacking deficiencies feel
+free touch
+
+
+email introduced project athena community june 198417
+original idea emerged 1984 collaboration gettys project athena scheifler laboratory computer science scheifler needed usable display environment debugging argus system project athena joint project digital equipment corporation provide easy access computing resources students needed platformindependent graphics system link together heterogeneous multiplevendor systems window system development carnegie mellon universitys andrew project make licenses available alternatives existed
+project solved creating protocol could local applications call remote resources mid1983 initial port unix onefifth speed 1984 scheifler replaced synchronous protocol asynchronous protocol display lists immediate mode graphics make version became first windowing system environment offer true hardware independence vendor independence
+scheifler gettys newman work progressed rapidly released version january 1985 preparing release first ultrix workstation judged windowing system likely become available time engineers ported decs qvss display microvax
+second quarter 1985 acquired color support function vaxstationiigpx forming became version
+group brown university ported version rtpc problems reading unaligned data forced incompatible protocol change leading version late 1985 1986 outside organizations begun asking x10r2 released january 1986 x10r3 february 1986 although licensed outside groups decided time license x10r3 future versions became known license intending popularize return hoping many applications would become available x10r3 became first version achieve wide deployment hewlettpackard releasing products based groups ported apollo workstations even pcat demonstrations first commercial application mechanical computeraided engineering system cognition vaxes remotely displayed running server ported fulton hardenbergh took place autofact trade show time last version x10r4 appeared december 1986 attempts made enable servers realtime collaboration devices much virtual network computing would later allow desktop shared early effort philip gusts sharedx tool
+although offered interesting powerful functionality become obvious protocol could hardwareneutral redesign became widely deployed alone would resources available complete redesign happened decs western software laboratory found projects experienced team smokey wallace gettys proposed build make freely available terms process started 1986 protocol finalized august alpha testing software started february 1987 betatesting release finally occurred september 1987
+protocol design scheifler extensively discussed open mailing lists nascent internet bridged usenet newsgroups gettys moved california help lead development work decs systems research center phil karlton susan angebrandt sample server design implementation therefore represents first largescale distributed free open source software projects
+consortium consortium incedit
+late 1980s simson garfinkel wrote 1989 athenas important single achievement date believed important gettys joined design team vaxstation 2000 ensure would company assigned 1200 employees port ultrix vms18 1987 success becoming apparent wished relinquish stewardship june 1987 meeting nine vendors vendors told believed need neutral party keep fragmenting marketplace january 1988 consortium formed nonprofit vendor group scheifler director direct future development neutral atmosphere inclusive commercial educational interests
+fulton joined january 1988 keith packard march 1988 senior developers focusing xlib fonts window managers utilities keith reimplementing server donna converse chris peterson stephen gildea joined later year focusing toolkits widget sets working closely ralph swick project athena consortium produced several significant revisions first release x11r2 february 1988 hersh joined staff january 1991 work x113d functionality followed soon ralph also worked dave sternlicht 1993 consortium prepared depart staff joined gary cutbill kaleb keithley david wiggins2
+
+
+
+
+decwindows openvms
+
+
+1993 consortium nonprofit corporation formed successor consortium released x11r6 1994 1995 took development motif toolkit common desktop environment unix systems consortium dissolved 1996 producing final revision x11r63 legacy increasing commercial influence development1920
+open groupedit
+january 1997 consortium passed stewardship open group vendor group formed early 1996 merger open software foundation xopen
+open group released x11r64 early 1998 controversially x11r64 departed traditional liberal licensing terms open group sought assure funding development specifically cited xfree86 significantly contributing terms would made longer free software zerocost noncommercial otherwise xfree86 seemed poised fork22 open group relicensed x11r64 traditional license september 199823 open groups last release came x11r64 patch
+xorg xfree86edit
+xfree86 originated 1992 x386 server compatibles included x11r5 1991 written thomas roell mark snitily donated consortium snitily graphics consulting services sgcs xfree86 evolved time port leading popular implementation facto standard development3
+1999 open group formed xorg xorg supervised release versions x11r651 onward development time become moribund24 technical innovation since consortium dissolved taken place xfree86 project25 1999 xfree86 team joined xorg honorary nonpaying member26 encouraged various hardware companies27 interested using xfree86 linux status popular version
+2003 popularity linux hence installed base surged xorg remained inactive28 active development took place largely within xfree86 however considerable dissent developed within xfree86 xfree86 project suffered perception cathedrallike development model developers could commit access2930 vendors maintain extensive patch sets31 march 2003 xfree86 organization expelled keith packard joined xfree86 original consortium considerable feeling323334
+xorg xfree86 began discussing reorganisation suited properly nurturing development x353637 gettys pushing strongly open development model since least 200038 gettys packard several others began discussing detail requirements effective governance open development
+finally echo x11r64 licensing dispute xfree86 released version february 2004 restrictive license many projects relying found unacceptable39 added clause license based original licenses advertising clause viewed free software foundation debian incompatible general public license40 groups spirit original theo raadt openbsd instance threatened fork xfree86 citing license concerns41 license issue combined difficulties getting changes left many feeling time ripe fork42
+xorg foundationedit
+early 2004 various people xorg freedesktoporg formed xorg foundation open group gave control xorg domain name marked radical change governance whereas stewards since 1988 including prior xorg vendor organizations foundation software developers used community development based bazaar modelcitation needed relies outside involvement membership opened individuals corporate membership form sponsorship several major corporations hewlettpackard currently support xorg foundation
+foundation takes oversight role development technical decisions made merits achieving rough consensus among community members technical decisions made board directors sense strongly modelled technically noninterventionist gnome foundation foundation employs developers foundation released x11r67 xorg server april 2004 based xfree86 44rc2 x11r66 changes merged gettys packard taken last version xfree86 license making point open development model retaining compatibility brought many xfree86 developers board40
+received extensions opengl support 1990s architecture remained fundamentally unchanged decade early part 2000s however overhauled resolve number problems surfaced years including flawed font architecture graphics system always intended augmented andor replaced latency issues43 x11r68 came september 2004 added significant features including preliminary support translucent windows sophisticated visual effects screen magnifiers thumbnailers facilities integrate immersive display systems suns project looking glass croquet project external applications called compositing window managers provide policy visual appearance
+december 200544 xorg released x11r69 monolithic source tree legacy users x11r70 source code separated independent modules maintainable separate projects45 foundation released x11r71 2006 four months considerable feature improvements46
+xfree86 development continued years released december 200847
+nomenclatureedit
+proper names system listed manual page window system version window system version x1148
+term xwindows manner subsequently released microsoft windows officially endorsed consortium release manager matt landau stating 1993 thing windows window despite repeated misuse forms trade rags49 though common informal since early history used deliberately provocative effect example unixhaters handbook4
+termsedit
+window system nuanced usage number terms compared common usage particularly display screen subset given convenience
+
+device
+graphics device computer graphics card computer motherboards integrated graphics chipset
+monitor
+physical device flat screen computer display
+screen
+area graphics rendered either software alone system memory within graphics device render screen simultaneously either viewable simultaneously interchangeably interchangeable screens often notionally left right another flipping next mouse pointer reaches edge monitor
+virtual screen
+different meanings associated term
+
+
+
+
+
+
+technique allowing panning monitor around screen running larger resolution monitor currently displaying
+effect simulated window manager maintaining window position information larger coordinate system screen allowing panning simply moving windows response user
+
+
+
+
+
+
+display
+collection screens often involving multiple monitors generally configured allow mouse move pointer position within linuxbased workstations usually capable multiple displays among user switch special keyboard combination controlaltfunctionkey simultaneously flipping monitors showing screens display screens another
+
+term display confused specialized jargon zaphod display latter rare configuration allowing multiple users single computer independent display mouse keyboard though using separate computers lower perseat cost
+release historyedit
+also xfree86 release history xorg server releases
+
+
+version
+release date
+important changes
+
+
+version longer supported
+00000000198406010000june 1984
+first name fundamental changes distinguishing product
+
+
+version longer supported
+00000000198501010000january 1985
+first version licensed handful outside companies
+
+
+version longer supported
+00000000198509010000september 1985
+color first release license
+
+
+version longer supported
+00000000198511010000november 1985
+rtpc running others
+
+
+version longer supported x10r2
+00000000198601010000january 1986
+
+
+
+version longer supported x10r3
+00000000198602010000february 1986
+first freely redistributable release earlier releases required source license cover code changes initgetty support login made standard window manager
+
+
+version longer supported x10r4
+00000000198612010000december 1986
+last version
+
+
+version longer supported
+0000000019870915000015 september 1987
+first release current protocol
+
+
+version longer supported x11r2
+00000000198802010000february 1988
+first consortium release51
+
+
+version longer supported x11r3
+0000000019881025000025 october 1988
+
+
+
+version longer supported x11r4
+0000000019891222000022 december 1989
+xdmcp brought standard window manager application improvements shape extension fonts
+
+
+version longer supported x11r5
+000000001991090500005 september 1991
+x386 xcms color management font server video extension
+
+
+version longer supported x11r6
+0000000019940516000016 1994
+icccm interclient exchange session management synchronization extension image extension xtest extension input requests xcmisc xfree86 changes
+
+
+version longer supported x11r61
+0000000019960314000014 march 1996
+double buffer extension keyboard extension record extension
+
+
+version longer supported x11r62
+x11r63
+0000000019961223000023 december 1996
+functionality last consortium release x11r62 subset x11r63 broadway features xprint xlib implementation vertical writing userdefined character support52
+
+
+version longer supported x11r64
+0000000019980331000031 march 1998
+xinerama53
+
+
+version longer supported x11r65
+000000002000010100002000
+internal xorg release made publicly available
+
+
+version longer supported x11r651
+0000000020000820000020 august 2000
+
+
+
+version longer supported x11r66
+000000002001040400004 april 2001
+fixes xfree86 changes
+
+
+version longer supported x11r670
+000000002004040600006 april 2004
+first xorg foundation release incorporating xfree86 44rc2 full enduser distribution removal libxml254
+
+
+version longer supported x11r680
+000000002004090800008 september 2004
+window translucency xdamage distributed multihead xfixes composite xevie
+
+
+version longer supported x11r681
+0000000020040917000017 september 2004
+security libxpm
+
+
+version longer supported x11r682
+0000000020050210000010 february 2005
+fixes driver updates
+
+
+version longer supported x11r69
+x11r70
+0000000020051221000021 december 2005
+xserver major source code refactoring55 sourcecode base modular autotooled version became monolithic imake version frozen
+
+
+version longer supported x11r71
+0000000020060522000022 2006
+xserver enhancements kdrive integrated aiglx platform support enhancements56
+
+
+version longer supported x11r72
+0000000020070215000015 february 2007
+xserver removal builtin keyboard driver xace autoconfig improvements cleanups57
+
+
+version longer supported x11r73
+000000002007090600006 september 2007
+xserver input hotplug output hotplug randr dtrace probes domain support58
+
+
+version longer supported x11r74
+0000000020080923000023 september 2008
+xserver xace pcirework speedups xexport faster startup shutdown59
+
+
+version longer supported x11r75
+0000000020091026000026 october 200960
+xserver eedid support randr predictable pointer acceleration dri2 memory manager selinux security module removal obsolete libraries extensions61
+
+
+version longer supported x11r76
+0000000020101220000020 december 201062
+server requirement6364
+
+
+current stable version x11r77
+000000002012060600006 june 2012
+server 1122 sync extension adds fence object support multitouch support xfixes pointer barriers6566
+
+
+
+
+legend
+version
+older version still supported
+latest version
+latest preview version
+future release
+
+
+
+
+
+prospect future versions xorg website states67
+
+xorg continues develop release window system software components
+released individually component ready without waiting overall window system “katamari” release schedule individual xorg releases directory downloads xorgannounce archives repositories details included changes
+release plan x11r78 rollup katamari release proposed
+
+alsoedit
+
+
+free software portal
+
+
+
+artwiz fonts
+bitstream speedo fonts
+cairo graphics
+desqviewx
+directfb
+general graphics interface
+history graphical user interface
+list unix programs
+windowing system plan
+svgalib
+virtualgl
+xgem
+color names
+
+xmark
+
+notesedit
+
+
+licenses documentation xorg december 2005 retrieved october 2007
+robert scheifler james gettys window system core extension protocols version releases digital press 1996 isbn 155558148x
+announcement modification base xfree86tm license february 2004
+xwindows disaster artnet retrieved november 2009
+painful november 1996
+orca wikignomeorg november 2011 retrieved november 2012
+accessibility toolkit developergnomeorg retrieved november 2012
+accessibility retrieved january 2013
+snap computing window system 2005 section xmove program
+postmortem january 2001
+xfree86 documentation mitshm extension 2009
+apple didnt window system august 2007
+darxus november 2010 hosted patch nouveau wayland possible xorg client wayland rootless intel video card
+diavatis alex june 2013 wayland raspberry wayland gnome world gnome
+mirspec ubuntu wiki wikiubuntucom retrieved march 2013
+framebuffer consoles december 2009
+debut talisman june 1984 retrieved november 2012
+garfinkel simson may–june 1989 ripples across academic market technology review 9–13 retrieved january 2016
+financing volunteer free software projects june 2005
+lessons learned open source 2000
+statement april 1998
+xfree86tm press release december 1998 archived original december 1998 retrieved february 2017 maint originalurl status unknown link
+browne christopher x11r64 sample implementation changes concerns christopher brownes pages archived original june 2008
+factor archived january 2005 wayback machine february 2002
+evolution server architecture 1999
+call open governance development march 2003
+xfree86 joins xorg honorary member december 1999
+another teleconference partial edited transcript archived february 2005 wayback machine april 2003
+keith packard issue archived february 2005 wayback machine march 2003
+cygwinxfree86 longer associated xfree86org october 2003
+xfree86 development january 2003
+invitation public discussion future archived february 2005 wayback machine march 2003
+call open governance development archived february 2005 wayback machine march 2003
+notes teleconference held 2003327 archived february 2005 wayback machine april 2003
+call open governance development march 2003
+call open governance development march 2003
+discussing issues april 2003
+lessons learned open source 2000
+xfree86 list rejecting distributors grows february 2004
+appendix cautionary tale xfree86 june 2002
+theo raadt february 2004 openbsdmisc mailing list xfree86 license marc archived original december 2009 retrieved december 2009
+marks spot looking back developments past year february 2004
+gettys james packard keith 2004 architecture window system proc linux symposium
+x11r69 x11r70 officially released december 2005
+modularization proposal march 2005
+proposed changes x11r71 april 2006
+current xfree86® release xfree86org
+portable networktransparent window system february 2005
+landau matt april 1993 asynchronous windows newsgroup compwindowsx usenet 1rccdqs6sarmorycenterlinecom retrieved march 2013
+windows usenet newsgroup compwindowsx
+window system history architecture september 1999
+xfree86 x11r63 december 1999
+open group announces internetready window system x11r64 march 1998
+xorg foundation releases window system x11r67 april 2004
+changes since october 2005
+release notes x11r71 2006
+xorg foundation released x11r72 february 2007
+server version release plans retrieved august 2007
+foundation releases xorg retrieved november 2009
+release announcement xorg retrieved november 2009
+wiki release plans xorg retrieved november 2009
+release announcement xorg december 2010 retrieved december 2010
+thinking towards katamari including listsxorg retrieved november 2009
+wiki release plans xorg retrieved december 2010
+announce x11r77 listsxorg retrieved june 2012
+releases77 xorg retrieved june 2012
+releases78 xorg retrieved 2014
+
+
+referencesedit
+
+
+hania gajewska mark manasse joel mccormack ideal window system software practice experience issue october 1990
+linda eric pearce window system volume window system administrators guide release release edition oreilly associates july 1993 softcover isbn 0937175838
+xwindows disaster unixhaters handbook
+robert scheifler james gettys window system core extension protocols version releases digital press 1996 isbn 155558148x
+evolution server architecture keith packard 1999
+means linux interview david dawes xfree86org matthew arnison june 1999
+lessons learned open source gettys usenix 2000 talk history
+thesis bigbloatedobsolete replaced christopher browne
+open source desktop technology road gettys december 2003
+marks spot looking back developments past year oscar boykin osnews february 2004
+getting hardware keith packard july 2004 ottawa linux symposium talk
+apple didnt window system mike paquette apple computer
+page retrieved february 2007
+gettys 2005 snap computing window system citeseerx 10111093314
+
+
+external linksedit
+
+
+
+wikimedia commons media related window system
+
+
+
+
+
+wikibooks book topic guide
+
+
+
+xorg foundation official website
+
+
+
+
+
+
+
+
+
+
+
+
+
+window system
+
+
+
+architecture
+
+
+
+core protocol
+window selection
+window authorization
+color names
+input method
+wayland
+
+
+
+
+
+
+
+
+extensions
+
+
+
+image extension
+keyboard extension
+randr
+rendering extension
+shape extension
+shared memory extension
+display manager control protocol
+video extension
+xvideo motion compensation
+aiglx
+
+multipointer
+display postscript
+composite
+xinerama
+
+
+
+
+
+components
+notable
+implementations
+
+
+
+
+display servers
+
+
+
+xorg server
+cygwinx
+xwin32
+x386
+xfree86
+xdarwin
+xming
+xsgi
+xsun
+
+xephyr
+xquartz
+xwayland
+
+
+
+
+
+client libraries
+
+
+
+xlib
+
+toolkit intrinsics
+
+
+
+
+
+display managers
+session managers
+
+
+
+
+
+sddm
+
+lightdm
+lxdm
+slim
+entrance
+
+
+
+
+
+
+window managers
+comparison
+
+
+
+
+compositing
+
+
+
+compiz
+kwin
+metacity
+mutter
+xfwm
+enlightenment
+
+
+
+
+
+stacking
+
+
+
+afterstep
+amiwm
+blackbox
+
+fluxbox
+fvwm
+icewm
+
+matchbox
+
+openbox
+sawfish
+
+window maker
+
+
+
+
+
+tiling
+
+
+
+awesome
+
+
+
+ratpoison
+wmii
+xmonad
+stumpwm
+larswm
+
+
+
+
+
+
+
+
+
+
+
+standards
+
+
+
+icccm
+ewmh
+
+freedesktoporg
+
+
+
+
+
+applications
+
+
+
+xcalc
+xclock
+xedit
+xload
+xterm
+xeyes
+desktop environments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards open group
+
+
+
+
+
+
+
+
+
+cmpi
+
+drda
+ldap
+motif
+posix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+desktop environments widget toolkits window managers based window system wayland
+
+
+
+desktop
+environments
+comparison
+
+
+
+
+gtkbased
+
+
+
+budgie
+cinnamon
+gnome
+
+lxde
+mate
+desktop
+sugar
+xfce
+
+
+
+
+
+qtbased
+
+
+
+plasma
+lumina
+lxqt
+moonlightde
+opie
+razorqt
+trinity
+
+
+
+
+
+motifbased
+
+
+
+
+irix interactive desktop
+
+
+
+
+
+
+
+
+
+
+fltkbased
+étoilé gnustepbased
+mezzo
+openwindows olitbased
+xlibxcbbased
+enlightenment eflbased
+
+
+
+
+
+
+
+
+graphical
+shells
+
+
+
+gnome shell
+plasma
+plasma
+maynard
+unity
+
+
+
+
+
+window
+managers
+comparison
+
+
+
+
+compositing
+
+
+
+compiz
+kwin
+metacity
+muffin
+mutter
+xfwm
+enlightenment
+
+
+
+
+
+stacking
+
+
+
+4dwm
+
+afterstep
+amiwm
+blackbox
+ctwm
+
+fluxbox
+flwm
+fvwm
+icewm
+
+matchbox
+motif window manager
+olwm
+openbox
+qvwm
+sawfish
+
+
+tvtwm
+vtwm
+window maker
+windowlab
+
+
+
+
+
+
+tiling
+
+
+
+awesome
+bspwm
+
+herbstluftwm
+
+
+larswm
+ratpoison
+stumpwm
+wmii
+xmonad
+
+
+
+
+
+
+
+
+wayland
+compositors
+
+
+
+enlightenment
+gala
+kwin
+mutter
+muffin
+budgiewm
+weston
+
+
+
+
+
+related
+
+
+
+display server
+
+widget
+painters algorithm
+resolution independence
+shell
+virtual desktop
+widget toolkit
+wimp
+windowing system
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlexwindowsystemoldid814396043 categories window systemfree windowing systemsmassachusetts institute technology softwareopen group standardsremote desktopsoftware using licenseunix windowing systemrelated softwarehidden categories maint originalurl status unknownwebarchive template wayback linksuse dates november 2014wikipedia articles needing clarification august 2017all articles unsourced statementsarticles unsourced statements august 2015articles needing povcheck july 2014all npov disputesarticles unsourced statements september 2013articles unsourced statements october 2015

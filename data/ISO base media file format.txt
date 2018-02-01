@@ -1,0 +1,798 @@
+This article is about a media file format. For ISO in reference to the ISO image file format, see ISO image. For other uses, see ISO (disambiguation).
+
+ISO base media file format (MPEG-4 Part 12)
+
+Developed by
+ISO
+
+
+Type of format
+Media container
+
+
+Container for
+Audio, video, text, data
+
+
+Extended from
+QuickTime .mov
+
+
+Extended to
+MP4, 3GP, 3G2, .mj2, .dvb, .dcf, .m21
+
+
+Standard
+ISO/IEC 14496-12, ISO/IEC 15444-12
+
+
+ISO base media file format (ISO/IEC 14496-12 – MPEG-4 Part 12) defines a general structure for time-based multimedia files such as video and audio.[1][2] The identical text is published as ISO/IEC 15444-12 (JPEG 2000, Part 12).[3]
+It is designed as a flexible, extensible format that facilitates interchange, management, editing and presentation of the media. The presentation may be local, or via a network or other stream delivery mechanism. The file format is designed to be independent of any particular network protocol while enabling support for them in general.[2] It is used as the basis for other media file formats (e.g. container formats MP4 and 3GP).
+
+
+
+Contents
+
+
+1 History
+2 Extensions
+3 Technical details
+
+3.1 File Type Box
+3.2 Streaming
+
+
+4 References
+5 External links
+
+
+
+History[edit]
+ISO base media file format is directly based on Apple’s QuickTime container format.[4][5][6][7][8] It was developed by MPEG (ISO/IEC JTC1/SC29/WG11). The first MP4 file format specification was created on the basis of the QuickTime format specification published in 2001.[9] The MP4 file format known as "version 1" was published in 2001 as ISO/IEC 14496-1:2001, as revision of the MPEG-4 Part 1: Systems.[10][11][12] In 2003, the first version of MP4 file format was revised and replaced by MPEG-4 Part 14: MP4 file format (ISO/IEC 14496-14:2003), commonly known as MPEG-4 file format "version 2".[13] The MP4 file format was generalized into the ISO Base Media File format (ISO/IEC 14496-12:2004 or ISO/IEC 15444-12:2004), which defines a general structure for time-based media files. It is used as the basis for other file formats in the family such as MP4, 3GP, Motion JPEG 2000).[4]
+
+MPEG-4 Part 12 / JPEG 2000 Part 12 editions[14]
+
+Edition
+Release date
+Latest amendment
+Standard
+Description
+
+
+First edition
+2004[2]
+
+ISO/IEC 14496-12:2004, ISO/IEC 15444-12:2004
+
+
+
+Second edition
+2005[15][16]
+2008
+ISO/IEC 14496-12:2005, ISO/IEC 15444-12:2005
+
+
+
+Third edition
+2008[1][17][18]
+2009[19]
+ISO/IEC 14496-12:2008, ISO/IEC 15444-12:2008
+
+
+
+Fourth edition
+2012[20][21]
+
+ISO/IEC 14496-12:2012, ISO/IEC 15444-12:2012
+
+
+
+Fifth edition
+2015[22][23]
+
+ISO/IEC 14496-12:2015, ISO/IEC 15444-12:2015
+
+
+
+In January 2017, ISO/IEC 15444-12 was withdrawn.[23]
+Extensions[edit]
+
+
+
+
+Relations between ISO Base Media File Format, MP4 File Format, 3GPP file format and 3GPP2 file format. Based on the 3GPP2 technical specification published on 18 May 2007.[24]
+
+
+The ISO base media file format is designed as extensible file format. List of all registered extensions for ISO Base Media File Format is published on the official registration authority website www.mp4ra.org. The registration authority for code-points (identifier values) in "MP4 Family" files is Apple Inc. and it is named in Annex D (informative) in MPEG-4 Part 12.[5] Codec designers should register the codes they invent, but the registration is not mandatory[25] and some of invented and used code-points are not registered.[26] When someone is creating a new specification derived from the ISO base media file format, all the existing specifications should be used both as examples and a source of definitions and technology. If an existing specification already covers how a particular media type is stored in the file format (e.g. MPEG-4 audio or video in MP4), that definition should be used and a new one should not be invented.[5]
+MPEG has standardized a number of specifications extending the ISO base media file format: The MP4 file format (ISO/IEC 14496-14) defined some extensions over ISO base media file format to support MPEG-4 visual/audio codecs and various MPEG-4 Systems features such as object descriptors and scene descriptions. The MPEG-4 Part 3 (MPEG-4 Audio) standard also defined storage of some audio compression formats. Storage of MPEG-1/2 Audio (MP3, MP2, MP1) in the ISO base media file format was defined in ISO/IEC 14496-3:2001/Amd 3:2005.[27] The Advanced Video Coding (AVC) file format (ISO/IEC 14496-15) defined support for H.264/MPEG-4 AVC video compression.[28] The High Efficiency Image File Format (HEIF) is an image container format using the ISO base media file format as the basis. While HEIF can be used with any image compression format, it specifically includes the support for HEVC intra-coded images and HEVC-coded image sequences taking advantage of inter-picture prediction.
+Some of the above-mentioned MPEG standard extensions are used by other formats based on ISO base media file format (e.g. 3GP).[24] The 3GPP file format (.3gp) specification also defined extensions to support H.263 video, AMR-NB, AMR-WB, AMR-WB+ audio and 3GPP Timed Text in files based on the ISO base media file format.[29] The 3GPP2 file format (.3g2) defined extensions for usage of EVRC, SMV or 13K (QCELP) voice compression formats.[24] The JPEG 2000 specification (ISO/IEC 15444-3) defined usage of Motion JPEG 2000 video compression and uncompressed audio (PCM) in ISO base media file format (.mj2). The "DVB File Format" (.dvb) defined by DVB Project allowed storage of DVB services in the ISO base media file format. It allows the storage of audio, video and other content in any of three main ways: encapsulated in a MPEG transport stream, stored as a reception hint track; encapsulated in an RTP stream, stored as a reception hint track or stored directly as media tracks.[30][31] The MPEG-21 File Format (.m21, .mp21) defined the storage of an MPEG-21 Digital Item in ISO base media file format, with some or all of its ancillary data (such as movies, images or other non-XML data) within the same file.[32][33] The OMA DRM Content Format (.dcf) specification from Open Mobile Alliance defined the content format for DRM protected encrypted media objects and associated metadata.[34][35] There are also other extensions, such as ISMA ISMACryp specification for encrypted/protected audio and video,[36][37] G.719 audio compression specification,[38] AC3 and E-AC-3 audio compression,[39] DTS audio compression,[40] Dirac video compression,[41][42] VC-1 video compression specification and others, which are named on the MP4 Registration authority's website.[43]
+There are some extensions over ISO base media file format, which were not registered by the MP4 Registration authority. Adobe Systems introduced in 2007 new F4V file format for Flash Video and declared that it is based on the ISO base media file format. The F4V file format was not registered by the MP4 registration authority, but the F4V technical specification is publicly available. This format can contain H.264 video compression and MP3 or AAC audio compression. In addition, F4V file format can contain data corresponding to the ActionScript Message Format and still frame of video data using image formats GIF, JPEG and PNG.[26][44][45] Microsoft Corporation announced in 2009 a file format based on the ISO base media file format — ISMV (Smooth Streaming format), also known as Protected Interoperable File Format (PIFF). As announced, this format can for example contain VC-1, WMA, H.264 and AAC compression formats.[46] Microsoft published a Protected Interoperable File Format (PIFF) specification in 2010. It defined another usage of multiple encryption and DRM systems in a single file container.[47][48] PIFF brand was registered by the MP4 registration authority in 2010. Some extensions used by this format (e.g. for WMA support) were not registered. Usage of WMA compression format in ISO base media file format was not publicly documented so it’s possible that they may be unsupported by some platforms.[49]
+Technical details[edit]
+ISO base media file format contains the timing, structure, and media information for timed sequences of media data, such as audio-visual presentations. The file structure is object-oriented. A file can be decomposed into basic objects very simply and the structure of the objects is implied from their type.
+Files conforming to the ISO base media file format are formed as a series of objects, called "boxes". All data is contained in boxes and there is no other data within the file. This includes any initial signature required by the specific file format. The "box" is an object-oriented building block defined by a unique type identifier and length. It was called "atom" in some specifications (e.g. the first definition of MP4 file format).[1]
+A presentation (motion sequence) may be contained in several files. All timing and framing (position and size) information must be in the ISO base media file and the ancillary files may essentially use any format. They must be only capable of description by the metadata defined in ISO base media file format.[1]
+File Type Box[edit]
+In order to identify the specifications to which a file based on ISO base media file format complies, brands are used as identifiers in the file format. They are set in a box named File Type Box ('ftyp'), which must be placed in the beginning of the file. It is somewhat analogous to the so-called fourcc code, used for a similar purpose for media embedded in AVI container format.[50] A brand might indicate the type of encoding used, how the data of each encoding is stored, constraints and extensions that are applied to the file, the compatibility, or the intended usage of the file. Brands are a printable four-character codes. A File Type Box contains two kinds of brands. One is "major_brand" which identifies the specification of the best use for the file. It is followed by "minor_version", an informative 4 bytes integer for the minor version of the major brand. The second kind of brand is "compatible_brands", which identifies multiple specifications to which the file complies. All files shall contain a File Type Box, but for compatibility reasons with an earlier version of the specification, files may be conformant to ISO base media file format and not contain a File Type Box. In that case they should be read as if they contained an ftyp with major and compatible brand "mp41" (MP4 v1 – ISO 14496-1, Chapter 13).[1] Many in-use brands (ftyps) are not registered and can be found on some webpages.[26]
+A multimedia file structured upon ISO base media file format may be compatible with more than one concrete specification, and it is therefore not always possible to speak of a single "type" or "brand" for the file. In this regard, the utility of the Multipurpose Internet Mail Extension type and file name extension is somewhat reduced. In spite of that, when a derived specification is written, a new file extension will be used, a new MIME type and a new Macintosh file type.[1]
+Streaming[edit]
+The ISO base media file format supports streaming of media data over a network as well as local playback. A file that supports streaming includes information about the data units to stream (how to serve the elementary stream data in the file over streaming protocols). This information is placed in additional tracks of the file called "hint" tracks. Separate "hint" tracks for different protocols may be included within the same file. The media will play over all such protocols without making any additional copies or versions of the media data. Existing media can be easily made streamable for other specific protocols by the addition of appropriate hint tracks. The media data itself need not be reformatted in any way. The streams sent by the servers under the direction of the hint tracks, need contain no trace of file-specific information. When the presentation is played back locally (not streamed), the hint tracks may be ignored. Hint tracks may be created by an authoring tool, or may be added to an existing file (presentation) by a hinting tool.[1] In media authored for progressive download the moov box, which contains the index of frames should precede the movie data mdat box.[51]
+References[edit]
+
+
+^ a b c d e f g ISO (2008). "Information technology -- Coding of audio-visual objects -- Part 12: ISO base media file format; ISO/IEC 14496-12:2008" (PDF). International Organization for Standardization: 88, 94. Retrieved 2009-07-29. 
+^ a b c ISO (2004). "Information technology -- Coding of audio-visual objects -- Part 12: ISO base media file format; ISO/IEC 14496-12:2004". Retrieved 2017-10-19. 
+^ ISO (2004). "Information technology -- JPEG 2000 image coding system -- Part 12: ISO base media file format; ISO/IEC 15444-12:2004". Retrieved 2017-10-19. 
+^ a b mp4ra.org — MP4 Registration authority. "References, MPEG-4 Registration authority". Retrieved 2009-07-29. 
+^ a b c ISO (April 2006). "ISO Base Media File Format white paper – Proposal". archive.org. Archived from the original on 2008-07-14. Retrieved 2009-12-26. 
+^ ISO (October 2005). "MPEG-4 File Formats white paper – Proposal". archive.org. Archived from the original on 2008-01-15. Retrieved 2009-12-26. 
+^ ISO (October 2009). "ISO Base Media File Format white paper – Proposal". chiariglione.org. Retrieved 2009-12-26. 
+^ Library of Congress (2005-06-27). "ISO Base Media File Format". Retrieved 2009-07-29. 
+^ Apple Inc. (2001). "Classic Version of the QuickTime File Format Specification". Retrieved 2009-07-29. 
+^ Library of Congress (2001). "MPEG-4 File Format, Version 1". Retrieved 2009-07-29. 
+^ Network Working Group (2006). "MIME Type Registration for MPEG-4". Retrieved 2009-07-29. 
+^ International Organization for Standardization (2001). "MPEG-4 Part 1: Systems; ISO/IEC 14496-1:2001". Retrieved 2009-07-29. 
+^ Library of Congress (2003). "MPEG-4 File Format, Version 2". Retrieved 2009-07-29. 
+^ MPEG. "MPEG standards – Full list of standards developed or under development". chiariglione.org. Archived from the original on 2010-04-20. Retrieved 2009-10-31. 
+^ ISO. "ISO/IEC 14496-12:2005 – Information technology -- Coding of audio-visual objects -- Part 12: ISO base media file format". ISO. Retrieved 2017-10-19. 
+^ ISO. "ISO/IEC 15444-12:2005 – Information technology -- JPEG 2000 image coding system -- Part 12: ISO base media file format". ISO. Retrieved 2017-10-19. 
+^ ISO. "ISO/IEC 14496-12:2008 – Information technology -- Coding of audio-visual objects -- Part 12: ISO base media file format". ISO. Retrieved 2017-10-19. 
+^ ISO. "ISO/IEC 15444-12:2008 – Information technology -- JPEG 2000 image coding system -- Part 12: ISO base media file format". ISO. Retrieved 2017-10-19. 
+^ ISO. "ISO/IEC 14496-12:2008/Amd 1:2009 – General improvements including hint tracks, metadata support and sample groups". Retrieved 2017-10-19. 
+^ ISO (2012-07-11). "ISO/IEC 14496-12:2012 Information technology -- Coding of audio-visual objects -- Part 12: ISO base media file format". Retrieved 2017-10-19. 
+^ ISO (2012-07-11). "ISO/IEC 15444-12:2012 Information technology -- JPEG 2000 image coding system -- Part 12: ISO base media file format". Retrieved 2017-10-19. 
+^ ISO (2015-11-25). "ISO/IEC 14496-12:2015 Information technology -- Coding of audio-visual objects -- Part 12: ISO base media file format". Retrieved 2017-10-19. 
+^ a b ISO (2015-11-25). "ISO/IEC 15444-12:2015 Information technology -- JPEG 2000 image coding system -- Part 12: ISO base media file format". Retrieved 2017-10-19. 
+^ a b c 3GPP2 (18 May 2007). "3GPP2 C.S0050-B Version 1.0, 3GPP2 File Formats for Multimedia Services" (PDF). 3GPP2: 67, 68. Archived from the original (PDF) on 7 October 2009. Retrieved 2009-07-29. 
+^ Steven Greenberg (2009). "Registration of ftyp's". Retrieved 2009-07-29. 
+^ a b c Steven Greenberg (2009). "Complete List of all known MP4 / QuickTime 'ftyp' designations". Retrieved 2009-07-29. 
+^ ISO (2005). "MPEG-1/2 audio in MPEG-4, ISO/IEC 14496-3:2001/Amd 3:2005". Retrieved 2009-10-12. 
+^ International Organization for Standardization (2004). "Information technology -- Coding of audio-visual objects -- Part 15: Advanced Video Coding (AVC) file format; ISO/IEC 14496-15:2004". Retrieved 2009-07-29. 
+^ ETSI 3GPP. "3GPP TS 26.244; Transparent end-to-end packet switched streaming service (PSS); 3GPP file format (3GP)". Retrieved 2009-07-29. 
+^ ETSI (2008-11-18). "ETSI TS 102 833 V1.1.1 (2008-11); Digital Video Broadcasting (DVB); File Format Specification for the Storage and Playback of DVB Services". Retrieved 2009-08-07. 
+^ DVB Project (June 2008). "DVB BlueBook A121 – File Format Specification for the Storage and Playback of DVB Services" (PDF). Retrieved 2009-08-07. 
+^ ISO (April 2006). "MPEG-21 File Format white paper – Proposal". chiariglione.org. Retrieved 2009-08-14. 
+^ ISO (April 2006). "MPEG-21 File Format white paper – Proposal". archive.org. Archived from the original on 2008-01-17. Retrieved 2009-12-28. 
+^ Open Mobile Alliance (2008-07-23). "DRM Content Format 2.0.2" (PDF). Retrieved 2009-08-14. 
+^ Open Mobile Alliance (2008-10-14). "DRM Content Format 2.1" (PDF). Retrieved 2009-08-14. 
+^ ISMA (2007-11-15). "ISMA Encryption and Authentication, Version 2.0" (PDF). Archived from the original (PDF) on 2013-06-05. Retrieved 2009-08-14. 
+^ ISMA (2009). "ISMA Technical Specifications". Archived from the original on 2009-09-10. Retrieved 2009-08-14. 
+^ ITU-T (2009). "ITU-T Recommendation G.719". Retrieved 2009-08-14. 
+^ ETSI (2008-08-20). "TS 102 366 – Digital Audio Compression (AC-3, Enhanced AC-3) Standard". Retrieved 2009-08-14. 
+^ ETSI (2002-12-18). "TS 102 114 – DTS Coherent Acoustics; Core and Extensions – DTS specification". Retrieved 2009-08-14. 
+^ Dirac Video Compression (2008-07-17). "ISOM/MP4 registrations complete". Retrieved 2009-08-08. 
+^ BBC (2008-07-16). "Encapsulation of Dirac in ISO Base Media file format derivatives" (PDF). Retrieved 2009-08-08. 
+^ mp4ra.org — MP4 Registration authority. "MP4 Registration Authority – Codecs". Retrieved 2009-07-29. 
+^ Adobe Systems Incorporated (18 May 2007). "Video File Format Specification, Version 10" (PDF). Adobe Systems Incorporated: 17–44. Archived from the original (PDF) on February 6, 2009. Retrieved 2009-08-03. 
+^ Tinic Uro (October 31, 2007). "New File Extensions and MIME Types". Kaourantin.net. Archived from the original on July 6, 2010. Retrieved 2009-08-03. 
+^ Microsoft Corporation (March 2009). "IIS Smooth Streaming Technical Overview" (PDF). Microsoft Corporation: 11–16. Retrieved 2009-08-04. 
+^ Microsoft (9 Mar 2010). "The portable interoperable file format (PIFF), Version 10" (PDF). Microsoft: 1–32. Retrieved 2010-08-03. 
+^ John Deutscher (2010-08-16). "About the Protected Interoperable File Format (PIFF)". 
+^ Alex Zambelli (2009). "Smooth Streaming FAQ". Retrieved 2009-08-04. 
+^ Steven Greenberg (2009). "What is an "ftyp", anyway?". Retrieved 2009-07-30. 
+^ From Google I/O 2009 – Mastering the Android Media Framework on YouTube
+
+
+External links[edit]
+
+RFC 4281 – The Codecs Parameter for "Bucket" Media Types
+"ISO/IEC 14496-12:2012 – Information technology — Coding of audio-visual objects — Part 12: ISO base media file format". Iso.org. 2012-09-15. Retrieved 2009-10-18. 
+"ISO — Licence Agreement for freely available standards". Standards.iso.org. 2006-09-29. Retrieved 2009-10-18. 
+"The 'MP4' Registration Authority". Mp4ra.org. Retrieved 2009-10-18. 
+"3GPP specification: 26.244". 3gpp.org. Retrieved 2009-10-18. 
+"File Format for Multimedia Services" (PDF). Archived from the original (PDF) on 2009-10-07. Retrieved 2009-10-18. 
+"Complete List of all known MP4/QT 'ftyp' designations". Ftyps.com. Retrieved 2009-10-18. 
+"ISO Base Media File Format white paper – Proposal". Chiariglione.org. Retrieved 2009-12-26. 
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Multimedia compression and container formats
+
+
+
+Video
+compression
+
+
+
+
+ISO/IEC
+
+
+
+MJPEG
+Motion JPEG 2000
+MPEG-1
+MPEG-2
+
+Part 2
+
+
+MPEG-4
+
+Part 2/ASP
+Part 10/AVC
+
+
+MPEG-H
+
+Part 2/HEVC
+
+
+
+
+
+
+
+ITU-T
+
+
+
+H.120
+H.261
+H.262
+H.263
+H.264
+H.265
+
+
+
+
+
+SMPTE
+
+
+
+VC-1
+VC-2
+VC-3
+VC-5
+
+
+
+
+
+Alliance for Open Media
+
+
+
+AV1
+
+
+
+
+
+Others
+
+
+
+Apple Video
+AVS
+Bink
+Cinepak
+Daala
+Dirac
+DV
+DVI
+FFV1
+Huffyuv
+Indeo
+Lagarith
+Microsoft Video 1
+MSU Lossless
+OMS Video
+Pixlet
+ProRes 422
+ProRes 4444
+QuickTime
+
+Animation
+Graphics
+
+
+RealVideo
+RTVideo
+SheerVideo
+Smacker
+Sorenson Video, Spark
+Theora
+Thor
+VP3
+VP6
+VP7
+VP8
+VP9
+WMV
+XEB
+YULS
+
+
+
+
+
+
+
+
+Audio
+compression
+
+
+
+
+ISO/IEC
+
+
+
+MPEG-1 Layer III (MP3)
+MPEG-1 Layer II
+
+Multichannel
+
+
+MPEG-1 Layer I
+AAC
+
+HE-AAC
+AAC-LD
+
+
+MPEG Surround
+MPEG-4 ALS
+MPEG-4 SLS
+MPEG-4 DST
+MPEG-4 HVXC
+MPEG-4 CELP
+MPEG-D USAC
+MPEG-H 3D Audio
+
+
+
+
+
+ITU-T
+
+
+
+G.711 (A-law, µ-law)
+G.718
+G.719
+G.722
+G.722.1
+G.722.2
+G.723
+G.723.1
+G.726
+G.728
+G.729
+G.729.1
+
+
+
+
+
+IETF
+
+
+
+Opus
+iLBC
+
+
+
+
+
+3GPP
+
+
+
+AMR
+AMR-WB
+AMR-WB+
+EVRC
+EVRC-B
+EVS
+GSM-HR
+GSM-FR
+GSM-EFR
+
+
+
+
+
+Others
+
+
+
+ACELP
+AC-3
+AC-4
+ALAC
+Asao
+ATRAC
+CELT
+Codec2
+DRA
+DTS
+FLAC
+iSAC
+Monkey's Audio
+TTA
+
+True Audio
+
+
+MT9
+Musepack
+OptimFROG
+OSQ
+QCELP
+RCELP
+RealAudio
+RTAudio
+SD2
+SHN
+SILK
+Siren
+SMV
+Speex
+SVOPC
+TwinVQ
+VMR-WB
+Vorbis
+VSELP
+WavPack
+WMA
+MQA
+aptX
+
+
+
+
+
+
+
+
+Image
+compression
+
+
+
+
+IEC, ISO,
+ITU-T, W3C, IETF
+
+
+
+CCITT Group 4
+GIF
+HEIF
+HEVC
+JBIG
+JBIG2
+JPEG
+JPEG 2000
+JPEG XR
+Lossless JPEG
+PNG
+TIFF
+TIFF/EP
+TIFF/IT
+
+
+
+
+
+Others
+
+
+
+APNG
+BPG
+DjVu
+EXR
+FLIF
+ICER
+MNG
+PGF
+QTVR
+WBMP
+WebP
+
+
+
+
+
+
+
+
+Containers
+
+
+
+
+ISO/IEC
+
+
+
+MPEG-ES
+
+MPEG-PES
+
+
+MPEG-PS
+MPEG-TS
+ISO base media file format
+MPEG-4 Part 14 (MP4)
+Motion JPEG 2000
+MPEG-21 Part 9
+MPEG media transport
+
+
+
+
+
+ITU-T
+
+
+
+H.222.0
+T.802
+
+
+
+
+
+IETF
+
+
+
+RTP
+
+
+
+
+
+Others
+
+
+
+3GP and 3G2
+AMV
+ASF
+AIFF
+AVI
+AU
+BPG
+Bink
+
+Smacker
+
+
+BMP
+DivX Media Format
+EVO
+Flash Video
+GXF
+IFF
+M2TS
+Matroska
+
+WebM
+
+
+MXF
+Ogg
+QuickTime File Format
+RatDVD
+RealMedia
+RIFF
+
+WAV
+
+
+MOD and TOD
+VOB, IFO and BUP
+
+
+
+
+
+
+
+
+Collaborations
+
+
+
+NETVC
+MPEG-LA
+
+
+
+
+
+
+See Compression methods for methods and Compression software for codecs
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+MPEG (Moving Picture Experts Group)
+
+
+
+
+
+
+MPEG-1
+2
+3
+4
+7
+21
+A
+B
+C
+D
+E
+V
+M
+U
+H
+
+
+
+
+
+MPEG-1 Parts
+
+
+
+Part 1: Systems
+
+Program stream
+
+
+Part 2: Video
+
+based on H.261
+
+
+Part 3: Audio
+
+Layer I
+Layer II
+Layer III
+
+
+
+
+
+
+
+MPEG-2 Parts
+
+
+
+Part 1: Systems (H.222.0)
+
+Transport stream
+Program stream
+
+
+Part 2: Video (H.262)
+Part 3: Audio
+
+Layer I
+Layer II
+Layer III
+MPEG Multichannel
+
+
+Part 6: DSM CC
+Part 7: Advanced Audio Coding
+
+
+
+
+
+MPEG-4 Parts
+
+
+
+Part 2: Video
+
+based on H.263
+
+
+Part 3: Audio
+Part 6: DMIF
+Part 10: Advanced Video Coding (H.264)
+Part 11: Scene description
+Part 12: ISO base media file format
+Part 14: MP4 file format
+Part 17: Streaming text format
+Part 20: LASeR
+Part 22: Open Font Format
+
+
+
+
+
+MPEG-7 Parts
+
+
+
+Part 2: Description definition language
+
+
+
+
+
+MPEG-21 Parts
+
+
+
+Parts 2, 3 and 9: Digital Item
+Part 5: Rights Expression Language
+
+
+
+
+
+MPEG-D Parts
+
+
+
+Part 1: MPEG Surround
+Part 3: Unified Speech and Audio Coding
+
+
+
+
+
+MPEG-H Parts
+
+
+
+Part 1: MPEG media transport
+Part 2: High Efficiency Video Coding
+Part 3: MPEG-H 3D Audio
+Part 12: High Efficiency Image File Format
+
+
+
+
+
+Other
+
+MPEG-DASH
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_base_media_file_format&oldid=809629394"					Categories: Container formatsISO/IEC standardsMPEGHidden categories: Pages using RFC magic links

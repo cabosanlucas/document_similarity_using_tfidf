@@ -1,0 +1,447 @@
+
+
+
+
+database partitions world regions local clocks since 1970 taken 2012c edition database regions outside antarctica1
+
+
+database collaborative compilation information worlds time zones primarily intended computer programs operating systems2 paul eggert current editor maintainer3 organizational backing icann4 database also known tzdata zoneinfo database iana time zone database occasionally olson database referring founding contributor arthur david olson5
+uniform naming convention time zones americanewyork europeparis designed paul eggert6 database attempts record historical time zones civil changes since 1970 unix time epoch7 also includes transitions daylight saving time also records leap seconds8
+database well reference source code public domain9 editions database code published changes warrant usually several times year10
+
+
+
+contents
+
+
+data structure
+
+file formats
+definition time zone
+daylight saving time rules
+names time zones
+
+area
+location
+examples
+
+
+example zone rule lines
+data stored zone
+
+zonetab
+data 1970
+
+
+
+
+coverage
+
+zones covering multiple post1970 countries
+
+
+maintenance
+unixlike systems
+usage extensions
+
+boundaries time zones
+standards
+software systems
+
+
+history
+
+2011 lawsuit
+move icann
+
+
+also
+references
+external links
+
+general
+official iana sources
+pages
+
+
+
+
+
+data structureedit
+file formatsedit
+database published text files list rules zone transitions humanreadable format text files compiled platformindependent binary files—one time zone reference source code includes compiler called zone information compiler well code read files standard application programming interfaces localtime mktime
+definition time zoneedit
+within database time zone national region local clocks agreed since 197011 definition concerns first geographic areas consistent local clocks different definitions concern consistent offsets prime meridian therefore time zones defined database document multiple offsets typically including standard time daylight saving time
+time zone text files time zone zone lines time zone text files first zone line time zone gives name time zone subsequent zone lines time zone leave name blank indicating apply zone previous line zone line zone specifies range date time offset standard time name rules govern daylight saving time hyphen standard time always applies format time zone abbreviations last zone line date time range date time governed line ends
+daylight saving time rulesedit
+rules daylight saving time specified named rule sets rule rule lines time zone text files rule line contains name rule belongs first year rule applies last year rule applies applies year rule currently effect type year rule applies applies years specified range almost always case otherwise name used argument script indicates whether year specified type month rule takes effect rule takes effect could either specific specification last sunday month time rule takes effect amount time offset rule effect letter letters time zone abbreviation example rule governs standard time governs daylight saving time
+names time zonesedit
+time zones unique names form arealocation americanewyork choice also made english names equivalents omit punctuation common suffixes underscore character used place spaces hyphens used appear name location names maximum length characters12
+areaedit
+area name continent ocean continents oceans currently used africa america antarctica arctic asia atlantic australia europe indian pacific
+oceans included since islands hard connect certain continent geographically connected continent politically another also boundaries continents
+special area used administrative zones particularly etcutc represents coordinated universal time order conform posix style zone names beginning etcgmt sign reversed standard 8601 convention area zones west positive sign east negative sign name etcgmt14 hours ahead
+locationedit
+location name specific location within area usually city small island
+country names used scheme primarily would robust frequent political boundary changes names large cities tend permanent however database maintainers attempt include least zone every 31661 alpha2 country code number user interfaces database take advantage additionally desire keep locations geographically compact future time zone changes split locations different time zonescitation needed
+usually populous city region chosen represent entire time zone although cities selected widely known result less ambiguous namecitation needed event name city changes convention create aliascitation needed future editions names refer database entry
+cases location represented compound name example time zone americaindianaindianapolis threelevel names include americaargentina americakentucky americaindiana americanorthdakota
+location selected representative entire area
+examplesedit
+
+
+americacostarica
+name country used name largest city capital city josé ambiguous
+
+
+americanewyork
+space replaced underscore
+
+
+asiakolkata
+name city kolkata used populous city zone time zone though longer true13
+
+
+asiasakhalin
+name island used largest city yuzhnosakhalinsk characters
+
+
+americabahiabanderas
+name largest city altered removed bahia banderas correct name characters
+
+
+antarcticadumontdurville
+apostrophe removed space would normally replaced name would exceed characters
+
+
+example zone rule linesedit
+rule lines standard united states daylight saving time rules rule lines daylight saving time rules effect eastern time zone called york city city representing zone years zone lines americanewyork time zone release version tzdata2011n time zone database zone rule lines reflect history united states
+
+
+rule name type save letters
+rule 1918 1919 lastsun
+rule 1918 1919 lastsun
+rule 1942
+rule 1945 2300u peace
+rule 1945
+rule 1967 2006 lastsun
+rule 1967 1973 lastsun
+rule 1974
+rule 1975
+rule 1976 1986 lastsun
+rule 1987 2006 sun1
+rule 2007 sun8
+rule 2007 sun1
+
+rule name type save letter
+rule 1920 lastsun
+rule 1920 lastsun
+rule 1921 1966 lastsun
+rule 1921 1954 lastsun
+rule 1955 1966 lastsun
+zone name gmtoff rules format
+zone americanewyork 45602 1883 120358
+1920
+1942
+1946
+1967
+
+
+data stored zoneedit
+time zone multiple offsets usually daylight saving time database records exact moment transition format accommodate changes dates times transitions well zones historical rule changes going back many decades shown example
+zonetabedit
+file zonetab public domain lists zones columns sorting described comments file follows
+
+file contains table following columns
+3166 2character country code file iso3166tab
+latitude longitude zones principal location
+6709 signdegreesminutesseconds format
+either ddmmdddmm ddmmssdddmmss
+first latitude north longitude east
+zone name used value environment variable
+comments present country multiple rows
+
+columns separated single
+table sorted first country order within country
+makes geographical sense
+puts populous zones first contradict
+
+data 1970edit
+data 1970 aims correct city identifying region necessarily correct entire region regions created required distinguish clocks since 1970
+example 19631023 19631209 brazil states minas gerais espirito santo janeiro paulo summer time however requested split americasaopaulo rejected 2010 reasoning since 1970 clocks whole region14
+time germany represented europeberlin correct year 1945 trizone used different daylight saving time rules berlin15
+coverageedit
+zones covering multiple post1970 countriesedit
+zones cover area covered countries 1970 database follows definitions countries 31661 whose predecessor 3166 first published 1974
+
+asiaaden countries 1990 north yemen aden peoples republic 31661 south yemen sanaa 31661 31663 ydye
+europeberlin countries 1990 east germany 31661 31663 ddde west germany 31661
+
+maintenanceedit
+reference code database maintained group volunteers arthur david olson makes changes code paul eggert database proposed changes sent mailing list gatewayed comptimetz usenet newsgroup source files distributed iana server typically files taken software distributor like debian compiled source binaries packaged part distribution users either rely software distributions update procedures entail delay obtain source directly build binary files ietf published 6557 procedures maintaining time zone database documenting best practices based similar principles
+unixlike systemsedit
+standard path timezone database usrsharezoneinfo linux distributions macos unixlike systems
+usage extensionsedit
+boundaries time zonesedit
+geographical boundaries form coordinate sets part database boundaries published eric muller1 form vector polygons using vector polygons determine place globe database zone located
+standardsedit
+unicode common locale data repository cldr refers zones database however name zone change database release another cldr assigns unlocode city used name zone internallyassigned code city zone tzdb zone1617
+software systemsedit
+database used time zone processing conversions many computer software systems including
+
+bsdderived systems including freebsd netbsd openbsd dragonfly macos also reference database processing code posix implementation
+library systems including linux distributions beos haiku nexenta cygwin
+system release 4derived systems solaris unixware
+later1819 earlier versions starting include zoneinfo20 support thirdparty applications mysql21 themselves2022
+several unix systems including tru64 unicosmp also irix still maintained longer shipped
+openvms
+java runtime environment since release 2002
+java library jodatime
+perl modules datetimetimezone datetimeleapsecond since 2003
+releases since 2005
+ruby tzinfo
+python module pytz
+javascript libraries timezonejs bigeasytimezone walltimejs momenttimezone
+pandas python module
+framework libraries nodatime tz4net zoneinfo
+haskell libraries timezoneseries timezoneolson
+erlang module ezic
+standard library time package
+squeak smalltalk time package
+libraries boost
+delphi library tzdb23
+free pascal library pascaltz
+oracle releases since 200424
+postgresql since release 2005
+microsoft server library server time zone support
+mongodb since release
+embedded software firmware used clocks
+
+olson timezone also used unicode common locale data repository cldr international components unicode example cldr windows–tzid table maps microsoft windows time zone standard olson names25
+historyedit
+projects origins back 1986 earlier26
+2011 lawsuitedit
+september 2011 lawsuit astrolabe olson filed concerning copyright database2728 result october 2011 databases mailing list site shut down29 case revolved around database maintainers american atlas thomas shanks international atlas thomas shanks rique pottenger complained unauthorised reproduction atlas data timezone mailing list archive auxiliary link collections maintained database though actually point database complaint related compilation historical timezone data cover current tzdata world timezone tables283031
+lawsuit resolved february 2012 involvement electronic frontier foundation astrolabe voluntarily moved dismiss lawsuit without ever served defendants agreed covenant future32
+move icannedit
+icann took responsibility maintenance database october 20114 full database description current future plans maintenance available online iana33
+alsoedit
+
+list database time zones
+time zone
+daylight saving time
+
+referencesedit
+
+
+muller eric 20121008 shapefile timezones world
+eggert paul olson arthur david 20071129 sources time zone daylight saving time data retrieved 20071203
+eggert paul 20050117 iana time zone registration proposal mailing list
+icann manage time zone database news alert icann 20111015 retrieved 20111230
+olson arthur david 19861216 resolved timezone issue issues ctime manual page mailing list missing empty help
+eggert paul 19931020 proposal time zone names mailing list
+olson arthur david 19870318 issues mailing list missing empty help
+devine 19880602 leap seconds mailing list
+eggert paul 19951111 questions comments httptychousnonavymiltzoneshtml mailing list missing empty help
+zoneinfo tzcode tzdata archives retrieved 20071030
+theory text file contained tzcode distribution version tzcode2007htargz 20071001 referenced
+olson arthur david 20100501 proposed time zone package changes bahia banderas version naming gmanecomptimetz
+paul eggert december 2012 zoneinfo error mailing list
+olson arthur david 20100106 little nuance brazil 1963 mailing list
+midsummer germany 1979 physikalischtechnische bundesanstalt 2010
+unicode locale extension cldr unicode common locale data repository
+unicode locale data markup language ldml part dates section time zone names
+olson time zone support setup information retrieved 20110312
+managing time zone variable 20070202 retrieved 20110311
+updated support 2007 daylight saving time change 20071018 retrieved 20110312
+2007 daylight savings time changes unix academic computing communications center university illinois chicago 20070225 retrieved 20080318
+wickremasinghe christopher 20090330 introduction daylight saving time western australia 2006 wiki retrieved 20110311
+tzdb library moved github april 2014 retrieved october 2015
+oracle database globalization support guide release chapter section choosing time zone file oracle corporation june 2004 4–14 part b1074902 retrieved 20071030
+windows tzid unicode consortium 20071112 retrieved 20080217
+olson arthur david 19861124 seismoelsietz versions time zone stuff mailing list
+astrolabe olson 20111006 retrieved 20111006
+astrolabe plaintiff arthur david olson paul eggert defendants 20110930 retrieved 20111007
+olson arthur david 20111006 civil suit shutdown mailing list shutdown retrieved 20111006
+time zone database shut daily parker 20111006 retrieved 20111006
+timezone database astrolabes opinion stephen colebournes blog october 2011 retrieved october 2011
+wins protection time zone database electronic frontier foundation february 2012 retrieved february 2012
+time zone database iana
+
+
+external linksedit
+generaledit
+
+legal time 2015
+database home page ucla deprecated official iana sources
+mailing list archive gmane
+archive mailing list
+mailing list icann
+literary appreciation olsonzoneinfotz database” udell
+
+official iana sourcesedit
+
+home page
+
+rsync rsyncrsyncianaorgtz
+
+pagesedit
+
+zic8 linux administration privileged commands manual gives syntax source files database
+tzfile5 linux file formats manual gives format compiled database files
+
+
+
+
+
+
+
+
+
+
+
+
+coordinated universal time
+
+
+
+offset standard time
+daylight saving time
+italics historical unofficial
+
+
+
+
+180° 90°w
+
+
+
+−1200
+−1100
+−1030
+−1000
+−0930
+−0900
+−0830
+−0800
+−0700
+
+
+
+
+
+90°w
+
+
+
+−0600
+−0500
+−0430
+−0400
+−0330
+−0300
+−0230
+−0200
+−0100
+−0044
+−002521
+
+
+
+
+
+90°e
+
+
+
+±0000
+0020
+0030
+0100
+0124
+0130
+0200
+0230
+0300
+0330
+0400
+0430
+0451
+0500
+0530
+0540
+0545
+
+
+
+
+
+90°e 180°
+
+
+
+0600
+0630
+0700
+0720
+0730
+0800
+0830
+0845
+0900
+0930
+0945
+1000
+1030
+1100
+1130
+
+
+
+
+
+180° 90°w
+
+
+
+1200
+1245
+1300
+1345
+1400
+
+
+
+
+
+
+
+
+time zone data sources
+
+database
+
+
+
+lists time zones
+
+
+
+time zones country
+time zones offset
+database time zones
+military time zones
+time zone abbreviations
+daylight saving time country
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitletzdatabaseoldid816913144 categories time zonestz databasehidden categories pages using citations urlall articles unsourced statementsarticles unsourced statements march 2010articles unsourced statements april 2010

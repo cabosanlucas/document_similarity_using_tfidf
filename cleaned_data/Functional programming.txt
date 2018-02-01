@@ -1,0 +1,917 @@
+subroutineoriented programming procedural programming
+
+
+programming paradigms
+
+
+
+
+action
+agentoriented
+arrayoriented
+automatabased
+concept
+concurrent computing
+
+relativistic programming
+
+
+datadriven
+declarative contrast imperative
+
+constraint
+
+constraint logic
+
+concurrent constraint logic
+
+
+
+
+dataflow
+
+flowbased
+celloriented spreadsheets
+reactive
+
+
+functional
+
+functional logic
+purely functional
+
+
+logic
+
+abductive logic
+answer
+concurrent logic
+functional logic
+inductive logic
+
+
+
+
+dynamic
+enduser programming
+eventdriven
+
+serviceoriented
+timedriven
+
+
+expressionoriented
+featureoriented
+functionlevel contrast valuelevel
+generic
+imperative contrast declarative
+
+literate
+procedural
+
+
+languageoriented
+
+natural language programming
+disciplinespecific
+domainspecific
+grammaroriented
+
+dialecting
+
+
+intentional
+
+
+metaprogramming
+
+automatic
+
+inductive programming
+
+
+reflective
+
+attributeoriented
+
+
+homoiconic
+macro
+template
+
+policybased
+
+
+
+
+nonstructured contrast structured
+
+array
+
+
+nondeterministic
+parallel computing
+
+processoriented
+
+
+pointfree style
+
+concatenative
+
+
+probabilistic
+semantic
+structured contrast nonstructured
+
+blockstructured
+modular contrast monolithic
+objectoriented
+
+actorbased
+classbased
+concurrent
+prototypebased
+separation concerns
+
+aspectoriented
+roleoriented
+subjectoriented
+
+
+
+
+recursive
+
+
+valuelevel contrast functionlevel
+quantum programming
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+computer science functional programming programming paradigm—a style building structure elements computer programs—that treats computation evaluation mathematical functions avoids changingstate mutable data declarative programming paradigm means programming done expressions1 declarations2 instead statements functional code output value function depends arguments passed function calling function twice value argument produces result time contrast procedures depending local global state produce different results different times called arguments different program state eliminating side effects changes state depend function inputs make much easier understand predict behavior program motivations development functional programming
+functional programming origins lambda calculus formal system developed 1930s investigate computability entscheidungsproblem function definition function application recursion many functional programming languages viewed elaborations lambda calculus another wellknown declarative programming paradigm logic programming based relations3
+contrast imperative programming changes state commands source code simplest example assignment imperative programming functions—not mathematical sense—but sense subroutines side effects change value program state functions without return values therefore make sense lack referential transparency language expression result different values different times depending state executing program3
+functional programming languages largely emphasized academia rather commercial software development however prominent programming languages support functional programming common lisp scheme4567 clojure89 wolfram language10 also known mathematica racket11 erlang121314 ocaml1516 haskell1718 f1920 used industrial commercial applications wide variety organizations javascript worlds widely distributed languages2122 properties untyped functional language23 addition imperative objectoriented paradigms functional programming also supported domainspecific programming languages like statistics24 systems financial analysis xqueryxslt xml2526 opal27 widespread domainspecific declarative languages like lexyacc elements functional programming especially eschewing mutable values28
+programming functional style also accomplished languages specifically designed functional programming example imperative perl programming language subject book describing apply functional programming concepts29 also true programming language30 java added constructs facilitate functional style julia language also offers functional programming abilities interesting case scala31 frequently written functional style presence side effects mutable state place grey area imperative functional languages
+
+
+
+contents
+
+
+history
+concepts
+
+firstclass higherorder functions
+pure functions
+recursion
+strict versus nonstrict evaluation
+type systems
+referential transparency
+functional programming nonfunctional languages
+data structures
+
+
+comparison imperative programming
+
+simulating state
+efficiency issues
+coding styles
+
+
+python
+haskell
+perl
+erlang
+elixir
+lisp
+clojure
+kotlin
+3310 javascript
+3311 sequencel
+3312
+3313 scala
+
+
+
+
+industry
+education
+also
+references
+reading
+external links
+
+
+
+historyedit
+lambda calculus provides theoretical framework describing functions evaluation mathematical abstraction rather programming language—but forms basis almost current functional programming languages equivalent theoretical formulation combinatory logic commonly perceived abstract lambda calculus preceded invention combinatory logic lambda calculus originally developed achieve clearer approach foundations mathematics32
+early functionalflavored language lisp developed late 1950s 7007000 series scientific computers john mccarthy massachusetts institute technology mit33 lisp first introduced many paradigmatic features functional programming though early lisps multiparadigm languages incorporated support numerous programming styles paradigms evolved later dialects scheme clojure offshoots dylan julia sought simplify rationalise lisp around cleanly functional core common lisp designed preserve update paradigmatic features numerous older dialects replaced34
+information processing language sometimes cited first computerbased functional programming language35 assemblystyle language manipulating lists symbols notion generator amounts function accepts function argument since assemblylevel language code data regarded higherorder functions however relies heavily mutating list structure similar imperative features
+kenneth iverson developed early 1960s described 1962 book programming language isbn 9780471430148 primary influence john backuss early 1990s iverson roger created mid1990s arthur whitney previously worked iverson created used commercially financial industries along descendant
+john backus presented 1977 turing award lecture programming liberated neumann style functional style algebra programs36 defines functional programs built hierarchical means combining forms allow algebra programs modern language means functional programs follow principle compositionalitycitation needed backuss paper popularized research functional programming though emphasized functionlevel programming rather lambdacalculus style associated functional programming
+1970s created robin milner university edinburgh david turner initially developed language sasl university andrews later language miranda university kent also edinburgh 1970s burstall darlington developed functional language npl37 based kleene recursion equations first introduced work program transformation38 burstall macqueen sannella incorporated polymorphic type checking produce language hope39 eventually developed several dialects common ocaml standard meanwhile development scheme simple lexically scoped impurely functional dialect lisp described influential lambda papers classic 1985 textbook structure interpretation computer programs brought awareness power functional programming wider programminglanguages community
+1980s martinlöf developed intuitionistic type theory also called constructive type theory associated functional programs constructive proofs arbitrarily complex mathematical propositions expressed dependent types powerful approaches interactive theorem proving influenced development many subsequent functional programming languages
+haskell language began consensus 1987 form open standard functional programming research implementation releases ongoing since 1990
+conceptsedit
+number concepts paradigms specific functional programming generally foreign imperative programming including objectoriented programming however programming languages often hybrids several programming paradigms programmers using mostly imperative languages utilized concepts40
+firstclass higherorder functionsedit
+main articles firstclass function higherorder function
+higherorder functions functions either take functions arguments return results calculus example higherorder function differential operator
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+returns derivative function
+
+
+
+
+
+
+displaystyle
+
+
+higherorder functions closely related firstclass functions higherorder functions firstclass functions allow functions arguments results functions distinction subtle higherorder describes mathematical concept functions operate functions firstclass computer science term describes programming language entities restriction thus firstclass functions appear anywhere program firstclass entities like numbers including arguments functions return values
+higherorder functions enable partial application currying technique applies function arguments time application returning function accepts next argument lets programmer succinctly express example successor function addition operator partially applied natural number
+pure functionsedit
+pure functions expressions side effects memory means pure functions several useful properties many used optimize code
+
+result pure expression used removed without affecting expressions
+pure function called arguments cause sideeffects result constant respect argument list sometimes called referential transparency calling pure function arguments returns result enable caching optimizations memoization
+data dependency pure expressions order reversed performed parallel cannot interfere another terms evaluation pure expression threadsafe
+entire language allow sideeffects evaluation strategy used gives compiler freedom reorder combine evaluation expressions program example using deforestation
+
+compilers imperative programming languages detect pure functions perform commonsubexpression elimination pure function calls cannot always precompiled libraries generally expose information thus preventing optimizations involve external functions compilers extra keywords programmer explicitly mark external functions pure enable optimizations fortran also lets functions designated pure
+recursionedit
+main article recursion computer science
+iteration looping functional languages usually accomplished recursion recursive functions invoke letting operation repeated reaches base case though recursion requires maintaining stack tail recursion recognized optimized compiler code used implement iteration imperative languages scheme language standard requires implementations recognize optimize tail recursion tail recursion optimization implemented transforming program continuation passing style compiling among approaches
+common patterns recursion factored using higher order functions catamorphisms anamorphisms folds unfolds obvious examples higher order functions play role analogous builtin control structures loops imperative languages
+general purpose functional programming languages allow unrestricted recursion turing complete makes halting problem undecidable cause unsoundness equational reasoning generally requires introduction inconsistency logic expressed languages type system special purpose languages allow wellfounded recursion strongly normalizing nonterminating computations expressed infinite streams values called codata consequence languages fail turing complete expressing certain functions impossible still express wide class interesting computations avoiding problems introduced unrestricted recursion functional programming limited wellfounded recursion constraints called total functional programming41
+strict versus nonstrict evaluationedit
+main article evaluation strategy
+functional languages categorized whether strict eager nonstrict lazy evaluation concepts refer function arguments processed expression evaluated technical difference denotational semantics expressions containing failing divergent computations strict evaluation evaluation term containing failing subterm fails example expression
+
+print length21
+
+fails strict evaluation division zero third element list lazy evaluation length function returns value number items list since evaluating attempt evaluate terms making list brief strict evaluation always fully evaluates function arguments invoking function lazy evaluation evaluate function arguments unless values required evaluate function call
+usual implementation strategy lazy evaluation functional languages graph reduction42 lazy evaluation used default several pure functional languages including miranda clean haskell
+hughes 1984 argues lazy evaluation mechanism improving program modularity separation concerns easing independent implementation producers consumers data streams43 launchbury 1993 describes difficulties lazy evaluation introduces particularly analyzing programs storage requirements proposes operational semantics analysis44 harper 2009 proposes including strict lazy evaluation language using languages type system distinguish them45
+type systemsedit
+especially since development hindley–milner type inference 1970s functional programming languages tended typed lambda calculus rejecting invalid programs compilation time risking false positive errors opposed untyped lambda calculus accepts valid programs compilation time risks false negative errors used lisp variants scheme though reject invalid programs runtime information enough reject valid programs algebraic datatypes makes manipulation complex data structures convenient presence strong compiletime type checking makes programs reliable absence reliability techniques like testdriven development type inference frees programmer need manually declare types compiler cases
+researchoriented functional languages agda cayenne epigram based intuitionistic type theory lets types depend terms types called dependent types type systems decidable type inference difficult understand program withcitation needed dependent types express arbitrary propositions predicate logic curry–howard isomorphism welltyped programs languages become means writing formal mathematical proofs compiler generate certified code languages mainly interest academic research including formalized mathematics begun used engineering well compcert compiler subset programming language written formally verified46
+limited form dependent types called generalized algebraic data types gadts implemented provides benefits dependently typed programming avoiding inconvenience47 gadts available glasgow haskell compiler ocaml since version scala case classes proposed additions languages including java
+referential transparencyedit
+main article referential transparency
+functional programs assignment statements value variable functional program never changes defined eliminates chances side effects variable replaced actual value point execution functional programs referentially transparent49
+consider assignment statement changes value assigned variable initial value consecutive evaluations variable yields respectively clearly replacing either gives program different meaning expression referentially transparent fact assignment statements never referentially transparent
+consider another function plusoneint return transparent implicitly change input thus side effects functional programs exclusively type function therefore referentially transparent
+functional programming nonfunctional languagesedit
+possible functional style programming languages traditionally considered functional languages50 example fortran explicitly support pure functions51
+javascript lua52 python first class functions inception53 amrit prem added support python lambda reduce filter 1994 well closures python 2254 though python relegated reduce functools standard library module55 firstclass functions introduced mainstream languages visual basic c11citation needed
+anonymous classes closures lambdas fully supported libraries language extensions immutable data structures developed programming functional style
+java anonymous classes sometimes used simulate closures56 however anonymous classes always proper replacements closures limited capabilities57 java supports lambda expressions replacement anonymous classes58 however presence checked exceptions java make functional programming inconvenient necessary catch checked exceptions rethrow them—a problem occur languages checked exceptions scalacitation needed
+anonymous classes necessary closures lambdas fully supported libraries language extensions immutable data structures developed programming functional style
+many objectoriented design patterns expressible functional programming terms example strategy pattern simply dictates higherorder function visitor pattern roughly corresponds catamorphism fold
+similarly idea immutable data functional programming often included imperative programming languages59 example tuple python immutable array
+data structuresedit
+main article purely functional data structure
+purely functional data structures often represented different imperative counterparts60 example array constant access update times basic component imperative languages many imperative datastructures hash table binary heap based arrays arrays replaced maps random access lists admit purely functional implementation logarithmic access update times therefore purely functional data structures used nonfunctional languages efficient tool especially persistence required
+comparison imperative programmingedit
+functional programming different imperative programming significant differences stem fact functional programming avoids side effects used imperative programming implement state pure functional programming completely prevents sideeffects provides referential transparency
+higherorder functions rarely used older imperative programming traditional imperative program might loop traverse modify list functional program hand would probably higherorder “map” function takes function list generating returning list applying function list item
+simulating stateedit
+tasks example maintaining bank account balance often seem naturally implemented state pure functional programming performs tasks tasks accepting user input printing screen different
+pure functional programming language haskell implements using monads derived category theory monads offer abstract certain types computational patterns including limited modeling computations mutable state side effects imperative manner without losing purity existing monads easy apply program given appropriate templates examples many students find difficult understand conceptually asked define monads sometimes needed certain types libraries61
+another functional languages simulate state passing around data structure represents current state parameter function calls function call copy data structure created whatever differences result function referred statepassing style
+impure functional languages usually include direct method managing mutable state clojure example uses managed references updated applying pure functions current state kind approach enables mutability still promoting pure functions preferred express computations
+alternative methods hoare logic uniqueness developed track side effects programs modern research languages effect systems make presence side effects explicit
+efficiency issuesedit
+functional programming languages typically less efficient memory imperative languages pascal62 related fact mutable data structures like arrays straightforward implementation using present hardware highly evolved turing machine flat arrays accessed efficiently deeply pipelined cpus prefetched efficiently caches complex pointer chasing handled simd instructions also easy create equally efficient generalpurpose immutable counterparts purely functional languages worstcase slowdown logarithmic number memory cells used mutable memory represented purely functional data structure logarithmic access time balanced tree63 however slowdowns universal programs perform intensive numerical computations functional languages ocaml clean slightly slower according computer language benchmarks game64 programs handle large matrices multidimensional databases array functional languages designed speed optimizations
+immutability data many cases lead execution efficiency allowing compiler make assumptions unsafe imperative language thus increasing opportunities inline expansion65
+lazy evaluation also speed program even asymptotically whereas slow constant factor however introduce memory leaks used improperly launchbury 199344 discusses theoretical issues related memory leaks lazy evaluation osullivan 200866 give practical advice analyzing fixing however general implementations lazy evaluation making extensive dereferenced code data perform poorly modern processors deep pipelines multilevel caches cache miss cost hundreds cyclescitation needed
+coding stylesedit
+
+
+
+
+
+
+section cite sources please help improve section adding citations reliable sources unsourced material challenged removed july 2013 learn remove template message
+
+
+
+imperative programs environment sequence steps manipulating environment functional programs expression successively substituted reaches normal form example illustrates different solutions programming goal calculating fibonacci numbers
+phpedit
+printing first fibonacci numbers using function
+
+
+function fibint
+return fibn fibn
+
+
+echo fibi phpeol
+
+printing first fibonacci numbers using closure
+
+
+functionint usefib
+return fibn fibn
+
+
+echo fibi phpeol
+
+printing list first fibonacci numbers generators
+
+
+function fibint
+yield
+yield
+second first
+
+yield first
+second first first second second
+
+
+
+fibo fib10
+foreach fibo value
+echo value phpeol
+
+
+pythonedit
+printing first fibonacci numbers iterative
+
+
+fibonaccin first0 second1
+
+printfirst sideeffect
+first second second first second assignment
+fibonacci10
+
+printing first fibonacci numbers functional expression style
+
+
+fibonacci lambda first0 second1
+else
+strfirst fibonaccin second first second
+printfibonacci10
+
+printing list first fibonacci numbers generators
+
+
+fibonaccin first0 second1
+
+yield first
+first second second first second assignment
+printlistfibonacci10
+
+printing list first fibonacci numbers functional expression style
+
+
+fibonacci lambda first0 second1
+else
+first fibonaccin second first second
+printfibonacci10
+
+haskelledit
+printing first fibonacci numbers functional expression style1
+
+
+fibonacciaux first second
+else
+show first fibonacciaux second first second
+fibonacci fibonacciaux
+main putstr fibonacci
+
+printing list first fibonacci numbers functional expression style1
+
+
+fibonacciaux first second
+else
+first fibonacciaux second first second
+fibonacci fibonacciaux
+main putstrln show fibonacci
+
+printing 11th fibonacci number functional expression style1
+
+
+fibonacci
+else
+else fibonaccin fibonaccin
+main putstrln show fibonacci
+
+printing 11th fibonacci number functional expression style1 tail recursive
+
+
+fibonacciaux first second
+first else
+fibonacciaux second first second
+fibonacci fibonacciaux
+main putstrln show fibonacci
+
+printing 11th fibonacci number functional expression style1 recursive lists
+
+
+fibonacciaux first second first fibonacciaux second first second
+select head
+else select tail
+fibonacci select fibonacciaux
+main putstrln show fibonacci
+
+printing 11th fibonacci number functional expression style1 primitives recursive lists
+
+
+fibonacciaux first second first fibonacciaux second first second
+fibonacci fibonacciaux
+main putstrln show fibonacci
+
+printing 11th fibonacci number functional expression style1 primitives recursive lists concisely
+
+
+fibonacciaux 01zipwith fibonacciaux tail fibonacciaux
+fibonacci fibonacciaux
+main putstrln show fibonacci
+
+printing 11th fibonacci number functional declaration style2 tail recursive
+
+
+fibonacciaux first first
+fibonacciaux first second fibonacciaux second first second
+fibonacci fibonacciaux
+main putstrln show fibonacci
+
+printing 11th fibonacci number functional declaration style using lazy infinite lists primitives
+
+
+fibs zipwith fibs tail fibs
+infinite list fibonacci numbers
+fibs defined terms fibs
+fibonacci fibs
+main putstrln show fibonacci
+
+perl 6edit
+influenced haskell others perl several functional declarative approaches problems example declaratively build welltyped recursive version type constraints optional signature pattern matching
+
+
+define constraints common candidates
+proto uintd uintd
+
+multi
+multi
+
+multi
+fibn fibn
+
+
+fibn
+
+alternative construct lazy iterative sequence appears almost direct illustration sequence
+
+
+additional entry previous
+sequence extends lazily indefinitely
+fib10 display first entries
+
+erlangedit
+erlang functional concurrent generalpurpose programming language fibonacci algorithm implemented erlang note demonstrating erlang syntax algorithms fast performance67
+
+
+modulefib file fiberl module filename must match
+exportfib1 exports function arity
+
+fib1 return otherwise note semicolon meaning else
+fib2 return otherwise
+fibn fibn fibn
+
+elixiredit
+elixir functional concurrent generalpurpose programming language runs erlang virtual machine beam
+fibonacci function written elixir follows
+
+
+defmodule fibonacci
+fib0
+fib1
+fibn fibn1 fibn2
+
+
+lispedit
+fibonacci function written common lisp follows
+
+
+defun optional
+
+
+
+
+
+
+
+defun
+zerop
+
+
+
+program called
+
+
+
+
+clojureedit
+fibonacci function written clojure follows
+
+
+defn
+
+loop
+zero
+
+recur
+
+program called
+
+
+
+
+explicitly using lazyseq infinite sequence fibonacci numbers defined recursively
+
+
+lazy infinite sequence
+fibs cons cons lazyseq fibs rest fibs
+
+list first fibonacci numbers taken infinite sequence
+take fibs
+
+kotlinedit
+fibonacci function written kotlin follows
+
+
+fibx else fibx fibx
+
+program called
+
+
+fib7
+
+javascriptedit
+fibonacci function written javascript follows
+
+
+fibx fibx
+
+sequenceledit
+sequencel functional concurrent generalpurpose programming language fibonacci function written sequencel follows
+
+
+fibn else
+fibn fibn
+
+function called
+
+
+fib10
+
+reduce memory consumed call stack computing large fibonacci term tailrecursive version used tailrecursive function implemented sequencel compiler memoryefficient looping structure
+
+
+fibn fibhelper0
+
+fibhelperprev next
+prev else
+next else
+fibhelpernext next prev
+
+tcledit
+fibonacci function written recursive function follows
+
+
+proc fibo
+expr fibo incr fibo incr
+
+
+scalaedit
+fibonacci function written scala bunch ways
+imperative java style
+
+
+fibimpern
+
+
+
+
+
+
+
+
+
+
+
+recursive style slow
+
+
+fibrecn
+match
+case
+case
+case fib1n1 fib1n2
+
+
+
+recursive style fast
+
+
+fibtailrecn
+tailrec else else
+
+
+
+using scala streams
+
+
+fibstreamstreamint fibstream fibstreamtailmap
+
+industryedit
+functional programming long popular academia industrial applications68page however recently several prominent functional programming languages used commercial industrial systems example erlang programming language developed swedish company ericsson late 1980s originally used implement faulttolerant telecommunications systems13 since become popular building range applications companies tmobile nortel facebook électricité france whatsapp1214697071 scheme dialect lisp used basis several applications early apple macintosh computers45 recently applied problems training simulation software6 telescope control7 ocaml introduced mid1990s seen commercial areas financial analysis15 driver verification industrial robot programming static analysis embedded software16 haskell though initially intended research language18 also applied range companies areas aerospace systems hardware design programming1718
+functional programming languages seen industry include scala72 f1920 functionaloo hybrids support purely functional imperative programming wolfram language10 lisp73 standard ml7475 clojure76
+educationedit
+functional programming used method teach problem solving algebra geometric concepts77 also used tool teach classical mechanics structure interpretation classical mechanics
+alsoedit
+
+
+computer programming portal
+
+
+
+purely functional programming
+comparison programming paradigms
+eager evaluation
+list functional programming topics
+nested function
+inductive functional programming
+functional reactive programming
+
+referencesedit
+
+
+declaration expression style haskellwiki
+declaration expression style haskellwiki
+hudak paul september 1989 conception evolution application functional programming languages computing surveys 359–411 doi1011457255172554
+clinger 1987 multitasking macscheme mactech retrieved 20080828
+hartheimer anne 1987 programming text editor macschemetoolsmith mactech archived original 20110629 retrieved 20080828
+kidd eric terrorism response training scheme cufp 2007 retrieved 20090826
+cleis richard scheme space cufp 2006 retrieved 20090826
+user 2006 conference schedule includes papers commercial rprojectorg 20060608 retrieved 20110620
+chambers john 1998 programming data guide language springer verlag 67–70 isbn 9780387985039
+wolfram language guide functional programming 2015 retrieved 20150824
+statebased scripting uncharted archived original 20121215 retrieved 20110808
+uses erlang product development frequently asked questions erlang retrieved 20070805
+armstrong june 2007 history erlang third sigplan conference history programming languages diego california retrieved 20090829
+larson march 2009 erlang concurrent programming communications doi10114514672471467263
+minsky yaron weeks stephen july 2008 caml trading experiences functional programming wall street journal functional programming cambridge university press 553–564 doi101017s095679680800676x retrieved 20080827
+leroy xavier uses caml industry cufp 2007 retrieved 20090826
+haskell industry haskell wiki retrieved 20090826 haskell diverse range commercially aerospace defense finance startups hardware design firms lawnmower manufacturers
+hudak paul hughes jones wadler june 2007 history haskell lazy class third sigplan conference history programming languages diego california doi10114512388441238856 retrieved 20130926
+mansell howard 2008 quantitative finance cufp 2008 retrieved 20090829
+peake alex 2009 first substantial line business application cufp 2009 retrieved 20090829
+popular computer languages according facebook programmers 2016 retrieved 20170731
+javascript worlds dominant programming language 2016 retrieved 20170731
+javascript worlds misunderstood programming language retrieved 20170731
+department applied math university colorado functional procedural programming language archived original 20071113 retrieved 20060828
+dimitre novatchev functional programming language xslt proof examples topxml retrieved 2006
+david mertz programming paradigms part four functional programming approached processing developerworks retrieved 2006
+optimized applicative language
+donald chamberlin raymond boyce 1974 sequel structured english query language proceedings 1974 sigfidet 249–264
+dominus mark 2005 higherorder perl morgan kaufmann isbn 1558607013
+holywell simon 2014 functional programming phparchitect isbn 9781940111056
+effective scala scala wiki retrieved 20120221 effective scala
+haskell brooks curry robert feys 1958 combinatory logic northholland publishing company retrieved february 2013
+mccarthy john june 1978 history lisp acmsigplan history programming languages conference 217–223 doi101145800025808387
+steele richard gabriel february 1996 evolution lisp acmsigplan second history programming languages 233–330 doi1011452342861057818
+memoir herbert simon 1991 models life pp189190 isbn 0465046401 claims newell cliff shaw commonly adjudged parents artificial intelligence field writing logic theorist program proved theorems principia mathematica automatically accomplish invent language paradigm viewed retrospectively embeds functional programming
+programming liberated neumann style functional style algebra programs
+burstall design considerations functional programming language invited paper proc infotech state conf software revolution copenhagen 45–57 1977
+burstall darlington transformation system developing recursive programs journal association computing machinery 24144–67 1977
+burstall macqueen sannella hope experimental applicative language proc 1980 lisp conference stanford 136–143 1980
+dick pountain functional programming comes bytecom august 1994 archived original 20060827 retrieved august 2006
+turner 20040728 total functional programming journal universal computer science 751–768 doi103217jucs010070751
+implementation functional programming languages simon peyton jones published prentice hall 1987
+hughes john 1984 functional programming matters
+john launchbury 1993 natural semantics lazy evaluation
+robert harper 2009 practical foundations programming languages
+compcert verified compiler
+simon peyton jones dimitrios vytiniotis stephanie weirich geoffrey washburn simple unificationbased type inference gadts icfp 2006 50–61
+andrew kennedy claudio russo october 2005 generalized algebraic data types objectoriented programming oopsla diego california archived original 20061229 source citation
+huges john functional programming matters httpwwwchalmerssecse chalmers tekniska h¨ogskola external link website help
+hartel pieter henk muller hugh glaser march 2004 functional experience journal functional programming 129–135 doi101017s0956796803004817 david mertz functional programming python part developerworks archived original 20071016 retrieved 20060917 part part
+functions programming language digital mars retrieved 20110620
+unofficial ufaq
+brendan eich
+rossum guido 20090421 origins pythons functional features history python retrieved 20120927 external link publisher help
+functools higher order functions operations callable objects python software foundation 20110731 retrieved 20110731
+skarsaune martin 2008 sics java port project automatic translation large object oriented system smalltalk java
+gosling james closures james gosling java road oracle retrieved 2013
+java lambda quick start
+bloch joshua effective java second item
+purely functional data structures chris okasaki cambridge university press 1998 isbn 0521663504
+newbern monads comprehensive guide theory practice monadic programming haskell retrieved 20080214
+larry paulson june 1996 working programmer cambridge university press isbn 9780521565431 retrieved february 2013
+daniel spiewak implementing persistent vectors scala retrieved 2012
+programs fastest computer language benchmarks game benchmarksgamealiothdebianorg retrieved 20110620
+igor pechtchanski vivek sarkar 2005 immutability specification applications concurrency computation practice experience 639–662 doi101002cpe853
+chapter profiling optimization bookrealworldhaskellorg retrieved 20110620
+
+odersky martin spoon venners bill december 2010 programming scala comprehensive stepbystep guide artima 883852 isbn 9780981531649
+piro christopher 2009 functional programming facebook cufp 2009 retrieved 20090829
+simdiasca largescale discrete event concurrent simulation engine erlang november 2011
+million 2011 whatsapp blog 20120106 last important piece infrastracture erlang
+momtahan 2009 scala trading implementing domainspecific language derivative pricing scala cufp 2009 retrieved 20090829
+graham paul 2003 beating averages retrieved 20090829
+sims steve 2006 building startup standard cufp 2006 retrieved 20090829
+laurikari ville 2007 functional programming communications security cufp 2007 retrieved 20090829
+lorimer live production clojure application announced
+emmanuel schanzer bootstrap interviewed show triangulation twittv network
+
+
+readingedit
+
+abelson sussman gerald 1985 structure interpretation computer programs press
+cousineau michel mauny functional approach programming cambridge cambridge university press 1998
+curry haskell brooks feys robert craig william combinatory logic volume northholland publishing company amsterdam 1958
+curry haskell hindley roger seldin jonathan 1972 combinatory logic amsterdam north holland isbn 0720422086
+dominus mark jason higherorder perl morgan kaufmann 2005
+felleisen matthias findler robert flatt matthew krishnamurthi shriram 2001 design programs press
+graham paul ansi common lisp englewood cliffs jersey prentice hall 1996
+maclennan bruce functional programming practice theory addisonwesley 1990
+osullivan brian stewart goerzen john 2008 real world haskell oreilly
+pratt terrence marvin zelkowitz programming languages design implementation englewood cliffs jersey prentice hall 1996
+salus peter functional logic programming languages handbook programming languages indianapolis indiana macmillan technical publishing 1998
+thompson simon haskell craft functional programming harlow england addisonwesley longman limited 1996
+
+external linksedit
+
+listen article infodl
+
+
+
+
+
+
+
+
+
+
+
+
+audio file created revision article functional programming dated 20110825 reflect subsequent edits article audio help
+spoken articles
+
+
+ford neal 20120129 functional thinking functional programming rise retrieved 20130224
+akhmechet slava 20060619 defmacro functional programming rest retrieved 20130224 introduction
+functional programming python david mertz part part part
+
+
+
+
+
+
+
+
+
+
+
+
+types programming languages
+
+
+
+
+
+
+actorbased
+array
+aspectoriented
+classbased
+concatenative
+concurrent
+datastructured
+dataflow
+declarative
+domainspecific
+dynamic
+esoteric
+eventdriven
+extensible
+functional
+imperative
+logic
+macro
+metaprogramming
+multiparadigm
+objectbased
+objectoriented
+pipeline
+procedural
+prototypebased
+reflective
+rulebased
+scripting
+synchronous
+templating
+
+
+
+
+
+
+
+
+assembly
+compiled
+interpreted
+machine
+
+
+
+
+
+
+
+
+lowlevel
+highlevel
+highlevel
+
+
+
+
+
+
+
+
+first generation
+second generation
+third generation
+fourth generation
+fifth generation
+
+
+
+
+
+
+
+
+nonenglishbased
+visual
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh87007844
+41987408
+cb121910539 data
+xx547935
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlefunctionalprogrammingoldid817001874 categories programming paradigmsfunctional programminghidden categories errors external linksall articles unsourced statementsarticles unsourced statements february 2017articles unsourced statements december 2011articles unsourced statements april 2015articles unsourced statements march 2014articles unsourced statements june 2014articles needing additional references july 2013all articles needing additional referencesspoken articlesarticles haudio microformatswikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiers

@@ -1,0 +1,830 @@
+
+geography markup language
+
+
+vector points polylines polygons
+
+
+
+filename extension
+
+
+
+internet media type
+applicationgmlxml1
+
+
+developed
+open geospatial consortium
+
+
+initial release
+2000 2000
+
+
+latest release
+
+3212
+august 2007 years 20070827
+
+
+
+type format
+geographic information system
+
+
+extended
+
+
+
+standard
+191362007
+
+
+geography markup language grammar defined open geospatial consortium express geographical features serves modeling language geographic systems well open interchange format geographic transactions internet gmls utility ability integrate forms geographic information including conventional vector discrete objects coverages also gmljp2 sensor data
+
+
+
+contents
+
+
+model
+
+profile
+
+simple features profile
+subset tool
+
+
+application schema
+
+geometries
+features
+coordinates
+coordinate reference system
+
+
+examples
+
+features using geometries
+point profile
+
+
+history
+
+initial work recommendation paper
+moving schema version
+gxml japan
+towards broadens scope
+
+
+standards
+
+19136
+
+
+also
+references
+external links
+
+
+
+modeledit
+contains rich primitives used build application specific schemas application languages primitives include
+
+feature
+geometry
+coordinate reference system
+topology
+time
+dynamic feature
+coverage including geographic images
+unit measure
+directions
+observations
+presentation styling rules
+
+original model based world wide consortiums resource description framework subsequently introduced schemas gmls structure help connect various existing geographic databases whose relational structure schemas easily define resulting xmlschemabased retains many features including idea child elements properties parent object rdfs remote property references
+profileedit
+profiles logical restrictions expressed document schema profiles intended simplify adoption facilitate rapid adoption standard following profiles defined specification published proposed public
+
+point profile applications point geometric data without need full grammar
+simple features profile supporting vector feature requests transactions
+profile gmljp2 jpeg 2000
+profile
+
+note profiles distinct application schemas profiles part namespaces open define restricted subsets application schemas vocabularies defined using live applicationdefined target namespace application schemas built specific profiles full schema
+profiles often created support derived languages application schemas created support particular application domains commercial aviation nautical charting resource exploitation
+specification since contains pair xslt scripts usually referred subset tool used construct profiles
+simple features profileedit
+simple features profile complete profile point profile supports wide range vector feature objects including following
+
+reduced geometry model allowing linear geometric objects based linear interpolation corresponding aggregate geometries gmlmultipoint gmlmulticurve
+simplified feature model level deep general model arbitrary nesting features feature properties permitted
+nongeometric properties must schema simple types cannot contain nested elements
+remote property value references xlinkhref like main specification
+
+since profile aims provide simple entry point provide support following
+
+coverages
+topology
+observations
+value objects real time sensor data
+dynamic features
+
+nonetheless supports good variety real world problems
+subset tooledit
+addition specification provides subset tool generate profiles containing userspecified list components tool consists three xslt scripts scripts generate profile developer extend manually otherwise enhance schema restriction note restrictions full specification application schemas profile generate must valid application schemas
+subset tool generate profiles many reasons well listing elements attributes include resultant profile schema running tool results single profile schema file containing userspecified items element attribute type declarations specified items depend profile schemas created manner support specifications including jpeg 2000
+application schemaedit
+order expose applications geographic data community organization creates schema specific application domain interest application schema schema describes object types whose data community interested community applications must expose example application tourism define object types including monuments places interest museums road exits viewpoints application schema object types turn reference primitive object types defined standard
+list known publicly available application schemas assembled
+markup languages geography schema constructs builds existing schema model instead creating schema language
+kmledit
+made popular google complements whereas language encode geographic content application describing spectrum application objects properties bridges roads buoys vehicles language visualization geographic information tailored google earth used render content content “styled” using purposes presentation first foremost portrayal transport data exchange transport result significant difference purpose encoding content portrayal using results significant unrecoverable loss structure identity resulting gmls structures name metadata coordinate reference systems horizontal vertical datums geometric integrity circles ellipses arcs cannot transformed without loss nonstandard encoding similarly kmls design portrayal transport encoding content result significant loss portrayal structures regions level detail rules viewing animation information well styling information multiscale representation ability portray placemarks multiple levels details distinguishes since portrayal outside scope gml3
+geometriesedit
+encodes geometries geometric characteristics geographic objects elements within documents according vector model geometries objects describe example roads rivers bridges
+geometry object types following
+
+point
+linestring
+polygon
+
+higher also includes structures describe coverage information raster model gathered remote sensors images including satellite data
+featuresedit
+defines features distinct geometry objects feature application object represents physical entity building river person feature geometric aspects geometry object defines location region instead physical entity hence different feature
+feature various geometry properties describe geometric aspects characteristics feature features point extent properties also provides ability features share geometry property another using remote property reference shared geometry property remote properties general feature borrowed xlinkhref attribute geometry property means value property resource referenced link
+example building feature particular application schema might position given primitive geometry object type point however building separate entity point defines position addition feature several geometry properties none example extent position
+coordinatesedit
+coordinates represent coordinates geometry objects coordinates specified following elements
+
+gmlcoordinates
+gmlpos
+gmlposlist
+
+multiple ways represent coordinates example gmlcoordinates element used follows
+
+
+gmlpoint gmlidp21 srsnamehttpwwwopengisnetdefcrsepsg04326
+gmlcoordinates4567 8856gmlcoordinates
+gmlpoint
+
+note expressed individual coordinates 8856 separately accessible document object model since content gmlcoordinates element single string
+make coordinates accessible introduced gmlpos gmlposlist elements note although versions gmlcoord element treated defect used using gmlpos element instead gmlcoordinates element point represented follows
+
+
+gmlpoint gmlidp21 srsnamehttpwwwopengisnetdefcrsepsg04326
+gmlpos srsdimension24567 8856gmlpos
+gmlpoint
+
+coordinates gmllinestring geometry object represented gmlcoordinates element
+
+
+gmllinestring gmlidp21 srsnamehttpwwwopengisnetdefcrsepsg04326
+gmlcoordinates4567 8856 55568944gmlcoordinates
+gmllinestring
+
+gmlposlist element used represent list coordinate tuples required linear geometries
+
+
+gmllinestring gmlidp21 srsnamehttpwwwopengisnetdefcrsepsg04326
+gmlposlist srsdimension24567 8856 5556 8944gmlposlist
+gmllinestring
+
+data servers conversion tools support gmlcoordinates element alternative gmlcoordinates documents later however gmlpos gmlposlist preferable gmlcoordinates
+information srsname attribute coordinate reference system
+coordinate reference systemedit
+main article coordinate reference system
+coordinate reference system determines geometry geometry element document
+unlike georss default coordinate system none provided instead desired coordinate system must specified explicitly elements whose coordinates interpreted respect include following
+
+gmlcoordinates
+gmlpos
+gmlposlist
+
+srsname attribute attached geometry object specifies objects shown following example
+
+
+gmlpoint gmlidp1 srsnamesrs36
+gmlcoordinates100200gmlcoordinates
+gmlpoint
+
+value srsname attribute uniform resource identifier refers definition used interpret coordinates geometry definition document flat file online service values epsg codes resolved using registry service operated producers association httpwwwepsgregistryorg
+srsname also uniform resource name referencing common definition developed structure specific urns encode common resolver resolves urns definitions
+examplesedit
+polygons points linestring objects encoded follows
+
+
+gmlpolygon
+gmlouterboundaryis
+gmllinearring
+gmlcoordinates00 1000 100100 0100 00gmlcoordinates
+gmllinearring
+gmlouterboundaryis
+gmlpolygon
+gmlpoint
+gmlcoordinates100200gmlcoordinates
+gmlpoint
+gmllinestring
+gmlcoordinates100200 150300gmlcoordinates
+gmllinestring
+
+note linestring objects along linearring objects assume linear interpolation specified points also coordinates polygon closed
+features using geometriesedit
+following example illustrates distinction features geometry objects building feature several geometry objects sharing point identifier surveymonument feature
+
+
+abcbuilding gmlidsearstower
+abcheight52abcheight
+abcposition xlinktypesimple xlinkhrefp21
+abcbuilding
+abcsurveymonument gmlidg234
+abcposition
+gmlpoint gmlidp21
+gmlposlist100200gmlposlist
+gmlpoint
+abcposition
+abcsurveymonument
+
+note reference shared point surveymonument since feature object geometry object property
+point profileedit
+point profile contains single geometry namely gmlpoint object type schema point profile importing referencing subject gmlpoint instance
+
+
+photocollection xmlnshttpwwwmyphotosorg xmlnsgmlhttpwwwopengisnetgml
+xmlnsxsihttpwwww3org2001xmlschemainstance
+xsischemalocationhttpwwwmyphotosorg
+mygoodphotosxsd
+items
+item
+namelynn valleyname
+descriptiona shot falls suspension bridgedescription
+wherenorth vancouverwhere
+position
+gmlpoint srsdimension2 srsnamehttpwwwopengisnetdefcrsepsg04326
+gmlpos4940 12326gmlpos
+gmlpoint
+position
+item
+items
+photocollection
+
+note using point profile geometry object gmlpoint object rest geography defined photocollection schema
+historyedit
+initial work recommendation paperedit
+lake started work fall 1998 following earlier work encodings radio broadcasting lake presented early ideas meeting atlanta georgia february 1999 title xgml introduced idea geodom notion geographic styling language based akifumi nakai data also presented meeting work partly underway data encoding called gxml targeted location–based services4 april 1999 galdos created xbed team cubewerx oracle corporation mapinfo corporation data mitsubishi compusult subcontractors xbed focused geospatial creation sfxml simple features input galdos census data galdos demonstrated early style engine pulling data oraclebased data server precursor first test september 1999 october 1999 galdos systems rewrote sfxml draft document request comment changed name language geography markup language document introduced several ideas became foundation including objectpropertyvalue rule remote properties rdfresource decision application schemas rather static schemas paper also proposed language based resource description framework rather dtds used point issues including hotly debated within community 1999 2000 result final recommendation paper contained three profiles based dtd’s using static schema approach passed recommendation paper 20005
+moving schema version 2edit
+even passage recommendation paper galdos started work schema version replacing rdfresource scheme remote references xlinkhref developing specific patterns barbarians gate handling extensions complex structures like feature collections much schema design work done richard martell galdos served document editor mainly responsible translation basic model schema important inputs time frame came simon csiro australia paul daisey census david burggraf galdos adrian cuthbert laserscan army corps engineers particularly jeff harrison quite supportive development army corp engineers sponsored “usl pilot” project helpful exploring utility linking styling concepts specification important work done monie ionic galdos schema specification draft submitted galdos approved public distribution december 2000 became recommendation paper february 2001 adopted specification year version eliminated “profiles” version established principles outlined original galdos submission basis
+gxml japanedit
+events unfolding work continuing parallel japan gxml auspices japanese database promotion center direction shige kawano gxml differed several important respects targeted applications gxml employed many concrete geographic objects mover provided limited concrete built complex objects application schemas point time gxml still written using already transitioned schema hand gxml required many fundamental constructs time lexicon including temporality spatial references identifiers objects histories concept topologybased styling hand offered limited primitives geometry feature recipe construct user defined object feature types
+meetings held tokyo january 2001 involving lake galdos richard martell galdos staff kurt buehler david schell shige kawano akifumi nakai data shimada hitachi signing would endeavour inject fundamental elements required support gxml thus enabling gxml written application schema resulted many types entering gml’s core object list including observations dynamic features temporal objects default styles topology viewpoints much work conducted galdos contract data laid foundation although significant development occurred time frame namely intersection isotc
+towards broadens scope gmledit
+basic coding existed objects introduced gmlgxml agreement introduced galdos within process notably coverages soon became apparent encodings compliant abstract specifications developed tc211 specifications increasingly becoming basis specifications geometry example based earlier partly documented geometry model simple features geometry insufficient support extensive complex geometries described tc211 management development also altered time frame participation many individuals significant contributions time frame made milan trninic galdos default styles lake galdos observations richard martell galdos dynamic features
+june 2002 lake recognized work creating presented gardels award6 citation award reads particular award recognizes great achievement creating geography markup language uniquely sensitive effective work promote reconciliation national differences promote meaningful standardization global level” simon csiro7 clemens portele interactive instruments8 also subsequently received gardels award part contributions
+standardsedit
+open geospatial consortium international voluntary consensus standards organization whose members maintain geography markup language standard coordinates standards organization maintain consistency standards work adopted international standard 191362007 2007
+canclarification needed also included version united states national information exchange model niem
+19136edit
+19136 geographic information geography markup language standard family standards geographic information 191xx resulted unification open geospatial consortium definitions geography markup language iso191xx standards
+earlier versions conformal version conformity means particular also implementation 19107
+geography markup language encoding compliance 19118 transport storage geographic information modelled according conceptual modelling framework used 19100series including spatial nonspatial properties geographic features specification defines schema syntax mechanisms conventions
+
+provide open vendorneutral framework definition geospatial application schemas objects
+allow profiles support proper subsets framework descriptive capabilities
+support description geospatial application schemas specialized domains information communities
+enable creation maintenance linked geographic application schemas datasets
+support storage transport application schemas data sets
+increase ability organizations share geographic application schemas information describe
+
+alsoedit
+
+application schemas
+citygml
+geographic data files
+sosi
+wellknown text
+isots 19103 conceptual schema language units measure basic types
+19108 temporal schema temporal geometry topology objects temporal reference systems
+19109 rules application schemas features
+19111 spatial referencing coordinates coordinate reference systems
+19123 coverages
+geosparql geospatiallylinked data semantic
+
+referencesedit
+
+
+
+open geospatial consortium 20100208 technical committee policies procedures mime media types
+opengis geography markup language encoding standard retrieved 20110325
+httpsdevelopersgooglecomkmldocumentationkmlreference
+gxml
+jpeg 2000 geographic imagery gmljp2 encoding specification
+award citation lake
+award citation simon
+award citation clemens portele
+
+
+
+external linksedit
+
+191362007 geographic information geography markup language
+specifications
+
+
+
+
+
+
+
+
+
+
+
+
+standards open geospatial consortium
+
+
+
+
+
+
+
+geopackage
+georss
+geosparql
+
+
+
+reference model
+sensorml
+
+
+
+srid
+transducerml
+
+waterml
+
+
+
+wmts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlegeographymarkuplanguageoldid805118685 categories markup languagesindustryspecific xmlbased standardsgis file formatsopen geospatial consortiumisotc 211iso standardshidden categories pages using deprecated image syntaxwikipedia articles needing clarification november 2012

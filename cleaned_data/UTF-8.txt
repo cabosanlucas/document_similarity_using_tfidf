@@ -1,0 +1,2861 @@
+utf8 variable width character encoding capable encoding 11120641 valid code points unicode using four 8bit bytes2 encoding defined unicode standard originally designed thompson pike34 name derived unicode universal coded character transformation format 8bit5
+designed backward compatibility ascii code points lower numerical values tend occur frequently encoded using fewer bytes first characters unicode correspond onetoone ascii encoded using single octet binary value ascii valid ascii text valid utf8encoded unicode well since ascii bytes occur encoding nonascii code points utf8 utf8 safe within programming document languages interpret certain ascii characters special filenames escape sequences printf
+
+
+
+
+shows usage main encodings 2001 2012 recorded google6 utf8 overtaking others 2008 nearing 2012
+note ascii figure includes pages declared header restricted ascii characters
+
+
+utf8 dominant character encoding world wide since 2009 2018 accounts pages much pages ascii subset utf8 nextmost popular multibyte encodings shift 2312 respectively786 internet mail consortium recommended email programs able display create mail using utf89 recommends utf8 default encoding html10
+
+
+
+contents
+
+
+description
+
+examples
+codepage layout
+overlong encodings
+invalid byte sequences
+invalid code points
+
+
+official name variants
+derivatives
+
+cesu8
+modified utf8
+wtf8
+
+
+byte order mark
+history
+comparison singlebyte encodings
+comparison multibyte encodings
+comparison utf16
+also
+notes
+references
+external links
+
+
+
+descriptionedit
+since restriction unicode codespace 21bit values 2003 utf8 defined encode code points four bytes depending number significant bits numerical value code point following table shows structure encoding characters replaced bits code point number significant bits seven first line applies bits second line applies
+
+
+number
+bytes
+bits
+code point
+first
+code point
+last
+code point
+byte
+byte
+byte
+byte
+
+
+
+
+u0000
+u007f
+0xxxxxxx
+
+
+
+
+
+
+
+u0080
+u07ff
+110xxxxx
+10xxxxxx
+
+
+
+
+
+
+u0800
+uffff
+1110xxxx
+10xxxxxx
+10xxxxxx
+
+
+
+
+
+u10000
+u10ffff
+11110xxx
+10xxxxxx
+10xxxxxx
+10xxxxxx
+
+
+first characters usascii need byte next 1920 characters need bytes encode covers remainder almost latinscript alphabets also greek cyrillic coptic armenian hebrew arabic syriac thaana alphabets well combining diacritical marks three bytes needed characters rest basic multilingual plane contains virtually characters common use11 including chinese japanese korean characters four bytes needed characters planes unicode include less common characters various historic scripts mathematical symbols emoji pictographic symbols
+important features encoding follows
+
+backward compatibility backwards compatibility ascii enormous amount software designed process asciiencoded text main driving force behind design utf8 utf8 single bytes values range directly unicode code points ascii range single bytes range represent characters ascii moreover 7bit bytes bytes significant never appear multibyte sequence valid multibyte sequence decodes ascii codepoint sequence 7bit bytes valid ascii valid utf8 either interpretation represents sequence characters therefore 7bit bytes utf8 stream represent ascii characters stream thus many text processors parsers protocols file formats text display programs ascii characters formatting control purposes continue work intended treating utf8 byte stream sequence singlebyte characters without decoding multibyte sequences ascii characters processing turns punctuation whitespace control characters never encoded multibyte sequences therefore safe processors simply ignore passthrough multibyte sequences without decoding example ascii whitespace used tokenize utf8 stream words ascii linefeeds used split utf8 stream lines ascii characters used split utf8encoded data nullterminated strings similarly many format strings used library functions like printf correctly handle utf8encoded input arguments
+fallback autodetection utf8 provided backwards compatibility 7bit ascii much software data uses 8bit extended ascii encodings designed prior adoption unicode represent character sets european languages part popularity utf8 fact provides form backward compatibility well utf8 processor erroneously receives extended ascii file input fall back replace 8bit bytes using appropriate codepoint unicode latin1 supplement block 8bit byte appears outside valid multibyte sequence though happen 8bit characters extended ascii encodings usually correct form utf8 multibyte sequences 8bit bytes introduce multibyte sequences utf8 primarily accented letters mostly vowels common extended ascii encodings utf8 continuation bytes punctuation symbol characters appear valid utf8 multibyte sequence series extended ascii 8bit characters would unusual combination symbols accented letters short extended ascii character sequences look like valid utf8 multibyte sequences unlikely fallback errors false negatives rare moreover many applications text display consequence incorrect fallback usually slight legibility affected significantly things make fallback feasible somewhat imperfect indeed discussed html5 standard requires erroneous bytes supposed utf8 data replaced upon display assumption windows1252 characters presence invalid 8bit characters outside valid multibyte sequences also used autodetect encoding actually extended ascii encoding rather utf8 decode accordingly utf8 stream simply contain errors resulting autodetection scheme producing false positives autodetection successful majority cases especially longer texts widely used
+prefix code first byte indicates number bytes sequence reading stream instantaneously decode individual fully received sequence without first wait either first byte next sequence endofstream indication length multibyte sequences easily determined humans simply number highorder leading byte incorrect character decoded stream ends midsequence
+selfsynchronization leading bytes continuation bytes share values continuation bytes start single bytes start longer lead bytes start means search accidentally find sequence character starting middle another character also means start character found random position backing bytes find leading byte incorrect character decoded stream starts midsequence shorter sequence never appear inside longer
+sorting order chosen values leading bytes fact continuation bytes highorder bits first means list utf8 strings sorted code point order sorting corresponding byte sequences
+
+examplesedit
+consider encoding euro sign
+
+unicode code point u20ac
+according scheme table take three bytes encode since u0800 uffff
+hexadecimal 20ac binary 0010 0000 1010 1100 leading zeros added scheme table shows threebyte encoding needs exactly sixteen bits code point
+encoding three bytes long leading byte starts three 1110
+four significant bits code point stored remaining order four bits byte 1110 0010 leaving bits code point encoded 0000 1010 1100
+continuation bytes contain exactly bits code point next bits code point stored order bits next byte stored high order bits mark continuation byte 1000 0010
+finally last bits code point stored order bits final byte stored high order bits 1010 1100
+
+three bytes 1110 0010 1000 0010 1010 1100 concisely written hexadecimal
+since utf8 uses groups bits sometimes useful octal notation uses 3bit groups calculator convert hexadecimal octal easier manually create interpret utf8 compared using binary
+
+octal 0200–3777 807ff shall coded bytes xxyy
+octal 4000–177777 800ffff shall coded three bytes xxyyzz 340xx
+octal 2000004177777 1000010ffff shall coded four bytes wxxyyzz
+
+following table summarises conversion well others different lengths utf8 colors indicate bits code point distributed among utf8 bytes additional bits added utf8 encoding process shown black
+
+
+character
+octal code point
+binary code point
+binary utf8
+octal utf8
+hexadecimal utf8
+
+
+
+u0024
+
+0100
+00100100
+
+
+
+
+
+u00a2
+0242
+1010 0010
+11000010 10100010
+
+
+
+
+
+u20ac
+020254
+0010 0000 1010 1100
+11100010 10000010 10101100
+
+
+
+
+
+u10348
+0201510
+0001 0000 0011 0100 1000
+11110000 10010000 10001101 10001000
+
+
+
+
+codepage layoutedit
+following table summarizes usage utf8 code units individual bytes octets code page format upper half bytes used singlebyte codes looks like normal code page lower half continuation bytes possible leading bytes explained legend
+
+utf8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0000
+
+
+0001
+
+
+0002
+
+
+0003
+
+
+0004
+
+
+0005
+
+
+0006
+
+
+0007
+
+
+0008
+
+
+0009
+
+
+000a
+
+
+000b
+
+
+000c
+
+
+000d
+
+
+000e
+
+
+000f
+
+
+
+
+
+0010
+
+
+0011
+
+
+0012
+
+
+0013
+
+
+0014
+
+
+0015
+
+
+0016
+
+
+0017
+
+
+0018
+
+
+0019
+
+
+001a
+
+
+001b
+
+
+001c
+
+
+001d
+
+
+001e
+
+
+001f
+
+
+
+
+
+0020
+
+
+0021
+
+
+0022
+
+
+0023
+
+
+0024
+
+
+0025
+
+
+0026
+
+
+0027
+
+
+0028
+
+
+0029
+
+
+002a
+
+
+002b
+
+
+002c
+
+
+002d
+
+
+002e
+
+
+002f
+
+
+
+
+
+0030
+
+
+0031
+
+
+0032
+
+
+0033
+
+
+0034
+
+
+0035
+
+
+0036
+
+
+0037
+
+
+0038
+
+
+0039
+
+
+003a
+
+
+003b
+
+
+003c
+
+
+003d
+
+
+003e
+
+
+003f
+
+
+
+
+
+0040
+
+
+0041
+
+
+0042
+
+
+0043
+
+
+0044
+
+
+0045
+
+
+0046
+
+
+0047
+
+
+0048
+
+
+0049
+
+
+004a
+
+
+004b
+
+
+004c
+
+
+004d
+
+
+004e
+
+
+004f
+
+
+
+
+
+0050
+
+
+0051
+
+
+0052
+
+
+0053
+
+
+0054
+
+
+0055
+
+
+0056
+
+
+0057
+
+
+0058
+
+
+0059
+
+
+005a
+
+
+005b
+
+
+005c
+
+
+005d
+
+
+005e
+
+
+005f
+
+
+
+
+
+0060
+
+
+0061
+
+
+0062
+
+
+0063
+
+
+0064
+
+
+0065
+
+
+0066
+
+
+0067
+
+
+0068
+
+
+0069
+
+
+006a
+
+
+006b
+
+
+006c
+
+
+006d
+
+
+006e
+
+
+006f
+
+
+
+
+
+0070
+
+
+0071
+
+
+0072
+
+
+0073
+
+
+0074
+
+
+0075
+
+
+0076
+
+
+0077
+
+
+0078
+
+
+0079
+
+
+007a
+
+
+007b
+
+
+007c
+
+
+007d
+
+
+007e
+
+
+007f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2byte
+
+
+
+
+
+
+
+latin
+0080
+
+latin
+00c0
+
+latin
+0100
+
+latin
+0140
+
+latin
+0180
+
+latin
+01c0
+
+latin
+0200
+
+
+0240
+
+
+0280
+
+
+02c0
+
+accents
+0300
+
+accents
+0340
+
+greek
+0380
+
+greek
+03c0
+
+
+
+2byte
+
+cyril
+0400
+
+cyril
+0440
+
+cyril
+0480
+
+cyril
+04c0
+
+cyril
+0500
+
+armeni
+0540
+
+hebrew
+0580
+
+hebrew
+05c0
+
+arabic
+0600
+
+arabic
+0640
+
+arabic
+0680
+
+arabic
+06c0
+
+syriac
+0700
+
+arabic
+0740
+
+thaana
+0780
+
+
+07c0
+
+
+
+3byte
+
+indic
+0800
+
+misc
+1000
+
+symbol
+2000
+
+kana
+3000
+
+
+4000
+
+
+5000
+
+
+6000
+
+
+7000
+
+
+8000
+
+
+9000
+
+asian
+a000
+
+hangul
+b000
+
+hangul
+c000
+
+hangul
+d000
+
+
+e000
+
+forms
+f000
+
+
+
+4‑byte
+
+
+10000
+
+
+40000
+
+
+80000
+
+spua
+c0000
+
+spuab
+100000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+orange cells large continuation bytes hexadecimal number shown plus sign value bits
+white cells leading bytes sequence multiple bytes length shown left edge text shows unicode blocks encoded sequences starting byte hexadecimal code point shown cell lowest character value encoded using leading byte
+cells must never appear valid utf8 sequence first cells could used twobyte encoding 7bit ascii character encoded byte described overlong sequences disallowed cells indicate leading bytes 4byte longer sequences cannot valid would encode code points larger u10ffff limit unicode limit derived maximum code point encodable utf16 never defined purpose utf8
+pink cells leading bytes sequence multiple bytes possible continuation sequences valid could start overlong encodings case lowest nonoverlongencoded code point shown start code points greater u10ffff invalid start encoding code point range ud800–udfff invalid since reserved utf16 surrogate halves
+overlong encodingsedit
+principle would possible inflate number bytes encoding padding code point leading encode euro sign example four bytes instead three could padded leading bits long 000010 000010 101100 encoded 11110000 10000010 10000010 10101100 hexadecimal called overlong encoding
+standard specifies correct encoding code point minimum number bytes required hold significant bits code point longer encodings called overlong valid utf8 representations code point rule maintains onetoone correspondence code points valid encodings unique valid encoding code point ensures string comparisons searches welldefined
+modified utf8 uses twobyte overlong encoding u0000 character 11000000 10000000 hexadecimal instead 00000000 hexadecimal allows byte used string terminator
+invalid byte sequencesedit
+sequences bytes valid utf8 utf8 decoder prepared
+
+invalid bytes table
+unexpected continuation byte
+leading byte followed enough continuation bytes happen simple string truncation string long copying
+overlong encoding described
+sequence decodes invalid code point described
+
+many earlier decoders would happily decode carefully crafted invalid utf8 could make either skip create ascii characters slash quotes invalid utf8 used bypass security validations highprofile products including microsofts server12 apaches tomcat servlet container13
+3629 states implementations decoding algorithm must protect decoding invalid sequences14 unicode standard requires decoders treat illformed code unit sequence error condition guarantees neither interpret emit illformed code unit sequence
+many utf8 decoders throw exceptions encountering errors15 turn would otherwise harmless errors producing message file denial service early versions python would exit immediately command line environment variables contained invalid utf816 making impossible handle errors
+recent converters translate first byte invalid sequence replacement character continue parsing next byte error bytes always high avoids denialofservice bugs common text rendering browser display since mangled text probably useful nothing helping user figure string supposed contain popular replacements include
+
+replacement character ufffd utf8
+invalid unicode code points udc80–udcff eight bits bytes value17 sometimes called utf8b18
+unicode code points u0080–u00ff value byte thus interpreting bytes according iso88591citation needed
+unicode code point character represented byte cp1252citation needed similar using iso88591 except characters range 0x80–0x9f mapped different unicode code points example 0x80 becomes euro sign u20ac
+
+replacement algorithms lossy sequence translated code point means would possible reliably convert back original encoding therefore losing information reserving code points udc80–udcff indicate errors defining utf8 encoding points invalid convert errors would seem make conversion lossless runs practical difficulties converted text cannot modified errors arranged convert back valid utf8 means conversion utf16 cannot also used store arbitrary invalid utf16 usually needed systems need invalid utf8 udc80–udcff reserved utf16 surrogates used utf8 string converted utf16 lead bugs string rejected
+large number invalid byte sequences provides advantage making easy program accept utf8 legacy encodings iso88591 software check utf8 correctness fails assume input legacy encoding technically true detect iso88591 string utf8 unlikely contains 8bit bytes unusual patterns
+invalid code pointsedit
+since 3629 november 2003 high surrogate halves used utf16 ud800 udfff code points encodable utf16 u10ffff legal unicode values utf8 encoding must treated invalid byte sequence
+decoding surrogate halves makes impossible store invalid utf16 windows filenames utf8 therefore detecting errors often implemented attempts define behavior formally wtf8 cesu
+official name variantsedit
+official internet assigned numbers authority iana code encoding utf819 letters uppercase name hyphenated spelling used unicode consortium documents relating encoding
+alternatively name utf8 used standards conforming iana list include html http headers20 declaration case insensitive19
+descriptions omit hyphen replace space utf8 accepted correct governing standards14 despite agents browsers understand standards intended describe existing practice html5 effectively require recognition
+unofficially utf8bom utf8nobom sometimes used refer text files respectively contain lack byte order mark bomcitation needed japan especially utf8 encoding without sometimes called utf8n2122
+utf8 called symbolid supports character encodings called symbol sets potentially could reduced utf823
+derivativesedit
+following implementations show slight differences utf8 specification incompatible utf8 specification rejected conforming utf8 applications
+cesu8edit
+main article cesu8
+many programs added utf8 conversions ucs2 data alter utf8 conversion ucs2 replaced surrogatepair using utf16 programs half utf16 surrogate pair encoded threebyte utf8 encoding resulting sixbyte sequences rather four bytes characters outside basic multilingual plane oracle mysql databases well java described probably many windows programs programmers unaware complexities utf16 although nonoptimal encoding generally deliberate supposed benefit preserves utf16 binary sorting order cesu8 binary sorted
+modified utf8edit
+modified utf8 mutf824 null character u0000 uses twobyte overlong encoding 11000000 10000000 hexadecimal instead 00000000 hexadecimal modified utf8 strings never contain actual null bytes contain unicode code points including u000025 allows strings null byte appended processed traditional nullterminated string functions
+known modified utf8 implementations also treat surrogate pairs cesu8
+normal usage java programming language supports standard utf8 reading writing strings inputstreamreader outputstreamwriter platforms default character requested program however uses modified utf8 object serialization26 among applications datainput dataoutput java native interface27 embedding constant strings class files28 format defined dalvik also uses modified utf8 represent string values29 also uses modified utf830 java internal representation unicode data uses strict cesu8 external data
+wtf8edit
+wtf8 wobbly transformation format 8bit extension utf8 encodings surrogate halves ud800 udfff allowed31 necessary store possiblyinvalid utf16 windows filenames many systems deal utf8 work without considering different encoding simpler
+wtf8 used refer erroneously doublyencoded utf8323334
+byte order markedit
+main article byte order mark
+many windows programs including windows notepad bytes 0xef 0xbb 0xbf start document saved utf8 utf8 encoding unicode byte order mark commonly referred utf8 even though relevant byte order also appear another encoding translated utf8 without stripping software aware multibyte encodings display three garbage characters start document software interpreting document 88591 windows1252 interpreted code page default certain older windows console applications
+unicode standard neither requires recommends utf8 warns encountered start file transcoding artifact35 presence utf8 cause problems existing software handle utf8 example
+
+programming language parsers explicitly designed utf8 often handle utf8 string constants comments choke encountering utf8 start file
+programs identify file types leading characters fail identify file utf8 present even user file could skip example unix shebang syntax another example internet explorer render pages standards mode starts document type declarationcitation needed
+programs insert information start file break identify utf8 example offline browsers originating start filecitation needed
+
+historyedit
+early 1992 search good byte stream encoding multibyte character sets draft 10646 standard contained nonrequired annex called utf1 provided byte stream encoding 32bit code points encoding satisfactory performance grounds among problems biggest problem probably clear separation ascii nonascii utf1 tools would backward compatible asciiencoded text utf1encoded text could confuse existing code expecting ascii extended ascii could contain continuation bytes range 0x21–0x7e meant something else ascii 0x2f unix path directory separator example reflected name introductory text replacement table derived textual description annex
+
+utf1
+
+number
+bytes
+first
+code point
+last
+code point
+byte
+byte
+byte
+byte
+byte
+
+
+
+u0000
+u009f
+00–9f
+
+
+
+
+
+
+
+u00a0
+u00ff
+
+a0–ff
+
+
+
+
+
+
+u0100
+u4015
+a1–f5
+21–7e a0–ff
+
+
+
+
+
+
+u4016
+u38e2d
+f6–fb
+21–7e a0–ff
+21–7e a0–ff
+
+
+
+
+
+u38e2e
+u7fffffff
+fc–ff
+21–7e a0–ff
+21–7e a0–ff
+21–7e a0–ff
+21–7e a0–ff
+
+
+july 1992 xopen committee xojig looking better encoding dave prosser unix system laboratories submitted proposal faster implementation characteristics introduced improvement 7bit ascii characters would represent multibyte sequences would include bytes high name file system safe transformation format fssutf text proposal later preserved final specification36373839
+
+fssutf proposal 1992
+
+number
+bytes
+bits
+code point
+first
+code point
+last
+code point
+byte
+byte
+byte
+byte
+byte
+
+
+
+
+u0000
+u007f
+0xxxxxxx
+
+
+
+
+
+
+
+
+u0080
+u207f
+10xxxxxx
+1xxxxxxx
+
+
+
+
+
+
+
+u2080
+u8207f
+110xxxxx
+1xxxxxxx
+1xxxxxxx
+
+
+
+
+
+
+u82080
+u208207f
+1110xxxx
+1xxxxxxx
+1xxxxxxx
+1xxxxxxx
+
+
+
+
+
+u2082080
+u7fffffff
+11110xxx
+1xxxxxxx
+1xxxxxxx
+1xxxxxxx
+1xxxxxxx
+
+
+august 1992 proposal circulated xopen representative interested parties modification thompson plan operating system group bell labs made somewhat less bitefficient previous proposal crucially allowed selfsynchronizing letting reader start anywhere immediately detect byte sequence boundaries also abandoned biases instead added rule shortest possible encoding allowed additional loss compactness relatively insignificant readers look invalid encodings avoid reliability especially security issues thompsons design outlined september 1992 placemat jersey diner pike following days pike thompson implemented updated plan throughout communicated success back xopen accepted specification fssutf38
+
+fssutf 1992 utf8 19933
+
+number
+bytes
+bits
+code point
+first
+code point
+last
+code point
+byte
+byte
+byte
+byte
+byte
+byte
+
+
+
+
+u0000
+u007f
+0xxxxxxx
+
+
+
+
+
+
+
+
+
+u0080
+u07ff
+110xxxxx
+10xxxxxx
+
+
+
+
+
+
+
+
+u0800
+uffff
+1110xxxx
+10xxxxxx
+10xxxxxx
+
+
+
+
+
+
+
+u10000
+u1fffff
+11110xxx
+10xxxxxx
+10xxxxxx
+10xxxxxx
+
+
+
+
+
+
+u200000
+u3ffffff
+111110xx
+10xxxxxx
+10xxxxxx
+10xxxxxx
+10xxxxxx
+
+
+
+
+
+u4000000
+u7fffffff
+1111110x
+10xxxxxx
+10xxxxxx
+10xxxxxx
+10xxxxxx
+10xxxxxx
+
+
+utf8 first officially presented usenix conference diego january 1993
+november 2003 utf8 restricted 3629 match constraints utf16 character encoding explicitly prohibiting code points corresponding high surrogate characters removed threebyte sequences ending u10ffff removed fourbyte sequences five sixbyte sequences
+google reported 2008 utf8 labelled unicode became common encoding html files40
+comparison singlebyte encodingsedit
+
+utf8 encode unicode character avoiding need figure code page otherwise indicate character allowing output multiple scripts time many scripts singlebyte encoding usage even knowing script insufficient information display correctly
+bytes 0xfe 0xff appear valid utf8 stream never matches utf16 byte order mark thus cannot confused absence 0xff 0377 also eliminates need escape byte telnet control connection
+utf8 encoded text larger specialized singlebyte encodings except plain ascii characters case scripts used 8bit character sets nonlatin characters encoded upper half cyrillic greek alphabet code pages characters utf8 double size scripts thai devanagari used various south asian languages characters triple size even examples single byte turns composite character unicode thus times larger utf8 caused objections india countries
+possible utf8 multibyte encoding split truncate string middle character result invalid string software refuses accept good parser ignore truncated character easy utf8 tricky multibyte encodings
+code points size measurements fixed number easy asciiera documentation character used synonym byte often considered important however measuring string positions using bytes instead characters algorithms easily efficiently adapted utf8 searching string within long string example done byte byte selfsynchronization property prevents false positives
+software text editors refuse correctly display interpret utf8 unless text starts byte order mark insert mark effect making impossible utf8 older software handle asciilike encodings cannot handle byte order mark however problem utf8 software implementations
+
+comparison multibyte encodingsedit
+
+utf8 encode unicode character files different scripts displayed correctly without choose correct code page font instance chinese arabic supported text without special codes inserted manual settings switch encoding
+utf8 selfsynchronizing character boundaries easily identified scanning welldefined patterns either direction bytes lost error corruption always locate next valid character resume processing need shorten string specified field previous valid character easily found many multibyte encodings much harder resynchronize
+byte oriented string searching algorithm used utf8 data since sequence bytes character cannot occur anywhere else older variablelength encodings shift property thus made stringmatching algorithms rather complicated shift byte character first byte next character could look like another legal character something cant happen utf8
+efficient encode using simple operations utf8 require slower mathematical operations multiplication division unlike obsolete utf1 encoding
+utf8 take space multibyte encoding designed specific script east asian legacy encodings generally used bytes character take three bytes character utf8
+
+comparison utf16edit
+
+byte encodings utf8 represented byte arrays programs often nothing needs done function converting byte encoding utf8 utf16 represented 16bit word arrays converting utf16 maintaining compatibility existing asciibased programs done windows requires every data structure takes string duplicated version accepting byte strings another version accepting utf16
+text encoded utf8 smaller text encoded utf16 code points u0080 range u0800uffff true modern european languages
+
+rich text formats including html contain large proportion ascii characters sake formatting thus size usually reduced significantly compared utf16 even language mostly uses 3byte long characters utf8nb
+
+
+communication html storage unix designed stream bytes utf16 string must pair bytes code unit
+
+order bytes becomes issue must specified utf16 protocol byte order mark
+number bytes missing utf16 whole rest string meaningless text bytes missing utf8 still allow text recovered accurately starting next character missing bytes
+
+
+characters u0800 uffff three bytes utf8 utf16 result text example chinese japanese devanagari take space utf8 characters ascii characters possible data mainly consist pure prose lessened degree context uses ascii whitespace digits punctuationnb
+
+alsoedit
+
+
+code
+character encodings html
+comparison email clients features
+comparison unicode encodings
+18030
+iconv standardized used convert different character encodings
+isoiec 8859
+specials unicode block
+unicode email
+unicode html
+universal character
+utf8 uris
+utfebcdic
+utf9 utf18
+utf16ucs2
+
+
+notesedit
+
+
+
+20101027 version utf8 generated converted notepad utf16 converted back utf8 20101122 version यूनिकोड unicode hindi required utf16 utf8
+20101122 version यूनिकोड unicode hindi pure text pasted notepad generated saved utf16 saved utf8
+
+
+
+referencesedit
+
+
+17×216 1114112 code points minus 2048 technicallyinvalid surrogate code points
+group eight bits known octet unicode standard
+email subject utf8 history commander pike date 2003 utf8 designed front eyes placemat jersey diner night september 1992so night wrote packing unpacking code started tearing graphics libraries next code done
+pike thompson 1993 hello world καλημέρα κόσμε こんにちは proceedings winter 1993 usenix conference
+chapter general structure unicode standard mountain view california unicode consortium isbn 9781936213016
+davis mark 20100128 unicode nearing official google blog google retrieved 20101205
+historical trends usage character encodings retrieved 20180103
+utf8 usage statistics builtwith retrieved 20110328
+using international characters internet mail internet mail consortium 19980801 retrieved 20071108
+specifying documents character encoding html5 world wide consortium 20140617 retrieved 20140730
+allen julie anderson deborah becker cook richard 2012 unicode standard version mountain view california unicode consortium basic multilingual plane plane contains commonuse characters modern scripts world well many historical rare characters majority unicode characters almost textual data found
+marin marvin 20001017 server folder traversal ms00078
+national vulnerability database summary cve20082938
+yergeau 2003 3629 utf8 transformation format 10646 internet engineering task force retrieved 20150203
+javas datainput interface
+nondecodable bytes system character interfaces pythonorg 20090422 retrieved 20140813
+kuhn markus 20000723 substituting malformed utf8 sequences decoder archived original 20150315 retrieved 20140925
+sittler 20060402 binary utf8 need matter archived original 20140723 retrieved 20140925
+character sets internet assigned numbers authority 20130123 retrieved 20130208
+dürst martin setting http charset parameter retrieved 20130208
+suikawiki japanese retrieved 20130426
+davis mark forms unicode archived original 20050506 retrieved 20130918
+symbol sets
+java documentation interface javaiodatainput subsection modified utf8 oracle corporation 2015 retrieved 20151016
+java virtual machine specification section constantutf8info structure oracle corporation 2015 retrieved 20151016 java virtual machine utf8 strings never embedded nulls
+java object serialization specification chapter object serialization stream protocol section stream elements oracle corporation 2010 retrieved 20151016 encoded modified utf8
+java native interface specification chapter types data structures section modified utf8 strings oracle corporation 2015 retrieved 20151016 uses modified utf8 strings represent various string types
+java virtual machine specification section constantutf8info structure oracle corporation 2015 retrieved 20151016 differences format standard utf8 format
+dalvik android open source project retrieved 20130409 format encodes string data facto standard modified utf8 form hereafter referred mutf8
+tclers wiki utf8 revision 20090425 retrieved 20090522 orthodox utf8 byte represented byte want bytes inside strings
+sapin simon 20160311 20140925 wtf8 encoding archived original 20160524 retrieved 20160524
+wtf8com 20060518 retrieved 20160621
+speer 20150521 ftfy fixes text changing less fixing retrieved 20160621
+wtf8 transformation format code page 1252 wwwuxsupcsxcamacuk retrieved 20161012
+unicode standard chapter
+appendix fssutf file system safe transformation format unicode standard archived original 20160607 retrieved 20160607
+whistler kenneth 20010612 fssutf utf2 utf8 utf16 archived original 20160607 retrieved 20060607
+pike 20030430 utf8 history retrieved 20120907
+pike 20120906 utf8 turned years yesterday retrieved 20120907
+davis mark 20080505 moving unicode retrieved 20130301
+
+
+external linksedit
+
+
+
+look utf8 wiktionary free dictionary
+
+
+several current definitions utf8 various standards documents
+
+3629 2003 establishes utf8 standard internet protocol element
+unicode standard version §310 2017 june
+isoiec 106462014
+
+supersede definitions given following obsolete works
+
+isoiec 1064611993 amendment annex 1996
+unicode standard version §310 2010
+unicode standard version §39–§310 2006
+unicode standard version appendix 1996
+2044 1996
+2279 1998
+unicode standard version 2000 plus corrigendum utf8 shortest form 2000
+unicode standard annex unicode 2001
+
+general mechanics main differences issues allowed range code point values safe handling invalid input
+
+original utf8 paper plan bell labs
+5198 defines utf8 network interchange
+utf8 test pages andreas prilop jost gippert world wide consortium
+unixlinux utf8unicode linux unicode howto utf8 gentoo
+unicodeutf8character table displays utf8 variety formats unicode html encoding information
+characters symbols unicode miracle computerphile youtube
+
+
+
+
+
+
+
+
+
+
+
+
+unicode
+
+
+
+unicode
+
+
+
+unicode consortium
+isoiec 10646 universal character
+versions
+
+
+
+
+
+code points
+
+
+
+blocks
+universal character
+character charts
+character property
+planes
+private areas
+
+
+
+
+
+characters
+
+
+
+
+special purpose
+
+
+
+
+combining grapheme joiner
+lefttoright mark righttoleft mark
+soft hyphen
+word joiner
+zerowidth joiner
+zerowidth nonjoiner
+zerowidth space
+
+
+
+
+
+lists
+
+
+
+characters
+unified ideographs
+combining character
+duplicate characters
+numerals
+scripts
+spaces
+symbols
+halfwidth fullwidth
+
+
+
+
+
+
+
+
+processing
+
+
+
+
+algorithms
+
+
+
+bidirectional text
+collation
+
+14651
+
+
+equivalence
+variation sequences
+international ideographs core
+
+
+
+
+
+comparison
+
+
+
+bocu1
+cesu8
+punycode
+scsu
+utf1
+utf7
+utf8
+utf9utf18
+utf16ucs2
+utf32ucs4
+utfebcdic
+
+
+
+
+
+
+
+
+pairs
+code points
+
+
+
+combining character
+compatibility characters
+duplicate characters
+equivalence
+homoglyph
+precomposed character
+
+list
+
+
+zvariant
+variation sequences
+regional indicator symbol
+fitzpatrick modifiers
+
+
+
+
+
+usage
+
+
+
+domain names
+email
+fonts
+html
+
+entity references
+numeric references
+
+
+input
+international ideographs core
+
+
+
+
+
+related standards
+
+
+
+common locale data repository cldr
+18030
+isoiec 8859
+15924
+
+
+
+
+
+related topics
+
+
+
+anomalies
+conscript unicode registry
+ideographic rapporteur group
+international components unicode
+people involved unicode
+unification
+
+
+
+
+
+
+
+
+
+
+scripts symbols unicode
+
+
+
+common
+inherited scripts
+
+
+
+combining marks
+diacritics
+punctuation
+space
+numbers
+
+
+
+
+
+modern scripts
+
+
+
+adlam
+arabic
+
+diacritics
+
+
+armenian
+balinese
+bamum
+batak
+bengali
+bopomofo
+braille
+buhid
+burmese
+canadian aboriginal
+chakma
+cham
+cherokee
+unified ideographs
+cyrillic
+deseret
+devanagari
+geez
+georgian
+greek
+gujarati
+gurmukhī
+hangul
+hanja
+hanunóo
+hebrew
+
+diacritics
+
+
+hiragana
+javanese
+kanji
+kannada
+katakana
+kayah
+khmer
+khudawadi
+
+latin
+lepcha
+limbu
+lisu fraser
+lontara
+malayalam
+mandaic
+masaram gondi
+meetei mayek
+mende kikakui
+miao pollard
+mongolian
+
+
+
+newa
+nushu
+chiki
+oriya
+osage
+osmanya
+pahawh hmong
+
+rejang
+samaritan
+śāradā
+saurashtra
+shavian
+sinhala
+sorang sompeng
+sundanese
+sylheti nagari
+syriac
+tagalog baybayin
+tagbanwa
+
+tham
+viet
+takri
+tamil
+telugu
+thaana
+thai
+tibetan
+tifinagh
+tirhuta
+
+warang citi
+
+
+
+
+
+
+ancient
+historic scripts
+
+
+
+ahom
+anatolian hieroglyphs
+ancient north arabian
+avestan
+bassa
+bhaiksuki
+brāhmī
+carian
+caucasian albanian
+coptic
+cuneiform
+cypriot
+egyptian hieroglyphs
+elbasan
+glagolitic
+gothic
+grantha
+hatran
+imperial aramaic
+inscriptional pahlavi
+inscriptional parthian
+kaithi
+kharosthi
+khojki
+linear
+linear
+lycian
+lydian
+mahajani
+manichaean
+marchen
+meroitic
+modi
+multani
+nabataean
+ogham
+hungarian
+italic
+permic
+persian cuneiform
+turkic
+palmyrene
+phagspa
+phoenician
+psalter pahlavi
+runic
+siddham
+south arabian
+soyombo
+tangut
+ugaritic
+zanabazar square
+
+
+
+
+
+notational scripts
+
+
+
+duployan
+signwriting
+
+
+
+
+
+symbols
+
+
+
+cultural political religious symbols
+currency
+mathematical operators symbols
+phonetic symbols including
+emoji
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+character encodings
+
+
+
+early telecommunications
+
+
+
+ascii
+isoiec
+isoiec 6937
+
+bcdic
+baudot code
+morse code
+
+telegraph code
+wabun code
+
+
+special telegraphy codes
+
+nonlatin
+chinese
+cyrillic
+
+
+needle telegraph codes
+
+
+
+
+
+isoiec 8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bibliographic
+
+
+
+ansel
+5426 54262 5427 5428 6438 6861 6862 10585 10586 10754 11822
+marc8
+
+
+
+
+
+national standards
+
+
+
+armscii
+brascii
+11643
+elot
+gost 10859
+18030
+hkscs
+iscii
+0201
+0208
+0212
+0213
+koi7
+9566
+1001
+pascii
+
+tis620
+tscii
+viscii
+yuscii
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isoiec 2022
+
+
+
+
+
+
+cccii
+
+
+
+
+
+macos code pages
+scripts
+
+
+
+arabic
+celtic
+centeuro
+chinesesimp euccn
+chinesetrad big5
+croatian
+cyrillic
+devanagari
+dingbats
+esperanto
+farsi
+gaelic
+greek
+gujarati
+gurmukhi
+hebrew
+iceland
+japanese shiftjis
+korean euckr
+latin1
+roman
+romanian
+sámi
+symbol
+thai tis620
+turkish
+ukrainian
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+855872
+
+
+
+
+
+
+
+
+86417248
+
+866808
+
+
+
+87411611162
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9501370
+
+
+
+1034
+1039
+1040
+1041
+1042
+1043
+1044
+1046
+1086
+1088
+1092
+1093
+1098
+1108
+1109
+1114
+1115
+1116
+1117
+1118
+1119
+1125848
+1126
+1127
+1131849
+1139
+1167
+1168
+1300
+1351
+1361
+1362
+1363
+1372
+1373
+1374
+1375
+1380
+1381
+1385
+1386
+1391
+1392
+1393
+1394
+kamenický
+mazovia
+cwi2
+koi8
+
+iran system
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+921901
+922902
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1004
+1006
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1029
+1036
+1089
+1111
+1124
+11291163
+1133
+1350
+1382
+1383
+
+
+
+
+
+apple macintosh
+emulations
+
+
+
+1275
+1280
+1281
+1282
+1283
+1284
+1285
+1286
+
+
+
+
+
+adobe emulations
+
+
+
+1038
+1276
+1277
+
+
+
+
+
+emulations
+
+
+
+1020
+1021
+1023
+1090
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1287
+1288
+
+
+
+
+
+emulations
+
+
+
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+
+
+
+
+
+windows code pages
+
+
+
+cergs
+8741162 tis620
+932943 shift
+9361386
+9501370 big5
+9491363 euckr
+1169
+1174
+extended latin8
+1200 utf16le
+1201 utf16be
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1261
+1270
+54936 gb18030
+
+
+
+
+
+ebcdic code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+371140
+
+
+
+
+
+
+
+
+
+
+
+
+2731141
+
+
+
+2771142
+2781143
+
+2801144
+
+
+
+2841145
+2851146
+
+
+
+
+
+
+2971147
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42016804
+
+
+424861612712
+
+
+5001148
+
+
+
+
+
+
+
+838838
+
+87011101153
+8711149
+87549719067
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9301390
+
+9331364
+9351388
+9371371
+9391399
+1001
+1002
+1003
+1005
+1007
+1024
+10251154
+10261155
+1027
+1028
+1030
+1031
+1032
+1033
+1037
+1047
+1068
+1069
+1070
+1071
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1087
+1091
+1097
+11121156
+1113
+11221157
+11231158
+11301164
+1132
+1136
+1137
+1150
+1151
+1152
+1159
+1165
+1166
+1278
+1279
+1303
+1364
+1376
+1377
+
+keis
+
+
+
+
+
+platform specific
+
+
+
+acorn
+adobe standard
+apple
+atascii
+atari
+bics
+casio calculators
+
+
+radix50
+mcsnrcs
+international
+elwrojunior
+fieldata
+
+geos
+0338
+roman extension
+roman8
+roman9
+focal
+
+lics
+lmbcs
+
+
+next
+
+petscii
+sharp calculators
+calculators
+trs80
+ventura international
+ventura symbol
+wiscii
+xccs
+zx80
+zx81
+spectrum
+
+
+
+
+
+unicode isoiec 10646
+
+
+
+utf1
+utf7
+utf8
+utf16 utf16leutf16be ucs2
+utf32 utf32leutf32be ucs4
+utfebcdic
+18030
+bocu1
+cesu8
+scsu
+
+
+
+
+
+miscellaneous code pages
+
+
+
+abicomp
+
+arib stdb24
+cork
+
+inis
+inis8
+johab
+
+
+
+
+seascii
+tace16
+tron
+utf5
+utf6
+wtf8
+
+
+
+
+
+related topics
+
+
+
+code page
+control character
+ccsid
+character encodings html
+charset detection
+unification
+hardware
+6429iec 6429ansi x364
+mojibake
+
+
+
+
+
+
+character sets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pike
+
+
+
+operating systems
+
+
+
+plan bell labs
+inferno
+
+
+
+
+
+programming languages
+
+
+
+newsqueak
+limbo
+
+sawzall
+
+
+
+
+
+software
+
+
+
+acme
+blit
+
+
+
+
+
+
+
+
+publications
+
+
+
+practice programming
+unix programming environment
+
+
+
+
+
+
+
+
+
+renée french
+mark shaney
+utf8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+thompson
+
+
+
+operating systems
+
+
+
+unix
+plan bell labs
+
+
+
+
+
+programming languages
+
+
+
+
+
+
+
+
+
+
+
+software
+
+
+
+belle
+
+grep
+
+space travel
+thompson shell
+
+
+
+
+
+
+
+
+
+utf8
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleutf8oldid818432906 categories character encodingcomputerrelated introductions 1993encodingsunicode transformation formatshidden categories japaneselanguage sources jaall articles unsourced statementsarticles unsourced statements august 2014articles unsourced statements march 2016articles unsourced statements december 2016pages using magic links

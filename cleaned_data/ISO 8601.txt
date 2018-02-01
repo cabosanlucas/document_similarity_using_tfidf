@@ -1,0 +1,1269 @@
+8601 data elements interchange formats information interchange representation dates times international standard covering exchange date timerelated data issued international organization standardization first published 1988 purpose standard provide unambiguous welldefined method representing dates times avoid misinterpretation numeric representations dates times particularly data transferred countries different conventions writing numeric dates times
+general 8601 applies representations formats dates gregorian potentially proleptic gregorian calendar times based 24hour timekeeping system including optional time zone information time intervals combinations thereof1 standard assign specific meaning elements datetime represented meaning depend context addition dates times represented cannot include words specified numerical meaning standard names years chinese calendar characters images sounds1
+representations interchange dates times arranged largest temporal term year placed left successively smaller term placed right previous term representations must written combination arabic numerals certain characters given specific meanings within standard implication commonplace ways writing parts dates january thursday allowed interchange representations
+
+
+date time current page generation purge refresh
+expressed according 8601
+
+
+date
+20180104
+
+
+combined date time
+20180104t0411340000
+20180104t041134z
+20180104t041134z
+
+
+week
+2018w01
+
+
+date week number
+2018w014
+
+
+date without year
+0104
+
+
+ordinal date
+2018004
+
+
+
+
+
+contents
+
+
+history
+general principles
+dates
+
+years
+calendar dates
+week dates
+ordinal dates
+
+
+times
+
+time zone designators
+
+
+time offsets
+
+
+
+
+combined date time representations
+durations
+time intervals
+
+repeating intervals
+
+
+truncated representations
+usage
+related standards
+also
+notes references
+external links
+
+
+
+historyedit
+first edition 8601 standard published 86011988 1988 unified replaced number older standards various aspects date time notation 2014 2015 2711 3307 40312 superseded second edition 86012000 2000 current third edition 86012004 published december 2004 8601 prepared direct responsibility technical committee 1544
+2014 though superseded standard originally introduced allnumeric date notation mosttoleastsignificant order yyyymmdd week numbering system introduced 2015 identification days ordinal dates originally defined 2711
+8601 currently process updated split parts anticipated released 2017 2018 draft isodis 860112016 represents slightly updated contents current 8601 standard56 whereas draft isodis 860122016 defines various extensions uncertainties parts extended datetime format edtf7891011
+general principlesedit
+
+date time values ordered largest smallest unit time year month week hour minute second fraction second lexicographical order representation thus corresponds chronological order except date representations involving negative years allows dates naturally sorted example file systems
+date time value fixed number digits must padded leading zeros
+representations done formats basic format minimal number separators extended format separators added enhance human readability1213 standard notes basic format avoided plain text14 separator used date values year month week hyphen colon used separator time values hours minutes seconds example month year 2009 written 20090106 extended format simply 20090106 basic format without ambiguity
+reduced accuracy15 number values dropped date time representations order least significant example 200405 valid 8601 date indicates fifth month 2004 format never represent unspecified month 2004 represent timespan extending 2004 2005
+necessary particular application standard supports addition decimal fraction smallest time value representation
+
+datesedit
+
+january 2018
+
+week
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standard uses gregorian calendar serves international standard civil use16
+8601 fixes reference calendar date gregorian calendar 1875 date convention mètre metre convention signed paris however calendar dates convention still compatible gregorian calendar back official introduction gregorian calendar 15821015 earlier dates proleptic gregorian calendar used mutual agreement partners exchanging information standard states every date must consecutive usage julian calendar would contrary standard switchover date dates would consecutive
+yearsedit
+
+
+yyyy
+
+
+±yyyyy
+
+
+8601 prescribes minimum fourdigit year yyyy avoid year 2000 problem therefore represents years 0000 9999 year 0000 equal others however years prior 1583 automatically allowed standard instead values range 0000 1582 shall used mutual agreement partners information interchange17
+represent years 0000 9999 standard also permits expansion year representation prior agreement sender receiver18 expanded year representation ±yyyyy must agreedupon number extra year digits beyond fourdigit minimum must prefixed sign19 instead common adbc cebce notation convention labelled 0000 labeled −0001 on20
+calendar datesedit
+
+
+yyyymmdd
+
+yyyymmdd
+
+
+yyyymm
+yyyymm
+
+
+mmdd
+
+mmdd
+
+
+calendar date representations form shown adjacent yyyy indicates fourdigit year 0000 9999 indicates twodigit month year indicates twodigit month example april 1981 represented either 1981040512 extended format 19810405 basic format
+standard also allows calendar dates written reduced accuracy15 example write 198104 mean 1981 april 2000 version allowed writing 0405 mean april 2004 version allow omitting year month present simply write 1981 refer year refer century 1900 1999 inclusive although standard allows yyyymmdd yyyymmdd formats complete calendar date representations omitted yyyymm format allowed disallowing dates form yyyymm standard avoids confusion truncated representation yymmdd still often used
+week datesedit
+main article week date
+
+
+yyyywww
+
+yyyywww
+
+
+yyyywwwd
+
+yyyywwwd
+
+
+week date representations format shown adjacent yyyy indicates weeknumbering year slightly different traditional gregorian calendar year week number prefixed letter weekday number beginning monday ending sunday
+several mutually equivalent compatible descriptions week
+
+week years first thursday formal definition
+week january
+first week majority four days starting year
+week starting monday period december january
+
+consequence january monday tuesday wednesday thursday week january friday saturday sunday week previous year week december always last week year
+week number described counting thursdays week contains 12th thursday year
+weeknumbering year starts first monday week ends sunday year hence without overlap consists full weeks first week year three days actually gregorian calendar year ending three monday tuesday wednesday similarly last week year three days actually gregorian calendar year starting three friday saturday sunday thursday week always gregorian calendar year denoted weeknumbering year
+examples
+
+monday december 2008 written 2009w011
+sunday january 2010 written 2009w537
+
+ordinal datesedit
+
+
+yyyyddd
+
+yyyyddd
+
+
+ordinal date simple form occasions arbitrary nature week month definitions impediment instance comparing dates different calendars represented yyyy indicates year year leap years example 19810405 also 1981095
+format used simple hardware systems need date system including full calendar calculation software significant nuisance system sometimes referred julian date cause confusion astronomical julian sequential count number days since beginning january 4713 greenwich noon julian proleptic calendar noon date 47131124 uses gregorian proleptic calendar year 0000
+timesedit
+
+
+hhmmsssss
+
+hhmmsssss
+
+
+hhmmss
+
+hhmmss
+
+
+hhmm
+
+hhmm
+
+
+
+
+
+
+
+8601 uses 24hour clock system basic format hhmmss extended format hhmmss
+
+refers zeropadded hour used denote midnight calendar
+refers zeropadded minute
+refers zeropadded second used denote added leap second
+
+time might appear either 134730 basic format 134730 extended format
+either seconds minutes seconds omitted basic extended time formats greater brevity decreased accuracy hhmm hhmm resulting reduced accuracy time formats22
+midnight special case referred either 0000 2400 notation 0000 used beginning calendar frequently used 2400 20070405t2400 instant 20070406t0000 combined date time representations
+decimal fractions added three time elements however fraction added lowest order time element representation decimal mark either comma without preference stated resolution 22nd general conference cgpm 200323 preference comma according 8601200424 used separator time element fraction denote hours half minutes include seconds figure represent 14305 14305 14305 14305 limit number decimal places decimal fraction however number decimal places needs agreed communicating parties example microsoft server precision decimal fraction yyyymmddthhmmssmmm25
+time zone designatorsedit
+
+
+timez
+
+
+time±hhmm
+
+
+time±hhmm
+
+
+time±hh
+
+
+time zones 8601 represented local time location unspecified offset
+relation information given time representation time assumed local time safe assume local time communicating time zone ambiguous used communicating across different time zones even within single geographic time zone local times ambiguous region observes daylight saving time usually preferable indicate time zone zone designator using standards notation
+utcedit
+time directly time without space zone designator zero offset 0930 therefore represented 0930z 0930z 144515 would 144515z 144515z
+time offsets utcedit
+offset appended time form ±hhmm ±hhmm time described hour ahead time berlin winter zone designator would 0100 0100 simply represent time behind offset negative example time york standard daylight saving hours utc−0500 time offsets list time offsets represent negative offset 8601 specifies using either hyphen–minus minus sign character interchange character limited minus sign character hyphen–minus used ascii minus sign hyphen–minus character code decimal hexadecimal would used character minus sign character used unicode minus sign character code u2212 2212 hexadecimal html character entity invocation minus
+following times refer moment 1830z 223004 1130−0700 1500−0330 nautical time zone letters used exception calculate time subtract offset local time 1500−0330 1500 −0330 1830
+offset zero addition special representation also stated numerically 0000 0000 however permitted state numerically negative sign −0000 −0000 section dictating sign usage section 2004 edition standard states plus sign must used positive zero value minus sign negative value contrary rule 3339 otherwise profile 8601 permits denotation differing connotation26
+8601 permits hyphen used minus character character limited27 contrast 3339 explicitly requires hyphen symbol represent negative offsets allow minus symbol28
+combined date time representationsedit
+
+
+datettime
+
+
+single point time represented concatenating complete date expression letter delimiter valid time expression example 20070405t1430
+time zone designator required follows combined date time example 20070405t1430z 20070405t12300200
+either basic extended formats used date time must format date expression calendar week ordinal must complete representation time represented using specified reduced accuracy format15 permitted omit character mutual agreement29
+durationsedit
+
+
+pnynmndtnhnmns
+
+
+
+
+
+pdatettime
+
+
+durations define amount intervening time time interval represented format pnynmndtnhnmns shown right representations replaced value date time elements follow leading zeros required maximum number digits element agreed communicating parties capital letters designators date time elements replaced
+
+duration designator period placed start duration representation
+year designator follows value number years
+month designator follows value number months
+week designator follows value number weeks
+designator follows value number days
+time designator precedes time components representation
+
+hour designator follows value number hours
+minute designator follows value number minutes
+second designator follows value number seconds
+
+
+
+example p3y6m4dt12h30m5s represents duration three years months four days twelve hours thirty minutes five seconds
+date time elements including designator omitted value zero lower order elements also omitted reduced precision example p23dt23h acceptable duration representations however least element must present thus valid representation duration seconds pt0s however valid represent duration
+resolve ambiguity onemonth duration pt1m oneminute duration note time designator precedes time value smallest value used also decimal fraction p05y indicate half year decimal fraction specified either comma full stop p05y p05y standard prohibit date time values duration representation exceeding carry points except noted thus pt36h could used well p1dt12h representing duration keep mind pt36h p1dt12h switching daylight saving time
+alternatively format duration based combined date time representations used agreement communicating parties either basic format pyyyymmddthhmmss extended format pyyyymmddthhmmss example first duration shown would p00030604t123005 however individual date time values cannot exceed moduli value month hour would permissible30
+although standard describes durations part time intervals discussed next section duration format widely used independent time intervals java duration class3132
+time intervalsedit
+
+
+startend
+
+
+startduration
+
+
+durationend
+
+
+duration
+
+
+time interval intervening time time points amount intervening time expressed duration described previous section time points start expressed either combined date time representation date representation
+four ways express time interval
+
+start 20070301t130000z20080511t153000z
+start duration 20070301t130000zp1y2m10dt2h30m
+duration p1y2m10dt2h30m20080511t153000z
+duration p1y2m10dt2h30m additional context information
+
+first three require values separated interval designator usually solidus commonly referred forward slash section standard notes certain application areas double hyphen used separator instead solidus standard define term double hyphen previous versions used notations like 2000200233 double hyphen instead solidus allows inclusion computer filenames34 solidus reserved character allowed filename common operating systems
+startend expressions elements missing value assumed start value including time zone feature standard allows concise representations time intervals example date twohour meeting including start finish times could simply shown 20071214t13301530 1530 implies 20071214t1530 date start beginning dates monthly billing period 200802150314 0314 implies 20080314 year start
+greater precision desirable represent time interval time elements added representation interval denoted 2007111315 start time 20071113 time 20071115 whereas 20071113t090015t1700 includes start times explicitly include start dates interval would represented 20071113t000015t2400
+repeating intervalsedit
+
+
+rnninterval
+
+
+rinterval
+
+
+repeating intervals specified clause recurring time interval formed adding beginning interval expression used letter replaced number repetitions leaving value means unbounded number repetitions interval specifies start forms start repeating interval interval specifies start form repeating interval example repeat interval p1y2m10dt2h30m five times starting 20080301t130000z r520080301t130000zp1y2m10dt2h30m
+truncated representationsedit
+86012000 allowed truncation agreement leading components date time omitted notably allowed twodigit years used ambiguous formats yymmdd yymmdd provision removed 86012004
+usageedit
+internet world wide consortium uses 8601 defining profile standard restricts supported date time formats reduce chance error complexity software35
+3339 defines profile 8601 internet protocols standards explicitly excludes durations dates common complex formats week numbers ordinal days permitted36
+3339 deviates 8601 allowing zero time zone offset specified 0000 8601 forbids 3339 intends 0000 carry connotation stating preferred time zone whereas conforming 0000 nonzero offset connotes offset used preferred convention regarding 0000 derived earlier rfcs 2822 uses timestamps email headers 2822 made claim part timestamp format conforms 8601 free convention without conflict
+8601 referenced several specifications full range options 8601 always used example various electronic program guide standards digital radio several forms describe points time durations audio metadata specification also makes subset 860137 x690 encoding standards generalizedtime makes another subset 8601
+8601 week date 2006 appeared basic form major brand commercial packaging united states appearance depended particular packaging canning bottling plant particular brand format particularly useful quality assurance production errors readily traced work weeks products correctly targeted recall
+related standardsedit
+
+
+australia
+86012007
+
+
+austria
+önorm 8601 replaced önorm 28601
+
+
+belgium
+28601 1993
+
+
+brazil
+58921989
+
+
+canada
+cancsaz2434–89 allnumeric date time
+
+
+colombia
+10342014 source icontec standard identical 86012004
+
+
+china
+74082005
+
+
+czech republic
+8601 replaced 28601
+
+
+denmark
+dsiso 86012005 replaced dsen 28601
+
+
+european norm
+8601 286011992 cancelled october 2011
+
+
+finland
+sfsen 28601
+
+
+france
+z69200 2860119930601 cancelled
+
+
+germany
+8601200609 replaced 28601199302 related 5008201104 replaced 5008200505 5008200111 5008199605
+
+
+greece
+elot 28601
+
+
+hungary
+86012003
+
+
+iceland
+286011992
+
+
+india
+79002001
+
+
+ireland
+isen 286011993
+
+
+italy
+28601 1993
+
+
+japan
+03012002
+
+
+korea republic
+8601
+
+
+latvia
+ministru kabineta noteikumi nr916
+
+
+lithuania
+86012006 replaced 86011997
+
+
+luxembourg
+itmen 28601
+
+
+netherlands
+8601 28601 1994 2772
+
+
+norway
+nsiso 8601
+
+
+poland
+pnen 286012002
+
+
+portugal
+28601
+
+
+russia
+гост 86012001 current гост 76490 obsolete
+
+
+south africa
+sans 86012009
+
+
+spain
+286011995
+
+
+sweden
+ssiso 8601 replaced ssen 28601 1991
+
+
+switzerland
+8601200508 replaced snen 286011994
+
+
+taiwan
+7648
+
+
+thailand
+11112535 1992
+
+
+turkey
+8601
+
+
+ukraine
+дсту 86012010
+
+
+united kingdom
+86012004 28601 19890630
+
+
+united states
+ansi incits 301997 r2008 nist fips
+
+
+vietnam
+tcvn 639811998
+
+
+alsoedit
+media related 8601 wikimedia commons
+
+astronomical year numbering
+date time representation country
+
+notes referencesedit
+
+
+
+86012004e section scope
+86012004e 20041201 annex concept representations date time values logically derived thus 2014 3307 4031 superseded identification particular date means ordinal dates 2711 means week numbering system 2015 alternative methods basic concept international standard could also encompass thus 2015 2711 superseded
+86012004e 20041201 foreword
+processes data elements documents commerce industry administration technical committees
+isodis 8601120161026
+german draft 86011201702 datenelemente austauschformate informationsaustausch darstellung datum uhrzeit teil grundlegende regeln isodis 860112016 dinnormenausschuss informationstechnik anwendungen
+isowd 8601220160216
+isodis 8601220161026
+german draft 86012201702 datenelemente austauschformate informationsaustausch darstellung datum uhrzeit teil erweiterungen isodis 860122016 dinnormenausschuss informationstechnik anwendungen
+edtf
+extended datetime format edtf 20122014 draft submission
+numeric representation dates time
+date time formats
+86012004 section basic format
+8601 uses word accuracy precision relevant section representation reduced accuracy
+doggett 1992 calendars seidelmann explanatory supplement astronomical almanac sausalito california university science books isbn 0935702687 archived original 20040401 gregorian calendar today serves international standard civil
+86012004e 20041201 section 4121 general
+86012004e 20041201 expansion mutual agreement partners information interchange permitted expand component identifying calendar year otherwise limited four digits enables reference dates times calendar years outside range supported complete representations start year 0000 year 9999
+86012004 sections 4124
+example annex standard
+6350 vcard format specification ietf august 2011 retrieved 20160629 truncated representation specified iso86012000 sections 5213 permitted
+86012004 section 4223 representations reduced accuracy
+nist techbeat 20061122 nist 20061122 retrieved 20170927 decimals score point international standards soon possible write international standards documents decimal points
+86012004e 20041201 4224 decimal fraction shall divided integer part decimal sign specified comma full stop comma preferred sign
+8601 format technetmicrosoftcom retrieved 20171016
+3339 unknown local offset convention
+8601 §341 stating environment made character repertoire based isoiec hyphen minus mapped onto hyphenminus representations plusminus shall used environment interchange repertoire includes plusminus
+httpstoolsietforghtmlrfc3339section56 timenumoffset defined hyphen symbol
+86012004e 20041201 note mutual agreement partners information interchange character omitted applications risk confusing date time representation others defined international standard missing empty help
+86012004 section 4433 alternative format
+java class duration java platform standard edition oracle retrieved october 2017
+amazon alexa duration amazon developer amazoncom retrieved october 2017
+info 8601 date time representation standard cstutfi retrieved 20120829
+8601 getting times dates hydrogold 20120101 retrieved 20130813
+note date time formats reuters
+3339 section
+nilsson 20001101 version main structure id3org retrieved 20090927
+
+
+
+external linksedit
+
+isos catalog entry 86012004
+latest draft international standard 8601 isotc part part
+international date format quality tips world wide consortium
+8601 curlie based dmoz
+8601 summary markus kuhn
+summary 8601 wayback machine archived 20110614
+mathematics 8601 calendar
+specification date time based 86011988
+ietf 3339 based 86012000
+
+implementation overview
+
+8601 implementation around world
+
+
+
+
+
+
+
+
+
+
+
+
+time measurement standards
+
+
+
+
+
+
+chronometry
+orders magnitude
+metrology
+
+
+
+
+
+international standards
+
+
+
+coordinated universal time
+
+offset
+
+
+
+
+dut1
+international earth rotation reference systems service
+
+8601
+international atomic time
+6hour clock
+12hour clock
+24hour clock
+barycentric coordinate time
+barycentric dynamical time
+civil time
+daylight saving time
+geocentric coordinate time
+international date line
+leap second
+solar time
+terrestrial time
+time zone
+180th meridian
+
+
+
+
+
+obsolete standards
+
+
+
+ephemeris time
+greenwich mean time
+prime meridian
+
+
+
+
+
+time physics
+
+
+
+absolute time space
+spacetime
+chronon
+continuous signal
+coordinate time
+cosmological decade
+discrete time continuous time
+planck time
+proper time
+theory relativity
+time dilation
+gravitational time dilation
+time domain
+time translation symmetry
+tsymmetry
+
+
+
+
+
+horology
+
+
+
+clock
+astrarium
+atomic clock
+complication
+history timekeeping devices
+hourglass
+marine chronometer
+marine sandglass
+radio clock
+watch
+water clock
+sundial
+dialing scales
+equation time
+history sundials
+sundial markup schema
+
+
+
+
+
+calendar
+
+
+
+astronomical
+dominical letter
+epact
+equinox
+gregorian
+hebrew
+hindu
+intercalation
+islamic
+julian
+leap year
+lunar
+lunisolar
+solar
+solstice
+tropical year
+weekday determination
+weekday names
+
+
+
+
+
+archaeology geology
+
+
+
+chronological dating
+geologic time scale
+international commission stratigraphy
+
+
+
+
+
+astronomical chronology
+
+
+
+galactic year
+nuclear timescale
+precession
+sidereal time
+
+
+
+
+
+units time
+
+
+
+shake
+jiffy
+second
+minute
+moment
+hour
+
+week
+fortnight
+month
+year
+olympiad
+lustrum
+decade
+century
+saeculum
+millennium
+
+
+
+
+
+related topics
+
+
+
+chronology
+duration
+
+music
+
+
+mental chronometry
+metric time
+system time
+time value money
+timekeeper
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleiso8601oldid817953692 categories calendaring standardsdate time representationiso standardsspecific calendarstime measurement systemshidden categories pages using citations urlpages using magic linksarticles dmoz linkswebarchive template wayback links

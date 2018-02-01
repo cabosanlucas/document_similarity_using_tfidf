@@ -1,0 +1,952 @@
+Extended Unix Code (EUC) is a multibyte character encoding system used primarily for Japanese, Korean, and simplified Chinese.
+The structure of EUC is based on the ISO-2022 standard, which specifies a way to represent character sets containing a maximum of 94 characters, or 8836 (942) characters, or 830584 (943) characters, as sequences of 7-bit codes. Only ISO-2022 compliant character sets can have EUC forms. Up to four coded character sets (referred to as G0, G1, G2, and G3 or as code sets 0, 1, 2, and 3) can be represented with the EUC scheme.
+G0 is almost always an ISO-646 compliant coded character set such as US-ASCII, ISO 646:KR (KS X 1003) or ISO 646:JP (the lower half of JIS X 0201) that is invoked on GL (i.e. with the most significant bit cleared). An exception from US-ASCII is that 0x5C (backslash in US-ASCII) is often used to represent a Yen sign in EUC-JP (see below) and a Won sign in EUC-KR.
+To get the EUC form of an ISO-2022 character, the most significant bit of each 7-bit byte of the original ISO 2022 codes is set (by adding 128 to each of these original 7-bit codes); this allows software to easily distinguish whether a particular byte in a character string belongs to the ISO-646 code or the ISO-2022 (EUC) code.
+The most commonly used EUC codes are variable-width encodings with a character belonging to G0 (ISO-646 compliant coded character set) taking one byte and a character belonging to G1 (taken by a 94x94 coded character set) represented in two bytes. The EUC-CN form of GB2312 and EUC-KR are examples of such two-byte EUC codes. EUC-JP includes characters represented by up to three bytes whereas a single character in EUC-TW can take up to four bytes.
+Modern applications are more likely to use UTF-8, which supports all of the glyphs of the EUC codes, and more, and is generally more portable with fewer vendor deviations and errors.
+
+
+
+Contents
+
+
+1 EUC-CN
+
+1.1 Related encoding systems
+
+
+2 EUC-JP
+3 EUC-KR
+4 EUC-TW
+5 Packed versus fixed length form
+6 See also
+7 References
+8 External links
+
+
+
+EUC-CN[edit]
+EUC-CN is the usual way to use the GB2312 standard for simplified Chinese characters. Unlike the case of Japanese, the ISO-2022 form of GB2312 is not normally used, though a variant form called HZ was sometimes used on USENET.
+EUC-CN can also be used to encode the Unicode-based GB18030 character encoding, which includes traditional characters, although GB18030 is more frequently used without EUC encoding, since GB18030 is already a Unicode encoding. However, GB18030 encoded in EUC-CN is a variable-width encoding, because GB18030 contains more than 8836 (94×94) characters.
+Related encoding systems[edit]
+An encoding related to EUC-CN is the "748" code used in the WITS typesetting system developed by Beijing's Founder Technology (now obsoleted by its newer FITS typesetting system). The 748 code contains all of GB2312, but is not ISO 2022–compliant and therefore not a true EUC code. (It uses an 8-bit lead byte but distinguishes between a second byte with its most significant bit set and one with its most significant bit cleared, and is therefore more similar in structure to Big5 and other non–ISO 2022–compliant DBCS encoding systems.) The non-GB2312 portion of the 748 code contains traditional and Hong Kong characters and other glyphs used in newspaper typesetting.
+EUC-JP[edit]
+EUC-JP is a variable-width encoding used to represent the elements of three Japanese character set standards, namely JIS X 0208, JIS X 0212, and JIS X 0201. 0.3% of all web pages use EUC-JP in January 2016.[1] Other names for this encoding include Unixized JIS (or UJIS) and AT&T JIS.[2]
+A related and partially compatible encoding, called EUC-JISx0213 or EUC-JIS-2004, encodes JIS X 0201 and JIS X 0213[3] (similarly to Shift_JISx0213, its Shift_JIS-based counterpart).
+Characters are encoded as follows:
+
+As an EUC/ISO 2022 compliant encoding, the C0 control characters, space and DEL are represented as in ASCII.
+A graphical character from ASCII (code set 0) is represented as its usual one-byte representation, in the range 0x21 – 0x7E. While some variants of EUC-JP encode the lower half of JIS X 0201 here, most encode ASCII,[4] including the W3C/WHATWG Encoding standard used by HTML5,[5] and so does EUC-JIS-2004.[3] While this means that 0x5C is typically mapped to Unicode as U+005C REVERSE SOLIDUS (the ASCII backslash), U+005C may be displayed as a Yen sign by certain Japanese-locale fonts, e.g. on Microsoft Windows, for compatibility with the lower half of JIS X 0201.[6][7]
+A character from JIS X 0208 (code set 1) is represented by two bytes, both in the range 0xA1 – 0xFE. This differs from the ISO-2022-JP representation by having the high bit set. This code set may also contain vendor extensions in some EUC-JP variants. In EUC-JIS-2004, the first plane of JIS X 0213 is encoded here, which is effectively a superset of standard JIS X 0208.[3]
+A character from the upper half of JIS X 0201 (half-width kana, code set 2) is represented by two bytes, the first being 0x8E, the second being the usual JIS X 0201 representation in the range 0xA1 – 0xDF.
+A character from JIS X 0212 (code set 3) is represented in EUC-JP by three bytes, the first being 0x8F, the following two being in the range 0xA1 – 0xFE, i.e. with the high bit set. In addition to standard JIS X 0212, code set 3 may also contain IBM vendor extensions (in rows 83 and 84) in some EUC-JP variants.[8] In EUC-JIS-2004, the second plane of JIS X 0213 is encoded here,[3] which does not collide with the allocated rows in standard JIS X 0212.[9]
+
+This encoding scheme allows the easy mixing of 7-bit ASCII and 8-bit Japanese without the need for the escape characters employed by ISO-2022-JP, which is based on the same character set standards.
+In Japan, the EUC-JP encoding is heavily used by Unix or Unix-like operating systems (except for HP-UX), while Shift JIS or its extensions (Windows code page 932 on Microsoft Windows, and MacJapanese on classic Mac OS) are used on other platforms. Therefore, whether Japanese web sites use EUC-JP or Shift_JIS often depends on what OS the author uses.
+EUC-KR[edit]
+EUC-KR is a variable-width encoding to represent Korean text using two coded character sets, KS X 1001 (formerly KS C 5601)[10][11] and KS X 1003 (formerly KS C 5636)/ISO 646:KR/US-ASCII. KS X 2901 (formerly KS C 5861) stipulates the encoding and RFC 1557 dubbed it as EUC-KR. A character drawn from KS X 1001 (G1, code set 1) is encoded as two bytes in GR (0xA1-0xFE) and a character from KS X 1003/US-ASCII (G0, code set 0) takes one byte in GL (0x21-0x7E). 0.3% of all web pages use EUC-KR in April 2016.[1]
+It is the most widely used legacy character encoding in Korea on all three major platforms (Unix-like OS, Windows and Mac), but its use has been very slowly decreasing as UTF-8 gains popularity, especially on Linux and Mac OS X. It is usually referred to as Wansung (완성) in Republic of Korea. The default Korean codepage for Windows, code page 949 (IBM's 1363), is a proprietary but upward compatible extension of EUC-KR referred to as Unified Hangeul Code (통합 완성형, Tonghab Wansunghyung). Mac Korean used in classic Mac OS is also compatible with EUC-KR.
+As with most other encodings, UTF-8 is now preferred for new use, solving problems with consistency between platforms and vendors.
+EUC-TW[edit]
+EUC-TW is a variable-width encoding that supports US-ASCII and 16 planes of CNS 11643, each of which is 94x94. It is a rarely used encoding for traditional Chinese characters as used in Taiwan. Big5 is much more common.
+
+As an EUC/ISO 2022 encoding, the C0 control characters, ASCII space and DEL are encoded as in ASCII.
+A graphical character from US-ASCII (G0, code set 0) is encoded in GL as its usual single byte representation (0x21-0x7E).
+A character from CNS 11643 plane 1 (code set 1) is encoded as two bytes in GR (0xA1-0xFE).
+A character in plane 1 through 16 of CNS 11643 (code set 2) is encoded as four bytes:
+
+The first byte is always 0x8E (Single Shift 2).
+The second byte (0xA1-0xB0) indicates the plane, the number of which is obtained by subtracting 0xA0 from that byte.
+The third and fourth bytes are in GR (0xA1-0xFE).
+
+
+
+Note that the plane 1 of CNS 11643 is encoded twice as code set 1 and a part of code set 2.
+UTF-8 is becoming more common than EUC-TW, as with most code pages.
+Packed versus fixed length form[edit]
+The encodings described above (using bytes in 0x21-0x7E for code set 0, bytes in 0xA1-0xFE for code set 1, 0x8E followed by bytes in 0xA1-0xFE for code set 2 and 0x8F followed by bytes in 0xA1-0xFE for code set 3) are in a variable-width form referred to as the EUC packed format. This is the form usually labelled as EUC.[2]
+Internal processing may make use of a fixed-length alternative form called the EUC complete two-byte format. This represents:[2]
+
+Code set 0 as two bytes in the range 0x21-0x7E (except that the first may be 0x00).
+Code set 1 as two bytes in the range 0xA0-0xFF (except that the first may be 0x80).
+Code set 2 as a byte in the range 0x20-0x7E (or 0x00) followed by a byte in the range 0xA0-0xFF.
+Code set 3 as a byte in the range 0xA0-0xFF (or 0x80) followed by a byte in the range 0x21-0x7E.
+
+Initial bytes of 0x00 and 0x80 are used in cases where the code set uses only one byte. There is also a four-byte fixed length format.[2] These fixed length forms are suited to internal processing and are not usually encountered in interchange.
+EUC-JP is registered with the IANA in both formats, the packed format as "EUC-JP" or "csEUCPkdFmtJapanese" and the fixed width format as "csEUCFixWidJapanese".[12] Only the packed format is included in the WHATWG Encoding Standard used by HTML5.[13]
+See also[edit]
+
+CJK
+Japanese language and computers
+Korean language and computers
+Chinese character encoding
+
+References[edit]
+
+
+^ a b "Historical trends in the usage of character encodings for websites". W3Techs. 
+^ a b c d Lunde, Ken (2008). CJKV Information Processing: Chinese, Japanese, Korean, and Vietnamese Computing. O'Reilly. pp. 242–244. ISBN 9780596800925. 
+^ a b c d "JIS X 0213 Code Mapping Tables". x0213.org. 
+^ "Ambiguities in conversion from Japanese EUC to Unicode (Non-Normative)". XML Japanese Profile. W3C. 
+^ "EUC-JP decoder". Encoding Standard. WHATWG.  "If byte is an ASCII byte, return a code point whose value is byte."
+^ "3.1.1 Details of Problems". Problems and Solutions for Unicode and User/Vendor Defined Characters. The Open Group Japan. Archived from the original on 1999-02-03. 
+^ Kaplan, Michael S. (2005-09-17). "When is a backslash not a backslash?". 
+^ "4.2 Review Process of Rules for Code Set Conversion Between eucJP-open and UCS". Problems and Solutions for Unicode and User/Vendor Defined Characters. The Open Group Japan. Archived from the original on 1999-02-03. 
+^ Chang, Hyeshik. "Readme for CJKCodecs". cPython. Python Software Foundation. 
+^ "KS X 1001:1992" (PDF). 
+^ "KS C 5601:1987" (PDF). 1988-10-01. 
+^ "Character Sets". IANA. 
+^ "4.2. Names and labels". Encoding Standard. WHATWG. 
+
+
+External links[edit]
+
+EUC-JP codeset table (minus the ASCII and halfwidth parts)
+GB18030-2000 — The New Chinese National Standard
+The New Generation of Pre-Press Software in China—mentions the 748 code
+Description of the EUC-TW code (in Chinese)
+Manual page of EUC-JISX0213 in Perl Encode module
+International Register of Coded Character Sets to be Used With Escape Sequence— Section 2.4 (p.14f.) with the coded character sets of China, Japan, South Korea, North Korea and Taiwan (ISO/IEC)
+Chinese, Japanese, and Korean character set standards and encoding systems
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Character encodings
+
+
+
+Early telecommunications
+
+
+
+ASCII
+ISO/IEC 646
+ISO/IEC 6937
+T.61
+BCDIC
+Baudot code
+Morse code
+
+Telegraph code
+Wabun code
+
+
+Special telegraphy codes
+
+Non-Latin
+Chinese
+Cyrillic
+
+
+Needle telegraph codes
+
+
+
+
+
+ISO/IEC 8859
+
+
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+
+
+
+Bibliographic use
+
+
+
+ANSEL
+ISO 5426 / 5426-2 / 5427 / 5428 / 6438 / 6861 / 6862 / 10585 / 10586 / 10754 / 11822
+MARC-8
+
+
+
+
+
+National standards
+
+
+
+ArmSCII
+BraSCII
+CNS 11643
+ELOT 927
+GOST 10859
+GB 18030
+HKSCS
+ISCII
+JIS X 0201
+JIS X 0208
+JIS X 0212
+JIS X 0213
+KOI-7
+KPS 9566
+KS X 1001
+PASCII
+SI 960
+TIS-620
+TSCII
+VISCII
+YUSCII
+
+
+
+
+
+EUC
+
+
+
+CN
+JP
+KR
+TW
+
+
+
+
+
+ISO/IEC 2022
+
+
+
+CN
+JP
+KR
+CCCII
+
+
+
+
+
+MacOS code pages
+("scripts")
+
+
+
+Arabic
+Celtic
+CentEuro
+ChineseSimp / EUC-CN
+ChineseTrad / Big5
+Croatian
+Cyrillic
+Devanagari
+Dingbats
+Esperanto
+Farsi
+Gaelic
+Greek
+Gujarati
+Gurmukhi
+Hebrew
+Iceland
+Japanese / ShiftJIS
+Korean / EUC-KR
+Latin-1
+Roman
+Romanian
+Sámi
+Symbol
+Thai / TIS-620
+Turkish
+Ukrainian
+
+
+
+
+
+DOS code pages
+
+
+
+100
+111
+112
+113
+151
+152
+161
+162
+163
+164
+165
+166
+210
+220
+301
+437
+449
+489
+620
+667
+668
+707
+708
+709
+710
+711
+714
+715
+720
+721
+737
+768
+770
+771
+772
+773
+774
+775
+776
+777
+778
+790
+850
+851
+852
+853
+854
+855/872
+856
+857
+858
+859
+860
+861
+862
+863
+864/17248
+865
+866/808
+867
+868
+869
+874/1161/1162
+876
+877
+878
+881
+882
+883
+884
+885
+891
+895
+896
+897
+898
+899
+900
+903
+904
+906
+907
+909
+910
+911
+926
+927
+928
+929
+932
+934
+936
+938
+941
+942
+943
+944
+946
+947
+948
+949
+950/1370
+951
+966
+991
+1034
+1039
+1040
+1041
+1042
+1043
+1044
+1046
+1086
+1088
+1092
+1093
+1098
+1108
+1109
+1114
+1115
+1116
+1117
+1118
+1119
+1125/848
+1126
+1127
+1131/849
+1139
+1167
+1168
+1300
+1351
+1361
+1362
+1363
+1372
+1373
+1374
+1375
+1380
+1381
+1385
+1386
+1391
+1392
+1393
+1394
+Kamenický
+Mazovia
+CWI-2
+KOI8
+MIK
+Iran System
+
+
+
+
+
+IBM AIX code pages
+
+
+
+367
+371
+806
+813
+819
+895
+896
+912
+913
+914
+915
+916
+919
+920
+921/901
+922/902
+923
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+963
+964
+965
+970
+971
+1004
+1006
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1029
+1036
+1089
+1111
+1124
+1129/1163
+1133
+1350
+1382
+1383
+
+
+
+
+
+IBM Apple MacIntosh
+emulations
+
+
+
+1275
+1280
+1281
+1282
+1283
+1284
+1285
+1286
+
+
+
+
+
+IBM Adobe emulations
+
+
+
+1038
+1276
+1277
+
+
+
+
+
+IBM DEC emulations
+
+
+
+1020
+1021
+1023
+1090
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1287
+1288
+
+
+
+
+
+IBM HP emulations
+
+
+
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+
+
+
+
+
+Windows code pages
+
+
+
+CER-GS
+874/1162 (TIS-620)
+932/943 (Shift JIS)
+936/1386 (GBK)
+950/1370 (Big5)
+949/1363 (EUC-KR)
+1169
+1174
+Extended Latin-8
+1200 (UTF-16LE)
+1201 (UTF-16BE)
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1261
+1270
+54936 (GB18030)
+
+
+
+
+
+EBCDIC code pages
+
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37/1140
+38
+39
+40
+251
+252
+254
+256
+257
+258
+259
+260
+264
+273/1141
+274
+275
+276
+277/1142
+278/1143
+279
+280/1144
+281
+282
+283
+284/1145
+285/1146
+286
+287
+288
+289
+290
+293
+297/1147
+298
+300
+310
+320
+321
+322
+330
+351
+352
+353
+355
+357
+358
+359
+360
+361
+363
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+410
+420/16804
+421
+423
+424/8616/12712
+425
+435
+500/1148
+803
+829
+833
+834
+835
+836
+837
+838/838
+839
+870/1110/1153
+871/1149
+875/4971/9067
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+892
+893
+905
+918
+924
+930/1390
+931
+933/1364
+935/1388
+937/1371
+939/1399
+1001
+1002
+1003
+1005
+1007
+1024
+1025/1154
+1026/1155
+1027
+1028
+1030
+1031
+1032
+1033
+1037
+1047
+1068
+1069
+1070
+1071
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1087
+1091
+1097
+1112/1156
+1113
+1122/1157
+1123/1158
+1130/1164
+1132
+1136
+1137
+1150
+1151
+1152
+1159
+1165
+1166
+1278
+1279
+1303
+1364
+1376
+1377
+JEF
+KEIS
+
+
+
+
+
+Platform specific
+
+
+
+Acorn
+Adobe Standard
+Apple II
+ATASCII
+Atari ST
+BICS
+Casio calculators
+CDC
+CPC
+DEC Radix-50
+DEC MCS/NRCS
+DG International
+ELWRO-Junior
+FIELDATA
+GEM
+GEOS
+GSM 03.38
+HP Roman Extension
+HP Roman-8
+HP Roman-9
+HP FOCAL
+HP RPL
+LICS
+LMBCS
+MSX
+NEC APC
+NeXT
+PCW
+PETSCII
+Sharp calculators
+TI calculators
+TRS-80
+Ventura International
+Ventura Symbol
+WISCII
+XCCS
+ZX80
+ZX81
+ZX Spectrum
+
+
+
+
+
+Unicode / ISO/IEC 10646
+
+
+
+UTF-1
+UTF-7
+UTF-8
+UTF-16 (UTF-16LE/UTF-16BE) / UCS-2
+UTF-32 (UTF-32LE/UTF-32BE) / UCS-4
+UTF-EBCDIC
+GB 18030
+BOCU-1
+CESU-8
+SCSU
+
+
+
+
+
+Miscellaneous code pages
+
+
+
+ABICOMP
+APL
+ARIB STD-B24
+Cork
+HZ
+INIS
+INIS-8
+Johab
+LY1
+OML
+OMS
+OT1
+SEASCII
+TACE16
+TRON
+UTF-5
+UTF-6
+WTF-8
+
+
+
+
+
+Related topics
+
+
+
+Code page
+Control character (C0 C1)
+CCSID
+Character encodings in HTML
+Charset detection
+Han unification
+Hardware
+ISO 6429/IEC 6429/ANSI X3.64
+Mojibake
+
+
+
+
+
+
+ Character sets
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Extended_Unix_Code&oldid=816331836"					Categories: Character setsChinese-language computingEncodings of Asian languagesEncodings of JapaneseKorean language

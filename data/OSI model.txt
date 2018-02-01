@@ -1,0 +1,1398 @@
+
+
+OSI model
+by layer
+
+
+
+
+7.  Application layer
+
+
+NNTP
+SIP
+SSI
+DNS
+FTP
+Gopher
+HTTP
+NFS
+NTP
+SMPP
+SMTP
+SNMP
+Telnet
+DHCP
+Netconf
+more....
+
+
+
+
+
+
+
+
+6.  Presentation layer
+
+
+MIME
+XDR
+
+
+
+
+
+
+
+
+5.  Session layer
+
+
+Named pipe
+NetBIOS
+SAP
+PPTP
+RTP
+SOCKS
+SPDY
+
+
+
+
+
+
+
+
+4.  Transport layer
+
+
+TCP
+UDP
+SCTP
+DCCP
+SPX
+
+
+
+
+
+
+
+
+3.  Network layer
+
+
+IP
+
+IPv4
+IPv6
+
+
+ICMP
+IPsec
+IGMP
+IPX
+AppleTalk
+X.25 PLP
+
+
+
+
+
+
+
+
+2.  Data link layer
+
+
+ATM
+ARP
+IS-IS
+SDLC
+HDLC
+CSLIP
+SLIP
+GFP
+PLIP
+IEEE 802.2
+LLC
+MAC
+L2TP
+IEEE 802.3
+Frame Relay
+ITU-T G.hn DLL
+PPP
+X.25 LAPB
+Q.921 LAPD
+Q.922 LAPF
+
+
+
+
+
+
+
+
+1.  Physical layer
+
+
+EIA/TIA-232
+EIA/TIA-449
+ITU-T V-Series
+I.430
+I.431
+PDH
+SONET/SDH
+PON
+OTN
+DSL
+IEEE 802.3
+IEEE 802.11
+IEEE 802.15
+IEEE 802.16
+IEEE 1394
+ITU-T G.hn PHY
+USB
+Bluetooth
+RS-232
+RS-449
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+The Open Systems Interconnection model (OSI model) is a conceptual model that characterizes and standardizes the communication functions of a telecommunication or computing system without regard to its underlying internal structure and technology. Its goal is the interoperability of diverse communication systems with standard protocols. The model partitions a communication system into abstraction layers. The original version of the model defined seven layers.
+A layer serves the layer above it and is served by the layer below it. For example, a layer that provides error-free communications across a network provides the path needed by applications above it, while it calls the next lower layer to send and receive packets that comprise the contents of that path. Two instances at the same layer are visualized as connected by a horizontal connection in that layer.
+The model is a product of the Open Systems Interconnection project at the International Organization for Standardization (ISO), maintained by the identification ISO/IEC 7498-1.
+
+
+
+
+Communication in the OSI-Model (example with layers 3 to 5)
+
+
+
+
+
+Contents
+
+
+1 History
+2 Description of OSI layers
+
+2.1 Layer 1: Physical Layer
+2.2 Layer 2: Data Link Layer
+2.3 Layer 3: Network Layer
+2.4 Layer 4: Transport Layer
+2.5 Layer 5: Session Layer
+2.6 Layer 6: Presentation Layer
+2.7 Layer 7: Application Layer
+
+
+3 Cross-layer functions
+4 Interfaces
+5 Examples
+6 Comparison with TCP/IP model
+7 See also
+8 References
+9 External links
+
+
+
+History[edit]
+In the late 1970s, one project was administered by the International Organization for Standardization (ISO), while another was undertaken by the International Telegraph and Telephone Consultative Committee (CCITT, from French: Comité Consultatif International Téléphonique et Télégraphique). These two international standards bodies each developed a document that defined similar networking models.
+In 1983, these two documents were merged to form a standard called The Basic Reference Model for Open Systems Interconnection. The standard is usually referred to as the Open Systems Interconnection Reference Model, the OSI Reference Model, or simply the OSI model. It was published in 1984 by both the ISO, as standard ISO 7498, and the renamed CCITT (now called the Telecommunications Standardization Sector of the International Telecommunication Union or ITU-T) as standard X.200.
+OSI had two major components, an abstract model of networking, called the Basic Reference Model or seven-layer model, and a set of specific protocols.
+The concept of a seven-layer model was provided by the work of Charles Bachman at Honeywell Information Services. Various aspects of OSI design evolved from experiences with the ARPANET, NPLNET, EIN, CYCLADES network and the work in IFIP WG6.1. The new design was documented in ISO 7498 and its various addenda. In this model, a networking system was divided into layers. Within each layer, one or more entities implement its functionality. Each entity interacted directly only with the layer immediately beneath it, and provided facilities for use by the layer above it.
+Protocols enable an entity in one host to interact with a corresponding entity at the same layer in another host. Service definitions abstractly described the functionality provided to an (N)-layer by an (N-1) layer, where N was one of the seven layers of protocols operating in the local host.
+The OSI standards documents are available from the ITU-T as the X.200-series of recommendations.[1] Some of the protocol specifications were also available as part of the ITU-T X series. The equivalent ISO and ISO/IEC standards for the OSI model were available from ISO. Not all are free of charge.[2]
+Description of OSI layers[edit]
+The recommendation X.200 describes seven layers, labeled 1 to 7. Layer 1 is the lowest layer in this model.
+
+
+OSI Model
+
+
+Layer
+Protocol data unit (PDU)
+Function[3]
+
+
+Host
+layers
+7. Application
+Data
+High-level APIs, including resource sharing, remote file access
+
+
+6. Presentation
+Translation of data between a networking service and an application; including character encoding, data compression and encryption/decryption
+
+
+5. Session
+Managing communication sessions, i.e. continuous exchange of information in the form of multiple back-and-forth transmissions between two nodes
+
+
+4. Transport
+Segment (TCP) / Datagram (UDP)
+Reliable transmission of data segments between points on a network, including segmentation, acknowledgement and multiplexing
+
+
+Media
+layers
+3. Network
+Packet
+Structuring and managing a multi-node network, including addressing, routing and traffic control
+
+
+2. Data link
+Frame
+Reliable transmission of data frames between two nodes connected by a physical layer
+
+
+1. Physical
+Bit
+Transmission and reception of raw bit streams over a physical medium
+
+
+At each level N, two entities at the communicating devices (layer N peers) exchange protocol data units (PDUs) by means of a layer N protocol. Each PDU contains a payload, called the service data unit (SDU), along with protocol-related headers or footers.
+Data processing by two communicating OSI-compatible devices is done as such:
+
+The data to be transmitted is composed at the topmost layer of the transmitting device (layer N) into a protocol data unit (PDU).
+The PDU is passed to layer N-1, where it is known as the service data unit (SDU).
+At layer N-1 the SDU is concatenated with a header, a footer, or both, producing a layer N-1 PDU. It is then passed to layer N-2.
+The process continues until reaching the lowermost level, from which the data is transmitted to the receiving device.
+At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's header or footer, until reaching the topmost layer, where the last of the data is consumed.
+
+Some orthogonal aspects, such as management and security, involve all of the layers (See ITU-T X.800 Recommendation[4]). These services are aimed at improving the CIA triad - confidentiality, integrity, and availability - of the transmitted data. In practice, the availability of a communication service is determined by the interaction between network design and network management protocols. Appropriate choices for both of these are needed to protect against denial of service.[citation needed]
+Layer 1: Physical Layer[edit]
+
+
+
+
+
+
+This section may need to be rewritten entirely to comply with Wikipedia's quality standards. You can help. The discussion page may contain suggestions. (August 2017)
+
+
+
+The physical layer defines the electrical and physical specifications of the data connection. It defines the relationship between a device and a physical transmission medium (for example, an electrical cable, an optical fiber cable, or a radio frequency link). This includes the layout of pins, voltages, line impedance, cable specifications, signal timing and similar characteristics for connected devices and frequency (5 GHz or 2.4 GHz etc.) for wireless devices. It is responsible for transmission and reception of unstructured raw data in a physical medium. Bit rate control is done at the physical layer. It may define transmission mode as simplex, half duplex, and full duplex. It defines the network topology as bus, mesh, or ring being some of the most common.
+The physical layer is the layer of low-level networking equipment, such as some hubs, cabling, and repeaters. The physical layer is never concerned with protocols or other such higher-layer items. Examples of hardware in this layer are network adapters, repeaters, network hubs, modems, and fiber media converters.
+Layer 2: Data Link Layer[edit]
+The data link layer provides node-to-node data transfer—a link between two directly connected nodes. It detects and possibly corrects errors that may occur in the physical layer. It defines the protocol to establish and terminate a connection between two physically connected devices. It also defines the protocol for flow control between them.
+IEEE 802 divides the data link layer into two sublayers:[5]
+
+Medium access control (MAC) layer – responsible for controlling how devices in a network gain access to a medium and permission to transmit data.
+Logical link control (LLC) layer – responsible for identifying and encapsulating network layer protocols, and controls error checking and frame synchronization.
+
+The MAC and LLC layers of IEEE 802 networks such as 802.3 Ethernet, 802.11 Wi-Fi, and 802.15.4 ZigBee operate at the data link layer.
+The Point-to-Point Protocol (PPP) is a data link layer protocol that can operate over several different physical layers, such as synchronous and asynchronous serial lines.
+The ITU-T G.hn standard, which provides high-speed local area networking over existing wires (power lines, phone lines and coaxial cables), includes a complete data link layer that provides both error correction and flow control by means of a selective-repeat sliding-window protocol.
+Layer 3: Network Layer[edit]
+The network layer provides the functional and procedural means of transferring variable length data sequences (called datagrams) from one node to another connected in "different networks". A network is a medium to which many nodes can be connected, on which every node has an address and which permits nodes connected to it to transfer messages to other nodes connected to it by merely providing the content of a message and the address of the destination node and letting the network find the way to deliver the message to the destination node, possibly routing it through intermediate nodes. If the message is too large to be transmitted from one node to another on the data link layer between those nodes, the network may implement message delivery by splitting the message into several fragments at one node, sending the fragments independently, and reassembling the fragments at another node. It may, but does not need to, report delivery errors.
+Message delivery at the network layer is not necessarily guaranteed to be reliable; a network layer protocol may provide reliable message delivery, but it need not do so.
+A number of layer-management protocols, a function defined in the management annex, ISO 7498/4, belong to the network layer. These include routing protocols, multicast group management, network-layer information and error, and network-layer address assignment. It is the function of the payload that makes these belong to the network layer, not the protocol that carries them.[6]
+Layer 4: Transport Layer[edit]
+The transport layer provides the functional and procedural means of transferring variable-length data sequences from a source to a destination host via one or more networks, while maintaining the quality of service functions.
+An example of a transport-layer protocol in the standard Internet stack is Transmission Control Protocol (TCP), usually built on top of the Internet Protocol (IP).
+The transport layer controls the reliability of a given link through flow control, segmentation/desegmentation, and error control. Some protocols are state- and connection-oriented. This means that the transport layer can keep track of the segments and re-transmit those that fail. The transport layer also provides the acknowledgement of the successful data transmission and sends the next data if no errors occurred. The transport layer creates packets out of the message received from the application layer. Packetizing is a process of dividing the long message into smaller messages.
+OSI defines five classes of connection-mode transport protocols ranging from class 0 (which is also known as TP0 and provides the fewest features) to class 4 (TP4, designed for less reliable networks, similar to the Internet). Class 0 contains no error recovery, and was designed for use on network layers that provide error-free connections. Class 4 is closest to TCP, although TCP contains functions, such as the graceful close, which OSI assigns to the session layer. Also, all OSI TP connection-mode protocol classes provide expedited data and preservation of record boundaries. Detailed characteristics of TP0-4 classes are shown in the following table:[7]
+
+
+Feature name
+TP0
+TP1
+TP2
+TP3
+TP4
+
+
+Connection-oriented network
+Yes
+Yes
+Yes
+Yes
+Yes
+
+
+Connectionless network
+No
+No
+No
+No
+Yes
+
+
+Concatenation and separation
+No
+Yes
+Yes
+Yes
+Yes
+
+
+Segmentation and reassembly
+Yes
+Yes
+Yes
+Yes
+Yes
+
+
+Error recovery
+No
+Yes
+Yes
+Yes
+Yes
+
+
+Reinitiate connectiona
+No
+Yes
+No
+Yes
+No
+
+
+Multiplexing / demultiplexing over single virtual circuit
+No
+No
+Yes
+Yes
+Yes
+
+
+Explicit flow control
+No
+No
+Yes
+Yes
+Yes
+
+
+Retransmission on timeout
+No
+No
+No
+No
+Yes
+
+
+Reliable transport service
+No
+Yes
+No
+Yes
+Yes
+
+
+a If an excessive number of PDUs are unacknowledged.
+
+
+An easy way to visualize the transport layer is to compare it with a post office, which deals with the dispatch and classification of mail and parcels sent. Do remember, however, that a post office manages the outer envelope of mail. Higher layers may have the equivalent of double envelopes, such as cryptographic presentation services that can be read by the addressee only. Roughly speaking, tunneling protocols operate at the transport layer, such as carrying non-IP protocols such as IBM's SNA or Novell's IPX over an IP network, or end-to-end encryption with IPsec. While Generic Routing Encapsulation (GRE) might seem to be a network-layer protocol, if the encapsulation of the payload takes place only at endpoint, GRE becomes closer to a transport protocol that uses IP headers but contains complete frames or packets to deliver to an endpoint. L2TP carries PPP frames inside transport packet.
+Although not developed under the OSI Reference Model and not strictly conforming to the OSI definition of the transport layer, the Transmission Control Protocol (TCP) and the User Datagram Protocol (UDP) of the Internet Protocol Suite are commonly categorized as layer-4 protocols within OSI.
+Layer 5: Session Layer[edit]
+The session layer controls the dialogues (connections) between computers. It establishes, manages and terminates the connections between the local and remote application. It provides for full-duplex, half-duplex, or simplex operation, and establishes checkpointing, adjournment, termination, and restart procedures. The OSI model made this layer responsible for graceful close of sessions, which is a property of the Transmission Control Protocol, and also for session checkpointing and recovery, which is not usually used in the Internet Protocol Suite. The session layer is commonly implemented explicitly in application environments that use remote procedure calls.
+Layer 6: Presentation Layer[edit]
+The presentation layer establishes context between application-layer entities, in which the application-layer entities may use different syntax and semantics if the presentation service provides a mapping between them. If a mapping is available, presentation service data units are encapsulated into session protocol data units and passed down the protocol stack.
+This layer provides independence from data representation by translating between application and network formats. The presentation layer transforms data into the form that the application accepts. This layer formats data to be sent across a network. It is sometimes called the syntax layer.[8] The presentation layer can include compression functions.[9] The Presentation Layer negotiates the Transfer Syntax.
+The original presentation structure used the Basic Encoding Rules of Abstract Syntax Notation One (ASN.1), with capabilities such as converting an EBCDIC-coded text file to an ASCII-coded file, or serialization of objects and other data structures from and to XML. ASN.1 effectively makes an application protocol invariant with respect to syntax.
+Layer 7: Application Layer[edit]
+The application layer is the OSI layer closest to the end user, which means both the OSI application layer and the user interact directly with the software application. This layer interacts with software applications that implement a communicating component. Such application programs fall outside the scope of the OSI model. Application-layer functions typically include identifying communication partners, determining resource availability, and synchronizing communication. When identifying communication partners, the application layer determines the identity and availability of communication partners for an application with data to transmit. The most important distinction in the application layer is the distinction between the application-entity and the application. For example, a reservation website might have two application-entities: one using HTTP to communicate with its users, and one for a remote database protocol to record reservations. Neither of these protocols have anything to do with reservations. That logic is in the application itself. The application layer per se has no means to determine the availability of resources in the network.
+Cross-layer functions[edit]
+Cross-layer functions are services that are not tied to a given layer, but may affect more than one layer. Examples include the following:
+
+Security service (telecommunication)[4] as defined by ITU-T X.800 recommendation.
+Management functions, i.e. functions that permit to configure, instantiate, monitor, terminate the communications of two or more entities: there is a specific application-layer protocol, common management information protocol (CMIP) and its corresponding service, common management information service (CMIS), they need to interact with every layer in order to deal with their instances.
+Multiprotocol Label Switching (MPLS) MPLS, ATM, and X.25 are 3a protocols. OSI divides the Network Layer into 3 roles: 3a) Subnetwork Access, 3b) Subnetwork Dependent Convergence and 3c) Subnetwork Independent Convergence. It was designed to provide a unified data-carrying service for both circuit-based clients and packet-switching clients which provide a datagram-based service model. It can be used to carry many different kinds of traffic, including IP packets, as well as native ATM, SONET, and Ethernet frames. Sometimes one sees reference to a Layer 2.5. This is a fiction create by those who are unfamiliar with the OSI Model and ISO 8648, Internal Organization of the Network Layer in particular.
+ARP determines the mapping of an IPv4 address to the underlying MAC address. This is not a translation function. If it were IPv4 and the MAC address would be at the same layer. The implementation of the MAC protocol decodes the MAC PDU and delivers the User-Data to the IP-layer. Because Ethernet is a multi-access media, a device sending a PDU on an Ethernet segment needs to know what IP address maps to what MAC address.
+DHCP, DHCP assigns IPv4 addresses to new systems joining a network. There is no means to derive or obtain an IPv4 address from an Ethernet address.
+Domain Name Service is an Application Layer service which is used to look up the IP address of a given domain name. Once a reply is received from the DNS server, it is then possible to form a Layer 4 connection or flow to the desired host. There are no connections at Layer 3.
+Cross MAC and PHY Scheduling is essential in wireless networks because of the time varying nature of wireless channels. By scheduling packet transmission only in favorable channel conditions, which requires the MAC layer to obtain channel state information from the PHY layer, network throughput can be significantly improved and energy waste can be avoided.[10]
+
+Interfaces[edit]
+Neither the OSI Reference Model nor OSI protocols specify any programming interfaces, other than deliberately abstract service specifications. Protocol specifications precisely define the interfaces between different computers, but the software interfaces inside computers, known as network sockets are implementation-specific.
+For example, Microsoft Windows' Winsock, and Unix's Berkeley sockets and System V Transport Layer Interface, are interfaces between applications (layer 5 and above) and the transport (layer 4). NDIS and ODI are interfaces between the media (layer 2) and the network protocol (layer 3).
+Interface standards, except for the physical layer to media, are approximate implementations of OSI service specifications.
+Examples[edit]
+
+
+Layer
+OSI protocols
+TCP/IP protocols
+Signaling
+System 7[11]
+AppleTalk
+IPX
+SNA
+UMTS
+Miscellaneous examples
+
+
+No.
+Name
+
+
+7
+Application
+
+
+
+FTAM
+X.400
+X.500
+DAP
+ROSE
+RTSE
+ACSE[12]
+CMIP[13]
+
+
+
+
+
+
+
+INAP
+MAP
+TCAP
+ISUP
+TUP
+
+
+
+
+
+
+AFP
+ZIP
+RTMP
+NBP
+
+
+
+
+
+
+SAP
+
+
+
+
+
+
+APPC
+
+
+
+
+
+
+
+HL7
+Modbus
+
+
+
+
+
+6
+Presentation
+
+
+
+ISO/IEC 8823
+X.226
+
+ISO/IEC 9576-1
+X.236
+
+
+
+
+
+
+MIME
+SSL
+TLS
+XDR
+
+
+
+
+
+
+
+AFP
+
+
+
+
+
+
+
+
+
+TDI
+ASCII
+EBCDIC
+MIDI
+MPEG
+
+
+
+
+
+5
+Session
+
+
+
+ISO/IEC 8327
+X.225
+
+ISO/IEC 9548-1
+X.235
+
+
+
+Sockets (session establishment in TCP / RTP / PPTP)
+
+
+
+
+ASP
+ADSP
+PAP
+
+
+
+
+
+
+NWLink
+
+
+
+
+
+
+DLC?
+
+
+
+
+
+
+
+Named pipes
+NetBIOS
+SAP
+half duplex
+full duplex
+simplex
+RPC
+SOCKS
+
+
+
+
+
+4
+Transport
+
+
+
+ISO/IEC 8073
+TP0
+TP1
+TP2
+TP3
+TP4 (X.224)
+ISO/IEC 8602
+X.234
+
+
+
+
+
+
+TCP
+UDP
+SCTP
+DCCP
+
+
+
+
+
+
+
+
+DDP
+SPX
+
+
+
+
+
+
+
+
+NBF
+
+
+
+
+
+3
+Network
+
+
+
+ISO/IEC 8208
+X.25 (PLP)
+
+ISO/IEC 8878
+X.223
+ISO/IEC 8473-1
+CLNP X.233
+ISO/IEC 10589
+IS-IS
+
+
+
+
+
+
+IP
+IPsec
+ICMP
+IGMP
+OSPF
+RIP
+
+
+
+
+
+
+SCCP
+MTP
+
+
+
+ATP (TokenTalk / EtherTalk)
+
+
+
+IPX
+
+
+
+
+
+
+
+RRC / BMC
+
+
+
+
+
+
+NBF
+Q.931
+NDP
+IS-IS
+
+
+
+
+
+2
+Data link
+
+
+
+ISO/IEC 7666
+X.25 (LAPB)
+
+Token Bus
+X.222
+ISO/IEC 8802-2
+LLC (type 1 / 2)[14]
+
+
+
+
+
+
+PPP
+SBTV
+SLIP
+
+
+
+
+
+
+MTP
+Q.710
+
+
+
+
+
+
+LocalTalk
+ARA
+PPP
+
+
+
+IEEE 802.3 framing
+Ethernet II framing
+
+
+
+SDLC
+
+
+
+
+
+
+PDCP[15]
+LLC
+MAC
+
+
+
+
+
+
+ARP
+ARQ
+ATM
+Bit stuffing
+CDP
+CRC
+DOCSIS
+FDDI
+FDP
+Fibre Channel
+Frame Relay
+HDP
+HDLC
+IEEE 802.3 (Ethernet)
+IEEE 802.11a/b/g/n (Ethernet MAC and LLC)
+IEEE 802.1Q (VLAN)
+ISL
+ITU-T G.hn DLL
+Linux interface bonding
+PPP
+Q.921
+Token Ring
+
+
+
+
+
+1
+Physical
+
+
+
+X.25 (X.21bis
+EIA/TIA-232
+EIA/TIA-449
+EIA-530
+G.703)[14]
+
+
+
+
+
+
+
+MTP
+Q.710
+
+
+
+
+
+
+RS-232
+RS-422
+PhoneNet
+
+
+
+
+
+
+
+Twinax
+
+
+
+UMTS air interfaces
+
+
+
+RS-232
+Full duplex
+RJ45 (8P8C)
+V.35
+V.34
+I.430
+I.431
+T1
+E1
+10BASE-T
+100BASE-TX
+1000BASE-T
+POTS
+SONET
+SDH
+DSL
+802.11a/b/g/n PHY
+ITU-T G.hn PHY
+CAN bus
+DOCSIS
+DWDM
+OTN
+
+
+
+
+
+Comparison with TCP/IP model[edit]
+The design of protocols in the TCP/IP model of the Internet does not concern itself with strict hierarchical encapsulation and layering.[16] RFC 3439 contains a section entitled "Layering considered harmful".[17] TCP/IP does recognize four broad layers of functionality which are derived from the operating scope of their contained protocols: the scope of the software application; the end-to-end transport connection; the internetworking range; and the scope of the direct links to other nodes on the local network.[18]
+Despite using a different concept for layering than the OSI model, these layers are often compared with the OSI layering scheme in the following way:
+
+The Internet application layer includes the OSI application layer, presentation layer, and most of the session layer.
+Its end-to-end transport layer includes the graceful close function of the OSI session layer as well as the OSI transport layer.
+The internetworking layer (Internet layer) is a subset of the OSI network layer.
+The link layer includes the OSI data link layer and sometimes the physical layers, as well as some protocols of the OSI's network layer.
+
+These comparisons are based on the original seven-layer protocol model as defined in ISO 7498, rather than refinements in such things as the internal organization of the network layer document.[citation needed]
+The presumably strict layering of the OSI model as it is usually described does not present contradictions in TCP/IP, as it is permissible that protocol usage does not follow the hierarchy implied in a layered model. Such examples exist in some routing protocols (for example OSPF), or in the description of tunneling protocols, which provide a link layer for an application, although the tunnel host protocol might well be a transport or even an application-layer protocol in its own right.[citation needed]
+See also[edit]
+
+Hierarchical internetworking model
+Management plane
+Layer 8
+Protocol stack
+Service layer
+WAP protocol suite
+List of information technology acronyms
+IBM Systems Network Architecture
+Internet protocol suite
+
+References[edit]
+
+
+^ ITU-T X-Series Recommendations
+^ "Publicly Available Standards". Standards.iso.org. 2010-07-30. Retrieved 2010-09-11. 
+^ "The OSI Model's Seven Layers Defined and Functions Explained". Microsoft Support. Retrieved 2014-12-28. 
+^ a b "ITU-T Recommendataion X.800 (03/91), Security architecture for Open Systems Interconnection for CCITT applications". ITU. Retrieved 14 August 2015. 
+^ "5.2 RM description for end stations". IEEE Std 802-2014, IEEE Standard for Local and Metropolitan Area Networks: Overview and Architecture. ieee. 
+^ International Organization for Standardization (1989-11-15). "ISO/IEC 7498-4:1989 -- Information technology -- Open Systems Interconnection -- Basic Reference Model: Naming and addressing". ISO Standards Maintenance Portal. ISO Central Secretariat. Retrieved 2015-08-17. 
+^ "ITU-T Recommendation X.224 (11/1995) ISO/IEC 8073, Open Systems Interconnection - Protocol for providing the connection-mode transport service". ITU. 
+^ Grigonis, Richard (2000). Computer telephony- encyclopaedia. CMP. p. 331. ISBN 9781578200450. 
+^ "ITU-T X.200 - Information technology – Open Systems Interconnection – Basic Reference Model: The basic model". 
+^ Miao, Guowang; Song, Guocong (2014). Energy and spectrum efficient wireless network design. Cambridge University Press. ISBN 1107039886. 
+^ "ITU-T Recommendation Q.1400 (03/1993)], Architecture framework for the development of signaling and OA&M protocols using OSI concepts". ITU. pp. 4, 7. 
+^ ITU Rec. X.227 (ISO 8650), X.217 (ISO 8649).
+^ X.700 series of recommendations from the ITU-T (in particular X.711) and ISO 9596.
+^ a b "Internetworking Technology Handbook - Internetworking Basics [Internetworking]". Cisco. 15 January 2014. Retrieved 14 August 2015. 
+^ "3GPP specification: 36.300". 3gpp.org. Retrieved 14 August 2015. 
+^ RFC 3439
+^ "RFC 3439 - Some Internet Architectural Guidelines and Philosophy". ietf.org. Retrieved 14 August 2015. 
+^ Walter Goralski. The Illustrated Network: How TCP/IP Works in a Modern Network (PDF). Morgan Kaufmann. p. 26. ISBN 978-0123745415. 
+
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to OSI model.
+
+
+
+Microsoft Knowledge Base: The OSI Model's Seven Layers Defined and Functions Explained
+ISO/IEC standard 7498-1:1994 (PDF document inside ZIP archive) (requires HTTP cookies in order to accept licence agreement)
+ITU-T X.200 (the same contents as from ISO)
+"INFormation CHanGe Architectures and Flow Charts powered by Google App Engine". infchg.appspot.com. The ISO OSI Reference Model, Beluga graph of data units and groups of layers. Archived from the original on 2012-05-26. 
+Zimmermann, Hubert (April 1980). "OSI Reference Model — The ISO Model of Architecture for Open Systems Interconnection". IEEE Transactions on Communications. 28 (4): 425–432. CiteSeerX 10.1.1.136.9497 . doi:10.1109/TCOM.1980.1094702. 
+Cisco Systems Internetworking Technology Handbook
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=OSI_model&oldid=817932098"					Categories: OSI modelISO standardsITU-T recommendationsReference modelsComputer-related introductions in 1979Hidden categories: Pages using RFC magic linksAll articles with unsourced statementsArticles with unsourced statements from April 2013Wikipedia articles needing rewrite from August 2017All articles needing rewriteArticles with unsourced statements from November 2013

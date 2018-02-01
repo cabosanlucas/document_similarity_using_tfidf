@@ -1,0 +1,925 @@
+firewire redirects uses firewire disambiguation
+
+ieee 1394 interface
+
+
+
+
+type
+serial
+
+
+production history
+
+
+designer
+apple 1394ab ieee p1394 working group
+
+
+designed
+1986 years 19861
+
+
+manufacturer
+various
+
+
+produced
+1994–2013
+
+
+superseded
+thunderbolt
+
+
+general specifications
+
+
+length
+meters maximum
+
+
+width
+
+
+
+pluggable
+
+
+
+daisy chain
+devices
+
+
+audio signal
+
+
+
+video signal
+
+
+
+pins
+
+
+
+electrical
+
+
+voltage
+
+
+
+current
+
+
+
+data
+
+
+data signal
+
+
+
+bitrate
+400–3200 mbits 50–400
+
+
+ieee 1394 interface standard serial highspeed communications isochronous realtime data transfer developed late 1980s early 1990s apple called firewire 1394 interface also known brands ilink sony lynx texas instruments
+copper cable uses common implementation metres long power also carried cable allowing devices moderate power requirements operate without separate power supply firewire also available optical fiber versions
+1394 interface comparable though requires master controller greater market share2
+
+
+
+contents
+
+
+history development
+intellectual property considerations
+technical specifications
+
+encoding scheme
+arbitration
+
+
+standards versions
+
+firewire ieee 13941995
+
+improvements ieee 1394a2000
+
+
+firewire ieee 1394b2002
+firewire s800t ieee 1394c2006
+firewire s1600 s3200
+future enhancements including p1394d
+
+
+operating system support
+cable system support
+comparison
+common applications
+
+consumer automobiles
+consumer audio video
+military aerospace vehicles
+general networking
+iidc
+
+frame grabbers
+ipod iphone synchronization charging
+
+
+security issues
+also
+references
+reading
+external links
+
+
+
+history developmentedit
+
+
+
+
+6conductor 4conductor alpha firewire socket
+
+
+
+
+
+
+9pin firewire connector
+
+
+
+
+
+
+alternative ethernetstyle cabling used 1394c
+
+
+
+
+
+
+4conductor left 6conductor right firewire alpha connectors
+
+
+
+
+
+
+pair 6conductor alpha connectors edge expansion card
+
+
+firewire apples name ieee 1394 high speed serial initiated apple 19863 developed ieee p1394 working group largely driven contributions apple although major contributions also made engineers texas instruments sony digital equipment corporation inmossgs thomson stmicroelectronics
+ieee 1394 serial architecture highspeed data transfer firewire serial meaning information transferred time parallel buses utilize number different physical connections usually costly typically heavier4 ieee 1394 fully supports isochronous asynchronous applications
+apple intended firewire serial replacement parallel scsi providing connectivity digital audio video equipment apples development began late 1980s later presented ieee5 completed january 1995 2007 ieee 1394 composite four documents original ieee 13941995 ieee 1394a2000 amendment ieee 1394b2002 amendment ieee 1394c2006 amendment june 2008 amendments well errata technical updates incorporated superseding standard ieee 139420086
+apple first included onboard firewire 1999 macintosh models though buildtoorder option models since 1997 apple macintosh computers manufactured years 2000 2011 included firewire ports however february 2011 apple introduced first commercially available computer thunderbolt apple released last computers featuring firewire late 2012 2014 thunderbolt become standard feature across apples entire line computers effectively becoming spiritual successor firewire apple ecosystem
+sonys implementation system ilink used smaller connector four signal conductors omitting conductors provide power devices favor separate power connector style later added 1394a amendment5 port sometimes labeled s100 s400 indicate speed mbits
+system commonly used connect data storage devices digital video cameras also popular industrial systems machine vision professional audio systems many users preferred common greater effective speed power distribution capabilities benchmarks show sustained data transfer rates higher firewire lower results marked apple varied microsoft windows78
+intellectual property considerationsedit
+implementation ieee 1394 said require issued international patents10 held 1011 corporations patents requires licensing without license generally constitutes patent infringement12 companies holding ieee 1394 formed patent pool mpeg license administrator licensed patents mpeg sublicenses patents providers equipment implementing ieee 1394 typical patent pool license royalty us025 unit payable manufacturer upon manufacture 1394 finished product12 royalties payable users
+person company review actual 1394 patent portfolio license upon request mpeg la13 implementors would thereby ordinarily reveal interest mpeg early design process mpeg provide assurance protection licensees beyond patents least formerly licensed patent known removed pool10 hardware patents exist reference 1394related hardware141516 software functions related ieee 139417 total 1770 patents issued years wipo minimum preceding 201118 contain ieee 1394 titles alone placing 1500 unavailable mpeg laimproper synthesis
+1394 high performance serial trade association 1394 formed marketing ieee 1394 bylaws prohibit dealing intellectual property issues19 1394 trade association operates individual cost membership basis enhancements 1394 standards trade association also library source 1394 documentation standards available
+technical specificationsedit
+firewire connect peripherals tree daisychain topology20 opposed parallel scsis electrical topology allows peertopeer device communication communication scanner printer take place without using system memory firewire also supports multiple hosts designed support plug play swapping copper cable uses common implementation metres long flexible parallel scsi cables sixconductor nineconductor variations supply watts power port voltscitation needed allowing moderateconsumption devices operate without separate power supply
+firewire devices implement isoiec 13213 configuration model device configuration identification provide plugandplay capability firewire devices identified ieee eui64 unique identifier addition wellknown codes indicating type device protocols supports
+firewire devices organized tree topology device unique selfid nodes elected root node always highest selfids assigned selfid process happens resets order selfids assigned equivalent traversing tree depthfirst postorder
+firewire capable safely operating critical systems multiple devices interact allocates bandwidth devices firewire capable asynchronous isochronous transfer methods isochronous data transfers transfers devices require continuous guaranteed bandwidth4 aircraft instance isochronous devices include control rudder mouse operations data pressure sensors outside aircraft elements require constant uninterrupted bandwidth support elements firewire dedicates certain percentage isochronous data rest asynchronous data ieee 1394 reserved isochronous cycles leaving asynchronous data minimum bus21
+encoding schemeedit
+firewire uses data strobe encoding encoding22 encoding nonreturntozero signals used transmit data high reliability signal sent clock signal gate creating strobe signal22 strobe another gate along data signal reconstruct clock22 turn acts buss phaselocked loop synchronization purposes22
+arbitrationedit
+process deciding node gets transmit data time known arbitration23 arbitration round lasts microseconds23 round root node device nearest processor sends cycle start packet23 nodes requiring data transfer respond closest node winning23 node finished remaining nodes take turns order repeats devices used portion microseconds isochronous transfers priority23
+standards versionsedit
+previous standards three published amendments incorporated superseding standard ieee 139420086 features individually added give good history development path
+firewire ieee 13941995edit
+original release ieee 1394199524 specified known firewire transfer data devices mbits halfduplex25 data rates actual transfer rates 98304 196608 393216 mbits 12288 24576 49152 megabytes second respectively5 different transfer modes commonly referred s100 s200 s400
+cable length limited metres although cables daisy chained using active repeaters external hubs internal hubs often present firewire equipment s400 standard limits configurations maximum cable length metres 6conductor connector commonly found desktop computers supply connected device power
+6conductor powered connector referred alpha connector adds power output support external devices typically device pull watts port however voltage varies significantly different devices26 voltage specified unregulated nominally volts range apples implementation laptops typically related battery power
+improvements ieee 1394a2000edit
+amendment ieee 1394a released 200027 clarified improved original specification added support asynchronous streaming quicker reconfiguration packet concatenation powersaving suspend mode
+ieee 1394a offers couple advantages original ieee 13941995 1394a capable arbitration accelerations allowing accelerate arbitration cycles improve efficiency also allows arbitrated short reset node added dropped without causing drop isochronous transmission21
+1394a also standardized 4conductor alpha connector developed sony trademarked ilink already widely consumer devices camcorders laptops number desktops small firewire devices 4conductor connector fully datacompatible 6conductor alpha interfaces lacks power connectors
+firewire ieee 1394b2002edit
+
+
+
+
+9conductor bilingual connector
+
+
+ieee 1394b200228 introduced firewire apples name 9conductor s800 bilingual version ieee 1394b standard specification corresponding products allow transfer rate 786432 mbits fullduplex encoding scheme termed beta mode backwards compatible slower rates 6conductor alpha connectors firewire however ieee 1394a ieee 1394b standards compatible firewire 800s connector referred beta connector different firewire 400s alpha connectors making legacy cables incompatible bilingual cable allows connection older devices newer port 2003 apple first introduce commercial products connector
+full ieee 1394b specification supports data rates 3200 mbits megabytess betamode optical connections metres length standard category unshielded twisted pair supports metres s100 original 1394 1394a standards used datastrobe encoding renamed alpha mode cables 1394b added data encoding scheme called 8b10b referred beta mode
+beta mode based 8b10b gigabit ethernet also used many protocols 8b10b encoding involves expanding data word bits extra bits data bits29 partitioned data sent running disparity calculator function29 running disparity calculator attempts keep number transmitted equal 0s30 thereby assuring dcbalanced signal different partitions sent 5b6b encoder partition 3b4b encoder partition gives packet ability least ensuring synchronization receiving correct boundaries reliable transfer30 additional function coding scheme support arbitration access general control possible surplus symbols afforded 8b10b expansion 8bit symbols encode maximum values 10bit symbols permit encoding 1024 symbols invalid current state receiving indicate data errors
+firewire s800t ieee 1394c2006edit
+ieee 1394c2006 published june 200731 provided major technical improvement namely port specification provides mbits 8p8c ethernet connectors category cable specified ieee 8023 clause gigabit ethernet copper twisted pair along corresponding automatic negotiation allows port connect either ieee 1394 ieee 8023 ethernet devices
+though potential combined ethernet firewire 8p8c port intriguing november 2008update products chipsets include capability
+firewire s1600 s3200edit
+december 2007 1394 trade association announced products would available 2008 using s1600 s3200 modes part already defined 1394b clarified ieee 139420086 1572864 gbits 3145728 gbits devices 9conductor beta connectors existing firewire fully compatible existing s400 s800 devices competes 3032
+s1600 symwave33 s3200 technology34 development units made however fpga technology daptechnology targeted s1600 implementations first s3200 becoming commercially available 2012
+steve jobs declared firewire dead 200835 2012update s1600 devices released sony camera notable user36
+future enhancements including p1394dedit
+project named ieee p1394d formed ieee march 2009 single mode fiber additional transport medium firewire37 project withdrawn 201338
+future iterations firewire expected increase speed gbits additional connectors small multimedia interface39citation needed
+operating system supportedit
+full support ieee 1394a 1394b available microsoft windows freebsd40 linux4142 apple netbsd haiku
+windows degradation performance 1394 devices occurred installation service pack resolved hotfix 88522244 firewire hardware manufacturers also provide custom device drivers replace microsoft ohci host adapter driver stack enabling s800capable devices full mbits transfer rates older versions windows hotfix 885222 windows vista time release microsoft windows vista supported 1394a assurances 1394b support would come next service pack45 service pack microsoft windows vista since released however addition 1394b support mentioned anywhere release documentation464748 1394 driver rewritten windows provide support higher speeds alternative media49 driver supplied windows downloaded installed
+linux support originally provided libraw1394 making direct communication user space ieee 1394 buses50 subsequently kernel driver stack nicknamed juju implemented51
+cable system supportedit
+code 76640 section subsections cable providers digital systems must upon request customer provided highdefinition capable cable functional firewire interface applied customers leasing highdefinition capable cable boxes cable provider april 200452 interface used display record cable including hdtv programming53 june 2010 issued order permitted settop boxes include ipbased interfaces place firewire5455
+comparison usbedit
+technologies provide similar results fundamental differences firewire requires presence master typically connects point point slave allows simpler lowercost peripherals cost lowered functionality intelligent hubs required connect multiple devices single master contrast firewire essentially peertopeer network device serve host client allowing multiple devices connected bus56
+firewire host interface supports memorymapped devices allowing data transfers happen without loading host interrupts buffercopy operations757 additionally firewire features data buses segment network whereas featured means firewire communication directions time fullduplex whereas communication prior occur direction time halfduplexcitation needed
+expanded fully backwardscompatible using main connector type firewire used different connector implementations
+common applicationsedit
+
+consumer automobilesedit
+idb1394 customer convenience port automotive version 1394 standard58
+consumer audio videoedit
+ieee 1394 highdefinition audiovideo network alliance hana standard connection interface audiovisual component communication control59 hana dissolved september 2009 1394 trade association assumed control hanagenerated intellectual property
+military aerospace vehiclesedit
+aerospace standard as5643 originally released 2004 reaffirmed 2013 establishes ieee1394 standards military aerospace databus network vehicles as5643 utilized several large programs including lightning x47b ucav aircraft agm154 weapon jpss1 polar satellite noaa as5643 combines existing 13942008 features like looped topology additional features like transformer isolation time synchronization create deterministic double triple faulttolerant data networks606162
+general networkingedit
+firewire used adhoc terminals routers except firewire used computer networks specifically 2734 specifies ipv4 firewire interface 3146 specifies ipv6
+linux freebsd include support networking firewire63 windows windows windows me64 windows windows server 2003 include native support ieee 1394 networking65 windows 2000 native support work third party drivers network computers using single standard firewire cable multiple computers similar ethernet networks major differences transfer speed conductor length fact standard firewire cables used pointtopoint communication
+december 2004 microsoft announced would discontinue support networking firewire interface future versions microsoft windows66 consequently support feature absent windows vista later windows releases6768 microsoft rewrote 1394 driver windows networking support firewire present unibrain offers free firewire networking drivers windows called ubcore70 support windows vista later versions
+models playstation console ilinkbranded 1394 connector used networking release ethernet adapter late consoles lifespan software titles supported feature
+iidcedit
+iidc instrumentation industrial digital camera firewire data format standard live video used apples isight camera system designed machine vision systems71 also used computer vision applications webcams although easily confused since firewire iidc different incompatible ubiquitous audio video control used control camcorders consumer video devices72
+dvedit
+digital video standard protocol used digital camcorders cameras recorded tape media firewire interface usually 4conductor ports camcorders operate slower mbits speed firewire presents operational issues camcorder daisy chained faster s400 device common segment firewire network cannot support multiple speed communication73
+labelling port varied manufacturer sony using either ilink trademark letters many digital video recorders dvinput firewire connector usually alpha connector used record video directly camcorder computerfree protocol also accommodates remote control play rewind connected devices stream time code camera
+unsuitable transfer video data tape tape nature support variable data rates relies heavily processor support guaranteed service port time later move away tape towards solid state memory disc media cards optical disks hard drives facilitated moving transfer file based data moved segments required
+frame grabbersedit
+ieee 1394 interface commonly found frame grabbers devices capture digitize analog video signal however ieee 1394 facing competition gigabit ethernet interface citing speed availability issues74
+ipod iphone synchronization chargingedit
+ipods released prior ipod dock connector used ieee 1394a ports syncing music charging 2003 firewire port ipods succeeded apples dock connector ieee 1394 30pin connector cables made apple dropped support firewire cables starting ipod nano generation75 ipod touch generation iphone favor cables
+security issuesedit
+devices firewire communicate direct memory access device hardware internal memory firewires physical memory space sbp2 serial protocol used firewire disk drives uses capability minimize interrupts buffer copies sbp2 initiator controlling device sends request remotely writing command specified area targets firewire address space command usually includes buffer addresses initiators firewire physical address space target supposed moving data initiator76
+many implementations particularly like macs using popular ohci mapping firewire physical memory space device physical memory done hardware without operating system intervention enables highspeed lowlatency communication data sources sinks without unnecessary copying video camera software video recording application disk drive application buffers also security media rightsrestriction risk untrustworthy devices attached initiate attack applications known exploit gain unauthorized access running windows linux computers spyware finfirewire77 reason highsecurity installations typically either newer machines virtual memory space firewire physical memory space power workstation disable relevant drivers operating system level78 disable ohci hardware mapping firewire device memory physically disable entire firewire interface firewire hardware like pcmcia card expresscard thunderbolt expose external components
+unsecured firewire interface used debug machine whose operating system crashed systems remoteconsole operations windows natively supports scenario kernel debugging79 although newer windows insider preview builds longer include ability box80 freebsd dcons driver provides using debugger linux firescope81 fireproxy82 exist
+alsoedit
+
+havi
+linux ieee 1394 target
+thunderbolt
+list device rates
+attack
+control attack
+
+referencesedit
+
+
+1394taorg 1394taorg retrieved 20170307 1394 digital link standard conceived 1986 technologists apple computer
+yaghmour karim masters benyossef gilad gerum philippe 20080815 building embedded linux systems oreilly media isbn 9780596529680 retrieved 20120108
+firewire 1394 trade association archived original 20140404
+ieee standard 1394a thunderbolt retrieved 20160614
+teener michael firewire retrieved 20080714 selfpublished source
+ieee standard highperformance serial ieee 13942008 20081021 doi101109ieeestd20084659233 isbn 9780738157719
+firewire comparison usbwarecom retrieved 20100125
+external firewire tomshardwarecom retrieved 20100125
+mpeg 1394 license agreement
+attachment list patents 1394 patent portfolio
+mpeg 1394 licensors
+mpeg 1394
+mpeg 1394 license agreement express hardcopy
+patent number us5875313 ieee 1394 translator employing write pipelining
+patent number us5937175 ieee 1394 translator employing pipelined read prefetching
+patent number 5953511 ieee 1394 translator
+patent notice national instruments software related patents archived original 20120415
+intitle ieee 1394 google search
+bylaws 1394 trade association archived original 20111104
+ieee 1394 multimedia future cablelabscom archived original 20110927
+ieee 1394 architecture ione archived original 20070107
+ieee 1394 firewire ilink retrieved 20120901
+ieee 1394 linux tindelnet retrieved 20120901
+ieee p1394 working group 19960830 ieee 13941995 high performance serial ieee doi101109ieeestd199681049 isbn 1559375833
+davis larry firewire interfacebuscom retrieved 20160620
+firewire developer note developerapplecom 20080428 retrieved 20100125
+ieee p1394a working group 20000630 ieee 1394a2000 high performance serial amendment ieee doi101109ieeestd200091614 isbn 073811958x p1394a draft 50permanent dead link available
+ieee p1394b working group 20021214 ieee 1394b2002 high performance serial amendment ieee isbn 0738132535
+encoderdecoder iramcsberkeleyedu 19971217 retrieved 20120901
+haden rhys 20070630 cp3070 principles data communications rhyshadencom retrieved 20120901
+high performance serial amendment ieee 1394c2006 20070608 doi101109ieeestd2006371044 isbn 0738152374
+1394 trade association announces gigabit second speed firewire 1394 trade association 20071212 retrieved 20080803
+
+fires worlds first gigabit ieee 1394b firewire solution daptechnology 20091123 retrieved 20120901
+arthur charles 20081017 steve jobs explains firewire dead retrieved 20160614
+henehan burke 20120106 firewire 4gbpsimpact industrial apps times retrieved 20160614
+p1394d ieee standard highperformance serial amendment ieee 1394 singlemode fiber fiber physical medium specification ieee standards ieee retrieved october 2012
+ieeesa standards board approvals march 2013 retrieved 20160614
+baxter 20071101 developments ieee 1394 firewire lightwave retrieved 20071219
+freebsd firewire4 page freebsdorg 20060401 retrieved 20100125
+linux firewire wiki ieee1394wikikernelorg 20090822 retrieved 20100125
+linux unified target wiki linuxiscsiorg 20120721 retrieved 20120812
+firewire information download docsinfoapplecom retrieved 20100125
+performance 1394 devices decrease install windows service pack supportmicrosoftcom 20060601 retrieved 20100125
+microsoft support 1394b standard eetimescom retrieved 20100125
+notable changes windows vista service pack technet2microsoftcom archived original 20080517 retrieved 20100125
+release notes windows vista service pack technet2microsoftcom archived original 20080430 retrieved 20100125
+hotfixes security updates included windows vista service pack technet2microsoftcom archived original 20080511 retrieved 20100125
+1394 driver windows microsoftcom 20090624 retrieved 20100125
+package libraw13948 1304 retrieved 20100912
+juju migration retrieved 20121010
+page archived original 20100527 retrieved 20100125
+rcliff howto firewire hdtv recording forum retrieved 20100125
+requests waiver section 76640b4ii commission’s rules federal communications commission 20100618 retrieved 20160614
+douses firewire requirement settops multichannel news retrieved 20160614
+firewire qimaging retrieved 20160614
+firewirevsusb directroncom retrieved 20120901
+forum homepage 20061006 archived original 20061006 retrieved 20160614 maint unfit link
+hana hanaallianceorg archived original 20100129 retrieved 20100125
+richard mourn daptechnology ieee1394 as5643 bring deterministic networking high reliability milaero designs retrieved 20160614
+as5643 ieee1394b interface requirements military aerospace vehicle applications international retrieved 20160614
+mourn richard 20110907 uavs leverage ieee1394b data buses success times retrieved 20160614
+freebsd fwip4 page freebsdorg 20050716 retrieved 20100125
+windows millennium edition support ieee 1394 supportmicrosoftcom 20070127 retrieved 20120901
+using ieee 1394 firewire devices windows supportmicrosoftcom 20071201 retrieved 20100125
+discontinued support 1394 microsoftcom 20041208 retrieved 20100125
+networking ieee 1394 supported windows vista later versions windows supportmicrosoftcom 20071128 retrieved 20100125
+networking features windows server 2008 windows vista windows technetmicrosoftcom retrieved 20100125
+1394 driver windows microsoftcom 20090618 retrieved 20120901
+ubcore 1394 firewire drivers unibraincom retrieved 20120901
+libdc1394 iidcdcam specifications damiendouxchampsnet retrieved 20100125
+overview microsoft developer network
+ieee 1394a specification
+establish firewire connection epiphancom retrieved 20120901
+ipod nano charging battery retrieved 20130914
+tool physically hacks windows securityvulnerabilities darkreading darkreading retrieved 20100125
+tactical intrusion portfolio finfirewire gamma international 20111208 retrieved 20140428
+blocking sbp2 driver reduce 1394 threats bitlocker microsoft 20110304 retrieved 20110315
+setting kernelmode debugging 1394 cable manually docsmicrosoftcom 20170523 retrieved 20170902
+1394 workaround blogsmsdnmicrosoftcom 20160811 retrieved 20170902
+andi kleen announce firescope i386x8664 released lkml 20060404 retrieved 20100125
+bernhard kaindls fireproxy forwards remote protocol firewire allows reading writing remote memory ieee1394wikikernelorg 20091107 retrieved 20100125
+
+
+article based material taken free online dictionary computing prior november 2008 incorporated relicensing terms gfdl version later
+readingedit
+
+incits project 1467d 2004 information technology—serial protocol sbp3 ansi incits ansi incits 3752004
+anderson 1999 firewire system architecture mindshare isbn 0201485354
+ieee standard highperformance serial ieee 13942008 20081021 doi101109ieeestd20084659233 isbn 9780738157719
+
+external linksedit
+
+
+
+wikimedia commons media related firewire
+
+
+
+1394 trade association
+1394 standards orientation introduction
+ieee 1394 connectors pinout
+
+
+
+
+
+
+
+
+
+
+
+
+technical facto standards wired computer buses
+
+
+
+general
+
+
+
+system
+frontside
+backside
+daisy chain
+control
+address
+contention
+network chip
+plug play
+list bandwidths
+
+
+
+
+
+standards
+
+
+
+ss50
+s100
+multibus
+unibus
+vaxbi
+mbus
+
+smbus
+qbus
+europe card
+
+stebus
+zorro
+zorro
+camac
+fastbus
+
+precision
+eisa
+
+
+
+nubus
+turbochannel
+
+sbus
+
+
+
+
+infiniband
+
+extended pcix
+
+express pcie
+direct media interface
+rapidio
+intel quickpath interconnect
+nvlink
+hypertransport
+
+infinity fabric
+
+
+intel ultrapath interconnect
+
+
+
+
+
+storage
+
+
+
+st506
+esdi
+
+
+parallel pata
+
+dssi
+hippi
+serial sata
+scsi
+
+parallel
+
+
+
+fibre channel
+satae
+express ahci nvme logical device interface
+
+
+
+
+
+peripheral
+
+
+
+apple desktop
+
+hpil
+
+midi
+rs232
+rs422
+rs423
+rs485
+dmx512a
+ieee488 gpib
+ieee1284 parallel port
+unio
+accessbus
+1wire
+
+
+
+parallel scsi
+profibus
+ieee 1394 firewire
+
+camera link
+external pcie
+thunderbolt
+
+
+
+
+
+audio
+
+
+
+adat lightpipe
+aes3
+intel audio
+
+madi
+mcasp
+spdif
+toslink
+
+
+
+
+
+portable
+
+
+
+card
+expresscard
+
+
+
+
+
+embedded
+
+
+
+multidrop
+coreconnect
+amba
+wishbone
+slimbus
+
+
+
+
+
+
+interfaces listed speed roughly ascending order interface section fastest
+category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ieee standards
+
+
+
+current
+
+
+
+
+
+
+
+revision
+
+
+
+
+
+
+1003
+1014
+1016
+1076
+11491
+1154
+1164
+1275
+1278
+1284
+1355
+1394
+1451
+1497
+1516
+1541
+1547
+1584
+1588
+1596
+1603
+1613
+1666
+1667
+1675
+1685
+1800
+1801
+1815
+1850
+1900
+1901
+1902
+1904
+1905
+2030
+11073
+12207
+14764
+16085
+16326
+29148
+42010
+
+
+
+
+
+series
+
+
+
+
+8021
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+80211
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+proposed
+
+
+
+p1363
+p1619
+p1699
+p1823
+p19061
+
+
+
+
+
+superseded
+
+
+
+7541985
+
+1219
+1233
+1362
+1364
+1471
+
+
+
+
+
+
+
+
+also
+ieee standards association
+categoryieee standards
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+basic computer components
+
+
+
+input devices
+
+
+
+keyboard
+image scanner
+microphone
+pointing device
+
+graphics tablet
+joystick
+light
+mouse
+
+optical
+
+
+pointing stick
+touchpad
+touchscreen
+trackball
+
+
+webcam
+
+softcam
+
+
+refreshable braille display
+
+
+
+
+
+output devices
+
+
+
+monitor
+refreshable braille display
+printer
+speakers
+plotter
+
+
+
+
+
+removable
+data storage
+
+
+
+optical disc
+
+
+
+bluray
+
+
+disk pack
+floppy disk
+memory card
+flash drive
+
+
+
+
+
+computer case
+
+
+
+central processing unit
+sshd
+motherboard
+network interface controller
+power supply
+randomaccess memory
+sound card
+video card
+modem
+expansion card
+
+
+
+
+
+ports
+
+
+
+ethernet
+firewire ieee 1394
+parallel port
+serial port
+port
+
+thunderbolt
+hdmi
+esata
+audio jack
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleieee1394oldid813418895 categories computer busescomputer connectorscomputer storage busesieee standardsmacintosh internalspersonal area networksserial busestelevision terminologyvideo signalhidden categories accuracy disputes september 2016all articles dead external linksarticles dead external links march 2017articles permanently dead external linkscs1 maint unfit urlarticles contain original research october 2017all articles unsourced statementsarticles unsourced statements december 2012articles containing potentially dated statements november 2008all articles containing potentially dated statementsarticles containing potentially dated statements 2012articles unsourced statements october 2012articles unsourced statements 2013

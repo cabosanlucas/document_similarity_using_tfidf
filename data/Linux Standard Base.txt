@@ -1,0 +1,1192 @@
+
+
+
+
+The LSB logo
+
+
+The Linux Standard Base (LSB) is a joint project by several Linux distributions under the organizational structure of the Linux Foundation to standardize the software system structure, including the filesystem hierarchy used in the Linux operating system. The LSB is based on the POSIX specification, the Single UNIX Specification (SUS), and several other open standards, but extends them in certain areas.
+According to the LSB:
+
+The goal of the LSB is to develop and promote a set of open standards that will increase compatibility among Linux distributions and enable software applications to run on any compliant system even in binary form. In addition, the LSB will help coordinate efforts to recruit software vendors to port and write products for Linux Operating Systems.
+
+The LSB compliance may be certified for a product by a certification procedure.[1]
+The LSB specifies for example: standard libraries, a number of commands and utilities that extend the POSIX standard, the layout of the file system hierarchy, run levels, the printing system, including spoolers such as CUPS and tools like Foomatic and several extensions to the X Window System.
+The command lsb_release -a is available in many systems to get the LSB version details, or can be made available by installing an appropriate package, for example the redhat-lsb package on Red-Hat-flavored Linux distributions such as Fedora.[2]
+
+
+
+Contents
+
+
+1 Backward compatibility
+2 Version history
+3 ISO standard
+4 Reception
+
+4.1 Choice of the RPM package format
+4.2 Limitations on Debian
+4.3 Quality of compliance test suites
+
+
+5 See also
+6 References
+7 External links
+
+7.1 Media
+
+
+
+
+
+Backward compatibility[edit]
+
+
+
+
+LSB aims to make binaries portable
+
+
+The LSB is designed to be binary-compatible and produce a stable application binary interface (ABI) for independent software vendors. To achieve backward compatibility, each subsequent version is purely additive. In other words, interfaces are only added, not removed. The LSB adopted an interface deprecation policy to give application developers enough time in case an interface is removed from the LSB.
+This allows the developer to rely on every interface in the LSB for a known time and also to plan for changes, without being surprised. Interfaces are only removed after having been marked "deprecated" for at least three major versions, or roughly six years.[3]
+LSB 5.0 is the first major release that breaks backward compatibility with earlier versions.[4]
+Version history[edit]
+
+1.0: Initial release June 29, 2001.
+1.1: Released January 22, 2002. Added hardware-specific specifications (IA-32).
+1.2: Released June 28, 2002. Added hardware-specific specifications (PowerPC 32-bit). Certification began July 2002.
+1.2.1: Released October 2002. Added Itanium.
+1.3: Released December 17, 2002. Added hardware-specific specifications (Itanium, Enterprise System Architecture/390, z/Architecture).
+2.0: Released August 31, 2004
+
+LSB is modularized to LSB-Core, LSB-CXX, LSB-Graphics, and LSB-I18n (not released)
+New hardware-specific specifications (PowerPC 64-bit, AMD64)
+Synchronized to Single UNIX Specification (SUS) version 3
+
+
+2.0.1: Released October 21, 2004, ISO version of LSB 2.0, which included specification for all hardware architectures (except LSB-Graphics, of which only a generic version is available).
+2.1: Released March 11, 2005.
+3.0: Released July 1, 2005. Among other library changes:
+
+GNU C Library version 2.3.4
+C++ ABI is changed to the one used by gcc 3.4
+The core specification is updated to ISO POSIX (2003)
+Technical Corrigenda 1: 2005
+
+
+3.1: Released October 31, 2005. This version has been submitted as ISO/IEC 23360.
+3.2: Released January 28, 2008. This version has been submitted as ISO/IEC 23360.
+4.0: Released November 11, 2008. This version contains the following features:
+
+GNU C Library version 2.4
+Binary compatibility with LSB 3.x
+Easier to use SDK
+Support for newer versions of GTK and Cairo graphical libraries
+Java (optional module)
+Simpler ways of creating LSB-compliant RPM packages
+Crypto API (via the Network Security Services library) (optional module)
+
+
+4.1: Released February 16, 2011:[5]
+
+Java removed[6]
+"Trial Use" modules from LSB 4.0, covering multimedia (ALSA), security (NSS) and desktop miscellaneous (xdg-utils) have been promoted as required submodules
+Updated GTK+, Cairo and CUPS libraries
+Three new test suites added
+
+
+5.0: Released June 2, 2015
+
+First major release that breaks backward compatibility with earlier versions (compatible with LSB 3.0, and mostly compatible with LSB 3.1 and later, with some exceptions[7])
+Incorporates the changes made in FHS 3.0
+Qt 3 library has been removed
+Evolved module strategy; LSB is modularized to LSB Core, LSB Desktop, LSB Languages, LSB Imaging, and LSB Trial Use
+
+
+
+ISO standard[edit]
+The LSB is registered as an official ISO standard.[8] The main parts of it are:
+
+ISO/IEC 23360-1:2006 Linux Standard Base (LSB) core specification 3.1 –  Part 1: Generic specification
+ISO/IEC 23360-2:2006 Linux Standard Base (LSB) core specification 3.1 –  Part 2: Specification for IA-32 architecture
+ISO/IEC 23360-3:2006 Linux Standard Base (LSB) core specification 3.1 –  Part 3: Specification for IA-64 architecture
+ISO/IEC 23360-4:2006 Linux Standard Base (LSB) core specification 3.1 –  Part 4: Specification for AMD64 architecture
+ISO/IEC 23360-5:2006 Linux Standard Base (LSB) core specification 3.1 –  Part 5: Specification for PPC32 architecture
+ISO/IEC 23360-6:2006 Linux Standard Base (LSB) core specification 3.1 –  Part 6: Specification for PPC64 architecture
+ISO/IEC 23360-7:2006 Linux Standard Base (LSB) core specification 3.1 –  Part 7: Specification for S390 architecture
+ISO/IEC 23360-8:2006 Linux Standard Base (LSB) core specification 3.1 –  Part 8: Specification for S390X architecture
+
+There is also ISO/IEC TR 24715:2006 which identifies areas of conflict between ISO/IEC 23360 (the Linux Standard Base 3.1 specification) and the ISO/IEC 9945:2003 (POSIX) International Standard.[9]
+ISO/IEC 23360 and ISO/IEC TR 24715 can be freely downloaded from ISO website.[10]
+Reception[edit]
+While the LSB is a standard and without a competitor, it is followed only by few Linux distributions. For instance, only 21 distribution releases (versions) are certified for LSB version 4.0, notably Red Flag Linux Desktop 6.0, Red Hat Enterprise Linux 6.0, SUSE Linux Enterprise 11, and Ubuntu 9.04 (jaunty);[11] even fewer are certified for version 4.1.
+The LSB has been criticized[12][13][14][15] for not taking input from projects, most notably the Debian project, outside the sphere of its member companies.
+Choice of the RPM package format[edit]
+The LSB specifies that software packages should either be delivered as an LSB-compliant installer,[16] or (preferably) be delivered in a restricted form of the RPM Package Manager format.[17]
+This choice of package format precludes the use of the many other, existing package formats not compatible with RPM. To address this, the standard does not dictate what package format the system must use for its own packages, merely that RPM must be supported to allow packages from third-party distributors to be installed on a conforming system.
+Limitations on Debian[edit]
+Debian has included optional support for the LSB early on, at version 1.1 in "woody" (3.0; July 19, 2002), 2.0 in "sarge" (3.1; June 6, 2005), 3.1 in "etch" (4.0; April 8, 2007), 3.2 in "lenny" (5.0; February 14, 2009) and 4.1 in "wheezy" (7; May 4, 2013). To use foreign LSB-compliant RPM packages, the end-user needs to use Debian's Alien program to transform them into the native package format and then install them.
+The LSB-specified RPM format has a restricted subset of RPM features—to block usage of RPM features that would be untranslatable to .deb with Alien or other package conversion programs, and vice versa, as each format has capabilities the other lacks. In practice, not all Linux binary packages are necessarily LSB-compliant, so while most can be converted between .rpm and .deb, this operation is restricted to a subset of packages.
+By using Alien, Debian is LSB-compatible for all intents and purposes, but according to the description of their lsb package,[18] the presence of the package "does not imply that we believe that Debian fully complies with the Linux Standard Base, and should not be construed as a statement that Debian is LSB-compliant."[18]
+Debian strived to comply with the LSB, but with many limitations.[19] However, this effort ceased around July 2015 due to lack of interest and workforce inside the project.[20] In September 2015, the Debian project confirmed that while support for Filesystem Hierarchy Standard (FHS) would continue, support for LSB had been dropped.[21] Ubuntu followed Debian in November 2015.[22]
+Quality of compliance test suites[edit]
+Additionally, the compliance test suites have been criticized for being buggy and incomplete—most notably, in 2005 Ulrich Drepper criticized the LSB for poorly written tests which can cause incompatibility between LSB-certified distributions when some implement incorrect behavior to make buggy tests work, while others apply for and receive waivers from complying with the tests.[23] He also denounced a lack of application testing, pointing out that testing only distributions can never solve the problem of applications relying on implementation-defined behavior.[23]
+For the vendors considering LSB certifications in their portability efforts, the Linux Foundation sponsors a tool that analyzes and provides guidance on symbols and libraries that go beyond the LSB.[24]
+See also[edit]
+
+
+Linux portal
+
+
+
+Intel Binary Compatibility Standard (iBCS)
+POSIX (Portable Operating System Interface)
+
+References[edit]
+
+
+^ "Certifying an Application to the LSB". Linux Foundation. 2008. Archived from the original on July 15, 2009. Retrieved April 26, 2010. 
+^ "Package redhat-lsb". fedoraproject.org. Retrieved August 15, 2015. 
+^ "LSB Roadmap". Linux Foundation. 2008. Retrieved 2010-04-26. 
+^ "LSB 5.0 Release Notes". linuxfoundation.org. Retrieved 3 June 2015. 
+^ djwm (10 March 2011). "Java removed from Linux Standard Base 4.1". Archived from the original on December 7, 2013. 
+^ "Java removed from Linux Standard Base 4.1". h-online.com. March 10, 2011. Retrieved August 15, 2015. 
+^ "LSB 5.0 Release Notes: Qt 3 Removed". linuxfoundation.org. Retrieved 3 June 2015. 
+^ "ISO/IEC 23360-1:2006 - Linux Standard Base (LSB) core specification 3.1 -- Part 1: Generic specification". Retrieved 2011-10-15. 
+^ "ISO/IEC TR 24715:2006 - Information technology -- Programming languages, their environments and system software interfaces -- Technical Report on the Conflicts between the ISO/IEC 9945 (POSIX) and the Linux Standard Base (ISO/IEC 23360)". Retrieved 2011-10-15. 
+^ "ISO Publicly Available Standards". Retrieved 2011-10-15. 
+^ Certified Products Product Directory on linuxbase.org (2015-01-12)
+^ "bugs.debian.org". 
+^ "linuxfoundation.org". 
+^ "openacs.org". 
+^ "osnews.com". 
+^ "Chapter 22. Software Installation 22.1. Introduction". Linux Standard Base Core Specification 3.1. 2005. 
+^ "Chapter 22. Software Installation 22.3. Package Script Restrictions". Linux Standard Base Core Specification 3.1. 2005. 
+^ a b "Debian -- Details of package lsb in lenny (stable) -- Linux Standard Base 3.2 support package". Debian Project. 2008-08-18. Retrieved 2010-04-26. 
+^ "Debian LSB". Debian Project. Retrieved 2010-04-26. 
+^ "Debian LSB ML discussion". Debian Project. Retrieved 2015-09-12. 
+^ "Debian dropping the Linux Standard Base". lwn.net. 
+^ "lsb 9.20150917ubuntu1 source package in Ubuntu". 
+^ a b Drepper, Ulrich (2005-09-17). "Do you still think the LSB has some value?". Retrieved 2010-04-26. 
+^ "All About the Linux Application Checker". Linux Foundation. 2008. Retrieved 2010-04-26. 
+
+
+External links[edit]
+
+linuxfoundation.org archives of the specification
+OLVER Test Suite for LSB - Open Linux Verification project
+
+Media[edit]
+
+Four Linux Vendors Agree On An LSB Implementation (slashdot)
+August 26, 1998 press release describing breakdown of teams (at the time) and who was involved, of historical interest
+Yes, the LSB Has Value - Response to Drepper (2005) by Jeff Licquia
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Linux
+
+
+
+Linux kernel
+
+
+
+History
+Kernel
+Linus's Law
+Linux-libre
+Linux startup process
+Linux kernel oops
+Tux
+more…
+
+
+
+
+
+Controversies
+
+
+
+Criticism of Linux
+Criticism of desktop Linux
+GNU/Linux naming controversy
+Tanenbaum–Torvalds debate
+SCO and Linux
+
+
+
+
+
+Distributions
+
+
+
+General comparison
+Distributions list
+Netbook-specific comparison
+Distributions that run from RAM
+Lightweight
+Security-focused operating system
+Proprietary software for Linux
+Package manager
+
+Package format
+List of software package managers
+
+
+
+
+
+
+
+Organizations
+
+
+
+Linux Foundation
+Linux Mark Institute
+Linux User Group (LUG)
+Linux Documentation Project
+LinuxChix
+Linux Counter
+
+
+
+
+
+Adoption
+
+
+
+Desktop
+Embedded
+Gaming
+Linux range of use
+List of Linux adopters
+
+
+
+
+
+Media
+
+
+
+DistroWatch
+Free Software Magazine
+Full Circle
+Linux.com
+Linux Format
+Linux Gazette
+Linux Journal
+Linux Magazine
+LinuxUser
+
+Ubuntu User
+
+
+Linux Outlaws
+Linux Voice
+LugRadio
+LWN.net
+OMG! Ubuntu!
+Open Source For You
+Phoronix
+Revolution OS
+The Code
+
+
+
+
+
+
+
+
+ Linux
+ Linux kernel features
+ Portal:Linux
+ WikiProject Linux
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Linux distributions
+
+
+
+Android
+
+
+
+Android-IA
+Android-x86
+LineageOS
+
+CyanogenMod
+
+
+Remix OS
+
+
+
+
+
+Arch
+
+
+
+Antergos
+ArchBang
+ArchLabs
+Chakra
+Manjaro Linux
+Parabola GNU/Linux-libre
+
+
+
+
+
+Debian
+
+
+
+antiX
+Astra Linux
+Bharat Operating System Solutions
+Elive
+Devuan
+gNewSense
+HandyLinux
+Kali Linux
+Knoppix
+Parrot Security OS
+SparkyLinux
+SteamOS
+Tails
+
+
+
+
+Ubuntu
+
+
+
+Official: Edubuntu
+Kubuntu
+Lubuntu
+Ubuntu Budgie
+Ubuntu GNOME
+Ubuntu Kylin
+Ubuntu MATE
+Ubuntu Studio
+Xubuntu
+Other: Asturix
+Bodhi Linux
+elementary OS
+Linux Mint
+Pinguy OS
+Trisquel
+
+
+
+
+
+
+
+
+Fedora
+
+
+
+BLAG Linux and GNU
+Korora
+
+
+
+
+Red Hat
+
+
+
+CentOS
+ClearOS
+Linpus Linux
+Oracle Linux
+Qubes OS
+Rocks Cluster Distribution
+Scientific Linux
+SME Server
+
+
+
+
+
+
+
+
+Gentoo
+
+
+
+Calculate Linux
+Chromium OS
+
+Chrome OS
+
+
+Funtoo Linux
+Sabayon Linux
+
+
+
+
+
+Mandriva
+
+
+
+ALT Linux
+Mageia
+OpenMandriva Lx
+PCLinuxOS
+ROSA Linux
+
+
+
+
+
+Slackware
+
+
+
+Austrumi Linux
+DeLi Linux
+DNALinux
+Kongoni
+NimbleX
+Platypux
+Porteus
+Salix OS
+Slax
+TopologiLinux
+VectorLinux
+Zenwalk
+
+
+
+
+
+Other
+
+
+
+Alpine Linux
+CRUX
+Frugalware Linux
+GoboLinux
+GuixSD
+Lunar Linux
+NixOS
+openSUSE
+
+SUSE Linux Enterprise Server
+
+
+Puppy Linux
+Source Mage
+Solus
+Void Linux
+Uruk GNU/Linux
+
+
+
+
+
+
+
+
+ Category
+ Comparison
+ List
+ Commons
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+List of International Electrotechnical Commission standards
+
+
+
+IEC standards
+
+
+
+IEC 60027
+IEC 60034
+IEC 60038
+IEC 60062
+IEC 60063
+IEC 60068
+IEC 60112
+IEC 60228
+IEC 60269
+IEC 60297
+IEC 60309
+IEC 60320
+IEC 60364
+IEC 60446
+IEC 60559
+IEC 60601
+IEC 60870
+
+IEC 60870-5
+IEC 60870-6
+
+
+IEC 60906-1
+IEC 60908
+IEC 60929
+IEC 60958
+
+AES3
+S/PDIF
+
+
+IEC 61030
+IEC 61131
+
+IEC 61131-3
+
+
+IEC 61158
+IEC 61162
+IEC 61334
+IEC 61346
+IEC 61355
+IEC 61400
+IEC 61499
+IEC 61508
+IEC 61511
+IEC 61850
+IEC 61851
+IEC 61883
+IEC 61960
+IEC 61968
+IEC 61970
+IEC 62014-4
+IEC 62056
+IEC 62061
+IEC 62196
+IEC 62262
+IEC 62264
+IEC 62304
+IEC 62325
+IEC 62351
+IEC 62365
+IEC 62366
+IEC 62379
+IEC 62386
+IEC 62455
+IEC 62680
+IEC 62682
+IEC 62700
+
+
+
+
+
+ISO/IEC standards
+
+
+
+ISO/IEC 646
+ISO/IEC 2022
+ISO/IEC 4909
+ISO/IEC 5218
+ISO/IEC 6429
+ISO/IEC 6523
+ISO/IEC 7810
+ISO/IEC 7811
+ISO/IEC 7812
+ISO/IEC 7813
+ISO/IEC 7816
+ISO/IEC 7942
+ISO/IEC 8613
+ISO/IEC 8632
+ISO/IEC 8652
+ISO/IEC 8859
+ISO/IEC 9126
+ISO/IEC 9293
+ISO/IEC 9592
+ISO/IEC 9593
+ISO/IEC 9899
+ISO/IEC 9945
+ISO/IEC 9995
+ISO/IEC 10021
+ISO/IEC 10116
+ISO/IEC 10165
+ISO/IEC 10179
+ISO/IEC 10646
+ISO/IEC 10967
+ISO/IEC 11172
+ISO/IEC 11179
+ISO/IEC 11404
+ISO/IEC 11544
+ISO/IEC 11801
+ISO/IEC 12207
+ISO/IEC 13250
+ISO/IEC 13346
+ISO/IEC 13522-5
+ISO/IEC 13568
+ISO/IEC 13818
+ISO/IEC 14443
+ISO/IEC 14496
+ISO/IEC 14882
+ISO/IEC 15288
+ISO/IEC 15291
+ISO/IEC 15408
+ISO/IEC 15444
+ISO/IEC 15445
+ISO/IEC 15504
+ISO/IEC 15511
+ISO/IEC 15693
+ISO/IEC 15897
+ISO/IEC 15938
+ISO/IEC 16262
+ISO/IEC 17024
+ISO/IEC 17025
+ISO/IEC 18000
+ISO/IEC 18004
+ISO/IEC 18014
+ISO/IEC 19752
+ISO/IEC 19757
+ISO/IEC 19770
+ISO/IEC 19788
+ISO/IEC 20000
+ISO/IEC 21000
+ISO/IEC 21827
+ISO/IEC 23000
+ISO/IEC 23003
+ISO/IEC 23008
+ISO/IEC 23270
+ISO/IEC 23360
+ISO/IEC 24707
+ISO/IEC 24727
+ISO/IEC 24744
+ISO/IEC 24752
+ISO/IEC 26300
+ISO/IEC 27000
+ISO/IEC 27000-series
+ISO/IEC 27002
+ISO/IEC 27040
+ISO/IEC 29119
+ISO/IEC 33001
+ISO/IEC 38500
+ISO/IEC 42010
+ISO/IEC 80000
+
+
+
+
+
+Related
+
+
+
+International Electrotechnical Commission
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Linux_Standard_Base&oldid=814552634"					Categories: Interfaces of the Linux kernelISO standardsLinuxLinux APIsLinux FoundationHidden categories: Use mdy dates from December 2014

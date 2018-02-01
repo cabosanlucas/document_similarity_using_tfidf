@@ -1,0 +1,1050 @@
+
+python
+
+
+
+
+paradigm
+objectoriented imperative functional procedural reflective
+
+
+designed
+guido rossum
+
+
+developer
+python software foundation
+
+
+first appeared
+february 1991 years 199102201
+
+
+
+
+
+stable release
+
+december 2017 days 201712192
+2714 september 2017 months 201709163
+
+
+
+
+
+
+typing discipline
+duck dynamic strong
+
+
+license
+python software foundation license
+
+
+filename extensions
+prior since
+
+
+website
+pythonorg
+
+
+major implementations
+
+
+cpython ironpython jython micropython numba pypy stackless python
+
+
+dialects
+
+
+cython rpython
+
+
+influenced
+
+
+abc6 algol clu10 dylan11 haskell12 icon13 java14 lisp15 modula39 perl
+
+
+influenced
+
+
+cobra coconut16 coffeescript17 falcon genie18 groovy javascript1920 julia21 ring22 ruby23 swift24
+
+
+
+
+python programming wikibooks
+
+
+
+
+python interpreted highlevel programming language generalpurpose programming created guido rossum first released 1991 python design philosophy emphasizes code readability syntax allows programmers express concepts fewer lines code2526 notably using significant whitespace provides constructs enable clear programming small large scales27
+python features dynamic type system automatic memory management supports multiple programming paradigms including objectoriented imperative functional procedural large comprehensive standard library28
+python interpreters available many operating systems cpython reference implementation python open source software29 communitybased development model nearly variant implementations cpython managed nonprofit python software foundation
+
+
+
+contents
+
+
+history
+features philosophy
+syntax semantics
+
+indentation
+statements control flow
+expressions
+methods
+typing
+mathematics
+
+
+libraries
+development environments
+implementations
+
+reference implementation
+implementations
+unsupported implementations
+crosscompilers languages
+performance
+
+
+development
+naming
+uses
+languages influenced python
+also
+references
+reading
+external links
+
+
+
+historyedit
+
+
+
+
+guido rossum creator python
+
+
+main article history python
+python conceived late 1980s30 implementation began december 198931 guido rossum centrum wiskunde informatica netherlands successor language inspired setl32 capable exception handling interfacing amoeba operating system6 rossum remains pythons principal author continuing central role pythons development reflected title given python community benevolent dictator life bdfl
+origins python rossum wrote 199633
+
+
+
+december 1989 looking hobby programming project would keep occupied week around christmas office would closed home computer much else hands decided write interpreter scripting language thinking lately descendant would appeal unixc hackers chose python working title project slightly irreverent mood monty pythons flying circus
+
+
+
+python released october 2000 many major features including cycledetecting garbage collector support unicode release development process became transparent communitybacked34
+python initially called python 3000 py3k released december 2008 long testing period major revision language backwardcompatible previous versions35 however many major features backported backwardcompatible python 26x36 version series
+python endoflife date sunset date initially 2015 postponed 2020 concern large body existing code could easily forwardported python 33738 january 2017 google announced work python transcompiler register speculated response python planned endoflife39 google cited performance concurrent workloads motivation40
+features philosophyedit
+python multiparadigm programming language objectoriented programming structured programming fully supported many features support functional programming aspectoriented programming including metaprogramming41 metaobjects magic methods42 many paradigms supported extensions including design contract4344 logic programming45
+python uses dynamic typing combination reference counting cycledetecting garbage collector memory management also features dynamic name resolution late binding binds method variable names program execution
+pythons design offers support functional programming lisp tradition filter reduce functions list comprehensions dictionaries sets generator expressions46 standard library modules itertools functools implement functional tools borrowed haskell standard ml47
+languages core philosophy summarized document python includes aphorisms as48
+
+beautiful better ugly
+explicit better implicit
+simple better complex
+complex better complicated
+readability counts
+
+rather functionality built core python designed highly extensible compact modularity made particularly popular means adding programmable interfaces existing applications rossums vision small core language large standard library easily extensible interpreter stemmed frustrations espoused opposite approach30
+offering choice coding methodology python philosophy rejects exuberant syntax perl favor simpler lesscluttered grammar alex martelli describe something clever considered compliment python culture49 pythons philosophy rejects perl approach language design favor one—and preferably one—obvious it48
+pythons developers strive avoid premature optimization reject patches noncritical parts cpython would offer marginal increases speed cost clarity50 speed important python programmer move timecritical functions extension modules written languages pypy justintime compiler cython also available translates python script makes direct clevel calls python interpreter
+important goal pythons developers keeping reflected languages name—a tribute british comedy group monty python51—and occasionally playful approaches tutorials reference materials examples refer spam eggs famous monty python sketch instead standard bar5253
+common neologism python community pythonic wide range meanings related program style code pythonic uses python idioms well natural shows fluency language conforms pythons minimalist philosophy emphasis readability contrast code difficult understand reads like rough transcription another programming language called unpythonic
+users admirers python especially considered knowledgeable experienced often referred pythonists pythonistas pythoneers5455
+syntax semanticsedit
+main article python syntax semantics
+python meant easily readable language formatting visually uncluttered often uses english keywords languages punctuation unlike many languages curly brackets delimit blocks semicolons statements optional fewer syntactic exceptions special cases pascal56
+indentationedit
+main article python syntax semantics indentation
+python uses whitespace indentation rather curly braces keywords delimit blocks increase indentation comes certain statements decrease indentation signifies current block57 feature also sometimes termed offside rule
+statements control flowedit
+pythons statements include among others
+
+assignment statement token equals sign operates differently traditional imperative programming languages fundamental mechanism including nature pythons version variables illuminates many features language assignment translates typed variable name receives copy numeric value righthand value copied allocated storage location lefthand variable name symbolic address memory allocated variable large enough potentially quite large declared type simplest case python assignment using example translates generic name receives reference separate dynamically allocated object numeric type value termed binding name object since names storage location doesnt contain indicated value improper call variable names subsequently rebound time objects greatly varying types including strings procedures complex objects data methods successive assignments common value multiple names result allocating storage three names numeric object three names bound since name generic reference holder unreasonable associate fixed data type however given time name bound object type thus dynamic typing
+statement conditionally executes block code along else elif contraction elseif
+statement iterates iterable object capturing element local variable attached block
+statement executes block code long condition true
+statement allows exceptions raised attached code block caught handled except clauses also ensures cleanup code finally block always regardless block exits
+class statement executes block code attaches local namespace class objectoriented programming
+statement defines function method
+statement python encloses code block within context manager example acquiring lock block code releasing lock afterwards opening file closing allowing resource acquisition initialization raiilike behavior
+pass statement serves syntactically needed create empty code block
+assert statement used debugging check conditions ought apply
+yield statement returns value generator function python yield also operator form used implement coroutines
+import statement used import modules whose functions variables used current program ways using import module name import import module name
+print statement changed print function python
+
+python support tail call optimization firstclass continuations according guido rossum never will5960 however better support coroutinelike functionality provided extending pythons generators61 generators lazy iterators information passed unidirectionally generator python possible pass information back generator function python information passed multiple stack levels62
+expressionsedit
+python expressions similar languages java
+
+addition subtraction multiplication behavior division differs types divisions python floor division integer division63 python also added operator exponentiation
+python enables support matrix multiplication operator6465
+python compares value versus java compares numerics value66 objects reference67 value comparisons java objects performed equals method pythons operator used compare object identities comparison reference python comparisons chained example
+python uses words boolean operators rather symbolic used java
+python type expression termed list comprehension python extended list comprehensions general expression termed generator expression46
+anonymous functions implemented using lambda expressions however limited body expression
+conditional expressions python written else different order operands operator common many languages
+python makes distinction lists tuples lists written mutable cannot used keys dictionaries dictionary keys must immutable python tuples written immutable thus used keys dictionaries provided elements tuple immutable operator used concatenate tuples directly modify contents rather produces tuple containing elements provided tuples thus given variable initially equal executing first evaluates yields assigned back thereby effectively modifying contents conforming immutable nature tuple objects parentheses optional tuples unambiguous contexts69
+python features sequence unpacking multiple expressions evaluating anything assigned variable writable property associated identical manner forming tuple literals whole left hand side equal sign assignment statement statement expects iterable object right hand side equal sign produces number values provided writable expressions iterated iterate assigning produced values corresponding expression leftcitation needed
+python string format operator functions analogous printf format strings spams eggsd blah evaluates spamblah eggs2 python supplemented format method class spam0 eggs1formatblah python added fstrings fspamblah eggs270
+python various kinds string literals
+
+strings delimited single double quote marks unlike unix shells perl perlinfluenced languages single quote marks double quote marks function identically kinds string backslash escape character string interpolation became available python formatted string literals70
+triplequoted strings begin series three single double quote marks span multiple lines function like documents shells perl ruby
+string varieties denoted prefixing string literal escape sequences interpreted hence strings useful literal backslashes common regular expressions windowsstyle paths compare quoting
+
+
+python array index array slicing expressions lists denoted akey astartstop astartstopstep indexes zerobased negative indexes relative slices take elements start index including stop index third slice parameter called step stride allows elements skipped reversed slice indexes omitted example returns copy entire list element slice shallow copy
+
+python distinction expressions statements rigidly enforced contrast languages common lisp scheme ruby leads duplicating functionality example
+
+list comprehensions forloops
+conditional expressions blocks
+eval exec builtin functions python exec statement former expressions latter statements
+
+statements cannot part expression list comprehensions lambda expressions expressions cannot contain statements particular case assignment statement cannot form part conditional expression conditional statement advantage avoiding classic error mistaking assignment operator equality operator conditions syntactically valid probably unintended code causes syntax error python
+methodsedit
+methods objects functions attached objects class syntax instancemethodargument normal methods functions syntactic sugar classmethodinstance argument python methods explicit self parameter access instance data contrast implicit self objectoriented programming languages java objectivec ruby71
+typingedit
+python uses duck typing typed objects untyped variable names type constraints checked compile time rather operations object fail signifying given object suitable type despite dynamically typed python strongly typed forbidding operations welldefined example adding number string rather silently attempting make sense
+python allows programmers define types using classes often used objectoriented programming instances classes constructed calling class example spamclass eggsclass classes instances metaclass type instance allowing metaprogramming reflection
+version python kinds classes oldstyle newstyle72 syntax styles difference whether class object inherited directly indirectly newstyle classes inherit object instances type versions python python onwards kinds classes used oldstyle classes eliminated python
+long term plan support gradual typing73 python syntax language allows specifying static types checked default implementation cpython experimental optional static type checker named mypy supports compiletime type checking74
+
+summary python builtin types
+
+type
+mutable
+description
+syntax example
+
+
+bool
+immutable
+boolean value
+true
+false
+
+
+bytearray
+mutable
+sequence bytes
+bytearraybsome ascii
+bytearraybsome ascii
+bytearray119
+
+
+bytes
+immutable
+sequence bytes
+bsome ascii
+bsome ascii
+bytes119
+
+
+complex
+immutable
+complex number real imaginary parts
+327j
+
+
+dict
+mutable
+associative array dictionary value pairs contain mixed types keys values keys must hashable type
+key1 false
+
+
+ellipsis
+
+ellipsis placeholder used index numpy arrays
+
+
+
+float
+immutable
+floating point number systemdefined precision
+31415927
+
+
+frozenset
+immutable
+unordered contains duplicates contain mixed types hashable
+frozenset40 string true
+
+
+
+immutable
+integer unlimited magnitude75
+
+
+
+list
+mutable
+list contain mixed types
+string true
+
+
+
+mutable
+unordered contains duplicates contain mixed types hashable
+string true
+
+
+
+immutable
+character string sequence unicode codepoints
+wikipedia
+wikipedia
+spanning
+multiple
+lines
+
+
+tuple
+immutable
+contain mixed types
+string truebut append elements using
+string trueaddhi
+gives string true
+
+
+
+mathematicsedit
+python usual arithmetic operators also exponentiation matrix multiply operator included version 3576 additionally unary operator essentially inverts bytes argument integers means xx177 operators include bitwise shift operators shifts left places shifts right places
+behavior division changed significantly time79
+
+python earlier division behavior operator integer division operands integers floatingpoint division otherwise integer division rounds towards
+python changes integer division round towards negative infinity floor division operator introduced adding future import division causes module python rules division next
+python changes always floatingpoint division python terms pre30 classic division version30 real division floor division
+
+rounding towards negative infinity though different languages adds consistency instance means equation always true also means equation valid positive negative values however maintaining validity equation means result expected halfopen interval positive integer interval negative80
+python provides round function rounding float nearest integer tiebreaking versions roundawayfromzero round05 round05 −1081 python uses round even round15 round25
+python allows boolean expressions multiple equality relations manner consistent general mathematics example expression tests whether less less cderived languages interpret expression differently expression would first evaluate resulting result would compared c83page needed
+python extensive builtin support arbitrary precision arithmetic integers transparently switched machinesupported maximum fixedprecision usually bits belonging python type arbitrary precision belonging python type long needed latter suffix textual representation84 python distinction long types eliminated behavior entirely contained class decimal typeclass module decimal since version provides decimal floating point numbers arbitrary precision several rounding modes85 fraction type module fractions since version provides arbitrary precision rational numbers86
+pythons extensive mathematics library thirdparty library numpy extends native capabilities frequently used scientific scripting language problems numerical data processing manipulation
+librariesedit
+pythons large standard library commonly cited greatest strengths87 provides tools suited many tasks internetfacing applications many standard formats protocols mime http supported includes modules creating graphical user interfaces connecting relational databases generating pseudorandom numbers arithmetic arbitrary precision decimals88 manipulating regular expressions unit testing
+parts standard library covered specifications example server gateway interface wsgi implementation wsgiref follows 33389 modules specified code internal documentation test suites supplied however standard library crossplatform python code modules need altering rewriting variant implementations
+september 2017update python package index official repository thirdparty python software contains 11700090 packages wide range functionality including
+
+graphical user interfaces
+frameworks
+multimedia
+databases
+networking
+test frameworks
+automation
+scraping
+documentation
+system administration
+scientific computing
+text processing
+image processing
+
+development environmentsedit
+also comparison integrated development environments python
+python implementations including cpython include read–eval–print loop repl permitting function command line interpreter user enters statements sequentially receives results immediately
+shells including idle ipython abilities autocompletion session state retention syntax highlighting
+well standard desktop integrated development environments wikipedias python article browserbased ides sagemath intended developing science mathrelated python programs pythonanywhere browserbased hosting environment canopy commercial python emphasizing scientific computing91
+implementationsedit
+also list python software python implementations
+reference implementationedit
+cpython reference implementation python written meeting standard several select features92 compiles python programs intermediate bytecode93 executed virtual machine94 cpython distributed large standard library written mixture native python available many platforms including windows modern unixlike systems platform portability earliest priorities95
+implementationsedit
+pypy fast compliant96 interpreter python justintime compiler brings significant speed improvement cpython97 version development software transactional memory take advantage multicore processors98
+stackless python significant fork cpython implements microthreads memory stack thus allowing massively concurrent programs pypy also stackless version99
+micropython python variant optimised microcontrollers
+unsupported implementationsedit
+justintime python compilers developed unsupported
+
+google began project named unladen swallow 2009 speeding python interpreter fivefold using llvm improving multithreading ability scale thousands cores100
+psyco justintime specialising compiler integrates cpython transforms bytecode machine code runtime emitted code specialised certain data types faster standard python code
+
+2005 nokia released python interpreter series mobile phones named pys60 includes many modules cpython implementations additional modules integrate symbian operating system project kept uptodate variants platform several thirdparty modules available nokia n900 also supports python widget libraries enabling programs written target device101
+crosscompilers languagesedit
+several compilers highlevel object languages either unrestricted python restricted subset python language similar python source language
+
+jython compiles java byte code executed every java virtual machine implementation also enables java class library functions python program
+ironpython follows similar approach order python programs common language runtime
+rpython language compiled java bytecode common intermediate language used build pypy interpreter python
+pyjs compiles python javascript
+cython compiles python
+pythran compiles python
+somewhat dated pyrex latest release 2010 shed skin latest release 2013 compile respectively
+googles grumpy compiles python
+nuitka compiles python
+
+performanceedit
+performance comparison various python implementations nonnumerical combinatorial workload presented euroscipy 13103
+developmentedit
+pythons development conducted largely python enhancement proposal process primary mechanism proposing major features collecting community input issues documenting python design decisions104 outstanding peps reviewed commented python community guido rossum pythons benevolent dictator life104
+enhancement language corresponds development cpython reference implementation mailing list pythondev primary forum languages development specific issues discussed roundup tracker maintained pythonorg105 development originally took place selfhosted sourcecode repository running mercurial python moved github january 2017106
+cpythons public releases come three types distinguished part version number incremented
+
+backwardincompatible versions code expected break need manually ported first part version number incremented releases happen infrequently—for example version released years
+major feature releases every months largely compatible introduce features second part version number incremented major version supported bugfixes several years release107
+bugfix releases introduce features occur every months made sufficient number bugs fixed upstream since last release security vulnerabilities also patched releases third final part version number incremented108
+
+many alpha beta releasecandidates also released previews testing final releases although rough schedule release often delayed code ready pythons development team monitors state code running large unit test suite development using buildbot continuous integration system109
+community python developers also contributed 86000110 software modules august 2016update python package index pypi official repository thirdparty python libraries
+major academic conference python pycon also special python mentoring programmes pyladies
+namingedit
+pythons name derived british comedy group monty python python creator guido rossum enjoyed developing language monty python references appear frequently python code culture111 example metasyntactic variables often used python literature spam eggs instead traditional bar111112 official python documentation also contains various references monty python routines113114
+prefix used show something related python examples prefix names python applications libraries include pygame binding python commonly used create games python implementation symbian operating system pyqt pygtk bind python respectively pypy python implementation originally written python
+usesedit
+main article list python software
+since 2003 python consistently ranked popular programming languages tiobe programming community index march 2017update fifth popular language115 selected programming language year 2007 2010116 third popular language whose grammatical syntax predominantly based
+empirical study found scripting languages python productive conventional languages java programming problems involving string manipulation search dictionary determined memory consumption often better java much worse c117
+large organizations python include wikipedia google118 yahoo119 cern120 nasa121 smaller entities like ilm122 ita123 social news networking site reddit written entirely python
+python serve scripting language applications modwsgi apache server124 server gateway interface standard evolved facilitate applications frameworks like django pylons pyramid turbogears web2py tornado flask bottle zope support developers design maintenance complex applications pyjs ironpython used develop clientside ajaxbased applications sqlalchemy used data mapper relational database twisted framework program communications computers used example dropbox
+libraries numpy scipy matplotlib allow effective python scientific computing125126 specialized libraries biopython astropy providing domainspecific functionality sagemath mathematical software notebook programmable python library covers many aspects mathematics including algebra combinatorics numerical mathematics number theory calculus python language reimplemented java platform used numeric statistical calculations 2d3d visualization dmelt project127128
+python successfully embedded many software products scripting language including finite element method software abaqus parametric modeler like freecad animation packages blender cinema lightwave houdini maya modo motionbuilder softimage visual effects compositor nuke imaging programs like gimp129 inkscape scribus paint shop pro130 musical notation programs like scorewriter capella debugger uses python pretty printer show complex structures containers esri promotes python best choice writing scripts arcgis131 also used several video games132133 adopted first three available programming languages google engine java go134 python also used algorithmic trading quantitative finance135 python also implemented apis online brokerages languages using wrappers136
+python used artificial intelligence projects137138139140 scripting language modular architecture simple syntax rich text processing tools python often used natural language processing141
+many operating systems include python standard component ships linux distributions amigaos freebsd netbsd openbsd macos used command line terminal many linux distributions installers written python ubuntu uses ubiquity installer linux fedora anaconda installer gentoo linux uses python package management system portage
+python used extensively information security industry including exploit development142143
+sugar software laptop child developed sugar labs written python144
+raspberry singleboard computer project adopted python main userprogramming language
+libreoffice includes python intends replace java python python scripting provider core feature145 since version february 2013
+languages influenced pythonedit
+pythons design philosophy influenced many programming languages
+
+uses indentation similar syntax similar object model146
+cobra uses indentation similar syntax acknowledgements document lists python first among languages influenced it147 however cobra directly supports designbycontract unit tests optional static typing148
+coffeescript programming language crosscompiles javascript pythoninspired syntax
+ecmascript borrowed iterators generators list comprehensions python149
+described incorporating development speed working dynamic language like python150
+groovy motivated desire bring python design philosophy java151
+julia designed true macros usable general programming python fast calling julia possible pycalljl python package pyjulia allows calling direction python
+ocaml optional syntax named whitespace thing inspired python haskell152
+rubys creator yukihiro matsumoto said wanted scripting language powerful perl objectoriented python thats decided design language153
+swift programming language developed apple pythoninspired syntax154
+
+pythons development practices also emulated languages example practice requiring document describing rationale issues surrounding change language python also used tcl155 erlang156
+python received tiobes programming language year awards 2007 2010 award given language greatest growth popularity year measured tiobe index157
+alsoedit
+
+
+free software portal
+python programming portal
+
+
+
+comparison integrated development environments python
+comparison programming languages
+list programming languages
+offside rule
+
+referencesedit
+
+
+history python brief timeline python blogger january 2009 retrieved march 2016
+deily december 2017 python available python insider python core developers retrieved december 2017
+peterson benjamin september 2017 python 2714 released python insider python core developers retrieved september 2017
+file extension removed python 0488
+holth moore march 2014 0441 improving python application support retrieved november 2015
+python created first place general python python software foundation retrieved march 2007
+kuchling andrew december 2006 interview guido rossum july 1998 amkca archived original 2007 retrieved march 2012
+rossum guido 1993 introduction python unixc programmers proceedings nluug najaarsconferentie dutch unix users group even though design ideal influence python considerable
+classes python tutorial python software foundation retrieved february 2012 mixture class mechanisms found modula3
+lundh fredrik call object effbotorg retrieved november 2017 replace python record instance procedure function method pretty accurate description pythons object model
+simionato michele python method resolution order python software foundation method nothing python since invented people working dylan described paper intended lispers
+kuchling functional programming howto python v272 documentation python software foundation retrieved february 2012
+schemenauer neil peters hetland magnus 2001 simple generators python enhancement proposals python software foundation retrieved february 2012
+smith kevin jewett montanaro skip baxter anthony september 2004 decorators functions methods python enhancement proposals python software foundation retrieved february 2012
+control flow tools python documentation python software foundation retrieved july 2015
+hubinger evan coconut programming language coconutlangorg retrieved august 2017
+coffeescript borrows chained comparisons python
+genie language brief guide retrieved december 2015
+perl python influences javascript www2alitycom february 2013 retrieved 2015
+rauschmayer axel chapter nature javascript influences oreilly speaking javascript retrieved 2015
+created julia julia website february 2012 retrieved june 2014
+ring team december 2017 ring languages ringlangnet ringlang
+bini 2007 practical jruby rails projects bringing ruby rails java platform berkeley apress isbn 9781590598818
+lattner chris june 2014 chris lattners homepage chris lattner retrieved june 2014 swift language product tireless effort team language experts documentation gurus compiler optimization ninjas incredibly important internal dogfooding group provided feedback help refine battletest ideas course also greatly benefited experiences hardwon many languages field drawing ideas objectivec rust haskell ruby python many others list
+summerfield mark rapid programming python python expressive language means usually write fewer lines python code would required equivalent application written java
+mcconnell steve november 2009 code complete isbn 9780735636972
+kuhlman dave python book beginning python advanced python python exercises
+python python software foundation retrieved april 2012 second section fans python phrase batteries included describe standard library covers everything asynchronous processing files
+history license retrieved december 2016 python releases open source
+venners bill january 2003 making python artima developer artima retrieved march 2007
+rossum guido january 2009 brief timeline python history python google retrieved january 2009
+rossum guido august 2000 setl lukewarm range literals pythondev mailing list retrieved march 2011
+rossum guido 1996 foreword programming python retrieved july 2014
+kuchling zadka moshe october 2000 whats python python software foundation retrieved february 2012
+python release python software foundation retrieved july 2009
+rossum guido april 2006 3000 python 3000 python enhancement proposals python software foundation retrieved june 2009
+python release schedule pythonorg retrieved january 2017
+network security enhancements python pythonorg retrieved january 2017
+claburn thomas january 2017 googles grumpy code makes python retrieved january 2017
+google open source blog grumpy running python january 2017 retrieved march 2017
+cain gang python metaclasses archived original december 2009 retrieved june 2009
+special method names python language reference python software foundation retrieved june 2009
+pydbc method preconditions method postconditions class invariants python retrieved september 2011
+contracts python retrieved september 2011
+pydatalog retrieved july 2012
+hettinger raymond january 2002 generator expressions python enhancement proposals python software foundation retrieved february 2012
+itertools functions creating iterators efficient looping docspythonorg retrieved november 2016
+peters august 2004 python python enhancement proposals python software foundation retrieved november 2008
+martelli alex ravenscroft anna ascher david 2005 python cookbook edition oreilly media isbn 9780596007973
+python culture
+general python python v273 documentation docspythonorg retrieved december 2012
+ways python powerful force
+pprint data pretty printer python documentation
+goodger david code like pythonista idiomatic python
+think like pythonista
+python good language beginning programmers general python python software foundation retrieved march 2007
+myths indentation python secnetixde retrieved april 2011
+sweigart 2010 appendix differences python invent computer games python isbn 9780982106013 retrieved february 2014
+rossum guido april 2009 tail recursion elimination neopythonicblogspotbe retrieved december 2012
+rossum guido february 2006 language design solving puzzles artima forums artima retrieved march 2007
+rossum guido phillip 2005 coroutines enhanced generators python enhancement proposals python software foundation retrieved february 2012
+pythonorg retrieved december 2012
+division pythonorg
+0465 dedicated infix operator matrix multiplication pythonorg retrieved january 2016
+python release changelog pythonorg retrieved january 2016
+chapter expressions 15211 numerical equality operators oracle corporation retrieved august 2016
+chapter expressions 15213 reference equality operators oracle corporation retrieved august 2016
+rossum guido hettinger raymond february 2003 conditional expressions python enhancement proposals python software foundation retrieved july 2011
+builtin types python 363rc1 documentation pythonorg retrieved october 2017
+literal string interpolation pythonorg retrieved march 2017
+must self used explicitly method definitions calls design history python software foundation retrieved february 2012
+python language reference section newstyle classic classes release retrieved january 2011
+type hinting python lwnnet december 2014 retrieved 2015
+mypy optional static typing python retrieved january 2017
+zadka moshe rossum guido march 2001 unifying long integers integers python enhancement proposals python software foundation retrieved september 2011
+dedicated infix operator matrix multiplication pythonorg
+tilde operator python stackoverflow stackoverflowcom
+bitwiseoperators python wiki wikipythonorg
+zadka moshe rossum guido march 2001 changing division operator python enhancement proposals python software foundation retrieved october 2013
+pythons integer division floors retrieved august 2010
+round python standard library release builtin functions retrieved august 2011
+round python standard library release builtin functions retrieved august 2011
+python essential reference david beazley
+builtin type docspythonorg
+batista facundo 0327 decimal data type pythonorg retrieved september 2015
+whats python python v269 documentation docspythonorg retrieved september 2015
+piotrowski przemyslaw july 2006 build rapid development environment python server pages oracle oracle technology network oracle retrieved march 2012
+batista facundo october 2003 decimal data type python enhancement proposals python software foundation retrieved november 2008
+phillip december 2003 python server gateway interface python enhancement proposals python software foundation retrieved february 2012
+debill erik module counts modulecounts retrieved september 2017
+enthought canopy canopy wwwenthoughtcom retrieved august 2016
+rossum guido june 2001 style guide code python enhancement proposals python software foundation retrieved november 2008
+cpython byte code docspythonorg retrieved february 2016
+python internals retrieved april 2011
+interview guido rossum oreillycom retrieved november 2008
+pypy compatibility pypyorg retrieved december 2012
+speed comparison cpython pypy speedpypyorg retrieved december 2012
+threads morepypyblogspotbe june 2012 retrieved december 2012
+applicationlevel stackless features pypy documentation docpypyorg retrieved july 2013
+plans optimizing python google project hosting google december 2009 retrieved september 2011
+python nokia n900 stochastic geometry
+nuitka home nuitka home nuitkanet retrieved august 2017
+murri riccardo 2013 performance python runtimes nonnumeric scientific code european conference python science euroscipy arxiv14046388
+warsaw barry hylton jeremy goodger david june 2000 purpose guidelines python enhancement proposals python software foundation retrieved april 2011
+cannon brett guido guys mailing list python developed pythonorg python software foundation archived original june 2009 retrieved june 2009
+python developers guide
+norwitz neal april 2002 pythondev release schedules stability change retrieved june 2009
+aahz baxter anthony march 2001 releases python enhancement proposals python software foundation retrieved june 2009
+python buildbot python developer’s guide python software foundation retrieved september 2011
+debill erik module counts wwwmodulecountscom retrieved august 2016
+whetting appetite python tutorial python software foundation retrieved february 2012
+python else return block stack overflow stack exchange february 2011 retrieved 2011
+lutz mark 2009 learning python powerful objectoriented programming oreilly media isbn 9781449379322
+fehily chris 2002 python peachpit press isbn 9780201748840
+tiobe index tiobe software quality company retrieved march 2017
+tiobe software index 2015 tiobe programming community index python retrieved september 2015
+prechelt lutz march 2000 empirical comparison java perl python rexx retrieved august 2013
+quotes python python software foundation retrieved january 2012
+organizations using python python software foundation retrieved january 2009
+python holy grail programming cern bulletin cern publications 312006 july 2006 retrieved february 2012
+shafer daniel january 2003 python streamlines space shuttle mission design python software foundation retrieved november 2008
+fortenberry january 2003 industrial light magic runs python python software foundation retrieved february 2012
+taft darryl march 2007 python slithers systems eweekcom ziff davis holdings retrieved september 2011
+usage statistics market share python websites 2012 retrieved december 2012
+oliphant travis 2007 python scientific computing computing science engineering
+millman jarrod aivazis michael 2011 python scientists engineers computing science engineering 9–12
+chekanov april 2016 numeric computation statistical data analysis java platform london springer isbn 9783319285313
+chekanov 2010 scientific data analysis using jython scripting java london springer isbn 9783319285313
+installers gimp windows frequently asked questions july 2013 retrieved july 2013
+jasc psp9components archived original march 2008
+getting started writing geoprocessing scripts arcgis desktop help environmental systems research institute november 2006 retrieved february 2012
+porkbelly august 2010 stackless python community blogs games know core programming language known stackless python
+caudill barry september 2005 modding meiers civilization meiers civilization developer blog firaxis games archived original august 2010 created three levels tools next level offers python support letting modders experience manipulate game world everything
+python language guide google documents list data google archived original august 2010
+python best programming language algorithmic trading systems march 2016 retrieved october 2016
+trading interactive brokers using python ibpy tutorial september 2016 retrieved october 2016
+python artificial intelligence wikipythonorg july 2012 archived original november 2012 retrieved december 2012
+paine jocelyn august 2005 python expert newsletter amzi retrieved february 2012
+pyaiml python package index pypipythonorg retrieved july 2013
+russell stuart norvig peter 2009 artificial intelligence modern approach upper saddle river prentice hall 1062 isbn 9780136042594 retrieved february 2012
+natural language toolkit
+immunity knowing youre secure
+corelabs site
+sugar sugar labs retrieved february 2012
+features fixes libreofficeorg document foundation 2013 retrieved february 2013
+gotchas python users boocodehausorg codehaus foundation retrieved november 2008
+esterbrook charles acknowledgements cobralanguagecom cobra language retrieved april 2010
+esterbrook charles comparison python cobralanguagecom cobra language retrieved april 2010
+proposals iterators generators wiki wikiecmascriptorg retrieved november 2008
+kincaid jason november 2009 googles programming language thats python meets techcrunch retrieved january 2010
+strachan james august 2003 groovy birth dynamic language java platform
+mike whitespace thing ocaml massachusetts institute technology retrieved april 2009
+interview creator ruby linuxdevcentercom retrieved december 2012
+lattner chris june 2014 chris lattners homepage chris lattner retrieved june 2014 started work swift programming language july 2010 implemented much basic language structure people knowing existence amazing people started contributing earnest late 2011 became major focus apple developer tools group july 2013 drawing ideas objectivec rust haskell ruby python many others list
+kupries andreas fellows donal september 2000 format tcltk developer xchange retrieved november 2008
+gustafsson niskanen raimo january 2007 purpose guidelines erlangorg retrieved april 2011
+tiobe programming community index march 2012 tiobe software march 2012 retrieved march 2012
+
+
+readingedit
+
+downey allen 2012 think python think like computer scientist version isbn 9780521725965
+hamilton naomi august 2008 programming languages python computerworld archived original december 2008 retrieved march 2010
+lutz mark 2013 learning python oreilly media isbn 9780596158064
+pilgrim mark 2004 dive python apress isbn 9781590593561
+pilgrim mark 2009 dive python apress isbn 9781430224150
+summerfield mark 2009 programming python addisonwesley professional isbn 9780321680563
+
+external linksedit
+
+find aboutpython programming languageat wikipedias sister projects
+
+media wikimedia commons
+quotations wikiquote
+textbooks wikibooks
+learning resources wikiversity
+
+
+
+official website
+python curlie based dmoz
+
+
+
+
+
+
+
+
+
+
+
+
+programming languages
+
+
+
+
+
+
+comparison
+timeline
+history
+
+
+
+
+
+
+
+
+assembly
+basic
+
+
+
+cobol
+fortran
+
+groovy
+haskell
+java
+javascript
+kotlin
+lisp
+
+objectivec
+pascal
+perl
+
+python
+rexx
+ruby
+shell
+smalltalk
+swift
+visual basic vbnet
+vbscript
+
+
+
+
+
+
+
+
+
+category
+lists
+
+alphabetical
+categorical
+generational
+nonenglishbased
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+python
+
+
+
+implementations
+
+
+
+clpython
+cpython
+cython
+micropython
+numba
+ironpython
+jython
+psyco
+pypy
+python
+shed skin
+stackless python
+unladen swallow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+eric python
+idle
+pydev
+
+ninjaide
+
+
+
+
+
+
+topics
+
+
+
+wsgi
+
+
+
+
+
+
+
+
+software list
+python software foundation
+pycon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+python frameworks
+
+
+
+
+
+
+bluebream
+bottle
+cherrypy
+django
+flask
+grok
+nagare
+nevow
+pyjs
+pylons
+pyramid
+quixote
+spyce
+tactic
+tornado
+turbogears
+twistedweb
+webware
+web2py
+zope
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+free opensource software
+
+
+
+general
+
+
+
+alternative terms free software
+comparison opensource closedsource software
+comparison source code hosting facilities
+free software
+free software project directories
+gratis versus libre
+longterm support
+opensource software
+opensource software development
+outline
+
+
+
+
+
+software
+packages
+
+
+
+audio
+bioinformatics
+codecs
+collaboration
+configuration management
+device drivers
+
+graphics
+wireless
+
+
+geophysics
+health
+mathematics
+operating systems
+programming languages
+routing
+statistics
+television
+video games
+applications
+
+content management systems
+ecommerce
+
+
+word processors
+android apps
+apps
+commercial
+trademarked
+formerly proprietary
+
+
+
+
+
+community
+
+
+
+free software movement
+history
+opensource software movement
+organizations
+events
+
+
+
+
+
+licenses
+
+
+
+
+apache
+apsl
+artistic
+beerware
+boost
+
+
+cddl
+
+
+lgpl
+
+
+
+msplrl
+python
+python software foundation
+sleepycat
+unlicense
+wtfpl
+zlib
+
+
+
+
+
+license types
+standards
+
+
+
+comparison free opensource software licenses
+contributor license agreement
+copyfree
+copyleft
+debian free software guidelines
+definition free cultural works
+free license
+free software definition
+open source definition
+opensource license
+permissive software licence
+public domain
+viral license
+
+
+
+
+
+challenges
+
+
+
+binary blob
+digital rights management
+hardware restrictions
+license proliferation
+mozilla software rebranding
+proprietary software
+scolinux controversies
+secure boot
+software patents
+software security
+trusted computing
+
+
+
+
+
+related topics
+
+
+
+cathedral bazaar
+forking
+microsoft open specification promise
+revolution
+
+
+
+
+
+
+
+
+book
+category
+commons
+portal
+
+
+
+
+
+
+
+
+
+authority control
+
+
+
+lccn sh96008834
+44342755
+sudoc 051626225
+cb13560465c data
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlepythonprogramminglanguageoldid818393369 categories programming languagesclassbased programming languagescomputational notebookcomputer science netherlandscrossplatform free softwaredutch inventionsdynamically typed programming languageseducational programming languageshighlevel programming languagesinformation technology netherlandsobjectoriented programming languagesprogramming languages created 1991python programming languagescripting languagestextoriented programming languagescrossplatform softwarehidden categories articles unsourced statementsarticles unsourced statements october 2017wikipedia articles needing page number citations january 2012articles containing potentially dated statements september 2017all articles containing potentially dated statementsarticles containing potentially dated statements august 2016articles containing potentially dated statements march 2017articles dmoz linkswikipedia articles lccn identifierswikipedia articles identifierswikipedia articles identifiersgood articlesuse dates august 2015

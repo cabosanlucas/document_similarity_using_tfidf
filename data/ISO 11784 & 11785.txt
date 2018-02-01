@@ -1,0 +1,586 @@
+
+
+
+
+
+
+This article needs attention from an expert in Technology. Please add a reason or a talk parameter to this template to explain the issue with the article. WikiProject Technology may be able to help recruit an expert. (February 2009)
+
+
+
+ISO 11784 & 11785 are international standards that regulate the radio frequency identification (RFID) of animals, which is usually accomplished by implanting, introducing or attaching a transponder containing a microchip to an animal.
+RF identification of animals requires that the bits transmitted by a transponder are interpretable by a transceiver. Usually the bit stream contains data bits, defining the identification code and a number of bits to ensure correct reception of the data bits. ISO 11784 specifies the structure of the identification code. ISO 11785 specifies how a transponder is activated and how the stored information is transferred to a transceiver (the characteristics of the transmission protocols between transponder and transceiver)
+These standards are updated and expanded in ISO 14223 which regulates "advanced" transponders for animals, and ISO 24631 which regulates testing procedures for conformance with ISO 11784 & 11785 as well as performance.
+
+
+
+Contents
+
+
+1 Introduction
+2 Specifications
+
+2.1 RF protocol
+2.2 Code structure
+
+2.2.1 HDX
+2.2.2 FDX
+
+
+
+
+3 Patents
+4 References
+5 External links
+
+
+
+Introduction[edit]
+The technical concept of animal identification described is based on the principle of radio-frequency identification (RFID). ISO 11785 is applicable in connection with ISO 11784 which describes the structure and the information content of the codes stored in the transponder.
+The International Organization for Standardization (ISO) draws attention to the fact that compliance with clause 6 and Annex A of this International Standard may involve the use of patents concerning methods of transmission.
+Specifications[edit]
+RF protocol[edit]
+The carrier frequency for animal identification is: 134.2 kHz. There are 2 ISO approved protocols in use to communicate between tag and reader:
+
+
+Protocol
+Full Duplex (FDX or FDX-B)
+Half Duplex (HDX)
+
+
+Modulation
+ASK
+FSK
+
+
+Frequency
+129-133.2 kHz
+124.2 kHz=1
+
+
+
+135.2-139.4 kHz
+134.2 kHz=0
+
+
+Channel code
+Differential Biphase (DBP)
+none
+
+
+Symbol time
+0.23845 ms
+0.1288 ms 1
+
+
+
+
+0.1192 ms 0
+
+
+Telegram (bit)
+128
+112
+
+
+In DBP a 1 is encoded as 00 or 11 and a 0 is encoded as 01 or 10, such that there is at least one transition per bit (so 11 is encoded as 0011 and not as 0000 or 1111)
+Code structure[edit]
+ISO 11784:1996 Radio-frequency identification of animals - Code structure Published. The first 3 digits of the ID are the manufacturer code.
+HDX[edit]
+With half duplex, the tag must store sufficient energy when the receiver's activating field is turned on to allow it to transmit when the activating field is switched off. This makes the receiver simpler, as it is not necessary to pick up the weak signal from the tag among the strong activating field. The disadvantage is that the HDX tag can not transmit when the activating field is turned on.
+Telegram layout:
+
+8 Startbits 01111110,
+1 Animal-No animal indicator,
+14 'Reserved for future use'bits,
+1 Extra data indicator bit,
+10 Country code according to ISO 3166,
+38 ID bits,
+16 CCITT CRC over the previous 64 bits,
+24 Application bits,
+
+FDX[edit]
+With full duplex, the tag can transmit immediately when in the presence of the receiver's activating field. The advantage is that the FDX tag can then transmit continuously and can therefore be read more quickly and more often.
+Telegram layout:
+
+11 Startbits 00000000001,
+38 ID bits
+10 Country code according to ISO 3166,
+1 Extra application bits,
+14 Reserved bits,
+1 Animal bit,
+16 CCITT CRC over the previous bits
+24 Application bits
+
+In FDX (at least), after the 11 startbits, a framing bit ('1') is sent after every 8 data bits.
+Patents[edit]
+Compliance with the standards may require use of techniques which are covered by (or claimed to be covered by) certain patents. ISO takes no position concerning the evidence, validity and scope of these patent rights.
+Some patent holder has assured ISO that he will not exert its patent rights concerning FDX B technology. Other patent holders have assured ISO that they are willing to negotiate licenses under reasonable and non-discriminatory terms and conditions with applicants through the world. In this respect, the statement of the holders of these patent rights are registered with ISO.
+Attention is moreover drawn to the possibility that some of the elements of this International Standard may be the subject of patent rights other than those identified above. ISO shall not be held responsible for identifying any or all such patent rights. In that connection, additional correspondences were received from two other companies not willing to forward pertinent declaration in accordance with the current ISO Directives.
+References[edit]
+
+
+European Union uses ISO 11784 / 11785 for mandatory identification of animals
+Description of FDX-B at Priority One Design
+
+External links[edit]
+
+A1 ID Systems: Manufacturer of microchip identification for animals. (Certified manufacturer ISO 11784 / 11785 )
+ISO 11784:1996 at ISO web site
+ISO 11785:1996 at ISO web site
+Discussion of the 5 types of microchip transponders described in ISO 11785
+RFIDIOt.org - Open Source Tools for reading and manipulating RFID tags including ISO11784/5 compliant devices
+RFIDler - An Open Source hardware RFID Reader/Writer/Emulator including ISO11784/5 compliant devices
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_11784_%26_11785&oldid=774385012"					Categories: Radio-frequency identificationHidden categories: Articles needing expert attention with no reason or talk parameterArticles needing expert attention from February 2009All articles needing expert attentionTechnology articles needing expert attention

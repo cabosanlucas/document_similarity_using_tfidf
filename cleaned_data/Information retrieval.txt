@@ -1,0 +1,2319 @@
+information retrieval activity obtaining information resources relevant information need collection information resources searches based fulltext contentbased indexing information retrieval science searching information document searching documents also searching metadata describe data databases texts images sounds
+automated information retrieval systems used reduce called information overload many universities public libraries systems provide access books journals documents search engines visible applications
+
+
+
+contents
+
+
+overview
+history
+model types
+
+first dimension mathematical basis
+second dimension properties model
+
+
+performance correctness measures
+
+precision
+recall
+fallout
+fscore fmeasure
+average precision
+precision
+rprecision
+mean average precision
+discounted cumulative gain
+measures
+visualization
+
+
+timeline
+major conferences
+awards field
+leading research groups
+also
+references
+reading
+external links
+
+
+
+overviewedit
+information retrieval process begins user enters query system queries formal statements information needs example search strings search engines information retrieval query uniquely identify single object collection instead several objects match query perhaps different degrees relevancy
+object entity represented information content collection database user queries matched database information however opposed classical queries database information retrieval results returned match query results typically ranked ranking results difference information retrieval searching compared database searching1
+depending application data objects example text documents images2 audio3 mind maps4 videos often documents kept stored directly system instead represented system document surrogates metadata
+systems compute numeric score well object database matches query rank objects according value ranking objects shown user process iterated user wishes refine query5
+historyedit
+
+
+
+machine called univac whereby letters figures coded pattern magnetic spots long steel tape means text document preceded subject code symbol recorded machine automatically selects types references coded desired rate words minute
+
+
+
+holmstrom 1948
+
+
+idea using computers search relevant pieces information popularized article think vannevar bush 19456 would appear bush inspired patents statistical machine filed emanuel goldberg 1920s searched documents stored film7 first description computer searching information described holmstrom 19488 detailing early mention univac computer automated information retrieval systems introduced 1950s even featured 1957 romantic comedy desk 1960s first large information retrieval research group formed gerard salton cornell 1970s several different retrieval techniques shown perform well small text corpora cranfield collection several thousand documents6 largescale retrieval systems lockheed dialog system came early 1970s
+1992 department defense along national institute standards technology nist cosponsored text retrieval conference trec part tipster text program look information retrieval community supplying infrastructure needed evaluation text retrieval methodologies large text collection catalyzed research methods scale huge corpora introduction search engines boosted need large scale retrieval systems even
+model typesedit
+
+
+
+
+categorization irmodels translated german entry original source dominik kuropka
+
+
+effectively retrieving relevant documents strategies documents typically transformed suitable representation retrieval strategy incorporates specific model document representation purposes picture right illustrates relationship common models picture models categorized according dimensions mathematical basis properties model
+first dimension mathematical basisedit
+
+settheoretic models represent documents sets words phrases similarities usually derived settheoretic operations sets common models
+
+standard boolean model
+extended boolean model
+fuzzy retrieval
+
+
+algebraic models represent documents queries usually vectors matrices tuples similarity query vector document vector represented scalar value
+
+vector space model
+generalized vector space model
+enhanced topicbased vector space model
+extended boolean model
+latent semantic indexing latent semantic analysis
+
+
+probabilistic models treat process document retrieval probabilistic inference similarities computed probabilities document relevant given query probabilistic theorems like bayes theorem often used models
+
+binary independence model
+probabilistic relevance model based okapi bm25 relevance function
+uncertain inference
+language models
+divergencefromrandomness model
+latent dirichlet allocation
+
+
+featurebased retrieval models view documents vectors values feature functions features seek best combine features single relevance score typically learning rank methods feature functions arbitrary functions document query easily incorporate almost retrieval model another feature
+
+second dimension properties modeledit
+
+models without terminterdependencies treat different termswords independent fact usually represented vector space models orthogonality assumption term vectors probabilistic models independency assumption term variables
+models immanent term interdependencies allow representation interdependencies terms however degree interdependency terms defined model usually directly indirectly derived dimensional reduction cooccurrence terms whole documents
+models transcendent term interdependencies allow representation interdependencies terms allege interdependency terms defined rely external source degree interdependency terms example human sophisticated algorithms
+
+performance correctness measuresedit
+
+
+
+
+
+
+suggested section split another article titled evaluationmeasuresinformationretrieval discuss june 2017
+
+
+
+information evaluation measures information retrieval
+
+evaluation information retrieval system process assessing well system meets information needs users traditional evaluation metrics designed boolean retrieval topk retrieval include precision recall many measures evaluating performance information retrieval systems also proposed general measurement considers collection documents searched search query common measures described assume ground truth notion relevancy every document known either relevant nonrelevant particular query practice queries illposed different shades relevancy
+virtually modern evaluation metrics mean average precision discounted cumulative gain designed ranked retrieval without explicit rank cutoff taking account relative order documents retrieved search engines giving weight documents returned higher rankscitation needed
+mathematical symbols used formulas mean
+
+
+
+
+
+
+
+
+
+
+displaystyle xcap
+
+intersection case specifying documents sets
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+cardinality case number documents
+
+
+
+
+
+
+
+displaystyle
+
+integral
+
+
+
+
+
+
+
+displaystyle
+
+summation
+
+
+
+
+
+
+
+displaystyle delta
+
+symmetric difference
+
+precisionedit
+main article precision recall
+precision fraction documents retrieved relevant users information need
+
+
+
+
+
+
+precision
+
+
+
+
+
+
+
+
+
+
+relevant documents
+
+
+
+
+
+retrieved documents
+
+
+
+
+
+
+
+
+
+
+
+
+retrieved documents
+
+
+
+
+
+
+
+
+
+
+displaystyle mboxprecisionfrac mboxrelevant documentscap mboxretrieved documentsmboxretrieved documents
+
+
+
+binary classification precision analogous positive predictive value precision takes retrieved documents account also evaluated given cutoff rank considering topmost results returned system measure called precision
+note meaning usage precision field information retrieval differs definition accuracy precision within branches science statistics
+recalledit
+main article precision recall
+recall fraction documents relevant query successfully retrieved
+
+
+
+
+
+
+recall
+
+
+
+
+
+
+
+
+
+
+relevant documents
+
+
+
+
+
+retrieved documents
+
+
+
+
+
+
+
+
+
+
+
+
+relevant documents
+
+
+
+
+
+
+
+
+
+
+displaystyle mboxrecallfrac mboxrelevant documentscap mboxretrieved documentsmboxrelevant documents
+
+
+
+binary classification recall often called sensitivity looked probability relevant document retrieved query
+trivial achieve recall returning documents response query therefore recall alone enough needs measure number nonrelevant documents also example computing precision
+falloutedit
+proportion nonrelevant documents retrieved nonrelevant documents available
+
+
+
+
+
+
+fallout
+
+
+
+
+
+
+
+
+
+
+nonrelevant documents
+
+
+
+
+
+retrieved documents
+
+
+
+
+
+
+
+
+
+
+
+
+nonrelevant documents
+
+
+
+
+
+
+
+
+
+
+displaystyle mboxfalloutfrac mboxnonrelevant documentscap mboxretrieved documentsmboxnonrelevant documents
+
+
+
+binary classification fallout closely related specificity equal
+
+
+
+
+
+
+
+specificity
+
+
+
+
+displaystyle 1mboxspecificity
+
+looked probability nonrelevant document retrieved query
+trivial achieve fallout returning zero documents response query
+fscore fmeasureedit
+main article fscore
+weighted harmonic mean precision recall traditional fmeasure balanced fscore
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle ffrac 2cdot mathrm precision cdot mathrm recall mathrm precision mathrm recall
+
+
+
+also known
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+measure recall precision evenly weighted
+general formula nonnegative real
+
+
+
+
+
+
+displaystyle beta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle fbeta frac 1beta 2cdot mathrm precision cdot mathrm recall beta 2cdot mathrm precision mathrm recall
+
+
+
+commonly used measures
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+measure weights recall twice much precision
+
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+measure weights precision twice much recall
+fmeasure derived rijsbergen 1979
+
+
+
+
+
+
+
+
+
+
+
+displaystyle fbeta
+
+measures effectiveness retrieval respect user attaches
+
+
+
+
+
+
+displaystyle beta
+
+times much importance recall precision based rijsbergens effectiveness measure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle e1frac 1frac alpha pfrac 1alpha
+
+relationship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle fbeta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle alpha frac 11beta
+
+
+
+fmeasure better single metric compared precision recall precision recall give different information complement combined excels fmeasure reflect itcitation needed
+average precisionedit
+precision recall singlevalue metrics based whole list documents returned system systems return ranked sequence documents desirable also consider order returned documents presented computing precision recall every position ranked sequence documents plot precisionrecall curve plotting precision
+
+
+
+
+
+
+
+
+
+displaystyle
+
+function recall
+
+
+
+
+
+
+displaystyle
+
+average precision computes average value
+
+
+
+
+
+
+
+
+
+displaystyle
+
+interval
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+avep
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle operatorname avep 01prdr
+
+
+
+area precisionrecall curve integral practice replaced finite every position ranked sequence documents
+
+
+
+
+
+avep
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle operatorname avep k1npkdelta
+
+
+
+
+
+
+
+
+
+
+displaystyle
+
+rank sequence retrieved documents
+
+
+
+
+
+
+displaystyle
+
+number retrieved documents
+
+
+
+
+
+
+
+
+
+displaystyle
+
+precision cutoff
+
+
+
+
+
+
+displaystyle
+
+list
+
+
+
+
+
+
+
+
+
+
+displaystyle delta
+
+change recall items
+
+
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+displaystyle
+
+
+finite equivalent
+
+
+
+
+
+avep
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+number relevant documents
+
+
+
+
+
+displaystyle operatorname avep frac k1npktimes operatorname kmboxnumber relevant documents
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle operatorname
+
+indicator function equaling item rank
+
+
+
+
+
+
+displaystyle
+
+relevant document zero otherwise10 note average relevant documents relevant documents retrieved precision score zero
+authors choose interpolate
+
+
+
+
+
+
+
+
+
+displaystyle
+
+function reduce impact wiggles curve1112 example pascal visual object classes challenge prior 2010 benchmark computer vision object detection evaluation metric changed 2010 effectively sample curve unique recall values computes average precision averaging precision evenly spaced recall levels 101112
+
+
+
+
+
+avep
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+interp
+
+
+
+
+
+
+
+displaystyle operatorname avep frac 111sum 001ldots 10poperatorname interp
+
+
+
+
+
+
+
+
+
+
+interp
+
+
+
+
+
+
+
+displaystyle poperatorname interp
+
+interpolated precision takes maximum precision recalls greater
+
+
+
+
+
+
+displaystyle
+
+
+
+
+
+
+
+
+
+
+interp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle poperatorname interp roperatorname tilde rtilde rgeq rptilde
+
+
+
+alternative derive analytical
+
+
+
+
+
+
+
+
+
+displaystyle
+
+function assuming particular parametric distribution underlying decision values example binormal precisionrecall curve obtained assuming decision values classes follow gaussian distribution13
+precision kedit
+output classifier ordered confidence measure consider results compute precision known precision
+modern webscale information retrieval instance recall longer meaningful metric many queries thousands relevant documents users interested reading precision documents still useful metric precision corresponds number relevant results first search results page fails take account positions relevant documents among kcitation needed another shortcoming query fewer relevant results even perfect system score less easier score manually since results need examined determine relevant
+rprecisionedit
+rprecision requires knowing documents relevant query number relevant documents
+
+
+
+
+
+
+displaystyle
+
+used cutoff calculation varies query query example documents relevant corpus rprecision looks documents returned counts number relevant
+
+
+
+
+
+
+displaystyle
+
+turns relevancy fraction
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle rrr15
+
+
+precision equal recall position14
+empirically measure often highly correlated mean average precision14
+mean average precisionedit
+mean average precision queries mean average precision scores query
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle operatorname frac q1qoperatorname avepq
+
+
+
+number queries
+discounted cumulative gainedit
+main article discounted cumulative gain
+uses graded relevance scale documents result evaluate usefulness gain document based position result list premise highly relevant documents appearing lower search result list penalized graded relevance value reduced logarithmically proportional position result
+accumulated particular rank position
+
+
+
+
+
+
+displaystyle
+
+defined
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm dcgp rel1sum i2pfrac relilog
+
+
+
+since result vary size among different queries systems compare performances normalised version uses ideal sorts documents result list relevance producing ideal position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle idcgp
+
+normalizes score
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm ndcgp frac dcgpidcgp
+
+
+
+ndcg values queries averaged obtain measure average performance ranking algorithm note perfect ranking algorithm
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle dcgp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle idcgp
+
+producing ndcg ndcg calculations relative values interval crossquery comparable
+measuresedit
+
+terminology derivations
+confusion matrix
+
+
+
+condition positive
+number real positive cases data
+condition negatives
+number real negative cases data
+
+
+
+true positive
+
+true negative
+correct rejection
+false positive
+false alarm type error
+false negative
+miss type error
+
+
+
+sensitivity recall rate true positive rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm pfrac mathrm mathrm mathrm
+
+
+specificity true negative rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm nfrac mathrm mathrm mathrm
+
+
+precision positive predictive value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm mathrm mathrm
+
+
+negative predictive value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm mathrm mathrm
+
+
+miss rate false negative rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm pfrac mathrm mathrm mathrm 1mathrm
+
+
+fallout false positive rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm nfrac mathrm mathrm mathrm 1mathrm
+
+
+false discovery rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm mathrm mathrm 1mathrm
+
+
+false omission rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm mathrm mathrm 1mathrm
+
+
+accuracy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm mathrm pnfrac mathrm mathrm mathrm mathrm mathrm mathrm
+
+
+
+
+
+score
+harmonic mean precision sensitivity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle f12cdot frac mathrm cdot mathrm mathrm mathrm frac 2mathrm 2mathrm mathrm mathrm
+
+
+matthews correlation coefficient
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm frac mathrm times mathrm mathrm times mathrm sqrt mathrm mathrm mathrm mathrm mathrm mathrm mathrm mathrm
+
+
+informedness bookmaker informedness
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm mathrm mathrm
+
+
+markedness
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle mathrm mathrm mathrm
+
+
+
+sources fawcett 2006 powers 2011 ting 2011
+
+
+
+
+mean reciprocal rank
+spearmans rank correlation coefficient
+bpref summationbased measure many relevant documents ranked irrelevant documents15
+gmap geometric mean pertopic average precision15
+measures based marginal relevance document diversity relevance information retrieval problems alternatives
+
+visualizationedit
+visualizations information retrieval performance include
+
+graphs chart precision axis recall other15
+histograms average precision various topics15
+receiver operating characteristic curve
+confusion matrix
+
+timelineedit
+
+1900s
+
+1801 joseph marie jacquard invents jacquard loom first machine punched cards control sequence operations
+1880s herman hollerith invents electromechanical data tabulator using punch cards machine readable medium
+1890 hollerith cards keypunches tabulators used process 1890 census data
+
+
+1920s1930s
+
+emanuel goldberg submits patents statistical machine” document search engine used photoelectric cells pattern recognition search metadata rolls microfilmed documents
+
+
+1940s–1950s
+
+late 1940s military confronted problems indexing retrieval wartime scientific research documents captured germans
+
+1945 vannevar bushs think appeared atlantic monthly
+1947 hans peter luhn research engineer since 1941 began work mechanized punch cardbased system searching chemical compounds
+
+
+1950s growing concern science ussr motivated encouraged funding provided backdrop mechanized literature searching systems allen kent invention citation indexing eugene garfield
+1950 term information retrieval coined calvin mooers19
+1951 philip bagley conducted earliest experiment computerized document retrieval master thesis mit20
+1955 allen kent joined case western reserve university eventually became associate director center documentation communications research year kent colleagues published paper american documentation describing precision recall measures well detailing proposed framework evaluating system included statistical sampling methods determining number relevant documents retrieved21
+1958 international conference scientific information washington included consideration systems solution problems identified proceedings international conference scientific information 1958 national academy sciences washington 1959
+1959 hans peter luhn published autoencoding documents information retrieval
+
+
+1960s
+
+early 1960s gerard salton began work harvard later moved cornell
+1960 melvin earl maron john lary kuhns22 published relevance probabilistic indexing information retrieval journal 73216–244 july 1960
+1962
+
+cyril cleverdon published early findings cranfield studies developing model system evaluation cyril cleverdon report testing analysis investigation comparative efficiency indexing systems cranfield collection aeronautics cranfield england 1962
+kent published information analysis retrieval
+
+
+1963
+
+weinberg report science government information gave full articulation idea crisis scientific information report named alvin weinberg
+joseph becker robert hayes published text information retrieval becker joseph hayes robert mayo information storage retrieval tools elements theories york wiley 1963
+
+
+1964
+
+karen spärck jones finished thesis cambridge synonymy semantic classification continued work computational linguistics applies
+national bureau standards sponsored symposium titled statistical association methods mechanized documentation several highly significant papers including saltons first published reference believe smart system
+
+
+mid1960s
+
+
+
+national library medicine developed medlars medical literature analysis retrieval system first major machinereadable database batchretrieval system
+project intrex
+
+
+1965 licklider published libraries future
+1966 swanson involved studies university chicago requirements future catalogs
+
+
+late 1960s wilfrid lancaster completed evaluation studies medlars system published first edition text information retrieval
+
+1968
+
+
+gerard salton published automatic information organization retrieval
+john sammon radc tech report mathematics information storage retrieval outlined vector model
+
+
+1969 sammons nonlinear mapping data structure analysis ieee transactions computers first proposal visualization interface system
+
+
+
+
+1970s
+
+early 1970s
+
+
+
+first online systems—nlms aimtwx medline lockheeds dialog sdcs orbit
+theodor nelson promoting concept hypertext published computer libdream machines
+
+
+
+
+1971 nicholas jardine cornelis rijsbergen published hierarchic clustering information retrieval articulated cluster hypothesis23
+1975 three highly influential publications salton fully articulated vector processing framework term discrimination model
+
+
+
+theory indexing society industrial applied mathematics
+theory term importance automatic text analysis jasis
+vector space model automatic indexing cacm 1811
+
+
+
+
+1978 first sigir conference
+1979 rijsbergen published information retrieval butterworths heavy emphasis probabilistic models
+1979 tamas doszkocs implemented cite natural language user interface medline national library medicine cite system supported free form query input ranked output relevance feedback24
+
+
+1980s
+
+1980 first international sigir conference joint british computer society group cambridge
+1982 nicholas belkin robert oddy helen brooks proposed anomalous state knowledge viewpoint information retrieval important concept though automated analysis tool proved ultimately disappointing
+1983 salton michael mcgill published introduction modern information retrieval mcgrawhill heavy emphasis vector models
+1985 david blair bill maron publish evaluation retrieval effectiveness fulltext documentretrieval system
+mid1980s efforts develop enduser versions commercial systems
+
+1985–1993 papers experimental systems visualization interfaces
+work donald crouch robert korfhage matthew chalmers anselm spoerri others
+
+
+1989 first world wide proposals bernerslee cern
+
+
+1990s
+
+1992 first trec conference
+1997 publication korfhages information storage retrieval25 emphasis visualization multireference point systems
+1999 publication ricardo baezayates berthier ribeironetos modern information retrieval addison wesley first book attempts cover
+late 1990s search engines implementation many features formerly found experimental systems search engines become common maybe best instantiation models
+
+
+
+major conferencesedit
+
+sigir conference research development information retrieval
+ecir european conference information retrieval
+cikm conference information knowledge management
+international world wide conference
+wsdm conference search data mining
+ictir international conference theory information retrieval
+
+awards fieldedit
+
+tony kent strix award
+gerard salton award
+
+leading research groupsedit
+
+center intelligent information retrieval ciir university massachusetts amherst
+information retrieval group university glasgow
+information language processing systems ilps university amsterdam
+information retrieval group thuir tsinghua university
+
+alsoedit
+
+
+adversarial information retrieval
+collaborative information seeking
+controlled vocabulary
+crosslanguage information retrieval
+data mining
+european summer school information retrieval
+human–computer information retrieval hcir
+information extraction
+information retrieval facility
+knowledge visualization
+multimedia information retrieval
+personal information management
+relevance information retrieval
+relevance feedback
+rocchio classification
+search index
+social information seeking
+special interest group information retrieval
+subject indexing
+temporal information retrieval
+tfidf
+retrieval
+
+
+referencesedit
+
+
+
+jansen rieh 2010 seventeen theoretical constructs information searching information retrieval journal american society information sciences technology 15171534
+goodrum abby 2000 image information retrieval overview current research informing science
+foote jonathan 1999 overview audio information retrieval multimedia systems springer
+beel jöran gipp bela stiller janolaf 2009 information retrieval mind maps could good proceedings international conference collaborative computing networking applications worksharing collaboratecom09 washington ieee
+frakes william baezayates ricardo 1992 information retrieval data structures algorithms prenticehall isbn 0134638379 archived original 20130928
+singhal amit 2001 modern information retrieval brief overview bulletin ieee computer society technical committee data engineering 35–43
+mark sanderson bruce croft 2012 history information retrieval research proceedings ieee 1444–1451 doi101109jproc20122189916
+holmstrom 1948 section opening plenary session royal society scientific information conference june2 july 1948 report papers submitted
+2004 recall precision average precision
+turpin andrew scholer falk 2006 user performance versus precision measures simple search tasks proceedings 29th annual international sigir conference research development information retrieval seattle august 06–11 2006 york 11–18 doi10114511481701148176 isbn 1595933697
+everingham mark gool williams christopher winn john zisserman andrew june 2010 pascal visual object classes challenge international journal computer vision springer 303–338 doi101007s1126300902754 archived original 20111120 retrieved 20110829
+manning christopher raghavan prabhakar schütze hinrich 2008 introduction information retrieval cambridge university press
+brodersen stephan buhmann 2010 binormal assumption precisionrecall curves archived 20121208 wayback machine proceedings 20th international conference pattern recognition 42634266
+christopher manning prabhakar raghavan hinrich schütze 2009 chapter evaluation information retrieval retrieved 20150614 maint uses authors parameter link part introduction information retrieval
+httptrecnistgovpubstrec15appendicescemeasures06pdf
+fawcett 2006 introduction analysis pattern recognition letters 861–874 doi101016jpatrec200510010
+powers david 2011 evaluation precision recall fmeasure informedness markedness correlation journal machine learning technologies 37–63
+ting ming 2011 encyclopedia machine learning springer isbn 9780387301648
+mooers calvin theory digital handling nonnumerical information implications machine economics zator technical bulletin cited fairthorne 1958 automatic retrieval recorded information computer journal doi101093comjnl1136
+doyle lauren becker joseph 1975 information retrieval processing melville isbn 0471221511
+machine literature searching machine language factors underlying design development doi101002asi5090060411
+maron melvin 2008 historical note origins probabilistic indexing information processing management 971–972 doi101016jipm200702012
+jardine rijsbergen december 1971 hierarchic clustering information retrieval information storage retrieval 217–240 doi1010160020027171900519
+doszkocs rapp 1979 searching medline english prototype user interface natural language query ranked output relevance feedback proceedings asis annual meeting 131139
+korfhage robert 1997 information storage retrieval wiley isbn 9780471143383
+center intelligent information retrieval umass amherst ciircsumassedu retrieved 20160729
+university glasgow schools school computing science research research overview information retrieval wwwglaacuk retrieved 20160729
+ilps information language processing systems ilps retrieved 20160729
+thuir information retrieval group tsinghua university thuir retrieved 20171208
+
+
+
+readingedit
+
+ricardo baezayates berthier ribeironeto modern information retrieval concepts technology behind search second edition addisonwesley 2011
+stefan büttcher charles clarke gordon cormack information retrieval implementing evaluating search engines press cambridge mass 2010
+christopher manning prabhakar raghavan hinrich schütze introduction information retrieval cambridge university press 2008
+
+external linksedit
+
+
+
+wikiquote quotations related information retrieval
+
+
+
+sigir information retrieval special interest group
+irsg british computer society information retrieval specialist group
+text retrieval conference trec
+forum information retrieval evaluation fire
+information retrieval online book rijsbergen
+information retrieval wiki
+information retrieval facility
+information retrieval duth
+trec report information retrieval evaluation techniques
+ebay measures search relevance
+information retrieval performance evaluation tool athena research centre
+
+
+
+
+authority control
+
+
+
+40728031
+00575010
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleinformationretrievaloldid815034293 categories information retrievalnatural language processinghidden categories webarchive template wayback linkscs1 maint uses authors parameterarticles split june 2017all articles splitall articles unsourced statementsarticles unsourced statements june 2015wikipedia articles identifiersarticles inconsistent citation formats

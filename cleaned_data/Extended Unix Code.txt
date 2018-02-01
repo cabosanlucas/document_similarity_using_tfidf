@@ -1,0 +1,952 @@
+extended unix code multibyte character encoding system used primarily japanese korean simplified chinese
+structure based iso2022 standard specifies represent character sets containing maximum characters 8836 characters 830584 characters sequences 7bit codes iso2022 compliant character sets forms four coded character sets referred code sets represented scheme
+almost always iso646 compliant coded character usascii 646kr 1003 646jp lower half 0201 invoked significant cleared exception usascii 0x5c backslash usascii often used represent sign eucjp sign euckr
+form iso2022 character significant 7bit byte original 2022 codes adding original 7bit codes allows software easily distinguish whether particular byte character string belongs iso646 code iso2022 code
+commonly used codes variablewidth encodings character belonging iso646 compliant coded character taking byte character belonging taken 94x94 coded character represented bytes euccn form gb2312 euckr examples twobyte codes eucjp includes characters represented three bytes whereas single character euctw take four bytes
+modern applications likely utf8 supports glyphs codes generally portable fewer vendor deviations errors
+
+
+
+contents
+
+
+euccn
+
+related encoding systems
+
+
+eucjp
+euckr
+euctw
+packed versus fixed length form
+also
+references
+external links
+
+
+
+euccnedit
+euccn usual gb2312 standard simplified chinese characters unlike case japanese iso2022 form gb2312 normally used though variant form called sometimes used usenet
+euccn also used encode unicodebased gb18030 character encoding includes traditional characters although gb18030 frequently used without encoding since gb18030 already unicode encoding however gb18030 encoded euccn variablewidth encoding gb18030 contains 8836 94×94 characters
+related encoding systemsedit
+encoding related euccn code used wits typesetting system developed beijings founder technology obsoleted newer fits typesetting system code contains gb2312 2022–compliant therefore true code uses 8bit lead byte distinguishes second byte significant significant cleared therefore similar structure big5 non–iso 2022–compliant dbcs encoding systems nongb2312 portion code contains traditional hong kong characters glyphs used newspaper typesetting
+eucjpedit
+eucjp variablewidth encoding used represent elements three japanese character standards namely 0208 0212 0201 pages eucjp january 20161 names encoding include unixized ujis jis2
+related partially compatible encoding called eucjisx0213 eucjis2004 encodes 0201 02133 similarly shiftjisx0213 shiftjisbased counterpart
+characters encoded follows
+
+euciso 2022 compliant encoding control characters space represented ascii
+graphical character ascii code represented usual onebyte representation range 0x21 0x7e variants eucjp encode lower half 0201 encode ascii4 including w3cwhatwg encoding standard used html55 eucjis20043 means 0x5c typically mapped unicode u005c reverse solidus ascii backslash u005c displayed sign certain japaneselocale fonts microsoft windows compatibility lower half 020167
+character 0208 code represented bytes range 0xa1 0xfe differs iso2022jp representation high code also contain vendor extensions eucjp variants eucjis2004 first plane 0213 encoded effectively superset standard 02083
+character upper half 0201 halfwidth kana code represented bytes first 0x8e second usual 0201 representation range 0xa1 0xdf
+character 0212 code represented eucjp three bytes first 0x8f following range 0xa1 0xfe high addition standard 0212 code also contain vendor extensions rows eucjp variants8 eucjis2004 second plane 0213 encoded here3 collide allocated rows standard 02129
+
+encoding scheme allows easy mixing 7bit ascii 8bit japanese without need escape characters employed iso2022jp based character standards
+japan eucjp encoding heavily used unix unixlike operating systems except hpux shift extensions windows code page microsoft windows macjapanese classic used platforms therefore whether japanese sites eucjp shiftjis often depends author uses
+euckredit
+euckr variablewidth encoding represent korean text using coded character sets 1001 formerly 56011011 1003 formerly 5636iso 646krusascii 2901 formerly 5861 stipulates encoding 1557 dubbed euckr character drawn 1001 code encoded bytes 0xa10xfe character 1003usascii code takes byte 0x210x7e pages euckr april 20161
+widely used legacy character encoding korea three major platforms unixlike windows slowly decreasing utf8 gains popularity especially linux usually referred wansung republic korea default korean codepage windows code page ibms 1363 proprietary upward compatible extension euckr referred unified hangeul code tonghab wansunghyung korean used classic also compatible euckr
+encodings utf8 preferred solving problems consistency platforms vendors
+euctwedit
+euctw variablewidth encoding supports usascii planes 11643 94x94 rarely used encoding traditional chinese characters used taiwan big5 much common
+
+euciso 2022 encoding control characters ascii space encoded ascii
+graphical character usascii code encoded usual single byte representation 0x210x7e
+character 11643 plane code encoded bytes 0xa10xfe
+character plane 11643 code encoded four bytes
+
+first byte always 0x8e single shift
+second byte 0xa10xb0 indicates plane number obtained subtracting 0xa0 byte
+third fourth bytes 0xa10xfe
+
+
+
+note plane 11643 encoded twice code part code
+utf8 becoming common euctw code pages
+packed versus fixed length formedit
+encodings described using bytes 0x210x7e code bytes 0xa10xfe code 0x8e followed bytes 0xa10xfe code 0x8f followed bytes 0xa10xfe code variablewidth form referred packed format form usually labelled euc2
+internal processing make fixedlength alternative form called complete twobyte format represents2
+
+code bytes range 0x210x7e except first 0x00
+code bytes range 0xa00xff except first 0x80
+code byte range 0x200x7e 0x00 followed byte range 0xa00xff
+code byte range 0xa00xff 0x80 followed byte range 0x210x7e
+
+initial bytes 0x00 0x80 used cases code uses byte also fourbyte fixed length format2 fixed length forms suited internal processing usually encountered interchange
+eucjp registered iana formats packed format eucjp cseucpkdfmtjapanese fixed width format cseucfixwidjapanese12 packed format included whatwg encoding standard used html513
+alsoedit
+
+
+japanese language computers
+korean language computers
+chinese character encoding
+
+referencesedit
+
+
+historical trends usage character encodings websites w3techs
+lunde 2008 cjkv information processing chinese japanese korean vietnamese computing oreilly 242–244 isbn 9780596800925
+0213 code mapping tables x0213org
+ambiguities conversion japanese unicode nonnormative japanese profile
+eucjp decoder encoding standard whatwg byte ascii byte return code point whose value byte
+details problems problems solutions unicode uservendor defined characters open group japan archived original 19990203
+kaplan michael 20050917 backslash backslash
+review process rules code conversion eucjpopen problems solutions unicode uservendor defined characters open group japan archived original 19990203
+chang hyeshik readme cjkcodecs cpython python software foundation
+10011992
+56011987 19881001
+character sets iana
+names labels encoding standard whatwg
+
+
+external linksedit
+
+eucjp codeset table minus ascii halfwidth parts
+gb180302000 chinese national standard
+generation prepress software china—mentions code
+description euctw code chinese
+manual page eucjisx0213 perl encode module
+international register coded character sets used escape sequence— section p14f coded character sets china japan south korea north korea taiwan isoiec
+chinese japanese korean character standards encoding systems
+
+
+
+
+
+
+
+
+
+
+
+
+character encodings
+
+
+
+early telecommunications
+
+
+
+ascii
+isoiec
+isoiec 6937
+
+bcdic
+baudot code
+morse code
+
+telegraph code
+wabun code
+
+
+special telegraphy codes
+
+nonlatin
+chinese
+cyrillic
+
+
+needle telegraph codes
+
+
+
+
+
+isoiec 8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bibliographic
+
+
+
+ansel
+5426 54262 5427 5428 6438 6861 6862 10585 10586 10754 11822
+marc8
+
+
+
+
+
+national standards
+
+
+
+armscii
+brascii
+11643
+elot
+gost 10859
+18030
+hkscs
+iscii
+0201
+0208
+0212
+0213
+koi7
+9566
+1001
+pascii
+
+tis620
+tscii
+viscii
+yuscii
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isoiec 2022
+
+
+
+
+
+
+cccii
+
+
+
+
+
+macos code pages
+scripts
+
+
+
+arabic
+celtic
+centeuro
+chinesesimp euccn
+chinesetrad big5
+croatian
+cyrillic
+devanagari
+dingbats
+esperanto
+farsi
+gaelic
+greek
+gujarati
+gurmukhi
+hebrew
+iceland
+japanese shiftjis
+korean euckr
+latin1
+roman
+romanian
+sámi
+symbol
+thai tis620
+turkish
+ukrainian
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+855872
+
+
+
+
+
+
+
+
+86417248
+
+866808
+
+
+
+87411611162
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9501370
+
+
+
+1034
+1039
+1040
+1041
+1042
+1043
+1044
+1046
+1086
+1088
+1092
+1093
+1098
+1108
+1109
+1114
+1115
+1116
+1117
+1118
+1119
+1125848
+1126
+1127
+1131849
+1139
+1167
+1168
+1300
+1351
+1361
+1362
+1363
+1372
+1373
+1374
+1375
+1380
+1381
+1385
+1386
+1391
+1392
+1393
+1394
+kamenický
+mazovia
+cwi2
+koi8
+
+iran system
+
+
+
+
+
+code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+921901
+922902
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1004
+1006
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1029
+1036
+1089
+1111
+1124
+11291163
+1133
+1350
+1382
+1383
+
+
+
+
+
+apple macintosh
+emulations
+
+
+
+1275
+1280
+1281
+1282
+1283
+1284
+1285
+1286
+
+
+
+
+
+adobe emulations
+
+
+
+1038
+1276
+1277
+
+
+
+
+
+emulations
+
+
+
+1020
+1021
+1023
+1090
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1287
+1288
+
+
+
+
+
+emulations
+
+
+
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+
+
+
+
+
+windows code pages
+
+
+
+cergs
+8741162 tis620
+932943 shift
+9361386
+9501370 big5
+9491363 euckr
+1169
+1174
+extended latin8
+1200 utf16le
+1201 utf16be
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1261
+1270
+54936 gb18030
+
+
+
+
+
+ebcdic code pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+371140
+
+
+
+
+
+
+
+
+
+
+
+
+2731141
+
+
+
+2771142
+2781143
+
+2801144
+
+
+
+2841145
+2851146
+
+
+
+
+
+
+2971147
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42016804
+
+
+424861612712
+
+
+5001148
+
+
+
+
+
+
+
+838838
+
+87011101153
+8711149
+87549719067
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9301390
+
+9331364
+9351388
+9371371
+9391399
+1001
+1002
+1003
+1005
+1007
+1024
+10251154
+10261155
+1027
+1028
+1030
+1031
+1032
+1033
+1037
+1047
+1068
+1069
+1070
+1071
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1087
+1091
+1097
+11121156
+1113
+11221157
+11231158
+11301164
+1132
+1136
+1137
+1150
+1151
+1152
+1159
+1165
+1166
+1278
+1279
+1303
+1364
+1376
+1377
+
+keis
+
+
+
+
+
+platform specific
+
+
+
+acorn
+adobe standard
+apple
+atascii
+atari
+bics
+casio calculators
+
+
+radix50
+mcsnrcs
+international
+elwrojunior
+fieldata
+
+geos
+0338
+roman extension
+roman8
+roman9
+focal
+
+lics
+lmbcs
+
+
+next
+
+petscii
+sharp calculators
+calculators
+trs80
+ventura international
+ventura symbol
+wiscii
+xccs
+zx80
+zx81
+spectrum
+
+
+
+
+
+unicode isoiec 10646
+
+
+
+utf1
+utf7
+utf8
+utf16 utf16leutf16be ucs2
+utf32 utf32leutf32be ucs4
+utfebcdic
+18030
+bocu1
+cesu8
+scsu
+
+
+
+
+
+miscellaneous code pages
+
+
+
+abicomp
+
+arib stdb24
+cork
+
+inis
+inis8
+johab
+
+
+
+
+seascii
+tace16
+tron
+utf5
+utf6
+wtf8
+
+
+
+
+
+related topics
+
+
+
+code page
+control character
+ccsid
+character encodings html
+charset detection
+unification
+hardware
+6429iec 6429ansi x364
+mojibake
+
+
+
+
+
+
+character sets
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleextendedunixcodeoldid816331836 categories character setschineselanguage computingencodings asian languagesencodings japanesekorean language

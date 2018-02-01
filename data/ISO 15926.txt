@@ -1,0 +1,592 @@
+The ISO 15926 is a standard for data integration, sharing, exchange, and hand-over between computer systems.
+The title, "Industrial automation systems and integration—Integration of life-cycle data for process plants including oil and gas production facilities", is regarded too narrow by the present ISO 15926 developers. Having developed a generic data model and Reference Data Library for process plants, it turned out that this subject is already so wide, that actually any state information may be modelled with it.
+
+
+
+Contents
+
+
+1 History
+2 The standard
+
+2.1 Description
+
+
+3 Projects and applications
+
+3.1 Capital-intensive projects
+3.2 Upstream Oil and Gas industry
+
+
+4 Some technical background
+5 References
+6 External links
+
+
+
+History[edit]
+In 1991 a European Union ESPRIT-, named ProcessBase, started. The focus of this research project was to develop a data model for lifecycle information of a facility that would suit the requirements of the process industries. At the time that the project duration had elapsed, a consortium of companies involved in the process industries had been established: EPISTLE (European Process Industries STEP Technical Liaison Executive). Initially individual companies were members, but later this changed into a situation where three national consortia were the only members: PISTEP (UK), POSC/Caesar (Norway), and USPI-NL (Netherlands). (later PISTEP merged into POSC/Caesar, and USPI-NL was renamed to USPI).
+EPISTLE took over the work of the ProcessBase project. Initially this work involved a standard called ISO 10303-221 (referred to as "STEP AP221"). In that AP221 we saw, for the first time, an Annex M with a list of standard instances of the AP221 data model, including types of objects. These standard instances would be for reference and would act as a knowledge base with knowledge about the types of objects. In the early nineties EPISTLE started an activity to extend Annex M to become a library of such object classes and their relationships: STEPlib. In the STEPlib activities a group of approx. 100 domain experts from all three member consortia, spread over the various expertises (e.g. Electrical, Piping, Rotating equipment, etc.), worked together to define the "core classes".
+The development of STEPlib was extended with many additional classes and relationships between classes and published as Open Source data. Furthermore, the concepts and relation types from the AP221 and ISO 15926-2 data models were also added to the STEPlib dictionary. This resulted in the development of Gellish English, whereas STEPlib became the Gellish English dictionary. Gellish English is a structured subset of natural English and is a modeling language suitable for knowledge modeling, product modeling and data exchange. It differs from conventional modeling languages (meta languages) as used in information technology as it not only defines generic concepts, but also includes an English dictionary. The semantic expression capability of Gellish English was significantly increased by extending the number of relation types that can be used to express knowledge and information.
+For modelling-technical reasons POSC/Caesar proposed another standard than ISO 10303, called ISO 15926. EPISTLE (and ISO) supported that proposal, and continued the modelling work, thereby writing Part 2 of ISO 15926. This Part 2 has official ISO IS (International Standard) status since 2003.
+POSC/Caesar started to put together their own RDL (Reference Data Library). They added many specialized classes, for example for ANSI (American National Standards Institute) pipe and pipe fittings. Meanwhile, STEPlib continued its existence, mainly driven by some members of USPI. Since it was clear that it was not in the interest of the industry to have two libraries for, in essence, the same set of classes, the Management Board of EPISTLE decided that the core classes of the two libraries shall be merged into Part 4 of ISO 15926. This merging process has been finished. Part 4 should act as reference data for part 2 of ISO 15926 as well as for ISO 10303-221 and replaced its Annex M. On June 5, 2007 ISO 15926-4 was signed off as a TS (Technical Specification).
+In 1999 the work on an earlier version of Part 7 started. Initially this was based on XML Schema (the only useful W3C Recommendation available then), but when Web Ontology Language (OWL) became available it was clear that provided a far more suitable environment for Part 7. Part 7 passed the first ISO ballot by the end of 2005, and an implementation project started. A formal ballot for TS (Technical Specification) was planned for December 2007. However, it was decided then to split Part 7 into more than one part, because the scope was too wide.
+The standard[edit]
+
+
+
+
+
+
+This article's use of external links may not follow Wikipedia's policies or guidelines. Please improve this article by removing excessive or inappropriate external links, and converting useful links where appropriate into footnote references. (May 2012) (Learn how and when to remove this template message)
+
+
+
+ISO 15926 has eleven parts (as of June 2009):
+
+Part 1 [1] - Introduction, information concerning engineering, construction and operation of production facilities is created, used and modified by many different organizations throughout a facility's lifetime. The purpose of ISO 15926 is to facilitate integration of data to support the lifecycle activities and processes of production facilities.
+Part 2 [2]- Data Model. a generic 4D model that can support all disciplines, supply chain company types and life cycle stages, regarding information about functional requirements, physical solutions, types of objects and individual objects as well as activities.
+Part 3 - Reference data for geometry and topology.
+Parts 4 [3] - Reference Data, the terms used within facilities for the process industry.
+Part 7 [4] - Integration of life-cycle data for process plants including oil and gas production facilities - Part 7: Implementation methods for the integration of distributed systems: Template methodology.
+Part 8 [5] - Integration of life-cycle data for process plants including oil and gas production facilities - Part 8: Implementation methods for the integration of distributed systems: Web Ontology Language (OWL/RDF) implementation.
+Part 9 (in development)- Implementation standards, with the focus on Façades, standard web servers, web services, and security.
+Part 10 (in development)- Test Methods.
+Part 11 (in development)- Industrial Usage Guidelines.
+Part 12 (in development)- Life cycle integration ontology in Web Ontology Language (OWL2).
+Part 13 (in development)- Integrated lifecycle asset planning.
+
+Description[edit]
+The model and the library are suitable for representing lifecycle information about technical installations and their components.
+They can also be used for defining the terms used in product catalogs in e-commerce. Another, more limited, use of the standard is as a reference classification for harmonization purposes between shared databases and product catalogues that are not based on ISO 15926.
+The purpose of ISO 15926 is to provide a Lingua Franca for computer systems, thereby integrating the information produced by them. Although set up for the process industries with large projects involving many parties, and involving plant operations and maintenance lasting decades, the technology can be used by anyone willing to set up a proper vocabulary of reference data in line with Part 4.
+In Part 7 the concept of Templates is introduced. These are semantic constructs, using Part 2 entities, that represent a small piece of information. These constructs then are mapped to more efficient classes of n-ary relations that interlink the Nodes that are involved in the represented information.
+In Part 8 the data model of Part 2 is mapped to OWL, and so are, in concept, the Reference Data of Part 4 and the templates of Part 7. For validation and reasoning purposes all are represented in First-Order Logic as well.
+In Part 9 these Node and Template instances are stored in Façades. A Façade is an RDF quad store, set up to a standard schema and an API. Any Façade only stores the data for which the Façade owner is responsible.
+Each participating computer system maps its data from its internal format to such ISO-standard Node and Template instances. These are stored in a System Façade, each system its own Façade.
+Data can be "handed over" from one Façade to another in cases where data custodianship is handed over (e.g. from a contractor to a plant owner, or from a manufacturer to the owners of the manufactured goods). Hand-over can be for a part of all data, whilst maintaining full referential integrity.
+Façades can be set up for the consolidation of data by handing over data produced by various participating computer systems and stored in their System Façades. Examples are: a Façade for a project discipline, a project, a plant).
+Documents are user-definable. They are defined in XML Schema and they are, in essence, only a structure containing cells that make reference to instances of Templates. This represents a view on all lifecycle data: since the data model is a 4D (space-time) model, it is possible to present the data that was valid at any given point in time, thus providing a true historical record. It is expected that this will be used for Knowledge Mining.
+Data can be queried by means of SPARQL. In any implementation a restricted number of Façades can be involved, with different access rights. This is done by means of creating a CPF Server (= Confederation of Participating Façades). An Ontology Browser allows for access to one or more Façades in a given CPF, depending on the access rights.
+Projects and applications[edit]
+
+
+
+
+
+
+This article's use of external links may not follow Wikipedia's policies or guidelines. Please improve this article by removing excessive or inappropriate external links, and converting useful links where appropriate into footnote references. (May 2012) (Learn how and when to remove this template message)
+
+
+
+There are a number of projects working on the extension of the ISO 15926 standard in different application areas.
+Capital-intensive projects[edit]
+Within the application of Capital Intensive projects, some cooperating implementation projects are running:
+
+The EDRC Project of FIATECH Capturing Equipment Data Requirements Using ISO 15926 and Assessing Conformance. Example data and videos.
+The ADI Project of FIATECH, to build the tools (which will then be made available in the public domain)
+
+The tools and deliverables can be seen on the ISO 15926 knowledge base: [6]
+
+
+The IDS Project of POSC Caesar Association, to define product models required for data sheets
+A joint ADI-IDS project is the ISO 15926 WIP
+The DEXPI project: The objective of DEXPI is to develop and promote a general standard for the process industry covering all phases of the lifecycle of a (petro-)chemical plant, ranging from specification of functional requirements to assets in operation. See more at dexpi.org
+
+Upstream Oil and Gas industry[edit]
+The Norwegian Oil Industry Association (OLF) has decided to use ISO 15926 (also known as the Oil and Gas Ontology) as the instrument for integrating data across disciplines and business domains for the Upstream Oil and Gas industry. It is seen as one of the enablers of what has been called the next (or second) generation of Integrated operations, where a better integration across companies is the goal.[1]
+The following projects are currently running (May 2009):
+
+The Integrated Operations in the High North (IOHN) project is working on extending ISO 15926 to handle real-time data transmission and (pre-)processing to enable the next generation of Integrated Operations.
+The Environment Web project to include environmental reporting terms and definitions as used in EPIM's EnvironmentWeb in ISO 15926.
+
+Finalised projects include:
+
+The Integrated Information Platform (IIP) project working on establishing a real-time information pipeline based on open standards. It worked among others on:
+
+Daily Drilling Report (DDR) to including all terms and definitions in ISO 15926. This standard became mandatory on February 1, 2008[2] for reporting on the Norwegian Continental Shelf by the Norwegian Petroleum Directorate (NPD) and Safety Authority Norway (PSA). NPD says that the quality of the reports has improved considerably since.
+Daily Production Report (DPR) to including all terms and definitions in ISO 15926. This standard was tested successfully on the Valhall (BP-operated) and Åsgard (StatoilHydro-operated) fields offshore Norway. The terminology and XML schemata developed have also been included in Energistics’ PRODML standard.
+
+
+
+Some technical background[edit]
+One of the main requirements was (and still is) that the scope of the data model covers the entire lifecycle of a facility (e.g. oil refinery) and its components (e.g. pipes, pumps and their parts, etc.). Since such a facility over such a long time entails many different types of activities on a myriad of different objects it became clear that a generic and data-driven data model would be required.
+A simple example will illustrate this. There are thousands of different types of physical objects in a facility (pumps, compressors, pipes, instruments, fluids, etc). Each of these has many properties. If all combinations would be modelled in a "hard-coded" fashion, the number of combinations would be staggering, and unmanageable.
+The solution is a "template" that represents the semantics of: "This object has a property of X yyyy" (where yyyy is the unit of measure). Any instance of that template refers to the applicable reference data:
+
+physical object (e.g. my Induction Motor)
+indirect property type (e.g. the class "cold locked rotor time")
+base property type (here: time)
+scale (here: seconds)
+
+Without being able to make reference to those classes, via the Internet, it will be impossible to express this information.
+References[edit]
+
+
+
+^ The Norwegian Oil Industry Association (OLF). "Integrated Operations and the Oil and Gas Ontology" (PDF). Retrieved 2009-05-06. 
+^ Norwegian Petroleum Directorate. "Drilling Reporting to the authorities". Retrieved 2009-05-05. 
+
+
+
+External links[edit]
+
+15926.org: A forum for ISO 15926 discussions and team collaboration.
+iringug.org: -An online community of users, companies, and organizations that have common interest in solutions that implement ISO 15926 reference data and protocols.
+iringtoday.com: - An online ISO 15926 thought leadership community geared toward engineering management.
+.15926 Editor Open source software to view, edit and verify ISO 15926 data.
+Against Idiosyncrasy in Ontology Development: A critical study of ISO 15926 and of the claims made on its behalf.
+A Response to "Against Idiosyncrasy in Ontology Development": A rebuttal of "Against Idiosyncrasy in Ontology Development".
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_15926&oldid=813547985"					Categories: ISO standardsSemantic WebKnowledge engineeringTechnical communicationInformation scienceOntology (information science)Knowledge representationHidden categories: Wikipedia external links cleanup from May 2012Wikipedia spam cleanup from May 2012

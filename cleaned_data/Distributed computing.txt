@@ -1,0 +1,756 @@
+distributed information processing redirects computer company research
+distributed application redirects smart contracts decentralized application
+distributed computing field computer science studies distributed systems distributed system model components located networked computers communicate coordinate actions passing messages1 components interact order achieve common goal three significant characteristics distributed systems concurrency components lack global clock independent failure components1 examples distributed systems vary soabased systems massively multiplayer online games peertopeer applications
+computer program runs distributed system called distributed program distributed programming process writing programs2 many alternatives message passing mechanism including pure http rpclike connectors message queuescitation needed
+goal challenge pursued computer scientists practitioners distributed systems location transparency however goal fallen favour industry distributed systems different conventional nondistributed systems differences network partitions partial system failures partial upgrades cannot simply papered attempts transparency theoremcitation needed
+distributed computing also refers distributed systems solve computational problems distributed computing problem divided many tasks solved computers3 communicate message passing4
+
+
+
+contents
+
+
+introduction
+parallel distributed computing
+history
+architectures
+applications
+examples
+theoretical foundations
+
+models
+example
+complexity measures
+problems
+properties distributed systems
+
+
+also
+notes
+references
+reading
+external links
+
+
+
+introductionedit
+word distributed terms distributed system distributed programming distributed algorithm originally referred computer networks individual computers physically distributed within geographical area5 terms nowadays used much wider sense even referring autonomous processes physical computer interact message passing4
+single definition distributed system6 following defining properties commonly used
+
+several autonomous computational entities computers nodes local memory7
+entities communicate message passing8
+
+distributed system common goal solving large computational problem9 user perceives collection autonomous processors unit alternatively computer user individual needs purpose distributed system coordinate shared resources provide communication services users10
+typical properties distributed systems include following
+
+system tolerate failures individual computers11
+structure system network topology network latency number computers known advance system consist different kinds computers network links system change execution distributed program12
+computer limited incomplete view system computer know part input13
+
+parallel distributed computingedit
+
+
+
+
+distributed system
+parallel system
+
+
+distributed systems groups networked computers goal work terms concurrent computing parallel computing distributed computing overlap clear distinction exists them14 system characterized parallel distributed processors typical distributed system concurrently parallel15 parallel computing seen particular tightly coupled form distributed computing16 distributed computing seen loosely coupled form parallel computing6 nevertheless possible roughly classify concurrent systems parallel distributed using following criteria
+
+parallel computing processors access shared memory exchange information processors17
+distributed computing processor private memory distributed memory information exchanged passing messages processors18
+
+figure right illustrates difference distributed parallel systems figure schematic view typical distributed system system represented network topology node computer line connecting nodes communication link figure shows distributed system detail computer local memory information exchanged passing messages node another using available communication links figure shows parallel system processor direct access shared memory
+situation complicated traditional uses terms parallel distributed algorithm quite match definitions parallel distributed systems detailed discussion nevertheless rule thumb highperformance parallel computation sharedmemory multiprocessor uses parallel algorithms coordination largescale distributed system uses distributed algorithmscitation needed
+historyedit
+concurrent processes communicate messagepassing roots operating system architectures studied 1960s19 first widespread distributed systems localarea networks ethernet invented 1970s20
+arpanet predecessor internet introduced late 1960s arpanet email invented early 1970s email became successful application arpanet21 probably earliest example largescale distributed application addition arpanet successor internet early worldwide computer networks included usenet fidonet 1980s used support distributed discussion systemscitation needed
+study distributed computing became branch computer science late 1970s early 1980s first conference field symposium principles distributed computing podc dates back 1982 european counterpart international symposium distributed computing disc first held 1985citation needed
+architecturesedit
+various hardware software architectures used distributed computing lower level necessary interconnect multiple cpus sort network regardless whether network printed onto circuit board made loosely coupled devices cables higher level necessary interconnect processes running cpus sort communication systemcitation needed
+distributed programming typically falls several basic architectures client–server threetier ntier peertopeer categories loose coupling tight coupling22
+
+client–server architectures smart clients contact server data format display users input client committed back server represents permanent change
+threetier architectures move client intelligence middle tier stateless clients used simplifies application deployment applications threetier
+ntier architectures refer typically applications forward requests enterprise services type application responsible success application servers
+peertopeer architectures special machines provide service manage network resources23227 instead responsibilities uniformly divided among machines known peers peers serve clients serverscitation needed
+
+another basic aspect distributed computing architecture method communicating coordinating work among concurrent processes various message passing protocols processes communicate directly another typically masterslave relationship alternatively databasecentric architecture enable distributed computing done without form direct interprocess communication utilizing shared database24
+applicationsedit
+reasons using distributed systems distributed computing include
+
+nature application require communication network connects several computers example data produced physical location required another location
+many cases single computer would possible principle distributed system beneficial practical reasons example costefficient obtain desired level performance using cluster several lowend computers comparison single highend computer distributed system provide reliability nondistributed system single point failure moreover distributed system easier expand manage monolithic uniprocessor system25
+
+examplesedit
+examples distributed systems applications distributed computing include following26
+
+telecommunication networks
+
+telephone networks cellular networks
+computer networks internet
+wireless sensor networks
+routing algorithms
+
+
+network applications
+
+world wide peertopeer networks
+massively multiplayer online games virtual reality communities
+distributed databases distributed database management systems
+network file systems
+distributed information processing systems banking systems airline reservation systems
+
+
+realtime process control
+
+aircraft control systems
+industrial control systems
+
+
+parallel computation
+
+scientific computing including cluster computing grid computing various volunteer computing projects list distributed computing projects
+distributed rendering computer graphics
+
+
+
+theoretical foundationsedit
+main article distributed algorithm
+modelsedit
+many tasks would like automate using computer question–answer type would like question computer produce answer theoretical computer science tasks called computational problems formally computational problem consists instances together solution instance instances questions solutions desired answers questions
+theoretical computer science seeks understand computational problems solved using computer computability theory efficiently computational complexity theory traditionally said problem solved using computer design algorithm produces correct solution given instance algorithm implemented computer program runs generalpurpose computer program reads problem instance input performs computation produces solution output formalisms random access machines universal turing machines used abstract models sequential generalpurpose computer executing algorithmcitation needed
+field concurrent distributed computing studies similar questions case either multiple computers computer executes network interacting processes computational problems solved network efficiently however obvious meant solving problem case concurrent distributed system example task algorithm designer concurrent distributed equivalent sequential generalpurpose computercitation needed
+discussion focuses case multiple computers although many issues concurrent processes running single computer
+three viewpoints commonly used
+
+parallel algorithms sharedmemory model
+
+
+processors access shared memory algorithm designer chooses program executed processor
+theoretical model parallel random access machines pram used27 however classical pram model assumes synchronous access shared memory
+sharedmemory programs extended distributed systems underlying operating system encapsulates communication nodes virtually unifies memory across individual systems
+model closer behavior realworld multiprocessor machines takes account machine instructions compareandswap asynchronous shared memory wide body work model summary found literature2829
+
+
+parallel algorithms messagepassing model
+
+
+algorithm designer chooses structure network well program executed computer
+models boolean circuits sorting networks used30 boolean circuit seen computer network gate computer runs extremely simple computer program similarly sorting network seen computer network comparator computer
+
+
+distributed algorithms messagepassing model
+
+
+algorithm designer chooses computer program computers program system must work correctly regardless structure network
+commonly used model graph finitestate machine node
+
+case distributed algorithms computational problems typically related graphs often graph describes structure computer network problem instance illustrated following examplecitation needed
+exampleedit
+consider computational problem finding coloring given graph different fields might take following approaches
+
+centralized algorithmscitation needed
+
+
+graph encoded string string given input computer computer program finds coloring graph encodes coloring string outputs result
+
+
+parallel algorithms
+
+
+graph encoded string however multiple computers access string parallel computer might focus part graph produce coloring part
+main focus highperformance computation exploits processing power multiple computers parallel
+
+
+distributed algorithms
+
+
+graph structure computer network computer node communication link edge initially computer knows immediate neighbors graph computers must exchange messages discover structure computer must produce color output
+main focus coordinating operation arbitrary distributed systemcitation needed
+
+field parallel algorithms different focus field distributed algorithms interaction fields example cole–vishkin algorithm graph coloring31 originally presented parallel algorithm technique also used directly distributed algorithm
+moreover parallel algorithm implemented either parallel system using shared memory distributed system using message passing32 traditional boundary parallel distributed algorithms choose suitable network given network place boundary parallel distributed systems shared memory message passing
+complexity measuresedit
+parallel algorithms another resource addition time space number computers indeed often tradeoff running time number computers problem solved faster computers running parallel speedup decision problem solved polylogarithmic time using polynomial number processors problem said class nc33 class defined equally well using pram formalism boolean circuits—pram machines simulate boolean circuits efficiently vice versa34
+analysis distributed algorithms attention usually paid communication operations computational steps perhaps simplest model distributed computing synchronous system nodes operate lockstep fashion communication round nodes parallel receive latest messages neighbours perform arbitrary local computation send messages neighbors systems central complexity measure number synchronous communication rounds required complete task35
+complexity measure closely related diameter network diameter network hand computable problem solved trivially synchronous distributed system approximately communication rounds simply gather information location rounds solve problem inform node solution rounds
+hand running time algorithm much smaller communication rounds nodes network must produce output without possibility obtain information distant parts network words nodes must make globally consistent decisions based information available local neighbourhood many distributed algorithms known running time much smaller rounds understanding problems solved algorithms central research questions field36
+commonly used measures total number bits transmitted network communication complexitycitation needed
+problemsedit
+traditional computational problems take perspective question computer distributed system processes question produces answer stops however also problems want system ever stop examples problems include dining philosophers problem similar mutual exclusion problems problems distributed system supposed continuously coordinate shared resources conflicts deadlocks occur
+also fundamental challenges unique distributed computing first example challenges related faulttolerance examples related problems include consensus problems37 byzantine fault tolerance38 selfstabilisation39
+research also focused understanding asynchronous nature distributed systems
+
+synchronizers used synchronous algorithms asynchronous systems40
+logical clocks provide causal happenedbefore ordering events41
+clock synchronization algorithms provide globally consistent physical time stamps42
+
+election
+coordinator election leader election process designating single process organizer task distributed among several computers nodes task begun network nodes either unaware node serve coordinator leader task unable communicate current coordinator coordinator election algorithm however node throughout network recognizes particular unique node task coordinatorcitation needed
+network nodes communicate among order decide coordinator state need method order break symmetry among example node unique comparable identities nodes compare identities decide node highest identity coordinatorcitation needed
+definition problem often attributed lelann formalized method create token token ring network token lost43
+coordinator election algorithms designed economical terms total bytes transmitted time algorithm suggested gallager humblet spira general undirected graphs strong impact design distributed algorithms general dijkstra prize influential paper distributed computing
+many algorithms suggested different kind network graphs undirected rings unidirectional rings complete graphs grids directed euler graphs others general method decouples issue graph family design coordinator election algorithm suggested korach kutten moran45
+order perform coordination distributed systems employ concept coordinators coordinator election problem choose process among group processes different processors distributed system central coordinator several central coordinator election algorithms exist46
+properties distributed systemsedit
+focus designing distributed system solves given problem complementary research problem studying properties given distributed system4748
+halting problem analogous example field centralised computation given computer program task decide whether halts runs forever halting problem undecidable general case naturally understanding behaviour computer network least hard understanding behaviour computercitation needed
+however many interesting special cases decidable particular possible reason behaviour network finitestate machines example telling whether given network interacting asynchronous nondeterministic finitestate machines reach deadlock problem pspacecomplete49 decidable likely efficient centralised parallel distributed algorithm solves problem case large networks
+alsoedit
+
+
+appscale
+boinc
+blockchain
+code mobility
+decentralized computing
+distributed algorithmic mechanism design
+distributed cache
+distributed operating system
+edsger dijkstra prize distributed computing
+computing
+foldinghome
+inferno
+jungle computing
+layered queueing network
+library oriented architecture
+list distributed computing conferences
+list distributed computing projects
+list important publications concurrent parallel distributed computing
+model checking
+parallel distributed processing
+parallel programming model
+plan bell labs
+shared nothing architecture
+
+
+notesedit
+
+
+coulouris george jean dollimore kindberg gordon blair 2011 distributed systems concepts design edition boston addisonwesley isbn 0132143011
+andrews 2000 dolev 2000 ghosh 2007
+godfrey 2002
+andrews 2000 291–292 dolev 2000
+lynch 1996
+ghosh 2007
+andrews 2000 dolev 2000 ghosh 2007 lynch 1996 peleg 2000
+andrews 2000 ghosh 2007 peleg 2000
+ghosh 2007 peleg 2000
+ghosh 2007 peleg 2000
+ghosh 2007 lynch 1996 peleg 2000
+lynch 1996 peleg 2000
+ghosh 2007 lynch 1996 peleg 2000
+ghosh 2007 keidar 2008
+lynch 1996 peleg 2000
+peleg 2000
+papadimitriou 1994 chapter keidar 2008
+references introduction
+andrews 2000
+andrews 2000
+peter 2004 history email
+real time distributed computing systems issn 22780661 retrieved 20170109
+vigna casey cryptocurrency bitcoin blockchain challenging global economic order martins press january 2015 isbn 9781250065636
+lind 2006 databasecentric virtual chemistry system chem model 1034–9 doi101021ci050360b pmid 16711722
+elmasri navathe 2000 section 2412
+andrews 2000 10–11 ghosh 2007 lynch 1996 peleg 2000 elmasri navathe 2000 section
+cormen leiserson rivest 1990 section
+herlihy shavit 2008 chapters
+lynch 1996
+cormen leiserson rivest 1990 sections
+cole vishkin 1986 cormen leiserson rivest 1990 section
+andrews 2000
+arora barak 2009 section papadimitriou 1994 section
+papadimitriou 1994 section
+lynch 1996 17–23
+peleg 2000 sections linial 1992 naor stockmeyer 1995
+lynch 1996 sections ghosh 2007 chapter
+lynch 1996 99–102 ghosh 2007 192–193
+dolev 2000 ghosh 2007 chapter
+lynch 1996 section peleg 2000 section
+lynch 1996 section ghosh 2007 sections 62–63
+ghosh 2007 section
+lelann 1977 distributed systems toward formal approach information processing 155·160 elsevier
+gallager humblet spira january 1983 distributed algorithm minimumweight spanning trees transactions programming languages systems 66–77 doi101145357195357200 maint multiple names authors list link
+korach ephraim kutten shay moran shlomo 1990 modular technique design efficient distributed leader finding algorithms transactions programming languages systems 84–101 doi1011457760677610
+hamilton howard distributed algorithms retrieved 20130303
+httpcstheorystackexchangecomquestions10045majorunsolvedproblemsindistributedsystems
+httpwwwtheserversidecomfeaturehowbigdataanddistributedsystemssolvetraditionalscalabilityproblems
+papadimitriou 1994 section
+
+
+referencesedit
+
+books
+
+
+andrews gregory 2000 foundations multithreaded parallel distributed programming addison–wesley isbn 0201357526
+arora sanjeev barak boaz 2009 computational complexity modern approach cambridge isbn 9780521424264
+cormen thomas leiserson charles rivest ronald 1990 introduction algorithms press isbn 0262031418
+dolev shlomi 2000 selfstabilization press isbn 0262041782
+elmasri ramez navathe shamkant 2000 fundamentals database systems addison–wesley isbn 0201542633
+ghosh sukumar 2007 distributed systems algorithmic approach chapman hallcrc isbn 9781584885641
+lynch nancy 1996 distributed algorithms morgan kaufmann isbn 1558603484
+herlihy maurice shavit 2008 multiprocessor programming morgan kaufmann isbn 0123705916
+papadimitriou christos 1994 computational complexity addison–wesley isbn 0201530821
+peleg david 2000 distributed computing localitysensitive approach siam isbn 0898714648
+
+
+articles
+
+
+cole richard vishkin 1986 deterministic coin tossing applications optimal parallel list ranking information control 32–53 doi101016s0019995886800237
+keidar idit 2008 distributed computing column year review sigact news 53–54 doi10114514663901466402
+linial nathan 1992 locality distributed graph algorithms siam journal computing 193–201 doi1011370221015
+naor moni stockmeyer larry 1995 computed locally siam journal computing 1259–1277 doi101137s0097539793254571
+
+
+sites
+
+
+godfrey bill 2002 primer distributed computing
+peter 2004 peters history internet retrieved 20090804
+
+readingedit
+
+books
+
+
+attiya hagit jennifer welch 2004 distributed computing fundamentals simulations advanced topics wileyinterscience isbn 0471453242
+christian cachin rachid guerraoui luís rodrigues 2011 introduction reliable secure distributed programming springer isbn 9783642152597
+coulouris george 2011 distributed systems concepts design edition addisonwesley isbn 0132143011
+faber 1998 java distributed computing oreilly java distributed computing faber 1998
+garg vijay 2002 elements distributed computing wileyieee press isbn 0471036005
+gerard 1994 introduction distributed algorithms cambridge university press
+chandy mani parallel program design
+
+
+articles
+
+
+keidar idit rajsbaum sergio 2000–2009 distributed computing column sigact news
+birrell levin schroeder needham april 1982 grapevine exercise distributed computing communications 260–274 doi101145358468358487
+
+
+conference papers
+
+
+rodríguez villagra barán asynchronous team algorithms boolean satisfiability bionetics2007 66–69 2007
+
+external linksedit
+
+
+
+wikimedia commons media related distributed computing
+
+
+
+distributed computing curlie based dmoz
+distributed computing journals curlie based dmoz
+
+
+
+
+
+
+
+
+
+
+
+
+parallel computing
+
+
+
+general
+
+
+
+distributed computing
+parallel computing
+massively parallel
+cloud computing
+highperformance computing
+multiprocessing
+manycore processor
+gpgpu
+computer network
+systolic array
+
+
+
+
+
+levels
+
+
+
+
+instruction
+thread
+task
+data
+memory
+loop
+pipeline
+
+
+
+
+
+multithreading
+
+
+
+temporal
+simultaneous
+speculative spmt
+preemptive
+cooperative
+clustered multithread
+hardware scout
+
+
+
+
+
+theory
+
+
+
+pram model
+analysis parallel algorithms
+amdahls
+gustafsons
+cost efficiency
+karp–flatt metric
+slowdown
+speedup
+
+
+
+
+
+elements
+
+
+
+process
+thread
+fiber
+instruction window
+
+
+
+
+
+coordination
+
+
+
+multiprocessing
+memory coherency
+cache coherency
+cache invalidation
+barrier
+synchronization
+application checkpointing
+
+
+
+
+
+programming
+
+
+
+stream processing
+dataflow programming
+models
+
+implicit parallelism
+explicit parallelism
+concurrency
+
+
+nonblocking algorithm
+
+
+
+
+
+hardware
+
+
+
+flynns taxonomy
+
+sisd
+simd
+simt
+misd
+mimd
+
+
+dataflow architecture
+pipelined processor
+superscalar processor
+vector processor
+multiprocessor
+
+symmetric
+asymmetric
+
+
+memory
+
+shared
+distributed
+distributed shared
+
+numa
+coma
+
+
+massively parallel computer
+computer cluster
+grid computer
+
+
+
+
+
+apis
+
+
+
+ateji
+boostthread
+chapel
+charm
+cilk
+coarray fortran
+cuda
+dryad
+
+global arrays
+
+openmp
+opencl
+openhmpp
+openacc
+
+plinq
+
+posix threads
+raftlib
+
+
+
+
+
+
+
+
+problems
+
+
+
+deadlock
+livelock
+deterministic algorithm
+embarrassingly parallel
+parallel slowdown
+race condition
+software lockout
+scalability
+starvation
+
+
+
+
+
+
+
+
+category parallel computing
+media related parallel computing wikimedia commons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+edsger dijkstra
+
+
+
+publications
+
+
+
+structured programming book
+discipline programming book
+method programming book
+predicate calculus program semantics book
+selected writings computing personal perspective book
+selected papers
+manuscripts
+statement considered harmful
+cruelty really teaching computer science
+
+
+
+
+
+main research areas
+
+
+
+theoretical computing science
+software engineering
+systems science
+algorithm design
+concurrent computing
+distributed computing
+formal methods
+programming methodology
+programming language research
+program design development
+software architecture
+
+
+
+
+
+scientific contributions
+
+
+
+
+concepts methods
+
+
+
+algol implementation
+call stack
+concurrency
+concurrent programming
+cooperating sequential processes
+critical section
+deadly embrace deadlock
+dining philosophers problem
+dutch national flag problem
+faulttolerant system
+gotoless programming
+guarded command language
+layered structure software architecture
+levels abstraction
+multithreaded programming
+mutual exclusion mutex
+philosophy computer programming computing science
+producer–consumer problem bounded buffer problem
+program families
+predicate transformer semantics
+process synchronization
+selfstabilizing distributed system
+semaphore programming
+separation concerns
+sleeping barber problem
+software crisis
+structured analysis
+structured programming
+multiprogramming system
+unbounded nondeterminism
+weakest precondition calculus
+
+
+
+
+
+algorithms
+
+
+
+bankers algorithm
+dijkstras algorithm
+algorithm prims algorithm
+dijkstrascholten algorithm
+dekkers algorithm generalization
+smoothsort
+shuntingyard algorithm
+tricolor marking algorithm
+concurrent algorithm
+distributed algorithm
+deadlock prevention algorithm
+selfstabilizing algorithm
+
+
+
+
+
+
+
+
+related people
+
+
+
+shlomi dolev
+brinch hansen
+tony hoare
+olejohan dahl
+leslie lamport
+david parnas
+adriaan wijngaarden
+niklaus wirth
+
+
+
+
+
+topics
+
+
+
+dijkstra prize edsger dijkstra prize distributed computing
+centrum wiskunde informatica
+dijkstra archive university texas austin
+list pioneers computer science
+list important publications computer science
+list important publications theoretical computer science
+list important publications concurrent parallel distributed computing
+
+
+
+
+
+
+
+
+wikiquote
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitledistributedcomputingoldid815598975 categories distributed computingdecentralizationhidden categories maint multiple names authors listall articles unsourced statementsarticles unsourced statements october 2016articles dmoz links

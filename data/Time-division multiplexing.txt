@@ -1,0 +1,378 @@
+
+
+Multiplexing
+
+
+
+
+
+Analog modulation
+
+
+
+
+
+AM
+FM
+PM
+QAM
+SM
+SSB
+
+
+
+
+
+
+Circuit mode
+(constant bandwidth)
+
+
+
+
+
+
+TDM
+FDM / WDM
+SDMA
+Polarization
+Spatial
+OAM
+
+
+
+
+
+
+Statistical multiplexing
+(variable bandwidth)
+
+
+
+
+
+
+Packet switching
+Dynamic TDMA
+FHSS
+DSSS
+OFDMA
+SC-FDM
+MC-SS
+
+
+
+
+
+Related topics
+
+
+
+
+Channel access methods
+Media access control
+
+
+
+
+
+
+
+v
+t
+e
+
+
+
+
+
+Time-division multiplexing (TDM) is a method of transmitting and receiving independent signals over a common signal path by means of synchronized switches at each end of the transmission line so that each signal appears on the line only a fraction of time in an alternating pattern. It is used when the bit rate of the transmission medium exceeds that of the signal to be transmitted. This form of signal multiplexing was developed in telecommunications for telegraphy systems in the late 19th century, but found its most common application in digital telephony in the second half of the 20th century.
+
+
+
+Contents
+
+
+1 History
+2 Technology
+3 Application examples
+4 Multiplexed digital transmission
+5 Telecommunications systems
+6 Statistical time-division multiplexing
+7 See also
+8 References
+
+
+
+History[edit]
+Time-division multiplexing was first developed for applications in telegraphy to route multiple transmissions simultaneously over a single transmission line. In the 1870s, Émile Baudot developed a time-multiplexing system of multiple Hughes telegraph machines.
+In 1953 a 24-channel TDM was placed in commercial operation by RCA Communications to send audio information between RCA's facility on Broad Street, New York, their transmitting station at Rocky Point and the receiving station at Riverhead, Long Island, New York. The communication was by a microwave system throughout Long Island. The experimental TDM system was developed by RCA Laboratories between 1950 and 1953.[1]
+In 1962, engineers from Bell Labs developed the first D1 channel banks, which combined 24 digitized voice calls over a four-wire copper trunk between Bell central office analogue switches. A channel bank sliced a 1.544 Mbit/s digital signal into 8,000 separate frames, each composed of 24 contiguous bytes. Each byte represented a single telephone call encoded into a constant bit rate signal of 64 kbit/s. Channel banks used the fixed position (temporal alignment) of one byte in the frame to identify the call it belonged to.[2]
+Technology[edit]
+Time-division multiplexing is used primarily for digital signals, but may be applied in analog multiplexing in which two or more signals or bit streams are transferred appearing simultaneously as sub-channels in one communication channel, but are physically taking turns on the channel. The time domain is divided into several recurrent time slots of fixed length, one for each sub-channel. A sample byte or data block of sub-channel 1 is transmitted during time slot 1, sub-channel 2 during time slot 2, etc. One TDM frame consists of one time slot per sub-channel plus a synchronization channel and sometimes error correction channel before the synchronization. After the last sub-channel, error correction, and synchronization, the cycle starts all over again with a new frame, starting with the second sample, byte or data block from sub-channel 1, etc.
+Application examples[edit]
+
+The plesiochronous digital hierarchy (PDH) system, also known as the PCM system, for digital transmission of several telephone calls over the same four-wire copper cable (T-carrier or E-carrier) or fiber cable in the circuit switched digital telephone network
+The synchronous digital hierarchy (SDH)/synchronous optical networking (SONET) network transmission standards that have replaced PDH.
+The Basic Rate Interface and Primary Rate Interface for the Integrated Services Digital Network (ISDN).
+The RIFF (WAV) audio standard interleaves left and right stereo signals on a per-sample basis
+
+TDM can be further extended into the time-division multiple access (TDMA) scheme, where several stations connected to the same physical medium, for example sharing the same frequency channel, can communicate. Application examples include:
+
+The GSM telephone system
+The Tactical Data Links Link 16 and Link 22
+
+Multiplexed digital transmission[edit]
+In circuit-switched networks, such as the public switched telephone network (PSTN), it is desirable to transmit multiple subscriber calls over the same transmission medium to effectively utilize the bandwidth of the medium.[3] TDM allows transmitting and receiving telephone switches to create channels (tributaries) within a transmission stream. A standard DS0 voice signal has a data bit rate of 64 kbit/s.[3][4] A TDM circuit runs at a much higher signal bandwidth, permitting the bandwidth to be divided into time frames (time slots) for each voice signal which is multiplexed onto the line by the transmitter. If the TDM frame consists of n voice frames, the line bandwidth is n*64 kbit/s.[3]
+Each voice time slot in the TDM frame is called a channel. In European systems, standard TDM frames contain 30 digital voice channels (E1), and in American systems (T1), they contain 24 channels. Both standards also contain extra bits (or bit time slots) for signaling and synchronization bits.[3]
+Multiplexing more than 24 or 30 digital voice channels is called higher order multiplexing. Higher order multiplexing is accomplished by multiplexing the standard TDM frames. For example, a European 120 channel TDM frame is formed by multiplexing four standard 30 channel TDM frames. At each higher order multiplex, four TDM frames from the immediate lower order are combined, creating multiplexes with a bandwidth of n*64 kbit/s, where n = 120, 480, 1920, etc.[3]
+Telecommunications systems[edit]
+There are three types of synchronous TDM: T1, SONET/SDH, and ISDN.[5]
+Plesiochronous digital hierarchy (PDH) was developed as a standard for multiplexing higher order frames. PDH created larger numbers of channels by multiplexing the standard Europeans 30 channel TDM frames. This solution worked for a while; however PDH suffered from several inherent drawbacks which ultimately resulted in the development of the Synchronous Digital Hierarchy (SDH). The requirements which drove the development of SDH were these:[3][4]
+
+Be synchronous – All clocks in the system must align with a reference clock.
+Be service-oriented – SDH must route traffic from End Exchange to End Exchange without worrying about exchanges in between, where the bandwidth can be reserved at a fixed level for a fixed period of time.
+Allow frames of any size to be removed or inserted into an SDH frame of any size.
+Easily manageable with the capability of transferring management data across links.
+Provide high levels of recovery from faults.
+Provide high data rates by multiplexing any size frame, limited only by technology.
+Give reduced bit rate errors.
+
+SDH has become the primary transmission protocol in most PSTN networks. It was developed to allow streams 1.544 Mbit/s and above to be multiplexed, in order to create larger SDH frames known as Synchronous Transport Modules (STM). The STM-1 frame consists of smaller streams that are multiplexed to create a 155.52 Mbit/s frame. SDH can also multiplex packet based frames e.g. Ethernet, PPP and ATM.[3][4]
+While SDH is considered to be a transmission protocol (Layer 1 in the OSI Reference Model), it also performs some switching functions, as stated in the third bullet point requirement listed above.[3] The most common SDH Networking functions are these:
+
+SDH Crossconnect – The SDH Crossconnect is the SDH version of a Time-Space-Time crosspoint switch. It connects any channel on any of its inputs to any channel on any of its outputs. The SDH Crossconnect is used in Transit Exchanges, where all inputs and outputs are connected to other exchanges.[3]
+SDH Add-Drop Multiplexer – The SDH Add-Drop Multiplexer (ADM) can add or remove any multiplexed frame down to 1.544Mb. Below this level, standard TDM can be performed. SDH ADMs can also perform the task of an SDH Crossconnect and are used in End Exchanges where the channels from subscribers are connected to the core PSTN network.[3]
+
+SDH network functions are connected using high-speed optic fibre. Optic fibre uses light pulses to transmit data and is therefore extremely fast. Modern optic fibre transmission makes use of wavelength-division multiplexing (WDM) where signals transmitted across the fibre are transmitted at different wavelengths, creating additional channels for transmission. This increases the speed and capacity of the link, which in turn reduces both unit and total costs.[3][4]
+Statistical time-division multiplexing[edit]
+Statistical time-division multiplexing (STDM) is an advanced version of TDM in which both the address of the terminal and the data itself are transmitted together for better routing. Using STDM allows bandwidth to be split over one line. Many college and corporate campuses use this type of TDM to distribute bandwidth.
+On a 10-Mbit line entering a network, STDM can be used to provide 178 terminals with a dedicated 56k connection (178 * 56k = 9.96Mb). A more common use however is to only grant the bandwidth when that much is needed. STDM does not reserve a time slot for each terminal, rather it assigns a slot when the terminal is requiring data to be sent or received.
+In its primary form, TDM is used for circuit mode communication with a fixed number of channels and constant bandwidth per channel. Bandwidth reservation distinguishes time-division multiplexing from statistical multiplexing such as statistical time-division multiplexing. In pure TDM, the time slots are recurrent in a fixed order and pre-allocated to the channels, rather than scheduled on a packet-by-packet basis.
+In dynamic TDMA, a scheduling algorithm dynamically reserves a variable number of time slots in each frame to variable bit-rate data streams, based on the traffic demand of each data stream.[6] Dynamic TDMA is used in:
+
+HIPERLAN/2
+Dynamic synchronous transfer mode
+IEEE 802.16a
+
+Asynchronous time-division multiplexing (ATDM),[5] is an alternative nomenclature in which STDM designates synchronous time-division multiplexing, the older method that uses fixed time slots.
+See also[edit]
+
+Frequency-division multiplexing
+McASP
+Route reestablishment notification
+Time-division duplex
+
+References[edit]
+
+ This article incorporates public domain material from the General Services Administration document "Federal Standard 1037C" (in support of MIL-STD-188).
+
+
+
+
+^ US 2919308  "Time Division Multiplex System for Signals of Different Bandwidth"
+^ María Isabel Gandía Carriedo (31 August 1998). "ATM: Origins and State of the Art". Universidad Politécnica de Madrid. Archived from the original on 23 June 2006. Retrieved 2009-09-23. 
+^ a b c d e f g h i j k Hanrahan, H.E. (2005). Integrated Digital Communications. Johannesburg, South Africa: School of Electrical and Information Engineering, University of the Witwatersrand. 
+^ a b c d Ericsson Ltd, Understanding Telecommunications, https://web.archive.org/web/20040413074912/www.ericsson.com/support/telecom/index.shtml, last accessed April 11, 2006.
+^ a b White, Curt (2007). Data Communications and Computer Networks. Boston, MA: Thomson Course Technology. pp. 143–152. ISBN 1-4188-3610-9. 
+^ Guowang Miao; Jens Zander; Ki Won Sung; Ben Slimane (2016). Fundamentals of Mobile Data Networks. Cambridge University Press. ISBN 1107143217. 
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Telecommunications
+
+
+
+History
+
+
+
+
+Beacon
+Broadcasting
+Cable protection system
+Cable TV
+Communications satellite
+Computer network
+Drums
+Electrical telegraph
+Fax
+Heliographs
+Hydraulic telegraph
+Internet
+Mass media
+Mobile phone
+Optical telecommunication
+Optical telegraphy
+Pager
+Photophone
+Prepay mobile phone
+Radio
+Radiotelephone
+Satellite communications
+Semaphore
+Smartphone
+Smoke signals
+Telecommunications history
+Telautograph
+Telegraphy
+Teleprinter (teletype)
+Telephone
+The Telephone Cases
+Television
+Timeline of communication technology
+Undersea telegraph line
+Videoconferencing
+Videophone
+Videotelephony
+Whistled language
+
+
+
+
+
+Pioneers
+
+
+
+Edwin Howard Armstrong
+John Logie Baird
+Paul Baran
+Alexander Graham Bell
+Tim Berners-Lee
+Jagadish Chandra Bose
+Vint Cerf
+Claude Chappe
+Donald Davies
+Lee de Forest
+Philo Farnsworth
+Reginald Fessenden
+Elisha Gray
+Erna Schneider Hoover
+Charles K. Kao
+Hedy Lamarr
+Innocenzo Manzetti
+Guglielmo Marconi
+Antonio Meucci
+Radia Perlman
+Alexander Stepanovich Popov
+Johann Philipp Reis
+Nikola Tesla
+Camille Tissot
+Alfred Vail
+Charles Wheatstone
+Vladimir K. Zworykin
+
+
+
+
+
+Transmission
+media
+
+
+
+Coaxial cable
+Fiber-optic communication
+
+Optical fiber
+
+
+Free-space optical communication
+Molecular communication
+Radio waves
+Transmission line
+
+
+
+
+
+Network topology
+and switching
+
+
+
+Links
+Nodes
+Terminal node
+Network switching (circuit
+packet)
+Telephone exchange
+
+
+
+
+
+Multiplexing
+
+
+
+Space-division
+Frequency-division
+Time-division
+Polarization-division
+Orbital angular-momentum
+Code-division
+
+
+
+
+
+Networks
+
+
+
+ARPANET
+BITNET
+Cellular network
+Computer
+CYCLADES
+Ethernet
+FidoNet
+Internet
+ISDN
+LAN
+Mobile
+NGN
+NPL network
+Public Switched Telephone
+Radio
+Telecommunications equipment
+Television
+Telex
+WAN
+Wireless
+World Wide Web
+
+
+
+
+
+
+
+
+ Category
+ Portal
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Time-division_multiplexing&oldid=815679786"					Categories: MultiplexingSynchronizationHidden categories: Wikipedia articles incorporating text from the Federal Standard 1037CWikipedia articles incorporating text from MIL-STD-188

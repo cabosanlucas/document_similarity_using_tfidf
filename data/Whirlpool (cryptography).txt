@@ -1,0 +1,1035 @@
+This article is about the hash function. For other uses, see Whirlpool (disambiguation).
+
+Whirlpool
+
+General
+
+
+Designers
+Vincent Rijmen, Paulo S. L. M. Barreto
+
+
+First published
+2000, 2001, 2003
+
+
+Derived from
+Square, AES
+
+
+Certification
+NESSIE
+
+
+Detail
+
+
+Digest sizes
+512 bits
+
+
+Security claims
+Large hashsum size
+
+
+Structure
+Miyaguchi-Preneel
+
+
+Rounds
+10
+
+
+Best public cryptanalysis
+
+
+In 2009, a rebound attack was announced that presents full collisions against 4.5 rounds of Whirlpool in 2120 operations, semi-free-start collisions against 5.5 rounds in 2120 time and semi-free-start near-collisions against 7.5 rounds in 2128 time.[1]
+
+
+In computer science and cryptography, Whirlpool (sometimes styled WHIRLPOOL) is a cryptographic hash function. It was designed by Vincent Rijmen (co-creator of the Advanced Encryption Standard) and Paulo S. L. M. Barreto, who first described it in 2000.
+The hash has been recommended by the NESSIE project. It has also been adopted by the International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC) as part of the joint ISO/IEC 10118-3 international standard.
+
+
+
+Contents
+
+
+1 Design features
+
+1.1 Version changes
+
+
+2 Internal structure
+
+2.1 SubBytes
+2.2 ShiftColumns
+2.3 MixRows
+2.4 AddRoundKey
+
+
+3 Whirlpool hashes
+4 Implementations
+5 See also
+6 References
+7 External links
+
+
+
+Design features[edit]
+
+
+
+
+The Whirlpool Galaxy (M51), which inspired the name of the algorithm.[2]
+
+
+Whirlpool is a hash designed after the Square block cipher, and is considered to be in that family of block cipher functions.
+Whirlpool is a Miyaguchi-Preneel construction based on a substantially modified Advanced Encryption Standard (AES).
+Whirlpool takes a message of any length less than 2256 bits and returns a 512-bit message digest.[3]
+The authors have declared that
+
+"WHIRLPOOL is not (and will never be) patented. It may be used free of charge for any purpose."[2]
+
+Version changes[edit]
+The original Whirlpool will be called Whirlpool-0, the first revision of Whirlpool will be called Whirlpool-T and the latest version will be called Whirlpool in the following test vectors.
+
+In the first revision in 2001, the s-box was changed from a randomly generated one with good cryptographic properties to one which has better cryptographic properties and is easier to implement in hardware.
+In the second revision (2003), a flaw in the diffusion matrix was found that lowered the estimated security of the algorithm below its potential.[4] Changing the 8x8 rotating matrix constants from (1, 1, 3, 1, 5, 8, 9, 5) to (1, 1, 4, 1, 8, 5, 2, 9) solved this issue.
+
+Internal structure[edit]
+The Whirlpool hash function is a Merkle–Damgård construction based on an AES-like block cipher W in Miyaguchi-Preneel mode.[2]
+The block cipher W consists of an 8×8 state matrix 
+
+
+
+S
+
+
+{\displaystyle S}
+
+ of bytes, for a total of 512 bits.
+The encryption process consists of updating the state with four round functions over 10 rounds. The four round functions are SubBytes (SB), ShiftColumns (SC), MixRows (MR) and AddRoundKey (AK). During each round the new state is computed as 
+
+
+
+S
+=
+A
+K
+∘
+M
+R
+∘
+S
+C
+∘
+S
+B
+(
+S
+)
+
+
+{\displaystyle S=AK\circ MR\circ SC\circ SB(S)}
+
+.
+SubBytes[edit]
+The SubBytes operation applies a non-linear permutation (the S-box) to each byte of the state independently. The 8-bit S-box is composed of 3 smaller 4-bit S-boxes.
+ShiftColumns[edit]
+The ShiftColumns operation cyclically shifts each byte in each column of the state. Column j has its bytes shifted downwards by j positions.
+MixRows[edit]
+The MixRows operation is a right-multiplication of each row by an 8×8 matrix over 
+
+
+
+G
+F
+(
+
+
+2
+
+8
+
+
+
+)
+
+
+{\displaystyle GF({2^{8}})}
+
+. The matrix is chosen such that the branch number (an important property when looking at resistance to differential cryptanalysis) is 9, which is maximal.
+AddRoundKey[edit]
+The AddRoundKey operation uses bitwise xor to add a key calculated by the key schedule to the current state. The key schedule is identical to the encryption itself, except the AddRoundKey function is replaced by an AddRoundConstant function that adds a predetermined constant in each round.
+Whirlpool hashes[edit]
+The Whirlpool algorithm has undergone two revisions since its original 2000 specification.
+People incorporating Whirlpool will most likely use the most recent revision of Whirlpool; while there are no known security weaknesses in earlier versions of Whirlpool, the most recent revision has better hardware implementation efficiency characteristics, and is also likely to be more secure. As mentioned earlier, it is also the version adopted in the ISO/IEC 10118-3 international standard.
+The 512-bit (64-byte) Whirlpool hashes (also termed message digests) are typically represented as 128-digit hexadecimal numbers.
+The following demonstrates a 43-byte ASCII input (not including quotes) and the corresponding Whirlpool hashes:
+
+
+Version
+Input String
+Computed Hash
+
+
+Whirlpool-0
+"The quick brown fox jumps over the lazy dog"
+
+
+ 4F8F5CB531E3D49A61CF417CD133792CCFA501FD8DA53EE368FED20E5FE0248C
+ 3A0B64F98A6533CEE1DA614C3A8DDEC791FF05FEE6D971D57C1348320F4EB42D
+
+
+
+Whirlpool-T
+"The quick brown fox jumps over the lazy dog"
+
+
+ 3CCF8252D8BBB258460D9AA999C06EE38E67CB546CFFCF48E91F700F6FC7C183
+ AC8CC3D3096DD30A35B01F4620A1E3A20D79CD5168544D9E1B7CDF49970E87F1
+
+
+
+Whirlpool
+"The quick brown fox jumps over the lazy dog"
+
+
+ B97DE512E91E3828B40D2B0FDCE9CEB3C4A71F9BEA8D88E75C4FA854DF36725F
+ D2B52EB6544EDCACD6F8BEDDFEA403CB55AE31F03AD62A5EF54E42EE82C3FB35
+
+
+
+Even a small change in the message will (with an extremely high probability of 
+
+
+
+1
+−
+
+10
+
+−
+154
+
+
+
+
+{\displaystyle 1-10^{-154}}
+
+) result in a different hash, which will usually look completely different just like two unrelated random numbers do. The following demonstrates the result of changing the previous input by a single letter (a single bit, even, in ASCII-compatible encodings), replacing d with e:
+
+
+Version
+Input String
+Computed Hash
+
+
+Whirlpool-0
+"The quick brown fox jumps over the lazy eog"
+
+
+ 228FBF76B2A93469D4B25929836A12B7D7F2A0803E43DABA0C7FC38BC11C8F2A
+ 9416BBCF8AB8392EB2AB7BCB565A64AC50C26179164B26084A253CAF2E012676
+
+
+
+Whirlpool-T
+"The quick brown fox jumps over the lazy eog"
+
+
+ C8C15D2A0E0DE6E6885E8A7D9B8A9139746DA299AD50158F5FA9EECDDEF744F9
+ 1B8B83C617080D77CB4247B1E964C2959C507AB2DB0F1F3BF3E3B299CA00CAE3
+
+
+
+Whirlpool
+"The quick brown fox jumps over the lazy eog"
+
+
+ C27BA124205F72E6847F3E19834F925CC666D0974167AF915BB462420ED40CC5
+ 0900D85A1F923219D832357750492D5C143011A76988344C2635E69D06F2D38C
+
+
+
+The hash of a zero-length string is:
+
+
+Version
+Input String
+Computed Hash
+
+
+Whirlpool-0
+""
+
+
+ B3E1AB6EAF640A34F784593F2074416ACCD3B8E62C620175FCA0997B1BA23473
+ 39AA0D79E754C308209EA36811DFA40C1C32F1A2B9004725D987D3635165D3C8
+
+
+
+Whirlpool-T
+""
+
+
+ 470F0409ABAA446E49667D4EBE12A14387CEDBD10DD17B8243CAD550A089DC0F
+ EEA7AA40F6C2AAAB71C6EBD076E43C7CFCA0AD32567897DCB5969861049A0F5A
+
+
+
+Whirlpool
+""
+
+
+ 19FA61D75522A4669B44E39C1D2E1726C530232130D407F89AFEE0964997F7A7
+ 3E83BE698B288FEBCF88E3E03C4F0757EA8964E59B63D93708B138CC42A66EB3
+
+
+
+Implementations[edit]
+The authors provide reference implementations of the WHIRLPOOL algorithm, including a version written in C and a version written in Java.[2] These reference implementations have been released into the public domain.[2]
+Two of the first widely used mainstream cryptographic programs that started using Whirlpool were FreeOTFE, followed by TrueCrypt in 2005.
+The algorithm is also commonly used by many companies to hash simple data.[citation needed]
+See also[edit]
+
+Digital timestamping
+
+References[edit]
+
+
+^ Florian Mendel1, Christian Rechberger, Martin Schläffer, Søren S. Thomsen (2009-02-24). The Rebound Attack: Cryptanalysis of Reduced Whirlpool and Grøstl (PDF). Fast Software Encryption: 16th International Workshop. CS1 maint: Multiple names: authors list (link)
+^ a b c d e Paulo S. L. M. Barreto (2008-11-25). "The WHIRLPOOL Hash Function". Retrieved 2017-03-03. 
+^ Barreto, Paulo S.L.M. & Rijmen, Vincent (2003-05-24). "The WHIRLPOOL Hashing Function" (ZIP). Retrieved 2017-03-03. 
+^ Kyoji, Shibutani & Shirai, Taizo (2003-03-11). "On the diffusion matrix employed in the Whirlpool hashing function" (PDF). Retrieved 2017-03-03. 
+
+
+External links[edit]
+
+Whirlpool homepage Includes detailed algorithm information, C and Java implementations, the paper, etc.
+Jacksum on SourceForge.net, a Java implementation of all three revisions of Whirlpool
+whirlpool on GitHub - An open source Go implementation of the latest revision of Whirlpool
+A Matlab Implementation of the Whirlpool Hashing Function
+RHash on SourceForge.net, an open source command-line tool, which can calculate and verify Whirlpool hash.
+Perl Whirlpool module at CPAN
+Digest module implementing the Whirlpool hashing algorithm in Ruby
+Ironclad a Common Lisp cryptography package containing a Whirlpool implementation
+The ISO/IEC 10118-3:2004 standard
+Test vectors for the Whirlpool hash from the NESSIE project
+Managed C# implementation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Cryptographic hash functions & message authentication codes
+
+
+
+
+
+
+List
+Comparison
+Known attacks
+
+
+
+
+
+Common functions
+
+
+
+MD5
+SHA-1
+SHA-2
+SHA-3
+BLAKE2
+
+
+
+
+
+SHA-3 finalists
+
+
+
+BLAKE
+Grøstl
+JH
+Skein
+Keccak (winner)
+
+
+
+
+
+Other functions
+
+
+
+CubeHash
+ECOH
+FSB
+GOST
+HAS-160
+HAVAL
+Kupyna
+LM hash
+MD2
+MD4
+MD6
+MDC-2
+N-Hash
+RIPEMD
+RadioGatún
+SWIFFT
+Snefru
+Streebog
+Tiger
+VSH
+Whirlpool
+
+
+
+
+
+Key derivation functions
+
+
+
+bcrypt
+crypt
+PBKDF2
+scrypt
+Argon2
+
+
+
+
+
+MAC functions
+
+
+
+DAA
+CBC-MAC
+HMAC
+OMAC/CMAC
+PMAC
+VMAC
+UMAC
+Poly1305
+SipHash
+
+
+
+
+
+Authenticated
+encryption modes
+
+
+
+CCM
+CWC
+EAX
+GCM
+IAPM
+OCB
+
+
+
+
+
+Attacks
+
+
+
+Collision attack
+Preimage attack
+Birthday attack
+Brute-force attack
+Rainbow table
+Side-channel attack
+Length extension attack
+
+
+
+
+
+Design
+
+
+
+Avalanche effect
+Hash collision
+Merkle–Damgård construction
+Sponge function
+HAIFA construction
+Unique Block Iteration
+
+
+
+
+
+Standardization
+
+
+
+CRYPTREC
+NESSIE
+NIST hash function competition
+
+
+
+
+
+Utilization
+
+
+
+Hash-based cryptography
+Key stretching
+Merkle tree
+Message authentication
+Proof of work
+Salt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Cryptography
+
+
+
+
+
+
+History of cryptography
+Cryptanalysis
+Outline of cryptography
+
+
+
+
+
+
+
+
+Symmetric-key algorithm
+Block cipher
+Stream cipher
+Public-key cryptography
+Cryptographic hash function
+Message authentication code
+Random numbers
+Steganography
+Crypto-shredding
+
+
+
+
+
+
+
+
+ Category
+ Portal
+ WikiProject
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Whirlpool_(cryptography)&oldid=806543383"					Categories: Cryptographic hash functionsHidden categories: CS1 maint: Multiple names: authors listAll articles with unsourced statementsArticles with unsourced statements from February 2017

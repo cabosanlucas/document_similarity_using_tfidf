@@ -1,0 +1,4097 @@
+This article is about the statistical concept. For other uses, see Median (disambiguation).
+
+
+
+
+Finding the median in sets of data with an odd and even number of values.
+
+
+The median is the value separating the higher half of a data sample, a population, or a probability distribution, from the lower half. For a data set, it may be thought of as the "middle" value. For example, in the data set {1, 3, 3, 6, 7, 8, 9}, the median is 6, the fourth largest, and also the fourth smallest, number in the sample. For a continuous probability distribution, the median is the value such that a number is equally likely to fall above or below it.
+The median is a commonly used measure of the properties of a data set in statistics and probability theory. The basic advantage of the median in describing data compared to the mean (often simply described as the "average") is that it is not skewed so much by extremely large or small values, and so it may give a better idea of a "typical" value. For example, in understanding statistics like household income or assets which vary greatly, a mean may be skewed by a small number of extremely high or low values. Median income, for example, may be a better way to suggest what a "typical" income is.
+Because of this, the median is of central importance in robust statistics, as it is the most resistant statistic, having a breakdown point of 50%: so long as no more than half the data are contaminated, the median will not give an arbitrarily large or small result.
+
+
+
+Contents
+
+
+1 Finite set of numbers
+2 Probability distributions
+
+2.1 Medians of particular distributions
+
+
+3 Populations
+
+3.1 Optimality property
+3.2 Unimodal distributions
+3.3 Inequality relating means and medians
+
+
+4 Jensen's inequality for medians
+5 Medians for samples
+
+5.1 The sample median
+
+5.1.1 Efficient computation of the sample median
+5.1.2 Easy explanation of the sample median
+5.1.3 Sampling distribution
+
+
+5.2 Other estimators
+5.3 Coefficient of dispersion
+
+
+6 Multivariate median
+
+6.1 Medoid
+6.2 Marginal median
+6.3 Spatial median
+6.4 Other multivariate medians
+
+
+7 Other median-related concepts
+
+7.1 Interpolated median
+7.2 Pseudo-median
+7.3 Variants of regression
+7.4 Median filter
+7.5 Cluster analysis
+7.6 Median–median line
+
+
+8 Median-unbiased estimators
+9 History
+10 See also
+11 References
+12 External links
+
+
+
+Finite set of numbers[edit]
+The median of a finite list of numbers can be found by arranging all the numbers from smallest to greatest.
+If there is an odd number of numbers, the middle one is picked. For example, consider the set of numbers
+
+1, 3, 3, 6, 7, 8, 9
+
+This set contains seven numbers. The median is the fourth of them, which is 6.
+If there is an even number of observations, then there is no single middle value; the median is then usually defined to be the mean of the two middle values.[1][2] For example, in the data set
+
+1, 2, 3, 4, 5, 6, 8, 9
+
+the median is the mean of the middle two numbers: this is (4 + 5) ÷ 2, which is 4.5 or 4 1/2. (In more technical terms, this interprets the median as the fully trimmed mid-range).
+The formula used to find the middle number of a data set of n numerically ordered numbers is (n + 1) ÷ 2. This either gives the middle number (for an odd number of values) or the halfway point between the two middle values. For example, with 14 values, the formula will give 7.5, and the median will be taken by averaging the seventh and eighth values. So median can be represented by the following formula:
+
+
+
+
+
+m
+e
+d
+i
+a
+n
+(
+a
+)
+=
+
+
+
+
+a
+
+⌊
+#
+x
+÷
+2
+⌋
+
+
++
+
+a
+
+⌊
+#
+x
+÷
+2
++
+0.5
+⌋
+
+
+
+2
+
+
+
+
+{\displaystyle median(a)={\frac {a_{\lfloor \#x\div 2\rfloor }+a_{\lfloor \#x\div 2+0.5\rfloor }}{2}}}
+
+
+
+One can find the median using the Stem-and-Leaf Plot.
+There is no widely accepted standard notation for the median, but some authors represent the median of a variable x either as x͂ or as μ1/2[1] sometimes also M.[3][4] In any of these cases, the use of these or other symbols for the median needs to be explicitly defined when they are introduced.
+The median is used primarily for skewed distributions, which it summarizes differently from the arithmetic mean. Consider the multiset { 1, 2, 2, 2, 3, 14 }. The median is 2 in this case, (as is the mode), and it might be seen as a better indication of central tendency (less susceptible to the exceptionally large value in data) than the arithmetic mean of 4.
+The median is a popular summary statistic used in descriptive statistics, since it is simple to understand and easy to calculate, while also giving a measure that is more robust in the presence of outlier values than is the mean. The widely cited empirical relationship between the relative locations of the mean and the median for skewed distributions is, however, not generally true.[5] There are, however, various relationships for the absolute difference between them; see below.
+With an even number of observations (as shown above) no value need be exactly at the value of the median. Nonetheless, the value of the median is uniquely determined with the usual definition. A related concept, in which the outcome is forced to correspond to a member of the sample, is the medoid.
+In a population, at most half have values strictly less than the median and at most half have values strictly greater than it. If each group contains less than half the population, then some of the population is exactly equal to the median. For example, if a < b < c, then the median of the list {a, b, c} is b, and, if a < b < c < d, then the median of the list {a, b, c, d} is the mean of b and c; i.e., it is (b + c)/2. Indeed, as it is based on the middle data in a group, it is not necessary to even know the value of extreme results in order to calculate a median. For example, in a psychology test investigating the time needed to solve a problem, if a small number of people failed to solve the problem at all in the given time a median can still be calculated.[6]
+The median can be used as a measure of location when a distribution is skewed, when end-values are not known, or when one requires reduced importance to be attached to outliers, e.g., because they may be measurement errors.
+A median is only defined on ordered one-dimensional data, and is independent of any distance metric. A geometric median, on the other hand, is defined in any number of dimensions.
+The median is one of a number of ways of summarising the typical values associated with members of a statistical population; thus, it is a possible location parameter. The median is the 2nd quartile, 5th decile, and 50th percentile. Since the median is the same as the second quartile, its calculation is illustrated in the article on quartiles. A median can be worked out for ranked but not numerical classes (e.g. working out a median grade when students are graded from A to F), although the result might be halfway between grades if there is an even number of cases.
+When the median is used as a location parameter in descriptive statistics, there are several choices for a measure of variability: the range, the interquartile range, the mean absolute deviation, and the median absolute deviation.
+For practical purposes, different measures of location and dispersion are often compared on the basis of how well the corresponding population values can be estimated from a sample of data. The median, estimated using the sample median, has good properties in this regard. While it is not usually optimal if a given population distribution is assumed, its properties are always reasonably good. For example, a comparison of the efficiency of candidate estimators shows that the sample mean is more statistically efficient than the sample median when data are uncontaminated by data from heavy-tailed distributions or from mixtures of distributions, but less efficient otherwise, and that the efficiency of the sample median is higher than that for a wide range of distributions. More specifically, the median has a 64% efficiency compared to the minimum-variance mean (for large normal samples), which is to say the variance of the median will be ~50% greater than the variance of the mean—see asymptotic efficiency and references therein.
+Probability distributions[edit]
+
+
+
+
+Geometric visualisation of the mode, median and mean of an arbitrary probability density function.[7]
+
+
+For any probability distribution on the real line R with cumulative distribution function F, regardless of whether it is any kind of continuous probability distribution, in particular an absolutely continuous distribution (which has a probability density function), or a discrete probability distribution, a median is by definition any real number m that satisfies the inequalities
+
+
+
+
+
+P
+⁡
+(
+X
+≤
+m
+)
+≥
+
+
+1
+2
+
+
+
+ and 
+
+P
+⁡
+(
+X
+≥
+m
+)
+≥
+
+
+1
+2
+
+
+
+
+
+
+{\displaystyle \operatorname {P} (X\leq m)\geq {\frac {1}{2}}{\text{ and }}\operatorname {P} (X\geq m)\geq {\frac {1}{2}}\,\!}
+
+
+
+or, equivalently, the inequalities
+
+
+
+
+
+
+∫
+
+(
+−
+∞
+,
+m
+]
+
+
+d
+F
+(
+x
+)
+≥
+
+
+1
+2
+
+
+
+ and 
+
+
+∫
+
+[
+m
+,
+∞
+)
+
+
+d
+F
+(
+x
+)
+≥
+
+
+1
+2
+
+
+
+
+
+
+{\displaystyle \int _{(-\infty ,m]}dF(x)\geq {\frac {1}{2}}{\text{ and }}\int _{[m,\infty )}dF(x)\geq {\frac {1}{2}}\,\!}
+
+
+
+in which a Lebesgue–Stieltjes integral is used. For an absolutely continuous probability distribution with probability density function ƒ, the median satisfies
+
+
+
+
+
+P
+⁡
+(
+X
+≤
+m
+)
+=
+P
+⁡
+(
+X
+≥
+m
+)
+=
+
+∫
+
+−
+∞
+
+
+m
+
+
+f
+(
+x
+)
+
+d
+x
+=
+
+
+1
+2
+
+
+.
+
+
+
+
+{\displaystyle \operatorname {P} (X\leq m)=\operatorname {P} (X\geq m)=\int _{-\infty }^{m}f(x)\,dx={\frac {1}{2}}.\,\!}
+
+
+
+Any probability distribution on R has at least one median, but there may be more than one median. Where exactly one median exists, statisticians speak of "the median" correctly; even when the median is not unique, some statisticians speak of "the median" informally.
+Medians of particular distributions[edit]
+The medians of certain types of distributions can be easily calculated from their parameters; furthermore, they exist even for some distributions lacking a well-defined mean, such as the Cauchy distribution:
+
+The median of a symmetric unimodal distribution coincides with the mode.
+The median of a symmetric distribution which possesses a mean μ also takes the value μ.
+
+The median of a normal distribution with mean μ and variance σ2 is μ. In fact, for a normal distribution, mean = median = mode.
+The median of a uniform distribution in the interval [a, b] is (a + b) / 2, which is also the mean.
+
+
+The median of a Cauchy distribution with location parameter x0 and scale parameter y is x0, the location parameter.
+The median of a power law distribution x−a, with exponent a > 1 is 21/(a − 1)xmin, where xmin is the minimum value for which the power law holds[8]
+The median of an exponential distribution with rate parameter λ is the natural logarithm of 2 divided by the rate parameter: λ−1ln 2.
+The median of a Weibull distribution with shape parameter k and scale parameter λ is λ(ln 2)1/k.
+
+Populations[edit]
+Optimality property[edit]
+The mean absolute error of a real variable c with respect to the random variable X is
+
+
+
+
+
+E
+(
+
+|
+X
+−
+c
+|
+
+)
+
+
+
+{\displaystyle E(\left|X-c\right|)\,}
+
+
+
+Provided that the probability distribution of X is such that the above expectation exists, then m is a median of X if and only if m is a minimizer of the mean absolute error with respect to X.[9] In particular, m is a sample median if and only if m minimizes the arithmetic mean of the absolute deviations.
+More generally, a median is defined as a minimum of
+
+
+
+
+
+E
+(
+
+|
+
+X
+−
+c
+
+|
+
+−
+
+|
+
+X
+
+|
+
+)
+,
+
+
+{\displaystyle E(|X-c|-|X|),}
+
+
+
+as discussed below in the section on multivariate medians (specifically, the spatial median).
+This optimization-based definition of the median is useful in statistical data-analysis, for example, in k-medians clustering.
+Unimodal distributions[edit]
+
+
+
+
+Comparison of mean, median and mode of two log-normal distributions with different skewness.
+
+
+It can be shown for a unimodal distribution that the median 
+
+
+
+
+
+
+X
+~
+
+
+
+
+
+{\displaystyle {\tilde {X}}}
+
+ and the mean 
+
+
+
+
+
+
+X
+¯
+
+
+
+
+
+{\displaystyle {\bar {X}}}
+
+ lie within (3/5)1/2 ≈ 0.7746 standard deviations of each other.[10] In symbols,
+
+
+
+
+
+
+
+
+|
+
+
+
+X
+~
+
+
+
+−
+
+
+
+X
+¯
+
+
+
+|
+
+σ
+
+
+≤
+
+
+(
+
+
+3
+5
+
+
+)
+
+
+
+1
+2
+
+
+
+
+
+{\displaystyle {\frac {\left|{\tilde {X}}-{\bar {X}}\right|}{\sigma }}\leq \left({\frac {3}{5}}\right)^{\frac {1}{2}}}
+
+
+
+where |·| is the absolute value.
+A similar relation holds between the median and the mode: they lie within 31/2 ≈ 1.732 standard deviations of each other:
+
+
+
+
+
+
+
+
+
+|
+
+
+
+
+X
+~
+
+
+
+−
+
+m
+o
+d
+e
+
+
+|
+
+
+σ
+
+
+≤
+
+3
+
+
+1
+2
+
+
+
+.
+
+
+{\displaystyle {\frac {|{\tilde {X}}-\mathrm {mode} |}{\sigma }}\leq 3^{\frac {1}{2}}.}
+
+
+
+Inequality relating means and medians[edit]
+If the distribution has finite variance, then the distance between the median and the mean is bounded by one standard deviation.
+This bound was proved by Mallows,[11] who used Jensen's inequality twice, as follows. We have
+
+
+
+
+
+
+
+
+
+
+|
+
+μ
+−
+m
+
+|
+
+=
+
+|
+
+E
+⁡
+(
+X
+−
+m
+)
+
+|
+
+
+
+
+≤
+E
+⁡
+(
+
+|
+
+X
+−
+m
+
+|
+
+)
+
+
+
+
+
+
+≤
+E
+⁡
+(
+
+|
+
+X
+−
+μ
+
+|
+
+)
+
+
+
+
+
+
+≤
+
+
+E
+⁡
+
+(
+(
+X
+−
+μ
+
+)
+
+2
+
+
+)
+
+
+
+=
+σ
+.
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}|\mu -m|=|\operatorname {E} (X-m)|&\leq \operatorname {E} (|X-m|)\\&\leq \operatorname {E} (|X-\mu |)\\&\leq {\sqrt {\operatorname {E} \left((X-\mu )^{2}\right)}}=\sigma .\end{aligned}}}
+
+
+
+The first and third inequalities come from Jensen's inequality applied to the absolute-value function and the square function, which are each convex. The second inequality comes from the fact that a median minimizes the absolute deviation function
+
+
+
+
+
+a
+↦
+E
+⁡
+(
+
+|
+
+X
+−
+a
+
+|
+
+)
+.
+
+
+
+{\displaystyle a\mapsto \operatorname {E} (|X-a|).\,}
+
+
+
+This proof also follows directly from Cantelli's inequality.[12] The result can be generalized to obtain a multivariate version of the inequality,[13] as follows:
+
+
+
+
+
+
+
+
+
+∥
+μ
+−
+m
+∥
+=
+∥
+E
+⁡
+(
+X
+−
+m
+)
+∥
+
+
+
+≤
+E
+⁡
+∥
+X
+−
+m
+∥
+
+
+
+
+
+
+≤
+E
+⁡
+(
+∥
+X
+−
+μ
+∥
+)
+
+
+
+
+
+
+≤
+
+
+E
+⁡
+
+(
+∥
+X
+−
+μ
+
+∥
+
+2
+
+
+)
+
+
+
+=
+
+
+trace
+⁡
+
+(
+var
+⁡
+(
+X
+)
+)
+
+
+
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}\|\mu -m\|=\|\operatorname {E} (X-m)\|&\leq \operatorname {E} \|X-m\|\\&\leq \operatorname {E} (\|X-\mu \|)\\&\leq {\sqrt {\operatorname {E} \left(\|X-\mu \|^{2}\right)}}={\sqrt {\operatorname {trace} \left(\operatorname {var} (X)\right)}}\end{aligned}}}
+
+
+
+where m is a spatial median, that is, a minimizer of the function 
+
+
+
+a
+↦
+E
+⁡
+(
+∥
+X
+−
+a
+∥
+)
+.
+
+
+
+{\displaystyle a\mapsto \operatorname {E} (\|X-a\|).\,}
+
+ The spatial median is unique when the data-set's dimension is two or more.[14][15] An alternative proof uses the one-sided Chebyshev inequality; it appears in an inequality on location and scale parameters.
+Jensen's inequality for medians[edit]
+Jensen's inequality states that for any random variable x with a finite expectation E(x) and for any convex function f
+
+
+
+
+
+f
+[
+E
+(
+x
+)
+]
+≤
+E
+[
+f
+(
+x
+)
+]
+
+
+{\displaystyle f[E(x)]\leq E[f(x)]}
+
+
+
+It has been shown[16] that if x is a real variable with a unique median m and f is a C function then
+
+
+
+
+
+f
+(
+m
+)
+≤
+Median
+⁡
+[
+f
+(
+x
+)
+]
+
+
+{\displaystyle f(m)\leq \operatorname {Median} [f(x)]}
+
+
+
+A C function is a real valued function, defined on the set of real numbers R, with the property that for any real t
+
+
+
+
+
+
+f
+
+−
+1
+
+
+
+(
+
+(
+−
+∞
+,
+t
+]
+
+)
+
+=
+{
+x
+∈
+R
+∣
+f
+(
+x
+)
+≤
+t
+}
+
+
+{\displaystyle f^{-1}\left(\,(-\infty ,t]\,\right)=\{x\in R\mid f(x)\leq t\}}
+
+
+
+is a closed interval, a singleton or an empty set.
+Medians for samples[edit]
+The sample median[edit]
+  Efficient computation of the sample median[edit]
+Even though comparison-sorting n items requires Ω(n log n) operations, selection algorithms can compute the k'th-smallest of n items with only Θ(n) operations. This includes the median, which is the n/2'th order statistic (or for an even number of samples, the arithmetic mean of the two middle order statistics).
+Selection algorithms still have the downside of requiring Ω(n) memory, that is, they need to have the full sample (or a linear-sized portion of it) in memory. Because this, as well as the linear time requirement, can be prohibitive, several estimation procedures for the median have been developed. A simple one is the median of three rule, which estimates the median as the median of a three-element subsample; this is commonly used as a subroutine in the quicksort sorting algorithm, which uses an estimate of its input's median. A more robust estimator is Tukey's ninther, which is the median of three rule applied with limited recursion:[17] if A is the sample laid out as an array, and
+
+med3(A) = median(A[1], A[n/2], A[n]),
+
+then
+
+ninther(A) = med3(med3(A[1 ... 1/3n]), med3(A[1/3n ... 2/3n]), med3(A[2/3n ... n]))
+
+The remedian is an estimator for the median that requires linear time but sub-linear memory, operating in a single pass over the sample.[18]
+Easy explanation of the sample median[edit]
+In individual series (if number of observation is very low) first one must arrange all the observations in order. Then count(n) is the total number of observation in given data.
+If n is odd then Median (M) = value of ((n + 1)/2)th item term.
+If n is even then Median (M) = value of [(n/2)th item term + (n/2 + 1)th item term]/2
+
+For an odd number of values
+
+As an example, we will calculate the sample median for the following set of observations: 1, 5, 2, 8, 7.
+Start by sorting the values: 1, 2, 5, 7, 8.
+In this case, the median is 5 since it is the middle observation in the ordered list.
+The median is the ((n + 1)/2)th item, where n is the number of values. For example, for the list {1, 2, 5, 7, 8}, we have n = 5, so the median is the ((5 + 1)/2)th item.
+
+median = (6/2)th item
+median = 3rd item
+median = 5
+
+
+For an even number of values
+
+As an example, we will calculate the sample median for the following set of observations: 1, 6, 2, 8, 7, 2.
+Start by sorting the values: 1, 2, 2, 6, 7, 8.
+In this case, the arithmetic mean of the two middlemost terms is (2 + 6)/2 = 4. Therefore, the median is 4 since it is the arithmetic mean of the middle observations in the ordered list.
+We also use this formula MEDIAN = {(n + 1 )/2}th item . n = number of values
+As above example 1, 2, 2, 6, 7, 8 n = 6 Median = {(6 + 1)/2}th item = 3.5th item. In this case, the median is average of the 3rd number and the next one (the fourth number). The median is (2 + 6)/2 which is 4.
+Sampling distribution[edit]
+The distributions of both the sample mean and the sample median were determined by Laplace.[19] The distribution of the sample median from a population with a density function 
+
+
+
+f
+(
+x
+)
+
+
+{\displaystyle f(x)}
+
+ is asymptotically normal with mean 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ and variance[20]
+
+
+
+
+
+
+
+1
+
+4
+n
+f
+(
+m
+
+)
+
+2
+
+
+
+
+
+
+
+{\displaystyle {\frac {1}{4nf(m)^{2}}}}
+
+
+
+where 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ is the median of 
+
+
+
+f
+(
+x
+)
+
+
+{\displaystyle f(x)}
+
+ and 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is the sample size.
+These results have also been extended.[21] It is now known for the 
+
+
+
+p
+
+
+{\displaystyle p}
+
+-th quantile that the distribution of the sample 
+
+
+
+p
+
+
+{\displaystyle p}
+
+-th quantile is asymptotically normal around the 
+
+
+
+p
+
+
+{\displaystyle p}
+
+-th quantile with variance equal to
+
+
+
+
+
+
+
+
+p
+(
+1
+−
+p
+)
+
+
+n
+f
+(
+
+x
+
+p
+
+
+
+)
+
+2
+
+
+
+
+
+
+
+{\displaystyle {\frac {p(1-p)}{nf(x_{p})^{2}}}}
+
+
+
+where 
+
+
+
+f
+(
+
+x
+
+p
+
+
+)
+
+
+{\displaystyle f(x_{p})}
+
+ is the value of the distribution density at the 
+
+
+
+p
+
+
+{\displaystyle p}
+
+-th quantile.
+In the case of a discrete variable, the sampling distribution of the median for small-samples can be investigated as follows. We take the sample size to be an odd number 
+
+
+
+N
+=
+2
+n
++
+1
+
+
+{\displaystyle N=2n+1}
+
+. If a given value 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ is to be the median of the sample then two conditions must be satisfied. The first is that at most 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ observations can have a value of 
+
+
+
+v
+−
+1
+
+
+{\displaystyle v-1}
+
+ or less. The second is that at most 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ observations can have a value of 
+
+
+
+v
++
+1
+
+
+{\displaystyle v+1}
+
+ or more. Let 
+
+
+
+i
+
+
+{\displaystyle i}
+
+ be the number of observations which have a value of 
+
+
+
+v
+−
+1
+
+
+{\displaystyle v-1}
+
+ or less and let 
+
+
+
+k
+
+
+{\displaystyle k}
+
+ be the number of observations which have a value of 
+
+
+
+v
++
+1
+
+
+{\displaystyle v+1}
+
+ or more. Then 
+
+
+
+i
+
+
+{\displaystyle i}
+
+ and 
+
+
+
+k
+
+
+{\displaystyle k}
+
+ both have a minimum value of 0 and a maximum of 
+
+
+
+n
+
+
+{\displaystyle n}
+
+. If an observation has a value below 
+
+
+
+v
+
+
+{\displaystyle v}
+
+, it is not relevant how far below 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ it is and conversely, if an observation has a value above 
+
+
+
+v
+
+
+{\displaystyle v}
+
+, it is not relevant how far above 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ it is. We can therefore represent the observations as following a trinomial distribution with probabilities 
+
+
+
+F
+(
+v
+−
+1
+)
+
+
+{\displaystyle F(v-1)}
+
+, 
+
+
+
+f
+(
+v
+)
+
+
+{\displaystyle f(v)}
+
+ and 
+
+
+
+1
+−
+F
+(
+v
+)
+
+
+{\displaystyle 1-F(v)}
+
+. The probability that the median 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ will have a value 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ is then given by
+
+
+
+
+
+Pr
+(
+m
+=
+v
+)
+=
+
+∑
+
+i
+=
+0
+
+
+n
+
+
+
+∑
+
+k
+=
+0
+
+
+n
+
+
+
+
+
+N
+!
+
+
+i
+!
+(
+N
+−
+i
+−
+k
+)
+!
+k
+!
+
+
+
+[
+F
+(
+v
+−
+1
+)
+
+]
+
+i
+
+
+[
+f
+(
+v
+)
+
+]
+
+N
+−
+i
+−
+k
+
+
+[
+1
+−
+F
+(
+v
+)
+
+]
+
+k
+
+
+.
+
+
+{\displaystyle \Pr(m=v)=\sum _{i=0}^{n}\sum _{k=0}^{n}{\frac {N!}{i!(N-i-k)!k!}}[F(v-1)]^{i}[f(v)]^{N-i-k}[1-F(v)]^{k}.}
+
+
+
+Summing this over all values of 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ defines a proper distribution and gives a unit sum. In practice, the function 
+
+
+
+f
+(
+v
+)
+
+
+{\displaystyle f(v)}
+
+ will often not be known but it can be estimated from an observed frequency distribution. An example is given in the following table where the actual distribution is not known but a sample of 3,800 observations allows a sufficiently accurate assessment of 
+
+
+
+f
+(
+v
+)
+
+
+{\displaystyle f(v)}
+
+.
+
+
+v
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+5
+
+
+f(v)
+0.000
+0.008
+0.010
+0.013
+0.083
+0.108
+0.328
+0.220
+0.202
+0.023
+0.005
+
+
+F(v)
+0.000
+0.008
+0.018
+0.031
+0.114
+0.222
+0.550
+0.770
+0.972
+0.995
+1.000
+
+
+Using these data it is possible to investigate the effect of sample size on the standard errors of the mean and median. The observed mean is 3.16, the observed raw median is 3 and the observed interpolated median is 3.174. The following table gives some comparison statistics. The standard error of the median is given both from the above expression for 
+
+
+
+p
+r
+(
+m
+=
+v
+)
+
+
+{\displaystyle pr(m=v)}
+
+ and from the asymptotic approximation given earlier.
+
+
+
+Sample size
+Statistic
+
+3
+9
+15
+21
+
+
+Expected value of median
+3.198
+3.191
+3.174
+3.161
+
+
+Standard error of median (above formula)
+0.482
+0.305
+0.257
+0.239
+
+
+Standard error of median (asymptotic approximation)
+0.879
+0.508
+0.393
+0.332
+
+
+Standard error of mean
+0.421
+0.243
+0.188
+0.159
+
+
+The expected value of the median falls slightly as sample size increases while, as would be expected, the standard errors of both the median and the mean are proportionate to the inverse square root of the sample size. The asymptotic approximation errs on the side of caution by overestimating the standard error.
+In the case of a continuous variable, the following argument can be used. If a given value 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ is to be the median, then one observation must take the value 
+
+
+
+v
+
+
+{\displaystyle v}
+
+. The elemental probability of this is 
+
+
+
+f
+(
+v
+)
+
+d
+v
+
+
+{\displaystyle f(v)\,dv}
+
+. Then, of the remaining 
+
+
+
+2
+n
+
+
+{\displaystyle 2n}
+
+ observations, exactly 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ of them must be above 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ and the remaining 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ below. The probability of this is the 
+
+
+
+n
+
+
+{\displaystyle n}
+
+th term of a binomial distribution with parameters 
+
+
+
+F
+(
+v
+)
+
+
+{\displaystyle F(v)}
+
+ and 
+
+
+
+2
+n
+
+
+{\displaystyle 2n}
+
+. Finally we multiply by 
+
+
+
+2
+n
++
+1
+
+
+{\displaystyle 2n+1}
+
+ since any of the observations in the sample can be the median observation. Hence the elemental probability of the median at the point 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ is given by
+
+
+
+
+
+f
+(
+v
+)
+
+
+
+(
+2
+n
+)
+!
+
+
+n
+!
+n
+!
+
+
+
+[
+F
+(
+v
+)
+
+]
+
+n
+
+
+[
+1
+−
+F
+(
+v
+)
+
+]
+
+n
+
+
+(
+2
+n
++
+1
+)
+
+d
+v
+.
+
+
+{\displaystyle f(v){\frac {(2n)!}{n!n!}}[F(v)]^{n}[1-F(v)]^{n}(2n+1)\,dv.}
+
+
+
+Now we introduce the beta function. For integer arguments 
+
+
+
+α
+
+
+{\displaystyle \alpha }
+
+ and 
+
+
+
+β
+
+
+{\displaystyle \beta }
+
+, this can be expressed as 
+
+
+
+
+B
+
+(
+α
+,
+β
+)
+=
+(
+α
+−
+1
+)
+!
+(
+β
+−
+1
+)
+!
+
+/
+
+(
+α
++
+β
+−
+1
+)
+!
+
+
+{\displaystyle \mathrm {B} (\alpha ,\beta )=(\alpha -1)!(\beta -1)!/(\alpha +\beta -1)!}
+
+. Also, we note that 
+
+
+
+f
+(
+v
+)
+=
+d
+F
+(
+v
+)
+
+/
+
+d
+v
+
+
+{\displaystyle f(v)=dF(v)/dv}
+
+. Using these relationships and setting both 
+
+
+
+α
+
+
+{\displaystyle \alpha }
+
+ and 
+
+
+
+β
+
+
+{\displaystyle \beta }
+
+ equal to 
+
+
+
+(
+n
++
+1
+)
+
+
+{\displaystyle (n+1)}
+
+ allows the last expression to be written as
+
+
+
+
+
+
+
+
+[
+F
+(
+v
+)
+
+]
+
+n
+
+
+[
+1
+−
+F
+(
+v
+)
+
+]
+
+n
+
+
+
+
+
+B
+
+(
+n
++
+1
+,
+n
++
+1
+)
+
+
+
+
+d
+F
+(
+v
+)
+
+
+{\displaystyle {\frac {[F(v)]^{n}[1-F(v)]^{n}}{\mathrm {B} (n+1,n+1)}}\,dF(v)}
+
+
+
+Hence the density function of the median is a symmetric beta distribution over the unit interval which supports 
+
+
+
+F
+(
+v
+)
+
+
+{\displaystyle F(v)}
+
+. Its mean, as we would expect, is 0.5 and its variance is 
+
+
+
+1
+
+/
+
+(
+4
+(
+N
++
+2
+)
+)
+
+
+{\displaystyle 1/(4(N+2))}
+
+. The corresponding variance of the sample median is
+
+
+
+
+
+
+
+1
+
+4
+(
+N
++
+2
+)
+f
+(
+m
+
+)
+
+2
+
+
+
+
+
+.
+
+
+{\displaystyle {\frac {1}{4(N+2)f(m)^{2}}}.}
+
+
+
+However this finding can only be used if the density function 
+
+
+
+f
+(
+v
+)
+
+
+{\displaystyle f(v)}
+
+ is known or can be assumed. As this will not always be the case, the median variance has to be estimated sometimes from the sample data.
+
+Estimation of variance from sample data
+
+The value of 
+
+
+
+(
+2
+f
+(
+x
+)
+
+)
+
+−
+2
+
+
+
+
+{\displaystyle (2f(x))^{-2}}
+
+—the asymptotic value of 
+
+
+
+
+n
+
+−
+
+
+1
+2
+
+
+
+
+(
+ν
+−
+m
+)
+
+
+{\displaystyle n^{-{\frac {1}{2}}}(\nu -m)}
+
+ where 
+
+
+
+ν
+
+
+{\displaystyle \nu }
+
+ is the population median—has been studied by several authors. The standard "delete one" jackknife method produces inconsistent results.[22] An alternative—the "delete k" method—where 
+
+
+
+k
+
+
+{\displaystyle k}
+
+ grows with the sample size has been shown to be asymptotically consistent.[23] This method may be computationally expensive for large data sets. A bootstrap estimate is known to be consistent,[24] but converges very slowly (order of 
+
+
+
+
+n
+
+−
+
+
+1
+4
+
+
+
+
+
+
+{\displaystyle n^{-{\frac {1}{4}}}}
+
+).[25] Other methods have been proposed but their behavior may differ between large and small samples.[26]
+
+Efficiency
+
+The efficiency of the sample median, measured as the ratio of the variance of the mean to the variance of the median, depends on the sample size and on the underlying population distribution. For a sample of size 
+
+
+
+N
+=
+2
+n
++
+1
+
+
+{\displaystyle N=2n+1}
+
+ from the normal distribution, the efficiency for large N is
+
+
+
+
+
+
+
+2
+π
+
+
+
+
+
+N
++
+2
+
+N
+
+
+
+
+{\displaystyle {\frac {2}{\pi }}{\frac {N+2}{N}}}
+
+
+
+The efficiency tends to 
+
+
+
+
+
+2
+π
+
+
+
+
+{\displaystyle {\frac {2}{\pi }}}
+
+ as 
+
+
+
+N
+
+
+{\displaystyle N}
+
+ tends to infinity.
+Other estimators[edit]
+For univariate distributions that are symmetric about one median, the Hodges–Lehmann estimator is a robust and highly efficient estimator of the population median.[27]
+If data are represented by a statistical model specifying a particular family of probability distributions, then estimates of the median can be obtained by fitting that family of probability distributions to the data and calculating the theoretical median of the fitted distribution.[citation needed] Pareto interpolation is an application of this when the population is assumed to have a Pareto distribution.
+Coefficient of dispersion[edit]
+The coefficient of dispersion (CD) is defined as the ratio of the average absolute deviation from the median to the median of the data.[28] It is a statistical measure used by the states of Iowa, New York and South Dakota in estimating dues taxes.[29][30][31] In symbols
+
+
+
+
+
+C
+D
+=
+
+
+1
+n
+
+
+
+
+
+∑
+
+|
+
+m
+−
+x
+
+|
+
+
+m
+
+
+
+
+{\displaystyle CD={\frac {1}{n}}{\frac {\sum |m-x|}{m}}}
+
+
+
+where n is the sample size, m is the sample median and x is a variate. The sum is taken over the whole sample.
+Confidence intervals for a two-sample test in which the sample sizes are large have been derived by Bonett and Seier[28] This test assumes that both samples have the same median but differ in the dispersion around it. The confidence interval (CI) is bounded inferiorly by
+
+
+
+
+
+exp
+⁡
+
+[
+log
+⁡
+
+(
+
+
+
+t
+
+a
+
+
+
+t
+
+b
+
+
+
+
+)
+
+−
+
+z
+
+α
+
+
+
+
+(
+var
+⁡
+
+[
+log
+⁡
+
+(
+
+
+
+t
+
+a
+
+
+
+t
+
+b
+
+
+
+
+)
+
+]
+
+)
+
+
+
+1
+2
+
+
+
+]
+
+
+
+{\displaystyle \exp \left[\log \left({\frac {t_{a}}{t_{b}}}\right)-z_{\alpha }\left(\operatorname {var} \left[\log \left({\frac {t_{a}}{t_{b}}}\right)\right]\right)^{\frac {1}{2}}\right]}
+
+
+
+where tj is the mean absolute deviation of the jth sample, var() is the variance and zα is the value from the normal distribution for the chosen value of α: for α = 0.05, zα = 1.96. The following formulae are used in the derivation of these confidence intervals
+
+
+
+
+
+var
+⁡
+[
+log
+⁡
+(
+
+t
+
+a
+
+
+)
+]
+=
+
+
+1
+n
+
+
+
+[
+
+
+
+s
+
+a
+
+
+2
+
+
+
+t
+
+a
+
+
+2
+
+
+
+
++
+
+
+(
+
+
+
+
+x
+
+a
+
+
+−
+
+
+
+x
+¯
+
+
+
+
+
+t
+
+a
+
+
+
+
+)
+
+
+2
+
+
+−
+1
+]
+
+
+
+{\displaystyle \operatorname {var} [\log(t_{a})]={\frac {1}{n}}\left[{\frac {s_{a}^{2}}{t_{a}^{2}}}+\left({\frac {x_{a}-{\bar {x}}}{t_{a}}}\right)^{2}-1\right]}
+
+
+
+
+
+
+
+
+var
+⁡
+
+[
+log
+⁡
+
+(
+
+
+
+t
+
+a
+
+
+
+t
+
+b
+
+
+
+
+)
+
+]
+
+=
+var
+⁡
+[
+log
+⁡
+(
+
+t
+
+a
+
+
+)
+]
++
+var
+⁡
+[
+log
+⁡
+(
+
+t
+
+b
+
+
+)
+]
+−
+2
+r
+(
+var
+⁡
+[
+log
+⁡
+(
+
+t
+
+a
+
+
+)
+]
+var
+⁡
+[
+log
+⁡
+(
+
+t
+
+b
+
+
+)
+]
+
+)
+
+
+1
+2
+
+
+
+
+
+{\displaystyle \operatorname {var} \left[\log \left({\frac {t_{a}}{t_{b}}}\right)\right]=\operatorname {var} [\log(t_{a})]+\operatorname {var} [\log(t_{b})]-2r(\operatorname {var} [\log(t_{a})]\operatorname {var} [\log(t_{b})])^{\frac {1}{2}}}
+
+
+
+where r is the Pearson correlation coefficient between the squared deviation scores
+
+
+
+
+
+
+d
+
+i
+a
+
+
+=
+
+|
+
+
+x
+
+i
+a
+
+
+−
+
+
+
+
+x
+¯
+
+
+
+
+a
+
+
+
+|
+
+
+
+{\displaystyle d_{ia}=|x_{ia}-{\bar {x}}_{a}|}
+
+ and 
+
+
+
+
+d
+
+i
+b
+
+
+=
+
+|
+
+
+x
+
+i
+b
+
+
+−
+
+
+
+
+x
+¯
+
+
+
+
+b
+
+
+
+|
+
+
+
+{\displaystyle d_{ib}=|x_{ib}-{\bar {x}}_{b}|}
+
+
+
+a and b here are constants equal to 1 and 2, x is a variate and s is the standard deviation of the sample.
+Multivariate median[edit]
+Previously, this article discussed the univariate median, when the sample or population had one-dimension. When the dimension is two or higher, there are multiple concepts that extend the definition of the univariate median; each such multivariate median agrees with the univariate median when the dimension is exactly one.[27][32][33][34]
+Medoid[edit]
+Let  be a set of  points in a space with a distance function 
+
+
+
+d
+
+
+{\displaystyle d}
+
+. Medoid is defined as
+
+
+
+
+
+
+
+x
+
+medoid
+
+
+=
+
+
+argmin
+
+
+y
+∈
+{
+
+x
+
+1
+
+
+,
+
+x
+
+2
+
+
+,
+⋯
+,
+
+x
+
+n
+
+
+}
+
+
+
+∑
+
+i
+=
+1
+
+
+n
+
+
+d
+(
+y
+,
+
+x
+
+i
+
+
+)
+.
+
+
+
+
+{\displaystyle {\displaystyle x_{\text{medoid}}={\text{argmin}}_{y\in \{x_{1},x_{2},\cdots ,x_{n}\}}\sum _{i=1}^{n}d(y,x_{i}).}}
+
+
+The medoid is often used in clustering using the k-medoid algorithm.
+Marginal median[edit]
+The marginal median is defined for vectors defined with respect to a fixed set of coordinates. A marginal median is defined to be the vector whose components are univariate medians. The marginal median is easy to compute, and its properties were studied by Puri and Sen.[27][35]
+Spatial median[edit]
+
+For N vectors in a normed vector space, a spatial median minimizes the average distance
+
+
+
+
+
+a
+↦
+
+
+1
+N
+
+
+
+∑
+
+n
+
+
+(
+∥
+
+x
+
+n
+
+
+−
+a
+∥
+)
+,
+
+
+
+{\displaystyle a\mapsto {\frac {1}{N}}\sum _{n}(\|x_{n}-a\|),\,}
+
+
+
+where xn and a are vectors. The spatial median is unique when the data-set's dimension is two or more and the norm is the Euclidean norm (or another strictly convex norm).[14][15][27] The spatial median is also called the L1 median, even when the norm is Euclidean. Other names are used especially for finite sets of points: geometric median, Fermat point (in mechanics), or Weber or Fermat-Weber point (in geographical location theory).[36] In the special case where the norm is an L1-norm, then the spatial median and the marginal median are the same.
+More generally, a spatial median is defined as a minimizer of
+
+
+
+
+
+a
+↦
+
+
+1
+N
+
+
+
+∑
+
+n
+
+
+
+(
+∥
+
+x
+
+n
+
+
+−
+a
+∥
+−
+∥
+
+x
+
+n
+
+
+∥
+)
+
+;
+
+
+{\displaystyle a\mapsto {\frac {1}{N}}\sum _{n}{(\|x_{n}-a\|-\|x_{n}\|)};}
+
+[27][37]
+
+this general definition is convenient for defining a spatial median of a population in a finite-dimensional normed space, for example, for distributions without a finite mean.[14][27] Spatial medians are defined for random vectors with values in a Banach space.[14]
+The spatial median is a robust and highly efficient estimator of a central tendency of a population.[27][37][38][39]
+Other multivariate medians[edit]
+An alternative generalization of the spatial median in higher dimensions that does not relate to a particular metric is the centerpoint.
+Other median-related concepts[edit]
+Interpolated median[edit]
+When dealing with a discrete variable, it is sometimes useful to regard the observed values as being midpoints of underlying continuous intervals. An example of this is a Likert scale, on which opinions or preferences are expressed on a scale with a set number of possible responses. If the scale consists of the positive integers, an observation of 3 might be regarded as representing the interval from 2.50 to 3.50. It is possible to estimate the median of the underlying variable. If, say, 22% of the observations are of value 2 or below and 55.0% are of 3 or below (so 33% have the value 3), then the median 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ is 3 since the median is the smallest value of 
+
+
+
+x
+
+
+{\displaystyle x}
+
+ for which 
+
+
+
+F
+(
+x
+)
+
+
+{\displaystyle F(x)}
+
+ is greater than a half. But the interpolated median is somewhere between 2.50 and 3.50. First we add half of the interval width 
+
+
+
+w
+
+
+{\displaystyle w}
+
+ to the median to get the upper bound of the median interval. Then we subtract that proportion of the interval width which equals the proportion of the 33% which lies above the 50% mark. In other words, we split up the interval width pro rata to the numbers of observations. In this case, the 33% is split into 28% below the median and 5% above it so we subtract 5/33 of the interval width from the upper bound of 3.50 to give an interpolated median of 3.35. More formally, if the values 
+
+
+
+f
+(
+x
+)
+
+
+{\displaystyle f(x)}
+
+ are known, the interpolated median can be calculated from
+
+
+
+
+
+
+m
+
+int
+
+
+=
+m
++
+w
+
+[
+
+
+1
+2
+
+
+−
+
+
+
+F
+(
+m
+)
+−
+
+
+1
+2
+
+
+
+
+f
+(
+m
+)
+
+
+
+]
+
+.
+
+
+{\displaystyle m_{\text{int}}=m+w\left[{\frac {1}{2}}-{\frac {F(m)-{\frac {1}{2}}}{f(m)}}\right].}
+
+
+
+Alternatively, if in an observed sample there are 
+
+
+
+k
+
+
+{\displaystyle k}
+
+ scores above the median category, 
+
+
+
+j
+
+
+{\displaystyle j}
+
+ scores in it and 
+
+
+
+i
+
+
+{\displaystyle i}
+
+ scores below it then the interpolated median is given by
+
+
+
+
+
+
+m
+
+int
+
+
+=
+m
++
+
+
+w
+2
+
+
+
+[
+
+
+
+k
+−
+i
+
+j
+
+
+]
+
+.
+
+
+{\displaystyle m_{\text{int}}=m+{\frac {w}{2}}\left[{\frac {k-i}{j}}\right].}
+
+
+
+Pseudo-median[edit]
+For univariate distributions that are symmetric about one median, the Hodges–Lehmann estimator is a robust and highly efficient estimator of the population median; for non-symmetric distributions, the Hodges–Lehmann estimator is a robust and highly efficient estimator of the population pseudo-median, which is the median of a symmetrized distribution and which is close to the population median.[citation needed] The Hodges–Lehmann estimator has been generalized to multivariate distributions.[37]
+Variants of regression[edit]
+The Theil–Sen estimator is a method for robust linear regression based on finding medians of slopes.[40]
+Median filter[edit]
+Main article: Median filter
+In the context of image processing of monochrome raster images there is a type of noise, known as the salt and pepper noise, when each pixel independently becomes black (with some small probability) or white (with some small probability), and is unchanged otherwise (with the probability close to 1). An image constructed of median values of neighborhoods (like 3×3 square) can effectively reduce noise in this case.[citation needed]
+Cluster analysis[edit]
+Main article: k-medians clustering
+In cluster analysis, the k-medians clustering algorithm provides a way of defining clusters, in which the criterion of maximising the distance between cluster-means that is used in k-means clustering, is replaced by maximising the distance between cluster-medians.
+Median–median line[edit]
+This is a method of robust regression. The idea dates back to Wald in 1940 who suggested dividing a set of bivariate data into two halves depending on the value of the independent parameter 
+
+
+
+x
+
+
+{\displaystyle x}
+
+: a left half with values less than the median and a right half with values greater than the median.[41] He suggested taking the means of the dependent 
+
+
+
+y
+
+
+{\displaystyle y}
+
+ and independent 
+
+
+
+x
+
+
+{\displaystyle x}
+
+ variables of the left and the right halves and estimating the slope of the line joining these two points. The line could then be adjusted to fit the majority of the points in the data set.
+Nair and Shrivastava in 1942 suggested a similar idea but instead advocated dividing the sample into three equal parts before calculating the means of the subsamples.[42] Brown and Mood in 1951 proposed the idea of using the medians of two subsamples rather the means.[43] Tukey combined these ideas and recommended dividing the sample into three equal size subsamples and estimating the line based on the medians of the subsamples.[44]
+Median-unbiased estimators[edit]
+Main article: Bias of an estimator § Median-unbiased estimators
+Any mean-unbiased estimator minimizes the risk (expected loss) with respect to the squared-error loss function, as observed by Gauss. A median-unbiased estimator minimizes the risk with respect to the absolute-deviation loss function, as observed by Laplace. Other loss functions are used in statistical theory, particularly in robust statistics.
+The theory of median-unbiased estimators was revived by George W. Brown in 1947:[45]
+
+An estimate of a one-dimensional parameter θ will be said to be median-unbiased if, for fixed θ, the median of the distribution of the estimate is at the value θ; i.e., the estimate underestimates just as often as it overestimates. This requirement seems for most purposes to accomplish as much as the mean-unbiased requirement and has the additional property that it is invariant under one-to-one transformation.
+— page 584
+
+Further properties of median-unbiased estimators have been reported.[46][47][48][49] Median-unbiased estimators are invariant under one-to-one transformations.
+There are methods of construction median-unbiased estimators that are optimal (in a sense analogous to minimum-variance property considered for mean-unbiased estimators). Such constructions exist for probability distributions having monotone likelihood-functions.[50][51] One such procedure is an analogue of the Rao–Blackwell procedure for mean-unbiased estimators: The procedure holds for a smaller class of probability distributions than does the Rao—Blackwell procedure but for a larger class of loss functions.[52]
+History[edit]
+The idea of the median appeared in the 13th century in the Talmud [53][54] (further[citation needed] for possible older mentions)
+The idea of the median also appeared later in Edward Wright's book on navigation (Certaine Errors in Navigation) in 1599 in a section concerning the determination of location with a compass. Wright felt that this value was the most likely to be the correct value in a series of observations.
+In 1757, Roger Joseph Boscovich developed a regression method based on the L1 norm and therefore implicitly on the median.[55]
+In 1774, Laplace suggested the median be used as the standard estimator of the value of a posterior pdf. The specific criterion was to minimize the expected magnitude of the error; 
+
+
+
+
+|
+
+α
+−
+
+α
+
+∗
+
+
+
+|
+
+
+
+{\displaystyle |\alpha -\alpha ^{*}|}
+
+ where 
+
+
+
+
+α
+
+∗
+
+
+
+
+{\displaystyle \alpha ^{*}}
+
+ is the estimate and 
+
+
+
+α
+
+
+{\displaystyle \alpha }
+
+ is the true value. Laplaces's criterion was generally rejected for 150 years in favor of the least squares method of Gauss and Legendre which minimizes 
+
+
+
+(
+α
+−
+
+α
+
+∗
+
+
+
+)
+
+2
+
+
+
+
+{\displaystyle (\alpha -\alpha ^{*})^{2}}
+
+ to obtain the mean.[56] The distribution of both the sample mean and the sample median were determined by Laplace in the early 1800s.[19][57]
+Antoine Augustin Cournot in 1843 was the first[citation needed] to use the term median (valeur médiane) for the value that divides a probability distribution into two equal halves. Gustav Theodor Fechner used the median (Centralwerth) in sociological and psychological phenomena.[58] It had earlier been used only in astronomy and related fields. Gustav Fechner popularized the median into the formal analysis of data, although it had been used previously by Laplace.[58]
+Francis Galton used the English term median in 1881,[59] having earlier used the terms middle-most value in 1869, and the medium in 1880.[60][61]
+See also[edit]
+
+
+Statistics portal
+
+
+
+Medoids which are a generalisation of the median in higher dimensions
+Absolute deviation
+Bias of an estimator
+Concentration of measure for Lipschitz functions
+Median graph
+Median search
+Median slope
+Median voter theory
+Weighted median
+
+References[edit]
+
+
+^ a b Weisstein, Eric W. "Statistical Median". MathWorld. 
+^ Simon, Laura J.; "Descriptive statistics", Statistical Education Resource Kit, Pennsylvania State Department of Statistics
+^ David J. Sheskin (27 August 2003). Handbook of Parametric and Nonparametric Statistical Procedures: Third Edition. CRC Press. pp. 7–. ISBN 978-1-4200-3626-8. Retrieved 25 February 2013. 
+^ Derek Bissell (1994). Statistical Methods for Spc and Tqm. CRC Press. pp. 26–. ISBN 978-0-412-39440-9. Retrieved 25 February 2013. 
+^ "Journal of Statistics Education, v13n2: Paul T. von Hippel". amstat.org. 
+^ Robson, Colin (1994). Experiment, Design and Statistics in Psychology. Penguin. pp. 42–45. ISBN 0-14-017648-9. 
+^ "AP Statistics Review - Density Curves and the Normal Distributions". Retrieved 16 March 2015. 
+^ Newman, Mark EJ. "Power laws, Pareto distributions and Zipf's law." Contemporary physics 46.5 (2005): 323–351.
+^ Stroock, Daniel (2011). Probability Theory. Cambridge University Press. p. 43. ISBN 978-0-521-13250-3. 
+^ "An Error Occurred Setting Your User Cookie". siam.org. 
+^ Mallows, Colin (August 1991). "Another comment on O'Cinneide". The American Statistician. 45 (3): 257. doi:10.1080/00031305.1991.10475815. 
+^ K.Van Steen Notes on probability and statistics
+^ Piché, Robert (2012). Random Vectors and Random Sequences. Lambert Academic Publishing. ISBN 978-3659211966. 
+^ a b c d Kemperman, Johannes H. B. (1987). Dodge, Yadolah, ed. "The median of a finite measure on a Banach space: Statistical data analysis based on the L1-norm and related methods". Papers from the First International Conference held at Neuchâtel, August 31–September 4, 1987. Amsterdam: North-Holland Publishing Co.: 217–230. MR 0949228. 
+^ a b Milasevic, Philip; Ducharme, Gilles R. (1987). "Uniqueness of the spatial median". Annals of Statistics. 15 (3): 1332–1333. doi:10.1214/aos/1176350511. MR 0902264. 
+^ Merkle, M. (2005). "Jensen's inequality for medians". Statistics & Probability Letters. 71 (3): 277–281. doi:10.1016/j.spl.2004.11.010. 
+^ Bentley, Jon L.; McIlroy, M. Douglas (1993). "Engineering a sort function". Software—Practice and Experience. 23 (11): 1249–1265. doi:10.1002/spe.4380231105. 
+^ Rousseeuw, Peter J.; Bassett, Gilbert W. Jr. (1990). "The remedian: a robust averaging method for large data sets" (PDF). J. Amer. Stat. Soc. 85 (409): 97–104. 
+^ a b Stigler, Stephen (December 1973). "Studies in the History of Probability and Statistics. XXXII: Laplace, Fisher and the Discovery of the Concept of Sufficiency". Biometrika. 60 (3): 439–445. doi:10.1093/biomet/60.3.439. JSTOR 2334992. MR 0326872. 
+^ Rider, Paul R. (1960). "Variance of the median of small samples from several special populations". J. Amer. Statist. Assoc. 55 (289): 148–150. doi:10.1080/01621459.1960.10482056. 
+^ Stuart, Alan; Ord, Keith (1994). Kendall's Advanced Theory of Statistics. London: Arnold. ISBN 0340614307. 
+^ Efron, B. (1982). The Jackknife, the Bootstrap and other Resampling Plans. Philadelphia: SIAM. ISBN 0898711797. 
+^ Shao, J.; Wu, C. F. (1989). "A General Theory for Jackknife Variance Estimation". Ann. Stat. 17 (3): 1176–1197. doi:10.1214/aos/1176347263. JSTOR 2241717. 
+^ Efron, B. (1979). "Bootstrap Methods: Another Look at the Jackknife". Ann. Stat. 7 (1): 1–26. doi:10.1214/aos/1176344552. JSTOR 2958830. 
+^ Hall, P.; Martin, M. A. (1988). "Exact Convergence Rate of Bootstrap Quantile Variance Estimator". Probab Theory Related Fields. 80 (2): 261–268. doi:10.1007/BF00356105. 
+^ Jiménez-Gamero, M. D.; Munoz-García, J.; Pino-Mejías, R. (2004). "Reduced bootstrap for the median". Statistica Sinica. 14 (4): 1179–1198. 
+^ a b c d e f g Hettmansperger, Thomas P.; McKean, Joseph W. (1998). Robust nonparametric statistical methods. Kendall's Library of Statistics. 5. London: Edward Arnold. ISBN 0-340-54937-8. MR 1604954. 
+^ a b Bonett DG, Seier E (2006) Confidence interval for a coefficient of dispersion in non-normal distributions. Biometrical Journal 48 (1) 144–148
+^ "Statistical Calculation Definitions for Mass Appraisal" (PDF). Iowa.gov. Archived from the original (PDF) on 11 November 2010. Median Ratio: The ratio located midway between the highest ratio and the lowest ratio when individual ratios for a class of realty are ranked in ascending or descending order. The median ratio is most frequently used to determine the level of assessment for a given class of real estate. 
+^ "Assessment equity in New York: Results from the 2010 market value survey". Archived from the original on 6 November 2012. 
+^ "Summary of the Assessment Process" (PDF). state.sd.us. South Dakota Department of Revenue - Property/Special Taxes Division. Archived from the original (PDF) on 10 May 2009. 
+^ Small, Christopher G. "A survey of multidimensional medians." International Statistical Review/Revue Internationale de Statistique (1990): 263–277. doi:10.2307/1403809 JSTOR 1403809
+^ Niinimaa, A., and H. Oja. "Multivariate median." Encyclopedia of statistical sciences (1999).
+^ Mosler, Karl. Multivariate Dispersion, Central Regions, and Depth: The Lift Zonoid Approach. Vol. 165. Springer Science & Business Media, 2012.
+^ Puri, Madan L.; Sen, Pranab K.; Nonparametric Methods in Multivariate Analysis, John Wiley & Sons, New York, NY, 197l. (Reprinted by Krieger Publishing)
+^ Wesolowsky, G. (1993). "The Weber problem: History and perspective". Location Science. 1: 5–23. 
+^ a b c Oja, Hannu (2010). Multivariate nonparametric methods with R: An approach based on spatial signs and ranks. Lecture Notes in Statistics. 199. New York, NY: Springer. pp. xiv+232. doi:10.1007/978-1-4419-0468-3. ISBN 978-1-4419-0467-6. MR 2598854. 
+^ Vardi, Yehuda; Zhang, Cun-Hui (2000). "The multivariate l1-median and associated data depth". Proceedings of the National Academy of Sciences of the United States of America. 97 (4): 1423–1426. doi:10.1073/pnas.97.4.1423. 
+^ Lopuhaä, Hendrick P.; Rousseeuw, Peter J. (1991). "Breakdown points of affine equivariant estimators of multivariate location and covariance matrices". Annals of Statistics. 19 (1): 229–248. doi:10.1214/aos/1176347978. JSTOR 2241852. 
+^ Wilcox, Rand R. (2001), "Theil–Sen estimator", Fundamentals of Modern Statistical Methods: Substantially Improving Power and Accuracy, Springer-Verlag, pp. 207–210, ISBN 978-0-387-95157-7 .
+^ Wald, A. (1940). "The Fitting of Straight Lines if Both Variables are Subject to Error". Annals of Mathematical Statistics. 11 (3): 282–300. doi:10.1214/aoms/1177731868. JSTOR 2235677. 
+^ Nair, K. R.; Shrivastava, M. P. (1942). "On a Simple Method of Curve Fitting". Sankhyā: The Indian Journal of Statistics. 6 (2): 121–132. JSTOR 25047749. 
+^ Brown, G. W.; Mood, A. M. (1951). "On Median Tests for Linear Hypotheses". Proc Second Berkeley Symposium on Mathematical Statistics and Probability. Berkeley, CA: University of California Press. pp. 159–166. Zbl 0045.08606. 
+^ Tukey, J. W. (1977). Exploratory Data Analysis. Reading, MA: Addison-Wesley. ISBN 0201076160. 
+^ Brown, George W. (1947). "On Small-Sample Estimation". Annals of Mathematical Statistics. 18 (4): 582–585. doi:10.1214/aoms/1177730349. JSTOR 2236236. 
+^ Lehmann, Erich L. (1951). "A General Concept of Unbiasedness". Annals of Mathematical Statistics. 22 (4): 587–592. doi:10.1214/aoms/1177729549. JSTOR 2236928. 
+^ Birnbaum, Allan (1961). "A Unified Theory of Estimation, I". Annals of Mathematical Statistics. 32 (1): 112–135. doi:10.1214/aoms/1177705145. JSTOR 2237612. 
+^ van der Vaart, H. Robert (1961). "Some Extensions of the Idea of Bias". Annals of Mathematical Statistics. 32 (2): 436–447. doi:10.1214/aoms/1177705051. JSTOR 2237754. MR 0125674. 
+^ Pfanzagl, Johann; with the assistance of R. Hamböker (1994). Parametric Statistical Theory. Walter de Gruyter. ISBN 3-11-013863-8. MR 1291393. 
+^ Pfanzagl, Johann. "On optimal median unbiased estimators in the presence of nuisance parameters." The Annals of Statistics (1979): 187–193.
+^ Brown, L. D.; Cohen, Arthur; Strawderman, W. E. A Complete Class Theorem for Strict Monotone Likelihood Ratio With Applications. Ann. Statist. 4 (1976), no. 4, 712–722. doi:10.1214/aos/1176343543. http://projecteuclid.org/euclid.aos/1176343543.
+^ Page 713: Brown, L. D.; Cohen, Arthur; Strawderman, W. E. A Complete Class Theorem for Strict Monotone Likelihood Ratio With Applications. Ann. Statist. 4 (1976), no. 4, 712–722. doi:10.1214/aos/1176343543. http://projecteuclid.org/euclid.aos/1176343543.
+^ Talmud and Modern Economics
+^ Modern Economic Theory in the Talmud by Yisrael Aumann
+^ Stigler, S. M. (1986). The History of Statistics: The Measurement of Uncertainty Before 1900. Harvard University Press. ISBN 0674403401. 
+^ Jaynes, E.T. (2007). Probability theory : the logic of science (5. print. ed.). Cambridge [u.a.]: Cambridge Univ. Press. p. 172. ISBN 978-0-521-59271-0. 
+^ Laplace PS de (1818) Deuxième supplément à la Théorie Analytique des Probabilités, Paris, Courcier
+^ a b Keynes, J.M. (1921) A Treatise on Probability. Pt II Ch XVII §5 (p 201) (2006 reprint, Cosimo Classics, ISBN 9781596055308 : multiple other reprints)
+^ Galton F (1881) "Report of the Anthropometric Committee" pp 245–260. Report of the 51st Meeting of the British Association for the Advancement of Science
+^ encyclopediaofmath.org
+^ personal.psu.edu
+
+
+External links[edit]
+
+Hazewinkel, Michiel, ed. (2001) [1994], "Median (in statistics)", Encyclopedia of Mathematics, Springer Science+Business Media B.V. / Kluwer Academic Publishers, ISBN 978-1-55608-010-4 
+Median as a weighted arithmetic mean of all Sample Observations
+On-line calculator
+Calculating the median
+A problem involving the mean, the median, and the mode.
+Weisstein, Eric W. "Statistical Median". MathWorld. 
+Python script for Median computations and income inequality metrics
+Fast Computation of the Median by Successive Binning
+
+This article incorporates material from Median of a distribution on PlanetMath, which is licensed under the Creative Commons Attribution/Share-Alike License.
+
+
+
+
+
+
+v
+t
+e
+
+
+Statistics
+
+
+
+
+
+
+Outline
+Index
+
+
+
+
+
+
+
+
+
+
+Descriptive statistics
+
+
+
+
+
+
+
+Continuous data
+
+
+
+
+Center
+
+
+
+Mean
+
+arithmetic
+geometric
+harmonic
+
+
+Median
+Mode
+
+
+
+
+
+Dispersion
+
+
+
+Variance
+Standard deviation
+Coefficient of variation
+Percentile
+Range
+Interquartile range
+
+
+
+
+
+Shape
+
+
+
+Central limit theorem
+Moments
+
+Skewness
+Kurtosis
+L-moments
+
+
+
+
+
+
+
+
+
+
+Count data
+
+
+
+Index of dispersion
+
+
+
+
+
+Summary tables
+
+
+
+Grouped data
+Frequency distribution
+Contingency table
+
+
+
+
+
+Dependence
+
+
+
+Pearson product-moment correlation
+Rank correlation
+
+Spearman's rho
+Kendall's tau
+
+
+Partial correlation
+Scatter plot
+
+
+
+
+
+Graphics
+
+
+
+Bar chart
+Biplot
+Box plot
+Control chart
+Correlogram
+Fan chart
+Forest plot
+Histogram
+Pie chart
+Q–Q plot
+Run chart
+Scatter plot
+Stem-and-leaf display
+Radar chart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Data collection
+
+
+
+
+
+
+
+Study design
+
+
+
+Population
+Statistic
+Effect size
+Statistical power
+Sample size determination
+Missing data
+
+
+
+
+
+Survey methodology
+
+
+
+Sampling
+
+stratified
+cluster
+
+
+Standard error
+Opinion poll
+Questionnaire
+
+
+
+
+
+Controlled experiments
+
+
+
+Design
+
+control
+optimal
+
+
+Controlled trial
+Randomized
+Random assignment
+Replication
+Blocking
+Interaction
+Factorial experiment
+
+
+
+
+
+Uncontrolled studies
+
+
+
+Observational study
+Natural experiment
+Quasi-experiment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Statistical inference
+
+
+
+
+
+
+
+Statistical theory
+
+
+
+Population
+Statistic
+Probability distribution
+Sampling distribution
+
+Order statistic
+
+
+Empirical distribution
+
+Density estimation
+
+
+Statistical model
+
+Lp space
+
+
+Parameter
+
+location
+scale
+shape
+
+
+Parametric family
+
+Likelihood (monotone)
+Location–scale family
+Exponential family
+
+
+Completeness
+Sufficiency
+Statistical functional
+
+Bootstrap
+U
+V
+
+
+Optimal decision
+
+loss function
+
+
+Efficiency
+Statistical distance
+
+divergence
+
+
+Asymptotics
+Robustness
+
+
+
+
+
+Frequentist inference
+
+
+
+
+Point estimation
+
+
+
+Estimating equations
+
+Maximum likelihood
+Method of moments
+M-estimator
+Minimum distance
+
+
+Unbiased estimators
+
+Mean-unbiased minimum-variance
+
+Rao–Blackwellization
+Lehmann–Scheffé theorem
+
+
+Median unbiased
+
+
+Plug-in
+
+
+
+
+
+Interval estimation
+
+
+
+Confidence interval
+Pivot
+Likelihood interval
+Prediction interval
+Tolerance interval
+Resampling
+
+Bootstrap
+Jackknife
+
+
+
+
+
+
+
+Testing hypotheses
+
+
+
+1- & 2-tails
+Power
+
+Uniformly most powerful test
+
+
+Permutation test
+
+Randomization test
+
+
+Multiple comparisons
+
+
+
+
+
+Parametric tests
+
+
+
+Likelihood-ratio
+Wald
+Score
+
+
+
+
+
+
+
+
+Specific tests
+
+
+
+
+
+
+
+Z (normal)
+Student's t-test
+F
+
+
+
+
+
+Goodness of fit
+
+
+
+Chi-squared
+Kolmogorov–Smirnov
+Anderson–Darling
+Lilliefors
+Jarque–Bera
+Normality (Shapiro–Wilk)
+Likelihood-ratio test
+Model selection
+
+Cross validation
+AIC
+BIC
+
+
+
+
+
+
+
+Rank statistics
+
+
+
+Sign
+
+Sample median
+
+
+Signed rank (Wilcoxon)
+
+Hodges–Lehmann estimator
+
+
+Rank sum (Mann–Whitney)
+Nonparametric anova
+
+1-way (Kruskal–Wallis)
+2-way (Friedman)
+Ordered alternative (Jonckheere–Terpstra)
+
+
+
+
+
+
+
+
+
+
+Bayesian inference
+
+
+
+Bayesian probability
+
+prior
+posterior
+
+
+Credible interval
+Bayes factor
+Bayesian estimator
+
+Maximum posterior estimator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Correlation
+Regression analysis
+
+
+
+
+
+
+
+
+
+
+Correlation
+
+
+
+Pearson product-moment
+Partial correlation
+Confounding variable
+Coefficient of determination
+
+
+
+
+
+Regression analysis
+
+
+
+Errors and residuals
+Regression model validation
+Mixed effects models
+Simultaneous equations models
+Multivariate adaptive regression splines (MARS)
+
+
+
+
+
+Linear regression
+
+
+
+Simple linear regression
+Ordinary least squares
+General linear model
+Bayesian regression
+
+
+
+
+
+Non-standard predictors
+
+
+
+Nonlinear regression
+Nonparametric
+Semiparametric
+Isotonic
+Robust
+Heteroscedasticity
+Homoscedasticity
+
+
+
+
+
+Generalized linear model
+
+
+
+Exponential families
+Logistic (Bernoulli) / Binomial / Poisson regressions
+
+
+
+
+
+Partition of variance
+
+
+
+Analysis of variance (ANOVA, anova)
+Analysis of covariance
+Multivariate ANOVA
+Degrees of freedom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Categorical / Multivariate / Time-series / Survival analysis
+
+
+
+
+
+
+
+Categorical
+
+
+
+Cohen's kappa
+Contingency table
+Graphical model
+Log-linear model
+McNemar's test
+
+
+
+
+
+Multivariate
+
+
+
+Regression
+Manova
+Principal components
+Canonical correlation
+Discriminant analysis
+Cluster analysis
+Classification
+Structural equation model
+
+Factor analysis
+
+
+Multivariate distributions
+
+Elliptical distributions
+
+Normal
+
+
+
+
+
+
+
+
+
+Time-series
+
+
+
+
+General
+
+
+
+Decomposition
+Trend
+Stationarity
+Seasonal adjustment
+Exponential smoothing
+Cointegration
+Structural break
+Granger causality
+
+
+
+
+
+Specific tests
+
+
+
+Dickey–Fuller
+Johansen
+Q-statistic (Ljung–Box)
+Durbin–Watson
+Breusch–Godfrey
+
+
+
+
+
+Time domain
+
+
+
+Autocorrelation (ACF)
+
+partial (PACF)
+
+
+Cross-correlation (XCF)
+ARMA model
+ARIMA model (Box–Jenkins)
+Autoregressive conditional heteroskedasticity (ARCH)
+Vector autoregression (VAR)
+
+
+
+
+
+Frequency domain
+
+
+
+Spectral density estimation
+Fourier analysis
+Wavelet
+
+
+
+
+
+
+
+
+Survival
+
+
+
+
+Survival function
+
+
+
+Kaplan–Meier estimator (product limit)
+Proportional hazards models
+Accelerated failure time (AFT) model
+First hitting time
+
+
+
+
+
+Hazard function
+
+
+
+Nelson–Aalen estimator
+
+
+
+
+
+Test
+
+
+
+Log-rank test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Applications
+
+
+
+
+
+
+
+Biostatistics
+
+
+
+Bioinformatics
+Clinical trials / studies
+Epidemiology
+Medical statistics
+
+
+
+
+
+Engineering statistics
+
+
+
+Chemometrics
+Methods engineering
+Probabilistic design
+Process / quality control
+Reliability
+System identification
+
+
+
+
+
+Social statistics
+
+
+
+Actuarial science
+Census
+Crime statistics
+Demography
+Econometrics
+National accounts
+Official statistics
+Population statistics
+Psychometrics
+
+
+
+
+
+Spatial statistics
+
+
+
+Cartography
+Environmental statistics
+Geographic information system
+Geostatistics
+Kriging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Category
+Portal
+Commons
+ WikiProject
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Median&oldid=817381330"					Categories: MeansRobust statisticsHidden categories: All articles with unsourced statementsArticles with unsourced statements from May 2012Articles with unsourced statements from October 2015Articles with unsourced statements from July 2012Wikipedia articles incorporating text from PlanetMath

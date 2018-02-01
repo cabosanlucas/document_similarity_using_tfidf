@@ -1,0 +1,2096 @@
+
+
+
+
+
+
+
+This article has multiple issues. Please help improve it or discuss these issues on the talk page. (Learn how and when to remove these template messages)
+
+
+
+
+
+
+
+This article may be in need of reorganization to comply with Wikipedia's layout guidelines. Please help by editing the article to make improvements to the overall structure. (March 2016) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This article is written like a manual or guidebook. Please help rewrite this article from a descriptive, neutral point of view, and remove advice or instruction. (March 2016) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This article includes a list of references, but its sources remain unclear because it has insufficient inline citations. Please help to improve this article by introducing more precise citations. (March 2016) (Learn how and when to remove this template message)
+
+
+
+
+
+
+
+
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (March 2016) (Learn how and when to remove this template message)
+
+
+
+
+
+(Learn how and when to remove this template message)
+
+
+
+
+ISO 6346
+
+Freight containers -- Coding, identification and marking
+
+
+Latest version
+3
+6346:1995
+
+
+Preview version
+1984
+
+
+Organization
+International Organization for Standardization
+
+
+Abbreviation
+ISO 6346:1995
+
+
+
+
+
+
+
+ISO-code and dimension/load table at several newly washed containers
+
+
+ISO 6346 is an international standard covering the coding, identification and marking of intermodal (shipping) containers used within containerized intermodal freight transport[1]. The standard establishes a visual identification system for every container that includes a unique serial number (with check digit), the owner, a country code, a size, type and equipment category as well as any operational marks. The standard is managed by the International Container Bureau (BIC).
+
+
+
+Contents
+
+
+1 Identification System
+
+1.1 Owner Code
+1.2 Equipment Category Identifier
+1.3 Serial Number
+1.4 Check Digit
+
+1.4.1 Conversion Algorithm
+
+1.4.1.1 Calculation Step 1
+1.4.1.2 Calculation Step 2
+1.4.1.3 Calculation Step 3
+1.4.1.4 Example
+1.4.1.5 Code Samples
+
+1.4.1.5.1 Code Sample (C#)
+1.4.1.5.2 Code Sample (Matlab)
+1.4.1.5.3 Code Sample (DELPHİ or pascal)
+1.4.1.5.4 Code Sample (Visual Basic)
+1.4.1.5.5 Code Sample (Python)
+1.4.1.5.6 Code Sample (Javascript)
+1.4.1.5.7 Code Sample (Excel)
+1.4.1.5.8 Code Sample (PHP)
+1.4.1.5.9 Code Sample (Java)
+1.4.1.5.10 Code Sample (Visual FoxPro)
+1.4.1.5.11 Code Sample (Eiffel)
+1.4.1.5.12 Code Sample (T-SQL)
+1.4.1.5.13 Code Sample (Go)
+1.4.1.5.14 Code Sample (R Language)
+
+
+
+
+
+
+1.5 Practical Problems
+
+
+2 Size and Type Codes
+3 Country Code (Optional)
+4 Mandatory Operational Marks
+5 See also
+6 References
+7 External links
+
+
+
+Identification System[edit]
+Example of an ISO 6346 compliant container number:
+
+
+
+
+
+BIC code on the end of a shipping container
+
+
+Owner Code[edit]
+The owner code consists of three capital letters of the Latin alphabet to indicate the owner or principal operator of the container. Such code needs to be registered at the Bureau International des Conteneurs in Paris to ensure uniqueness worldwide. Owner can apply for more than one code, as normally first 2 letters are used as owner code, the third is used to indicate pool (e.g. HLA,HLB,HLX are some Hapag_Lloyd codes to indicate whether container is standard, reefer...)
+Equipment Category Identifier[edit]
+The equipment category identifier consists of one of the following capital letters of the Latin alphabet:
+
+U for all freight containers
+J for detachable freight container-related equipment
+Z for trailers and chassis
+
+Under the ISO code, then, only U, J, and Z are in use. The reefer container is identified by means of the size type code.
+Serial Number[edit]
+The serial number consists of 6 numeric digits, assigned by the owner or operator, uniquely identifying the container within that owner/operator's fleet.
+Check Digit[edit]
+The check digit consists of one numeric digit providing a means of validating the recording and transmission accuracies of the owner code and serial number.
+Conversion Algorithm[edit]
+To compute the check digit, the letters have to be converted to numbers. This is done in three steps:
+Calculation Step 1[edit]
+An equivalent numerical value is assigned to each letter of the alphabet, beginning with 10 for the letter A (11 and multiples thereof are omitted):
+
+
+A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+
+
+10
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+23
+24
+
+
+
+
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+34
+35
+36
+37
+38
+
+
+The individual digits of the serial number keep their numeric value.
+Calculation Step 2[edit]
+Each of the numbers calculated in step 1 is multiplied by 2position, where position is the exponent to base 2. Position starts at 0, from left to right.
+The following table shows the multiplication factors:
+
+
+1. nbr
+2. nbr
+3. nbr
+4. nbr
+5. nbr
+6. nbr
+7. nbr
+8. nbr
+9. nbr
+10. nbr
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+
+
+1
+2
+4
+8
+16
+32
+64
+128
+256
+512
+
+
+Calculation Step 3[edit]
+
+
+Sum up all results of Step 2
+Divide them by 11
+Round the result down to zero i.e. make the result a whole number (integer)
+Multiply the integer value by 11
+Subtract result of (iv) from result of (i): This is the check digit.
+
+
+If the final difference is 10, then the check digit becomes 0. To ensure that this does not happen, the standard recommends that serial numbers should not be used which produce a final difference of 10; however, there are containers in the market which do not follow this recommendation, so handling this case has to be included if a check digit calculator is programmed.
+Notice that step (ii) to (v) is a calculation of the remainder found after division of (i) by 11. Most programming languages have a modulo operator for this. Attention should be paid on how it is working in the language chosen; i. e. if it is giving back the decimal rest or the integer rest in order to get proper results. 11 is used as divisor because a container number has 11 letters and digits in total. In step 1 the numbers 11, 22 and 33 are left out as they are multiples of the divisor.
+Example[edit]
+
+
+
+C
+S
+Q
+U
+3
+0
+5
+4
+3
+8
+Calc.
+
+
+
+13
+30
+28
+32
+3
+0
+5
+4
+3
+8
+
+
+
+×
+1
+2
+4
+8
+16
+32
+64
+128
+256
+512
+
+
+
+
+13
+60
+112
+256
+48
+0
+320
+512
+768
+4096
+6185 [a]
+
+
+b) Division by 11:
+562.272...
+
+
+c) Erase decimal digits:
+562
+
+
+d) Multiply by 11:
+6182
+
+
+a) minus d) = Check Digit:
+3
+
+
+Code Samples[edit]
+The following are the algorithm in various programming languages:
+
+Code Sample (C#)[edit]
+
+
+        public int Calculate(string equipmentNumber)
+        {
+            //Details on algorithm can be found here https://en.wikipedia.org/wiki/ISO_6346#Check_Digit
+            //Step 1 
+            var numerics = equipmentNumber.Select(c => "0123456789A?BCDEFGHIJK?LMNOPQRSTU?VWXYZ".IndexOf(c));
+            //Step 2, Step 3(i)
+            var totalStringValue = numerics.Select((n, index) => Math.Pow(2, index) * n).Sum(x => (int) x);
+            //Step 3(ii,iii,iv, v)
+            var retval = totalStringValue % 11;
+            return retval == 10 ? 0 : retval;
+        }
+
+Code Sample (Matlab)[edit]
+Below is a code Snippet implementing the above algorithm in MATLAB validating string "cid":
+
+
+%% Step 1 
+char2num = [10 12 13 14 15 16 17 18 19 20 21 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38]; 
+msk = logical([1 1 1 1 0 0 0 0 0 0 0]);  % mask separating digits from numbers
+cid( msk) = char2num(cid( msk)-'A'+1);   % letters to numbers conversion
+cid(~msk) =          cid(~msk)-'1'+1;    % digit characters to numbers conversion
+vec = double(cid);
+%% Step 2
+num  = sum(vec(1:10).* 2.^(0:9));
+%% Step 3
+check_digit = mod(mod(num,11),10);
+valid = (check_digit==vec(11));
+
+Code Sample (DELPHİ or pascal)[edit]
+
+
+function knt(x: String): Boolean;
+var
+dizi:Array ['A'..'Z'] of Integer;
+acc,ax:Extended;
+i,remx,s:integer;
+z:Boolean;
+begin
+z:=False;
+dizi['A']:=10; dizi['B']:=12; dizi['C']:=13; dizi['D']:=14; dizi['E']:=15; dizi['F']:=16;
+dizi['G']:=17; dizi['H']:=18; dizi['I']:=19; dizi['J']:=20; dizi['K']:=21; dizi['L']:=23;
+dizi['M']:=24; dizi['N']:=25; dizi['O']:=26; dizi['P']:=27; dizi['Q']:=28; dizi['R']:=29;
+dizi['S']:=30; dizi['T']:=31; dizi['U']:=32; dizi['V']:=34; dizi['W']:=35; dizi['X']:=36;
+dizi['Y']:=37; dizi['Z']:=38;
+acc:=0;
+s:=0;
+for i :=1  to 10  do
+begin
+s:=s*2;if s<1 then s:=1;
+  if i<5 then
+    ax:=(dizi[x[i]]*s)
+  else
+    ax:=(StrToInt(x[i])*s);
+acc:=acc+ax;
+end;
+remx:=(Floor(acc) mod 11) mod 10;
+if (Length(x)=11) and (remx=StrToInt(x[11])) then
+z:=True;
+Result:= z;
+end;
+
+Code Sample (Visual Basic)[edit]
+Below is the Visual Basic (VBA) code to create a custom "ISO6346Check" function in Microsoft Excel (Alt + F11) that returns the correct check digit:
+
+
+Function ISO6346Check(k As String) ' Calculates the ISO Shipping Container Check Digit
+Dim i%, s&
+Application.Volatile
+For i = 1 To 10
+s = s + IIf(i < 5, Fix(11 * (Asc(Mid(k, i)) - 56) / 10) + 1, Asc(Mid(k, i)) - 48) * 2 ^ (i - 1)
+Next i
+ISO6346Check = (s - Fix(s / 11) * 11) Mod 10
+End Function
+
+Code Sample (Python)[edit]
+Below is Python (2.7) code to validate the string "cid":
+
+
+>>> cid = 'CSQU3054383'
+>>> first10 = cid[0:-1]
+>>> check = cid[-1]
+>>> char2num = {
+...     '0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
+...     '9': 9, 'A': 10, 'B': 12, 'C': 13, 'D': 14, 'E': 15, 'F': 16, 'G': 17,
+...     'H': 18, 'I': 19, 'J': 20, 'K': 21, 'L': 23, 'M': 24, 'N': 25, 'O': 26,
+...     'P': 27, 'Q': 28, 'R': 29, 'S': 30, 'T': 31, 'U': 32, 'V': 34, 'W': 35,
+...     'X': 36, 'Y': 37, 'Z': 38,
+... }
+>>> total = sum(char2num[c] * 2**x for x, c in enumerate(first10))
+>>> (total % 11) % 10 == char2num[check]
+True
+
+Code Sample (Javascript)[edit]
+Below is the Javascript code to create a custom "ISO6346Check":
+
+
+function ISO6346Check(con) {
+    if (!con || con == "" || con.length != 11) { return false; }
+    con = con.toUpperCase();
+    var re = /^[A-Z]{4}\d{7}/;
+    if (re.test(con)) {
+        var sum = 0;
+        for (i = 0; i < 10; i++) {
+            var n = con.substr(i, 1);
+            if (i < 4) {
+                n = "0123456789A?BCDEFGHIJK?LMNOPQRSTU?VWXYZ".indexOf(con.substr(i, 1));
+            }
+            n *= Math.pow(2, i); //2的i次方
+            sum += n;
+        }
+        if (con.substr(0, 4) == "HLCU") {
+            sum -= 2;
+        }
+        sum %= 11;
+        sum %= 10; //余数为10的取0A
+        return sum == con.substr(10);
+    } else {
+        return false; //不匹配正则表达式   
+    }
+}
+
+Code Sample (Excel)[edit]
+Below is an Excel Formula to validate container number in Cell A1[citation needed]
+
+=IF(LEN(A1)=11,IF((MID(A1,11,1)*1)=(1*SUBSTITUTE((IF(MID(A1,1,1)="A",10,IF(MID(A1,1,1)="B",12,IF(MID(A1,1,1)="C",13,IF(MID(A1,1,1)="D",14,
+IF(MID(A1,1,1)="E",15,IF(MID(A1,1,1)="F",16,IF(MID(A1,1,1)="G",17,IF(MID(A1,1,1)="H",18,IF(MID(A1,1,1)="I",19,
+IF(MID(A1,1,1)="J",20,IF(MID(A1,1,1)="K",21,IF(MID(A1,1,1)="L",23,IF(MID(A1,1,1)="M",24,IF(MID(A1,1,1)="N",25,
+IF(MID(A1,1,1)="O",26,IF(MID(A1,1,1)="P",27,IF(MID(A1,1,1)="Q",28,IF(MID(A1,1,1)="R",29,IF(MID(A1,1,1)="S",30,
+IF(MID(A1,1,1)="T",31,IF(MID(A1,1,1)="U",32,IF(MID(A1,1,1)="V",34,IF(MID(A1,1,1)="W",35,IF(MID(A1,1,1)="X",36,
+IF(MID(A1,1,1)="Y",37,IF(MID(A1,1,1)="Z",38,FALSE)))))))))))))))))))))))))))+
+(IF(MID(A1,2,1)="A",10,IF(MID(A1,2,1)="B",12,IF(MID(A1,2,1)="C",13,IF(MID(A1,2,1)="D",14,IF(MID(A1,2,1)="E",15,
+IF(MID(A1,2,1)="F",16,IF(MID(A1,2,1)="G",17,IF(MID(A1,2,1)="H",18,IF(MID(A1,2,1)="I",19,IF(MID(A1,2,1)="J",20,
+IF(MID(A1,2,1)="K",21,IF(MID(A1,2,1)="L",23,IF(MID(A1,2,1)="M",24,IF(MID(A1,2,1)="N",25,IF(MID(A1,2,1)="O",26,
+IF(MID(A1,2,1)="P",27,IF(MID(A1,2,1)="Q",28,IF(MID(A1,2,1)="R",29,IF(MID(A1,2,1)="S",30,IF(MID(A1,2,1)="T",31,
+IF(MID(A1,2,1)="U",32,IF(MID(A1,2,1)="V",34,IF(MID(A1,2,1)="W",35,IF(MID(A1,2,1)="X",36,IF(MID(A1,2,1)="Y",37,
+IF(MID(A1,2,1)="Z",38,FALSE))))))))))))))))))))))))))*2)+(IF(MID(A1,3,1)="A",10,IF(MID(A1,3,1)="B",12,IF(MID(A1,3,1)="C",13,IF(MID(A1,3,1)="D",14,IF(MID(A1,3,1)="E",15,
+IF(MID(A1,3,1)="F",16,IF(MID(A1,3,1)="G",17,IF(MID(A1,3,1)="H",18,IF(MID(A1,3,1)="I",19,IF(MID(A1,3,1)="J",20,
+IF(MID(A1,3,1)="K",21,IF(MID(A1,3,1)="L",23,IF(MID(A1,3,1)="M",24,IF(MID(A1,3,1)="N",25,IF(MID(A1,3,1)="O",26,
+IF(MID(A1,3,1)="P",27,IF(MID(A1,3,1)="Q",28,IF(MID(A1,3,1)="R",29,IF(MID(A1,3,1)="S",30,IF(MID(A1,3,1)="T",31,
+IF(MID(A1,3,1)="U",32,IF(MID(A1,3,1)="V",34,IF(MID(A1,3,1)="W",35,IF(MID(A1,3,1)="X",36,IF(MID(A1,3,1)="Y",37,
+IF(MID(A1,3,1)="Z",38,FALSE))))))))))))))))))))))))))*4)+(IF(MID(A1,4,1)="A",10,IF(MID(A1,4,1)="B",12,IF(MID(A1,4,1)="C",13,IF(MID(A1,4,1)="D",14,IF(MID(A1,4,1)="E",15,
+IF(MID(A1,4,1)="F",16,IF(MID(A1,4,1)="G",17,IF(MID(A1,4,1)="H",18,IF(MID(A1,4,1)="I",19,IF(MID(A1,4,1)="J",20,
+IF(MID(A1,4,1)="K",21,IF(MID(A1,4,1)="L",23,IF(MID(A1,4,1)="M",24,IF(MID(A1,4,1)="N",25,IF(MID(A1,4,1)="O",26,
+IF(MID(A1,4,1)="P",27,IF(MID(A1,4,1)="Q",28,IF(MID(A1,4,1)="R",29,IF(MID(A1,4,1)="S",30,IF(MID(A1,4,1)="T",31,
+IF(MID(A1,4,1)="U",32,IF(MID(A1,4,1)="V",34,IF(MID(A1,4,1)="W",35,IF(MID(A1,4,1)="X",36,IF(MID(A1,4,1)="Y",37,
+IF(MID(A1,4,1)="Z",38,FALSE))))))))))))))))))))))))))*8)+(MID(A1,5,1)*16)+(MID(A1,6,1)*32)+(MID(A1,7,1)*64)+(MID(A1,8,1)*128)+(MID(A1,9,1)*256)+(MID(A1,10,1)*512)-11*ROUNDDOWN((((IF(MID(A1,1,1)="A",10,IF(MID(A1,1,1)="B",12,IF(MID(A1,1,1)="C",13,
+IF(MID(A1,1,1)="D",14,IF(MID(A1,1,1)="E",15,IF(MID(A1,1,1)="F",16,IF(MID(A1,1,1)="G",17,IF(MID(A1,1,1)="H",18,
+IF(MID(A1,1,1)="I",19,IF(MID(A1,1,1)="J",20,IF(MID(A1,1,1)="K",21,IF(MID(A1,1,1)="L",23,IF(MID(A1,1,1)="M",24,
+IF(MID(A1,1,1)="N",25,IF(MID(A1,1,1)="O",26,IF(MID(A1,1,1)="P",27,IF(MID(A1,1,1)="Q",28,IF(MID(A1,1,1)="R",29,
+IF(MID(A1,1,1)="S",30,IF(MID(A1,1,1)="T",31,IF(MID(A1,1,1)="U",32,IF(MID(A1,1,1)="V",34,IF(MID(A1,1,1)="W",35,
+IF(MID(A1,1,1)="X",36,IF(MID(A1,1,1)="Y",37,IF(MID(A1,1,1)="Z",38,FALSE)))))))))))))))))))))))))))+(IF(MID(A1,2,1)="A",10,IF(MID(A1,2,1)="B",12,IF(MID(A1,2,1)="C",13,IF(MID(A1,2,1)="D",14,IF(MID(A1,2,1)="E",15,
+IF(MID(A1,2,1)="F",16,IF(MID(A1,2,1)="G",17,IF(MID(A1,2,1)="H",18,IF(MID(A1,2,1)="I",19,IF(MID(A1,2,1)="J",20,
+IF(MID(A1,2,1)="K",21,IF(MID(A1,2,1)="L",23,IF(MID(A1,2,1)="M",24,IF(MID(A1,2,1)="N",25,IF(MID(A1,2,1)="O",26,
+IF(MID(A1,2,1)="P",27,IF(MID(A1,2,1)="Q",28,IF(MID(A1,2,1)="R",29,IF(MID(A1,2,1)="S",30,IF(MID(A1,2,1)="T",31,
+IF(MID(A1,2,1)="U",32,IF(MID(A1,2,1)="V",34,IF(MID(A1,2,1)="W",35,IF(MID(A1,2,1)="X",36,IF(MID(A1,2,1)="Y",37,
+IF(MID(A1,2,1)="Z",38,FALSE))))))))))))))))))))))))))*2)+(IF(MID(A1,3,1)="A",10,IF(MID(A1,3,1)="B",12,IF(MID(A1,3,1)="C",13,IF(MID(A1,3,1)="D",14,IF(MID(A1,3,1)="E",15,
+IF(MID(A1,3,1)="F",16,IF(MID(A1,3,1)="G",17,IF(MID(A1,3,1)="H",18,IF(MID(A1,3,1)="I",19,IF(MID(A1,3,1)="J",20,
+IF(MID(A1,3,1)="K",21,IF(MID(A1,3,1)="L",23,IF(MID(A1,3,1)="M",24,IF(MID(A1,3,1)="N",25,IF(MID(A1,3,1)="O",26,
+IF(MID(A1,3,1)="P",27,IF(MID(A1,3,1)="Q",28,IF(MID(A1,3,1)="R",29,IF(MID(A1,3,1)="S",30,IF(MID(A1,3,1)="T",31,
+IF(MID(A1,3,1)="U",32,IF(MID(A1,3,1)="V",34,IF(MID(A1,3,1)="W",35,IF(MID(A1,3,1)="X",36,IF(MID(A1,3,1)="Y",37,
+IF(MID(A1,3,1)="Z",38,FALSE))))))))))))))))))))))))))*4)+(IF(MID(A1,4,1)="A",10,IF(MID(A1,4,1)="B",12,IF(MID(A1,4,1)="C",13,IF(MID(A1,4,1)="D",14,IF(MID(A1,4,1)="E",15,
+IF(MID(A1,4,1)="F",16,IF(MID(A1,4,1)="G",17,IF(MID(A1,4,1)="H",18,IF(MID(A1,4,1)="I",19,IF(MID(A1,4,1)="J",20,
+IF(MID(A1,4,1)="K",21,IF(MID(A1,4,1)="L",23,IF(MID(A1,4,1)="M",24,IF(MID(A1,4,1)="N",25,IF(MID(A1,4,1)="O",26,
+IF(MID(A1,4,1)="P",27,IF(MID(A1,4,1)="Q",28,IF(MID(A1,4,1)="R",29,IF(MID(A1,4,1)="S",30,IF(MID(A1,4,1)="T",31,
+IF(MID(A1,4,1)="U",32,IF(MID(A1,4,1)="V",34,IF(MID(A1,4,1)="W",35,IF(MID(A1,4,1)="X",36,IF(MID(A1,4,1)="Y",37,
+IF(MID(A1,4,1)="Z",38,FALSE))))))))))))))))))))))))))*8)+(MID(A1,5,1)*16)+(MID(A1,6,1)*32)+(MID(A1,7,1)*64)+(MID(A1,8,1)*128)+(MID(A1,9,1)*256)+(MID(A1,10,1)*512))/11),0),10,0)),"VALID","INVALID"),"INVALID")
+
+Below is a shorter Excel formula for the same function (container number in cell A1) (Warning, this code does not correctly account for a check digit result of "10"):
+
+=IF(LEN(A1)=11,IF((MID(A1,11,1)*1)=MOD(IF(PROPER(MID(A1,1,1))="A",10,IF(AND(CODE(MID(A1,1,1))>65,CODE(MID(A1,1,1))<=75),CODE(MID(A1,1,1))-54,IF(AND(CODE(MID(A1,1,1))>75,CODE(MID(A1,1,1))<=85),CODE(MID(A1,1,1))-53,IF(AND(CODE(MID(A1,1,1))>85,CODE(MID(A1,1,1))<=90),CODE(MID(A1,1,1))-52,MID(A1,1,1)))))*1+IF(PROPER(MID(A1,2,1))="A",10,IF(AND(CODE(MID(A1,2,1))>65,CODE(MID(A1,2,1))<=75),CODE(MID(A1,2,1))-54,IF(AND(CODE(MID(A1,2,1))>75,CODE(MID(A1,2,1))<=85),CODE(MID(A1,2,1))-53,IF(AND(CODE(MID(A1,2,1))>85,CODE(MID(A1,2,1))<=90),CODE(MID(A1,2,1))-52,MID(A1,2,1)))))*2+IF(PROPER(MID(A1,3,1))="A",10,IF(AND(CODE(MID(A1,3,1))>65,CODE(MID(A1,3,1))<=75),CODE(MID(A1,3,1))-54,IF(AND(CODE(MID(A1,3,1))>75,CODE(MID(A1,3,1))<=85),CODE(MID(A1,3,1))-53,IF(AND(CODE(MID(A1,3,1))>85,CODE(MID(A1,3,1))<=90),CODE(MID(A1,3,1))-52,MID(A1,3,1)))))*4+IF(PROPER(MID(A1,4,1))="A",10,IF(AND(CODE(MID(A1,4,1))>65,CODE(MID(A1,4,1))<=75),CODE(MID(A1,4,1))-54,IF(AND(CODE(MID(A1,4,1))>75,CODE(MID(A1,4,1))<=85),CODE(MID(A1,4,1))-53,IF(AND(CODE(MID(A1,4,1))>85,CODE(MID(A1,4,1))<=90),CODE(MID(A1,4,1))-52,MID(A1,4,1)))))*8+MID(A1,5,1)*16+MID(A1,6,1)*32+MID(A1,7,1)*64+MID(A1,8,1)*128+MID(A1,9,1)*256+MID(A1,10,1)*512,11),"VALID","INVALID"),"INVALID")
+
+Below is an Excel array formula for the same function (container number in cell A1):
+
+=IF(LEN(A1)=11,IF(MOD(MOD(SUMPRODUCT(CODE(PROPER(MID(A1,{1,2,3,4},1)))+INT(CODE(PROPER(MID(A1,{1,2,3,4},1)))/11)-60,{1,2,4,8})+
+SUMPRODUCT(MID(A1,{5,6,7,8,9,10},1)+0,{16,32,64,128,256,512}),11),10)=RIGHT(A1)+0,"VALID","INVALID"),"INVALID")
+
+Code Sample (PHP)[edit]
+Below is the PHP code to validate a container number:
+
+
+function checkDigit($mark){
+    $char2num = array('A'=>10, 'B'=>12, 'C'=>13, 'D'=>14, 'E'=>15, 'F'=>16, 'G'=>17, 'H'=>18, 'I'=>19, 'J'=>20, 'K'=>21, 'L'=>23, 'M'=>24, 'N'=>25, 'O'=>26, 'P'=>27, 'Q'=>28, 'R'=>29, 'S'=>30, 'T'=>31, 'U'=>32, 'V'=>34, 'W'=>35, 'X'=>36, 'Y'=>37, 'Z'=>38);
+
+    $acc=0;
+    $num=str_split($mark);
+    for($i=0;$i<10;$i++){
+        if($i<4) $acc+=($char2num[$num[$i]]*pow(2,$i));
+        else $acc+=$num[$i]*pow(2,$i);
+    }
+    $rem = $acc % 11;
+    if ($rem == 10) $rem = 0;
+    if(strlen($mark)==11 && $num[10]==$rem) return true;
+    return false;
+}
+
+Code Sample (Java)[edit]
+Below is the Java code to validate a container number:
+
+
+public static boolean isContainerNumberValid(String pCid){
+    if(pCid == null || pCid.length() != 11){
+        return false;
+    }
+    String char2num = "0123456789A?BCDEFGHIJK?LMNOPQRSTU?VWXYZ";
+    int sum = 0;
+    for (int i = 0; i < 10; i++) {
+        int n = (char2num.indexOf(pCid.charAt(i)));
+        n *= Math.pow(2, i);
+        sum += n;
+    }
+    int rem = (sum % 11) % 10;
+    return char2num.indexOf(pCid.charAt(10)) == rem;
+}
+
+Code Sample (Visual FoxPro)[edit]
+Below is a VFP codesample, adopted from the above VB sample
+
+
+FUNCTION ISO6346Check(cTest AS STRING)
+	LOCAL i, nResult
+	nResult = 0
+	
+	FOR i = 1 TO 10
+		nResult = nResult + IIF(i < 5, FLOOR(11 * (ASC( SUBSTR(cTest,i,1)) - 56) / 10) + 1, ASC( SUBSTR(cTest,i,1)) - 48) * 2 ^ (i - 1)
+	ENDFOR
+	
+	RETURN (nResult - FLOOR(nResult / 11) * 11) % 10
+
+ENDFUNC
+
+Code Sample (Eiffel)[edit]
+Below is an Eiffel code sample.
+
+
+	check_digit: CHARACTER
+		note
+
+		local
+			l_d1, l_d2, l_d3, l_d4, l_d5, l_d6, l_d7, l_d8, l_d9, l_d10,
+			l_sum1,
+			l_sum2: INTEGER
+			l_div_by_11: REAL_64
+		do
+			l_d1 := conversion_hash.at (owner_code [1]) * 1
+			l_d2 := conversion_hash.at (owner_code [2]) * 2
+			l_d3 := conversion_hash.at (owner_code [3]) * 4
+			l_d4 := conversion_hash.at (equipment_category_id) * 8
+			l_d5 := serial_number [1].out.to_integer * 16
+			l_d6 := serial_number [2].out.to_integer * 32
+			l_d7 := serial_number [3].out.to_integer * 64
+			l_d8 := serial_number [4].out.to_integer * 128
+			l_d9 := serial_number [5].out.to_integer * 256
+			l_d10 := serial_number [6].out.to_integer * 512
+			l_sum1 := l_d1 + l_d2 + l_d3 + l_d4 + l_d5 + l_d6 + l_d7 + l_d8 + l_d9 + l_d10
+			l_div_by_11 := l_sum1 / 11
+			l_sum2 := l_div_by_11.truncated_to_integer
+			Result := (l_sum1 - (l_sum2 * 11)).out [1]
+		end
+
+
+
+	conversion_hash: HASH_TABLE [INTEGER, CHARACTER]
+		once
+			create Result.make (26)
+			Result.force (10, 'A')
+			Result.force (12, 'B')
+			Result.force (13, 'C')
+			Result.force (14, 'D')
+			Result.force (15, 'E')
+			Result.force (16, 'F')
+			Result.force (17, 'G')
+			Result.force (18, 'H')
+			Result.force (19, 'I')
+			Result.force (30, 'J')
+			Result.force (21, 'K')
+			Result.force (23, 'L')
+			Result.force (24, 'M')
+			Result.force (25, 'N')
+			Result.force (26, 'O')
+			Result.force (27, 'P')
+			Result.force (28, 'Q')
+			Result.force (29, 'R')
+			Result.force (30, 'S')
+			Result.force (31, 'T')
+			Result.force (32, 'U')
+			Result.force (34, 'V')
+			Result.force (35, 'W')
+			Result.force (36, 'X')
+			Result.force (37, 'Y')
+			Result.force (38, 'Z')
+		ensure
+			has_26: Result.count = 26
+		end
+
+Code Sample (T-SQL)[edit]
+Below is a Select statement implementing the above algorithm in T-SQL for Microsoft SQL Server, validating column ContainerNumber on all rows of the dbo.Containers table:
+
+
+with cteNumbers as (
+   select row_number() over (order by (select null)) as n
+   from (
+         select 1 union all select 1 union all select 1 union all select 1 union all select 1 union all 
+         select 1 union all select 1 union all select 1 union all select 1 union all select 1 union all
+         select 1
+      ) t (n)
+)
+select
+   cnt.ContainerNumber,
+   (x.[sum] % 11) % 10 as [computed checksum],
+   substring(cnt.ContainerNumber, len(cnt.ContainerNumber), 1) as [last digit],
+   case
+      when cnt.ContainerNumber not like '[A-Za-z][A-Za-z][A-Za-z][A-Za-z][0-9][0-9][0-9][0-9][0-9][0-9][0-9]' then 'Incorrect format'
+      when nullif(substring(cnt.ContainerNumber, len(cnt.ContainerNumber), 1), char(ascii('0') + (x.[sum] % 11) % 10)) is not null then 'Incorrect checksum digit'
+      else 'Ok'
+   end as [status]
+from dbo.Containers cnt
+   cross apply (
+         select sum(
+            power(2, n.n - 1) *
+            case 
+               when t.ch between '0' and '9' then ascii(t.ch) - ascii('0')
+               when t.ch = 'A' then 10
+               when t.ch between 'B' and 'K' then 12 + ascii(t.ch) - ascii('B')
+               when t.ch between 'L' and 'U' then 23 + ascii(t.ch) - ascii('L')
+               when t.ch between 'V' and 'Z' then 34 + ascii(t.ch) - ascii('V')
+            end)
+         from cteNumbers n
+            cross apply (
+                  select upper(substring(cnt.ContainerNumber, n.n, 1))
+               ) t (ch)
+         where n.n < len(cnt.ContainerNumber) -- excluding last digit.
+      ) x ([sum])
+
+Code Sample (Go)[edit]
+Below is a code Snippet implementing the above algorithm in Go validating string "cn":
+
+
+func ISO6346Check(cn string) bool {
+        if len(cn) != 11 {
+                return false
+        }
+        cn = strings.ToUpper(cn)
+        n := 0.0
+        d := 0.5
+        for i := 0; i < 10; i++ {
+                d *= 2
+                n += d * float64(strings.Index("0123456789A?BCDEFGHIJK?LMNOPQRSTU?VWXYZ", string(cn[i])))
+        }
+        return (int(n)-int(n/11)*11)%10 == int(cn[10]-'0')
+}
+
+Code Sample (R Language)[edit]
+Below is a code Snippet implementing the Check Digit algorithm in R to validate the string "cntr_no":
+
+
+validCheckDigit <- function(cntr_no) {
+    encodeList <- unlist(strsplit('0123456789A?BCDEFGHIJK?LMNOPQRSTU?VWXYZ', split = ''))
+    cntr_no_split = as.list(unlist(strsplit(toupper(cntr_no), split = '')))
+    
+    # Details on algorithm can be found here https://en.wikipedia.org/wiki/ISO_6346#Check_Digit
+    
+    # Step 1
+    char2num <- sapply(cntr_no_split, function(x, encodeList) {which(x == encodeList)-1}, encodeList = encodeList)
+    # Step 2
+    sum_encode <- sum(char2num[1:10] * 2^c(0:9))
+    # Step 3
+    sum_encode_check_digit <- (sum_encode %% 11) %% 10
+    
+    return (sum_encode_check_digit == char2num[11])
+}
+
+# Test
+cntr_no <- 'CSQU3054383'
+result <- validCheckDigit(cntr_no)
+
+Practical Problems[edit]
+In day-to-day business it happens that containers do appear which do not follow the ISO 6346 identification at all; however, they are fully CSC safety approved containers. Usually these are "shippers owned" containers, which means that they are not owned by the carrier but supplied by the cargo owners (shippers). They may have no registered owner code and no category identifier and have no check digit. It is advisable to follow ISO 6346 as the absence of a compliant identification code causes problems for both carriers and container terminals to correctly identify the equipment and properly deliver the cargo, because computer systems require ISO 6346 conformant naming and as such missing prefixes are invented. For example, YYYY at the carrier and XXXX at the terminal causes the equipment to mismatch. Moreover, since ISO 6346 identification has become a requirement in international Customs conventions (Customs Conventions on Containers and Istanbul Convention), many Customs Administrations have begun validating that containers are marked as per the standard.
+Size and Type Codes[edit]
+The codes are compiled of the following elements:
+
+First character, representing the length (coded)
+Second character, representing the width and height (coded)
+Third and fourth character indicating the type of the container
+
+The following is an overview of the most common codes:
+
+
+ISO Type Group
+ISO Size Type
+
+
+Code
+Description
+Code
+Description
+
+
+20GP
+GENERAL PURPOSE CONT.
+20G0
+GENERAL PURPOSE CONT.
+
+
+20G1
+GENERAL PURPOSE CONT.
+
+
+20HR
+ISOLADO CONTAINE REEFER
+20H0
+INSULATED CONTAINER
+
+
+20PF
+FLAT (FIXED ENDS)
+20P1
+FLAT (FIXED ENDS)
+
+
+20TD
+TANK CONTAINER
+20T3
+TANK CONTAINER
+
+
+20T4
+TANK CONTAINER
+
+
+20T5
+TANK CONTAINER
+
+
+20T6
+TANK CONTAINER
+
+
+20TG
+TANK CONTAINER
+20T7
+TANK CONTAINER
+
+
+20T8
+TANK CONTAINER
+
+
+20TN
+TANK CONTAINER
+20T0
+TANK CONTAINER
+
+
+20T1
+TANK CONTAINER
+
+
+20T2
+TANK CONTAINER
+
+
+22BU
+BULK CONTAINER
+22B0
+BULK CONTAINER
+
+
+22GP
+GENERAL PURPOSE CONT.
+22G0
+GENERAL PURPOSE CONT.
+
+
+22G1
+GENERAL PURPOSE CONT.
+
+
+22HR
+INSULATED CONTAINER
+22H0
+INSULATED CONTAINER
+
+
+22PC
+FLAT (COLLAPSIBLE)
+22P3
+FLAT (COLLAPSIBLE)
+
+
+22P8
+FLAT (COLL.FLUSH FOLDING)
+
+
+22P9
+FLAT (COLLAPSIBLE)
+
+
+22PF
+FLAT (FIXED ENDS)
+22P1
+FLAT (FIXED ENDS)
+
+
+22P7
+FLAT (GENSET CARRIER)
+
+
+22RC
+REEFER CONT.(NO FOOD)
+22R9
+REEFER CONT.(NO FOOD)
+
+
+22RS
+BUILT-IN GEN. F. POWER SPLY OF REEF
+22R7
+BUILT-IN GEN. F. POWER SPLY OF REEF
+
+
+22RT
+REEFER CONTAINER
+22R1
+REEFER CONTAINER
+
+
+22SN
+NAMED CARGO CONTAINER
+22S1
+NAMED CARGO CONTAINER
+
+
+22TD
+TANK CONTAINER
+22T3
+TANK CONTAINER
+
+
+22T4
+TANK CONTAINER
+
+
+22T5
+TANK CONTAINER
+
+
+22T6
+TANK CONTAINER
+
+
+22TG
+TANK CONTAINER
+22T7
+TANK CONTAINER
+
+
+22T8
+TANK CONTAINER
+
+
+22TN
+TANK CONTAINER
+22T0
+TANK CONTAINER
+
+
+22T1
+TANK CONTAINER
+
+
+22T2
+TANK CONTAINER
+
+
+22UP
+HARDTOP CONTAINER
+22U6
+HARDTOP CONTAINER
+
+
+22UT
+OPEN TOP CONTAINER
+22U1
+OPEN TOP CONTAINER
+
+
+22VH
+VENTILATED CONTAINER
+22V0
+VENTILATED CONTAINER
+
+
+22V2
+VENTILATED CONTAINER
+
+
+22V3
+VENTILATED CONTAINER
+
+
+25GP
+GP-CONTAINER OVER-HEIGHT
+25G0
+GP-CONTAINER OVER-HEIGHT
+
+
+26GP
+GP-CONTAINER OVER-HEIGHT
+26G0
+GP-CONTAINER OVER-HEIGHT
+
+
+26HR
+INSULATED CONTAINER
+26H0
+INSULATED CONTAINER
+
+
+28TG
+TANK FOR GAS
+28T8
+TANK FOR GAS
+
+
+28UT
+OPEN TOP (HALF HEIGHT)
+28U1
+OPEN TOP (HALF HEIGHT)
+
+
+28VH
+VE-HALF-HEIGHT =1448 MM HEIGHT
+28V0
+VE-HALF-HEIGHT =1448 MM HEIGHT
+
+
+29PL
+PLATFORM
+29P0
+PLATFORM
+
+
+2EGP
+GEN. PURP. WITHOUT VENT WIDTH 2.5M
+2EG0
+HIGH CUBE CONT. (WIDTH 2.5M)
+
+
+42GP
+GENERAL PURPOSE CONT.
+42G0
+GENERAL PURPOSE CONT.
+
+
+42G1
+GENERAL PURPOSE CONT.
+
+
+42HR
+INSULATED CONTAINER
+42H0
+INSULATED CONTAINER
+
+
+42PC
+FLAT (COLLAPSIBLE)
+42P3
+FLAT (COLLAPSIBLE)
+
+
+42P8
+FLAT (COLL.FLUSH FOLDING)
+
+
+42P9
+FLAT (COLLAPSIBLE)
+
+
+42PF
+FLAT (FIXED ENDS)
+42P1
+FLAT (FIXED ENDS)
+
+
+42PS
+FLAT (SPACE SAVER)
+42P6
+FLAT SPACE SAVER
+
+
+42RC
+REEFER CONT.(NO FOOD)
+42R9
+REEFER CONT.(NO FOOD)
+
+
+42RS
+REEFER CONT.(DIESEL GEN.)
+42R3
+REEFER CONT.(DIESEL GEN.)
+
+
+42RT
+REEFER CONTAINER
+42R1
+REEFER CONTAINER
+
+
+42SN
+NAMED CARGO CONTAINER
+42S1
+NAMED CARGO CONTAINER
+
+
+42TD
+TANK CONTAINER
+42T5
+TANK CONTAINER
+
+
+42T6
+TANK CONTAINER
+
+
+42TG
+TANK CONTAINER
+42T8
+TANK CONTAINER
+
+
+42TN
+TANK CONTAINER
+42T2
+TANK CONTAINER
+
+
+42UP
+HARDTOP CONTAINER
+42U6
+HARDTOP CONTAINER
+
+
+42UT
+OPEN TOP CONTAINER
+42U1
+OPEN TOP CONTAINER
+
+
+45BK
+BULK CONTAINER
+45B3
+BULK CONTAINER
+
+
+45GP
+HIGH CUBE CONT.
+45G0
+HIGH CUBE CONT.
+
+
+45G1
+HIGH CUBE CONT.
+
+
+45PC
+FLAT (COLLAPSIBLE)
+45P3
+FLAT (COLLAPSIBLE)
+
+
+45P8
+FLAT (COLL.FLUSH FOLDING)
+
+
+45RC
+REEFER CONT.(NO FOOD)
+45R9
+REEFER CONT.(NO FOOD)
+
+
+45RT
+REEFER HIGHCUBE CONTAINER
+45R1
+REEFER HIGHCUBE CONTAINER
+
+
+45UT
+OPEN TOP CONTAINER
+45U1
+OPEN TOP CONTAINER
+
+
+45UP
+HIGH CUBE HARDTOP CONT.
+45U6
+HIGH CUBE HARDTOP CONT.
+
+
+46HR
+INSULATED CONTAINER
+46H0
+INSULATED CONTAINER
+
+
+48TG
+TANK FOR GAS
+48T8
+TANK FOR GAS
+
+
+49PL
+PLATFORM
+49P0
+PLATFORM
+
+
+4CGP
+GP CONTAINER
+4CG0
+GP CONTAINER (WIDTH 2.5 M)
+
+
+L0GP
+HIGH CUBE CONT.
+L0G1
+HIGH CUBE CONT.
+
+
+L2GP
+HIGH CUBE CONT.
+L2G1
+HIGH CUBE CONT.
+
+
+L5GP
+HIGH CUBE CONT.
+L5G1
+HIGH CUBE CONT.
+
+
+Use the below to calculate Size/Type of a less commonly used ISO 6346 containers:
+
+
+ISO Length Codes
+Second size code character
+
+
+Code
+Container length
+Code
+Container height
+Width
+
+
+1
+10′
+0
+8′
+8′
+
+
+1
+10′
+2
+8′6″
+
+
+2
+20′
+2
+8′6″
+
+
+3
+30′
+4
+9′
+
+
+4
+40′
+5
+9′6″
+
+
+B
+24′
+6
+> 9′6″
+
+
+C
+24′6″
+8
+4′3″
+
+
+G
+41′
+9
+<= 4′
+
+
+H
+43′
+C
+8′6″
+2348mm < x <= 2500mm
+
+
+L
+45′
+D
+9′
+
+
+M
+48′
+E
+9′6″
+
+
+N
+49′
+F
+> 9′6″
+
+
+
+
+ISO Type Codes
+
+
+Code
+Description
+
+
+G0
+General - Openings at one or both ends
+
+
+G1
+General - Passive vents at upper part of cargo space
+
+
+G2
+General - Openings at one or both ends + full openings on one or both sides
+
+
+G3
+General - Openings at one or both ends + partial openings on one or both sides
+
+
+V0
+Fantainer - Non-mechanical, vents at lower and upper parts of cargo space
+
+
+V2
+Fantainer - Mechanical ventilation system located internally
+
+
+V4
+Fantainer - Mechanical ventilation system located externally
+
+
+R0
+Integral Reefer - Mechanically refrigerated
+
+
+R1
+Integral Reefer - Mechanically refrigerated and heated
+
+
+R2
+Integral Reefer - Self-powered mechanically refrigerated
+
+
+R3
+Integral Reefer - Self-powered mechanically refrigerated and heated
+
+
+H0
+Refrigerated or heated with removable equipment located externally; heat transfer coefficient K=0.4W/M2.K
+
+
+H1
+Refrigerated or heated with removable equipment located internally
+
+
+H2
+Refrigerated or heated with removable equipment located externally; heat transfer coefficient K=0.7W/M2.K
+
+
+H5
+Insulated - Heat transfer coefficient K=0.4W/M2.K
+
+
+H6
+Insulated - Heat transfer coefficient K=0.7W/M2.K
+
+
+U0
+Open Top - Openings at one or both ends
+
+
+U1
+Open Top - Idem + removable top members in end frames
+
+
+U2
+Open Top - Openings at one or both ends + openings at one or both sides
+
+
+U3
+Open Top - Idem + removable top members in end frames
+
+
+U4
+Open Top - Openings at one or both ends + partial on one and full at other side
+
+
+U5
+Open Top - Complete, fixed side and end walls ( no doors )
+
+
+T0
+Tank - Non dangerous liquids, minimum pressure 0.45 bar
+
+
+T1
+Tank - Non dangerous liquids, minimum pressure 1.50 bar
+
+
+T2
+Tank - Non dangerous liquids, minimum pressure 2.65 bar
+
+
+T3
+Tank - Dangerous liquids, minimum pressure 1.50 bar
+
+
+T4
+Tank - Dangerous liquids, minimum pressure 2.65 bar
+
+
+T5
+Tank - Dangerous liquids, minimum pressure 4.00 bar
+
+
+T6
+Tank - Dangerous liquids, minimum pressure 6.00 bar
+
+
+T7
+Tank - Gases, minimum pressure 9.10 bar
+
+
+T8
+Tank - Gases, minimum pressure 22.00 bar
+
+
+T9
+Tank - Gases, minimum pressure to be decided
+
+
+B0
+Bulk - Closed
+
+
+B1
+Bulk - Airtight
+
+
+B3
+Bulk - Horizontal discharge, test pressure 1.50 bar
+
+
+B4
+Bulk - Horizontal discharge, test pressure 2.65 bar
+
+
+B5
+Bulk - Tipping discharge, test pressure 1.50 bar
+
+
+B6
+Bulk - Tipping discharge, test pressure 2.65 bar
+
+
+P0
+Flat or Bolster - Plain platform
+
+
+P1
+Flat or Bolster - Two complete and fixed ends
+
+
+P2
+Flat or Bolster - Fixed posts, either free-standing or with removable top member
+
+
+P3
+Flat or Bolster - Folding complete end structure
+
+
+P4
+Flat or Bolster - Folding posts, either free-standing or with removable top member
+
+
+P5
+Flat or Bolster - Open top, open ends (skeletal)
+
+
+S0
+Livestock carrier
+
+
+S1
+Automobile carrier
+
+
+S2
+Live fish carrier
+
+
+Country Code (Optional)[edit]
+The country code consists of two capital letters of the Latin alphabet as described in ISO 3166. It indicates the country where the code is registered not the nationality of the owner or operator of the container. The letters of the code shall not be less than 100 mm high.
+Mandatory Operational Marks[edit]
+Operational marks are intended solely to convey information requested for the movement of containers or give visual warnings. They relate to
+
+the weight of containers
+a symbol to denote air-surface container
+a sign warning of overhead electrical danger
+height marks for containers higher than 2.6 m (8 ft 6 in)
+
+See also[edit]
+
+Standard Carrier Alpha Code
+UIC wagon numbers
+
+The following is a list of further freight container related ISO specifications, where not all have an article assigned yet (you can help improve Wikipedia and start one):
+
+ISO 668 - Freight containers - Classification, dimensions and ratings
+ISO 830 - Freight containers - Terminology
+ISO 1161 - Freight containers - Corner fittings - Specification
+ISO 1496 - Freight containers - Specification and testing
+ISO 2308 - Hooks for lifting freight containers of up to 30 tons capacity - Basic requirements
+ISO 3874 - Freight containers - Handling and securing
+ISO 8323 - Freight containers - Air/surface (intermodal) general purpose containers - Specification and tests
+ISO 9669 - Freight containers - Interface connections for tank containers
+ISO 9711 - Freight containers - Information related to containers on board vessels
+ISO 9897 - Container equipment data exchange (CEDEX)
+ISO 10368 - Freight thermal containers - Remote condition monitoring
+ISO 10374 - Freight containers - Automatic identification
+
+References[edit]
+
+Notes
+
+
+
+
+^ "ISO 6346:1995 - Freight containers -- Coding, identification and marking". www.iso.org. 
+
+
+
+
+Sources
+
+
+Bureau International des Containers: Containers BIC-Code (printed brochure)
+Container Numbering Guide
+
+External links[edit]
+
+Bureau International des Containers (BIC)
+Intermodal Check Digit Calculator
+BIC Code Identifier
+Freight Container Check Digit Calculator (includes Java source code for download *Static Java Method does not convert "10" check digit to "0")
+ITCO technical questions
+List of owner codes (not the official BIC site)
+Online check digit calculator
+Russian maritime register of shipping - BIC representation
+Container numbers validator
+Get container dimensions and type by ISO code
+Cargo container validator ISO 6346 in Javascript
+Container number validation application
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Intermodal containers
+
+
+
+Overview
+
+
+
+Containerization
+Intermodal freight transport
+Bureau International des Containers
+ISO 6346 (BIC code)
+Twenty-foot equivalent unit
+
+
+
+
+
+
+
+
+Transport
+
+
+
+Container ship
+Double-stack
+Flatcar
+Well car
+
+
+
+
+
+Handling
+
+
+
+Container terminal
+Container crane
+Reach stacker
+Rubber tyred gantry crane
+Sidelifter
+Straddle carrier
+Twistlock
+Container spreader
+
+
+
+
+
+Types
+
+
+
+Refrigerated container
+SECU
+Tank container
+
+
+
+
+
+Other
+
+
+
+The Box
+BBC Box
+Container (board game)
+Container Shipping Information Service
+Shipping container architecture
+Sun Modular Datacenter
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=ISO_6346&oldid=810572378"					Categories: ISO standardsIntermodal containersPort infrastructureChecksum algorithmsEncodingsHidden categories: Wikipedia articles needing reorganization from March 2016Wikipedia articles needing style editing from March 2016All articles needing style editingArticles lacking in-text citations from March 2016All articles lacking in-text citationsArticles needing additional references from March 2016All articles needing additional referencesArticles with multiple maintenance issuesAll articles with unsourced statementsArticles with unsourced statements from January 2016

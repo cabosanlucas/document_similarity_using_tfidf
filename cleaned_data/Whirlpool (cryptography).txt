@@ -1,0 +1,1035 @@
+article hash function uses whirlpool disambiguation
+
+whirlpool
+
+general
+
+
+designers
+vincent rijmen paulo barreto
+
+
+first published
+2000 2001 2003
+
+
+derived
+square
+
+
+certification
+nessie
+
+
+detail
+
+
+digest sizes
+bits
+
+
+security claims
+large hashsum size
+
+
+structure
+miyaguchipreneel
+
+
+rounds
+
+
+
+best public cryptanalysis
+
+
+2009 rebound attack announced presents full collisions rounds whirlpool 2120 operations semifreestart collisions rounds 2120 time semifreestart nearcollisions rounds 2128 time1
+
+
+computer science cryptography whirlpool sometimes styled whirlpool cryptographic hash function designed vincent rijmen cocreator advanced encryption standard paulo barreto first described 2000
+hash recommended nessie project also adopted international organization standardization international electrotechnical commission part joint isoiec 101183 international standard
+
+
+
+contents
+
+
+design features
+
+version changes
+
+
+internal structure
+
+subbytes
+shiftcolumns
+mixrows
+addroundkey
+
+
+whirlpool hashes
+implementations
+also
+references
+external links
+
+
+
+design featuresedit
+
+
+
+
+whirlpool galaxy inspired name algorithm2
+
+
+whirlpool hash designed square block cipher considered family block cipher functions
+whirlpool miyaguchipreneel construction based substantially modified advanced encryption standard
+whirlpool takes message length less 2256 bits returns 512bit message digest3
+authors declared
+
+whirlpool never patented used free charge purpose2
+
+version changesedit
+original whirlpool called whirlpool0 first revision whirlpool called whirlpoolt latest version called whirlpool following test vectors
+
+first revision 2001 sbox changed randomly generated good cryptographic properties better cryptographic properties easier implement hardware
+second revision 2003 flaw diffusion matrix found lowered estimated security algorithm potential4 changing rotating matrix constants solved issue
+
+internal structureedit
+whirlpool hash function merkle–damgård construction based aeslike block cipher miyaguchipreneel mode2
+block cipher consists state matrix
+
+
+
+
+
+
+displaystyle
+
+bytes total bits
+encryption process consists updating state four round functions rounds four round functions subbytes shiftcolumns mixrows addroundkey round state computed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle sakcirc mrcirc sccirc
+
+
+subbytesedit
+subbytes operation applies nonlinear permutation sbox byte state independently 8bit sbox composed smaller 4bit sboxes
+shiftcolumnsedit
+shiftcolumns operation cyclically shifts byte column state column bytes shifted downwards positions
+mixrowsedit
+mixrows operation rightmultiplication matrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle gf28
+
+matrix chosen branch number important property looking resistance differential cryptanalysis maximal
+addroundkeyedit
+addroundkey operation uses bitwise calculated schedule current state schedule identical encryption except addroundkey function replaced addroundconstant function adds predetermined constant round
+whirlpool hashesedit
+whirlpool algorithm undergone revisions since original 2000 specification
+people incorporating whirlpool likely recent revision whirlpool known security weaknesses earlier versions whirlpool recent revision better hardware implementation efficiency characteristics also likely secure mentioned earlier also version adopted isoiec 101183 international standard
+512bit 64byte whirlpool hashes also termed message digests typically represented 128digit hexadecimal numbers
+following demonstrates 43byte ascii input including quotes corresponding whirlpool hashes
+
+
+version
+input string
+computed hash
+
+
+whirlpool0
+quick brown jumps lazy
+
+
+4f8f5cb531e3d49a61cf417cd133792ccfa501fd8da53ee368fed20e5fe0248c
+3a0b64f98a6533cee1da614c3a8ddec791ff05fee6d971d57c1348320f4eb42d
+
+
+
+whirlpoolt
+quick brown jumps lazy
+
+
+3ccf8252d8bbb258460d9aa999c06ee38e67cb546cffcf48e91f700f6fc7c183
+ac8cc3d3096dd30a35b01f4620a1e3a20d79cd5168544d9e1b7cdf49970e87f1
+
+
+
+whirlpool
+quick brown jumps lazy
+
+
+b97de512e91e3828b40d2b0fdce9ceb3c4a71f9bea8d88e75c4fa854df36725f
+d2b52eb6544edcacd6f8beddfea403cb55ae31f03ad62a5ef54e42ee82c3fb35
+
+
+
+even small change message extremely high probability
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+displaystyle 110154
+
+result different hash usually look completely different like unrelated random numbers following demonstrates result changing previous input single letter single even asciicompatible encodings replacing
+
+
+version
+input string
+computed hash
+
+
+whirlpool0
+quick brown jumps lazy
+
+
+228fbf76b2a93469d4b25929836a12b7d7f2a0803e43daba0c7fc38bc11c8f2a
+9416bbcf8ab8392eb2ab7bcb565a64ac50c26179164b26084a253caf2e012676
+
+
+
+whirlpoolt
+quick brown jumps lazy
+
+
+c8c15d2a0e0de6e6885e8a7d9b8a9139746da299ad50158f5fa9eecddef744f9
+1b8b83c617080d77cb4247b1e964c2959c507ab2db0f1f3bf3e3b299ca00cae3
+
+
+
+whirlpool
+quick brown jumps lazy
+
+
+c27ba124205f72e6847f3e19834f925cc666d0974167af915bb462420ed40cc5
+0900d85a1f923219d832357750492d5c143011a76988344c2635e69d06f2d38c
+
+
+
+hash zerolength string
+
+
+version
+input string
+computed hash
+
+
+whirlpool0
+
+
+
+b3e1ab6eaf640a34f784593f2074416accd3b8e62c620175fca0997b1ba23473
+39aa0d79e754c308209ea36811dfa40c1c32f1a2b9004725d987d3635165d3c8
+
+
+
+whirlpoolt
+
+
+
+470f0409abaa446e49667d4ebe12a14387cedbd10dd17b8243cad550a089dc0f
+eea7aa40f6c2aaab71c6ebd076e43c7cfca0ad32567897dcb5969861049a0f5a
+
+
+
+whirlpool
+
+
+
+19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a7
+3e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3
+
+
+
+implementationsedit
+authors provide reference implementations whirlpool algorithm including version written version written java2 reference implementations released public domain2
+first widely used mainstream cryptographic programs started using whirlpool freeotfe followed truecrypt 2005
+algorithm also commonly used many companies hash simple datacitation needed
+alsoedit
+
+digital timestamping
+
+referencesedit
+
+
+florian mendel1 christian rechberger martin schläffer søren thomsen 20090224 rebound attack cryptanalysis reduced whirlpool grøstl fast software encryption 16th international workshop maint multiple names authors list link
+paulo barreto 20081125 whirlpool hash function retrieved 20170303
+barreto paulo rijmen vincent 20030524 whirlpool hashing function retrieved 20170303
+kyoji shibutani shirai taizo 20030311 diffusion matrix employed whirlpool hashing function retrieved 20170303
+
+
+external linksedit
+
+whirlpool homepage includes detailed algorithm information java implementations paper
+jacksum sourceforgenet java implementation three revisions whirlpool
+whirlpool github open source implementation latest revision whirlpool
+matlab implementation whirlpool hashing function
+rhash sourceforgenet open source commandline tool calculate verify whirlpool hash
+perl whirlpool module cpan
+digest module implementing whirlpool hashing algorithm ruby
+ironclad common lisp cryptography package containing whirlpool implementation
+isoiec 1011832004 standard
+test vectors whirlpool hash nessie project
+managed implementation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cryptographic hash functions message authentication codes
+
+
+
+
+
+
+list
+comparison
+known attacks
+
+
+
+
+
+common functions
+
+
+
+
+sha1
+sha2
+sha3
+blake2
+
+
+
+
+
+sha3 finalists
+
+
+
+blake
+grøstl
+
+skein
+keccak winner
+
+
+
+
+
+functions
+
+
+
+cubehash
+ecoh
+
+gost
+has160
+haval
+kupyna
+hash
+
+
+
+mdc2
+nhash
+ripemd
+radiogatún
+swifft
+snefru
+streebog
+tiger
+
+whirlpool
+
+
+
+
+
+derivation functions
+
+
+
+bcrypt
+crypt
+pbkdf2
+scrypt
+argon2
+
+
+
+
+
+functions
+
+
+
+
+cbcmac
+hmac
+omaccmac
+pmac
+vmac
+umac
+poly1305
+siphash
+
+
+
+
+
+authenticated
+encryption modes
+
+
+
+
+
+
+
+iapm
+
+
+
+
+
+
+attacks
+
+
+
+collision attack
+preimage attack
+birthday attack
+bruteforce attack
+rainbow table
+sidechannel attack
+length extension attack
+
+
+
+
+
+design
+
+
+
+avalanche effect
+hash collision
+merkle–damgård construction
+sponge function
+haifa construction
+unique block iteration
+
+
+
+
+
+standardization
+
+
+
+cryptrec
+nessie
+nist hash function competition
+
+
+
+
+
+utilization
+
+
+
+hashbased cryptography
+stretching
+merkle tree
+message authentication
+proof work
+salt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cryptography
+
+
+
+
+
+
+history cryptography
+cryptanalysis
+outline cryptography
+
+
+
+
+
+
+
+
+symmetrickey algorithm
+block cipher
+stream cipher
+publickey cryptography
+cryptographic hash function
+message authentication code
+random numbers
+steganography
+cryptoshredding
+
+
+
+
+
+
+
+
+category
+portal
+wikiproject
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+standards standard number
+
+
+
+
+list standards romanizations standards
+
+
+
+1–9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1000
+1004
+1007
+10731
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+
+
+
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+88205
+8859
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8879
+90009001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+101183
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+
+
+
+
+
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940
+11941
+11941
+11992
+12006
+12182
+12207
+122342
+13211
+
+
+
+
+
+13216
+13250
+13399
+134062
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+
+
+
+
+
+
+
+
+
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+
+
+
+15707
+15897
+15919
+15924
+15926
+15926
+15930
+16023
+16262
+166122
+16750
+16949
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092
+
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+196002014
+19752
+19757
+19770
+197751
+197945
+19831
+
+
+
+
+
+20000
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+218272002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+270012005
+270012013
+27002
+27006
+27729
+28000
+29110
+29148
+291992
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+category
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitlewhirlpoolcryptographyoldid806543383 categories cryptographic hash functionshidden categories maint multiple names authors listall articles unsourced statementsarticles unsourced statements february 2017

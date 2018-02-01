@@ -1,0 +1,612 @@
+
+
+
+
+simpledb logo
+
+
+amazon simpledb distributed database written erlang1 amazoncom used service concert amazon elastic compute cloud amazon part amazon services announced december 20072
+amazon charges fees simpledb storage transfer throughput internet december 2008 amazon introduced pricing free tier3 data machine hours transfer amazon services free charge4
+
+
+
+contents
+
+
+limitations
+
+store limitations
+query limitations
+
+
+features
+
+conditional delete
+consistent read
+
+
+relationship dynamodb
+also
+references
+external links
+
+
+
+limitationsedit
+
+
+
+
+
+
+section rely excessively sources closely associated subject potentially preventing article verifiable neutral please help improve replacing appropriate citations reliable independent thirdparty sources 2016 learn remove template message
+
+
+
+simpledb provides eventual consistency weaker form consistency compared database management systems often considered limitation harder reason makes harder write correct programs make simpledb limitation result fundamental design tradeoff foregoing consistency system able achieve highly desirable properties
+
+availability components system fail service continue operate correctly
+partition tolerance components system connected another computer network components able contact another using network condition known network partition operation system continue
+
+component failures assumed inevitable thus properties deemed necessary order provide reliable service theorem states possible system exhibit properties along consistency thus designers needed settle weaker form consistency
+published limitations5
+store limitationsedit
+
+
+
+
+
+
+section rely excessively sources closely associated subject potentially preventing article verifiable neutral please help improve replacing appropriate citations reliable independent thirdparty sources 2016 learn remove template message
+
+
+
+
+
+attribute
+maximum
+
+
+domains
+active domains account requested filling form6
+
+
+size domain
+
+
+
+attributes domain
+1000000000
+
+
+attributes item
+attributes
+
+
+size attribute
+1024 bytes
+
+
+query limitationsedit
+
+
+attribute
+maximum
+
+
+items returned query response
+2500 items
+
+
+seconds query
+seconds
+
+
+attribute names query predicate
+attribute name
+
+
+comparisons predicate
+operators
+
+
+predicates query expression
+predicates
+
+
+featuresedit
+conditional deleteedit
+conditional conditional delete operations added february 2010 address problem arises accessing simpledb concurrently consider simple program uses simpledb store counter number incremented program must three things
+
+retrieve current value counter simpledb
+value
+store value place value simpledb
+
+program runs programs access simpledb work correctly however often desirable software applications particularly applications access data concurrently data accessed concurrently race condition arises would result undetectable data loss
+continuing previous example consider processes running program suppose simpledb services requests data described step value lets current value counter steps store thus final counter value even though expected final counter value system attempted increment operations another
+problem solved conditional suppose change step follows instead unconditionally storing value program asks simpledb store value value currently holds value retrieved step sure counters value actually increases introduces additional complexity simpledb able store value current value expected program must repeat steps conditional operation actually changes stored value
+consistent readedit
+consistent read feature released time conditional conditional delete name suggests consistent read addresses problems arise simpledbs eventual consistency model limitations section consider following sequence operations
+
+program stores data simpledb
+immediately requests data stored
+
+simpledbs eventual consistency guarantee allow data retrieved step reflects updates made step eventual consistency guarantees step reflects complete updates step none updates consistent read used ensure data retrieved step reflect changes step
+reason inconsistent results arise consistent read operation used simpledb stores data multiple locations availability data step might written locations simpledb receives data request step case possible data request step serviced locations data written
+amazon discourages consistent read unless required correctness reason recommendation rate consistent read operations serviced lower regular reads
+relationship dynamodbedit
+
+
+
+
+
+
+section rely excessively sources closely associated subject potentially preventing article verifiable neutral please help improve replacing appropriate citations reliable independent thirdparty sources 2016 learn remove template message
+
+
+
+talk simpledb superseded dynamodb longer iterated though amazon plan remove dynamodb appears successor8
+alsoedit
+
+amazon dynamodb
+structured storage
+bigtable
+nosql
+
+referencesedit
+
+
+need know amazon simpledb
+amazon simpledb limited beta
+simpledb free tier shift pricing archived 20081225 wayback machine
+amazon simpledb official home page
+limits simpledb developer guide amazon latest version
+request increase allocation amazon simpledb domains awsamazoncom retrieved 20130809
+httpsforumsawsamazoncomthreadjspathreadid96141tstart0
+httpawsamazoncomdynamodbfaqshowdoesamazondynamodbdifferfromamazonsimpledbwhichshouldiuse dynamo created address limitations simpledb
+
+
+external linksedit
+
+amazon simpledb official home page
+
+
+
+
+
+
+
+
+
+
+
+
+amazon
+
+
+
+people
+
+
+
+
+current
+
+
+
+jeff bezos
+tony hsieh
+werner vogels
+gregg zehr
+
+
+
+
+
+former
+
+
+
+rick dalzell
+brian mcbride
+shriram
+szkutak
+brian valentine
+christopher north
+
+
+
+
+
+
+
+
+facilities
+
+
+
+doppler
+
+
+
+
+
+
+
+products
+services
+
+
+
+
+websites
+
+
+
+a9com
+abebooks
+amazoncom
+alexa internet
+book depository
+bookfinder
+china
+curse
+digital photography review
+fresh
+goodreads
+imdb
+
+office mojo
+withoutabox
+
+
+jungleecom
+local
+marketplace
+payments
+twitchtv
+wireless
+wootcom
+zappos
+souqcom
+
+
+
+
+
+services
+
+
+
+
+cloudfront
+dynamodb
+
+
+mturk
+neptune
+product advertising
+
+
+
+simpledb
+
+
+silk
+glacier
+storywriter
+
+
+
+
+
+digital
+
+
+
+alexa
+appstore
+audible
+comixology
+amazon drive
+video
+prime
+
+
+
+
+kindle store
+music
+reflexive entertainment
+fire
+amazon digital game store
+
+
+
+
+
+devices
+
+
+
+blink home
+cloud
+dash buttons
+dash wand
+echo
+
+show
+
+
+kindle
+kindle fire
+
+fire
+fire
+
+
+fire
+
+stick
+
+
+fire phone
+
+
+
+
+
+technology
+
+
+
+1click
+amazon game studios
+amazon robotics
+carbonado
+dynamo
+graphiq
+gurupa
+lab126
+double helix games
+obidos
+liquavista
+
+
+
+
+
+publishing
+
+
+
+amazon publishing
+amazon studios
+breakthrough novel award
+best books year
+kindle direct publishing
+
+
+
+
+
+retail
+
+
+
+amazon books
+amazon
+whole foods market
+
+
+
+
+
+logistics
+
+
+
+amazon
+amazon prime
+
+
+
+
+
+former
+
+
+
+things
+askville
+amapedia
+amie street songza
+cdnow
+diaperscom
+endlesscom
+lexcycle
+livingsocial
+lovefilm
+mobipocket
+planetall
+sellaband
+shelfari
+
+
+
+
+
+
+
+
+
+
+
+
+amazon light
+asin
+controversies
+fishbowl
+locker
+perfect amazoncom
+statistically improbable phrase
+vine
+list amazon brands
+list amazon locations
+list mergers acquisitions amazon
+list amazon products services
+librarything
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cloud computing
+
+
+
+applications
+
+
+
+
+google
+
+suite
+docs sheets slides
+
+
+cloud closed
+microsoft online
+rackspace
+salesforce
+zoho
+
+
+
+
+
+platforms
+
+
+
+alpha7
+amazon
+appscale
+
+bluemix
+cloud foundry
+cocaine paas
+engine yard
+platform
+helion
+predix
+google engine
+greenqloud
+heroku
+inktank
+jelastic
+mendix
+microsoft azure
+outsystems
+openqrm
+openshift
+pythonanywhere
+rightscale
+forcecom
+cloud platform
+vmware vcloud
+wavemaker
+
+
+
+
+
+infrastructure
+
+
+
+amazon
+abiquo enterprise edition
+cloudstack
+ctrls
+digitalocean
+atmos
+eucalyptus
+fujitsu
+gogrid
+google cloud platform
+greenbutton
+greenqloud
+cloud computing
+iland
+joyent
+lunacloud
+nimbula
+nimbus
+opennebula
+openstack
+orionvm
+rackspace cloud
+softlayer
+zadara storage
+libvirt
+libguestfs
+ovirt
+virtual machine manager
+wakamevdc
+virtual private cloud ondemand
+
+
+
+
+
+technologies
+
+
+
+cloud database
+data centers
+distributed file system cloud
+hardware virtualization
+internet
+networking
+security
+structured storage
+virtual appliance
+apis
+virtual private cloud
+
+
+
+
+
+
+
+
+category
+commons
+
+
+
+
+
+
+
+
+
+
+
+retrieved httpsenwikipediaorgwindexphptitleamazonsimpledboldid816128451 categories documentoriented databasesamazon servicescloud databasesdatabaserelated software linuxdistributed data storeshidden categories webarchive template wayback linksarticles lacking reliable references 2016all articles lacking reliable references

@@ -1,0 +1,804 @@
+
+RELAX NG
+
+Filename extension
+.rng
+
+
+Internet media type
+application/xml, text/xml
+
+
+Type of format
+XML Schema language
+
+
+Extended from
+XML
+
+
+In computing, RELAX NG (REgular LAnguage for XML Next Generation) is a schema language for XML - a RELAX NG schema specifies a pattern for the structure and content of an XML document. A RELAX NG schema is itself an XML document but RELAX NG also offers a popular compact, non-XML syntax.[1] Compared to other XML schema languages RELAX NG is considered relatively simple.
+It was defined by a committee specification of the OASIS RELAX NG technical committee in 2001 and 2002, based on Murata Makoto's RELAX and James Clark's TREX,[2][3][4] and also by part two of the international standard ISO/IEC 19757: Document Schema Definition Languages (DSDL).[5][6] ISO/IEC 19757-2 was developed by ISO/IEC JTC1/SC34 and published in its first version in 2003.[7]
+
+
+
+Contents
+
+
+1 Schema examples
+
+1.1 XML syntax
+1.2 Compact syntax
+
+
+2 Comparison with W3C XML Schema
+3 Filename extensions
+4 See also
+5 References
+6 External links
+
+
+
+Schema examples[edit]
+Suppose we want to define an extremely simple XML markup scheme for a book: a book is defined as a sequence of one or more pages; each page contains text only. A sample XML document instance might be:
+
+
+<book>
+  <page>This is page one.</page>
+  <page>This is page two.</page>
+</book>
+
+XML syntax[edit]
+A RELAX NG schema can be written in a nested structure by defining a root element that contains further element definitions, which may themselves contain embedded definitions. A schema for our book in this style, using the full XML syntax, would be written:
+
+
+<element name="book" xmlns="http://relaxng.org/ns/structure/1.0">
+   <oneOrMore>
+      <element name="page">
+         <text/>
+      </element>
+   </oneOrMore>
+</element>
+
+Nested structure becomes unwieldy with many sublevels and cannot define recursive elements, so most complex RELAX NG schemas use references to named pattern definitions located separately in the schema. Here, a "flattened schema" defines precisely the same book markup as the previous example:
+
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+   <start>
+      <element name="book">
+         <oneOrMore>
+            <ref name="page"/>
+         </oneOrMore>
+      </element>
+   </start>
+   <define name="page">
+      <element name="page">
+         <text/>
+      </element>
+   </define>
+</grammar>
+
+Compact syntax[edit]
+RELAX NG compact syntax is a non-XML format inspired by extended Backus-Naur form and regular expressions, designed so that it can be unambiguously translated to its XML counterpart, and back again, with one-to-one correspondence in structure and meaning, in much the same way that Simple Outline XML (SOX) relates to XML. It shares many features with the syntax of DTDs. Here is the compact form of the above schema:
+
+
+element book {
+    element page { text }+
+}
+
+With named patterns, this can be flattened to:
+
+
+start = element book { page+ }
+page = element page { text }
+
+A compact RELAX NG parser will treat these two as the same pattern.
+Comparison with W3C XML Schema[edit]
+Main article: XML schema languages
+Although the RELAX NG specification was developed at roughly the same time as the W3C XML Schema specification, the latter was arguably better known and more widely implemented in both open-source and proprietary XML parsers and editors when it became a W3C Recommendation in 2001. Since then, however, RELAX NG support has increasingly found its way into XML software, and its acceptance has been aided by its adoption as a primary schema for popular document-centric markup languages such as DocBook, the TEI Guidelines, OpenDocument, and EPUB.
+RELAX NG shares with W3C XML Schema many features that set both apart from traditional DTDs: data typing, regular expression support, namespace support, ability to reference complex definitions.
+Filename extensions[edit]
+By informal convention, RELAX NG schemas in the regular syntax are typically named with the filename extension ".rng". For schemas in the compact syntax, the extension ".rnc" is used.
+See also[edit]
+
+XML schemas
+DTD (Document Type Definition)
+Document Structure Description
+XML Schema (W3C)
+Schematron
+ODD (One Document Does it all)
+SXML
+
+References[edit]
+
+
+
+^ RELAX NG Compact Syntax
+^ James Clark. "TREX - Tree Regular Expressions for XML - "TREX has been merged with RELAX to create RELAX NG."". Retrieved 2009-12-28. 
+^ Murata Makoto (2002-04-03). "RELAX (Regular Language description for XML) -- "RELAX NG of OASIS. It is a schema language created by unifying RELAX Core and TREX."". Retrieved 2009-12-28. 
+^ "TREX and RELAX Unified as RELAX NG, a Lightweight XML Language Validation Specification". Cover Pages. 2001-06-05. Retrieved 2009-12-28. 
+^ RELAX NG Specification
+^ RELAX NG Technical Committee
+^ ISO. "ISO/IEC 19757-2:2003 - Information technology -- Document Schema Definition Language (DSDL) -- Part 2: Regular-grammar-based validation -- RELAX NG". ISO. Retrieved 2009-12-28. 
+
+
+
+External links[edit]
+
+RELAX NG home page
+"The Design of RELAX NG" by James Clark
+RELAX NG tutorial for the XML syntax
+RELAX NG tutorial for the compact syntax
+Design patterns for structuring XML documents
+RELAX NG Book by Eric van der Vlist, released under the GNU Free Documentation License
+Relax NG Reference by ZVON
+RELAX NG Java community projects at java.net
+Sun Multi-Schema Validator (MSV) open-source Java XML toolkit
+Relax NG Compact Syntax validator open-source C program
+XSD to Relax NG Converter Web-based converter
+https://github.com/relaxng/jing-trang
+
+
+
+
+
+
+
+v
+t
+e
+
+
+ISO standards by standard number
+
+
+
+
+List of ISO standards / ISO romanizations / IEC standards
+
+
+
+1–9999
+
+
+
+1
+2
+3
+4
+5
+6
+7
+9
+16
+31
+
+-0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+
+
+128
+216
+217
+226
+228
+233
+259
+269
+302
+306
+428
+518
+519
+639
+
+-1
+-2
+-3
+-5
+-6
+
+
+646
+690
+732
+764
+843
+898
+965
+1000
+1004
+1007
+1073-1
+1413
+1538
+1745
+1989
+2014
+2015
+2022
+2047
+2108
+2145
+2146
+2240
+2281
+2709
+2711
+2788
+2848
+2852
+3029
+3103
+3166
+
+-1
+-2
+-3
+
+
+3297
+3307
+3602
+3864
+3901
+3977
+4031
+4157
+4217
+4909
+5218
+5428
+5775
+5776
+5800
+5964
+6166
+6344
+6346
+6385
+6425
+6429
+6438
+6523
+6709
+7001
+7002
+7098
+7185
+7200
+7498
+7736
+7810
+7811
+7812
+7813
+7816
+8000
+8178
+8217
+8571
+8583
+8601
+8632
+8652
+8691
+8807
+8820-5
+8859
+
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-8-I
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+
+
+8879
+9000/9001
+9075
+9126
+9293
+9241
+9362
+9407
+9506
+9529
+9564
+9594
+9660
+9897
+9899
+9945
+9984
+9985
+9995
+
+
+
+
+
+10000–19999
+
+
+
+10005
+10006
+10007
+10116
+10118-3
+10160
+10161
+10165
+10179
+10206
+10218
+10303
+
+-11
+-21
+-22
+-28
+-238
+
+
+10383
+10487
+10585
+10589
+10646
+10664
+10746
+10861
+10957
+10962
+10967
+11073
+11170
+11179
+11404
+11544
+11783
+11784
+11785
+11801
+11898
+11940 (-2)
+11941
+11941 (TR)
+11992
+12006
+12182
+12207
+12234-2
+13211
+
+-1
+-2
+
+
+13216
+13250
+13399
+13406-2
+13450
+13485
+13490
+13567
+13568
+13584
+13616
+14000
+14031
+14224
+14289
+14396
+14443
+14496
+
+-2
+-3
+-6
+-10
+-11
+-12
+-14
+-17
+-20
+
+
+14644
+14649
+14651
+14698
+14750
+14764
+14882
+14971
+15022
+15189
+15288
+15291
+15292
+15398
+15408
+15444
+
+-3
+
+
+15445
+15438
+15504
+15511
+15686
+15693
+15706
+
+-2
+
+
+15707
+15897
+15919
+15924
+15926
+15926 WIP
+15930
+16023
+16262
+16612-2
+16750
+16949 (TS)
+17024
+17025
+17100
+17203
+17369
+17442
+17799
+18000
+18004
+18014
+18245
+18629
+18916
+19005
+19011
+19092 (-1
+-2)
+19114
+19115
+19125
+19136
+19439
+19500
+19501
+19502
+19503
+19505
+19506
+19507
+19508
+19509
+19510
+19600:2014
+19752
+19757
+19770
+19775-1
+19794-5
+19831
+
+
+
+
+
+20000+
+
+
+
+20000
+20022
+20121
+20400
+21000
+21047
+21500
+21827:2002
+22000
+23270
+23271
+23360
+24517
+24613
+24617
+24707
+25178
+25964
+26000
+26300
+26324
+27000 series
+27000
+27001:2005
+27001:2013
+27002
+27006
+27729
+28000
+29110
+29148
+29199-2
+29500
+30170
+31000
+32000
+38500
+40500
+42010
+55000
+80000
+
+-1
+-2
+-3
+
+
+
+
+
+
+
+
+
+
+ Category
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+List of International Electrotechnical Commission standards
+
+
+
+IEC standards
+
+
+
+IEC 60027
+IEC 60034
+IEC 60038
+IEC 60062
+IEC 60063
+IEC 60068
+IEC 60112
+IEC 60228
+IEC 60269
+IEC 60297
+IEC 60309
+IEC 60320
+IEC 60364
+IEC 60446
+IEC 60559
+IEC 60601
+IEC 60870
+
+IEC 60870-5
+IEC 60870-6
+
+
+IEC 60906-1
+IEC 60908
+IEC 60929
+IEC 60958
+
+AES3
+S/PDIF
+
+
+IEC 61030
+IEC 61131
+
+IEC 61131-3
+
+
+IEC 61158
+IEC 61162
+IEC 61334
+IEC 61346
+IEC 61355
+IEC 61400
+IEC 61499
+IEC 61508
+IEC 61511
+IEC 61850
+IEC 61851
+IEC 61883
+IEC 61960
+IEC 61968
+IEC 61970
+IEC 62014-4
+IEC 62056
+IEC 62061
+IEC 62196
+IEC 62262
+IEC 62264
+IEC 62304
+IEC 62325
+IEC 62351
+IEC 62365
+IEC 62366
+IEC 62379
+IEC 62386
+IEC 62455
+IEC 62680
+IEC 62682
+IEC 62700
+
+
+
+
+
+ISO/IEC standards
+
+
+
+ISO/IEC 646
+ISO/IEC 2022
+ISO/IEC 4909
+ISO/IEC 5218
+ISO/IEC 6429
+ISO/IEC 6523
+ISO/IEC 7810
+ISO/IEC 7811
+ISO/IEC 7812
+ISO/IEC 7813
+ISO/IEC 7816
+ISO/IEC 7942
+ISO/IEC 8613
+ISO/IEC 8632
+ISO/IEC 8652
+ISO/IEC 8859
+ISO/IEC 9126
+ISO/IEC 9293
+ISO/IEC 9592
+ISO/IEC 9593
+ISO/IEC 9899
+ISO/IEC 9945
+ISO/IEC 9995
+ISO/IEC 10021
+ISO/IEC 10116
+ISO/IEC 10165
+ISO/IEC 10179
+ISO/IEC 10646
+ISO/IEC 10967
+ISO/IEC 11172
+ISO/IEC 11179
+ISO/IEC 11404
+ISO/IEC 11544
+ISO/IEC 11801
+ISO/IEC 12207
+ISO/IEC 13250
+ISO/IEC 13346
+ISO/IEC 13522-5
+ISO/IEC 13568
+ISO/IEC 13818
+ISO/IEC 14443
+ISO/IEC 14496
+ISO/IEC 14882
+ISO/IEC 15288
+ISO/IEC 15291
+ISO/IEC 15408
+ISO/IEC 15444
+ISO/IEC 15445
+ISO/IEC 15504
+ISO/IEC 15511
+ISO/IEC 15693
+ISO/IEC 15897
+ISO/IEC 15938
+ISO/IEC 16262
+ISO/IEC 17024
+ISO/IEC 17025
+ISO/IEC 18000
+ISO/IEC 18004
+ISO/IEC 18014
+ISO/IEC 19752
+ISO/IEC 19757
+ISO/IEC 19770
+ISO/IEC 19788
+ISO/IEC 20000
+ISO/IEC 21000
+ISO/IEC 21827
+ISO/IEC 23000
+ISO/IEC 23003
+ISO/IEC 23008
+ISO/IEC 23270
+ISO/IEC 23360
+ISO/IEC 24707
+ISO/IEC 24727
+ISO/IEC 24744
+ISO/IEC 24752
+ISO/IEC 26300
+ISO/IEC 27000
+ISO/IEC 27000-series
+ISO/IEC 27002
+ISO/IEC 27040
+ISO/IEC 29119
+ISO/IEC 33001
+ISO/IEC 38500
+ISO/IEC 42010
+ISO/IEC 80000
+
+
+
+
+
+Related
+
+
+
+International Electrotechnical Commission
+
+
+
+
+
+
+
+
+
+Authority control
+
+
+
+GND: 4765298-6
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=RELAX_NG&oldid=803412369"					Categories: Computer-related introductions in 2001Data modeling languagesISO/IEC standardsXMLXML-based standardsHidden categories: Wikipedia articles with GND identifiers

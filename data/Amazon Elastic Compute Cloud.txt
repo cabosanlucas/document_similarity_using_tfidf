@@ -1,0 +1,1105 @@
+
+
+
+
+
+
+
+This article has multiple issues. Please help improve it or discuss these issues on the talk page. (Learn how and when to remove these template messages)
+
+
+
+
+
+
+
+This article's lead section does not adequately summarize key points of its contents. Please consider expanding the lead to provide an accessible overview of all important aspects of the article. Please discuss this issue on the article's talk page. (July 2014)
+
+
+
+
+
+
+
+
+
+This article may be in need of reorganization to comply with Wikipedia's layout guidelines. Please help by editing the article to make improvements to the overall structure. (February 2015) (Learn how and when to remove this template message)
+
+
+
+
+
+(Learn how and when to remove this template message)
+
+
+
+
+Amazon Elastic Compute Cloud (EC2)
+
+
+Amazon Elastic Compute Cloud (EC2)
+
+
+
+Original author(s)
+Amazon.com, Inc.
+
+
+Developer(s)
+Amazon.com
+
+
+Initial release
+August 25, 2006; 11 years ago (2006-08-25) (public beta)
+
+
+Development status
+Active
+
+
+Operating system
+
+
+
+Linux
+Microsoft Windows
+FreeBSD
+
+
+
+
+
+Available in
+English
+
+
+Type
+Virtual private server
+
+
+License
+Proprietary software
+
+
+Website
+aws.amazon.com/ec2/
+
+
+Amazon Elastic Compute Cloud (EC2) forms a central part of Amazon.com's cloud-computing platform, Amazon Web Services (AWS), by allowing users to rent virtual computers on which to run their own computer applications. EC2 encourages scalable deployment of applications by providing a web service through which a user can boot an Amazon Machine Image (AMI) to configure a virtual machine, which Amazon calls an "instance", containing any software desired. A user can create, launch, and terminate server-instances as needed, paying by the second for active servers – hence the term "elastic". EC2 provides users with control over the geographical location of instances that allows for latency optimization and high levels of redundancy.[1]
+In November 2010, Amazon switched its own retail website to use EC2 and AWS.[2]
+
+
+
+Contents
+
+
+1 History
+2 Instance types
+
+2.1 Cost
+2.2 Free tier
+2.3 Reserved instances
+
+
+3 Features
+
+3.1 Operating systems
+3.2 Persistent storage
+3.3 Elastic IP addresses
+3.4 Amazon CloudWatch
+3.5 Automated scaling
+
+
+4 Pricing
+5 Reliability
+6 Issues
+7 See also
+8 Notes
+9 References
+10 External links
+
+
+
+History[edit]
+See also: Timeline of Amazon Web Services
+Amazon announced a limited public beta test of EC2 on August 25, 2006,[3] offering access on a first-come, first-served basis. Amazon added two new instance types (Large and Extra-Large) on October 16, 2007.[4] On May 29, 2008, two more types were added, High-CPU Medium and High-CPU Extra Large.[5] There are twelve types of instances available.[6]
+Amazon added three new features on March 27, 2008,[7] static IP addresses, availability zones, and user selectable kernels. On August 20, 2008, Amazon added Elastic Block Store (EBS)[8] This provides persistent storage, a feature that had been lacking since the service was introduced.
+Amazon EC2 went into full production when it dropped the beta label on October 23, 2008. On the same day, Amazon announced the following features:[9] a service level agreement for EC2, Microsoft Windows in beta form on EC2, Microsoft SQL Server in beta form on EC2, plans for an AWS management console, and plans for load balancing, autoscaling, and cloud monitoring services.[9] These features were subsequently added on May 18, 2009.[10]
+Amazon EC2 was developed mostly by a team in Cape Town, South Africa led by Chris Pinkham.[11] Pinkham provided the initial architecture guidance for EC2 and then built the team and led the development of the project along with Willem van Biljon.
+Instance types[edit]
+Initially, EC2 used Xen virtualization exclusively.[12] However, on November 6, 2017, Amazon announced[13] the new C5 family of instances that were based on a custom architecture around the KVM hypervisor, called Nitro.[14][15] Each virtual machine, called an "instance", functions as a virtual private server. Amazon sizes instances based on "Elastic Compute Units". The performance of otherwise identical virtual machines may vary.[16] On November 28, 2017, AWS announced a bare metal instance type offering marking a remarkable departure from exclusively offering virtualized instance types.[17]
+As of December 2017, the following instance types were offered:[18]
+
+General Purpose: M5, M4, M4, T2
+Compute Optimized: C5, C4, C3,
+Memory Optimized: X1e, X1, R4, R4
+Accelerated Computing: P3, P2, G3, F1
+Storage Optimized: H1, I3, D2
+
+As of December 2012[update], the following paying method for instance were offered:[19]
+
+On-demand: pay by hour without commitment.
+Reserved: rent instances with one-time payment receiving discounts on the hourly charge.
+Spot: bid-based service: runs the jobs only if the spot price is below the bid specified by bidder. The spot price is claimed to be supply-demand based, however a 2011 study concluded that the price was generally not set to clear the market, but was dominated by an undisclosed reserve price.[20]
+
+Cost[edit]
+
+
+
+
+Amazon CTO Werner Vogels announces price reductions at AWS Summit 2013 NYC
+
+
+As of October 2016[update], Amazon charged about $0.0065/hour ($4.75/month) for the smallest "Nano Instance" (t2.nano) virtual machine running Linux or Windows. Storage-optimized instances cost as much as $6.82/hour (i2.8xlarge). "Reserved" instances can go as low as $4.50/month for a three-year prepaid plan.[note 1][21] The data transfer charge ranges from free to $0.12 per gigabyte, depending on the direction and monthly volume (inbound data transfer is free on all AWS services[22]).
+Official Price list: https://aws.amazon.com/en/pricing/
+Free tier[edit]
+As of December 2010[update] Amazon offered a bundle of free resource credits to new account holders. The credits are designed to run a "micro" sized server, storage (EBS), and bandwidth for one year.[23] Unused credits cannot be carried over from one month to the next.[24]
+Reserved instances[edit]
+Reserved instances enable EC2 or RDS service users to reserve an instance for one or three years. The corresponding hourly rate charged by Amazon to operate the instance is much less than the rate charged for on-demand instances.[25]
+Reserved Instances can be purchased in three different ways: All Upfront, Partial Upfront and No Upfront. The different purchase options allow for different structuring of payment models.
+In September 2016, AWS announced several enhancements to Reserved Instances, introducing a new feature called scope and a new reservation type called a Convertible.[26]
+Features[edit]
+Operating systems[edit]
+Further information: operating system
+When it launched in August 2006, the EC2 service offered Linux and later Sun Microsystems' OpenSolaris and Solaris Express Community Edition. In October 2008, EC2 added the Windows Server 2003 and Windows Server 2008 operating systems to the list of available operating systems.[27][28] In March 2011, NetBSD AMIs became available.[29] In November 2012, Windows Server 2012 support was added.[30]
+Since 2006, Colin Percival, a FreeBSD developer and Security Officer, solicited Amazon to add FreeBSD.[31] In November 2012, Amazon officially supported running FreeBSD in EC2.[32][33][34] The FreeBSD/EC2 platform is maintained by Percival[35] who also developed the secure deduplicating Amazon S3-cloud based backup service Tarsnap.[36]
+Amazon has their own Linux distribution based on the Fedora and Red Hat Enterprise Linux as a low cost offering known as the Amazon Linux AMI. Version 2013.03 included:[37]
+
+Linux kernel version 3.4.34
+Java OpenJDK Runtime Environment (IcedTea6 1.11.4)
+GNU Compiler Collection gcc.x86_64 4.4.6-3.45.amzn1
+
+Persistent storage[edit]
+An EC2 instance may be launched with a choice of two types of storage for its boot disk or "root device." The first option is a local "instance-store" disk as a root device (originally the only choice). The second option is to use an EBS volume as a root device. Instance-store volumes are temporary storage, which survive rebooting an EC2 instance, but when the instance is stopped or terminated (e.g., by an API call, or due to a failure), this store is lost.
+The Amazon Elastic Block Store (EBS) provides raw block devices that can be attached to Amazon EC2 instances. These block devices can then be used like any raw block device. In a typical use case, this would include formatting the device with a filesystem and mounting it. In addition, EBS supports a number of advanced storage features, including snapshotting and cloning. EBS volumes can be up to 1TB in size. EBS volumes are built on replicated storage, so that the failure of a single component will not cause data loss. EBS was introduced to the general public by Amazon in August 2008.[8]
+
+EBS volumes provide persistent storage independent of the lifetime of the EC2 instance, and act much like hard drives on a real server. More accurately, they appear as block devices to the operating system that are backed by Amazon's disk arrays. The OS is free to use the device however it wants. In the most common case, a file system is loaded and the volume acts as a hard drive. Another possible use is the creation of RAID arrays by combining two or more EBS volumes. RAID allows increases of speed and/or reliability of EBS. Users can set up and manage storage volumes of sizes from 1GB to 1TB. The volumes support snapshots, which can be taken from a GUI tool or the API. EBS volumes can be attached or detached from instances while they are running, and moved from one instance to another.[38]
+Simple Storage Service (S3) is a storage system in which data is accessible to EC2 instances, or directly over the network to suitably authenticated callers (all communication is over HTTP). Amazon does not charge for the bandwidth for communications between EC2 instances and S3 storage "in the same region." Accessing S3 data stored in a different region (for example, data stored in Europe from a US East Coast EC2 instance) will be billed at Amazon's normal rates.
+S3-based storage is priced per gigabyte per month. Applications access S3 through an API. For example, Apache Hadoop supports a special s3: filesystem to support reading from and writing to S3 storage during a MapReduce job. There are also S3 filesystems for Linux, which mount a remote S3 filestore on an EC2 image, as if it were local storage. As S3 is not a full POSIX filesystem, things may not behave the same as on a local disk (e.g., no locking support).
+Elastic IP addresses[edit]
+
+Amazon's elastic IP address feature is similar to static IP address in traditional data centers, with one key difference. A user can programmatically map an elastic IP address to any virtual machine instance without a network administrator's help and without having to wait for DNS to propagate the binding. In this sense an Elastic IP Address belongs to the account and not to a virtual machine instance. It exists until it is explicitly removed, and remains associated with the account even while it is associated with no instance.
+Amazon CloudWatch[edit]
+
+Amazon CloudWatch is a web service that provides real-time monitoring to Amazon's EC2 customers on their resource utilization such as CPU, disk and network. CloudWatch does not provide any memory, disk space, or load average metrics without running additional software on the instance. Amazon provides example scripts for Linux instances.[39] The data is aggregated and provided through AWS management console. It can also be accessed through command line tools and Web API's, if the customer desires to monitor their EC2 resources through their enterprise monitoring software.
+The metrics collected by Amazon CloudWatch enables the auto-scaling feature to dynamically add or remove EC2 instances.[40] The customers are charged by the number of monitoring instances.
+Since May 2011, Amazon CloudWatch accepts custom metrics that can be submitted programmatically via Web Services API and then monitored the same way as all other internal metrics, including setting up the alarms for them.
+Automated scaling[edit]
+
+Further information: autoscaling
+Amazon's auto-scaling feature of EC2 allows it to automatically adapt computing capacity to site traffic. The schedule-based (e.g. time-of-the-day) and rule-based (e.g. CPU utilization thresholds) auto scaling mechanisms are easy to use and efficient for simple applications. However, one potential problem is that VMs may take up to several minutes to be ready to use, which are not suitable for time critical applications. The VM startup time are dependent on image size, VM type, data center locations, etc.[41]
+Pricing
+
+
+
+
+LINUX CLOUD HOSTING: PERFORMANCE INDEX BELOW 16 ( < 2CPU, 8GB RAM)
+
+
+
+
+
+
+LINUX CLOUD HOSTING: PERFORMANCE INDEX 16 - 1040 (2CPU, 8GB RAM - 16CPU, 65GB RAM)
+
+
+
+
+
+
+LINUX CLOUD HOSTING: PERFORMANCE INDEX ABOVE 1040 ( > 16CPU, 65GB RAM)
+
+
+Generally, Amazon EC2 priced on per instance / per hour basis. However, any instance can be rented on per month basis as well. In such case, Reserved and Spot Instances pricing can be applied resulting in significant discount. Instances are priced depending on their "size", namely how much CPU and RAM included. 
+Amazon EC2 price varies from $2.5 per month for "nano" instance with 1 vCPU and 0.5 GB RAM on board to "xlarge" type of instances with 32 vCPU and 488 GB RAM billed up to $3997.19 per month.
+The charts to the right show how Amazon EC2 pricing is compared to similar Cloud Computing services: Microsoft Azure, Google Cloud Platform, Kamatera, and Vultr.[42]
+
+Amazon EC2 compared to similar cloud computing services
+
+
+Amazon EC2
+Microsoft Azure
+Google Cloud Platform
+Kamatera
+Vultr
+
+
+1vCPU  0.5GB RAM
+$3.29
+
+
+
+ $2.5
+
+
+1vCPU  0.75GB RAM
+
+$14.88
+
+
+
+
+
+1vCPU 1GB RAM
+ $6.83
+
+
+ $11
+ $5
+
+
+1vCPU 1.75GB RAM
+
+ $44.64
+
+
+
+
+
+1vCPU 2GB RAM
+ $13.14
+
+
+ $17
+ $10
+
+
+1vCPU 3.75GB RAM
+
+
+ $24.27
+
+
+
+
+2vCPU 3.5GB RAM
+
+ $89.88
+
+
+
+
+
+2vCPU 4GB RAM
+
+
+
+ $41
+ $20
+
+
+2vCPU  7.5GB RAM 
+
+
+ $48.55
+
+
+
+
+2vCPU  8GB RAM
+ $52.56
+
+
+ $61
+
+
+
+4vCPU 7GB RAM
+
+$178.56
+
+
+
+
+
+4vCPU 8GB RAM
+
+
+
+$86
+$40
+
+
+4vCPU 15GB RAM
+
+
+$97.09
+
+
+
+
+4vCPU 15GB RAM
+$134
+
+
+$134
+
+
+
+6vCPU 16GB RAM
+
+
+
+$159
+$80
+
+
+8vCPU 14GB RAM
+
+$357.12
+
+
+
+
+
+8vCPU 16GB RAM
+
+
+
+$184
+
+
+
+8vCPU 30GB RAM
+
+
+$194.18
+
+
+
+
+8vCPU 32GB RAM
+$219.64
+
+
+$280
+$160
+
+
+8vCPU 49GB RAM
+
+
+
+$328
+
+
+
+8vCPU 56GB RAM
+
+$744
+
+
+
+
+
+16vCPU 32GB RAM
+$412.53
+
+
+
+
+
+
+8vCPU 65GB RAM
+
+
+
+$408
+
+
+
+12vCPU 65GB RAM
+
+
+
+$626
+
+
+
+16vCPU 32GB RAM
+
+
+$388.36
+$746
+
+
+
+16vCPU 65GB RAM
+
+
+
+
+$320
+
+
+20vCPU 65GB RAM
+
+
+
+
+$826
+
+
+12vCPU 112GB RAM
+
+$1339.20
+
+
+
+
+
+16vCPU 112GB RAM
+
+$1450.80
+
+
+
+
+
+20vCPU 98GB RAM
+
+
+
+
+$986
+
+
+36vCPU 60GB RAM
+$825.06
+
+
+
+
+
+
+20vCPU 131GB RAM
+
+
+
+
+$1146
+
+
+32vCPU 120GB RAM
+
+
+$776.72
+
+
+
+
+16vCPU 224GB RAM
+
+$1935.1
+
+
+
+
+
+20vCPU 196GB RAM
+
+
+
+
+$1466
+
+
+20vCPU 262GB RAM
+
+
+
+
+$1786
+
+
+24vCPU 224GB RAM
+
+$2678.40
+
+
+
+
+
+64vCPU 240GB RAM
+
+
+$1553.44
+
+
+
+
+32vCPU 488GB RAM
+$3997.19
+
+
+
+
+
+
+Reliability[edit]
+To make EC2 more fault-tolerant, Amazon engineered Availability Zones that are designed to be insulated from failures in other availability zones. Availability zones do not share the same infrastructure. Applications running in more than one availability zone can achieve higher availability.[43]
+EC2 provides users with control over the geographical location of instances that allows for latency optimization and high levels of redundancy. For example, to minimize downtime, a user can set up server instances in multiple zones that are insulated from each other for most causes of failure such that one backs up the other.
+Higher-availability database services, like Amazon Relational Database Service run separately from EC2 instances.
+Issues[edit]
+In early July 2008, the anti-spam organizations Outblaze and Spamhaus.org began blocking Amazon's EC2 address pool due to problems with the distribution of spam and malware.[44]
+On December 1, 2010, Amazon pulled its service to WikiLeaks after coming under political pressure in the US.[45] The Internet group Anonymous attempted to attack EC2 in revenge; however, Amazon was not affected by the attack.[46]
+Amazon's websites were temporarily offline on December 12, 2010, although it was initially unclear if this was due to attacks or a hardware failure. An Amazon official later stated that it was due to a hardware failure.[47]
+
+
+
+Wikinews has related news: Amazon server outage affects Reddit, other websites
+
+
+Shortly before 5 am ET on April 21, 2011, an outage started at EC2's Northern Virginia data center that brought down several websites, including Foursquare, Springpad, Reddit, Quora, and Hootsuite.[48][49][50] Specifically, attempts to use Amazon's elastic-disk and database services hung, failed, or were slow. Service was restored to some parts of the datacenter (three of four "availability zones" in Amazon's terms) by late afternoon Eastern time that day;[51] problems for at least some customers were continuing as of April 25.[52] 0.07% of EBS volumes in one zone have also been lost; EBS failures were a part of normal operation even before this outage and were a risk documented by Amazon,[53] though the number of failures and the number of simultaneous failures may find some EC2 users unprepared.
+On Sunday August 6, 2011, Amazon suffered a power outage in one of their Ireland availability zones.[54] Lightning was originally blamed for the outage; however, on August 11, Irish energy supplier ESB Networks dismissed this as a cause, but at time of writing, could not confirm what the cause of the problem was.[55] The power outage raised multiple questions regarding Amazon's EBS infrastructure, which caused several bugs in their software to be exposed. The bugs resulted in some customers' data being deleted when recovering EBS volumes in a mid-write operation during the crash.[56]
+August 8, 2011 saw another network connectivity outage of Amazon's Northern Virginia datacenter, knocking out the likes of Reddit, Quora, Netflix and FourSquare.[57] The outage lasted around 25 minutes.
+Another Northern Virginia datacenter outage occurred on October 22, 2012, from approximately 10 am to 4 pm PT. Edmodo, Airbnb, Flipboard, Reddit, and other customers were affected. Anonymous claimed responsibility, however Amazon denied this assertion.[58]
+See also[edit]
+
+
+AppScale
+Bitnami
+CopperEgg
+ElasticHosts
+Eucalyptus (computing)
+FlexiScale
+FUJITSU Cloud IaaS Trusted Public S5
+GoGrid
+Google App Engine
+Google Cloud Platform
+GreenQloud
+Internap
+Linode
+Lunacloud
+Microsoft Azure
+Nimbula
+OpenShift
+OrionVM
+OVH
+Rackspace Cloud
+RightScale
+Savvis
+TurnKey Linux Virtual Appliance Library
+Zadara Storage
+
+
+Notes[edit]
+
+
+
+^ $109 for a three-year Heavy Utilization Reserved t2.micro Instances reservation amortized over thirty-six months plus one month at $0.002/hour.
+
+
+
+References[edit]
+
+
+^ LaMonica, Martin (March 27, 2008). "Amazon Web Services adds 'resiliency' to EC2 compute service". CNet News. Retrieved August 1, 2009. 
+^ AWS Cloud Tour 2011 | Australia: Event Highlights (video). 
+^ Barr, Jeff (August 25, 2006). "Amazon EC2 Beta". Amazon Web Services Blog. Retrieved May 31, 2013. 
+^ Jinesh (October 16, 2007). "Amazon EC2 Gets More Muscle". 
+^ Barr, Jeff (May 29, 2008). "More EC2 power". Amazon Web Services Blog. Retrieved August 1, 2009. 
+^ Amazon EC2 Instances. Aws.amazon.com. Retrieved on 2013-08-09.
+^ Barr, Jeff (March 27, 2008). "New EC2 Features". Amazon Web Services Blog. Retrieved August 1, 2009. 
+^ a b Barr, Jeff (August 20, 2008). "Amazon EBS (Elastic Block Store) - Bring Us Your Data". Amazon Web Services Blog. Archived from the original on March 28, 2011. Retrieved May 31, 2013. 
+^ a b Barr, Jeff (August 23, 2008). "Big Day For EC2". Amazon Web Services Blog. Retrieved August 1, 2009. 
+^ Barr, Jeff (May 18, 2009). "New Features for EC2". Amazon Web Services Blog. Retrieved August 1, 2009. 
+^ "Amazon's early efforts at cloud computing? Partly accidental". June 17, 2010. 
+^ "Citrix and Amazon Web Services (AWS)". citrix.com. Retrieved October 23, 2013. 
+^ "Now Available – Compute-Intensive C5 Instances for Amazon EC2". amazon.com. Retrieved November 7, 2017. 
+^ "Amazon EC2 FAQs". amazon.com. Retrieved November 7, 2017. 
+^ "AWS re:Invent 2017: NEW LAUNCH! Amazon EC2 Bare Metal Instances (CMP330)". amazon.com. Retrieved December 4, 2017. 
+^ J. Dejun, G. Pierre and C.-H. Chi. EC2 Performance Analysis for Resource Provisioning of Service-Oriented Applications. In Proceedings of the Workshop on Non-Functional Properties and SLA Management in Service-Oriented Computing, November 2009.
+^ "AWS launches bare metal instances". techcrunch.com. Retrieved December 4, 2017. 
+^ "Amazon EC2 Instance Types – Amazon Web Services (AWS)". Amazon Web Services, Inc. Retrieved 2017-12-31. 
+^ "Amazon EC2 Pricing". amazon.com. Retrieved December 5, 2012. 
+^ "Technical Report CS-2011-09". cs.technion.ac.il. Retrieved December 5, 2012. 
+^ Amazon Elastic Compute Cloud (Amazon EC2), Cloud Computing Servers. Aws.amazon.com (2014-07-01). Retrieved on 2014-07-01.
+^ "AWS Lowers its Pricing Again! – No Inbound Data Transfer Fees and Lower Outbound Data Transfer for All Services including Amazon CloudFront". typepad.com. June 29, 2011. Archived from the original on July 7, 2011. Retrieved July 6, 2011. 
+^ "AWS Free Usage Tier". 
+^ "FAQs". Amazon Web Services, Inc. Retrieved 2015-07-31. 
+^ "Additional Reserved Instance Options for Amazon EC2". Amazon. 
+^ "A Quick Start Guide To AWS Regional & Convertible Reservations | CloudHealth Technologies". www.cloudhealthtech.com. Retrieved 2016-10-04. 
+^ Shankland, Stephen (October 23, 2008). "Amazon's Linux cloud computing out of beta, joined by Windows". CNet News. Retrieved October 24, 2008. 
+^ "Amazon Elastic Compute Cloud (EC2) Running Microsoft Windows Server and SQL Server". Amazon.com. October 23, 2008. Archived from the original on 1 December 2008. Retrieved October 25, 2008. 
+^ NetBSD Blog. Blog.netbsd.org (2011-03-13). Retrieved on 2013-08-09.
+^ "Windows Server 2012 Now Available on AWS". Amazon.com. November 19, 2012. Retrieved March 26, 2014. 
+^ Barr, Jeff. "Interview - Live from AWS re:Invent Colin Percival, FreeBSD Developer". Amazon Web Services 28.11.2012. Retrieved 25 May 2015. 
+^ "AWS Marketplace – Additional EC2 Operating System Support (FreeBSD, Debian, CentOS)". Amazon. 
+^ Percival, Colin. "How to build FreeBSD/EC2 images". Colin Percival. Retrieved 25 May 2015. 
+^ Percival, Colin. "FreeBSD on EC2". Colin Percival. Retrieved 25 May 2015. 
+^ "Colin Percival". awsmarketplace. Amazon Web Services, Inc. Retrieved 25 May 2015. 
+^ Percival, Colin. "About Tarsnap". Tarsnap and C. Percival. Retrieved 25 May 2015. 
+^ "Amazon Linux AMI 2013.03 Release Notes". AWS web site. Retrieved May 31, 2013. 
+^ "Introduction to EBS Volumes". 1201 Restart.com. December 2010. Retrieved December 18, 2010. 
+^ "Henry". "Cloudwatch for memory usage"
+^ AWS in Action & Wittig (2016), pp. 372-375.
+^ Mao, Ming; M. Humphrey (2012). "A Performance Study on the VM Startup Time in the Cloud". Proceedings of 2012 IEEE 5th International Conference on Cloud Computing (Cloud2012): 423. doi:10.1109/CLOUD.2012.103. ISBN 978-1-4673-2892-0. 
+^ "Amazon AWS vs Microsoft Azure vs Google Cloud vs Kamatera vs Vultr - 5 Best Cloud Services". 5 Best Cloud Services. 2017-12-02. Retrieved 2017-12-24. 
+^ Wittig, Andreas; Wittig, Michael (2016). Amazon Web Services in Action. Manning Press. pp. 290–294. ISBN 978-1-61729-288-0. 
+^ Krebs, Brian (July 1, 2008). "Amazon: Hey Spammers, Get Off My Cloud!". Washington Post. Retrieved August 1, 2009. 
+^ MacAskill, Ewen (December 2, 2010). "WikiLeaks website pulled by Amazon after US political pressure". The Guardian. London. 
+^ "WikiLeaks cables: Shell, Operation Payback and Assange for the Nobel prize – as it happened". The Guardian. December 9, 2010. Retrieved May 31, 2013. 
+^ "Amazon says outage in Europe due to hardware failure, not hacking attack". The Guardian. December 13, 2010. Retrieved May 31, 2013. 
+^ Pepitone, Julianne (April 21, 2011). "Amazon EC2 outage downs Reddit, Quora". CNN. 
+^ Lohr, Steve (April 22, 2011). "Amazon Malfunction Raises Doubts About Cloud Computing". The New York Times. 
+^ "Cloud storm, EC2 startup takedown". DoesWhat. April 21, 2011. 
+^ 6:18 pm PDT April 21, 2011, entry, says "all Availability Zones except one have been functioning normally for the past 5 hours."
+^ April 25 entry.
+^ Amazon Elastic Block Store (EBS) section "Volume Durability"
+^ "Lightning strikes Amazon's European cloud". August 8, 2011. 
+^ "Amazon web outage not caused by lightning". August 11, 2011. 
+^ "AWS cloud accidentally deletes customer data". August 10, 2011. 
+^ "Amazon cloud outage downs Netflix, Quora". August 9, 2011. 
+^ "Amazon cloud outage impacts Reddit, Airbnb, Flipboard". October 22, 2012. 
+
+
+External links[edit]
+
+Official website
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Amazon
+
+
+
+People
+
+
+
+
+Current
+
+
+
+Jeff Bezos
+Tony Hsieh
+Werner Vogels
+Gregg Zehr
+
+
+
+
+
+Former
+
+
+
+Rick Dalzell
+Brian McBride
+Ram Shriram
+Tom Szkutak
+Brian Valentine
+Christopher North
+
+
+
+
+
+
+
+
+Facilities
+
+
+
+Doppler
+Day 1
+HQ2
+
+
+
+
+
+Products
+and services
+
+
+
+
+Websites
+
+
+
+A9.com
+AbeBooks
+Amazon.com
+Alexa Internet
+Book Depository
+BookFinder
+China
+Curse
+Digital Photography Review
+Fresh
+Goodreads
+IMDb
+
+Box Office Mojo
+Withoutabox
+
+
+Junglee.com
+Local
+Marketplace
+Payments
+Twitch.tv
+Wireless
+Woot.com
+Zappos
+Souq.com
+
+
+
+
+
+Web services
+
+
+
+AMI
+CloudFront
+DynamoDB
+EBS
+EC2
+MTurk
+Neptune
+Product Advertising API
+RDS
+S3
+SES
+SimpleDB
+SQS
+VPC
+Silk
+Glacier
+Storywriter
+
+
+
+
+
+Digital
+
+
+
+Alexa
+Appstore
+Audible
+ComiXology
+Amazon Drive
+Video
+Prime
+
+Key
+Prime Music
+Prime Now
+Prime Pantry
+Prime Video
+
+
+Kindle Store
+Music
+Reflexive Entertainment
+Fire OS
+Amazon Digital Game Store
+
+
+
+
+
+Devices
+
+
+
+Blink Home
+Cloud Cam
+Dash buttons
+Dash wand
+Echo
+
+Show
+
+
+Kindle
+Kindle Fire
+
+Fire HD
+Fire HDX
+
+
+Fire TV
+
+Stick
+
+
+Fire Phone
+
+
+
+
+
+Technology
+
+
+
+1-Click
+Amazon Game Studios
+Amazon Robotics
+Carbonado
+Dynamo
+Graphiq
+Gurupa
+Lab126
+Double Helix Games
+Obidos
+Liquavista
+
+
+
+
+
+Publishing
+
+
+
+Amazon Publishing
+Amazon Studios
+Breakthrough Novel Award
+Best Books of the Year
+Kindle Direct Publishing
+
+
+
+
+
+Retail
+
+
+
+Amazon Books
+Amazon Go
+Treasure Truck
+Whole Foods Market
+
+
+
+
+
+Logistics
+
+
+
+Amazon Air
+Amazon Prime Air
+
+
+
+
+
+Former
+
+
+
+43 Things
+Askville
+Amapedia
+Amie Street (Songza)
+CDNow
+Diapers.com
+Endless.com
+Lexcycle
+LivingSocial
+LoveFilm
+Mobipocket
+PlanetAll
+Sellaband
+Shelfari
+
+
+
+
+
+
+
+
+Other
+
+
+
+Amazon Light
+ASIN
+Controversies (tax)
+Fishbowl
+Locker
+Perfect 10, Inc. v. Amazon.com, Inc.
+Statistically improbable phrase
+Vine
+List of Amazon brands
+List of Amazon locations
+List of mergers and acquisitions by Amazon
+List of Amazon products and services
+LibraryThing
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Cloud computing
+
+
+
+Applications
+
+
+
+Box
+Google
+
+G Suite
+Docs, Sheets and Slides
+
+
+HP Cloud (closed)
+Microsoft Online
+Rackspace
+Salesforce
+Zoho
+
+
+
+
+
+Platforms
+
+
+
+Alpha7
+Amazon
+AppScale
+Box
+Bluemix
+Cloud Foundry
+Cocaine (PaaS)
+Engine Yard
+eXo Platform
+Helion
+GE Predix
+Google App Engine
+GreenQloud
+Heroku
+Inktank
+Jelastic
+Mendix
+Microsoft Azure
+OutSystems
+openQRM
+OpenShift
+PythonAnywhere
+RightScale
+Force.com
+SAP Cloud Platform
+VMware vCloud Air
+WaveMaker
+
+
+
+
+
+Infrastructure
+
+
+
+Amazon
+Abiquo Enterprise Edition
+CloudStack
+CtrlS
+DigitalOcean
+EMC Atmos
+Eucalyptus
+Fujitsu
+GoGrid
+Google Cloud Platform
+GreenButton
+GreenQloud
+IBM cloud computing
+iland
+Joyent
+Lunacloud
+Nimbula
+Nimbus
+OpenNebula
+OpenStack
+OrionVM
+Rackspace Cloud
+SoftLayer
+Zadara Storage
+libvirt
+libguestfs
+OVirt
+Virtual Machine Manager
+Wakame-vdc
+Virtual Private Cloud OnDemand
+
+
+
+
+
+Technologies
+
+
+
+Cloud database
+Data centers
+Distributed file system for cloud
+Hardware virtualization
+Internet
+Networking
+Security
+Structured storage
+Virtual appliance
+Web APIs
+Virtual private cloud
+
+
+
+
+
+
+
+
+ Category
+ Commons
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Amazon_Elastic_Compute_Cloud&oldid=818541811"					Categories: Amazon Web ServicesCloud computingCloud computing providersCloud infrastructureCloud infrastructure attacks & failuresCloud platformsWeb servicesHidden categories: Wikipedia introduction cleanup from July 2014All pages needing cleanupArticles covered by WikiProject Wikify from July 2014All articles covered by WikiProject WikifyWikipedia articles needing reorganization from February 2015Articles with multiple maintenance issuesPages using deprecated image syntaxArticles containing potentially dated statements from December 2012All articles containing potentially dated statementsArticles containing potentially dated statements from October 2016Articles containing potentially dated statements from December 2010

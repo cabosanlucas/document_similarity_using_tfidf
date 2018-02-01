@@ -1,0 +1,1219 @@
+"High-performance computing" redirects here. For narrower definitions of HPC, see High-throughput computing and Many-task computing. For other uses, see Supercomputer (disambiguation).
+
+
+
+
+The IBM Blue Gene/P supercomputer "Intrepid" at Argonne National Laboratory runs 164,000 processor cores using normal data center air conditioning, grouped in 40 racks/cabinets connected by a high-speed 3-D torus network.[1][2]
+
+
+A supercomputer is a computer with a high level of computing performance compared to a general-purpose computer. Performance of a supercomputer is measured in floating-point operations per second (FLOPS) instead of million instructions per second (MIPS). As of 2017, there are supercomputers which can perform up to nearly a hundred quadrillions of FLOPS[3], measured in P(eta)FLOPS.[4] As of November 2017, all of the world's fastest 500 supercomputers run Linux-based operating systems.[5]
+Supercomputers play an important role in the field of computational science, and are used for a wide range of computationally intensive tasks in various fields, including quantum mechanics, weather forecasting, climate research, oil and gas exploration, molecular modeling (computing the structures and properties of chemical compounds, biological macromolecules, polymers, and crystals), and physical simulations (such as simulations of the early moments of the universe, airplane and spacecraft aerodynamics, the detonation of nuclear weapons, and nuclear fusion). Throughout their history, they have been essential in the field of cryptanalysis.[6]
+Supercomputers were introduced in the 1960s, and for several decades the fastest were made by Seymour Cray at Control Data Corporation (CDC), Cray Research and subsequent companies bearing his name or monogram. The first such machines were highly tuned conventional designs that ran faster than their more general-purpose contemporaries. Through the 1960s, they began to add increasing amounts of parallelism with one to four processors being typical. From the 1970s, the vector computing concept with specialized math units operating on large arrays of data came to dominate. A notable example is the highly successful Cray-1 of 1976. Vector computers remained the dominant design into the 1990s. From then until today, massively parallel supercomputers with tens of thousands of off-the-shelf processors became the norm.[7][8]
+The US has long been a leader in the supercomputer field, first through Cray's almost uninterrupted dominance of the field, and later through a variety of technology companies. Japan made major strides in the field in the 1980s and 90s, but since then China has become increasingly important. As of June 2016, the fastest supercomputer on the TOP500 supercomputer list is the Sunway TaihuLight, in China, with a LINPACK benchmark score of 93 PFLOPS, exceeding the previous record holder, Tianhe-2, by around 59 PFLOPS. Sunway TaihuLight's emergence is also notable for its use of indigenous chips, and is the first Chinese computer to enter the TOP500 list without using hardware from the United States. As of June 2016, China, for the first time, had more computers (167) on the TOP500 list than the United States (165). However, US built computers held ten of the top 20 positions;[9][10] as of November 2017, the U.S. has four of the top 10 and China two, in fact the top two.
+
+
+
+Contents
+
+
+1 History
+2 Hardware and architecture
+
+2.1 Early machines; simple but fast
+2.2 Vector designs
+2.3 Massively parallel designs
+2.4 Energy usage and heat management
+
+
+3 Software and system management
+
+3.1 Operating systems
+3.2 Software tools and message passing
+
+
+4 Distributed supercomputing
+
+4.1 Opportunistic approaches
+4.2 Quasi-opportunistic approaches
+
+
+5 HPC in the Cloud
+6 Performance measurement
+
+6.1 Capability versus capacity
+6.2 Performance metrics
+6.3 The TOP500 list
+
+
+7 Largest Supercomputer Vendors according to the total Rmax (GFLOPS) operated
+8 Applications
+9 Research and development trends
+10 Energy use
+11 In fiction
+12 See also
+13 Notes and references
+14 External links
+
+
+
+History[edit]
+Main article: History of supercomputing
+
+
+
+
+A Cray-1 preserved at the Deutsches Museum
+
+
+The history of supercomputing goes back to the 1960s, with the Atlas at the University of Manchester, the IBM 7030 Stretch and a series of computers at Control Data Corporation (CDC), designed by Seymour Cray. These used innovative designs and parallelism to achieve superior computational peak performance.[11]
+The Atlas was a joint venture between Ferranti and the Manchester University and was designed to operate at processing speeds approaching one microsecond per instruction, about one million instructions per second.[12] The first Atlas was officially commissioned on 7 December 1962 as one of the world's first supercomputers  –  considered to be the most powerful computer in the world at that time by a considerable margin, and equivalent to four IBM 7094s.[13]
+For the CDC 6600 (which Cray designed) released in 1964, a switch from using germanium to silicon transistors was implemented, as they could run very fast, solving the overheating problem by introducing refrigeration,[14] and helped to make it the fastest in the world. Given that the 6600 outperformed all the other contemporary computers by about 10 times, it was dubbed a supercomputer and defined the supercomputing market, when one hundred computers were sold at $8 million each.[15][16][17][18]
+Cray left CDC in 1972 to form his own company, Cray Research.[16] Four years after leaving CDC, Cray delivered the 80 MHz Cray 1 in 1976, and it became one of the most successful supercomputers in history.[19][20] The Cray-2 released in 1985 was an 8 processor liquid cooled computer and Fluorinert was pumped through it as it operated. It performed at 1.9 gigaFLOPS and was the world's second fastest after M-13 supercomputer in Moscow .[21]
+In 1982, Osaka University's LINKS-1 Computer Graphics System used a massively parallel processing architecture, with 514 microprocessors, including 257 Zilog Z8001 control processors and 257 iAPX 86/20 floating-point processors. It was mainly used for rendering realistic 3D computer graphics.[22]
+While the supercomputers of the 1980s used only a few processors, in the 1990s, machines with thousands of processors began to appear in Japan and the United States, setting new computational performance records. Fujitsu's Numerical Wind Tunnel supercomputer used 166 vector processors to gain the top spot in 1994 with a peak speed of 1.7 gigaFLOPS (GFLOPS) per processor.[23][24] The Hitachi SR2201 obtained a peak performance of 600 GFLOPS in 1996 by using 2048 processors connected via a fast three-dimensional crossbar network.[25][26][27] The Intel Paragon could have 1000 to 4000 Intel i860 processors in various configurations, and was ranked the fastest in the world in 1993. The Paragon was a MIMD machine which connected processors via a high speed two dimensional mesh, allowing processes to execute on separate nodes, communicating via the Message Passing Interface.[28]
+Hardware and architecture[edit]
+Main articles: Supercomputer architecture and Parallel computer hardware
+
+
+
+
+A Blue Gene/L cabinet showing the stacked blades, each holding many processors
+
+
+Approaches to supercomputer architecture have taken dramatic turns since the earliest systems were introduced in the 1960s.
+Early machines; simple but fast[edit]
+Early supercomputer architectures pioneered by Seymour Cray relied on compact designs and local parallelism to achieve superior computational performance.[11] Cray had noted that increasing processor speeds did little if the rest of the system did not also improve; the CPU would end up waiting longer for data to arrive from the offboard storage units. The CDC 6600, the first mass-produced supercomputer, solved this problem by providing ten simple computers whose only purpose was to read and write data to and from main memory, allowing the CPU to concentrate solely on processing the data. This made both the main CPU and the ten "PPU" units much simpler. As such, they were physically smaller and reduced the amount of wiring between the various parts. This reduced the electrical signaling delays and allowed the system to run at a higher clock speed. The 6600 outperformed all other machines by an average of 10 times when it was introduced.
+The CDC 6600's spot as the fastest computer was eventually replaced by its successor, the CDC 7600. This design was very similar to the 6600 in general organization but added instruction pipelining to further improve performance. Generally speaking, every computer instruction required several steps to process; first, the instruction is read from memory, then any required data it refers to is read, the instruction is processed, and the results are written back out to memory. Each of these steps is normally accomplished by separate circuitry. In most early computers, including the 6600, each of these steps runs in turn, and while any one unit is currently active, the hardware handling the other parts of the process is idle. In the 7600, as soon as one instruction cleared a particular unit, that unit began processing the next instruction. Although each instruction takes the same time to complete, there are parts of several instructions being processed at the same time, offering much-improved overall performance. This, combined with further packaging improvements and improvements in the electronics, made the 7600 about four to ten times as fast as the 6600.
+Vector designs[edit]
+The 7600 was intended to be replaced by the CDC 8600, which was essentially four 7600's in a small box. However, this design ran into intractable problems and was eventually canceled in 1974 in favor of another CDC design, the CDC STAR-100. The STAR was essentially a simplified and slower version of the 7600, but it was combined with new circuits that could rapidly process sequences of math instructions. The basic idea was similar to the pipeline in the 7600 but geared entirely toward math, and in theory, much faster. In practice, the STAR proved to have poor real-world performance, and ultimately only two or three were built.
+Cray, meanwhile, had left CDC and formed his own company. Considering the problems with the STAR, he designed an improved version of the same basic concept but replaced the STAR's memory-based vectors with ones that ran in large registers. Combining this with his famous packaging improvements produced the Cray-1. This completely outperformed every computer in the world, save one, and would ultimately sell about 80 units, making it one of the most successful supercomputer systems in history. Through the 1970s, 80s and 90s a series of machines from Cray further improved on these basic concepts.
+The basic concept of using a pipeline dedicated to processing large data units became known as vector processing, and came to dominate the supercomputer field. A number of Japanese firms also entered the field, producing similar concepts in much smaller machines. Three main lines were produced by these companies, the Fujitsu VP, Hitachi HITAC and NEC SX series, all announced in the early 1980s and updated continually into the 1990s. CDC attempted to re-enter this market with the ETA10 but this was not very successful. Convex Computer took another route, introducing a series of much smaller vector machines aimed at smaller businesses.
+Massively parallel designs[edit]
+The only computer to seriously challenge the Cray-1's performance in the 1970s was the ILLIAC IV. This machine was the first realized example of a true massively parallel computer, in which many processors worked together to solve different parts of a single larger problem. In contrast with the vector systems, which were designed to run a single stream of data as quickly as possible, in this concept, the computer instead feeds separate parts of the data to entirely different processors and then recombines the results. The ILLIAC's design was finalized in 1966 with 256 processors and offer speed up to 1 GFLOPS, compared to the 1970s Cray-1's peak of 250 MFLOPS. However, development problems led to only 64 processors being built, and the system could never operate faster than about 200 MFLOPS, while being much larger and more complex than the Cray. Another problem was that writing software for the system was difficult, and getting peak performance from it was a matter of serious effort.
+But the partial success of the ILLIAC IV was widely seen as pointing the way to the future of supercomputing. Cray argued against this, famously quipping that "If you were plowing a field, which would you rather use? Two strong oxen or 1024 chickens?"[29] But by the early 1980s, several teams were working on parallel designs with thousands of processors, notably the Connection Machine (CM) that developed from research at MIT. The CM-1 used as many as 65,536 simplified custom microprocessors connected together in a network to share data. Several updated versions followed; the CM-5 supercomputer is a massively parallel processing computer capable of many billions of arithmetic operations per second.[30]
+Software development remained a problem, but the CM series sparked off considerable research into this issue. Similar designs using custom hardware were made by many companies, including the Evans & Sutherland ES-1, MasPar, nCUBE, Intel iPSC and the Goodyear MPP. But by the mid-1990s, general-purpose CPU performance had improved so much in that a supercomputer could be built using them as the individual processing units, instead of using custom chips. By the turn of the 21st century, designs featuring tens of thousands of commodity CPUs were the norm, with later machines adding graphic units to the mix.[7][8]
+Throughout the decades, the management of heat density has remained a key issue for most centralized supercomputers.[31][32][33] The large amount of heat generated by a system may also have other effects, e.g. reducing the lifetime of other system components.[34] There have been diverse approaches to heat management, from pumping Fluorinert through the system, to a hybrid liquid-air cooling system or air cooling with normal air conditioning temperatures.[35][36]
+
+
+
+
+The CPU share of TOP500
+
+
+Systems with a massive number of processors generally take one of two paths. In the grid computing approach, the processing power of many computers, organised as distributed, diverse administrative domains, is opportunistically used whenever a computer is available.[37] In another approach, a large number of processors are used in proximity to each other, e.g. in a computer cluster. In such a centralized massively parallel system the speed and flexibility of the interconnect becomes very important and modern supercomputers have used various approaches ranging from enhanced Infiniband systems to three-dimensional torus interconnects.[38][39] The use of multi-core processors combined with centralization is an emerging direction, e.g. as in the Cyclops64 system.[40][41]
+As the price, performance and energy efficiency of general purpose graphic processors (GPGPUs) have improved,[42] a number of petaFLOPS supercomputers such as Tianhe-I and Nebulae have started to rely on them.[43] However, other systems such as the K computer continue to use conventional processors such as SPARC-based designs and the overall applicability of GPGPUs in general-purpose high-performance computing applications has been the subject of debate, in that while a GPGPU may be tuned to score well on specific benchmarks, its overall applicability to everyday algorithms may be limited unless significant effort is spent to tune the application towards it.[44][45] However, GPUs are gaining ground and in 2012 the Jaguar supercomputer was transformed into Titan by retrofitting CPUs with GPUs.[46][47][48]
+High performance computers have an expected life cycle of about three years before requiring an upgrade.[49]
+A number of "special-purpose" systems have been designed, dedicated to a single problem. This allows the use of specially programmed FPGA chips or even custom ASICs, allowing better price/performance ratios by sacrificing generality. Examples of special-purpose supercomputers include Belle,[50] Deep Blue,[51] and Hydra,[52] for playing chess, Gravity Pipe for astrophysics,[53] MDGRAPE-3 for protein structure computation molecular dynamics[54] and Deep Crack,[55] for breaking the DES cipher.
+Energy usage and heat management[edit]
+See also: Computer cooling and Green 500
+A typical supercomputer consumes large amounts of electrical power, almost all of which is converted into heat, requiring cooling. For example, Tianhe-1A consumes 4.04 megawatts (MW) of electricity.[56] The cost to power and cool the system can be significant, e.g. 4 MW at $0.10/kWh is $400 an hour or about $3.5 million per year.
+
+
+
+
+An IBM HS20 blade
+
+
+Heat management is a major issue in complex electronic devices and affects powerful computer systems in various ways.[57] The thermal design power and CPU power dissipation issues in supercomputing surpass those of traditional computer cooling technologies. The supercomputing awards for green computing reflect this issue.[58][59][60]
+The packing of thousands of processors together inevitably generates significant amounts of heat density that need to be dealt with. The Cray 2 was liquid cooled, and used a Fluorinert "cooling waterfall" which was forced through the modules under pressure.[35] However, the submerged liquid cooling approach was not practical for the multi-cabinet systems based on off-the-shelf processors, and in System X a special cooling system that combined air conditioning with liquid cooling was developed in conjunction with the Liebert company.[36]
+In the Blue Gene system, IBM deliberately used low power processors to deal with heat density.[61] The IBM Power 775, released in 2011, has closely packed elements that require water cooling.[62] The IBM Aquasar system uses hot water cooling to achieve energy efficiency, the water being used to heat buildings as well.[63][64]
+The energy efficiency of computer systems is generally measured in terms of "FLOPS per watt". In 2008, IBM's Roadrunner operated at 3.76 MFLOPS/W.[65][66] In November 2010, the Blue Gene/Q reached 1,684 MFLOPS/W.[67][68] In June 2011 the top 2 spots on the Green 500 list were occupied by Blue Gene machines in New York (one achieving 2097 MFLOPS/W) with the DEGIMA cluster in Nagasaki placing third with 1375 MFLOPS/W.[69]
+Because copper wires can transfer energy into a supercomputer with much higher power densities than forced air or circulating refrigerants can remove waste heat,[70] the ability of the cooling systems to remove waste heat is a limiting factor.[71][72] As of 2015[update], many existing supercomputers have more infrastructure capacity than the actual peak demand of the machine  –  designers generally conservatively design the power and cooling infrastructure to handle more than the theoretical peak electrical power consumed by the supercomputer. Designs for future supercomputers are power-limited  –  the thermal design power of the supercomputer as a whole, the amount that the power and cooling infrastructure can handle, is somewhat more than the expected normal power consumption, but less than the theoretical peak power consumption of the electronic hardware.[73]
+
+Software and system management[edit]
+Operating systems[edit]
+Main article: Supercomputer operating systems
+Since the end of the 20th century, supercomputer operating systems have undergone major transformations, based on the changes in supercomputer architecture.[74] While early operating systems were custom tailored to each supercomputer to gain speed, the trend has been to move away from in-house operating systems to the adaptation of generic software such as Linux.[75]
+Since modern massively parallel supercomputers typically separate computations from other services by using multiple types of nodes, they usually run different operating systems on different nodes, e.g. using a small and efficient lightweight kernel such as CNK or CNL on compute nodes, but a larger system such as a Linux-derivative on server and I/O nodes.[76][77][78]
+While in a traditional multi-user computer system job scheduling is, in effect, a tasking problem for processing and peripheral resources, in a massively parallel system, the job management system needs to manage the allocation of both computational and communication resources, as well as gracefully deal with inevitable hardware failures when tens of thousands of processors are present.[79]
+Although most modern supercomputers use the Linux operating system, each manufacturer has its own specific Linux-derivative, and no industry standard exists, partly due to the fact that the differences in hardware architectures require changes to optimize the operating system to each hardware design.[74][80]
+Software tools and message passing[edit]
+Main article: Message passing in computer clusters
+See also: Parallel computing and Parallel programming model
+
+
+
+
+Wide-angle view of the ALMA correlator.[81]
+
+
+The parallel architectures of supercomputers often dictate the use of special programming techniques to exploit their speed. Software tools for distributed processing include standard APIs such as MPI and PVM, VTL, and open source-based software solutions such as Beowulf.
+In the most common scenario, environments such as PVM and MPI for loosely connected clusters and OpenMP for tightly coordinated shared memory machines are used. Significant effort is required to optimize an algorithm for the interconnect characteristics of the machine it will be run on; the aim is to prevent any of the CPUs from wasting time waiting on data from other nodes. GPGPUs have hundreds of processor cores and are programmed using programming models such as CUDA or OpenCL.
+Moreover, it is quite difficult to debug and test parallel programs. Special techniques need to be used for testing and debugging such applications.
+Distributed supercomputing[edit]
+Opportunistic approaches[edit]
+Main article: Grid computing
+
+
+
+
+Example architecture of a grid computing system connecting many personal computers over the internet
+
+
+Opportunistic Supercomputing is a form of networked grid computing whereby a "super virtual computer" of many loosely coupled volunteer computing machines performs very large computing tasks. Grid computing has been applied to a number of large-scale embarrassingly parallel problems that require supercomputing performance scales. However, basic grid and cloud computing approaches that rely on volunteer computing can not handle traditional supercomputing tasks such as fluid dynamic simulations.
+The fastest grid computing system is the distributed computing project Folding@home (F@h). F@h reported 101 PFLOPS of x86 processing power As of October 2016[update]. Of this, over 100 PFLOPS are contributed by clients running on various GPUs, and the rest from various CPU systems.[82]
+The Berkeley Open Infrastructure for Network Computing (BOINC) platform hosts a number of distributed computing projects. As of February 2017[update], BOINC recorded a processing power of over 166 PetaFLOPS through over 762 thousand active Computers (Hosts) on the network.[83]
+As of October 2016[update], Great Internet Mersenne Prime Search's (GIMPS) distributed Mersenne Prime search achieved about 0.313 PFLOPS through over 1.3 million computers.[84] The Internet PrimeNet Server supports GIMPS's grid computing approach, one of the earliest and most successful[citation needed] grid computing projects, since 1997.
+Quasi-opportunistic approaches[edit]
+Main article: Quasi-opportunistic supercomputing
+Quasi-opportunistic supercomputing is a form of distributed computing whereby the “super virtual computer” of many networked geographically disperse computers performs computing tasks that demand huge processing power.[85] Quasi-opportunistic supercomputing aims to provide a higher quality of service than opportunistic grid computing by achieving more control over the assignment of tasks to distributed resources and the use of intelligence about the availability and reliability of individual systems within the supercomputing network. However, quasi-opportunistic distributed execution of demanding parallel computing software in grids should be achieved through implementation of grid-wise allocation agreements, co-allocation subsystems, communication topology-aware allocation mechanisms, fault tolerant message passing libraries and data pre-conditioning.[85]
+HPC in the Cloud[edit]
+Cloud Computing with its recent and rapid expansions and development have grabbed the attention of HPC users and developers in recent years. Cloud Computing attempts to provide HPC-as-a-Service exactly like other forms of services currently available in the Cloud such as Software-as-a-Service, Platform-as-a-Service, and Infrastructure-as-a-Service. HPC users may benefit from the Cloud in different angles such as scalability, resources being on-demand, fast, and inexpensive. On the other hand, moving HPC applications have a set of challenges too. Good examples of such challenges are virtualization overhead in the Cloud, multi-tenancy of resources, and network latency issues. Much research[86][87][88][89] is currently being done to overcome these challenges and make HPC in the cloud a more realistic possibility.
+Performance measurement[edit]
+Capability versus capacity[edit]
+Supercomputers generally aim for the maximum in capability computing rather than capacity computing. Capability computing is typically thought of as using the maximum computing power to solve a single large problem in the shortest amount of time. Often a capability system is able to solve a problem of a size or complexity that no other computer can, e.g., a very complex weather simulation application.[90]
+Capacity computing, in contrast, is typically thought of as using efficient cost-effective computing power to solve a few somewhat large problems or many small problems.[90] Architectures that lend themselves to supporting many users for routine everyday tasks may have a lot of capacity, but are not typically considered supercomputers, given that they do not solve a single very complex problem.[90]
+Performance metrics[edit]
+See also: LINPACK benchmarks
+
+
+
+
+Top supercomputer speeds: logscale speed over 60 years
+
+
+In general, the speed of supercomputers is measured and benchmarked in "FLOPS" (FLoating point Operations Per Second), and not in terms of "MIPS" (Million Instructions Per Second), as is the case with general-purpose computers.[91] These measurements are commonly used with an SI prefix such as tera-, combined into the shorthand "TFLOPS" (1012 FLOPS, pronounced teraflops), or peta-, combined into the shorthand "PFLOPS" (1015 FLOPS, pronounced petaflops.) "Petascale" supercomputers can process one quadrillion (1015) (1000 trillion) FLOPS. Exascale is computing performance in the exaFLOPS (EFLOPS) range. An EFLOPS is one quintillion (1018) FLOPS (one million TFLOPS).
+No single number can reflect the overall performance of a computer system, yet the goal of the Linpack benchmark is to approximate how fast the computer solves numerical problems and it is widely used in the industry.[92] The FLOPS measurement is either quoted based on the theoretical floating point performance of a processor (derived from manufacturer's processor specifications and shown as "Rpeak" in the TOP500 lists), which is generally unachievable when running real workloads, or the achievable throughput, derived from the LINPACK benchmarks and shown as "Rmax" in the TOP500 list.[93] The LINPACK benchmark typically performs LU decomposition of a large matrix.[94] The LINPACK performance gives some indication of performance for some real-world problems, but does not necessarily match the processing requirements of many other supercomputer workloads, which for example may require more memory bandwidth, or may require better integer computing performance, or may need a high performance I/O system to achieve high levels of performance.[92]
+The TOP500 list[edit]
+Main article: TOP500
+Further information: History of supercomputing
+
+
+
+
+Distribution of TOP500 supercomputers among different countries, as of November 2015
+
+
+Since 1993, the fastest supercomputers have been ranked on the TOP500 list according to their LINPACK benchmark results. The list does not claim to be unbiased or definitive, but it is a widely cited current definition of the "fastest" supercomputer available at any given time.
+This is a recent list of the computers which appeared at the top of the TOP500 list,[95] and the "Peak speed" is given as the "Rmax" rating.
+
+
+
+
+Top 20 Supercomputers in the World, as of June 2013
+
+
+
+
+Year
+Supercomputer
+Peak speed
+(Rmax)
+Location
+
+
+2016
+Sunway TaihuLight
+93.01 PFLOPS
+Wuxi, China
+
+
+2013
+NUDT Tianhe-2
+33.86 PFLOPS
+Guangzhou, China
+
+
+2012
+Cray Titan
+17.59 PFLOPS
+Oak Ridge, U.S.
+
+
+2012
+IBM Sequoia
+17.17 PFLOPS
+Livermore, U.S.
+
+
+2011
+Fujitsu K computer
+10.51 PFLOPS
+Kobe, Japan
+
+
+2010
+Tianhe-IA
+2.566 PFLOPS
+Tianjin, China
+
+
+2009
+Cray Jaguar
+1.759 PFLOPS
+Oak Ridge, U.S.
+
+
+2008
+IBM Roadrunner
+1.026 PFLOPS
+Los Alamos, U.S.
+
+
+1.105 PFLOPS
+
+
+Largest Supercomputer Vendors according to the total Rmax (GFLOPS) operated[edit]
+See also: Grid computing § Fastest virtual supercomputers
+Source : TOP500
+
+
+Country/Vendor
+System count
+System share (%)
+Rmax (GFLOPS)
+Rpeak (GFLOPS)
+Processor cores
+
+
+ IBM
+27
+5.4
+56,428,002
+67,161,639
+4,611,236
+
+
+ Cray Inc.
+57
+11.4
+160,476,360
+229,400,160
+5,981,864
+
+
+ HPE
+143
+28.6
+124,430,645
+181,738,373
+4,996,780
+
+
+ NUDT
+4
+0.8
+39,271,790
+64,020,685
+3,534,336
+
+
+ SGI
+23
+4.6
+14,741,773
+17,963,102
+813,376
+
+
+ Fujitsu
+11
+2.2
+37,624,378
+51,859,986
+1,753,368
+
+
+ Bull
+18
+3.6
+24,362,683
+31,212,663
+978,924
+
+
+ Dell
+15
+3.0
+24,528,727
+42,623,632
+1,247,118
+
+
+ Atipa Technologies
+3
+0.6
+3,044,976
+4,163,712
+214,584
+
+
+ NEC/HP
+1
+0.2
+2,785,000
+5,735,685
+76,032
+
+
+ T-Platforms
+3
+0.6
+4,428,620
+6,355,903
+170,824
+
+
+ RSC Group
+1
+0.2
+658,112
+829,338
+19,936
+
+
+ Dawning
+2
+0.4
+1,451,600
+3,217,772
+151,360
+
+
+ Hitachi/Fujitsu
+1
+0.2
+1,018,000
+1,502,236
+222,072
+
+
+ Supermicro
+1
+0.2
+602,983
+677,376
+20,160
+
+
+ NRCPCET
+1
+0.2
+795,900
+1,070,160
+137,200
+
+
+ ClusterVision
+2
+0.4
+784,735
+881,254
+42,368
+
+
+ Intel
+1
+0.2
+758,873
+933,481
+51,392
+
+
+ Amazon
+2
+0.4
+724,269
+947,610
+43,520
+
+
+ Oracle
+2
+0.4
+708,300
+804,835
+68,672
+
+
+ MEGWARE
+3
+0.6
+610,521
+710,592
+54,800
+
+
+ NEC
+3
+0.6
+578,987
+709,520
+21,296
+
+
+ Adtech
+1
+0.2
+532,600
+1,098,000
+38,400
+
+
+ Hitachi
+2
+0.4
+496,900
+622,598
+20,544
+
+
+   IPE, Nvidia, Tyan
+1
+0.2
+496,500
+1,012,650
+29,440
+
+
+ Itautec
+2
+0.4
+411,800
+920,830
+27,776
+
+
+ Netweb Technologies
+1
+0.2
+388,442
+520,358
+30,056
+
+
+ Xenon Systems
+1
+0.2
+335,300
+472,498
+6,875
+
+
+   AMD, ASUS, FIAS, GSI
+1
+0.2
+316,700
+593,600
+10,976
+
+
+  Clustervision/Supermicro
+1
+0.2
+299,300
+588,749
+44,928
+
+
+  Niagara Computers, Supermicro
+1
+0.2
+289,500
+348,660
+5,310
+
+
+ Inspur
+1
+0.2
+196,234
+262,560
+8,412
+
+
+  HP/WIPRO
+1
+0.2
+188,700
+394,760
+12,532
+
+
+  PEZY Computing/Exascaler Inc.
+1
+0.2
+178,107
+395,264
+262,784
+
+
+ Acer Group
+1
+0.2
+177,100
+231,859
+26,244
+
+
+Applications[edit]
+The stages of supercomputer application may be summarized in the following table:
+
+
+Decade
+Uses and computer involved
+
+
+1970s
+Weather forecasting, aerodynamic research (Cray-1).[96]
+
+
+1980s
+Probabilistic analysis,[97] radiation shielding modeling[98] (CDC Cyber).
+
+
+1990s
+Brute force code breaking (EFF DES cracker).[99]
+
+
+2000s
+3D nuclear test simulations as a substitute for legal conduct Nuclear Non-Proliferation Treaty (ASCI Q).[100]
+
+
+2010s
+Molecular Dynamics Simulation (Tianhe-1A)[101]
+
+
+The IBM Blue Gene/P computer has been used to simulate a number of artificial neurons equivalent to approximately one percent of a human cerebral cortex, containing 1.6 billion neurons with approximately 9 trillion connections. The same research group also succeeded in using a supercomputer to simulate a number of artificial neurons equivalent to the entirety of a rat's brain.[102]
+Modern-day weather forecasting also relies on supercomputers. The National Oceanic and Atmospheric Administration uses supercomputers to crunch hundreds of millions of observations to help make weather forecasts more accurate.[103]
+In 2011, the challenges and difficulties in pushing the envelope in supercomputing were underscored by IBM's abandonment of the Blue Waters petascale project.[104]
+The Advanced Simulation and Computing Program currently uses supercomputers to maintain and simulate the United States nuclear stockpile.[105]
+Research and development trends[edit]
+
+
+
+
+Diagram of a three-dimensional torus interconnect used by systems such as Blue Gene, Cray XT3, etc.
+
+
+Given the current speed of progress, industry experts estimate that supercomputers will reach 1 EFLOPS (1018, 1,000 PFLOPS or one quintillion FLOPS) by 2018. The Chinese government in particular is pushing to achieve this goal after they achieved the most powerful supercomputer in the world with Tianhe-2 since 2013. Using the Intel MIC multi-core processor architecture, which is Intel's response to GPU systems, SGI also plans to achieve a 500-fold increase in performance by 2018 in order to achieve one EFLOPS. Samples of MIC chips with 32 cores, which combine vector processing units with standard CPU, have become available.[106] The Indian government has also stated ambitions for an EFLOPS-range supercomputer, which they hope to complete by 2017.[107] In November 2014, it was reported that India is working on the fastest supercomputer ever, which is set to work at 132 EFLOPS.[108]
+Erik P. DeBenedictis of Sandia National Laboratories theorizes that a zettaFLOPS (1021, one sextillion FLOPS) computer is required to accomplish full weather modeling, which could cover a two-week time span accurately.[109][110][111] Such systems might be built around 2030.[112]
+Many Monte Carlo simulations use the same algorithm to process a randomly generated data set; particularly, integro-differential equations describing physical transport processes, the random paths, collisions, and energy and momentum depositions of neutrons, photons, ions, electrons, etc. The next step for microprocessors may be into the third dimension; and specializing to Monte Carlo, the many layers could be identical, simplifying the design and manufacture process.[113]
+Energy use[edit]
+High performance supercomputers usually require high energy, as well. However, Iceland may be a benchmark for the future with the world's first zero-emission supercomputer. Located at the Thor Data Center in Reykjavik, Iceland, this supercomputer relies on completely renewable sources for its power rather than fossil fuels. The colder climate also reduces the need for active cooling, making it one of the greenest facilities in the world.[114]
+In fiction[edit]
+Main article: AI takeover
+Many science-fiction writers have depicted supercomputers in their works, both before and after the historical construction of such computers. Much of such fiction deals with the relations of humans with the computers they build and with the possibility of conflict eventually developing between them. Some scenarios of this nature appear on the AI-takeover page.
+Examples of supercomputers in fiction include HAL-9000, Multivac, The Machine Stops, GLaDOS, The Evitable Conflict and Vulcan's Hammer.
+See also[edit]
+
+
+
+Wikimedia Commons has media related to Supercomputers.
+
+
+
+ACM/IEEE Supercomputing Conference
+Jungle computing
+Nvidia Tesla Personal Supercomputer
+Parallel computing
+Supercomputing in China
+Supercomputing in Europe
+Supercomputing in India
+Supercomputing in Japan
+Supercomputing in Pakistan
+Testing high-performance computing applications
+Ultra Network Technologies
+
+Notes and references[edit]
+
+
+^ "IBM Blue gene announcement". 03.ibm.com. 26 June 2007. Retrieved 9 June 2012. 
+^ "Argonne National Laboratory, Intrepid". Retrieved 24 May 2017. 
+^ https://www.top500.org/news/china-tops-supercomputer-rankings-with-new-93-petaflop-machine/
+^ "The List: November 2015". Top 500. Retrieved 24 January 2016. 
+^ "Operating system Family / Linux". TOP500.org. Retrieved 30 November 2017. 
+^ Lemke, Tim (8 May 2013). "NSA Breaks Ground on Massive Computing Center". Retrieved 11 December 2013. 
+^ a b Hoffman, Allan R.; et al. (1990). Supercomputers: directions in technology and applications. National Academies. pp. 35–47. ISBN 0-309-04088-4. 
+^ a b Hill, Mark Donald; Jouppi, Norman Paul; Sohi, Gurindar (1999). Readings in computer architecture. pp. 40–49. ISBN 1-55860-539-8. 
+^ Clark, Don, China computer claims top speed, Wall Street Journal, 21 June 2016, p. B4
+^ Markoff, John, China crowds top computer list, New York Times, 21 June 2016, page B1
+^ a b Hardware software co-design of a multimedia SOC platform by Sao-Jie Chen, Guang-Huei Lin, Pao-Ann Hsiung, Yu-Hen Hu 2009, pages 70–72
+^ The Atlas, University of Manchester, archived from the original on 28 July 2012, retrieved 21 September 2010 
+^ Lavington, Simon (1998), A History of Manchester Computers (2 ed.), Swindon: The British Computer Society, pp. 41–52, ISBN 978-1-902505-01-5 
+^ The Supermen, Charles Murray, Wiley & Sons, 1997.
+^ A history of modern computing by Paul E. Ceruzzi 2003 ISBN 978-0-262-53203-7 page 161 [1]
+^ a b Hannan, Caryn (2008). Wisconsin Biographical Dictionary. pp. 83–84. ISBN 1-878592-63-7. 
+^ John Impagliazzo; John A. N. Lee (2004). History of computing in education. p. 172. ISBN 1-4020-8135-9. 
+^ Richard Sisson; Christian K. Zacher (2006). The American Midwest: an interpretive encyclopedia. p. 1489. ISBN 0-253-34886-2. 
+^ Readings in computer architecture by Mark Donald Hill, Norman Paul Jouppi, Gurindar Sohi 1999 ISBN 978-1-55860-539-8 page 41-48
+^ Milestones in computer science and information technology by Edwin D. Reilly 2003 ISBN 1-57356-521-0 page 65
+^ http://www.icfcst.kiev.ua/MUSEUM/Kartsev.html
+^ http://museum.ipsj.or.jp/en/computer/other/0013.html
+^ "TOP500 Annual Report 1994". Netlib.org. 1 October 1996. Retrieved 9 June 2012. 
+^ N. Hirose & M. Fukuda (1997). Numerical Wind Tunnel (NWT) and CFD Research at National Aerospace Laboratory. Proceedings of HPC-Asia '97. IEEE Computer SocietyPages. doi:10.1109/HPC.1997.592130. 
+^ H. Fujii, Y. Yasuda, H. Akashi, Y. Inagami, M. Koga, O. Ishihara, M. Syazwan, H. Wada, T. Sumimoto, Architecture and performance of the Hitachi SR2201 massively parallel processor system, Proceedings of 11th International Parallel Processing Symposium, April 1997, pages 233–241.
+^ Y. Iwasaki, The CP-PACS project, Nuclear Physics B – Proceedings Supplements, Volume 60, Issues 1–2, January 1998, pages 246–254.
+^ A.J. van der Steen, Overview of recent supercomputers, Publication of the NCF, Stichting Nationale Computer Faciliteiten, the Netherlands, January 1997.
+^ Scalable input/output: achieving system balance by Daniel A. Reed 2003 ISBN 978-0-262-68142-1 page 182
+^ Seymour Cray quotes
+^ Steve Nelson (3 October 2014). "ComputerGK.com : Supercomputers". 
+^ Xue-June Yang, Xiang-Ke Liao, et al in Journal of Computer Science and Technology. "The TianHe-1A Supercomputer: Its Hardware and Software". pp. 344–351. CS1 maint: Multiple names: authors list (link)
+^ The Supermen: Story of Seymour Cray and the Technical Wizards Behind the Supercomputer by Charles J. Murray 1997, ISBN 0-471-04885-2, pages 133–135
+^ Parallel Computational Fluid Dyynamics; Recent Advances and Future Directions edited by Rupak Biswas 2010 ISBN 1-60595-022-X page 401
+^ Supercomputing Research Advances by Yongge Huáng 2008, ISBN 1-60456-186-6, pages 313–314
+^ a b Parallel computing for real-time signal processing and control by M. O. Tokhi, Mohammad Alamgir Hossain 2003, ISBN 978-1-85233-599-1, pages 201–202
+^ a b Computational science – ICCS 2005: 5th international conference edited by Vaidy S. Sunderam 2005, ISBN 3-540-26043-9, pages 60–67
+^ Prodan, Radu; Fahringer, Thomas (2007). Grid computing: experiment management, tool integration, and scientific workflows. pp. 1–4. ISBN 3-540-69261-4. 
+^ Knight, Will: "IBM creates world's most powerful computer", NewScientist.com news service, June 2007
+^ N. R. Agida; et al. (2005). "Blue Gene/L Torus Interconnection Network | IBM Journal of Research and Development" (PDF). Torus Interconnection Network. p. 265. Archived from the original (PDF) on 15 August 2011. 
+^ Performance Modelling and Optimization of Memory Access on Cellular Computer Architecture Cyclops64 K Barner, GR Gao, Z Hu, Lecture Notes in Computer Science, 2005, Volume 3779, Network and Parallel Computing, pages 132–143
+^ Analysis and performance results of computing betweenness centrality on IBM Cyclops64 by Guangming Tan, Vugranam C. Sreedhar and Guang R. Gao The Journal of Supercomputing Volume 56, Number 1, 1–24 September 2011
+^ Mittal et al., "A Survey of Methods for Analyzing and Improving GPU Energy Efficiency", ACM Computing Surveys, 2014.
+^ Prickett, Timothy (31 May 2010). "Top 500 supers – The Dawning of the GPUs". Theregister.co.uk. 
+^ "A Survey of CPU-GPU Heterogeneous Computing Techniques", ACM Computing Surveys, 2015
+^ Hans Hacker et al in Facing the Multicore-Challenge: Aspects of New Paradigms and Technologies in Parallel Computing by Rainer Keller, David Kramer and Jan-Philipp Weiss (2010). Considering GPGPU for HPC Centers: Is It Worth the Effort?. pp. 118–121. ISBN 3-642-16232-0. 
+^ Damon Poeter (11 October 2011). "Cray's Titan Supercomputer for ORNL Could Be World's Fastest". Pcmag.com. 
+^ Feldman, Michael (11 October 2011). "GPUs Will Morph ORNL's Jaguar Into 20-Petaflop Titan". Hpcwire.com. 
+^ Timothy Prickett Morgan (11 October 2011). "Oak Ridge changes Jaguar's spots from CPUs to GPUs". Theregister.co.uk. 
+^ "The NETL SuperComputer". page 2.
+^ Condon, J.H. and K.Thompson, "Belle Chess Hardware", In Advances in Computer Chess 3 (ed.M.R.B.Clarke), Pergamon Press, 1982.
+^ Hsu, Feng-hsiung (2002). "Behind Deep Blue: Building the Computer that Defeated the World Chess Champion". Princeton University Press. ISBN 0-691-09065-3. 
+^ C. Donninger, U. Lorenz. The Chess Monster Hydra. Proc. of 14th International Conference on Field-Programmable Logic and Applications (FPL), 2004, Antwerp – Belgium, LNCS 3203, pp. 927 – 932
+^ J Makino and M. Taiji, Scientific Simulations with Special Purpose Computers: The GRAPE Systems, Wiley. 1998.
+^ RIKEN press release, Completion of a one-petaFLOPS computer system for simulation of molecular dynamics
+^ Electronic Frontier Foundation (1998). Cracking DES – Secrets of Encryption Research, Wiretap Politics & Chip Design. Oreilly & Associates Inc. ISBN 1-56592-520-3. Archived from the original on 12 November 2004. 
+^ "NVIDIA Tesla GPUs Power World's Fastest Supercomputer" (Press release). Nvidia. 29 October 2010. 
+^ Balandin, Alexander A. (October 2009). "Better Computing Through CPU Cooling". Spectrum.ieee.org. 
+^ "The Green 500". Green500.org. 
+^ "Green 500 list ranks supercomputers". iTnews Australia. 
+^ Wu-chun Feng (2003). "Making a Case for Efficient Supercomputing | ACM Queue Magazine, Volume 1 Issue 7, 10 January 2003 doi 10.1145/957717.957772" (PDF). Archived from the original (PDF) on 30 March 2012. 
+^ "IBM uncloaks 20 petaflops BlueGene/Q super". The Register. 22 November 2010. Retrieved 25 November 2010. 
+^ Prickett, Timothy (15 July 2011). "The Register: IBM 'Blue Waters' super node washes ashore in August". Theregister.co.uk. Retrieved 9 June 2012. 
+^ "HPC Wire 2 July 2010". Hpcwire.com. 2 July 2010. Archived from the original on 13 August 2012. Retrieved 9 June 2012. 
+^ Martin LaMonica (10 May 2010). "CNet 10 May 2010". News.cnet.com. Retrieved 9 June 2012. 
+^ "Government unveils world's fastest computer". CNN. Archived from the original on 10 June 2008. performing 376 million calculations for every watt of electricity used. 
+^ "IBM Roadrunner Takes the Gold in the Petaflop Race". Archived from the original on 17 December 2008. 
+^ "Top500 Supercomputing List Reveals Computing Trends". IBM... BlueGene/Q system .. setting a record in power efficiency with a value of 1,680 MFLOPS/W, more than twice that of the next best system. 
+^ "IBM Research A Clear Winner in Green 500". 
+^ "Green 500 list". Green500.org. Archived from the original on 3 July 2011. Retrieved 9 June 2012. 
+^ Saed G. Younis. "Asymptotically Zero Energy Computing Using Split-Level Charge Recovery Logic". 1994. page 14.
+^ "Hot Topic – the Problem of Cooling Supercomputers" Archived 18 January 2015 at the Wayback Machine..
+^ Anand Lal Shimpi. "Inside the Titan Supercomputer: 299K AMD x86 Cores and 18.6K NVIDIA GPUs". 2012.
+^ Curtis Storlie; Joe Sexton; Scott Pakin; Michael Lang; Brian Reich; William Rust. "Modeling and Predicting Power Consumption of High Performance Computing Jobs". 2014.
+^ a b Encyclopedia of Parallel Computing by David Padua 2011 ISBN 0-387-09765-1 pages 426–429
+^ Knowing machines: essays on technical change by Donald MacKenzie 1998 ISBN 0-262-63188-1 page 149-151
+^ Euro-Par 2004 Parallel Processing: 10th International Euro-Par Conference 2004, by Marco Danelutto, Marco Vanneschi and Domenico Laforenza, ISBN 3-540-22924-8, page 835
+^ Euro-Par 2006 Parallel Processing: 12th International Euro-Par Conference, 2006, by Wolfgang E. Nagel, Wolfgang V. Walter and Wolfgang Lehner ISBN 3-540-37783-2 page
+^ An Evaluation of the Oak Ridge National Laboratory Cray XT3 by Sadaf R. Alam etal International Journal of High Performance Computing Applications February 2008 vol. 22 no. 1 52–80
+^ Open Job Management Architecture for the Blue Gene/L Supercomputer by Yariv Aridor et al. in Job scheduling strategies for parallel processing by Dror G. Feitelson 2005 ISBN 978-3-540-31024-2 pages 95–101
+^ "Top500 OS chart". Top500.org. Archived from the original on 5 March 2012. Retrieved 31 October 2010. 
+^ "Wide-angle view of the ALMA correlator". ESO Press Release. Retrieved 13 February 2013. 
+^ "Folding@home: OS Statistics". Stanford University. Retrieved 30 October 2016. 
+^ "BOINCstats: BOINC Combined". BOINC. Archived from the original on 19 September 2010. Retrieved 30 October 2016Note this link will give current statistics, not those on the date last accessed. 
+^ "Internet PrimeNet Server Distributed Computing Technology for the Great Internet Mersenne Prime Search". GIMPS. Retrieved 6 June 2011. 
+^ a b Kravtsov, Valentin; Carmeli, David; Dubitzky, Werner; Orda, Ariel; Schuster, Assaf; Yoshpa, Benny. "Quasi-opportunistic supercomputing in grids, hot topic paper (2007)". IEEE International Symposium on High Performance Distributed Computing. IEEE. Retrieved 4 August 2011. 
+^ Jamalian, S.; Rajaei, H. (1 March 2015). "ASETS: A SDN Empowered Task Scheduling System for HPCaaS on the Cloud". 2015 IEEE International Conference on Cloud Engineering: 329–334. doi:10.1109/IC2E.2015.56. 
+^ Jamalian, S.; Rajaei, H. (1 June 2015). "Data-Intensive HPC Tasks Scheduling with SDN to Enable HPC-as-a-Service". 2015 IEEE 8th International Conference on Cloud Computing: 596–603. doi:10.1109/CLOUD.2015.85. 
+^ Gupta, A.; Milojicic, D. (1 October 2011). "Evaluation of HPC Applications on Cloud". 2011 Sixth Open Cirrus Summit: 22–26. doi:10.1109/OCS.2011.10. 
+^ Kim, H.; el-Khamra, Y.; Jha, S.; Parashar, M. (1 December 2009). "An Autonomic Approach to Integrated HPC Grid and Cloud Usage". 2009 Fifth IEEE International Conference on e-Science: 366–373. doi:10.1109/e-Science.2009.58. 
+^ a b c The Potential Impact of High-End Capability Computing on Four Illustrative Fields of Science and Engineering by Committee on the Potential Impact of High-End Computing on Illustrative Fields of Science and Engineering and National Research Council (28 October 2008) ISBN 0-309-12485-9 page 9
+^ Xingfu Wu (1999). Performance Evaluation, Prediction and Visualization of Parallel Systems. pp. 114–117. ISBN 0-7923-8462-8. 
+^ a b Dongarra, Jack J.; Luszczek, Piotr; Petitet, Antoine (2003), "The LINPACK Benchmark: past, present and future" (PDF), Concurrency and Computation: Practice and Experience, John Wiley & Sons, Ltd.: 803–820 
+^ "Understanding measures of supercomputer performance and storage system capacity". Indiana University. Retrieved December 3, 2017. 
+^ "Frequently Asked Questions". TOP500.org. Retrieved December 3, 2017. 
+^ Intel brochure – 11/91. "Directory page for Top500 lists. Result for each list since June 1993". Top500.org. Retrieved 31 October 2010. 
+^ "The Cray-1 Computer System" (PDF). Cray Research, Inc. Retrieved 25 May 2011. 
+^ Joshi, Rajani R. (9 June 1998). "A new heuristic algorithm for probabilistic optimization". Department of Mathematics and School of Biomedical Engineering, Indian Institute of Technology Powai, Bombay, India. Retrieved 1 July 2008. (Subscription required (help)). 
+^ "Abstract for SAMSY – Shielding Analysis Modular System". OECD Nuclear Energy Agency, Issy-les-Moulineaux, France. Retrieved 25 May 2011. 
+^ "EFF DES Cracker Source Code". Cosic.esat.kuleuven.be. Retrieved 8 July 2011. 
+^ "Disarmament Diplomacy: – DOE Supercomputing & Test Simulation Programme". Acronym.org.uk. 22 August 2000. Retrieved 8 July 2011. 
+^ "China's Investment in GPU Supercomputing Begins to Pay Off Big Time!". Blogs.nvidia.com. Retrieved 8 July 2011. 
+^ Kaku, Michio. Physics of the Future (New York: Doubleday, 2011), 65.
+^ "Faster Supercomputers Aiding Weather Forecasts". News.nationalgeographic.com. 28 October 2010. Retrieved 8 July 2011. 
+^ Washington Post 8 August 2011[dead link]
+^ "Supercomputers". U.S. Department of Energy. Retrieved 7 March 2017. 
+^ Agam Shah (20 June 2011). "SGI, Intel plan to speed supercomputers 500 times by 2018, ComputerWorld, 20 June 2011". Computerworld.com. Retrieved 9 June 2012. 
+^ Dillow Clay (18 September 2012). "India Aims To Take The "World's Fastest Supercomputer" Crown By 2017, POPSCI, 9 September 2012". popsci.com. Retrieved 31 October 2012. 
+^ Prashanth G N (13 November 2014). "India working on building fastest supercomputer". Deccan Herald. Retrieved 28 November 2014. 
+^ Erik, DeBenedictis. "The Path To Extreme Computing" (PDF). Sandia National Laboratories. Retrieved 1 December 2017. 
+^ Cohen, Reuven (November 28, 2013). "Global Bitcoin Computing Power Now 256 Times Faster Than Top 500 Supercomputers, Combined!". Forbes. Retrieved 1 December 2017. 
+^ DeBenedictis, Erik P. (2005). "Reversible logic for supercomputing". Proceedings of the 2nd conference on Computing frontiers. pp. 391–402. ISBN 1-59593-019-1. 
+^ "IDF: Intel says Moore's Law holds until 2029". Heise Online. 4 April 2008. Archived from the original on 8 December 2013. 
+^ Solem, J. C. (1985). "MECA: A multiprocessor concept specialized to Monte Carlo". Proceedings of the Joint Los Alamos National Laboratory – Commissariat à l'Energie Atomique Meeting Held at Cadarache Castle, Provence, France 22–26 April 1985; Monte-Carlo Methods and Applications in Neutronics, Photonics and Statistical Physics, Alcouffe, R.; Dautray, R.; Forster, A.; Forster, G.; Mercier, B.; eds. (Springer Verlag, Berlin). 240: 184–195. 
+^ "Green Supercomputer Crunches Big Data in Iceland". intelfreepress.com. 21 May 2015. Archived from the original on 20 May 2015. Retrieved 18 May 2015. 
+
+
+External links[edit]
+
+A Tunable, Software-based DRAM Error Detection and Correction Library for HPC
+Detection and Correction of Silent Data Corruption for Large-Scale High-Performance Computing
+"NetworkComputer – Industry's Fastest Enterprise Job Scheduler". 
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Parallel computing
+
+
+
+General
+
+
+
+Distributed computing
+Parallel computing
+Massively parallel
+Cloud computing
+High-performance computing
+Multiprocessing
+Manycore processor
+GPGPU
+Computer network
+Systolic array
+
+
+
+
+
+Levels
+
+
+
+Bit
+Instruction
+Thread
+Task
+Data
+Memory
+Loop
+Pipeline
+
+
+
+
+
+Multithreading
+
+
+
+Temporal
+Simultaneous (SMT)
+Speculative (SpMT)
+Preemptive
+Cooperative
+Clustered Multi-Thread (CMT)
+Hardware scout
+
+
+
+
+
+Theory
+
+
+
+PRAM model
+Analysis of parallel algorithms
+Amdahl's law
+Gustafson's law
+Cost efficiency
+Karp–Flatt metric
+Slowdown
+Speedup
+
+
+
+
+
+Elements
+
+
+
+Process
+Thread
+Fiber
+Instruction window
+
+
+
+
+
+Coordination
+
+
+
+Multiprocessing
+Memory coherency
+Cache coherency
+Cache invalidation
+Barrier
+Synchronization
+Application checkpointing
+
+
+
+
+
+Programming
+
+
+
+Stream processing
+Dataflow programming
+Models
+
+Implicit parallelism
+Explicit parallelism
+Concurrency
+
+
+Non-blocking algorithm
+
+
+
+
+
+Hardware
+
+
+
+Flynn's taxonomy
+
+SISD
+SIMD
+SIMT
+MISD
+MIMD
+
+
+Dataflow architecture
+Pipelined processor
+Superscalar processor
+Vector processor
+Multiprocessor
+
+symmetric
+asymmetric
+
+
+Memory
+
+shared
+distributed
+distributed shared
+UMA
+NUMA
+COMA
+
+
+Massively parallel computer
+Computer cluster
+Grid computer
+
+
+
+
+
+APIs
+
+
+
+Ateji PX
+Boost.Thread
+Chapel
+Charm++
+Cilk
+Coarray Fortran
+CUDA
+Dryad
+C++ AMP
+Global Arrays
+MPI
+OpenMP
+OpenCL
+OpenHMPP
+OpenACC
+TPL
+PLINQ
+PVM
+POSIX Threads
+RaftLib
+UPC
+TBB
+ZPL
+
+
+
+
+
+Problems
+
+
+
+Deadlock
+Livelock
+Deterministic algorithm
+Embarrassingly parallel
+Parallel slowdown
+Race condition
+Software lockout
+Scalability
+Starvation
+
+
+
+
+
+
+
+
+ Category: parallel computing
+ Media related to Parallel computing at Wikimedia Commons
+
+
+
+
+
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Computer sizes
+
+
+
+
+Classes of computers
+
+
+
+Microcomputer,
+personal
+computer
+
+
+
+
+Stationary
+
+
+
+Workstation
+Desktop
+Home
+Personal supercomputer
+SFF
+
+Nettop
+
+
+Plug
+Portable
+
+Tabletop
+
+
+Game arcade cabinet
+
+System board
+
+
+Home console
+Microconsole
+Interactive kiosk
+Smart TV
+Smart speaker
+
+
+
+
+
+Mobile
+
+
+
+
+Laptop
+
+
+
+Desktop replacement
+Notebook
+2-in-1
+Subnotebook
+
+Netbook
+Smartbook
+Ultrabook
+
+
+Ultra-mobile PC
+
+
+
+
+
+Tablet
+
+
+
+Ultra-mobile PC
+2-in-1
+Mobile Internet device
+Tabletop
+Phablet
+
+
+
+
+
+Information
+appliance
+
+
+
+Handheld PC
+
+Palm-size PC
+Pocket PC
+Pocket computer
+Palmtop PC
+
+
+PDA
+
+Electronic organizer
+EDA
+
+
+Mobile phone
+
+Feature phone
+Smartphone
+
+Phablet
+
+
+
+
+PMP
+
+DAP
+
+
+E-reader
+Handheld game console
+Portable/Mobile data terminal
+
+
+
+
+
+Calculator
+
+
+
+Scientific
+Programmable
+Graphing
+
+
+
+
+
+Wearable
+
+
+
+Digital wristwatch
+
+Calculator watch
+Smartwatch
+
+
+Smartglasses
+Smart ring
+
+
+
+
+
+
+
+
+
+
+
+Midrange
+
+
+
+Server
+Minicomputer
+Supermini
+
+
+
+
+
+Large
+
+
+
+Super
+Mainframe
+Minisuper
+
+
+
+
+
+Others
+
+
+
+Microcontroller
+Nanocomputer
+Pizza box form factor
+Single-board computer
+Smartdust
+Wireless sensor network
+
+
+
+
+
+
+
+
+Information technology portal
+Computer science portal
+
+
+
+
+
+Authority control
+
+
+
+NDL: 01090879
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Supercomputer&oldid=817733005"					Categories: SupercomputersAmerican inventionsCluster computingConcurrent computingDistributed computing architectureParallel computingHidden categories: CS1 maint: Multiple names: authors listWebarchive template wayback linksPages containing links to subscription-only contentAll articles with dead external linksArticles with dead external links from June 2012Use dmy dates from January 2015Articles containing potentially dated statements from 2015All articles containing potentially dated statementsArticles containing potentially dated statements from October 2016Articles containing potentially dated statements from February 2017All articles with unsourced statementsArticles with unsourced statements from October 2016

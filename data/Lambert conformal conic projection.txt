@@ -1,0 +1,881 @@
+
+
+
+
+Lambert conformal conic projection with standard parallels at 20°N and 50°N. Projection extends toward infinity southward and so has been cut off at 30°S.
+
+
+
+
+
+
+Aeronautical chart on Lambert conformal conic projection with standard parallels at 33°N and 45°N°.
+
+
+A Lambert conformal conic projection (LCC) is a conic map projection used for aeronautical charts, portions of the State Plane Coordinate System, and many national and regional mapping systems. It is one of seven projections introduced by Johann Heinrich Lambert in his 1772 publication Anmerkungen und Zusätze zur Entwerfung der Land- und Himmelscharten (Notes and Comments on the Composition of Terrestrial and Celestial Maps[1]).
+Conceptually, the projection seats a cone over the sphere of the Earth and projects the surface conformally onto the cone. The cone is unrolled, and the parallel that was touching the sphere is assigned unit scale. That parallel is called the reference parallel or standard parallel.
+By scaling the resulting map, two parallels can be assigned unit scale, with scale decreasing between the two parallels and increasing outside them. This gives the map two standard parallels. In this way, deviation from unit scale can be minimized within a region of interest that lies largely between the two standard parallels. Unlike other conic projections, no true secant form of the projection exists because using a secant cone does not yield the same scale along both standard parallels.[2]
+
+
+
+Contents
+
+
+1 Use
+2 History
+3 Transformation
+4 See also
+5 References
+6 External links
+
+
+
+Use[edit]
+Pilots use aeronautical charts based on LCC because a straight line drawn on a Lambert conformal conic projection approximates a great-circle route between endpoints for typical flight distances. The US systems of VFR (visual flight rules) sectional charts and terminal area charts are drafted on the LCC with standard parallels at 33°N and 45°N.
+The European Environment Agency[3] and the INSPIRE specification for coordinate systems [4] recommends using this projection (also named ETRS89-LCC) for conformal pan-European mapping at scales smaller or equal to 1:500,000. In Metropolitan France, the official projection is Lambert-93,[5] a Lambert conic projection using RGF93 geodetic system[6] and defined by references parallels that are 44°N and 49°N.
+The National Spatial Framework for India uses Datum WGS84 with a LCC projection and is a recommended NNRMS standard. Each state has its own set of reference parameters given in the standard.[7]
+The U.S. National Geodetic Survey's "State Plane Coordinate System of 1983" uses the Lambert conformal conic projection to define the grid-coordinate systems used in several states, primarily those that are elongated west to east such as Tennessee. The Lambert projection is relatively easy to use: conversions from geodetic (latitude/longitude) to State Plane Grid coordinates involve trigonometric equations that are fairly straightforward and which can be solved on most scientific calculators, especially programmable models.[8] The projection as used in CCS83 yields maps in which scale errors are limited to 1 part in 10,000.
+History[edit]
+The Lambert conformal conic is one of several map projection systems developed by Johann Heinrich Lambert, an 18th-century Swiss mathematician, physicist, philosopher, and astronomer.[1]
+Transformation[edit]
+Coordinates from a spherical datum can be transformed into Lambert conformal conic projection coordinates with the following formulas,[9] where λ is the longitude, λ0 the reference longitude, φ the latitude, φ0 the reference latitude, and φ1 and φ2 the standard parallels:
+
+
+
+
+
+
+
+
+
+x
+
+
+
+=
+ρ
+sin
+⁡
+
+[
+n
+
+(
+λ
+−
+
+λ
+
+0
+
+
+)
+
+]
+
+
+
+
+
+y
+
+
+
+=
+
+ρ
+
+0
+
+
+−
+ρ
+cos
+⁡
+
+[
+n
+
+(
+λ
+−
+
+λ
+
+0
+
+
+)
+
+]
+
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}x&=\rho \sin \left[n\left(\lambda -\lambda _{0}\right)\right]\\y&=\rho _{0}-\rho \cos \left[n\left(\lambda -\lambda _{0}\right)\right]\end{aligned}}}
+
+
+
+where
+
+
+
+
+
+
+
+
+
+n
+
+
+
+=
+
+
+
+ln
+⁡
+
+(
+cos
+⁡
+
+φ
+
+1
+
+
+sec
+⁡
+
+φ
+
+2
+
+
+)
+
+
+
+ln
+⁡
+
+[
+tan
+⁡
+
+(
+
+
+1
+4
+
+
+π
++
+
+
+1
+2
+
+
+
+φ
+
+2
+
+
+)
+
+cot
+⁡
+
+(
+
+
+1
+4
+
+
+π
++
+
+
+1
+2
+
+
+
+φ
+
+1
+
+
+)
+
+]
+
+
+
+
+
+
+
+
+ρ
+
+
+
+=
+F
+
+cot
+
+n
+
+
+⁡
+
+(
+
+
+
+1
+4
+
+
+
+π
++
+
+
+
+1
+2
+
+
+
+φ
+)
+
+
+
+
+
+
+ρ
+
+0
+
+
+
+
+
+=
+F
+
+cot
+
+n
+
+
+⁡
+
+(
+
+
+
+1
+4
+
+
+
+π
++
+
+
+
+1
+2
+
+
+
+
+φ
+
+0
+
+
+)
+
+
+
+
+
+F
+
+
+
+=
+
+
+
+cos
+⁡
+
+φ
+
+1
+
+
+
+tan
+
+n
+
+
+⁡
+
+(
+
+
+1
+4
+
+
+π
++
+
+
+1
+2
+
+
+
+φ
+
+1
+
+
+)
+
+
+n
+
+
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}n&={\frac {\ln \left(\cos \varphi _{1}\sec \varphi _{2}\right)}{\ln \left[\tan \left({\frac {1}{4}}\pi +{\frac {1}{2}}\varphi _{2}\right)\cot \left({\frac {1}{4}}\pi +{\frac {1}{2}}\varphi _{1}\right)\right]}}\\\rho &=F\cot ^{n}\left({\tfrac {1}{4}}\pi +{\tfrac {1}{2}}\varphi \right)\\\rho _{0}&=F\cot ^{n}\left({\tfrac {1}{4}}\pi +{\tfrac {1}{2}}\varphi _{0}\right)\\F&={\frac {\cos \varphi _{1}\tan ^{n}\left({\frac {1}{4}}\pi +{\frac {1}{2}}\varphi _{1}\right)}{n}}\end{aligned}}}
+
+
+
+Formulae for ellipsoidal datums are more involved.[10]
+If one standard parallel is used (i.e. φ1 = φ2), the formula for n above is indeterminate, but then n = sin(φ1).[10]
+See also[edit]
+
+
+Atlas portal
+
+
+
+List of map projections
+Albers projection
+Lambert cylindrical equal-area projection
+Lambert azimuthal equal-area projection
+
+References[edit]
+
+
+
+^ a b Lambert, Johann Heinrich (1772). Tobler, Waldo, ed. Notes and Comments on the Composition of Terrestrial and Celestial Maps (Translated and Introduced by W. R. Tobler, 1972). ESRI Press. ISBN 978-1-58948-281-4. 
+^ "CMAPF FAQ". NOAA. 
+^ "Short Proceedings of the 1st European Workshop on Reference Grids, Ispra, 27-29 October 2003" (PDF). European Environment Agency. 2004-06-14. p. 6. Retrieved 2009-08-27. 
+^ "D2.8.I.1 INSPIRE Specification on Coordinate Reference Systems - Guidelines" (PDF). European Commission. 2009-09-07. p. 15. Retrieved 2012-10-07. 
+^ http://spatialreference.org/ref/epsg/rgf93-lambert-93/
+^ http://georepository.com/crs_4964/RGF93.html
+^ "NNRMS standards, Government of India" (PDF). Government of India. 
+^ "State Plane Coordinate System of 1983, NOAA Manual NOS NGS 5" (PDF). National Oceanic and Atmospheric Administration. March 1990. Retrieved 2011-10-27. 
+^ Weisstein, Eric. "Lambert Conformal Conic Projection". Wolfram MathWorld. Wolfram Research. Retrieved 2009-02-07. 
+^ a b Snyder, John (1987). "Map Projections:A Working Manual (USGS Professional Paper: 1395)". USGS. pp. 107–109. Retrieved 2014-07-12. 
+
+
+
+External links[edit]
+
+
+
+Wikimedia Commons has media related to Lambert conformal conic projection.
+
+
+
+Table of examples and properties of all common projections, from radicalcartography.net
+An interactive Java Applet to study the metric deformations of the Lambert Conformal Conic Projection
+This document from the U.S. National Geodetic Survey describes the State Plane Coordinate System of 1983, including details on the equations used to perform the Lambert Conformal Conic and Mercator map projections of CCS83
+Lambert Conformal Conic to Geographic Transformation Formulae from Land Information New Zealand
+
+
+
+
+
+
+
+v
+t
+e
+
+
+Map projection
+
+
+
+
+
+
+History
+List
+Portal
+
+
+
+
+
+
+
+
+
+
+By surface
+
+
+
+
+
+
+
+Cylindrical
+
+
+
+
+Mercator-conformal
+
+
+
+Gauss–Krüger
+Transverse Mercator
+
+
+
+
+
+Equal-area
+
+
+
+Balthasart
+Behrmann
+Gall–Peters
+Hobo–Dyer
+Lambert
+Smyth equal-surface
+Trystan Edwards
+
+
+
+
+
+
+
+
+Cassini
+Central
+Equirectangular
+Gall stereographic
+Miller
+Space-oblique Mercator
+Web Mercator
+
+
+
+
+
+
+
+
+Pseudocylindrical
+
+
+
+Eckert II
+Eckert IV
+Eckert VI
+Goode homolosine
+Kavrayskiy VII
+Mollweide
+Sinusoidal
+Tobler hyperelliptical
+Wagner VI
+
+
+
+
+
+Conical
+
+
+
+Albers
+Equidistant
+Lambert conformal
+
+
+
+
+
+Pseudoconical
+
+
+
+Bonne
+Bottomley
+Polyconic
+Werner
+
+
+
+
+
+Azimuthal
+(planar)
+
+
+
+
+General perspective
+
+
+
+Gnomonic
+Orthographic
+Stereographic
+
+
+
+
+
+
+
+
+Equidistant
+Lambert equal-area
+
+
+
+
+
+
+
+
+Pseudoazimuthal
+
+
+
+Aitoff
+Hammer
+Wiechel
+Winkel tripel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+By metric
+
+
+
+
+
+
+
+Conformal
+
+
+
+Adams hemisphere-in-a-square
+Gauss–Krüger
+Guyou hemisphere-in-a-square
+Lambert conformal conic
+Mercator
+Peirce quincuncial
+Stereographic
+Transverse Mercator
+
+
+
+
+
+Equal-area
+
+
+
+
+Bonne
+
+
+
+Sinusoidal
+Werner
+
+
+
+
+
+Bottomley
+
+
+
+Sinusoidal
+Werner
+
+
+
+
+
+Cylindrical
+
+
+
+Balthasart
+Behrmann
+Gall–Peters
+Hobo–Dyer
+Lambert cylindrical equal-area
+Smyth equal-surface
+Trystan Edwards
+
+
+
+
+
+Tobler hyperelliptical
+
+
+
+Collignon
+Mollweide
+
+
+
+
+
+
+
+
+Albers
+Briesemeister
+Eckert II
+Eckert IV
+Eckert VI
+Hammer
+Lambert azimuthal equal-area
+Quadrilateralized spherical cube
+
+
+
+
+
+
+
+
+Equidistant in
+some aspect
+
+
+
+Conic
+Equirectangular
+Sinusoidal
+Two-point
+Werner
+
+
+
+
+
+Gnomonic
+
+
+
+Gnomonic
+
+
+
+
+
+Loxodromic
+
+
+
+Loximuthal
+Mercator
+
+
+
+
+
+Retroazimuthal
+(Mecca or Qibla)
+
+
+
+Craig
+Hammer
+Littrow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+By construction
+
+
+
+
+
+
+
+Compromise
+
+
+
+Chamberlin trimetric
+Kavrayskiy VII
+Miller cylindrical
+Robinson
+Van der Grinten
+Wagner VI
+Winkel tripel
+
+
+
+
+
+Hybrid
+
+
+
+Goode homolosine
+HEALPix
+
+
+
+
+
+Perspective
+
+
+
+
+Planar
+
+
+
+Gnomonic
+Orthographic
+Stereographic
+
+
+
+
+
+
+
+
+Central cylindrical
+
+
+
+
+
+
+
+
+Polyhedral
+
+
+
+Cahill Butterfly
+Dymaxion
+Quadrilateralized spherical cube
+Waterman butterfly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+See also
+
+
+
+
+
+
+Latitude
+Longitude
+Tissot's indicatrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						Retrieved from "https://en.wikipedia.org/w/index.php?title=Lambert_conformal_conic_projection&oldid=813869466"					Categories: Map projectionsConformal projections
